@@ -1,0 +1,3 @@
+[submodule "chuck-norris-server"]
+	path = chuck-norris-server
+	url = https://github.com/auth0/nodejs-jwt-authentication-sample
