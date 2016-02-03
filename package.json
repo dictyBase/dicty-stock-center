@@ -12,6 +12,7 @@
     "compile": "node -r dotenv/config --harmony bin/compile",
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",
+    "server": "node chuck-norris-server/server.js",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
     "dev:nw": "npm run dev -- --nw",
