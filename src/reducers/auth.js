@@ -2,9 +2,16 @@ import types from '../constants'
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
 
+const authenticated = () => {
+  if (localStorage.getItem('id_token')) {
+    return true
+  }
+  return false
+}
+
 const initialState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('id_token') ? true : false
+  isAuthenticated: authenticated()
 }
 
 const authReducer = (state = initialState, action) => {
