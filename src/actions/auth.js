@@ -1,4 +1,6 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } from '../constants'
+import types from '../constants'
+
+const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
 
 const requestLogin = creds => {
   return {
@@ -32,7 +34,6 @@ const status = response => {
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response)
   } else {
-    dispatch(loginError(response.message))
     return Promise.reject(new Error(response.statusText))
   }
 }
@@ -65,6 +66,7 @@ export const loginUser = creds => {
         dispatch(receiveLogin(user))
       }).catch(error => {
         console.log('Request failed', error)
+        dispatch(loginError(error))
       })
   }
 }
