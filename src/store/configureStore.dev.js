@@ -12,16 +12,16 @@ const enhancer = compose(
   )
 )
 
-export default function configureStore (initialState) {
+export default function configureStore(initialState) {
   // todo -> create store with middleware
 
-  const store = createStore(rootReducer, initialState, enhancer)
+    const store = createStore(rootReducer, initialState, enhancer)
 
-  if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(require('../reducers').default)
-    )
-  }
+    if (module.hot) {
+        module.hot.accept('../reducers', () =>
+          store.replaceReducer(require('../reducers').default)
+        )
+    }
 
-  return store
+    return store
 }
