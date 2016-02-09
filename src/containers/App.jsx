@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Navbar from 'components/Navbar'
+import Login from 'components/Login'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -14,13 +15,13 @@ class App extends Component {
         return (
           <div>
             <Navbar
-              isAuthenticated={isAuthenticated}
-              errorMessage={errorMessage}
-              dispatch={dispatch}
+              isAuthenticated={ isAuthenticated }
+              errorMessage={ errorMessage }
+              dispatch={ dispatch }
             />
-            <div className="container">
-              <p>Authenticated: {JSON.stringify(isAuthenticated)}</p>
-            </div>
+                { !isAuthenticated &&
+                    <Login />
+                }
           </div>
         )
     }

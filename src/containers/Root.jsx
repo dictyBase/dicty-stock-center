@@ -6,14 +6,16 @@ import DevTools from 'containers/DevTools'
 export default class Root extends Component {
     displayName = 'root component';
     static propTypes = {
-        store: PropTypes.object.isRequired
+        store: PropTypes.object
     };
     render() {
         const { store } = this.props
         return (
-          <Provider store={store}>
-              <App />
-              <DevTools />
+          <Provider store={ store }>
+              <div>
+                  <App />
+                  <DevTools />
+              </div>
           </Provider>
         )
     }
