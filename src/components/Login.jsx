@@ -1,27 +1,39 @@
-import React, { Component } from 'react'
-import 'styles/login.scss'
+import React, { Component, PropTypes } from 'react'
+import OauthSignInButton from 'components/OauthSignInButton'
+import 'styles/core.scss'
 
 export default class Login extends Component {
-    displayName = 'third party login component';
+    displayName = 'login display';
+    static propTypes = {
+        providers: PropTypes.array
+    };
+    static defaultProps = {
+        providers: ['github', 'facebook', 'google', 'twitter']
+    };
+    constructor(props) {
+        super(props)
+    }
+    renderOauthButtons = () => {
+        const { providers } = this.props
+        return providers.map(provider => {
+            return (
+                <OauthSignInButton provider={ provider } />
+            )
+        })
+    };
     render() {
         return (
             <div className="row">
-                <div className="col-sm-2">
-                    <a className="btn btn-block btn-social btn-github">
-                        <i className="fa fa-github"></i> Sign in with GitHub
-                    </a>
-                    <a className="btn btn-block btn-social btn-google">
-                        <i className="fa fa-google"></i> Sign in with Google
-                    </a>
-                    <a className="btn btn-block btn-social btn-facebook">
-                        <i className="fa fa-facebook"></i> Sign in with Facebook
-                    </a>
-                    <a className="btn btn-block btn-social btn-linkedin">
-                        <i className="fa fa-linkedin"></i> Sign in with Linkedin
-                    </a>
-                    <a className="btn btn-block btn-social btn-twitter">
-                        <i className="fa fa-twitter"></i> Sign in with Twitter
-                    </a>
+                <div className="col-md-offset-4"></div>
+                <div className="col-sm-3">
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h2 className="panel-title"> LogIn </h2>
+                        </div>
+                        <div className="panel-body">
+                            { this.renderOauthButtons() }
+                        </div>
+                    </div>
                 </div>
             </div>
         )
