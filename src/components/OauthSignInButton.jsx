@@ -8,6 +8,23 @@ export default class oauthSignInButton extends Component {
         provider: PropTypes.string.isRequired,
         redirectUrl: PropTypes.string
     };
+    onClick = () => {
+        const { provider } = this.props
+        const config = oauthConfig[provider]
+        let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
+        if (config.requiredUrlParams) {
+            config.requiredUrlParams.forEach(element => {
+                url += `&${element[0]}=${element[1]}`
+            })
+        }
+        if (config.optionalUrlParams) {
+            config.optionalUrlParams.forEach(element => {
+                url += `&${element[0]}=${element[1]}`
+            })
+        }
+        url += `&redirect_uri=${config.redirectUrl}`
+        console.log(url)
+    };
     titleCase(name) {
         return name.charAt(0).toUpperCase() + name.slice(1)
     }
@@ -15,7 +32,10 @@ export default class oauthSignInButton extends Component {
         const { provider } = this.props
         const name = oauthConfig[provider] ? oauthConfig[provider].name : this.titleCase(provider)
         return (
-            <a className={ `btn btn-block btn-social btn-lg btn-${provider}` }>
+            <a
+                className={ `btn btn-block btn-social btn-lg btn-${provider}` }
+                onClick={ this.onClick }
+            >
                 <i className={ `fa fa-${provider}` }></i>
                 Sign in with { name }
             </a>
