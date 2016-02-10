@@ -38,7 +38,7 @@ const oauthConfig = {
         ],
         display: 'popup',
         type: '2.0',
-        popupOptions: { width: 452, height: 633 }
+        popupOptions: { width: 1020, height: 633 }
     },
     facebook: {
         name: 'Facebook',
