@@ -15,10 +15,10 @@ const oauthConfig = {
         url: '/auth/github',
         authorizationEndpoint: 'https://github.com/login/oauth/authorize',
         clientId: clientConfig.github.clientId,
-        redirectUrl: window.location.origin,
+        redirectUrl: `${window.location.origin}/callback`,
         optionalUrlParams: [
             ['scope', 'user:email'],
-            ['state', 'dictyBase']
+            ['state', 'github']
         ],
         type: '2.0',
         popupOptions: { width: 1020, height: 618 }
@@ -28,13 +28,13 @@ const oauthConfig = {
         url: '/auth/google',
         authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
         clientId: clientConfig.google.clientId,
-        redirectUrl: window.location.origin,
+        redirectUrl: `${window.location.origin}/callback`,
         requiredUrlParams: [
             ['response_type', 'token']
         ],
         optionalUrlParams: [
             ['scope', 'email'],
-            ['state', 'dictyBase']
+            ['state', 'google']
         ],
         display: 'popup',
         type: '2.0',
@@ -45,10 +45,10 @@ const oauthConfig = {
         url: '/auth/facebook',
         authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
         clientId: clientConfig.facebook.clientId,
-        redirectUrl: window.location.origin + '/',
+        redirectUrl: `${window.location.origin}/callback`,
         optionalUrlParams: [
             ['scope', 'email'],
-            ['state', 'dictyBase'],
+            ['state', 'facebook'],
             ['response_type', 'token']
         ],
         display: 'popup',
