@@ -30,8 +30,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        errorMessage: state.errorMessage
+        isAuthenticated: state.auth.isAuthenticated,
+        errorMessage: state.auth.errorMessage
     }
 }
 
