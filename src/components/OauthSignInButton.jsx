@@ -8,6 +8,15 @@ export default class oauthSignInButton extends Component {
         provider: PropTypes.string.isRequired,
         redirectUrl: PropTypes.string
     };
+    componentDidMount() {
+        window.addEventListener('message', this.onMessage)
+    }
+    titleCase(name) {
+        return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+    onMessage = (event) => {
+        console.log(event.data)
+    };
     onClick = () => {
         const { provider } = this.props
         const config = oauthConfig[provider]
@@ -23,11 +32,9 @@ export default class oauthSignInButton extends Component {
             })
         }
         url += `&redirect_uri=${config.redirectUrl}`
-        console.log(url)
+        window.open(url, provider, `width=${config.popupOptions.width},
+                    height=${config.popupOptions.height}`)
     };
-    titleCase(name) {
-        return name.charAt(0).toUpperCase() + name.slice(1)
-    }
     render() {
         const { provider } = this.props
         const name = oauthConfig[provider] ? oauthConfig[provider].name : this.titleCase(provider)
