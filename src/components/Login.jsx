@@ -8,16 +8,16 @@ export default class Login extends Component {
         providers: PropTypes.array
     };
     static defaultProps = {
-        providers: ['github', 'facebook', 'google', 'twitter']
+        providers: ['github', 'facebook', 'google']
     };
     constructor(props) {
         super(props)
     }
     renderOauthButtons = () => {
         const { providers } = this.props
-        return providers.map(provider => {
+        return providers.map((provider, index) => {
             return (
-                <OauthSignInButton provider={ provider } />
+                <OauthSignInButton provider={ provider } key={ index } />
             )
         })
     };
