@@ -1,4 +1,5 @@
 import types from '../constants'
+import querystring from 'querystring'
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
 
@@ -7,6 +8,7 @@ const requestLogin = creds => {
         type: LOGIN_REQUEST,
         isFetching: true,
         isAuthenticated: false,
+        fake: true,
         creds
     }
 }
@@ -39,6 +41,14 @@ const status = response => {
 
 const json = response => {
     return response.json()
+}
+
+export const oAuthLogin = query => {
+    return dispatch => {
+        const parsed = querystring.parse(query)
+        console.log(parsed.state)
+        dispatch(requestLogin())
+    }
 }
 
 // Calls the API to get a token and
