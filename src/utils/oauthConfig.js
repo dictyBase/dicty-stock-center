@@ -48,7 +48,7 @@ const oauthConfig = {
             ['state', 'facebook'],
             ['response_type', 'code']
         ],
-        popupOptions: { width: 580, height: 400 }
+        popupOptions: { width: 1028, height: 640 }
     }
 }
 
