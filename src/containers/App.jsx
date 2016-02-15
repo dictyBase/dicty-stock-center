@@ -1,37 +1,42 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Navbar from 'components/Navbar'
-import Login from 'components/Login'
+import { bindActionCreators } from 'redux'
+import * as authActionCreators from 'actions/auth'
 
 class App extends Component {
     displayName = 'the primary app component';
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired,
-        errorMessage: PropTypes.string
+        auth: PropTypes.object.isRequired
+    };
+    renderChildren = () => {
+        const { children } = this.props
+        return React.Children.map(children, (child) => {
+            return React.cloneElement(child, {...this.props})
+        })
     };
     render() {
-        const { dispatch, isAuthenticated, errorMessage } = this.props
+        const { isAuthenticated } = this.props.auth
         return (
           <div>
             <Navbar
               isAuthenticated={ isAuthenticated }
-              errorMessage={ errorMessage }
-              dispatch={ dispatch }
             />
-                { !isAuthenticated &&
-                    <Login />
-                }
+            { this.renderChildren() }
           </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
+    const { auth } = state
+    return { auth }
+}
+
+const mapDispatchToProps = (dispatch) => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        errorMessage: state.errorMessage
+        authActions: bindActionCreators(authActionCreators, dispatch)
     }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
