@@ -9,15 +9,21 @@ export default class oauthSignInButton extends Component {
         redirectUrl: PropTypes.string
     };
     componentDidMount() {
-        window.addEventListener('message', this.onMessage)
+        window.addEventListener('message', this.onMessage, false)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('message', this.onMessage)
     }
     titleCase(name) {
         return name.charAt(0).toUpperCase() + name.slice(1)
     }
     onMessage = (event) => {
-        console.log(event.data)
+        event.preventDefault()
+        event.stopImmediatePropagation()
+        this.props.authActions.oAuthLogin(event.data)
     };
-    onClick = () => {
+    onClick = (event) => {
+        event.preventDefault()
         const { provider } = this.props
         const config = oauthConfig[provider]
         let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`

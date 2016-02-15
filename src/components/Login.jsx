@@ -17,7 +17,7 @@ export default class Login extends Component {
         const { providers } = this.props
         return providers.map((provider, index) => {
             return (
-                <OauthSignInButton provider={ provider } key={ index } />
+                <OauthSignInButton provider={ provider } key={ index } {...this.props}/>
             )
         })
     };
