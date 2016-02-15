@@ -2,15 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
+import { syncHistory } from 'react-router-redux'
+import { BrowserHistory } from 'react-router'
 
+const middleware = syncHistory(BrowserHistory)
 const enhancer = compose(
-    applyMiddleware(thunk),
+    applyMiddleware(middleware, thunk),
     DevTools.instrument(),
 )
 
 export default function configureStore(initialState) {
-  // todo -> create store with middleware
-
     const store = createStore(rootReducer, initialState, enhancer)
 
     if (module.hot) {
@@ -18,5 +19,6 @@ export default function configureStore(initialState) {
           store.replaceReducer(require('../reducers').default)
         )
     }
+    middleware.listenForReplays(store)
     return store
 }

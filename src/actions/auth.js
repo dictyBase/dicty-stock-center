@@ -45,9 +45,8 @@ const json = response => {
 
 export const oAuthLogin = query => {
     return dispatch => {
-        const parsed = querystring.parse(query)
-        console.log(parsed.state)
-        dispatch(requestLogin())
+        const parsed = querystring.parse(query.replace('?', ''))
+        console.log(parsed)
     }
 }
 
