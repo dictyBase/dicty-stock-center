@@ -1,28 +1,33 @@
 import React, { Component, PropTypes } from 'react'
-import Logout from 'components/Logout'
-import { logoutUser } from '../actions/auth'
+import { Link } from 'react-router'
 import 'styles/core.scss'
 
 export default class Navbar extends Component {
     displayName = 'navbar display';
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired,
-        errorMessage: PropTypes.string
+        isAuthenticated: PropTypes.bool.isRequired
     };
 
     render() {
-        const { dispatch, isAuthenticated } = this.props
+        const { isAuthenticated } = this.props
+        let button
+        if (isAuthenticated) {
+            button = (
+                <Link to="logout" className="btn btn-default navbar-btn">Login</Link>
+            )
+        } else {
+            button = (
+                <Link to="login" className="btn btn-default navbar-btn">Login</Link>
+            )
+        }
         return (
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Auth App</a>
-                <div className="navbar-form">
-                    { isAuthenticated &&
-                        <Logout onLogoutClick={ () => dispatch(logoutUser()) }/>
-                    }
+                    <div className="navbar-header">
+                        <a className="navbar-brand" href="#">Auth App</a>
+                    </div>
+                    { button }
                 </div>
-            </div>
             </nav>
         )
     }
