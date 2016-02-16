@@ -28,9 +28,9 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     const { auth } = state
-    return { auth }
+    return { auth: auth, routeProps: ownProps }
 }
 
 const mapDispatchToProps = (dispatch) => {
