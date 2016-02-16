@@ -21,7 +21,7 @@ const receiveLogin = user => {
         type: LOGIN_SUCCESS,
         isFetching: false,
         isAuthenticated: true,
-        user
+        user: user
     }
 }
 

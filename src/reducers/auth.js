@@ -1,13 +1,11 @@
 import types from '../constants'
+import simpleStorage from 'simpleStorage'
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
 
 
 const authenticated = () => {
-    if (localStorage.getItem('id_token')) {
-        return true
-    }
-    return false
+    return simpleStorage.hasKey('token')
 }
 
 const initialState = {
@@ -22,7 +20,7 @@ const authReducer = (state = initialState, action) => {
             ...state,
             isFetching: true,
             isAuthenticated: false,
-            creds: action.creds
+            provider: action.provider
         }
     case LOGIN_SUCCESS:
         return {
@@ -36,7 +34,7 @@ const authReducer = (state = initialState, action) => {
             ...state,
             isFetching: false,
             isAuthenticated: false,
-            errorMessage: action.message
+            error: action.error
         }
     case LOGOUT_REQUEST:
         return {
