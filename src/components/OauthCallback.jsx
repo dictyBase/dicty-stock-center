@@ -3,8 +3,12 @@ import React, { Component } from 'react'
 export default class OauthCallback extends Component {
     displayName = 'oauth callback component';
     componentDidMount() {
-        const { location } = this.props
-        window.opener.postMessage(location.search, window.location)
+        const { location, params } = this.props
+        window.opener.postMessage(
+            {
+                query: location.search, provider: params.provider
+            },
+            window.location)
         window.close()
     }
     render() {
