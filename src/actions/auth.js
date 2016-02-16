@@ -1,15 +1,18 @@
 import types from '../constants'
 import querystring from 'querystring'
+import oauthConfig from 'utils/oauthConfig'
+import { routeActions } from 'react-router-redux'
+import jsr from 'jsrsasign'
+import simpleStorage from 'simpleStorage'
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
 
-const requestLogin = creds => {
+const requestLogin = provider => {
     return {
         type: LOGIN_REQUEST,
         isFetching: true,
         isAuthenticated: false,
-        fake: true,
-        creds
+        provider: provider
     }
 }
 
@@ -22,59 +25,12 @@ const receiveLogin = user => {
     }
 }
 
-const loginError = message => {
+const loginError = error => {
     return {
         type: LOGIN_FAILURE,
         isFetching: false,
         isAuthenticated: false,
-        message
-    }
-}
-
-const status = response => {
-  // HTTP response codes 2xx indicate that the request was processed successfully
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response)
-    }
-    return Promise.reject(new Error(response.statusText))
-}
-
-const json = response => {
-    return response.json()
-}
-
-export const oAuthLogin = query => {
-    return dispatch => {
-        const parsed = querystring.parse(query.replace('?', ''))
-        console.log(parsed)
-    }
-}
-
-// Calls the API to get a token and
-// dispatches actions along the way
-export const loginUser = creds => {
-    return dispatch => {
-        let config = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `username=${creds.username}&password=${creds.password}`
-        }
-
-    // We dispatch requestLogin to kickoff the call to the API
-        dispatch(requestLogin(creds))
-
-        fetch('http://localhost:3001/sessions/create', config)
-          .then(status)
-          .then(json)
-          .then(user => {
-            // If login was successful, set the token in local storage
-              localStorage.setItem('id_token', user.id_token)
-
-        // Dispatch the success action
-              dispatch(receiveLogin(user))
-          }).catch(error => {
-              dispatch(loginError(error))
-          })
+        error: error
     }
 }
 
@@ -93,6 +49,55 @@ const receiveLogout = () => {
         isAuthenticated: false
     }
 }
+
+const status = response => {
+  // HTTP response codes 2xx indicate that the request was processed successfully
+    if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response)
+    }
+    return Promise.reject(new Error(response.statusText))
+}
+
+const json = response => {
+    return response.json()
+}
+
+// Getting the url of auth server
+let authserver = __AUTH_SERVER__
+if (process.env.AUTH_SERVER) {
+    authserver = process.env.AUTH_SERVER
+}
+// Calls the API to get a token and
+// dispatch actions along the way
+export const oAuthLogin = ({query, provider, url}) => {
+    return dispatch => {
+        const parsed = querystring.parse(query.replace('?', ''))
+        console.log(parsed)
+        let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
+        body += `&state=${parsed.state}&code=${parsed.code}`
+        body += `&scopes=${oauthConfig[provider].scopes[0]}`
+        let config = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body
+        }
+        dispatch(requestLogin(provider))
+        dispatch(routeActions.push('load/auth'))
+        fetch(`${authserver}/tokens/${provider}`, config)
+        .then(status)
+        .then(json)
+        .then(data => {
+            simpleStorage.set('token', data.token)
+            const jwtStr = jsr.jws.JWS.parse(data.token)
+            dispatch(receiveLogin(jwtStr.user))
+            dispatch(routeActions.push('/home'))
+        }).catch(error => {
+            dispatch(loginError(error))
+            dispatch(routeActions.push('/error'))
+        })
+    }
+}
+
 
 // Logs the user out
 export const logoutUser = () => {
