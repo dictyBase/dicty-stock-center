@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Navbar from 'components/Navbar'
+import AuthNavbar from 'components/AuthNavbar'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 
@@ -17,11 +18,10 @@ class App extends Component {
     };
     render() {
         const { isAuthenticated } = this.props.auth
+        const navbar = isAuthenticated ? <AuthNavbar/> : <Navbar/>
         return (
           <div>
-            <Navbar
-              isAuthenticated={ isAuthenticated }
-            />
+            { navbar }
             { this.renderChildren() }
           </div>
         )

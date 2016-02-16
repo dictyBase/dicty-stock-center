@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import 'styles/core.scss'
 
-export default class Navbar extends Component {
+export default class AuthNavbar extends Component {
     displayName = 'navbar display';
     render() {
         return (
