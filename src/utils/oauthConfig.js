@@ -16,8 +16,9 @@ const oauthConfig = {
         authorizationEndpoint: 'https://github.com/login/oauth/authorize',
         clientId: clientConfig.github.clientId,
         redirectUrl: `${window.location.origin}/github/callback`,
+        scopes: ['user:email'],
+        scopeDelimiter: ' ',
         optionalUrlParams: [
-            ['scope', 'user:email'],
             ['state', 'github']
         ],
         popupOptions: { width: 1020, height: 618 }
@@ -31,8 +32,9 @@ const oauthConfig = {
         requiredUrlParams: [
             ['response_type', 'code']
         ],
+        scopes: ['email'],
+        scopeDelimiter: ' ',
         optionalUrlParams: [
-            ['scope', 'email'],
             ['state', 'google']
         ],
         popupOptions: { width: 1020, height: 633 }
@@ -43,8 +45,9 @@ const oauthConfig = {
         authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
         clientId: clientConfig.facebook.clientId,
         redirectUrl: `${window.location.origin}/facebook/callback`,
+        scopes: ['email'],
+        scopeDelimiter: ',',
         optionalUrlParams: [
-            ['scope', 'email'],
             ['state', 'facebook'],
             ['response_type', 'code']
         ],

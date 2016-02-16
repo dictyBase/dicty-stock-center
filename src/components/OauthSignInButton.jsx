@@ -27,6 +27,7 @@ export default class oauthSignInButton extends Component {
         const { provider } = this.props
         const config = oauthConfig[provider]
         let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
+        url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
         if (config.requiredUrlParams) {
             config.requiredUrlParams.forEach(element => {
                 url += `&${element[0]}=${element[1]}`
