@@ -6,7 +6,9 @@ export default class OauthCallback extends Component {
         const { location, params } = this.props
         window.opener.postMessage(
             {
-                query: location.search, provider: params.provider
+                query: location.search,
+                provider: params.provider,
+                url: `${window.location.origin}${location.pathname}`
             },
             window.location)
         window.close()
