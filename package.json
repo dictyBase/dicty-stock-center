@@ -55,6 +55,7 @@
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
     "history": "^2.0.0-rc2",
+    "jsrsasign": "^5.0.5",
     "koa": "^2.0.0-alpha.3",
     "koa-connect-history-api-fallback": "^0.3.0",
     "koa-convert": "^1.2.0",
@@ -67,6 +68,7 @@
     "redux": "^3.0.0",
     "redux-actions": "^0.9.0",
     "redux-thunk": "^1.0.0",
+    "simplestorage.js": "^0.2.1",
     "url": "^0.11.0",
     "yargs": "^3.18.0"
   },
