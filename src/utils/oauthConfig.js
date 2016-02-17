@@ -39,6 +39,20 @@ const oauthConfig = {
             ['response_type', 'code']
         ],
         popupOptions: { width: 1028, height: 640 }
+    },
+    linkedin: {
+        name: 'LinkedIn',
+        url: '/auth/linkedin',
+        authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+        clientId: clientConfig.linkedin.clientId,
+        redirectUrl: `${window.location.origin}/linkedin/callback`,
+        scopes: ['r_emailaddress'],
+        scopeDelimiter: ' ',
+        requiredUrlParams: [
+            ['state', 'linkedin'],
+            ['response_type', 'code']
+        ],
+        popupOptions: { width: 1028, height: 640 }
     }
 }
 
