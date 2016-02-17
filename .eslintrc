@@ -165,7 +165,6 @@
         "no-underscore-dangle": 1, // disallow dangling underscores in identifiers
         "no-extra-parens": 1, // disallow wrapping of non-IIFE statements in parens
         "one-var": [1, "never"], // allow just one var statement per function (off by default)
-<<<<<<< HEAD
         // "operator-assignment": [1, "never"], // require assignment operator shorthand where possible or prohibit it entirely (off by default)
         "padded-blocks": [1, "never"], // enforce padding within blocks (off by default)
         "quote-props": [1, "as-needed"], // require quotes around object literal property names (off by default)
