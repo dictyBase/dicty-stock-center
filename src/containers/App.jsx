@@ -18,7 +18,7 @@ class App extends Component {
     };
     render() {
         const { isAuthenticated } = this.props.auth
-        const navbar = isAuthenticated ? <AuthNavbar/> : <Navbar/>
+        const navbar = isAuthenticated ? <Navbar {...this.props}/> : <AuthNavbar {...this.props}/>
         return (
           <div>
             { navbar }
