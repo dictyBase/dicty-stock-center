@@ -70,17 +70,18 @@ Edit at Your Own Risk
 // ------------------------------------
 // N.B.: globals added here must _also_ be added to .eslintrc
 config.globals = {
-  'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.env)
-  },
-  'NODE_ENV'     : config.env,
-  '__DEV__'      : config.env === 'development',
-  '__PROD__'     : config.env === 'production',
-  '__TEST__'     : config.env === 'test',
-  '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
-  '__DEBUG_NEW_WINDOW__' : !!argv.nw,
-  '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
-  '__AUTHSERVER__' : 'http://localhost:9999'
+    'process.env'  : {
+        'NODE_ENV' : JSON.stringify(config.env)
+    },
+    'NODE_ENV'     : config.env,
+    '__DEV__'      : config.env === 'development',
+    '__PROD__'     : config.env === 'production',
+    '__TEST__'     : config.env === 'test',
+    '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
+    '__DEBUG_NEW_WINDOW__' : !!argv.nw,
+    '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
+    'AUTH_SERVER' : JSON.stringify('http://localhost:9999')
+
 }
 
 // ------------------------------------
