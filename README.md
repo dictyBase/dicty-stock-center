@@ -1,6 +1,6 @@
 #React Redux Auth trial application
 A react and redux based SPA to learn and create example on how to use oauth2
-login flow with various third party provider.
+login flow with various third party providers.
 
 #Install
 Git clone and then run `npm install`
