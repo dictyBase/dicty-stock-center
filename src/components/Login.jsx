@@ -5,7 +5,7 @@ import 'styles/core.scss'
 
 const getDefaultProviders = () => {
     let providers = []
-    for (name in clientConfig) {
+    for (let name in clientConfig) {
         providers.push(name)
     }
     return providers
