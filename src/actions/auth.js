@@ -3,9 +3,10 @@ import querystring from 'querystring'
 import oauthConfig from 'utils/oauthConfig'
 import { routeActions } from 'react-router-redux'
 import jsr from 'jsrsasign'
-import simpleStorage from 'simpleStorage'
+import simpleStorage from 'simplestorage.js'
 
-const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } = types
+
+const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = types
 
 const requestLogin = provider => {
     return {
@@ -34,14 +35,6 @@ const loginError = error => {
     }
 }
 
-const requestLogout = () => {
-    return {
-        type: LOGOUT_REQUEST,
-        isFetching: true,
-        isAuthenticated: true
-    }
-}
-
 const receiveLogout = () => {
     return {
         type: LOGOUT_SUCCESS,
@@ -63,7 +56,7 @@ const json = response => {
 }
 
 // Getting the url of auth server
-let authserver = __AUTH_SERVER__
+let authserver = AUTH_SERVER
 if (process.env.AUTH_SERVER) {
     authserver = process.env.AUTH_SERVER
 }
@@ -72,7 +65,6 @@ if (process.env.AUTH_SERVER) {
 export const oAuthLogin = ({query, provider, url}) => {
     return dispatch => {
         const parsed = querystring.parse(query.replace('?', ''))
-        console.log(parsed)
         let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
         body += `&state=${parsed.state}&code=${parsed.code}`
         body += `&scopes=${oauthConfig[provider].scopes[0]}`
@@ -82,14 +74,14 @@ export const oAuthLogin = ({query, provider, url}) => {
             body: body
         }
         dispatch(requestLogin(provider))
-        dispatch(routeActions.push('load/auth'))
+        dispatch(routeActions.push('/load/auth'))
         fetch(`${authserver}/tokens/${provider}`, config)
         .then(status)
         .then(json)
         .then(data => {
             simpleStorage.set('token', data.token)
             const jwtStr = jsr.jws.JWS.parse(data.token)
-            dispatch(receiveLogin(jwtStr.user))
+            dispatch(receiveLogin(jwtStr.payloadObj.user))
             dispatch(routeActions.push('/home'))
         }).catch(error => {
             dispatch(loginError(error))
@@ -102,8 +94,8 @@ export const oAuthLogin = ({query, provider, url}) => {
 // Logs the user out
 export const logoutUser = () => {
     return dispatch => {
-        dispatch(requestLogout())
-        localStorage.removeItem('id_token')
+        simpleStorage.deleteKey('token')
         dispatch(receiveLogout())
+        dispatch(routeActions.push('/'))
     }
 }
