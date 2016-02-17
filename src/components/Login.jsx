@@ -1,6 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import OauthSignInButton from 'components/OauthSignInButton'
+import clientConfig from 'utils/clientConfig'
 import 'styles/core.scss'
+
+const getDefaultProviders = () => {
+    let providers = []
+    for (name in clientConfig) {
+        providers.push(name)
+    }
+    return providers
+}
 
 export default class Login extends Component {
     displayName = 'login display';
@@ -8,7 +17,7 @@ export default class Login extends Component {
         providers: PropTypes.array
     };
     static defaultProps = {
-        providers: ['github', 'facebook', 'google']
+        providers: getDefaultProviders()
     };
     constructor(props) {
         super(props)
