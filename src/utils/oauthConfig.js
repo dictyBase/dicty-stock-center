@@ -10,19 +10,6 @@ import clientConfig from 'utils/clientConfig'
 // }
 
 const oauthConfig = {
-    github: {
-        name: 'Github',
-        url: '/auth/github',
-        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
-        clientId: clientConfig.github.clientId,
-        redirectUrl: `${window.location.origin}/github/callback`,
-        scopes: ['user:email'],
-        scopeDelimiter: ' ',
-        optionalUrlParams: [
-            ['state', 'github']
-        ],
-        popupOptions: { width: 1020, height: 618 }
-    },
     google: {
         name: 'Google',
         url: '/auth/google',
