@@ -3,9 +3,9 @@ import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
 import { syncHistory } from 'react-router-redux'
-import { BrowserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 
-const middleware = syncHistory(BrowserHistory)
+const middleware = syncHistory(browserHistory)
 const enhancer = compose(
     applyMiddleware(middleware, thunk),
     DevTools.instrument(),
