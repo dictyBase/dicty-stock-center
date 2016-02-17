@@ -35,13 +35,6 @@ const loginError = error => {
     }
 }
 
-const receiveLogout = () => {
-    return {
-        type: LOGOUT_SUCCESS,
-        isFetching: false,
-        isAuthenticated: false
-    }
-}
 
 const status = response => {
   // HTTP response codes 2xx indicate that the request was processed successfully
