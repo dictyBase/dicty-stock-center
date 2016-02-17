@@ -11,7 +11,7 @@ export default class AuthNavbar extends Component {
                     <div className="navbar-header">
                         <a className="navbar-brand" href="#">Auth App</a>
                     </div>
-                    <Link to="logout" className="btn btn-default navbar-btn">Login</Link>
+                    <Link to="login" className="btn btn-default navbar-btn">Login</Link>
                 </div>
             </nav>
         )

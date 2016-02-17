@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import 'styles/core.scss'
+import Logout from 'components/Logout'
 
 export default class Navbar extends Component {
     displayName = 'navbar display';
@@ -11,7 +11,7 @@ export default class Navbar extends Component {
                     <div className="navbar-header">
                         <a className="navbar-brand" href="#">Auth App</a>
                     </div>
-                    <Link to="logout" className="btn btn-default navbar-btn">Login</Link>
+                    <Logout {...this.props} />
                 </div>
             </nav>
         )
