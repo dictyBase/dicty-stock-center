@@ -7,13 +7,18 @@ export default class Profile extends Component {
     render() {
         const { user } = this.props.auth
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <ol className="breadcrumb">
                   <li><Link to="/home">Home</Link></li>
                   <li className="active">My Profile</li>
                 </ol>
-                <h2 className="page-header">Your Profile</h2>
-                <span>Name: { user.name } </span>
+                <h2 className="page-header">
+                    My Profile
+                </h2>
+                <ul>
+                    <li>Name: { user.name } </li>
+                    <li>Email: { user.email } </li>
+                </ul>
             </div>
         )
     }
