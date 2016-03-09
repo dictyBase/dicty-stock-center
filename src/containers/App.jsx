@@ -1,7 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Navbar from 'components/Navbar'
-import AuthNavbar from 'components/AuthNavbar'
+import { Link } from 'react-router'
+import { StyleRoot } from '../components/dicty-react-components/node_modules/radium'
+import Navbar from 'components/dicty-react-components/src/Navbar'
+import NavItem from 'components/dicty-react-components/src/NavItem'
+import RouterNavItem from 'components/dicty-react-components/src/RouterNavItem'
+import NavbarHeader from 'components/dicty-react-components/src/NavbarHeader'
+import NavbarItems from 'components/dicty-react-components/src/NavbarItems'
+import NavbarDropdown from 'components/dicty-react-components/src/NavbarDropdown'
+import DropdownMenu from 'components/dicty-react-components/src/DropdownMenu'
+import Logout from 'components/Logout'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 
@@ -17,13 +25,30 @@ class App extends Component {
         })
     };
     render() {
-        const { isAuthenticated } = this.props.auth
-        const navbar = isAuthenticated ? <Navbar {...this.props}/> : <AuthNavbar {...this.props}/>
         return (
-          <div>
-            { navbar }
+            <div>
+                <StyleRoot>
+                    <Navbar>
+                        <NavbarHeader href="/" name="dictyBase"/>
+                        <NavbarItems>
+                            <NavItem link="#" title="Genomes" />
+                            <NavItem link="#" title="Tools" />
+                            <NavItem link="#" title="Explore" />
+                            <NavbarDropdown name="Community">
+                                <DropdownMenu menuItems={ [{href: '#', name: 'Home'}] }/>
+                            </NavbarDropdown>
+                            <RouterNavItem path="home" title="Stock Center">Login</RouterNavItem>
+                            {
+                                this.props.auth.isAuthenticated
+                                ? <Logout {...this.props} />
+                                : <Link to="login" className="btn btn-default navbar-btn">
+                                    Login</Link>
+                            }
+                        </NavbarItems>
+                    </Navbar>
+                </StyleRoot>
             { this.renderChildren() }
-          </div>
+            </div>
         )
     }
 }
