@@ -39,6 +39,36 @@ const oauthConfig = {
             ['response_type', 'code']
         ],
         popupOptions: { width: 1028, height: 640 }
+    },
+    linkedin: {
+        name: 'LinkedIn',
+        url: '/auth/linkedin',
+        authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+        clientId: clientConfig.linkedin.clientId,
+        redirectUrl: `${window.location.origin}/linkedin/callback`,
+        scopes: ['r_emailaddress'],
+        scopeDelimiter: ' ',
+        requiredUrlParams: [
+            ['state', 'linkedin'],
+            ['response_type', 'code']
+        ],
+        popupOptions: { width: 1028, height: 640 }
+    },
+    dropbox: {
+        name: 'Dropbox',
+        url: '/auth/dropbox',
+        authorizationEndpoint: 'https://www.dropbox.com/1/oauth2/authorize',
+        clientId: clientConfig.dropbox.clientId,
+        redirectUrl: `${window.location.origin}/dropbox/callback`,
+        scopes: [''],
+        scopeDelimiter: ' ',
+        requiredUrlParams: [
+            ['response_type', 'code']
+        ],
+        optionalUrlParams: [
+            ['state', 'dropbox']
+        ],
+        popupOptions: { width: 1028, height: 640 }
     }
 }
 
