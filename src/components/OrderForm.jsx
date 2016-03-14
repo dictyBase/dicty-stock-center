@@ -4,6 +4,7 @@ import PanelHeader from 'components/dicty-react-components/src/PanelHeader'
 import PanelTitle from 'components/dicty-react-components/src/PanelTitle'
 import PanelBody from 'components/dicty-react-components/src/PanelBody'
 import { reduxForm } from 'redux-form'
+import submitForm from 'actions/order-form'
 import 'styles/core.scss'
 
 export const fields = [
@@ -182,5 +183,6 @@ class OrderForm extends Component {
 
 export default reduxForm({
     form: 'dsc-order-form',
-    fields
+    fields,
+    onSubmit: submitForm
 })(OrderForm)
