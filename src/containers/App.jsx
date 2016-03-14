@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { StyleRoot } from '../components/dicty-react-components/node_modules/radium'
+import { StyleRoot } from 'radium'
 import Navbar from 'components/dicty-react-components/src/Navbar'
 import NavItem from 'components/dicty-react-components/src/NavItem'
 import RouterNavItem from 'components/dicty-react-components/src/RouterNavItem'
