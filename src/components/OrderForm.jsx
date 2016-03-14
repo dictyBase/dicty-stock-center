@@ -1,13 +1,61 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Panel from 'components/dicty-react-components/src/Panel'
 import PanelHeader from 'components/dicty-react-components/src/PanelHeader'
 import PanelTitle from 'components/dicty-react-components/src/PanelTitle'
 import PanelBody from 'components/dicty-react-components/src/PanelBody'
+import { reduxForm } from 'redux-form'
 import 'styles/core.scss'
 
-export default class OrderForm extends Component {
+export const fields = [
+    'firstName',
+    'lastName',
+    'org',
+    'group',
+    'address',
+    'address2',
+    'city',
+    'state',
+    'zip',
+    'country',
+    'phone',
+    'email',
+    'shipAccount',
+    'shipAccountNum',
+    'comments'
+]
+
+
+class OrderForm extends Component {
     displayName = 'dsc order form';
+
+    static propTypes = {
+        fields: PropTypes.object.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        submitting: PropTypes.bool.isRequired
+    }
+
     render() {
+        const {
+          fields: {
+            firstName,
+            lastName,
+            org,
+            group,
+            address,
+            address2,
+            city,
+            state,
+            zip,
+            country,
+            phone,
+            email,
+            shipAccount,
+            shipAccountNum,
+            comments
+          },
+          handleSubmit,
+          submitting
+        } = this.props
         return (
             <div className="container">
               <h2 className="page-header text-center">
@@ -20,92 +68,108 @@ export default class OrderForm extends Component {
                       <PanelTitle>Shipping</PanelTitle>
                     </PanelHeader>
                     <PanelBody>
-                      <form role="form">
+                      <form onSubmit={ handleSubmit }>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>First Name:</label>
-                          <input type="text" className="form-control" id="firstName" />
+                          <input type="text" className="form-control" {...firstName} />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Last Name:</label>
-                          <input type="text" className="form-control" id="lastName" />
+                          <input type="text" className="form-control" { ...lastName } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Organization:</label>
-                          <input type="text" className="form-control" id="org" />
+                          <input type="text" className="form-control" { ...org } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Lab/Group:</label>
-                          <input type="text" className="form-control" id="group" />
+                          <input type="text" className="form-control" { ...group } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Address:</label>
-                          <input type="text" className="form-control" id="addr" />
+                          <input type="text" className="form-control" { ...address } />
                         </div>
                         <div className="form-group">
                           <label>Address:</label>
-                          <input type="text" className="form-control" id="addr2"
+                          <input type="text" className="form-control" { ...address2 }
                             placeholder="Optional" />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>City:</label>
-                          <input type="text" className="form-control" id="city" />
+                          <input type="text" className="form-control" { ...city } />
                         </div>
                         <div className="form-group">
                           <label>State/Province:</label>
-                          <input type="text" className="form-control" id="state" />
+                          <input type="text" className="form-control" { ...state } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>ZIP:</label>
-                          <input type="number" className="form-control" id="zip" />
+                          <input type="number" className="form-control" { ...zip } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Country:</label>
-                          <input type="text" className="form-control" id="country" />
+                          <input type="text" className="form-control" { ...country } />
                         </div>
                         <div className="form-group">
                           <label>Phone:</label>
-                          <input type="text" className="form-control" id="phone" />
+                          <input type="text" className="form-control" { ...phone } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Email:</label>
-                          <input type="email" className="form-control" id="email" />
+                          <input type="email" className="form-control" { ...email } />
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Shipping Account:</label><br />
                           <div className="radio">
-                            <label><input type="radio" name="shipAcc" value="fedex" />FedEx</label>
+                            <label>
+                              <input type="radio" { ...shipAccount } value="fedex"
+                                checked={ shipAccount.value === 'fedex' } />
+                              FedEx
+                            </label>
                           </div>
                           <div className="radio">
-                            <label><input type="radio" name="shipAcc" value="ups" />UPS</label>
+                            <label>
+                              <input type="radio" { ...shipAccount } value="ups"
+                                checked={ shipAccount.value === 'ups' } />
+                              UPS
+                            </label>
                           </div>
                           <div className="radio">
-                            <label><input type="radio" name="shipAcc" value="dhl"/>DHL</label>
+                            <label><input type="radio" { ...shipAccount } value="dhl"
+                              checked={ shipAccount.value === 'dhl' } />
+                              DHL
+                            </label>
                           </div>
                           <div className="radio">
-                            <label><input type="radio" name="shipAcc" value="callin" />
+                            <label>
+                              <input type="radio" { ...shipAccount } value="willcall"
+                                checked={ shipAccount.value === 'willcall' } />
                               Call in Credit card # for FedEx waybill 1-312-503-4169
                             </label>
                           </div>
-                          <input type="text" className="form-control" id="shipAccNum"
+                          <input type="text" className="form-control" { ...shipAccountNum }
                             placeholder="Shipping Account Number" />
                         </div>
                         <div className="form-group">
                           <label>Comments:</label>
-                          <textarea className="form-control" rows="5" id="comment"
+                          <textarea className="form-control" rows="5" { ...comments }
+                            value={ comments.value }
                             placeholder="Please enter any comments or special instructions here">
                           </textarea>
                         </div>
-                        <button type="submit" className="btn btn-default">Submit</button>
+                        <button type="submit" className="btn btn-default"
+                          disabled={ submitting }> Submit
+                        </button>
                       </form>
                     </PanelBody>
                   </Panel>
@@ -115,3 +179,8 @@ export default class OrderForm extends Component {
         )
     }
 }
+
+export default reduxForm({
+    form: 'dsc-order-form',
+    fields
+})(OrderForm)
