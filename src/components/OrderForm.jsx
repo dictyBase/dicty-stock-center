@@ -5,6 +5,7 @@ import PanelTitle from 'components/dicty-react-components/src/PanelTitle'
 import PanelBody from 'components/dicty-react-components/src/PanelBody'
 import { reduxForm } from 'redux-form'
 import submitForm from 'actions/order-form'
+import validate from 'forms/validate/order-form'
 import 'styles/core.scss'
 
 export const fields = [
@@ -24,7 +25,6 @@ export const fields = [
     'shipAccountNum',
     'comments'
 ]
-
 
 class OrderForm extends Component {
     displayName = 'dsc order form';
@@ -74,11 +74,13 @@ class OrderForm extends Component {
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>First Name:</label>
                           <input type="text" className="form-control" {...firstName} />
+                          { firstName.touched && firstName.error && <div>{ firstName.error }</div> }
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
                           <label>Last Name:</label>
                           <input type="text" className="form-control" { ...lastName } />
+                          { lastName.touched && lastName.error && <div>{ lastName.error }</div> }
                         </div>
                         <div className="form-group">
                           <span style={ {color: '#FF0000'} }>* </span>
@@ -184,5 +186,6 @@ class OrderForm extends Component {
 export default reduxForm({
     form: 'dsc-order-form',
     fields,
-    onSubmit: submitForm
+    onSubmit: submitForm,
+    validate
 })(OrderForm)
