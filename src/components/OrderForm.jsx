@@ -3,6 +3,8 @@ import Panel from 'components/dicty-react-components/src/Panel'
 import PanelHeader from 'components/dicty-react-components/src/PanelHeader'
 import PanelTitle from 'components/dicty-react-components/src/PanelTitle'
 import PanelBody from 'components/dicty-react-components/src/PanelBody'
+import FormPersonalInfo from 'components/FormPersonalInfo'
+import FormAddress from 'components/FormAddress'
 import { reduxForm } from 'redux-form'
 import submitForm from 'actions/order-form'
 import validate from 'forms/validate/order-form'
@@ -70,57 +72,20 @@ class OrderForm extends Component {
                     </PanelHeader>
                     <PanelBody>
                       <form onSubmit={ handleSubmit }>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>First Name:</label>
-                          <input type="text" className="form-control" {...firstName} />
-                          { firstName.touched && firstName.error && <div>{ firstName.error }</div> }
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>Last Name:</label>
-                          <input type="text" className="form-control" { ...lastName } />
-                          { lastName.touched && lastName.error && <div>{ lastName.error }</div> }
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>Organization:</label>
-                          <input type="text" className="form-control" { ...org } />
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>Lab/Group:</label>
-                          <input type="text" className="form-control" { ...group } />
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>Address:</label>
-                          <input type="text" className="form-control" { ...address } />
-                        </div>
-                        <div className="form-group">
-                          <label>Address:</label>
-                          <input type="text" className="form-control" { ...address2 }
-                            placeholder="Optional" />
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>City:</label>
-                          <input type="text" className="form-control" { ...city } />
-                        </div>
-                        <div className="form-group">
-                          <label>State/Province:</label>
-                          <input type="text" className="form-control" { ...state } />
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>ZIP:</label>
-                          <input type="number" className="form-control" { ...zip } />
-                        </div>
-                        <div className="form-group">
-                          <span style={ {color: '#FF0000'} }>* </span>
-                          <label>Country:</label>
-                          <input type="text" className="form-control" { ...country } />
-                        </div>
+                        <FormPersonalInfo
+                          firstName={ firstName }
+                          lastName={ lastName }
+                          org={ org }
+                          group={ group }
+                        />
+                        <FormAddress
+                          address={ address }
+                          address2={ address2 }
+                          city={ city }
+                          state={ state }
+                          zip={ zip }
+                          country={ country }
+                        />
                         <div className="form-group">
                           <label>Phone:</label>
                           <input type="text" className="form-control" { ...phone } />
