@@ -7,9 +7,9 @@ export default class FormAddress extends Component {
 
     static propTypes = {
         address: PropTypes.object.isRequired,
-        address2: PropTypes.object,
+        address2: PropTypes.object.isRequired,
         city: PropTypes.object.isRequired,
-        state: PropTypes.object,
+        state: PropTypes.object.isRequired,
         zip: PropTypes.object.isRequired,
         country: PropTypes.object.isRequired
     }
