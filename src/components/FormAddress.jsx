@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import countryList from 'forms/utils/countryList'
 import 'styles/core.scss'
 
 export default class FormAddress extends Component {
@@ -44,7 +45,15 @@ export default class FormAddress extends Component {
               <div className="form-group">
                 <span style={ {color: '#FF0000'} }>* </span>
                 <label>Country:</label>
-                <input type="text" className="form-control" { ...country } />
+                <select className="form-control" {...country} value={ country.value } >
+                    <option>Select</option>
+                    { countryList.map((cont) => {
+                        return (
+                            <option key={ countryList.indexOf(cont) }
+                                value={ cont }>{ cont }</option>
+                        )
+                    }) }
+                </select>
               </div>
           </div>
         )
