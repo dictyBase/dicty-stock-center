@@ -6,13 +6,15 @@ const { FORM_SUBMIT_REQUEST, FORM_SUBMIT_SUCCESS, FORM_SUBMIT_FAILURE } = types
 
 const submitRequest = () => {
     return {
-        type: FORM_SUBMIT_REQUEST
+        type: FORM_SUBMIT_REQUEST,
+        submitted: false
     }
 }
 
 const submitSuccess = data => {
     return {
         type: FORM_SUBMIT_SUCCESS,
+        submitted: true,
         data
     }
 }
@@ -20,6 +22,7 @@ const submitSuccess = data => {
 const submitFailure = error => {
     return {
         type: FORM_SUBMIT_FAILURE,
+        submitted: false,
         error
     }
 }
