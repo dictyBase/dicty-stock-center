@@ -16,24 +16,28 @@ export default class FormPersonalInfo extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>First Name:</label>
                     <input type="text" className="form-control" {...firstName} />
-                    { firstName.touched && firstName.error && <div>{ firstName.error }</div> }
+                    { firstName.touched && firstName.error &&
+                        <div className="text-danger">{ firstName.error }</div>
+                    }
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Last Name:</label>
                     <input type="text" className="form-control" { ...lastName } />
-                    { lastName.touched && lastName.error && <div>{ lastName.error }</div> }
+                    { lastName.touched && lastName.error &&
+                        <div className="text-danger">{ lastName.error }</div>
+                    }
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Organization:</label>
                     <input type="text" className="form-control" { ...org } />
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Lab/Group:</label>
                     <input type="text" className="form-control" { ...group } />
                 </div>

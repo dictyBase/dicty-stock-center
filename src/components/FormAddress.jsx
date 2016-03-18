@@ -19,7 +19,7 @@ export default class FormAddress extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Address:</label>
                     <input type="text" className="form-control" { ...address } />
                 </div>
@@ -29,7 +29,7 @@ export default class FormAddress extends Component {
                         placeholder="Optional" />
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>City:</label>
                     <input type="text" className="form-control" { ...city } />
                 </div>
@@ -38,12 +38,12 @@ export default class FormAddress extends Component {
                     <input type="text" className="form-control" { ...state } />
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>ZIP:</label>
                     <input type="number" className="form-control" { ...zip } />
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Country:</label>
                     <select className="form-control" {...country} value={ country.value }>
                         <option>Select</option>

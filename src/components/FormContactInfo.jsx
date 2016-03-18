@@ -18,7 +18,7 @@ export default class FormContactInfo extends Component {
                     <input type="text" className="form-control" { ...phone } />
                 </div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Email:</label>
                     <input type="email" className="form-control" { ...email } />
                 </div>

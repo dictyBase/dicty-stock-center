@@ -14,7 +14,7 @@ export default class FormShippingInfo extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <span style={ {color: '#FF0000'} }>* </span>
+                    <span className="text-danger">* </span>
                     <label>Shipping Account:</label><br />
                     <div className="radio">
                         <label>
