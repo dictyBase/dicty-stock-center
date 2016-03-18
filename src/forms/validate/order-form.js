@@ -6,6 +6,12 @@ const validate = data => {
     if (!data.lastName) {
         errors.lastName = 'Required'
     }
+    if (!data.org) {
+        errors.org = 'Required'
+    }
+    if (!data.group) {
+        errors.group = 'Required'
+    }
     return errors
 }
 

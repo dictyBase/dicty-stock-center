@@ -35,11 +35,17 @@ export default class FormPersonalInfo extends Component {
                     <span className="text-danger">* </span>
                     <label>Organization:</label>
                     <input type="text" className="form-control" { ...org } />
+                    { org.touched && org.error &&
+                        <div className="text-danger">{ org.error }</div>
+                    }
                 </div>
                 <div className="form-group">
                     <span className="text-danger">* </span>
                     <label>Lab/Group:</label>
                     <input type="text" className="form-control" { ...group } />
+                    { group.touched && group.error &&
+                        <div className="text-danger">{ group.error }</div>
+                    }
                 </div>
             </div>
         )
