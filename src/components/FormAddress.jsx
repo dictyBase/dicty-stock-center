@@ -22,6 +22,9 @@ export default class FormAddress extends Component {
                     <span className="text-danger">* </span>
                     <label>Address:</label>
                     <input type="text" className="form-control" { ...address } />
+                    { address.touched && address.error &&
+                        <div className="text-danger">{ address.error }</div>
+                    }
                 </div>
                 <div className="form-group">
                     <label>Address:</label>
@@ -32,6 +35,9 @@ export default class FormAddress extends Component {
                     <span className="text-danger">* </span>
                     <label>City:</label>
                     <input type="text" className="form-control" { ...city } />
+                    { city.touched && city.error &&
+                        <div className="text-danger">{ city.error }</div>
+                    }
                 </div>
                 <div className="form-group">
                     <label>State/Province:</label>
@@ -41,12 +47,15 @@ export default class FormAddress extends Component {
                     <span className="text-danger">* </span>
                     <label>ZIP:</label>
                     <input type="number" className="form-control" { ...zip } />
+                    { zip.touched && zip.error &&
+                        <div className="text-danger">{ zip.error }</div>
+                    }
                 </div>
                 <div className="form-group">
                     <span className="text-danger">* </span>
                     <label>Country:</label>
                     <select className="form-control" {...country} value={ country.value }>
-                        <option>Select</option>
+                        <option value="select" >Select your country</option>
                         { countryList.map((cont) => {
                             return (
                                 <option key={ countryList.indexOf(cont) }
@@ -54,6 +63,9 @@ export default class FormAddress extends Component {
                             )
                         }) }
                     </select>
+                    { country.touched && country.error &&
+                        <div className="text-danger">{ country.error }</div>
+                    }
                 </div>
             </div>
         )

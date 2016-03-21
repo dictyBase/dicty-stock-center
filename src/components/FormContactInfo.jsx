@@ -21,6 +21,9 @@ export default class FormContactInfo extends Component {
                     <span className="text-danger">* </span>
                     <label>Email:</label>
                     <input type="email" className="form-control" { ...email } />
+                    { email.touched && email.error &&
+                        <div className="text-danger">{ email.error }</div>
+                    }
                 </div>
             </div>
         )
