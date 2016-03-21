@@ -9,7 +9,7 @@ import FormContactInfo from 'components/FormContactInfo'
 import FormShippingInfo from 'components/FormShippingInfo'
 import FormComments from 'components/FormComments'
 import { reduxForm } from 'redux-form'
-import submitForm from 'actions/order-form'
+import { submitForm } from 'actions/order-form'
 import validate from 'forms/validate/order-form'
 import 'styles/core.scss'
 

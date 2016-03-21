@@ -27,7 +27,7 @@ const submitFailure = error => {
     }
 }
 
-const submitForm = data => {
+export const submitForm = data => {
     return dispatch => {
         dispatch(submitRequest())
         dispatch(routeActions.push('/order/form/submitting'))
@@ -38,5 +38,3 @@ const submitForm = data => {
         }, 2000)
     }
 }
-
-export default submitForm
