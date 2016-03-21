@@ -27,17 +27,16 @@ const submitFailure = error => {
     }
 }
 
-const submitForm = (data, dispatch) => {
-    return new Promise((resolve, reject) => {
+const submitForm = data => {
+    return dispatch => {
         dispatch(submitRequest())
         dispatch(routeActions.push('/order/form/submitting'))
         setTimeout(() => {
             simpleStorage.set('formdata', data)
-            resolve()
             dispatch(submitSuccess(data))
             dispatch(routeActions.push('/home'))
         }, 2000)
-    })
+    }
 }
 
 export default submitForm
