@@ -15,9 +15,9 @@ import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address',
     'address2', 'city', 'state', 'zip', 'country', 'phone', 'email',
-    'shipAccount', 'shipAccountNum', 'comments', 'shipFirstName',
-    'shipLastName', 'shipOrg', 'shipGroup', 'shipAddress', 'shipAddress2',
-    'shipCity', 'shipState', 'shipZip', 'shipCountry', 'shipPhone', 'shipEmail'
+    'shipAccount', 'shipAccountNum', 'comments', 'billFirstName',
+    'billLastName', 'billOrg', 'billGroup', 'billAddress', 'billAddress2',
+    'billCity', 'billState', 'billZip', 'billCountry', 'billPhone', 'billEmail'
 ]
 
 class OrderForm extends Component {
@@ -34,8 +34,8 @@ class OrderForm extends Component {
         const {
             fields: { firstName, lastName, org, group, address, address2, city,
                 state, zip, country, phone, email, shipAccount, shipAccountNum, comments,
-                shipFirstName, shipLastName, shipOrg, shipGroup, shipAddress, shipAddress2,
-                shipCity, shipState, shipZip, shipCountry, shipPhone, shipEmail
+                billFirstName, billLastName, billOrg, billGroup, billAddress, billAddress2,
+                billCity, billState, billZip, billCountry, billPhone, billEmail
             }
         } = this.props
         return (
@@ -81,20 +81,20 @@ class OrderForm extends Component {
                                 </PanelHeader>
                                 <PanelBody>
                                     <FormPersonalInfo
-                                        firstName={ shipFirstName }
-                                        lastName={ shipLastName }
-                                        org={ shipOrg }
-                                        group={ shipGroup }
+                                        firstName={ billFirstName }
+                                        lastName={ billLastName }
+                                        org={ billOrg }
+                                        group={ billGroup }
                                     />
                                     <FormAddress
-                                        address={ shipAddress }
-                                        address2={ shipAddress2 }
-                                        city={ shipCity }
-                                        state={ shipState }
-                                        zip={ shipZip }
-                                        country={ shipCountry }
+                                        address={ billAddress }
+                                        address2={ billAddress2 }
+                                        city={ billCity }
+                                        state={ billState }
+                                        zip={ billZip }
+                                        country={ billCountry }
                                     />
-                                    <FormContactInfo phone={ shipPhone } email={ shipEmail } />
+                                    <FormContactInfo phone={ billPhone } email={ billEmail } />
                                     <div className="form-group">
                                         <div className="col-sm-offset-3 col-sm-9">
                                             <button type="submit"
