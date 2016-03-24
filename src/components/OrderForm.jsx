@@ -15,7 +15,9 @@ import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address',
     'address2', 'city', 'state', 'zip', 'country', 'phone', 'email',
-    'shipAccount', 'shipAccountNum', 'comments'
+    'shipAccount', 'shipAccountNum', 'comments', 'shipFirstName',
+    'shipLastName', 'shipOrg', 'shipGroup', 'shipAddress', 'shipAddress2',
+    'shipCity', 'shipState', 'shipZip', 'shipCountry', 'shipPhone', 'shipEmail'
 ]
 
 class OrderForm extends Component {
@@ -31,50 +33,81 @@ class OrderForm extends Component {
         const { handleSubmit, submitting } = this.props
         const {
             fields: { firstName, lastName, org, group, address, address2, city,
-                state, zip, country, phone, email, shipAccount, shipAccountNum, comments
+                state, zip, country, phone, email, shipAccount, shipAccountNum, comments,
+                shipFirstName, shipLastName, shipOrg, shipGroup, shipAddress, shipAddress2,
+                shipCity, shipState, shipZip, shipCountry, shipPhone, shipEmail
             }
         } = this.props
         return (
             <div className="container">
-                <h2 className="page-header text-center">
+                <h2 className="page-header">
                   Please fill out the following information to complete your order
                 </h2>
-                <div className="row">
-                    <div className="col-md-offset-3 col-md-6">
-                        <Panel>
-                            <PanelHeader>
-                              <PanelTitle>Shipping</PanelTitle>
-                            </PanelHeader>
-                            <PanelBody>
-                                <form onSubmit={ handleSubmit } className="form-horizontal">
+                <form onSubmit={ handleSubmit } className="form-horizontal">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Panel>
+                                <PanelHeader>
+                                    <PanelTitle>Shipping</PanelTitle>
+                                </PanelHeader>
+                                <PanelBody>
                                     <FormPersonalInfo
-                                      firstName={ firstName }
-                                      lastName={ lastName }
-                                      org={ org }
-                                      group={ group }
+                                        firstName={ firstName }
+                                        lastName={ lastName }
+                                        org={ org }
+                                        group={ group }
                                     />
                                     <FormAddress
-                                      address={ address }
-                                      address2={ address2 }
-                                      city={ city }
-                                      state={ state }
-                                      zip={ zip }
-                                      country={ country }
+                                        address={ address }
+                                        address2={ address2 }
+                                        city={ city }
+                                        state={ state }
+                                        zip={ zip }
+                                        country={ country }
                                     />
                                     <FormContactInfo phone={ phone } email={ email } />
                                     <FormShippingInfo
-                                      shipAccount={ shipAccount }
-                                      shipAccountNum={ shipAccountNum }
+                                        shipAccount={ shipAccount }
+                                        shipAccountNum={ shipAccountNum }
                                     />
                                     <FormComments comments={ comments } />
-                                    <button type="submit" className="btn btn-default"
-                                      disabled={ submitting }> Submit
-                                    </button>
-                                </form>
-                            </PanelBody>
-                        </Panel>
+                                </PanelBody>
+                            </Panel>
+                        </div>
+                        <div className="col-md-6">
+                            <Panel>
+                                <PanelHeader>
+                                    <PanelTitle>Billing</PanelTitle>
+                                </PanelHeader>
+                                <PanelBody>
+                                    <FormPersonalInfo
+                                        firstName={ shipFirstName }
+                                        lastName={ shipLastName }
+                                        org={ shipOrg }
+                                        group={ shipGroup }
+                                    />
+                                    <FormAddress
+                                        address={ shipAddress }
+                                        address2={ shipAddress2 }
+                                        city={ shipCity }
+                                        state={ shipState }
+                                        zip={ shipZip }
+                                        country={ shipCountry }
+                                    />
+                                    <FormContactInfo phone={ shipPhone } email={ shipEmail } />
+                                    <div className="form-group">
+                                        <div className="col-sm-offset-3 col-sm-9">
+                                            <button type="submit"
+                                                className="btn btn-primary btn-lg btn-block"
+                                                disabled={ submitting }> Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </PanelBody>
+                            </Panel>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         )
     }
