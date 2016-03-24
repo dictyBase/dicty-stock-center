@@ -14,43 +14,47 @@ export default class FormShippingInfo extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>Shipping Account:</label><br />
-                    <div className="radio">
-                        <label>
-                          <input type="radio" { ...shipAccount } value="Fedex"
-                            checked={ shipAccount.value === 'Fedex' } />
-                          FedEx
-                        </label>
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        Shipping Account:
+                    </label>
+                    <div className="col-sm-9">
+                        <div className="radio">
+                            <label>
+                              <input type="radio" { ...shipAccount } value="Fedex"
+                                checked={ shipAccount.value === 'Fedex' } />
+                              FedEx
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                              <input type="radio" { ...shipAccount } value="UPS"
+                                checked={ shipAccount.value === 'UPS' } />
+                              UPS
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label><input type="radio" { ...shipAccount } value="DHL"
+                              checked={ shipAccount.value === 'DHL' } />
+                              DHL
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                              <input type="radio" { ...shipAccount } value="WillCall"
+                                checked={ shipAccount.value === 'WillCall' } />
+                              Call in Credit card # for FedEx waybill 1-312-503-4169
+                            </label>
+                            { shipAccount.touched && shipAccount.error &&
+                                <div className="text-danger">{ shipAccount.error }</div>
+                            }
+                        </div>
+                        <input type="text" className="form-control" { ...shipAccountNum }
+                          placeholder="Shipping Account Number" />
+                          { shipAccountNum.touched && shipAccountNum.error &&
+                              <div className="text-danger">{ shipAccountNum.error }</div>
+                          }
                     </div>
-                    <div className="radio">
-                        <label>
-                          <input type="radio" { ...shipAccount } value="UPS"
-                            checked={ shipAccount.value === 'UPS' } />
-                          UPS
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label><input type="radio" { ...shipAccount } value="DHL"
-                          checked={ shipAccount.value === 'DHL' } />
-                          DHL
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                          <input type="radio" { ...shipAccount } value="WillCall"
-                            checked={ shipAccount.value === 'WillCall' } />
-                          Call in Credit card # for FedEx waybill 1-312-503-4169
-                        </label>
-                        { shipAccount.touched && shipAccount.error &&
-                            <div className="text-danger">{ shipAccount.error }</div>
-                        }
-                    </div>
-                    <input type="text" className="form-control" { ...shipAccountNum }
-                      placeholder="Shipping Account Number" />
-                      { shipAccountNum.touched && shipAccountNum.error &&
-                          <div className="text-danger">{ shipAccountNum.error }</div>
-                      }
                 </div>
             </div>
         )

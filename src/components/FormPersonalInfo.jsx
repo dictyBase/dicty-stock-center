@@ -16,36 +16,52 @@ export default class FormPersonalInfo extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>First Name:</label>
-                    <input type="text" className="form-control" {...firstName} />
-                    { firstName.touched && firstName.error &&
-                        <div className="text-danger">{ firstName.error }</div>
-                    }
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        First Name:
+                    </label>
+                    <div className="col-sm-9">
+                        <input type="text" className="form-control" {...firstName} />
+                        { firstName.touched && firstName.error &&
+                            <div className="text-danger">{ firstName.error }</div>
+                        }
+                    </div>
                 </div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>Last Name:</label>
-                    <input type="text" className="form-control" { ...lastName } />
-                    { lastName.touched && lastName.error &&
-                        <div className="text-danger">{ lastName.error }</div>
-                    }
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        Last Name:
+                    </label>
+                    <div className="col-sm-9">
+                        <input type="text" className="form-control" { ...lastName } />
+                        { lastName.touched && lastName.error &&
+                            <div className="text-danger">{ lastName.error }</div>
+                        }
+                    </div>
                 </div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>Organization:</label>
-                    <input type="text" className="form-control" { ...org } />
-                    { org.touched && org.error &&
-                        <div className="text-danger">{ org.error }</div>
-                    }
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        Organization:
+                    </label>
+                    <div className="col-sm-9">
+                        <input type="text" className="form-control" { ...org } />
+                        { org.touched && org.error &&
+                            <div className="text-danger">{ org.error }</div>
+                        }
+                    </div>
                 </div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>Lab/Group:</label>
-                    <input type="text" className="form-control" { ...group } />
-                    { group.touched && group.error &&
-                        <div className="text-danger">{ group.error }</div>
-                    }
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        Lab/Group:
+                    </label>
+                    <div className="col-sm-9">
+                        <input type="text" className="form-control" { ...group } />
+                        { group.touched && group.error &&
+                            <div className="text-danger">{ group.error }</div>
+                        }
+                    </div>
                 </div>
             </div>
         )

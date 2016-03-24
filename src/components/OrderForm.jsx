@@ -46,7 +46,7 @@ class OrderForm extends Component {
                               <PanelTitle>Shipping</PanelTitle>
                             </PanelHeader>
                             <PanelBody>
-                                <form onSubmit={ handleSubmit }>
+                                <form onSubmit={ handleSubmit } className="form-horizontal">
                                     <FormPersonalInfo
                                       firstName={ firstName }
                                       lastName={ lastName }

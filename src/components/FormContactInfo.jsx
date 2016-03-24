@@ -14,16 +14,22 @@ export default class FormContactInfo extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <label>Phone:</label>
-                    <input type="text" className="form-control" { ...phone } />
+                    <label className="col-sm-3 control-label">Phone:</label>
+                    <div className="col-sm-9">
+                        <input type="text" className="form-control" { ...phone } />
+                    </div>
                 </div>
                 <div className="form-group">
-                    <span className="text-danger">* </span>
-                    <label>Email:</label>
-                    <input type="email" className="form-control" { ...email } />
-                    { email.touched && email.error &&
-                        <div className="text-danger">{ email.error }</div>
-                    }
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger">* </span>
+                        Email:
+                    </label>
+                    <div className="col-sm-9">
+                        <input type="email" className="form-control" { ...email } />
+                        { email.touched && email.error &&
+                            <div className="text-danger">{ email.error }</div>
+                        }
+                    </div>
                 </div>
             </div>
         )
