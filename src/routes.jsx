@@ -8,7 +8,7 @@ import Home from 'components/Home'
 import Profile from 'components/Profile'
 import Error from 'components/Error'
 import OrderForm from 'components/OrderForm'
-import FormSubmit from 'components/FormSubmit'
+import SubmitLoader from 'components/SubmitLoader'
 
 export default (
     <Route path="/" component={ App }>
@@ -19,7 +19,7 @@ export default (
         <Route path="home/profile" component={ Profile } />
         <Route path="error" component={ Error } />
         <Route path="order/form" component={ OrderForm } />
-        <Route path="order/form/submitting" component={ FormSubmit } />
+        <Route path="order/form/submitting" component={ SubmitLoader } />
     </Route>
 )
 
