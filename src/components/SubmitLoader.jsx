@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'styles/core.scss'
 
-export default class FormSubmit extends Component {
+export default class SubmitLoader extends Component {
     displayName = 'loading component during submitting the order form';
     render() {
         return (
