@@ -1,13 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Panel from 'components/dicty-react-components/src/Panel'
-import PanelHeader from 'components/dicty-react-components/src/PanelHeader'
-import PanelTitle from 'components/dicty-react-components/src/PanelTitle'
-import PanelBody from 'components/dicty-react-components/src/PanelBody'
-import FormPersonalInfo from 'components/FormPersonalInfo'
-import FormAddress from 'components/FormAddress'
-import FormContactInfo from 'components/FormContactInfo'
-import FormShippingInfo from 'components/FormShippingInfo'
-import FormComments from 'components/FormComments'
+import FormCustomer from 'components/FormCustomer'
+import FormPayer from 'components/FormPayer'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order-form'
 import validate from 'forms/validate/order-form'
@@ -15,9 +8,9 @@ import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address',
     'address2', 'city', 'state', 'zip', 'country', 'phone', 'email',
-    'shipAccount', 'shipAccountNum', 'comments', 'billFirstName',
-    'billLastName', 'billOrg', 'billGroup', 'billAddress', 'billAddress2',
-    'billCity', 'billState', 'billZip', 'billCountry', 'billPhone', 'billEmail'
+    'shipAccount', 'shipAccountNum', 'comments', 'payerFirstName',
+    'payerLastName', 'payerEmail', 'payerOrg', 'payerGroup', 'payerAddress', 'payerAddress2',
+    'payerCity', 'payerState', 'payerZip', 'payerCountry', 'payerPhone'
 ]
 
 class OrderForm extends Component {
@@ -32,10 +25,10 @@ class OrderForm extends Component {
     render() {
         const { handleSubmit, submitting } = this.props
         const {
-            fields: { firstName, lastName, org, group, address, address2, city,
-                state, zip, country, phone, email, shipAccount, shipAccountNum, comments,
-                billFirstName, billLastName, billOrg, billGroup, billAddress, billAddress2,
-                billCity, billState, billZip, billCountry, billPhone, billEmail
+            fields: { firstName, lastName, email, org, group, address, address2, city,
+                state, zip, country, phone, shipAccount, shipAccountNum, comments,
+                payerFirstName, payerLastName, payerEmail, payerOrg, payerGroup, payerAddress,
+                payerAddress2, payerCity, payerState, payerZip, payerCountry, payerPhone
             }
         } = this.props
         return (
@@ -46,65 +39,48 @@ class OrderForm extends Component {
                 <form onSubmit={ handleSubmit } className="form-horizontal">
                     <div className="row">
                         <div className="col-md-6">
-                            <Panel>
-                                <PanelHeader>
-                                    <PanelTitle>Shipping</PanelTitle>
-                                </PanelHeader>
-                                <PanelBody>
-                                    <FormPersonalInfo
-                                        firstName={ firstName }
-                                        lastName={ lastName }
-                                        org={ org }
-                                        group={ group }
-                                    />
-                                    <FormAddress
-                                        address={ address }
-                                        address2={ address2 }
-                                        city={ city }
-                                        state={ state }
-                                        zip={ zip }
-                                        country={ country }
-                                    />
-                                    <FormContactInfo phone={ phone } email={ email } />
-                                    <FormShippingInfo
-                                        shipAccount={ shipAccount }
-                                        shipAccountNum={ shipAccountNum }
-                                    />
-                                    <FormComments comments={ comments } />
-                                </PanelBody>
-                            </Panel>
+                            <FormCustomer
+                                firstName={ firstName }
+                                lastName={ lastName }
+                                email={ email }
+                                org={ org }
+                                group={ group }
+                                address={ address }
+                                address2={ address2 }
+                                city={ city }
+                                state={ state }
+                                zip={ zip }
+                                country={ country }
+                                phone={ phone }
+                                shipAccount={ shipAccount }
+                                shipAccountNum={ shipAccountNum }
+                                comments={ comments }
+                            />
                         </div>
                         <div className="col-md-6">
-                            <Panel>
-                                <PanelHeader>
-                                    <PanelTitle>Billing</PanelTitle>
-                                </PanelHeader>
-                                <PanelBody>
-                                    <FormPersonalInfo
-                                        firstName={ billFirstName }
-                                        lastName={ billLastName }
-                                        org={ billOrg }
-                                        group={ billGroup }
-                                    />
-                                    <FormAddress
-                                        address={ billAddress }
-                                        address2={ billAddress2 }
-                                        city={ billCity }
-                                        state={ billState }
-                                        zip={ billZip }
-                                        country={ billCountry }
-                                    />
-                                    <FormContactInfo phone={ billPhone } email={ billEmail } />
-                                    <div className="form-group">
-                                        <div className="col-sm-offset-3 col-sm-9">
-                                            <button type="submit"
-                                                className="btn btn-primary btn-lg btn-block"
-                                                disabled={ submitting }> Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </PanelBody>
-                            </Panel>
+                            <FormPayer
+                                firstName={ payerFirstName }
+                                lastName={ payerLastName }
+                                email={ payerEmail }
+                                org={ payerOrg }
+                                group={ payerGroup }
+                                address={ payerAddress }
+                                address2={ payerAddress2 }
+                                city={ payerCity }
+                                state={ payerState }
+                                zip={ payerZip }
+                                country={ payerCountry }
+                                phone={ payerPhone }
+                            />
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                        <div className="col-xs-offset-9 col-xs-3">
+                            <button type="submit"
+                                className="btn btn-primary btn-lg btn-block"
+                                disabled={ submitting }> Submit
+                            </button>
                         </div>
                     </div>
                 </form>
