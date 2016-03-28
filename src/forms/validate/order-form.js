@@ -37,36 +37,36 @@ const validate = data => {
     if (!data.shipAccountNum) {
         errors.shipAccountNum = 'Required'
     }
-    if (!data.billFirstName) {
-        errors.billFirstName = 'Required'
+    if (!data.payerFirstName) {
+        errors.payerFirstName = 'Required'
     }
-    if (!data.billLastName) {
-        errors.billLastName = 'Required'
+    if (!data.payerLastName) {
+        errors.payerLastName = 'Required'
     }
-    if (!data.billOrg) {
-        errors.billOrg = 'Required'
+    if (!data.payerOrg) {
+        errors.payerOrg = 'Required'
     }
-    if (!data.billGroup) {
-        errors.billGroup = 'Required'
+    if (!data.payerGroup) {
+        errors.payerGroup = 'Required'
     }
-    if (!data.billAddress) {
-        errors.billAddress = 'Required'
+    if (!data.payerAddress) {
+        errors.payerAddress = 'Required'
     }
-    if (!data.billCity) {
-        errors.billCity = 'Required'
+    if (!data.payerCity) {
+        errors.payerCity = 'Required'
     }
-    if (!data.billZip) {
-        errors.billZip = 'Required'
+    if (!data.payerZip) {
+        errors.payerZip = 'Required'
     }
-    if (!data.billCountry) {
-        errors.billCountry = 'Required'
-    } else if (data.billCountry === 'select') {
-        errors.billCountry = 'Required'
+    if (!data.payerCountry) {
+        errors.payerCountry = 'Required'
+    } else if (data.payerCountry === 'select') {
+        errors.payerCountry = 'Required'
     }
-    if (!data.billEmail) {
-        errors.billEmail = 'Required'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.billEmail)) {
-        errors.billEmail = 'Invalid email address'
+    if (!data.payerEmail) {
+        errors.payerEmail = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.payerEmail)) {
+        errors.payerEmail = 'Invalid email address'
     }
     return errors
 }
