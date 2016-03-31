@@ -53,6 +53,7 @@
   "dependencies": {
     "better-npm-run": "0.0.5",
     "debug": "^2.2.0",
+    "dicty-react-components" : "git://github.com/dictyBase/dicty-react-components.git#update-packages",
     "dotenv": "^2.0.0",
     "fs": "0.0.2",
     "history": "^2.0.0-rc2",
