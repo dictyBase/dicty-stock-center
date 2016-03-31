@@ -119,7 +119,20 @@ webpackConfig.module.loaders = [{
 {
   test: /\.json$/,
   loader: 'json'
-}]
+},
+{
+  test: /\.(js|jsx)$/,
+  include: /dicty-react-components/,
+  loader: 'babel',
+  query: {
+    cacheDirectory: true,
+    plugins: ['transform-runtime', 'transform-decorators-legacy'],
+    presets: __DEV__
+      ? ['es2015', 'react', 'stage-0', 'react-hmre']
+      : ['es2015', 'react', 'stage-0']
+  }
+}
+]
 
 // Styles
 const cssLoader = !config.compiler_css_modules
