@@ -8,6 +8,7 @@ import FormAddress from './FormAddress'
 import FormContactInfo from './FormContactInfo'
 import FormShippingInfo from './FormShippingInfo'
 import FormComments from './FormComments'
+import FormOrganization from './FormOrganization'
 
 export default class FormCustomer extends Component {
     displayName = 'component to input customer info into order-form';
@@ -42,6 +43,8 @@ export default class FormCustomer extends Component {
                     <FormPersonalInfo
                         firstName={ firstName }
                         lastName={ lastName }
+                    />
+                    <FormOrganization
                         org={ org }
                         group={ group }
                     />

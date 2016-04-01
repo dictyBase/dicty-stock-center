@@ -6,6 +6,7 @@ import PanelBody from 'dicty-react-components/src/PanelBody'
 import FormPersonalInfo from './FormPersonalInfo'
 import FormAddress from './FormAddress'
 import FormContactInfo from './FormContactInfo'
+import FormOrganization from './FormOrganization'
 
 export default class FormPayerInfo extends Component {
     displayName = 'component to input payer info into order-form';
@@ -36,6 +37,8 @@ export default class FormPayerInfo extends Component {
                     <FormPersonalInfo
                         firstName={ firstName }
                         lastName={ lastName }
+                    />
+                    <FormOrganization
                         org={ org }
                         group={ group }
                     />
