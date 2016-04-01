@@ -16,34 +16,33 @@ export default class FormShippingInfo extends Component {
                 <div className="form-group">
                     <label className="col-sm-3 control-label">
                         <span className="text-danger">* </span>
-                        Shipping Account:
+                        Shipping Account
                     </label>
                     <div className="col-sm-9">
+                        <label className="radio-inline">
+                            <input type="radio" { ...shipAccount } value="Fedex"
+                                checked={ shipAccount.value === 'Fedex' }
+                            />
+                            FedEx
+                        </label>
+                        <label className="radio-inline">
+                            <input type="radio" { ...shipAccount } value="UPS"
+                                checked={ shipAccount.value === 'UPS' }
+                            />
+                            UPS
+                        </label>
+                        <label className="radio-inline">
+                            <input type="radio" { ...shipAccount } value="DHL"
+                                checked={ shipAccount.value === 'DHL' }
+                            />
+                            DHL
+                        </label>
                         <div className="radio">
                             <label>
-                              <input type="radio" { ...shipAccount } value="Fedex"
-                                checked={ shipAccount.value === 'Fedex' } />
-                              FedEx
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                              <input type="radio" { ...shipAccount } value="UPS"
-                                checked={ shipAccount.value === 'UPS' } />
-                              UPS
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label><input type="radio" { ...shipAccount } value="DHL"
-                              checked={ shipAccount.value === 'DHL' } />
-                              DHL
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                              <input type="radio" { ...shipAccount } value="WillCall"
-                                checked={ shipAccount.value === 'WillCall' } />
-                              Call in Credit card # for FedEx waybill 1-312-503-4169
+                                <input type="radio" { ...shipAccount } value="WillCall"
+                                    checked={ shipAccount.value === 'WillCall' }
+                                />
+                                Call in Credit card # for FedEx waybill 1-312-503-4169
                             </label>
                             { shipAccount.touched && shipAccount.error &&
                                 <div className="text-danger">{ shipAccount.error }</div>
