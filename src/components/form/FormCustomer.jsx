@@ -43,6 +43,7 @@ export default class FormCustomer extends Component {
                     <FormPersonalInfo
                         firstName={ firstName }
                         lastName={ lastName }
+                        email={ email }
                     />
                     <FormOrganization
                         org={ org }
@@ -56,7 +57,7 @@ export default class FormCustomer extends Component {
                         zip={ zip }
                         country={ country }
                     />
-                    <FormContactInfo phone={ phone } email={ email } />
+                    <FormContactInfo phone={ phone } />
                     <FormShippingInfo
                         shipAccount={ shipAccount }
                         shipAccountNum={ shipAccountNum }
