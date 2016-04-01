@@ -1,5 +1,4 @@
 const countryList = [
-    'United States',
     'Afghanistan',
     'Albania',
     'Algeria',
@@ -225,6 +224,7 @@ const countryList = [
     'Ukraine',
     'United Arab Emirates',
     'United Kingdom',
+    'United States',
     'United States Minor Outlying Islands',
     'Uruguay',
     'Uzbekistan',
