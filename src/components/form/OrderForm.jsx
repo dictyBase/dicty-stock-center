@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import FormCustomer from 'components/FormCustomer'
-import FormPayer from 'components/FormPayer'
+import FormCustomer from './FormCustomer'
+import FormPayer from './FormPayer'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order-form'
 import validate from 'forms/validate/order-form'

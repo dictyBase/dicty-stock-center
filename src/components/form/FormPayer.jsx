@@ -3,9 +3,9 @@ import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import FormPersonalInfo from 'components/FormPersonalInfo'
-import FormAddress from 'components/FormAddress'
-import FormContactInfo from 'components/FormContactInfo'
+import FormPersonalInfo from './FormPersonalInfo'
+import FormAddress from './FormAddress'
+import FormContactInfo from './FormContactInfo'
 
 export default class FormPayerInfo extends Component {
     displayName = 'component to input payer info into order-form';

@@ -3,11 +3,11 @@ import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import FormPersonalInfo from 'components/FormPersonalInfo'
-import FormAddress from 'components/FormAddress'
-import FormContactInfo from 'components/FormContactInfo'
-import FormShippingInfo from 'components/FormShippingInfo'
-import FormComments from 'components/FormComments'
+import FormPersonalInfo from './FormPersonalInfo'
+import FormAddress from './FormAddress'
+import FormContactInfo from './FormContactInfo'
+import FormShippingInfo from './FormShippingInfo'
+import FormComments from './FormComments'
 
 export default class FormCustomer extends Component {
     displayName = 'component to input customer info into order-form';

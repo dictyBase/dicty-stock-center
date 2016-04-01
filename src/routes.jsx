@@ -7,8 +7,8 @@ import AuthLoader from 'components/AuthLoader'
 import Home from 'components/Home'
 import Profile from 'components/Profile'
 import Error from 'components/Error'
-import OrderForm from 'components/OrderForm'
-import SubmitLoader from 'components/SubmitLoader'
+import OrderForm from 'components/form/OrderForm'
+import SubmitLoader from 'components/form/SubmitLoader'
 
 export default (
     <Route path="/" component={ App }>
