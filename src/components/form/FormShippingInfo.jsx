@@ -9,8 +9,24 @@ export default class FormShippingInfo extends Component {
         shipAccountNum: PropTypes.object.isRequired
     }
 
+    renderShipAccountNum = () => {
+        const { shipAccountNum } = this.props
+        return (
+            <div className="form-group">
+                <div className="col-sm-offset-3 col-sm-9">
+                    <input type="text" className="form-control" { ...shipAccountNum }
+                        placeholder="Shipping Account Number"
+                    />
+                    { shipAccountNum.touched && shipAccountNum.error &&
+                        <div className="text-danger">{ shipAccountNum.error }</div>
+                    }
+                </div>
+            </div>
+        )
+    }
+
     render() {
-        const { shipAccount, shipAccountNum } = this.props
+        const { shipAccount } = this.props
         return (
             <div>
                 <div className="form-group">
@@ -48,13 +64,9 @@ export default class FormShippingInfo extends Component {
                                 <div className="text-danger">{ shipAccount.error }</div>
                             }
                         </div>
-                        <input type="text" className="form-control" { ...shipAccountNum }
-                          placeholder="Shipping Account Number" />
-                          { shipAccountNum.touched && shipAccountNum.error &&
-                              <div className="text-danger">{ shipAccountNum.error }</div>
-                          }
                     </div>
                 </div>
+                { !(shipAccount.value === 'WillCall') && this.renderShipAccountNum() }
             </div>
         )
     }
