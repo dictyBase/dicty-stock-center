@@ -10,7 +10,7 @@ export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address',
     'address2', 'city', 'state', 'zip', 'country', 'phone', 'email',
     'shipAccount', 'shipAccountNum', 'comments', 'payerFirstName',
     'payerLastName', 'payerEmail', 'payerOrg', 'payerGroup', 'payerAddress', 'payerAddress2',
-    'payerCity', 'payerState', 'payerZip', 'payerCountry', 'payerPhone'
+    'payerCity', 'payerState', 'payerZip', 'payerCountry', 'payerPhone', 'payMethod', 'poNum'
 ]
 
 class OrderForm extends Component {
@@ -28,7 +28,8 @@ class OrderForm extends Component {
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, shipAccount, shipAccountNum, comments,
                 payerFirstName, payerLastName, payerEmail, payerOrg, payerGroup, payerAddress,
-                payerAddress2, payerCity, payerState, payerZip, payerCountry, payerPhone
+                payerAddress2, payerCity, payerState, payerZip, payerCountry, payerPhone,
+                payMethod, poNum
             }
         } = this.props
         return (
@@ -71,6 +72,8 @@ class OrderForm extends Component {
                                 zip={ payerZip }
                                 country={ payerCountry }
                                 phone={ payerPhone }
+                                payMethod={ payMethod }
+                                poNum={ poNum }
                             />
                         </div>
                     </div>

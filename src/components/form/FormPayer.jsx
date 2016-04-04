@@ -7,6 +7,7 @@ import FormPersonalInfo from './FormPersonalInfo'
 import FormAddress from './FormAddress'
 import FormContactInfo from './FormContactInfo'
 import FormOrganization from './FormOrganization'
+import FormPaymentMethod from './FormPaymentMethod'
 
 export default class FormPayerInfo extends Component {
     displayName = 'component to input payer info into order-form';
@@ -22,12 +23,14 @@ export default class FormPayerInfo extends Component {
         zip: PropTypes.object.isRequired,
         country: PropTypes.object.isRequired,
         phone: PropTypes.object.isRequired,
-        email: PropTypes.object.isRequired
+        email: PropTypes.object.isRequired,
+        payMethod: PropTypes.object.isRequired,
+        poNum: PropTypes.object.isRequired
     }
 
     render() {
         const { firstName, lastName, org, group, address, address2, city, state,
-            zip, country, phone, email } = this.props
+            zip, country, phone, email, payMethod, poNum} = this.props
         return (
             <Panel>
                 <PanelHeader>
@@ -52,6 +55,7 @@ export default class FormPayerInfo extends Component {
                         country={ country }
                     />
                     <FormContactInfo phone={ phone } />
+                    <FormPaymentMethod payMethod={ payMethod } poNum={ poNum }/>
                 </PanelBody>
             </Panel>
         )
