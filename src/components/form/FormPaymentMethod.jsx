@@ -27,7 +27,10 @@ export default class FormPaymentMethod extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <label className="col-sm-3 control-label">Payment Method</label>
+                    <label className="col-sm-3 control-label">
+                        <span className="text-danger" title="required field">* </span>
+                        Payment Method:
+                    </label>
                     <div className="col-sm-9">
                         <label className="radio-inline">
                             <input type="radio" { ...payMethod } value="Credit"
