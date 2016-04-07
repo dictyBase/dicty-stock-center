@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import FormGroupInput from './FormGroupInput'
 import 'styles/core.scss'
 
 export default class FormOrganization extends Component {
@@ -13,30 +14,14 @@ export default class FormOrganization extends Component {
         const { org, group } = this.props
         return (
             <div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        Organization
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...org } />
-                        { org.touched && org.error &&
-                            <div className="text-danger">{ org.error }</div>
-                        }
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        Lab/Group
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...group } />
-                        { group.touched && group.error &&
-                            <div className="text-danger">{ group.error }</div>
-                        }
-                    </div>
-                </div>
+                <FormGroupInput field={ org } >
+                    <span className="text-danger" title="required field">* </span>
+                    Organization:
+                </FormGroupInput>
+                <FormGroupInput field={ group } >
+                    <span className="text-danger" title="required field">* </span>
+                    Lab/Group:
+                </FormGroupInput>
             </div>
         )
     }
