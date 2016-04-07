@@ -33,7 +33,7 @@ export default class FormPaymentMethod extends Component {
                             <input type="radio" { ...payMethod } value="Credit"
                                 checked={ payMethod.value === 'Credit' }
                             />
-                            Credit
+                            Credit Card
                         </label>
                         <label className="radio-inline">
                             <input type="radio" { ...payMethod } value="Wire"
@@ -47,6 +47,9 @@ export default class FormPaymentMethod extends Component {
                             />
                             Purchase Order (PO)
                         </label>
+                        { payMethod.touched && payMethod.error &&
+                            <div className="text-danger">{ payMethod.error }</div>
+                        }
                     </div>
                 </div>
                 { payMethod.value === 'PO' && this.renderPoNumber() }
