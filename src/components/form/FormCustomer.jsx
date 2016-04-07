@@ -40,6 +40,14 @@ export default class FormCustomer extends Component {
                    <PanelTitle>Shipping Information</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
+                    <div className="form-group">
+                        <em className="col-sm-12">
+                            <span className="text-danger">
+                                <strong> * </strong>
+                            </span>
+                            Indicates required field
+                        </em>
+                    </div>
                     <FormPersonalInfo
                         firstName={ firstName }
                         lastName={ lastName }
