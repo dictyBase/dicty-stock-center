@@ -1,3 +1,5 @@
+import isEmail from 'validator/lib/isEmail'
+
 const validate = data => {
     const requiredFields = [
         'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip',
@@ -17,7 +19,7 @@ const validate = data => {
     validateEmail.forEach((field) => {
         if (!data[field]) {
             errors[field] = 'required'
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data[field])) {
+        } else if (!isEmail(data[field])) {
             errors[field] = 'invalid email address'
         }
     })

@@ -53,7 +53,7 @@
   "dependencies": {
     "better-npm-run": "0.0.5",
     "debug": "^2.2.0",
-    "dicty-react-components" : "git://github.com/dictyBase/dicty-react-components.git#update-packages",
+    "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#update-packages",
     "dotenv": "^2.0.0",
     "fs": "0.0.2",
     "history": "^2.0.0-rc2",
@@ -74,6 +74,7 @@
     "redux-thunk": "^1.0.0",
     "simplestorage.js": "^0.2.1",
     "url": "^0.11.0",
+    "validator": "^5.1.0",
     "yargs": "^3.18.0"
   },
   "devDependencies": {
