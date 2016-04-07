@@ -32,6 +32,10 @@ const validate = data => {
         }
     })
 
+    if (!data.shipAccountNum && !(data.shipAccount === 'WillCall')) {
+        errors.shipAccountNum = 'required'
+    }
+
     return errors
 }
 
