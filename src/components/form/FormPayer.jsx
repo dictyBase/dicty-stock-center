@@ -37,6 +37,15 @@ export default class FormPayerInfo extends Component {
                     <PanelTitle>DSC Payment Information</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
+                    <div className="form-group">
+                        <div className="col-sm-12">
+                        <em className="checkbox">
+                              <label><input type="checkbox" value="" />
+                                Click here if payer is the same as customer
+                              </label>
+                        </em>
+                        </div>
+                    </div>
                     <FormPersonalInfo
                         firstName={ firstName }
                         lastName={ lastName }
