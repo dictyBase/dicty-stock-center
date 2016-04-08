@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
 import 'styles/core.scss'
 
 export default class FormPaymentMethod extends Component {
@@ -24,9 +25,13 @@ export default class FormPaymentMethod extends Component {
 
     render() {
         const { payMethod } = this.props
+        const hasError = (payMethod.touched && payMethod.error)
+        let groupClass = classNames('form-group', {
+            'has-error': hasError
+        })
         return (
             <div>
-                <div className="form-group">
+                <div className={ groupClass }>
                     <label className="col-sm-3 control-label">
                         <span className="text-danger" title="required field">* </span>
                         Payment Method:
@@ -50,9 +55,7 @@ export default class FormPaymentMethod extends Component {
                             />
                             Purchase Order (PO)
                         </label>
-                        { payMethod.touched && payMethod.error &&
-                            <div className="text-danger">{ payMethod.error }</div>
-                        }
+                        { hasError && <div className="help-block">{ payMethod.error }</div> }
                     </div>
                 </div>
                 { payMethod.value === 'PO' && this.renderPoNumber() }
