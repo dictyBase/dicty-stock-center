@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import FormGroupInput from './FormGroupInput'
 import countryList from 'forms/utils/countryList'
 import 'styles/core.scss'
 
@@ -18,59 +19,24 @@ export default class FormAddress extends Component {
         const { address, address2, city, state, zip, country } = this.props
         return (
             <div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        Address:
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...address } />
-                        { address.touched && address.error &&
-                            <div className="text-danger">{ address.error }</div>
-                        }
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        Address:
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...address2 }
-                            placeholder="Optional" />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        City:
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...city } />
-                        { city.touched && city.error &&
-                            <div className="text-danger">{ city.error }</div>
-                        }
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        State/Province:
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...state } />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        ZIP:
-                    </label>
-                    <div className="col-sm-9">
-                        <input type="number" className="form-control" { ...zip } />
-                        { zip.touched && zip.error &&
-                            <div className="text-danger">{ zip.error }</div>
-                        }
-                    </div>
-                </div>
+                <FormGroupInput field={ address } >
+                    <span className="text-danger">* </span>
+                    Address:
+                </FormGroupInput>
+                <FormGroupInput field={ address2 } >
+                    Address:
+                </FormGroupInput>
+                <FormGroupInput field={ city } >
+                    <span className="text-danger">* </span>
+                    City:
+                </FormGroupInput>
+                <FormGroupInput field={ state } >
+                    State/Province:
+                </FormGroupInput>
+                <FormGroupInput field={ zip } >
+                    <span className="text-danger">* </span>
+                    ZIP:
+                </FormGroupInput>
                 <div className="form-group">
                     <label className="col-sm-3 control-label">
                         <span className="text-danger">* </span>

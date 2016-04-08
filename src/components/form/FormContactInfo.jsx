@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import 'styles/core.scss'
+import FormGroupInput from './FormGroupInput'
 
 export default class FormContactInfo extends Component {
     displayName = 'form contact information';
@@ -12,12 +12,9 @@ export default class FormContactInfo extends Component {
         const { phone } = this.props
         return (
             <div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">Phone</label>
-                    <div className="col-sm-9">
-                        <input type="text" className="form-control" { ...phone } />
-                    </div>
-                </div>
+                <FormGroupInput field={ phone } >
+                    Phone:
+                </FormGroupInput>
             </div>
         )
     }
