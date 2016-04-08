@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import FormGroupInput from './FormGroupInput'
+import FormGroupSelect from './FormGroupSelect'
 import countryList from 'forms/utils/countryList'
 import 'styles/core.scss'
 
@@ -37,26 +38,10 @@ export default class FormAddress extends Component {
                     <span className="text-danger">* </span>
                     ZIP:
                 </FormGroupInput>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
-                        Country:
-                    </label>
-                    <div className="col-sm-9">
-                        <select className="form-control" {...country} value={ country.value }>
-                            <option value="select" >Select your country</option>
-                            { countryList.map((cont) => {
-                                return (
-                                    <option key={ countryList.indexOf(cont) }
-                                        value={ cont }>{ cont }</option>
-                                )
-                            }) }
-                        </select>
-                        { country.touched && country.error &&
-                            <div className="text-danger">{ country.error }</div>
-                        }
-                    </div>
-                </div>
+                <FormGroupSelect field={ country } list={ countryList }>
+                    <span className="text-danger">* </span>
+                    Country:
+                </FormGroupSelect>
             </div>
         )
     }
