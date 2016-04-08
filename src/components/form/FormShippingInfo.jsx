@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
 import 'styles/core.scss'
 
 export default class FormShippingInfo extends Component {
@@ -11,15 +12,17 @@ export default class FormShippingInfo extends Component {
 
     renderShipAccountNum = () => {
         const { shipAccountNum } = this.props
+        const hasError = (shipAccountNum.touched && shipAccountNum.error)
+        let groupClass = classNames('form-group', {
+            'has-error': hasError
+        })
         return (
-            <div className="form-group">
+            <div className={ groupClass }>
                 <div className="col-sm-offset-3 col-sm-9">
                     <input type="text" className="form-control" { ...shipAccountNum }
                         placeholder="Shipping Account Number"
                     />
-                    { shipAccountNum.touched && shipAccountNum.error &&
-                        <div className="text-danger">{ shipAccountNum.error }</div>
-                    }
+                    { hasError && <div className="help-block">{ shipAccountNum.error }</div> }
                 </div>
             </div>
         )
@@ -27,12 +30,16 @@ export default class FormShippingInfo extends Component {
 
     render() {
         const { shipAccount } = this.props
+        const hasError = (shipAccount.touched && shipAccount.error)
+        let groupClass = classNames('form-group', {
+            'has-error': hasError
+        })
         return (
             <div>
-                <div className="form-group">
+                <div className={ groupClass }>
                     <label className="col-sm-3 control-label">
                         <span className="text-danger">* </span>
-                        Shipping Account
+                        Shipping Account:
                     </label>
                     <div className="col-sm-9">
                         <label className="radio-inline">
@@ -60,9 +67,7 @@ export default class FormShippingInfo extends Component {
                                 />
                                 Call in Credit card # for FedEx waybill 1-312-503-4169
                             </label>
-                            { shipAccount.touched && shipAccount.error &&
-                                <div className="text-danger">{ shipAccount.error }</div>
-                            }
+                            { hasError && <div className="help-block">{ shipAccount.error }</div> }
                         </div>
                     </div>
                 </div>
