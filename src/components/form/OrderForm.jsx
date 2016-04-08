@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import FormCustomer from './FormCustomer'
 import FormPayer from './FormPayer'
+import FormControl from './FormControl'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order-form'
 import validate from 'forms/validate/order-form'
@@ -19,11 +20,12 @@ class OrderForm extends Component {
     static propTypes = {
         fields: PropTypes.object.isRequired,
         handleSubmit: PropTypes.func.isRequired,
+        resetForm: PropTypes.func.isRequired,
         submitting: PropTypes.bool.isRequired
     }
 
     render() {
-        const { handleSubmit, submitting } = this.props
+        const { handleSubmit, resetForm, submitting } = this.props
         const {
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, shipAccount, shipAccountNum, comments,
@@ -78,14 +80,7 @@ class OrderForm extends Component {
                         </div>
                     </div>
                     <hr />
-                    <div className="row">
-                        <div className="col-xs-offset-9 col-xs-3">
-                            <button type="submit"
-                                className="btn btn-primary btn-lg btn-block"
-                                disabled={ submitting }> Submit
-                            </button>
-                        </div>
-                    </div>
+                    <FormControl resetForm={ resetForm } submitting={ submitting }/>
                 </form>
             </div>
         )
