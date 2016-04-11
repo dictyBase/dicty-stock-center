@@ -25,12 +25,13 @@ export default class FormPayerInfo extends Component {
         phone: PropTypes.object.isRequired,
         email: PropTypes.object.isRequired,
         payMethod: PropTypes.object.isRequired,
-        poNum: PropTypes.object.isRequired
+        poNum: PropTypes.object.isRequired,
+        sameAsCustomer: PropTypes.object.isRequired
     }
 
     render() {
         const { firstName, lastName, org, group, address, address2, city, state,
-            zip, country, phone, email, payMethod, poNum} = this.props
+            zip, country, phone, email, payMethod, poNum, sameAsCustomer } = this.props
         return (
             <Panel>
                 <PanelHeader>
@@ -40,7 +41,7 @@ export default class FormPayerInfo extends Component {
                     <div className="form-group">
                         <div className="col-sm-12">
                         <em className="checkbox">
-                              <label><input type="checkbox" value="" />
+                              <label><input type="checkbox" {...sameAsCustomer} />
                                 Click here if payer is the same as customer
                               </label>
                         </em>

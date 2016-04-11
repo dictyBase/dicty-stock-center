@@ -7,11 +7,11 @@ import { submitForm } from 'actions/order-form'
 import validate from 'forms/validate/order-form'
 import 'styles/core.scss'
 
-export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address',
-    'address2', 'city', 'state', 'zip', 'country', 'phone', 'email',
-    'shipAccount', 'shipAccountNum', 'comments', 'payerFirstName',
-    'payerLastName', 'payerEmail', 'payerOrg', 'payerGroup', 'payerAddress', 'payerAddress2',
-    'payerCity', 'payerState', 'payerZip', 'payerCountry', 'payerPhone', 'payMethod', 'poNum'
+export const fields = [ 'firstName', 'lastName', 'org', 'group', 'address', 'address2', 'city',
+    'state', 'zip', 'country', 'phone', 'email', 'shipAccount', 'shipAccountNum', 'comments',
+    'payerFirstName', 'payerLastName', 'payerEmail', 'payerOrg', 'payerGroup', 'payerAddress',
+    'payerAddress2', 'payerCity', 'payerState', 'payerZip', 'payerCountry', 'payerPhone',
+    'payMethod', 'poNum', 'sameAsCustomer'
 ]
 
 class OrderForm extends Component {
@@ -31,7 +31,7 @@ class OrderForm extends Component {
                 state, zip, country, phone, shipAccount, shipAccountNum, comments,
                 payerFirstName, payerLastName, payerEmail, payerOrg, payerGroup, payerAddress,
                 payerAddress2, payerCity, payerState, payerZip, payerCountry, payerPhone,
-                payMethod, poNum
+                payMethod, poNum, sameAsCustomer
             }
         } = this.props
         return (
@@ -76,6 +76,7 @@ class OrderForm extends Component {
                                 phone={ payerPhone }
                                 payMethod={ payMethod }
                                 poNum={ poNum }
+                                sameAsCustomer={ sameAsCustomer }
                             />
                         </div>
                     </div>
