@@ -88,7 +88,7 @@ class OrderForm extends Component {
 }
 
 export default reduxForm({
-    form: 'dsc-order-form',
+    form: 'orderForm',
     fields,
     onSubmit: submitForm,
     validate
