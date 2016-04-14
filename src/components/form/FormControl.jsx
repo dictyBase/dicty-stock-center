@@ -14,7 +14,7 @@ export default class FormControl extends Component {
         return (
             <div className="row">
                 <div className="col-xs-6 col-md-offset-6 col-md-3">
-                    <button type="submit"
+                    <button type="button"
                         onClick={ resetForm }
                         className="btn btn-default btn-lg btn-block"
                         disabled={ submitting }> Reset
