@@ -41,12 +41,12 @@ export default class FormCustomer extends Component {
                 </PanelHeader>
                 <PanelBody>
                     <div className="form-group">
-                        <em className="col-sm-12">
+                        <div className="col-sm-12">
                             <span className="text-danger">
                                 <strong> * </strong>
                             </span>
-                            Indicates required field
-                        </em>
+                            <em>Indicates required field</em>
+                        </div>
                     </div>
                     <FormPersonalInfo
                         firstName={ firstName }

@@ -40,11 +40,8 @@ export default class FormPayerInfo extends Component {
                 <PanelBody>
                     <div className="form-group">
                         <div className="col-sm-12">
-                        <em className="checkbox">
-                              <label><input type="checkbox" {...sameAsCustomer} />
-                                Click here if payer is the same as customer
-                              </label>
-                        </em>
+                            <input type="checkbox" {...sameAsCustomer} />
+                            <em> Click here if payer is the same as customer</em>
                         </div>
                     </div>
                     <FormPersonalInfo
