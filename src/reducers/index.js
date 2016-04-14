@@ -7,8 +7,9 @@ import orderFormReducer from 'reducers/order-form'
 const rootReducer = combineReducers({
     auth,
     routing: routeReducer,
-    form: formReducer,
-    orderForm: orderFormReducer
+    form: formReducer.plugin({
+        orderForm: orderFormReducer
+    })
 })
 
 export default rootReducer
