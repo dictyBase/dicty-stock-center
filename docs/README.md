@@ -1,6 +1,6 @@
 # Dicty Stock Center Application Documentation 
 
-[Original starter kit documentation](docs/react-redux-starter-kit.md)
+[Original starter kit documentation](./react-redux-starter-kit.md)
 
 ## Table of Contents
 
