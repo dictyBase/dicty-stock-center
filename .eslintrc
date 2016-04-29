@@ -23,7 +23,8 @@
     "__DEBUG__"    : false,
     "__DEBUG_NEW_WINDOW__" : false,
     "__BASENAME__" : false,
-    "AUTH_SERVER" : false
+    "AUTH_SERVER" : false,
+    "SERVER": false
   },
   "rules": {
         "strict": 0,
