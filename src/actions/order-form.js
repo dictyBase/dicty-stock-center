@@ -22,7 +22,7 @@ const submitFailure = error => {
     return {
         type: FORM_SUBMIT_FAILURE,
         submitted: false,
-        error
+        error: error
     }
 }
 
@@ -56,15 +56,15 @@ const submitOrder = (data) => {
         dispatch(routeActions.push('/order/form/submitting'))
         fetch(`${server}/orders`, config)
         .then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                dispatch(submitSuccess())
-                dispatch(routeActions.push('/home'))
-                return Promise.resolve(response)
+            if (!(response.status >= 200 && response.status < 300)) {
+                dispatch(submitFailure(response))
+                return
             }
-            return Promise.reject(new Error(response.statusText))
-        }).catch(error => {
-            dispatch(submitFailure(error))
-            dispatch(routeActions.push('/error'))
+            dispatch(submitSuccess(response))
+            dispatch(routeActions.push('/home'))
+        })
+        .catch(err => {
+            dispatch(submitFailure(err))
         })
     }
 }
