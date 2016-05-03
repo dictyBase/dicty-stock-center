@@ -37,7 +37,7 @@ class OrderForm extends Component {
         return (
             <div className="container">
                 <h2 className="page-header">
-                  Please fill out the following information to complete your order
+                  Select a shipping address
                 </h2>
                 <form onSubmit={ handleSubmit } className="form-horizontal">
                     <div className="row">

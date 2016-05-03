@@ -7,7 +7,8 @@ export default class FormGroupInput extends Component {
 
     static propTypes = {
         field: PropTypes.object.isRequired,
-        inputType: PropTypes.string
+        inputType: PropTypes.string,
+        placeholder: PropTypes.string
     }
 
     static defaultProps = {
@@ -15,7 +16,7 @@ export default class FormGroupInput extends Component {
     }
 
     render() {
-        const { field, inputType } = this.props
+        const { field, inputType, placeholder } = this.props
         const hasError = (field.touched && field.error)
         let groupClass = classNames('form-group', {
             'has-error': hasError
@@ -26,7 +27,8 @@ export default class FormGroupInput extends Component {
                     { this.props.children }
                 </label>
                 <div className="col-sm-9">
-                    <input type={ inputType } className="form-control" {...field} />
+                    <input type={ inputType } className="form-control" {...field}
+                        placeholder= { placeholder } />
                     { hasError && <div className="help-block">{ field.error }</div> }
                 </div>
             </div>

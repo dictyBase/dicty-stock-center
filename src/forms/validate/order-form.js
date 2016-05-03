@@ -1,42 +1,29 @@
 import isEmail from 'validator/lib/isEmail'
 
-const validate = data => {
+const syncValidateUser = data => {
     const requiredFields = [
-        'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip',
-        'shipAccount', 'payerFirstName', 'payerLastName', 'payerOrg', 'payerGroup',
-        'payerAddress', 'payerCity', 'payerZip', 'payMethod'
+        'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip'
     ]
-    const validateEmail = [ 'email', 'payerEmail' ]
-    const validateCountry = [ 'country', 'payerCountry' ]
     const errors = {}
 
     requiredFields.forEach((field) => {
         if (!data[field]) {
-            errors[field] = 'required'
+            errors[field] = 'Required field'
         }
     })
 
-    validateEmail.forEach((field) => {
-        if (!data[field]) {
-            errors[field] = 'required'
-        } else if (!isEmail(data[field])) {
-            errors[field] = 'invalid email address'
-        }
-    })
-
-    validateCountry.forEach((field) => {
-        if (!data[field]) {
-            errors[field] = 'required'
-        } else if (data[field] === 'select') {
-            errors[field] = 'required'
-        }
-    })
-
-    if (!data.shipAccountNum && !(data.shipAccount === 'WillCall')) {
-        errors.shipAccountNum = 'required'
+    if (!data.email) {
+        errors.email = 'Required field'
+    } else if (!isEmail(data.email)) {
+        errors.email = 'Invalid email address'
     }
 
+    if (!data.country) {
+        errors.country = 'Required field'
+    } else if (data.country === 'select') {
+        errors.country = 'Required field'
+    }
     return errors
 }
 
-export default validate
+export default syncValidateUser
