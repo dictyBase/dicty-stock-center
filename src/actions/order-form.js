@@ -74,57 +74,32 @@
 //     }
 // }
 
-// export const submitShippingAddress = (values, dispatch) => {
-//     return new Promise((resolve, reject) => {
-//         let config = {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({
-//                 content: values
-//             })
-//         }
-//         fetch('http://localhost:3001/users', config)
-//             .then(response => {
-//                 console.log('gets response')
-//                 if (response.status >= 200 && response.status < 300) {
-//                     console.log(response.status)
-//                     resolve()
-//                 } else {
-//                     console.log('reject promise')
-//                     reject({_error: response.status + ' ' + response.statusText})
-//                 }
-//             })
-//             .catch(error => {
-//                 console.log('catch error', error)
-//                 reject({_error: error})
-//             })
-//     })
-// }
-
 export const submitShippingAddress = (values, dispatch) => {
     return new Promise((resolve, reject) => {
         let config = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: values
+            })
         }
-        fetch('http://localhost:3001/users?id=72', config)
+        fetch('http://localhost:3001/users', config)
             .then(response => {
-                console.log('gets response')
                 if (response.status >= 200 && response.status < 300) {
-                    console.log(response.status)
-                    console.log(typeof response)
+                    console.log("user created. resolve the promise")
                     resolve()
                 } else {
-                    console.log('reject promise')
+                    console.log('bad response. reject promise')
                     reject({_error: response.status + ' ' + response.statusText})
                 }
-            })
+            }) // POST request. server does not repond with a json, so no response.json()
             .catch(error => {
-                console.log('catch error', error)
+                console.log('fetching error', error)
                 reject({_error: error})
             })
     })
 }
+
 
 // // Test
 // export const submitShippingAddress = (values, dispatch) => {
