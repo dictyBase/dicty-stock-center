@@ -11,7 +11,7 @@
 //     }
 // }
 
-// const submitSuccess = data => {
+// const userExists = data => {
 //     return {
 //         type: FORM_SUBMIT_SUCCESS,
 //         submitted: true,
@@ -38,20 +38,17 @@
 //     }
 // }
 
-// const status = response => {
-//   // HTTP response codes 2xx indicate that the request was processed successfully
-//     if (response.status >= 200 && response.status < 300) {
-//         console.log('response with 200')
-//         return Promise.resolve(response)
-//     }
-//     console.log('bad response')
-//     return Promise.reject(new Error(response.statusText))
-// }
+const status = response => {
+  // HTTP response codes 2xx indicate that the request was processed successfully
+    if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response)
+    }
+    return Promise.reject(new Error(response.statusText))
+}
 
-// const json = response => {
-//     console.log('response function')
-//     return response.json()
-// }
+const json = response => {
+    return response.json()
+}
 
 // const submitShippingaddr = values => {
 //     return dispatch => {
@@ -74,31 +71,96 @@
 //     }
 // }
 
-export const submitShippingAddress = (values, dispatch) => {
-    return new Promise((resolve, reject) => {
-        let config = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                content: values
-            })
+let server = SERVER
+if (process.env.SERVER) {
+    server = process.env.SERVER
+}
+
+const userExists = (email, reject) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+    fetch(`${server}/users/${email}`, config)
+    .then(response => {
+        if (response.status === 200) {
+            return true
+        } else if (response.status === 404) {
+            return false
         }
-        fetch('http://localhost:3001/users', config)
-            .then(response => {
-                if (response.status >= 200 && response.status < 300) {
-                    console.log("user created. resolve the promise")
-                    resolve()
-                } else {
-                    console.log('bad response. reject promise')
-                    reject({_error: response.status + ' ' + response.statusText})
+        return Promise.reject(new Error('Error'))
+    }).catch(error => {
+        console.log(error)
+        reject({_error: 'Server Error. '})
+    })
+    // this function needs some revision
+}
+
+const createUser = (values, resolve, reject) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            data: {
+                type: 'user',
+                attributes: {
+                    first_name: values.firstNae,
+                    last_name: values.lastName,
+                    email: values.email,
+                    organization: values.org,
+                    group: values.group,
+                    address: {first: values.address, second: values.address2},
+                    city: values.city,
+                    state: values.state,
+                    zip: values.zip,
+                    country: values.country,
+                    phone: values.phone
                 }
-            }) // POST request. server does not repond with a json, so no response.json()
-            .catch(error => {
-                console.log('fetching error', error)
-                reject({_error: error})
-            })
+            }
+        })
+    }
+    fetch(`${server}/users`, config)
+    .then(status)
+    .then(json)
+    .then(data => {
+        console.log('Successfull')
+        resolve()
+    })
+    .catch(error => {
+        console.log(error)
+        reject({_error: 'Server Error. Cannot create user'})
     })
 }
+
+export const submitShippingAddress = (values, dispatch) => {
+    const email = values.email
+
+    return new Promise((resolve, reject) => {
+        if (userExists(email, reject)) {
+            // patch user
+        } else {
+            createUser(values, resolve, reject)
+        }
+    })
+}
+
+
+// fetch('http://localhost:8080/users', config)
+//     .then(response => {
+//         if (response.status >= 200 && response.status < 300) {
+//             console.log('user created. resolve the promise')
+//             console.log(response)
+//             resolve()
+//         } else {
+//             console.log('bad response. reject promise')
+//             console.log(response)
+//             reject({_error: response.status})
+//         }
+//     }) // POST request. server does not repond with a json, so no response.json()
+//     .catch(error => {
+//         console.log('fetching error', error)
+//         reject({_error: error})
+//     })
 
 
 // // Test
