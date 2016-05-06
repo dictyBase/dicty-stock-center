@@ -84,19 +84,18 @@ const userExists = (email, reject) => {
     fetch(`${server}/users/${email}`, config)
     .then(response => {
         if (response.status === 200) {
-            return true
+            console.log('user exist')
+            return Promise.resolve(response, true)
         } else if (response.status === 404) {
-            return false
+            console.log('user does not exist')
+            return Promise.resolve(response, false)
         }
         return Promise.reject(new Error('Error'))
-    }).catch(error => {
-        console.log(error)
-        reject({_error: 'Server Error. '})
     })
-    // this function needs some revision
 }
 
-const createUser = (values, resolve, reject) => {
+const createUser = values => {
+    // todo: create api.js file in util folder
     let config = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -123,12 +122,40 @@ const createUser = (values, resolve, reject) => {
     .then(status)
     .then(json)
     .then(data => {
-        console.log('Successfull')
-        resolve()
+        return Promise.resolve(data)
     })
-    .catch(error => {
-        console.log(error)
-        reject({_error: 'Server Error. Cannot create user'})
+}
+
+const updateUser = values => {
+    // todo: create api.js file in util folder
+    let config = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            data: {
+                type: 'user',
+                id: values.email,
+                attributes: {
+                    first_name: values.firstNae,
+                    last_name: values.lastName,
+                    email: values.email,
+                    organization: values.org,
+                    group: values.group,
+                    address: {first: values.address, second: values.address2},
+                    city: values.city,
+                    state: values.state,
+                    zip: values.zip,
+                    country: values.country,
+                    phone: values.phone
+                }
+            }
+        })
+    }
+    fetch(`${server}/users/${values.email}`, config)
+    .then(status)
+    .then(json)
+    .then(data => {
+        return Promise.resolve(data)
     })
 }
 
@@ -136,11 +163,38 @@ export const submitShippingAddress = (values, dispatch) => {
     const email = values.email
 
     return new Promise((resolve, reject) => {
-        if (userExists(email, reject)) {
-            // patch user
-        } else {
-            createUser(values, resolve, reject)
-        }
+        userExists(email)
+        .then((response, isThere) => {
+            if (isThere) {
+                updateUser(values)
+                .then(updateResponse => {
+                    console.log('user updated successfully')
+                    // update reducer with state
+                    // go to next view
+                    resolve()
+                })
+                .catch(error => {
+                    console.log(error)
+                    reject({_error: 'User cannot be updated'})
+                })
+            } else {
+                createUser(values)
+                .then(createResponse => {
+                    console.log('user created successfully')
+                    // update the reducer with state
+                    // go to next view
+                    resolve()
+                })
+                .catch(error => {
+                    console.log(error)
+                    reject({_error: 'User cannot be created'})
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            reject({_error: 'User cannot be located'})
+        })
     })
 }
 
