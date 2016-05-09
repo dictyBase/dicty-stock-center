@@ -35,7 +35,7 @@ class OrderForm extends Component {
             }
         } = this.props
         return (
-            <div className="container">
+            <div>
                 <h2 className="page-header">
                   Select a shipping address
                 </h2>
