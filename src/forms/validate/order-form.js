@@ -1,17 +1,17 @@
 import isEmail from 'validator/lib/isEmail'
 
-const syncValidateUser = data => {
-    const requiredFields = [
-        'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip'
-    ]
-    const errors = {}
+const requiredUserFields = [
+    'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip'
+]
 
-    requiredFields.forEach((field) => {
+
+const validateUser = data => {
+    const errors = {}
+    requiredUserFields.forEach((field) => {
         if (!data[field]) {
             errors[field] = 'Required field'
         }
     })
-
     if (!data.email) {
         errors.email = 'Required field'
     } else if (!isEmail(data.email)) {
@@ -26,4 +26,15 @@ const syncValidateUser = data => {
     return errors
 }
 
-export default syncValidateUser
+export const syncValidateShipping = data => {
+    let errors = {}
+    errors = validateUser(data)
+
+    if (!data.shipAccount) {
+        errors.shipAccount = 'Required field'
+    }
+    if (!data.shipAccountNum && !(data.shipAccount === 'WillCall')) {
+        errors.shipAccountNum = 'Required field'
+    }
+    return errors
+}

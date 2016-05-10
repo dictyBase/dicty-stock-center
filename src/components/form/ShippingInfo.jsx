@@ -4,7 +4,7 @@ import ShippingMethod from './ShippingMethod'
 import ShippingAdditional from './ShippingAdditional'
 import { reduxForm } from 'redux-form'
 import { submitShippingInfo } from 'actions/order-form'
-import syncValidateUser from 'forms/validate/order-form'
+import { syncValidateShipping } from 'forms/validate/order-form'
 import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
@@ -96,5 +96,5 @@ export default reduxForm({
     form: 'shippingInfo',
     fields,
     onSubmit: submitShippingInfo,
-    validate: syncValidateUser
+    validate: syncValidateShipping
 })(ShippingInfo)
