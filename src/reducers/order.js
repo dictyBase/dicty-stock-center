@@ -14,7 +14,9 @@ const orderReducer = (state = initialState, action) => {
             initialized: true,
             shippingInfo: {
                 consumer: action.consumer,
-                details: action.details
+                shipAccount: action.details.shipAccount,
+                shipAccountNum: action.details.shipAccountNum,
+                comments: action.details.comments
             }
         }
     default:
