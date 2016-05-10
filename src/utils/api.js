@@ -6,7 +6,7 @@ export const createUser = (url, values) => {
             data: {
                 type: 'user',
                 attributes: {
-                    first_name: values.firstNae,
+                    first_name: values.firstName,
                     last_name: values.lastName,
                     email: values.email,
                     organization: values.org,
@@ -40,7 +40,7 @@ export const updateUser = (url, values) => {
                 type: 'user',
                 id: values.email,
                 attributes: {
-                    first_name: values.firstNae,
+                    first_name: values.firstName,
                     last_name: values.lastName,
                     email: values.email,
                     organization: values.org,
