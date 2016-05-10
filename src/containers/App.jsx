@@ -12,6 +12,7 @@ import DropdownMenu from 'dicty-react-components/src/DropdownMenu'
 import Logout from 'components/Logout'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
+import * as orderActionCreators from 'actions/order'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -54,13 +55,14 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth } = state
-    return { auth: auth, routeProps: ownProps }
+    const { auth, order } = state
+    return { auth: auth, routeProps: ownProps, order: order }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authActions: bindActionCreators(authActionCreators, dispatch)
+        authActions: bindActionCreators(authActionCreators, dispatch),
+        orderActions: bindActionCreators(orderActionCreators, dispatch)
     }
 }
 
