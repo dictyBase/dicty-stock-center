@@ -3,7 +3,7 @@ import User from './User'
 import ShippingMethod from './ShippingMethod'
 import ShippingAdditional from './ShippingAdditional'
 import { reduxForm } from 'redux-form'
-import { submitShippingInfo } from 'actions/order'
+import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
 import 'styles/core.scss'
 
@@ -95,6 +95,6 @@ class ShippingInfo extends Component {
 export default reduxForm({
     form: 'shippingInfo',
     fields,
-    onSubmit: submitShippingInfo,
+    onSubmit: submitForm,
     validate: syncValidateShipping
 })(ShippingInfo)

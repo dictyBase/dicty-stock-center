@@ -19,7 +19,7 @@ if (process.env.SERVER) {
     server = process.env.SERVER
 }
 
-export const submitShippingInfo = (values, dispatch) => {
+export const submitForm = (values, dispatch) => {
     let shippingDetails = {
         shipAccount: values.shipAccount,
         shipAccountNum: values.shipAccountNum,
@@ -46,8 +46,7 @@ export const submitShippingInfo = (values, dispatch) => {
                     dispatch(routeActions.push('/order/payment'))
                 })
                 .catch(error => {
-                    console.log(error)
-                    reject({_error: 'User cannot be updated'})
+                    reject({_error: 'User cannot be updated', error})
                 })
             } else {
                 createUser(server, values)
@@ -59,14 +58,12 @@ export const submitShippingInfo = (values, dispatch) => {
                     dispatch(routeActions.push('/order/billing'))
                 })
                 .catch(error => {
-                    console.log(error)
-                    reject({_error: 'User cannot be created'})
+                    reject({_error: 'User cannot be created', error})
                 })
             }
         })
         .catch(error => {
-            console.log(error)
-            reject({_error: 'Fetching user error!'})
+            reject({_error: 'Fetching user error!', error})
         })
     })
 }
