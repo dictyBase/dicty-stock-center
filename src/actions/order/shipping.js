@@ -1,15 +1,15 @@
 import { routeActions } from 'react-router-redux'
 import { createUser, getUser, updateUser } from 'utils/api'
 import { status, json } from 'utils/fetch'
-import types from '../constants'
+import types from 'constants'
 
-const { ADD_SHIPPING_INFO } = types
+const { ADD_SHIPPING } = types
 
-const addShippingInfo = (consumer, details) => {
+const addShipping = (user, details) => {
     return {
-        type: ADD_SHIPPING_INFO,
+        type: ADD_SHIPPING,
         initialized: true,
-        consumer,
+        user,
         details
     }
 }
@@ -20,7 +20,7 @@ if (process.env.SERVER) {
 }
 
 export const submitForm = (values, dispatch) => {
-    let shippingDetails = {
+    let details = {
         shipAccount: values.shipAccount,
         shipAccountNum: values.shipAccountNum,
         comments: values.comments
@@ -40,9 +40,9 @@ export const submitForm = (values, dispatch) => {
                 updateUser(server, values)
                 .then(status)
                 .then(json)
-                .then(consumer => {
+                .then(user => {
                     resolve()
-                    dispatch(addShippingInfo(consumer, shippingDetails))
+                    dispatch(addShipping(user, details))
                     dispatch(routeActions.push('/order/payment'))
                 })
                 .catch(error => {
@@ -52,10 +52,10 @@ export const submitForm = (values, dispatch) => {
                 createUser(server, values)
                 .then(status)
                 .then(json)
-                .then(consumer => {
+                .then(user => {
                     resolve()
-                    dispatch(addShippingInfo(consumer, shippingDetails))
-                    dispatch(routeActions.push('/order/billing'))
+                    dispatch(addShipping(user, details))
+                    dispatch(routeActions.push('/order/payment'))
                 })
                 .catch(error => {
                     reject({_error: 'User cannot be created', error})
