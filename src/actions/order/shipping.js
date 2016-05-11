@@ -1,5 +1,6 @@
 import { routeActions } from 'react-router-redux'
 import { createUser, getUser, updateUser } from 'utils/api'
+import { status, json } from 'utils/fetch'
 import types from '../constants'
 
 const { ADD_SHIPPING_INFO } = types
@@ -12,26 +13,6 @@ const addShippingInfo = (consumer, details) => {
         details
     }
 }
-
-// const addPaymentInfo = paymentInfo => {
-//     return {
-//         type: ADD_PAYMENT_INFO,
-//         paymentInfo
-//     }
-// }
-
-const status = response => {
-  // HTTP response codes 2xx indicate that the request was processed successfully
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response)
-    }
-    return Promise.reject(new Error(response.statusText))
-}
-
-const json = response => {
-    return response.json()
-}
-
 
 let server = SERVER
 if (process.env.SERVER) {
