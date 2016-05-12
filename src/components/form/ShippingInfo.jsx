@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import 'styles/core.scss'
 
-export default class FormShippingInfo extends Component {
+export default class ShippingInfo extends Component {
     displayName = 'form shipping information';
 
     static propTypes = {

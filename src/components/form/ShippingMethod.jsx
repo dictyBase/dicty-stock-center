@@ -3,7 +3,7 @@ import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import FormShippingInfo from './FormShippingInfo'
+import ShippingInfo from './ShippingInfo'
 import 'styles/core.scss'
 
 export default class ShippingMethod extends Component {
@@ -23,7 +23,7 @@ export default class ShippingMethod extends Component {
                    <PanelTitle>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
-                    <FormShippingInfo
+                    <ShippingInfo
                         shipAccount = { shipAccount }
                         shipAccountNum = { shipAccountNum }
                     />
