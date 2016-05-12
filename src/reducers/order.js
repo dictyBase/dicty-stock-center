@@ -1,6 +1,6 @@
 import types from '../constants'
 
-const { ADD_SHIPPING_INFO } = types
+const { ADD_SHIPPING } = types
 
 const initialState = {
     initialized: false
@@ -8,14 +8,14 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
-    case ADD_SHIPPING_INFO:
+    case ADD_SHIPPING:
         return {
             ...state,
             initialized: true,
-            shippingInfo: {
-                consumer: action.consumer,
-                shipAccount: action.details.shipAccount,
-                shipAccountNum: action.details.shipAccountNum,
+            consumer: action.consumer,
+            shipping: {
+                account: action.details.shipAccount,
+                accountNum: action.details.shipAccountNum,
                 comments: action.details.comments
             }
         }
