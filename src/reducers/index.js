@@ -12,3 +12,46 @@ const rootReducer = combineReducers({
 })
 
 export default rootReducer
+
+/*
+Shape of the state
+
+{
+    auth: {
+        isFetching: false,
+        isAuthenticated: false
+    },
+    routing: {...},
+    form: {
+        shipping: {
+            asyncValidating: false,
+            error: undefined,
+            initialized: false,
+            submitting: false,
+            submitFailed: false,
+            firstName: {
+                visited: true,
+                value: "John",
+                touched: true
+            },
+            lastName: {..},
+            email: {..}
+            ...other form fields
+        }
+    },
+    order: {
+        initialized: true
+        consumer: {
+            firstName: '',
+            lastName: '',
+            email: ''
+            ... other "shipping" form submitted values
+        }
+        shipping: {
+            account: 'FedEx',
+            accountNum: '748379',
+            comments: ''
+        }
+    }
+}
+*/
