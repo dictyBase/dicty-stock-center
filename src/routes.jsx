@@ -8,6 +8,7 @@ import Home from 'components/Home'
 import Profile from 'components/Profile'
 import Error from 'components/Error'
 import ShippingInfo from 'components/form/ShippingInfo'
+import EditShipping from 'components/form/EditShipping'
 import SubmitLoader from 'components/form/SubmitLoader'
 import Order from 'components/Order'
 import ShoppingCart from 'components/ShoppingCart'
@@ -24,6 +25,7 @@ export default (
         <Route path="order" component={ Order }>
             <Route path="cart" component={ ShoppingCart } />
             <Route path="shipping" component={ ShippingInfo } />
+            <Route path="shipping/edit" component={ EditShipping } />
             <Route path="payment" component={ PaymentInfo } />
             <Route path="submitting" component={ SubmitLoader } />
         </Route>
