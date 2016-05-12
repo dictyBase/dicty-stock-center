@@ -6,10 +6,35 @@ import types from 'constants'
 const { ADD_SHIPPING } = types
 
 const addShipping = (user, details) => {
+    // retrieve user info from json api structure and
+    // store in the state of the app
+    const {
+        type, id,
+        attributes: {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            organization: org,
+            group: group,
+            address: {
+                first: address, second: address2
+            },
+            city: city,
+            state: state,
+            zip: zip,
+            country: country,
+            phone: phone
+        }
+    } = user.data
+
+    const consumer = {
+        type, id, firstName, lastName, email, org, group, address,
+        address2, city, state, zip, country, phone
+    }
     return {
         type: ADD_SHIPPING,
         initialized: true,
-        user,
+        consumer,
         details
     }
 }
@@ -68,3 +93,9 @@ export const submitForm = (values, dispatch) => {
     })
 }
 
+// direct user to edit shipping information
+export const editShipping = () => {
+    return dispatch => {
+        dispatch(routeActions.push('/order/shipping/edit'))
+    }
+}
