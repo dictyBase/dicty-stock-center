@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
+import { submitForm } from 'actions/order/payment'
 import Consumer from './Consumer'
 import User from './User'
 import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
+import { syncValidatePayment } from 'forms/validate/order-form'
 import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
@@ -22,7 +24,7 @@ class Payment extends Component {
     render() {
         const { consumer } = this.props.order
         const { editShipping } = this.props.orderActions
-        const { submitting,
+        const { submitting, handleSubmit,
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, payMethod, poNum
             }
@@ -41,8 +43,9 @@ class Payment extends Component {
                 </div>
                 <hr />
                 <div className="row">
-                    <form onSubmit={ '' } className="form-horizontal">
+                    <form onSubmit={ handleSubmit } className="form-horizontal">
                         <div className="col-md-6">
+                            Same as shipping address
                             <User title = { 'Payer Address' }
                                 firstName = { firstName }
                                 lastName = { lastName }
@@ -89,6 +92,7 @@ class Payment extends Component {
 
 export default reduxForm({
     form: 'payment',
-    fields
+    fields,
+    onSubmit: submitForm,
+    validate: syncValidatePayment
 })(Payment)
-
