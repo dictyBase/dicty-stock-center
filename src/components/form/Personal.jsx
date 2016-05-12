@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import FormGroupInput from './FormGroupInput'
 import 'styles/core.scss'
 
-export default class PersonalInfo extends Component {
+export default class Personal extends Component {
     displayName = 'form personal information';
 
     static propTypes = {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import FormGroupInput from './FormGroupInput'
 
-export default class FormContactInfo extends Component {
+export default class Contact extends Component {
     displayName = 'form contact information';
 
     static propTypes = {

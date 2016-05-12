@@ -3,10 +3,10 @@ import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import FormPersonalInfo from './FormPersonalInfo'
-import FormOrganization from './FormOrganization'
-import FormAddress from './FormAddress'
-import FormContactInfo from './FormContactInfo'
+import Personal from './Personal'
+import Organization from './Organization'
+import Address from './Address'
+import Contact from './Contact'
 import 'styles/core.scss'
 
 export default class User extends Component {
@@ -37,16 +37,16 @@ export default class User extends Component {
                    <PanelTitle>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
-                    <FormPersonalInfo
+                    <Personal
                         firstName={ firstName }
                         lastName={ lastName }
                         email={ email }
                     />
-                    <FormOrganization
+                    <Organization
                         org={ org }
                         group={ group }
                     />
-                    <FormAddress
+                    <Address
                         address={ address }
                         address2={ address2 }
                         city={ city }
@@ -54,7 +54,7 @@ export default class User extends Component {
                         zip={ zip }
                         country={ country }
                     />
-                    <FormContactInfo phone={ phone } />
+                    <Contact phone={ phone } />
                 </PanelBody>
             </Panel>
         )
