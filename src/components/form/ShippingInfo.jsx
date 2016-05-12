@@ -40,12 +40,14 @@ class ShippingInfo extends Component {
                 state, zip, country, phone, shipAccount, shipAccountNum, comments }
         } = this.props
         return (
-            <div className="container">
-                <h2 className="page-header">
-                    Please enter shipping information
-                </h2>
-                <form onSubmit={ handleSubmit } className="form-horizontal">
-                    <div className="row">
+            <div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <h2 className="page-header">Please enter shipping information</h2>
+                    </div>
+                </div>
+                <div className="row">
+                    <form onSubmit={ handleSubmit } className="form-horizontal">
                         <div className="col-md-6">
                             <User title = { 'Shipping Address' }
                                 firstName = { firstName }
@@ -85,8 +87,8 @@ class ShippingInfo extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         )
     }
