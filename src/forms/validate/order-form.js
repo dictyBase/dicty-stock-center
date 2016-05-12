@@ -38,3 +38,13 @@ export const syncValidateShipping = data => {
     }
     return errors
 }
+
+export const syncValidatePayment = data => {
+    let errors = {}
+    errors = validateUser(data)
+
+    if (!data.payMethod) {
+        errors.payMethod = 'Required field'
+    }
+    return errors
+}
