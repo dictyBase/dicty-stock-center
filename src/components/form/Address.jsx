@@ -4,7 +4,7 @@ import FormGroupSelect from './FormGroupSelect'
 import countryList from 'forms/utils/countryList'
 import 'styles/core.scss'
 
-export default class FormAddress extends Component {
+export default class Address extends Component {
     displayName = 'form address information';
 
     static propTypes = {
