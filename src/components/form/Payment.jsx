@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form'
 import Consumer from './Consumer'
 import User from './User'
 import PaymentMethod from './PaymentMethod'
+import SubmitButton from './SubmitButton'
 import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
@@ -13,15 +14,18 @@ class Payment extends Component {
     displayName = 'payment information'
 
     static propTypes = {
-        order: PropTypes.object
+        order: PropTypes.object,
+        fields: PropTypes.object.isRequired,
+        submitting: PropTypes.bool
     }
 
     render() {
         const { consumer } = this.props.order
         const { editShipping } = this.props.orderActions
-        const {
+        const { submitting,
             fields: { firstName, lastName, email, org, group, address, address2, city,
-                state, zip, country, phone, payMethod, poNum }
+                state, zip, country, phone, payMethod, poNum
+            }
         } = this.props
         return (
             <div>
@@ -55,10 +59,26 @@ class Payment extends Component {
                             />
                         </div>
                         <div className="col-md-6">
-                            <PaymentMethod title={ 'Payment Method' }
-                                payMethod={ payMethod }
-                                poNum={ poNum }
-                            />
+                            <div className="row">
+                                <div className="col-xs-12">
+                                    <PaymentMethod title={ 'Payment Method' }
+                                        payMethod={ payMethod }
+                                        poNum={ poNum }
+                                    />
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-md-offset-4 col-md-8 text-center">
+                                    <SubmitButton name={ 'Continue ' }
+                                        submitting={ submitting }
+                                        icon = { 'fa fa-arrow-circle-right' }
+                                    />
+                                    <small className="text-info">
+                                        You can review this order before it's final.
+                                    </small>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
