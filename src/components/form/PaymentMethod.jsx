@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import 'styles/core.scss'
 
-export default class FormPaymentMethod extends Component {
+export default class PaymentMethod extends Component {
     displayName = 'payment method for orders';
 
     static propTypes = {
