@@ -11,7 +11,7 @@ export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
     'shipAccount', 'shipAccountNum', 'comments' ]
 
-class ShippingInfo extends Component {
+class Shipping extends Component {
     displayName = 'shipping information';
 
     static propTypes = {
@@ -95,8 +95,8 @@ class ShippingInfo extends Component {
 }
 
 export default reduxForm({
-    form: 'shippingInfo',
+    form: 'shipping',
     fields,
     onSubmit: submitForm,
     validate: syncValidateShipping
-})(ShippingInfo)
+})(Shipping)
