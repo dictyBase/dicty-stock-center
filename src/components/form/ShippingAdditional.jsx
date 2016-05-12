@@ -3,7 +3,7 @@ import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import FormComments from './FormComments'
+import Comments from './Comments'
 import 'styles/core.scss'
 
 export default class ShippingAdditional extends Component {
@@ -22,7 +22,10 @@ export default class ShippingAdditional extends Component {
                    <PanelTitle>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
-                    <FormComments comments= { comments } />
+                    <Comments comments= { comments } rows = { '5' }
+                        placeholder = { 'Please enter any comments or special instructions here' }>
+                        Comments:
+                    </Comments>
                 </PanelBody>
             </Panel>
         )

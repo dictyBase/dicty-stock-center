@@ -1,25 +1,27 @@
 import React, { Component, PropTypes } from 'react'
 import 'styles/core.scss'
 
-export default class FormComments extends Component {
+export default class Comments extends Component {
     displayName = 'form contact information';
 
     static propTypes = {
-        comments: PropTypes.object.isRequired
+        comments: PropTypes.object.isRequired,
+        placeholder: PropTypes.string,
+        rows: PropTypes.string
     }
 
     render() {
-        const { comments } = this.props
+        const { comments, placeholder, rows, children } = this.props
         return (
             <div>
                 <div className="form-group">
                     <label className="col-sm-3 control-label">
-                        Comments:
+                        { children }
                     </label>
                     <div className="col-sm-9">
-                        <textarea className="form-control" rows="5" { ...comments }
+                        <textarea className="form-control" rows={ rows } { ...comments }
                           value={ comments.value }
-                          placeholder="Please enter any comments or special instructions here">
+                          placeholder= { placeholder } >
                         </textarea>
                     </div>
                 </div>
