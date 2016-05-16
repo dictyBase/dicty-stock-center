@@ -67,7 +67,7 @@ export const submitForm = (values, dispatch) => {
                 .then(user => {
                     resolve()
                     dispatch(addPayment(user, payment))
-                    // dispatch(routeActions.push('/order/submit'))
+                    dispatch(routeActions.push('/order/submit'))
                 })
                 .catch(error => {
                     reject({_error: 'User cannot be updated', error})
@@ -79,7 +79,7 @@ export const submitForm = (values, dispatch) => {
                 .then(user => {
                     resolve()
                     dispatch(addPayment(user, payment))
-                    // dispatch(routeActions.push('/order/submit'))
+                    dispatch(routeActions.push('/order/submit'))
                 })
                 .catch(error => {
                     reject({_error: 'User cannot be created', error})
