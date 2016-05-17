@@ -1,6 +1,6 @@
 import types from '../constants'
 
-const { ADD_SHIPPING, ADD_PAYMENT } = types
+const { ADD_SHIPPING, ADD_PAYMENT, SAME_AS_SHIPPING } = types
 
 const initialState = {
     initialized: false
@@ -24,6 +24,16 @@ const orderReducer = (state = initialState, action) => {
             ...state,
             initialized: true,
             payer: action.payer,
+            payment: {
+                method: action.payment.method,
+                poNum: action.payment.poNum
+            }
+        }
+    case SAME_AS_SHIPPING:
+        return {
+            ...state,
+            initialized: true,
+            payer: state.consumer,
             payment: {
                 method: action.payment.method,
                 poNum: action.payment.poNum
