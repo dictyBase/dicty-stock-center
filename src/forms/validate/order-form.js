@@ -41,7 +41,11 @@ export const syncValidateShipping = data => {
 
 export const syncValidatePayment = data => {
     let errors = {}
-    errors = validateUser(data)
+
+    // not required when shipping and payer address are the same
+    if (!data.sameAsShipping) {
+        errors = validateUser(data)
+    }
 
     if (!data.payMethod) {
         errors.payMethod = 'Required field'
