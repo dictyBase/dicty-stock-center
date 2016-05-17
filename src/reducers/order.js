@@ -33,7 +33,10 @@ const orderReducer = (state = initialState, action) => {
         return {
             ...state,
             initialized: true,
-            payer: state.consumer,
+            payer: {
+                ...state.consumer,
+                sameAsShipping: true
+            },
             payment: {
                 method: action.payment.method,
                 poNum: action.payment.poNum
