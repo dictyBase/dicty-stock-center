@@ -5,6 +5,7 @@ import Consumer from './Consumer'
 import User from './User'
 import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
+import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import 'styles/core.scss'
 
@@ -71,6 +72,12 @@ class Payment extends Component {
                                         payMethod={ payMethod }
                                         poNum={ poNum }
                                     />
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <PaymentAlert />
                                 </div>
                             </div>
                             <hr />
