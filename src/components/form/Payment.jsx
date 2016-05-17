@@ -10,7 +10,7 @@ import 'styles/core.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
-    'payMethod', 'poNum' ]
+    'payMethod', 'poNum', 'sameAsShipping' ]
 
 class Payment extends Component {
     displayName = 'payment information'
@@ -26,7 +26,7 @@ class Payment extends Component {
         const { editShipping } = this.props.orderActions
         const { submitting, handleSubmit,
             fields: { firstName, lastName, email, org, group, address, address2, city,
-                state, zip, country, phone, payMethod, poNum
+                state, zip, country, phone, payMethod, poNum, sameAsShipping
             }
         } = this.props
         return (
@@ -42,10 +42,13 @@ class Payment extends Component {
                     </div>
                 </div>
                 <hr />
+                    <label className="checkbox-inline">
+                        <input type="checkbox" {...sameAsShipping} />
+                        Click here if payer address is the same as shipping address
+                    </label>
                 <div className="row">
                     <form onSubmit={ handleSubmit } className="form-horizontal">
-                        <div className="col-md-6">
-                            Same as shipping address
+                        { !sameAsShipping.value && <div className="col-md-6">
                             <User title = { 'Payer Address' }
                                 firstName = { firstName }
                                 lastName = { lastName }
@@ -60,7 +63,7 @@ class Payment extends Component {
                                 country = { country }
                                 phone = { phone }
                             />
-                        </div>
+                        </div> }
                         <div className="col-md-6">
                             <div className="row">
                                 <div className="col-xs-12">
