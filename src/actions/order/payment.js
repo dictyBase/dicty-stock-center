@@ -3,7 +3,7 @@ import { createUser, getUser, updateUser } from 'utils/api'
 import { status, json } from 'utils/fetch'
 import types from 'constants'
 
-const { ADD_PAYMENT } = types
+const { ADD_PAYMENT, SAME_AS_SHIPPING } = types
 
 const addPayment = (user, payment) => {
     // retrieve user info from json api structure and
@@ -39,6 +39,13 @@ const addPayment = (user, payment) => {
     }
 }
 
+const sameAsShipping = payment => {
+    return {
+        type: SAME_AS_SHIPPING,
+        payment
+    }
+}
+
 let server = SERVER
 if (process.env.SERVER) {
     server = process.env.SERVER
@@ -50,45 +57,55 @@ export const submitForm = (values, dispatch) => {
         poNum: values.poNum
     }
     return new Promise((resolve, reject) => {
-        getUser(server, values.email)
-        .then(response => {
-            if (response.status === 200) {
-                return Promise.resolve(true)
-            } else if (response.status === 404) {
-                return Promise.resolve(false)
-            }
-            return Promise.reject(new Error('Error'))
-        })
-        .then(userExists => {
-            if (userExists) {
-                updateUser(server, values)
-                .then(status)
-                .then(json)
-                .then(user => {
-                    resolve()
-                    dispatch(addPayment(user, payment))
-                    dispatch(routeActions.push('/order/submit'))
-                })
-                .catch(error => {
-                    reject({_error: 'User cannot be updated', error})
-                })
-            } else {
-                createUser(server, values)
-                .then(status)
-                .then(json)
-                .then(user => {
-                    resolve()
-                    dispatch(addPayment(user, payment))
-                    dispatch(routeActions.push('/order/submit'))
-                })
-                .catch(error => {
-                    reject({_error: 'User cannot be created', error})
-                })
-            }
-        })
-        .catch(error => {
-            reject({_error: 'Fetching user error!', error})
-        })
+        // if payer address is NOT the same as shipping address
+        // then call the server to validate the user
+        if (!values.sameAsShipping) {
+            getUser(server, values.email)
+            .then(response => {
+                if (response.status === 200) {
+                    return Promise.resolve(true)
+                } else if (response.status === 404) {
+                    return Promise.resolve(false)
+                }
+                return Promise.reject(new Error('Error'))
+            })
+            .then(userExists => {
+                if (userExists) {
+                    updateUser(server, values)
+                    .then(status)
+                    .then(json)
+                    .then(user => {
+                        resolve()
+                        dispatch(addPayment(user, payment))
+                        dispatch(routeActions.push('/order/submit'))
+                    })
+                    .catch(error => {
+                        reject({_error: 'User cannot be updated', error})
+                    })
+                } else {
+                    createUser(server, values)
+                    .then(status)
+                    .then(json)
+                    .then(user => {
+                        resolve()
+                        dispatch(addPayment(user, payment))
+                        dispatch(routeActions.push('/order/submit'))
+                    })
+                    .catch(error => {
+                        reject({_error: 'User cannot be created', error})
+                    })
+                }
+            })
+            .catch(error => {
+                reject({_error: 'Fetching user error!', error})
+            })
+        } else {
+            // payer address is the same as shipping address.(consumer = payer)
+            // no need to call the sever again
+            resolve()
+            dispatch(sameAsShipping(payment))
+            dispatch(routeActions.push('/order/submit'))
+        }
     })
 }
 
