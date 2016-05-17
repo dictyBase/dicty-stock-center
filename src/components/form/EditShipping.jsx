@@ -43,7 +43,7 @@ class EditShipping extends Component {
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <h2 className="page-header">Please update shipping information</h2>
+                        <h2 className="page-header">Edit shipping information</h2>
                     </div>
                 </div>
                 <div className="row">
