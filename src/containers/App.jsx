@@ -13,6 +13,7 @@ import Logout from 'components/Logout'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
+import * as paymentActionCreators from 'actions/order/payment'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -62,7 +63,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         authActions: bindActionCreators(authActionCreators, dispatch),
-        orderActions: bindActionCreators(shippingActionCreators, dispatch)
+        orderActions: bindActionCreators(
+            Object.assign({}, shippingActionCreators, paymentActionCreators),
+            dispatch
+        )
     }
 }
 
