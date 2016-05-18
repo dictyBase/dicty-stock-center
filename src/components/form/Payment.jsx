@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/payment'
-import Consumer from './Consumer'
+import EditPanel from './EditPanel'
 import User from './User'
 import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
@@ -39,7 +39,7 @@ class Payment extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <Consumer consumer={ consumer } edit={ editShipping } />
+                        <EditPanel user={ consumer } edit={ editShipping } title={ 'Ship to:' } />
                     </div>
                 </div>
                 <hr />
