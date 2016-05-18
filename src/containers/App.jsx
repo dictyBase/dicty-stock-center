@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
+import * as submitActionCreators from 'actions/order/submit'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -64,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         authActions: bindActionCreators(authActionCreators, dispatch),
         orderActions: bindActionCreators(
-            Object.assign({}, shippingActionCreators, paymentActionCreators),
+            Object.assign({}, shippingActionCreators, paymentActionCreators, submitActionCreators),
             dispatch
         )
     }

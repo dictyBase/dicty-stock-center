@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import SubmitButton from './SubmitButton'
 import EditPanel from './EditPanel'
 import Items from 'components/Items'
 import Panel from 'dicty-react-components/src/Panel'
@@ -21,7 +20,7 @@ export default class Submit extends Component {
             {id: 'Plasmid-87', name: 'pACA.URA'}
         ]
         const { consumer, payer } = this.props.order
-        const { editShipping, editPayment } = this.props.orderActions
+        const { editShipping, editPayment, submitOrder } = this.props.orderActions
         return (
             <div>
                 <div className="row">
@@ -71,10 +70,11 @@ export default class Submit extends Component {
                         </div>
                     </div>
                     <div className="col-md-4">
-                        <SubmitButton name={ 'Complete Order ' }
-                            submitting={ false }
-                            icon = { 'fa fa-check-circle-o' }
-                        />
+                        <button type="button"
+                            className="btn btn-primary btn-lg btn-block"
+                            onClick={ submitOrder }>
+                            Complete Order
+                        </button>
                     </div>
                 </div>
             </div>

@@ -57,3 +57,56 @@ export const updateUser = (url, values) => {
     }
     return fetch(`${url}/users/${values.email}`, config)
 }
+
+// todo: dsc stocks and purchaser info
+export const createOrder = (url, order) => {
+    const { shipping, payment, consumer, payer } = order
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            data: {
+                type: 'order',
+                attributes: {
+                    created: '',
+                    shipping: {
+                        account: shipping.account,
+                        account_num: shipping.accountNum,
+                        comments: shipping.comments
+                    },
+                    payment: {
+                        method: payment.method,
+                        purchase_order: payment.poNum
+                    },
+                    status: 'Processing'
+                },
+                relationships: {
+                    stocks: {
+                        data: [
+                            {type: '', id: ''}
+                        ]
+                    },
+                    consumer: {
+                        data: {
+                            type: consumer.type,
+                            id: consumer.id
+                        }
+                    },
+                    payer: {
+                        data: {
+                            type: payer.type,
+                            id: payer.id
+                        }
+                    },
+                    purchaser: {
+                        data: {
+                            type: '',
+                            id: ''
+                        }
+                    }
+                }
+            }
+        })
+    }
+    return fetch(`${url}/orders`, config)
+}
