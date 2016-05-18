@@ -7,22 +7,31 @@ export default class EditPanel extends Component {
     static propTypes = {
         user: PropTypes.object.isRequired,
         edit: PropTypes.func.isRequired,
-        title: PropTypes.string
+        title: PropTypes.string,
+        icon: PropTypes.string
     }
     render() {
-        const { title, edit } = this.props
+        const { title, edit, icon } = this.props
         const { firstName, lastName, address, address2,
             city, state, zip, country
         } = this.props.user
         return (
             <div>
-                <h4>{ title }</h4>
+                <h4>
+                    { icon && <i className={ icon }></i> }
+                    { title }
+                </h4>
                 <div>{ firstName } { lastName }</div>
                 <div>{ address }</div>
                 <div>{ address2 && address2 }</div>
                 <div>{ city } { state && state } { zip }</div>
                 <div>{ country }</div>
-                <a href="#" onClick = { edit }>Edit</a>
+                <br />
+                <div>
+                    <a href="#" onClick = { edit }>
+                        <i className="fa fa-pencil-square-o"></i> Edit
+                    </a>
+                </div>
             </div>
         )
     }
