@@ -11,6 +11,7 @@ import Shipping from 'components/form/Shipping'
 import EditShipping from 'components/form/EditShipping'
 import SubmitLoader from 'components/form/SubmitLoader'
 import Order from 'components/Order'
+import OrderConfirmation from 'components/OrderConfirmation'
 import ShoppingCart from 'components/ShoppingCart'
 import Payment from 'components/form/Payment'
 import EditPayment from 'components/form/EditPayment'
@@ -32,6 +33,7 @@ export default (
             <Route path="payment/edit" component={ EditPayment } />
             <Route path="submit" component={ Submit } />
             <Route path="submitting" component={ SubmitLoader } />
+            <Route path="submitted" component={ OrderConfirmation } />
         </Route>
     </Route>
 )
