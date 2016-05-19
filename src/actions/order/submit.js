@@ -12,10 +12,11 @@ const submitRequest = () => {
     }
 }
 
-const submitSuccess = () => {
+const submitSuccess = order => {
     return {
         type: SUBMIT_SUCCESS,
-        submitting: false
+        submitting: false,
+        order
     }
 }
 
@@ -35,19 +36,17 @@ if (process.env.SERVER) {
 // submit dsc order and redirect user to a confirmation page
 export const submitOrder = () => {
     return (dispatch, getState) => {
-        const state = getState()
+        const { order } = getState()
         dispatch(submitRequest())
-        createOrder(server, state.order)
+        createOrder(server, order)
         .then(status)
         .then(json)
-        .then(order => {
-            dispatch(submitSuccess())
-            // dispatch(routeActions.push('/order/submitted'))
-            console.log('submitted successfully', order)
+        .then(response => {
+            dispatch(submitSuccess(response.data))
+            dispatch(routeActions.push('/order/submitted'))
         })
         .catch(error => {
             dispatch(submitFailure(error))
-            console.log('errorrr')
         })
     }
 }
