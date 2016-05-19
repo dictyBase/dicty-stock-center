@@ -1,6 +1,8 @@
 import types from '../constants'
 
-const { ADD_SHIPPING, ADD_PAYMENT, SAME_AS_SHIPPING } = types
+const { ADD_SHIPPING, ADD_PAYMENT, SAME_AS_SHIPPING,
+        SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE
+} = types
 
 const initialState = {
     initialized: false
@@ -41,6 +43,23 @@ const orderReducer = (state = initialState, action) => {
                 method: action.payment.method,
                 poNum: action.payment.poNum
             }
+        }
+    case SUBMIT_REQUEST:
+        return {
+            ...state,
+            submitting: true
+        }
+    case SUBMIT_SUCCESS:
+        return {
+            ...state,
+            submitting: false,
+            id: action.order.id
+        }
+    case SUBMIT_FAILURE:
+        return {
+            ...state,
+            submitting: false,
+            error: action.error
         }
     default:
         return state
