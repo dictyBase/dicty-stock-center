@@ -24,7 +24,7 @@ export default class Submit extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-md-offset-1">
                         <h2 className="page-header">Review Your Order</h2>
                         <p> Please review your order and click "Complete Order"
                             button to place your order
@@ -32,48 +32,47 @@ export default class Submit extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-8">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <Panel>
-                                    <PanelBody>
-                                        <EditPanel user={ consumer }
-                                            edit={ editShipping }
-                                            title={ ' Ship to:' }
-                                            icon ={ 'fa fa-truck' }
-                                        />
-                                    </PanelBody>
-                                </Panel>
-                            </div>
-                            <div className="col-md-6">
-                                <Panel>
-                                    <PanelBody>
-                                        <EditPanel user={ payer }
-                                            edit={ editPayment }
-                                            title={ ' Payer:' }
-                                            icon = { 'fa fa-credit-card-alt' }
-                                        />
-                                    </PanelBody>
-                                </Panel>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <Panel>
-                                    <PanelBody>
-                                        <h4><i className="fa fa-shopping-cart"></i> Items</h4>
-                                        <Items items={ items }/>
-                                    </PanelBody>
-                                </Panel>
-                            </div>
-                        </div>
+                    <div className="col-md-offset-1 col-md-5">
+                        <Panel>
+                            <PanelBody>
+                                <EditPanel user={ consumer }
+                                    edit={ editShipping }
+                                    title={ ' Ship to:' }
+                                    icon ={ 'fa fa-truck' }
+                                />
+                            </PanelBody>
+                        </Panel>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-5">
+                        <Panel>
+                            <PanelBody>
+                                <EditPanel user={ payer }
+                                    edit={ editPayment }
+                                    title={ ' Payer:' }
+                                    icon = { 'fa fa-credit-card-alt' }
+                                />
+                            </PanelBody>
+                        </Panel>
+                    </div>
+                </div>
+                <hr />
+                <div className="row">
+                    <div className="col-md-offset-1 col-md-10">
+                        <Panel>
+                            <PanelBody>
+                                <h4><i className="fa fa-shopping-cart"></i> Items</h4>
+                                <Items items={ items }/>
+                            </PanelBody>
+                        </Panel>
+                    </div>
+                </div>
+                <hr />
+                <div className="row">
+                    <div className="col-md-offset-3 col-md-6">
                         <button type="button"
                             className="btn btn-primary btn-lg btn-block"
                             onClick={ submitOrder }>
-                            Complete Order
+                            Complete Order <i className="fa fa-check-circle"></i>
                         </button>
                     </div>
                 </div>
