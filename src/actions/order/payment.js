@@ -39,13 +39,6 @@ const addPayment = (user, payment) => {
     }
 }
 
-const sameAsShipping = payment => {
-    return {
-        type: SAME_AS_SHIPPING,
-        payment
-    }
-}
-
 let server = SERVER
 if (process.env.SERVER) {
     server = process.env.SERVER
@@ -107,6 +100,18 @@ export const submitForm = (values, dispatch) => {
             dispatch(routeActions.push('/order/submit'))
         }
     })
+}
+
+// payer address is the same as shipping address
+// pull consumer from state into payer fields
+export const sameAsShipping = () => {
+    return (dispatch, getState) => {
+        const { consumer } = getState().order
+        dispatch({
+            type: SAME_AS_SHIPPING,
+            consumer
+        })
+    }
 }
 
 // direct user to edit payment information
