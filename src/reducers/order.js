@@ -29,6 +29,7 @@ const paymentFormReducer = (state, action) => {
     }
 }
 
+// redux-form reducer plugin
 export const formReducerPlugin = {
     payment: paymentFormReducer,
     editPayment: paymentFormReducer
