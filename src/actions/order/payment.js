@@ -50,55 +50,45 @@ export const submitForm = (values, dispatch) => {
         poNum: values.poNum
     }
     return new Promise((resolve, reject) => {
-        // if payer address is NOT the same as shipping address
-        // then call the server to validate the user
-        if (!values.sameAsShipping) {
-            getUser(server, values.email)
-            .then(response => {
-                if (response.status === 200) {
-                    return Promise.resolve(true)
-                } else if (response.status === 404) {
-                    return Promise.resolve(false)
-                }
-                return Promise.reject(new Error('Error'))
-            })
-            .then(userExists => {
-                if (userExists) {
-                    updateUser(server, values)
-                    .then(status)
-                    .then(json)
-                    .then(user => {
-                        resolve()
-                        dispatch(addPayment(user, payment))
-                        dispatch(routeActions.push('/order/submit'))
-                    })
-                    .catch(error => {
-                        reject({_error: 'User cannot be updated', error})
-                    })
-                } else {
-                    createUser(server, values)
-                    .then(status)
-                    .then(json)
-                    .then(user => {
-                        resolve()
-                        dispatch(addPayment(user, payment))
-                        dispatch(routeActions.push('/order/submit'))
-                    })
-                    .catch(error => {
-                        reject({_error: 'User cannot be created', error})
-                    })
-                }
-            })
-            .catch(error => {
-                reject({_error: 'Fetching user error!', error})
-            })
-        } else {
-            // payer address is the same as shipping address.(consumer = payer)
-            // no need to call the sever again
-            resolve()
-            dispatch(sameAsShipping(payment))
-            dispatch(routeActions.push('/order/submit'))
-        }
+        getUser(server, values.email)
+        .then(response => {
+            if (response.status === 200) {
+                return Promise.resolve(true)
+            } else if (response.status === 404) {
+                return Promise.resolve(false)
+            }
+            return Promise.reject(new Error('Error'))
+        })
+        .then(userExists => {
+            if (userExists) {
+                updateUser(server, values)
+                .then(status)
+                .then(json)
+                .then(user => {
+                    resolve()
+                    dispatch(addPayment(user, payment))
+                    dispatch(routeActions.push('/order/submit'))
+                })
+                .catch(error => {
+                    reject({_error: 'User cannot be updated', error})
+                })
+            } else {
+                createUser(server, values)
+                .then(status)
+                .then(json)
+                .then(user => {
+                    resolve()
+                    dispatch(addPayment(user, payment))
+                    dispatch(routeActions.push('/order/submit'))
+                })
+                .catch(error => {
+                    reject({_error: 'User cannot be created', error})
+                })
+            }
+        })
+        .catch(error => {
+            reject({_error: 'Fetching user error!', error})
+        })
     })
 }
 
