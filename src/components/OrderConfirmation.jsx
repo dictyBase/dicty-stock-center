@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import 'styles/core.scss'
 
 export default class OrderConfirmation extends Component {
@@ -27,11 +28,10 @@ export default class OrderConfirmation extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-offset-4 col-md-4">
-                        <a href="/home">
-                        <button type="button"
+                        <Link to="/home"
                             className="btn btn-primary btn-lg btn-block">
                             <i className="fa fa-home"></i> Stock Center Home
-                        </button></a>
+                        </Link>
                     </div>
                 </div>
             </div>
