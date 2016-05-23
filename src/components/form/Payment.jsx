@@ -105,19 +105,10 @@ const mapStateToProps = state => {
     if (state.order.payer) {
         const { payer, payment } = state.order
         const { firstName, lastName, email, org, group, address,
-            address2, city, zip, country, phone, sameAsShipping
+            address2, city, zip, country, phone
         } = payer
         const { method, poNum } = payment
 
-        if (sameAsShipping) {
-            return {
-                initialValues: {
-                    sameAsShipping: sameAsShipping,
-                    payMethod: method,
-                    poNum: poNum
-                }
-            }
-        }
         return {
             initialValues: {
                 firstName: firstName,

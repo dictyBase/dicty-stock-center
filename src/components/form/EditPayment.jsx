@@ -99,42 +99,30 @@ class EditPayment extends Component {
     }
 }
 
-// pull state into forms initial values,
-// if user had already filled out the form
+// pull state into forms initial values
 const mapStateToProps = state => {
-    if (state.order.payer) {
-        const { payer, payment } = state.order
-        const { firstName, lastName, email, org, group, address,
-            address2, city, zip, country, phone, sameAsShipping
-        } = payer
-        const { method, poNum } = payment
+    const { payer, payment } = state.order
+    const { firstName, lastName, email, org, group, address,
+        address2, city, zip, country, phone
+    } = payer
+    const { method, poNum } = payment
 
-        if (sameAsShipping) {
-            return {
-                initialValues: {
-                    sameAsShipping: sameAsShipping,
-                    payMethod: method,
-                    poNum: poNum
-                }
-            }
-        }
-        return {
-            initialValues: {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                org: org,
-                group: group,
-                address: address,
-                address2: address2,
-                city: city,
-                state: payer.state,
-                zip: zip,
-                country: country,
-                phone: phone,
-                payMethod: method,
-                poNum: poNum
-            }
+    return {
+        initialValues: {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            org: org,
+            group: group,
+            address: address,
+            address2: address2,
+            city: city,
+            state: payer.state,
+            zip: zip,
+            country: country,
+            phone: phone,
+            payMethod: method,
+            poNum: poNum
         }
     }
 }
