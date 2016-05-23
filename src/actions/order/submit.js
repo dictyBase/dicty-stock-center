@@ -38,6 +38,7 @@ export const submitOrder = () => {
     return (dispatch, getState) => {
         const { order } = getState()
         dispatch(submitRequest())
+        dispatch(routeActions.push('/order/submitting'))
         createOrder(server, order)
         .then(status)
         .then(json)
