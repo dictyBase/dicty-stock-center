@@ -31,10 +31,21 @@ export default class User extends Component {
     render() {
         const { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, title } = this.props
+        const panelStyle = { border: '1px solid #D2D7D3' }
+        const headerStyle = {
+            backgroundColor: '#4B77BE',
+            padding: '20px',
+            borderColor: '#4B77BE'
+        }
+        const titleStyle = {
+            color: '#ffffff',
+            fontWeight: '200',
+            fontSize: '20px'
+        }
         return (
-            <Panel>
-                <PanelHeader>
-                   <PanelTitle>{ title }</PanelTitle>
+            <Panel style={ panelStyle }>
+                <PanelHeader style={ headerStyle }>
+                   <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
                     <Personal
