@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import User from './User'
 import ShippingMethod from './ShippingMethod'
 import ShippingAdditional from './ShippingAdditional'
+import SubmitButton from './SubmitButton'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
@@ -20,21 +21,8 @@ class Shipping extends Component {
         submitting: PropTypes.bool
     }
 
-    renderSubmitButton = () => {
-        const { submitting } = this.props
-        return (
-            <button type="submit"
-                className="btn btn-primary btn-lg btn-block"
-                disabled={ submitting }>Continue&nbsp;
-                { submitting ? <i className="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>
-                    : <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                }
-            </button>
-        )
-    }
-
     render() {
-        const { handleSubmit } = this.props
+        const { handleSubmit, submitting } = this.props
         const {
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, shipAccount, shipAccountNum, comments }
@@ -83,7 +71,10 @@ class Shipping extends Component {
                             <hr />
                             <div className="row">
                                 <div className="col-md-offset-4 col-md-8">
-                                    { this.renderSubmitButton() }
+                                    <SubmitButton name={ 'Continue ' }
+                                        submitting={ submitting }
+                                        icon = { 'fa fa-arrow-circle-right' }
+                                    />
                                 </div>
                             </div>
                         </div>
