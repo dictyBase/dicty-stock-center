@@ -5,7 +5,7 @@ import types from 'constants'
 
 const { ADD_PAYMENT, SAME_AS_SHIPPING } = types
 
-const addPayment = (user, payment) => {
+export const addPayment = (user, payment) => {
     // retrieve user info from json api structure and
     // store in the state of the app
     const {

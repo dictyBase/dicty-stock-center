@@ -5,7 +5,7 @@ import types from 'constants'
 
 const { ADD_SHIPPING } = types
 
-const addShipping = (user, details) => {
+export const addShipping = (user, details) => {
     // retrieve user info from json api structure and
     // store in the state of the app
     const {
