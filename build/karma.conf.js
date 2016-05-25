@@ -25,9 +25,23 @@ const karmaConfig = {
   browsers: ['PhantomJS'],
   webpack: {
     devtool: 'inline-source-map',
-    resolve: webpackConfig.resolve,
+    resolve: {
+      ...webpackConfig.resolve,
+      alias: {
+        'sinon': 'sinon/pkg/sinon'
+      }
+    },
     plugins: webpackConfig.plugins,
+    externals: {
+      'jsdom': 'window',
+      'cheerio': 'window',
+      'react/lib/ReactContext': 'window',
+      'react/lib/ExecutionEnvironment': true
+    },
     module: {
+      noParse: [
+        /node_modules\/sinon\//,
+      ],
       loaders: webpackConfig.module.loaders
     },
     sassLoader: webpackConfig.sassLoader
