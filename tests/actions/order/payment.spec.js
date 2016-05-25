@@ -1,5 +1,5 @@
-import * as actions from '../../../src/actions/order/payment'
-import types from '../../../src/constants'
+import * as actions from 'actions/order/payment'
+import types from 'constants'
 
 describe('actions/order', () => {
     it('should create an action to add payment information', () => {
