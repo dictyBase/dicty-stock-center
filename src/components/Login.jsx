@@ -32,15 +32,16 @@ export default class Login extends Component {
     };
     render() {
         return (
-            <div className="row">
-                <div className="col-md-offset-4"></div>
-                <div className="col-sm-3">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <h2 className="panel-title"> LogIn </h2>
-                        </div>
-                        <div className="panel-body">
-                            { this.renderOauthButtons() }
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-offset-4 col-sm-4">
+                        <div className="panel panel-default">
+
+                            <div className="panel-body text-center">
+                                <img src="dicty-login.png" width="100" />
+                                <h1>Log in</h1>
+                                { this.renderOauthButtons() }
+                            </div>
                         </div>
                     </div>
                 </div>
