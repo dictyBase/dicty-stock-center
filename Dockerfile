@@ -7,6 +7,10 @@ RUN mkdir -p /usr/src/app /usr/src/server
 # Bundle app source
 COPY . /usr/src/app
 
+# Setup server url
+ARG api_server
+ENV API_SERVER ${api_server:-http://localhost:9900}
+
 # install express and logger globally
 RUN npm install -g express morgan \
     && cd /usr/src/app \
