@@ -47,11 +47,11 @@ webpackConfig.output = {
 webpackConfig.plugins = [
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
-    template: paths.client('index.html'),
+    title: 'Dictybase stock center',
+    template: paths.client('index.ejs'),
+    inject: false,
     hash: false,
     favicon: paths.client('static/favicon.ico'),
-    filename: 'index.html',
-    inject: 'body',
     minify: {
       collapseWhitespace: true
     }
