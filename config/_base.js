@@ -80,8 +80,8 @@ config.globals = {
     '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
     '__DEBUG_NEW_WINDOW__' : !!argv.nw,
     '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
-    'AUTH_SERVER' : JSON.stringify('http://localhost:9999'),
-    'SERVER': JSON.stringify('http://localhost:8080')
+    'AUTH_SERVER' : JSON.stringify(process.env.AUTH_SERVER || 'http://localhost:9999'),
+    'API_SERVER': JSON.stringify(process.env.API_SERVER|| 'http://localhost:8080')
 
 }
 

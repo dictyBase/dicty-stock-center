@@ -39,10 +39,7 @@ const addPayment = (user, payment) => {
     }
 }
 
-let server = SERVER
-if (process.env.SERVER) {
-    server = process.env.SERVER
-}
+let server = API_SERVER
 
 export const submitForm = (values, dispatch) => {
     let payment = {
