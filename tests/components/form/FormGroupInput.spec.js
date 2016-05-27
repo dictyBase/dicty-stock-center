@@ -8,7 +8,7 @@ describe('components', () => {
             field ={ {value: '', touched: true} }
         />)
 
-        it('should render an input field', () => {
+        it('should render an input element', () => {
             expect(wrapper.find('input')).to.exist
         })
 
