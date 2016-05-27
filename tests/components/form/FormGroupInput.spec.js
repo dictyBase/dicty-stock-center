@@ -1,10 +1,10 @@
 import React from 'react'
 import FormGroupInput from 'components/form/FormGroupInput'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
 describe('components', () => {
     describe('form/FormGroupInput', () => {
-        let wrapper = mount(<FormGroupInput
+        let wrapper = shallow(<FormGroupInput
             field ={ {value: '', touched: true} }
         />)
 

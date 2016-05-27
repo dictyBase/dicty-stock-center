@@ -1,10 +1,10 @@
 import React from 'react'
 import FormGroupSelect from 'components/form/FormGroupSelect'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
 describe('components', () => {
     describe('form/FormGroupSelect', () => {
-        let wrapper = mount(<FormGroupSelect
+        let wrapper = shallow(<FormGroupSelect
             field ={ {value: '', touched: true} }
             list={ ['USA', 'Japan', 'England'] }
         />)
