@@ -8,10 +8,6 @@ describe('components', () => {
             field ={ {value: '', touched: true} }
         />)
 
-        // const wrapperWithError = shallow(<FormGroupInput
-        //     field ={ {value: 'John', touched: true, error: 'error'} }
-        // />)
-
         it('should render an input field', () => {
             expect(wrapper.find('input')).to.exist
         })
