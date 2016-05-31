@@ -64,7 +64,6 @@
     "react-router": "^2.0.0",
     "react-router-redux": "^3.0.0",
     "redux": "^3.0.0",
-    "redux-actions": "^0.9.0",
     "redux-form": "^4.2.2",
     "redux-thunk": "^1.0.0",
     "simplestorage.js": "^0.2.1",
