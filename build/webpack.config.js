@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import PurifyCssPlugin from 'purifycss-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
 
@@ -243,6 +244,13 @@ if (!__DEV__) {
     new ExtractTextPlugin('[name].[contenthash].css', {
       allChunks: true
     })
+  )
+
+  webpackConfig.plugins.push(
+      new PurifyCssPlugin({
+          basePath: paths.base(config.dir_client),
+          paths: ['src/styles', 'dist']
+      })
   )
 }
 
