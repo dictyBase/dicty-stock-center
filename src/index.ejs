@@ -10,8 +10,7 @@
 </head>
 <body>
   <div id="root" style="height: 100%"></div>
-  <% for (var js in htmlWebpackPlugin.files.js) { %>
-   <script src="/assets/<%= htmlWebpackPlugin.files.js[js] %>"></script>
-  <% } %>
+   <script src="/assets/<%= htmlWebpackPlugin.files.js[1] %>"></script>
+   <script src="/assets/<%= htmlWebpackPlugin.files.js[0] %>"></script>
 </body>
 </html>

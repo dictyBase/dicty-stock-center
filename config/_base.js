@@ -42,7 +42,6 @@ const config = {
     'react-redux',
     'react-router',
     'redux',
-    'dicty-react-components',
     'jsrsasign',
     'radium',
     'react-dom',
