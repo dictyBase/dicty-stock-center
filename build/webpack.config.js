@@ -71,6 +71,7 @@ if (__DEV__) {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        drop_console: true,
         unused: true,
         dead_code: true,
         warnings: false
@@ -82,7 +83,8 @@ if (__DEV__) {
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
   webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor']
+    names: ['vendor'],
+    minChunks: Infinity
   }))
 }
 

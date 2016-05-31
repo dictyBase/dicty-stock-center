@@ -42,7 +42,15 @@ const config = {
     'react-redux',
     'react-router',
     'redux',
-    'redux-actions',
+    'dicty-react-components',
+    'jsrsasign',
+    'radium',
+    'react-dom',
+    'redux-form',
+    'redux-thunk',
+    'simplestorage.js',
+    'url',
+    'validator',
     'react-router-redux'
   ],
 
