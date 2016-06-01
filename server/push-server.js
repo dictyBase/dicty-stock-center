@@ -12,6 +12,7 @@ if (staticStats.isDirectory()) {
     if (process.env.ASSET_BASE) {
         assetPath = process.env.ASSET_BASE + '/assets';
     }
+    console.log('using assetpath %s', assetPath);
     app.use(assetPath, express.static( '/www' ));
     app.get('/*', function(req, res, next) {
         // Just send the index.html for other files to support HTML5Mode
