@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <% for (var css in htmlWebpackPlugin.files.css) { %>
-        <link href="/assets/<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+        <link href="assets/<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
   <% } %>
 </head>
 <body>
   <div id="root" style="height: 100%"></div>
-   <script src="/assets/<%= htmlWebpackPlugin.files.js[0] %>"></script>
-   <script src="/assets/<%= htmlWebpackPlugin.files.js[1] %>"></script>
+   <script src="assets/<%= htmlWebpackPlugin.files.js[0] %>"></script>
+   <script src="assets/<%= htmlWebpackPlugin.files.js[1] %>"></script>
 </body>
 </html>
