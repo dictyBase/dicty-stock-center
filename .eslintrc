@@ -24,6 +24,7 @@
     "__DEBUG_NEW_WINDOW__" : false,
     "__BASENAME__" : false,
     "AUTH_SERVER" : false,
+    "ASSET_BASE": false,
     "API_SERVER": false
   },
   "rules": {
