@@ -8,9 +8,9 @@ var app = express();
 var staticStats = fs.statSync( '/www' );
 if (staticStats.isDirectory()) {
     app.use(morgan('combined'));
-    var assetPath = '/asset';
+    var assetPath = '/assets';
     if (process.env.ASSET_BASE) {
-        assetPath = process.env.ASSET_BASE + '/asset';
+        assetPath = process.env.ASSET_BASE + '/assets';
     }
     app.use(assetPath, express.static( '/www' ));
     app.get('/*', function(req, res, next) {
