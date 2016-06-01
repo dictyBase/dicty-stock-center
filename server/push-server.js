@@ -8,7 +8,11 @@ var app = express();
 var staticStats = fs.statSync( '/www' );
 if (staticStats.isDirectory()) {
     app.use(morgan('combined'));
-    app.use('/assets', express.static( '/www' ));
+    var assetPath = '/asset';
+    if (process.env.ASSET_BASE) {
+        assetPath = process.env.ASSET_BASE + '/asset';
+    }
+    app.use(assetPath, express.static( '/www' ));
     app.get('/*', function(req, res, next) {
         // Just send the index.html for other files to support HTML5Mode
         res.sendFile('index.html', { root: '/www' });
