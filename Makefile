@@ -1,5 +1,5 @@
 fake-api-server:
-	docker run --name fake-api-server -d -p 9996:8080 dictybase/fake-dsc-server
+	docker run --name fake-api-server -d -p 9900:8080 dictybase/fake-dsc-server
 
 dsc-server:
 	docker run --name dsc-server -d -p 9994:9596 dictybase/dsc
