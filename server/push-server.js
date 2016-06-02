@@ -9,8 +9,8 @@ var staticStats = fs.statSync( '/www' );
 if (staticStats.isDirectory()) {
     app.use(morgan('combined'));
     var assetPath = '/assets';
-    if (process.env.ASSET_BASE) {
-        assetPath = process.env.ASSET_BASE + '/assets';
+    if (process.env.BASENAME) {
+        assetPath = process.env.BASENAME + '/assets';
     }
     console.log('using assetpath %s', assetPath);
     app.use(assetPath, express.static( '/www' ));
