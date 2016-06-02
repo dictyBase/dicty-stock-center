@@ -55,7 +55,7 @@
     "debug": "^2.2.0",
     "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#update-packages",
     "fs": "0.0.2",
-    "history": "^2.0.0-rc2",
+    "history": "^2.0.0",
     "jsrsasign": "^5.0.5",
     "radium": "^0.16.6",
     "react": "^0.14.0",
