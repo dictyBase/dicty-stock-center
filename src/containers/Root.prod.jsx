@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router'
+import { Router } from 'react-router'
 import routes from 'routes'
+import history from 'utils/routerHistory'
 
 export default class Root extends Component {
     displayName = 'root component';
@@ -13,7 +14,7 @@ export default class Root extends Component {
         return (
           <Provider store={ store }>
               <div>
-                  <Router routes={ routes } history= { browserHistory }/>
+                  <Router routes={ routes } history= { history }/>
               </div>
           </Provider>
         )

@@ -2,9 +2,9 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import { syncHistory } from 'react-router-redux'
-import { browserHistory } from 'react-router'
+import history from 'utils/routerHistory'
 
-const middleware = syncHistory(browserHistory)
+const middleware = syncHistory(history)
 const enhancer = applyMiddleware(middleware, thunk)
 
 export default function configureStore(initialState) {
