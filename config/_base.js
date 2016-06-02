@@ -88,8 +88,7 @@ config.globals = {
     '__DEBUG_NEW_WINDOW__' : !!argv.nw,
     '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
     'AUTH_SERVER' : JSON.stringify(process.env.AUTH_SERVER || 'http://localhost:9999'),
-    'API_SERVER': JSON.stringify(process.env.API_SERVER|| 'http://localhost:8080'),
-    'ASSET_BASE': JSON.stringify(process.env.ASSET_BASE|| '/')
+    'API_SERVER': JSON.stringify(process.env.API_SERVER|| 'http://localhost:8080')
 
 }
 

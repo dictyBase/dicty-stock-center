@@ -54,7 +54,7 @@ webpackConfig.plugins = [
     inject: false,
     hash: false,
     favicon: paths.client('static/favicon.ico'),
-    asset_base: process.env.ASSET_BASE ,
+    base: process.env.BASENAME || '/' ,
     minify: {
       collapseWhitespace: true
     }
