@@ -6,9 +6,9 @@ MAINTAINER Siddhartha Basu<siddhartha-basu@northwestern.edu>
 ARG api_server
 ENV API_SERVER ${api_server:-https://betatest.dictybase.org/fakeapi/stockcenter}
 
-# base path for serving assets
-ARG asset_base
-ENV ASSET_BASE ${asset_base:-/stockcenter}
+# base path for react router
+ARG basename
+ENV BASENAME ${basename:-/stockcenter}
 
 # Create app directory
 RUN mkdir -p /usr/src/app 
