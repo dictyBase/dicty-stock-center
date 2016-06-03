@@ -42,7 +42,14 @@ const config = {
     'react-redux',
     'react-router',
     'redux',
-    'redux-actions',
+    'jsrsasign',
+    'radium',
+    'react-dom',
+    'redux-form',
+    'redux-thunk',
+    'simplestorage.js',
+    'url',
+    'validator',
     'react-router-redux'
   ],
 
@@ -80,8 +87,8 @@ config.globals = {
     '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
     '__DEBUG_NEW_WINDOW__' : !!argv.nw,
     '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
-    'AUTH_SERVER' : JSON.stringify('http://localhost:9999'),
-    'SERVER': JSON.stringify('http://localhost:8080')
+    'AUTH_SERVER' : JSON.stringify(process.env.AUTH_SERVER || 'http://localhost:9999'),
+    'API_SERVER': JSON.stringify(process.env.API_SERVER|| 'http://localhost:8080')
 
 }
 

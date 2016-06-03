@@ -28,11 +28,7 @@ const submitFailure = error => {
     }
 }
 
-let server = SERVER
-if (process.env.SERVER) {
-    server = process.env.SERVER
-}
-
+let server = API_SERVER
 // submit dsc order and redirect user to a confirmation page
 export const submitOrder = () => {
     return (dispatch, getState) => {

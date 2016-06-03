@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import PurifyCssPlugin from 'purifycss-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
 
@@ -37,6 +38,7 @@ webpackConfig.entry = {
 // ------------------------------------
 webpackConfig.output = {
   filename: `[name].[${config.compiler_hash_type}].js`,
+  chunkFilename: '[chunkhash].js',
   path: paths.base(config.dir_dist),
   publicPath: config.compiler_public_path
 }
@@ -47,11 +49,12 @@ webpackConfig.output = {
 webpackConfig.plugins = [
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
-    template: paths.client('index.html'),
+    title: 'Dictybase stock center',
+    template: paths.client('index.ejs'),
+    inject: false,
     hash: false,
     favicon: paths.client('static/favicon.ico'),
-    filename: 'index.html',
-    inject: 'body',
+    base: process.env.BASENAME || '/' ,
     minify: {
       collapseWhitespace: true
     }
@@ -71,6 +74,7 @@ if (__DEV__) {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        drop_console: true,
         unused: true,
         dead_code: true,
         warnings: false
@@ -82,7 +86,8 @@ if (__DEV__) {
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
   webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor']
+    names: ['vendor'],
+    minChunks: Infinity
   }))
 }
 
@@ -240,6 +245,13 @@ if (!__DEV__) {
     new ExtractTextPlugin('[name].[contenthash].css', {
       allChunks: true
     })
+  )
+
+  webpackConfig.plugins.push(
+      new PurifyCssPlugin({
+          basePath: paths.base(config.dir_client),
+          paths: ['src/styles', 'dist']
+      })
   )
 }
 

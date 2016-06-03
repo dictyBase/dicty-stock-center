@@ -24,13 +24,13 @@
     "__DEBUG_NEW_WINDOW__" : false,
     "__BASENAME__" : false,
     "AUTH_SERVER" : false,
-    "SERVER": false
+    "API_SERVER": false
   },
   "rules": {
         "strict": 0,
         "quotes": 0,
         "no-unused-vars": 0,
-        "camelcase": 0,
+        "camelcase": 0, // do not require camel case names
         "no-underscore-dangle": 0,
         "comma-dangle": 2, // disallow or enforce trailing commas
         "no-cond-assign": 2, // disallow assignment in conditional expressions
@@ -141,7 +141,6 @@
         //
         "indent": [2, 4], // this option sets a specific tab width for your code (off by default)
         "brace-style": 1, // enforce one true brace style (off by default)
-        "camelcase": 0, // require camel case names
         "comma-spacing": [1, {"before": false, "after": true}], // enforce spacing before and after comma
         "comma-style": [1, "last"], // enforce one true comma style (off by default)
         "consistent-this": [1, "_this"], // enforces consistent naming when capturing the current execution context (off by default)

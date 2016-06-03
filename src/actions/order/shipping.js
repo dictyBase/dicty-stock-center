@@ -39,11 +39,7 @@ export const addShipping = (user, details) => {
     }
 }
 
-let server = SERVER
-if (process.env.SERVER) {
-    server = process.env.SERVER
-}
-
+let server = API_SERVER
 export const submitForm = (values, dispatch) => {
     let details = {
         shipAccount: values.shipAccount,
