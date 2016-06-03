@@ -46,20 +46,36 @@ webpackConfig.output = {
 // ------------------------------------
 // Plugins
 // ------------------------------------
-webpackConfig.plugins = [
-  new webpack.DefinePlugin(config.globals),
-  new HtmlWebpackPlugin({
-    title: 'Dictybase stock center',
-    template: paths.client('index.ejs'),
-    inject: false,
-    hash: false,
-    favicon: paths.client('static/favicon.ico'),
-    base: process.env.BASENAME || '/' ,
-    minify: {
-      collapseWhitespace: true
-    }
-  })
-]
+if (__DEV__) {
+  webpackConfig.plugins = [
+    new webpack.DefinePlugin(config.globals),
+    new HtmlWebpackPlugin({
+      template: paths.client('index.html'),
+      hash: false,
+      favicon: paths.client('static/favicon.ico'),
+      filename: 'index.html',
+      inject: 'body',
+      minify: {
+        collapseWhitespace: true
+      }
+    })
+  ]
+} else if (__PROD__) {
+  webpackConfig.plugins = [
+    new webpack.DefinePlugin(config.globals),
+    new HtmlWebpackPlugin({
+      title: 'Dictybase stock center',
+      template: paths.client('index.ejs'),
+      inject: false,
+      hash: false,
+      favicon: paths.client('static/favicon.ico'),
+      asset_base: process.env.ASSET_BASE ,
+      minify: {
+        collapseWhitespace: true
+      }
+    })
+  ]
+}
 
 if (__DEV__) {
   debug('Enable plugins for live development (HMR, NoErrors).')
