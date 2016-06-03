@@ -4,10 +4,7 @@ import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-let server = SERVER
-if (process.env.SERVER) {
-    server = process.env.SERVER
-}
+let server = API_SERVER
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
