@@ -1,3 +1,8 @@
+import { polyfill } from 'es6-promise'
+polyfill()
+import 'isomorphic-fetch'
+
+
 export const createUser = (url, values) => {
     let config = {
         method: 'POST',
