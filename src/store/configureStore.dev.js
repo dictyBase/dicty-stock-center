@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
 import { syncHistory } from 'react-router-redux'
-import  history  from 'utils/routerHistory'
+import history from 'utils/routerHistory'
 
 const middleware = syncHistory(history)
 const enhancer = compose(
