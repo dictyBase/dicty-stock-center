@@ -50,6 +50,7 @@ export default class Submit extends Component {
                                     edit={ editPayment }
                                     title={ ' Payer:' }
                                     icon = { 'fa fa-credit-card-alt' }
+                                    payer
                                 />
                             </PanelBody>
                         </Panel>

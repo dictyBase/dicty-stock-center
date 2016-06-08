@@ -8,10 +8,14 @@ export default class EditPanel extends Component {
         user: PropTypes.object.isRequired,
         edit: PropTypes.func.isRequired,
         title: PropTypes.string,
-        icon: PropTypes.string
+        icon: PropTypes.string,
+        payer: PropTypes.bool
+    }
+    static defaultProps = {
+        payer: false
     }
     render() {
-        const { title, edit, icon } = this.props
+        const { title, edit, icon, payer } = this.props
         const { firstName, lastName, address, address2,
             city, state, zip, country
         } = this.props.user
@@ -29,7 +33,11 @@ export default class EditPanel extends Component {
                 <br />
                 <div>
                     <a href="#" onClick = { edit }>
-                        <i className="fa fa-pencil-square-o"></i> Edit
+                        <i className="fa fa-pencil-square-o"></i>
+                        {
+                            payer ? ' Edit payment info'
+                            : ' Edit shipping info'
+                        }
                     </a>
                 </div>
             </div>
