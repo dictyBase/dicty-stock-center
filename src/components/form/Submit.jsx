@@ -26,7 +26,7 @@ export default class Submit extends Component {
                 <div className="row">
                     <div className="col-md-offset-1">
                         <h2 className="page-header">Review Your Order</h2>
-                        <p> Please review your order and click "Complete Order"
+                        <p> Please review your order and click "Complete Your Order"
                             button to place your order
                         </p>
                     </div>
