@@ -12,9 +12,8 @@ export default class ShippingInfo extends Component {
 
     renderShipAccountNum = () => {
         const { shipAccountNum } = this.props
-        const hasError = (shipAccountNum.touched && shipAccountNum.error)
         let groupClass = classNames('form-group', {
-            'has-error': hasError
+            'has-error': shipAccountNum.error
         })
         return (
             <div className={ groupClass }>
@@ -22,7 +21,10 @@ export default class ShippingInfo extends Component {
                     <input type="text" className="form-control" { ...shipAccountNum }
                         placeholder="Shipping Account Number"
                     />
-                    { hasError && <div className="help-block">{ shipAccountNum.error }</div> }
+                    { shipAccountNum.error && <div className="help-block">
+                        { shipAccountNum.error }
+                        </div>
+                    }
                 </div>
             </div>
         )
