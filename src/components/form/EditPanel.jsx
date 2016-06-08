@@ -9,13 +9,29 @@ export default class EditPanel extends Component {
         edit: PropTypes.func.isRequired,
         title: PropTypes.string,
         icon: PropTypes.string,
-        payer: PropTypes.bool
+        shipping: PropTypes.object,
+        payment: PropTypes.object
     }
-    static defaultProps = {
-        payer: false
+    renderShippingMethod = () => {
+        const { shipping } = this.props
+        return (
+            <div>
+                <strong>Shipping method: </strong>
+                { shipping.account }
+                { shipping.accountNum && <span> (#{ shipping.accountNum })</span> }
+            </div>
+        )
     }
+
+    renderPaymentMethod = () => {
+        const { payment } = this.props
+        return (
+            <div><strong>Payment method: </strong>{ payment.method }</div>
+        )
+    }
+
     render() {
-        const { title, edit, icon, payer } = this.props
+        const { title, edit, icon, shipping, payment } = this.props
         const { firstName, lastName, address, address2,
             city, state, zip, country
         } = this.props.user
@@ -30,12 +46,15 @@ export default class EditPanel extends Component {
                 <div>{ address2 && address2 }</div>
                 <div>{ city } { state && state } { zip }</div>
                 <div>{ country }</div>
+                    { (shipping || payment) && <br /> }
+                    { shipping && this.renderShippingMethod() }
+                    { payment && this.renderPaymentMethod() }
                 <br />
                 <div>
                     <a href="#" onClick = { edit }>
                         <i className="fa fa-pencil-square-o"></i>
                         {
-                            payer ? ' Edit payment info'
+                            payment ? ' Edit payment info'
                             : ' Edit shipping info'
                         }
                     </a>

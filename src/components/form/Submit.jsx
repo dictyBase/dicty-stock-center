@@ -19,7 +19,7 @@ export default class Submit extends Component {
             {id: 'Strain-DBS0236054', name: 'DDB_G0268328-'},
             {id: 'Plasmid-87', name: 'pACA.URA'}
         ]
-        const { consumer, payer } = this.props.order
+        const { consumer, shipping, payer, payment } = this.props.order
         const { editShipping, editPayment, submitOrder } = this.props.orderActions
         return (
             <div>
@@ -39,6 +39,7 @@ export default class Submit extends Component {
                                     edit={ editShipping }
                                     title={ ' Ship to:' }
                                     icon ={ 'fa fa-truck' }
+                                    shipping={ shipping }
                                 />
                             </PanelBody>
                         </Panel>
@@ -50,7 +51,7 @@ export default class Submit extends Component {
                                     edit={ editPayment }
                                     title={ ' Payer:' }
                                     icon = { 'fa fa-credit-card-alt' }
-                                    payer
+                                    payment = { payment }
                                 />
                             </PanelBody>
                         </Panel>
