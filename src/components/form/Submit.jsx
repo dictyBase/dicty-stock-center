@@ -72,7 +72,7 @@ export default class Submit extends Component {
                         <button type="button"
                             className="btn btn-primary btn-lg btn-block"
                             onClick={ submitOrder }>
-                            Complete Order <i className="fa fa-check-circle"></i>
+                            Complete Your Order <i className="fa fa-check-circle"></i>
                         </button>
                     </div>
                 </div>
