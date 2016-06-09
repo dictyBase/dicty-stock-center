@@ -64,8 +64,9 @@ export default class ShippingInfo extends Component {
                         </label>
                         <div className="radio">
                             <label>
-                                <input type="radio" { ...shipAccount } value="WillCall"
-                                    checked={ shipAccount.value === 'WillCall' }
+                                <input type="radio" { ...shipAccount }
+                                    value="Will call 1-312-503-4169"
+                                    checked={ shipAccount.value === 'Will call 1-312-503-4169' }
                                 />
                                 Call in Credit card # for FedEx waybill 1-312-503-4169
                             </label>
@@ -73,7 +74,9 @@ export default class ShippingInfo extends Component {
                         </div>
                     </div>
                 </div>
-                { !(shipAccount.value === 'WillCall') && this.renderShipAccountNum() }
+                { !(shipAccount.value === 'Will call 1-312-503-4169') &&
+                    this.renderShipAccountNum()
+                }
             </div>
         )
     }
