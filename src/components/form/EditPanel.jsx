@@ -14,6 +14,7 @@ export default class EditPanel extends Component {
     }
     renderShippingMethod = () => {
         const { shipping } = this.props
+        // display the shipping method with shipping account number(if available)
         return (
             <div>
                 <strong>Shipping method: </strong>
@@ -25,8 +26,17 @@ export default class EditPanel extends Component {
 
     renderPaymentMethod = () => {
         const { payment } = this.props
+        // if pay method is PO and PO# is available, display that.
+        // else, just display the pay method, Credit card, Wire transfer etc.
         return (
-            <div><strong>Payment method: </strong>{ payment.method }</div>
+            <div>
+                <strong>Payment method: </strong>{ payment.method }
+                { payment.method === 'PO' &&
+                    payment.poNum &&
+                    <span> (#{ payment.poNum })</span>
+                }
+            </div>
+
         )
     }
 
