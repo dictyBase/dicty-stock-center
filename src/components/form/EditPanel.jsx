@@ -53,10 +53,7 @@ export default class EditPanel extends Component {
                 <div>
                     <a href="#" onClick = { edit }>
                         <i className="fa fa-pencil-square-o"></i>
-                        {
-                            payment ? ' Edit payment info'
-                            : ' Edit shipping info'
-                        }
+                        { payment ? ' Edit payment info' : ' Edit shipping info' }
                     </a>
                 </div>
             </div>
