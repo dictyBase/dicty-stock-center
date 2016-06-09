@@ -23,12 +23,15 @@ export default class PaymentAlert extends Component {
                         Northwestern bank information will be emailed
                     </p>
                     <p><strong>PO: </strong>
-                        Add PO number if available or send ASAP to dictybase@northwestern.edu
+                        Add PO number if available or send ASAP to&nbsp;
+                        <u><a href="mailto:dictystocks@northwestern.edu" target="_top">
+                            dictystocks@northwestern.edu
+                        </a></u>
                     </p>
                 </div>
                 <div className="alert alert-info">
                     <p>For full payment information please click&nbsp;
-                        <a href={ this.props.orderInfoLink } target="_blank">here</a>
+                        <u><a href={ this.props.orderInfoLink } target="_blank">here</a></u>
                     </p>
                 </div>
             </div>

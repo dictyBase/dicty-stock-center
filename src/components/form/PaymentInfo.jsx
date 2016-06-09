@@ -38,14 +38,14 @@ export default class PaymentInfo extends Component {
                     </label>
                     <div className="col-sm-9">
                         <label className="radio-inline">
-                            <input type="radio" { ...payMethod } value="Credit"
-                                checked={ payMethod.value === 'Credit' }
+                            <input type="radio" { ...payMethod } value="Credit card"
+                                checked={ payMethod.value === 'Credit card' }
                             />
                             Credit Card
                         </label>
                         <label className="radio-inline">
-                            <input type="radio" { ...payMethod } value="Wire"
-                                checked={ payMethod.value === 'Wire' }
+                            <input type="radio" { ...payMethod } value="Wire transfer"
+                                checked={ payMethod.value === 'Wire transfer' }
                             />
                             Wire Transfer
                         </label>

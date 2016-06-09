@@ -33,7 +33,10 @@ export const syncValidateShipping = data => {
     if (!data.shipAccount) {
         errors.shipAccount = 'Required field'
     }
-    if (!data.shipAccountNum && !(data.shipAccount === 'WillCall')) {
+    if (!data.shipAccountNum && (
+            data.shipAccount === 'Fedex' ||
+            data.shipAccount === 'UPS' ||
+            data.shipAccount === 'DHL')) {
         errors.shipAccountNum = 'Required field'
     }
     return errors

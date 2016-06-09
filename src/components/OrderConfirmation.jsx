@@ -20,8 +20,8 @@ export default class OrderConfirmation extends Component {
                             <h3>Thank you, your order has been submitted successfully!</h3>
                             <p>Order Number: <strong>{ id }</strong></p>
                             <p>We have sent you a confirmation email.</p>
-                            <p>The <strong>Payer</strong> will receive several emails through the
-                                NU Core system to complete the payment.
+                            <p>The <strong>Payer</strong> will soon receive emails through
+                                the <strong>NU Core</strong> system to complete payment.
                             </p>
                         </div>
                     </div>
