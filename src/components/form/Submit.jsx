@@ -19,14 +19,14 @@ export default class Submit extends Component {
             {id: 'Strain-DBS0236054', name: 'DDB_G0268328-'},
             {id: 'Plasmid-87', name: 'pACA.URA'}
         ]
-        const { consumer, payer } = this.props.order
+        const { consumer, shipping, payer, payment } = this.props.order
         const { editShipping, editPayment, submitOrder } = this.props.orderActions
         return (
             <div>
                 <div className="row">
                     <div className="col-md-offset-1">
                         <h2 className="page-header">Review Your Order</h2>
-                        <p> Please review your order and click "Complete Order"
+                        <p> Please review your order and click "Complete Your Order"
                             button to place your order
                         </p>
                     </div>
@@ -39,6 +39,7 @@ export default class Submit extends Component {
                                     edit={ editShipping }
                                     title={ ' Ship to:' }
                                     icon ={ 'fa fa-truck' }
+                                    shipping={ shipping }
                                 />
                             </PanelBody>
                         </Panel>
@@ -50,6 +51,7 @@ export default class Submit extends Component {
                                     edit={ editPayment }
                                     title={ ' Payer:' }
                                     icon = { 'fa fa-credit-card-alt' }
+                                    payment = { payment }
                                 />
                             </PanelBody>
                         </Panel>
@@ -72,7 +74,7 @@ export default class Submit extends Component {
                         <button type="button"
                             className="btn btn-primary btn-lg btn-block"
                             onClick={ submitOrder }>
-                            Complete Order <i className="fa fa-check-circle"></i>
+                            Complete Your Order <i className="fa fa-check-circle"></i>
                         </button>
                     </div>
                 </div>

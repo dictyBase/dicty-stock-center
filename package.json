@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "1.0.0",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "Dicty-Stock-Center",
+  "version": "0.0.7",
+  "description": "The Dicty Stock Center app rebuilt with React and Redux!",
   "main": "index.js",
   "engines": {
     "node": ">=4.2.0",
@@ -46,9 +46,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/dictyBase/Dicty-Stock-Center.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
