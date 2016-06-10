@@ -25,7 +25,7 @@ class EditPayment extends Component {
     render() {
         const { consumer } = this.props.order
         const { editShipping, sameAsShipping } = this.props.orderActions
-        const { submitting, handleSubmit,
+        const { submitting, handleSubmit, error,
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, payMethod, poNum
             }
@@ -80,6 +80,17 @@ class EditPayment extends Component {
                                 </div>
                             </div>
                             <hr />
+                            {
+                                error &&
+                                <div className="row">
+                                    <div className="col-xs-12">
+                                        <div className="alert alert-danger">
+                                            <i className="fa fa-exclamation-circle"></i>
+                                            <strong> Error! </strong> { error }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div className="row">
                                 <div className="col-md-offset-4 col-md-8 text-center">
                                     <SubmitButton name={ 'Continue ' }
