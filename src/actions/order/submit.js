@@ -44,6 +44,7 @@ export const submitOrder = () => {
         })
         .catch(error => {
             dispatch(submitFailure(error))
+            dispatch(routeActions.push('/error'))
         })
     }
 }
