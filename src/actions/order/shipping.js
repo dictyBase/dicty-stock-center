@@ -84,7 +84,7 @@ export const submitForm = (values, dispatch) => {
             }
         })
         .catch(error => {
-            reject({_error: 'Fetching user error!', error})
+            reject({_error: error.message})
         })
     })
 }
