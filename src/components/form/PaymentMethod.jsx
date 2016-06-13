@@ -19,7 +19,7 @@ export default class PaymentMethod extends Component {
         const { payMethod, poNum, title } = this.props
         const panelStyle = { border: '1px solid #D2D7D3' }
         const headerStyle = {
-            backgroundColor: '#4B77BE',
+            backgroundColor: '#337ab7',
             padding: '20px',
             borderColor: '#4B77BE'
         }

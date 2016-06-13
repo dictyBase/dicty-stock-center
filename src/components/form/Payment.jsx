@@ -7,7 +7,7 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
-import 'styles/core.scss'
+import 'styles/custom.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -25,7 +25,7 @@ class Payment extends Component {
     render() {
         const { consumer } = this.props.order
         const { editShipping, sameAsShipping } = this.props.orderActions
-        const { submitting, handleSubmit,
+        const { submitting, handleSubmit, error,
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, payMethod, poNum
             }
@@ -39,11 +39,16 @@ class Payment extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <EditPanel user={ consumer } edit={ editShipping } title={ 'Ship to:' } />
+                        <div className="panel-green">
+                            <EditPanel user={ consumer }
+                                edit={ editShipping }
+                                title={ 'Ship to:' }
+                            />
+                        </div>
                     </div>
                 </div>
                 <hr />
-                <button type="button" className="btn btn-info btn-xs" onClick={ sameAsShipping }>
+                <button type="button" className="btn btn-success btn-xs" onClick={ sameAsShipping }>
                     Same as shipping
                 </button> Click here if payer address is the same as shipping address
                 <div className="row">
@@ -80,6 +85,17 @@ class Payment extends Component {
                                 </div>
                             </div>
                             <hr />
+                            {
+                                error &&
+                                <div className="row">
+                                    <div className="col-xs-12">
+                                        <div className="alert alert-danger">
+                                            <i className="fa fa-exclamation-circle"></i>
+                                            <strong> Error! </strong> { error }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div className="row">
                                 <div className="col-md-offset-4 col-md-8 text-center">
                                     <SubmitButton name={ 'Continue ' }

@@ -22,7 +22,7 @@ class Shipping extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting } = this.props
+        const { handleSubmit, submitting, error } = this.props
         const {
             fields: { firstName, lastName, email, org, group, address, address2, city,
                 state, zip, country, phone, shipAccount, shipAccountNum, comments }
@@ -69,6 +69,17 @@ class Shipping extends Component {
                                 </div>
                             </div>
                             <hr />
+                            {
+                                error &&
+                                <div className="row">
+                                    <div className="col-xs-12">
+                                        <div className="alert alert-danger">
+                                            <i className="fa fa-exclamation-circle"></i>
+                                            <strong> Error! </strong> { error }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div className="row">
                                 <div className="col-md-offset-4 col-md-8">
                                     <SubmitButton name={ 'Continue ' }
