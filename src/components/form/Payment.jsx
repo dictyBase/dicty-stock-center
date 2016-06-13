@@ -43,7 +43,7 @@ class Payment extends Component {
                     </div>
                 </div>
                 <hr />
-                <button type="button" className="btn btn-info btn-xs" onClick={ sameAsShipping }>
+                <button type="button" className="btn btn-success btn-xs" onClick={ sameAsShipping }>
                     Same as shipping
                 </button> Click here if payer address is the same as shipping address
                 <div className="row">
