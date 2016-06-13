@@ -77,7 +77,7 @@ const orderReducer = (state = initialState, action) => {
         return {
             ...state,
             submitting: false,
-            error: action.error
+            error: action.error.message
         }
     default:
         return state
