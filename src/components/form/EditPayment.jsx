@@ -7,7 +7,7 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
-import 'styles/core.scss'
+import 'styles/custom.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -39,11 +39,16 @@ class EditPayment extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <EditPanel user={ consumer } edit={ editShipping } title={ 'Ship to:' } />
+                        <div className="panel-green">
+                            <EditPanel user={ consumer }
+                                edit={ editShipping }
+                                title={ 'Ship to:' }
+                            />
+                        </div>
                     </div>
                 </div>
                 <hr />
-                <button type="button" className="btn btn-info btn-xs" onClick={ sameAsShipping }>
+                <button type="button" className="btn btn-success btn-xs" onClick={ sameAsShipping }>
                     Same as shipping
                 </button> Click here if payer address is the same as shipping address
                 <div className="row">
