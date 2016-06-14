@@ -1,3 +1,6 @@
+[![dependencies](https://david-dm.org/dictybase/Dicty-Stock-Center.svg)](https://david-dm.org/dictybase/Dicty-Stock-Center)
+[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/dev-status.svg)](https://david-dm.org/dictybase/Dicty-Stock-Center#info=devDependencies)
+
 #Dicty Stock Center
 Dicty Stock Center application rebuilt with React and Redux!
 
