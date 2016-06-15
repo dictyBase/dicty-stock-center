@@ -84,7 +84,7 @@ describe('reducers', () => {
                 reducer({}, {
                     type: types.SUBMIT_FAILURE,
                     submitting: false,
-                    error: 'error 404'
+                    error: {message: 'error 404'}
                 })
             ).to.eql({
                 submitting: false,
