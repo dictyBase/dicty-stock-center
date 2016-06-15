@@ -1,14 +1,16 @@
-#React Redux Auth trial application
-A react and redux based SPA to learn and create example on how to use oauth2
-login flow with various third party providers.
+[![dependencies](https://david-dm.org/dictybase/Dicty-Stock-Center.svg)](https://david-dm.org/dictybase/Dicty-Stock-Center)
+[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/dev-status.svg)](https://david-dm.org/dictybase/Dicty-Stock-Center#info=devDependencies)
 
-#Install
+#Dicty Stock Center
+Dicty Stock Center application rebuilt with React and Redux!
+
+#Development
 Git clone and then run `npm install`
 
-#Configuration
-The most important part and it is absolutely needed before you could run the application.
+##Configuration
+This is the most important part and it is absolutely needed to run the application.
 
-##Providers
+###Providers
 * Copy the provided sample [clientConfig.sample.js](src/utils/clientConfig.sample.js) file
   to __clientConfig.js__  in the same folder. 
 
@@ -22,7 +24,7 @@ The most important part and it is absolutely needed before you could run the app
   in the login route. The list of supported buttons are given
   [here](https://lipis.github.io/bootstrap-social/)
 
-##Auth server
+###Auth server
 * The url of the auth server is configured by the global __AUTH_SERVER__ that
   can be found in the global [config](config/_base.js) file. The default
   location is `http://localhost:9999`. It can also be configured by setting __AUTH_SERVER__
@@ -32,12 +34,20 @@ The most important part and it is absolutely needed before you could run the app
   [page](https://github.com/dictyBase/authserver/releases). Download that is
   suitable for your OS and make sure you always use the latest one.
 
+###API server
+* The url of the auth server is configured by the global __API_SERVER__ that
+  can be found in the global [config](config/_base.js) file. The default
+  location is `http://localhost:8080`. It can also be configured by setting __API_SERVER__
+  environmental variable.
+
+* An API server to **test** the application can be found [here](https://github.com/dictyBase/fake-dsc-server)
+
 #Running the application
 Simply do
 
 ```npm start```
 
 to run the developmental server.
-For rest of the information make sure to follow the original [documenation](docs/README.md)
+For rest of the information make sure to follow the original starter kit [documenation](docs/react-redux-starter-kit.md)
 
 
