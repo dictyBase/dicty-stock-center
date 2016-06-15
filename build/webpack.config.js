@@ -46,7 +46,7 @@ webpackConfig.output = {
 // ------------------------------------
 // Plugins
 // ------------------------------------
-if (__DEV__) {
+if (__DEV__ || __TEST__) {
   webpackConfig.plugins = [
     new webpack.DefinePlugin(config.globals),
     new HtmlWebpackPlugin({
