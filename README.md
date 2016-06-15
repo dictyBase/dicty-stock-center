@@ -42,6 +42,34 @@ This is the most important part and it is absolutely needed to run the applicati
 
 * An API server to **test** the application can be found [here](https://github.com/dictyBase/fake-dsc-server)
 
+# Application Structure
+
+```
+.
+├── bin                      # Build/Start scripts
+├── build                    # All build-related configuration
+│   └── webpack              # Environment-specific configuration files for webpack
+├── config                   # Project configuration settings
+├── docker                   # Docker scripts
+├── docs                     # Project documentation 
+├── src                      # Application source code
+│   ├── actions              # Redux action creators
+│   ├── components           # Generic React Components (generally Dumb components)
+│   ├── constants            # Constants. (e.g. redux action types)
+│   ├── containers           # Components that provide context. Smart components
+│   ├── forms                # Resources related to forms used in the dsc application
+│   ├── reducers             # Redux reducers
+│   ├── store                # Redux store configuration
+│   ├── static               # Static assets
+│   ├── styles               # Application-wide styles
+│   ├── utils                # Application utilities
+│   ├── index.ejs            # Template for generating index.html file for production
+│   ├── index.html           # Template for application development. 
+│   ├── index.jsx            # Application rendering
+│   └── routes.js            # Application route definitions
+└── tests                    # Unit tests
+```
+
 #Running the application
 Simply do
 
@@ -49,5 +77,3 @@ Simply do
 
 to run the developmental server.
 For rest of the information make sure to follow the original starter kit [documenation](docs/react-redux-starter-kit.md)
-
-

@@ -17,7 +17,7 @@ describe('components', () => {
                   <input type="text" className="form-control" />
             )).to.equal(true)
 
-            wrapper.setProps({shipAccount: {value: 'WillCall', touched: true}})
+            wrapper.setProps({shipAccount: {value: 'Will call 1-312-503-4169', touched: true}})
 
             expect(wrapper.containsMatchingElement(
                   <input type="text" className="form-control" />
