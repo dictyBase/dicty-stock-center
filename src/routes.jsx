@@ -1,4 +1,4 @@
-import { Route } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 import React from 'react'
 import App from 'containers/App'
 import Login from 'components/Login'
@@ -19,10 +19,10 @@ import Submit from 'components/form/Submit'
 
 export default (
     <Route path="/" component={ App }>
+        <IndexRoute component={ Home } />
         <Route path="login" component={ Login } />
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
-        <Route path="home" component={ Home } />
         <Route path="home/profile" component={ Profile } />
         <Route path="error" component={ Error } />
         <Route path="order" component={ Order }>
