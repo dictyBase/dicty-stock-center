@@ -1,4 +1,4 @@
-import { routeActions } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import { createUser, getUser, updateUser } from 'utils/api'
 import { status, json } from 'utils/fetch'
 import types from 'constants'
@@ -64,7 +64,7 @@ export const submitForm = (values, dispatch) => {
                 .then(user => {
                     resolve()
                     dispatch(addPayment(user, payment))
-                    dispatch(routeActions.push('/order/submit'))
+                    dispatch(push('/order/submit'))
                 })
                 .catch(error => {
                     reject({_error: 'User cannot be updated', error})
@@ -76,7 +76,7 @@ export const submitForm = (values, dispatch) => {
                 .then(user => {
                     resolve()
                     dispatch(addPayment(user, payment))
-                    dispatch(routeActions.push('/order/submit'))
+                    dispatch(push('/order/submit'))
                 })
                 .catch(error => {
                     reject({_error: 'User cannot be created', error})
@@ -104,6 +104,6 @@ export const sameAsShipping = () => {
 // direct user to edit payment information
 export const editPayment = () => {
     return dispatch => {
-        dispatch(routeActions.push('/order/payment/edit'))
+        dispatch(push('/order/payment/edit'))
     }
 }
