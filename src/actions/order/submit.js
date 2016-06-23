@@ -1,6 +1,6 @@
 import { createOrder } from 'utils/api'
 import { status, json } from 'utils/fetch'
-import { routeActions } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import types from 'constants'
 
 const { SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE } = types
@@ -34,17 +34,17 @@ export const submitOrder = () => {
     return (dispatch, getState) => {
         const { order } = getState()
         dispatch(submitRequest())
-        dispatch(routeActions.push('/order/submitting'))
+        dispatch(push('/order/submitting'))
         createOrder(server, order)
         .then(status)
         .then(json)
         .then(response => {
             dispatch(submitSuccess(response.data))
-            dispatch(routeActions.push('/order/submitted'))
+            dispatch(push('/order/submitted'))
         })
         .catch(error => {
             dispatch(submitFailure(error))
-            dispatch(routeActions.push('/error'))
+            dispatch(push('/error'))
         })
     }
 }
