@@ -1,4 +1,4 @@
-import { Route } from 'react-router'
+import { Route, IndexRedirect } from 'react-router'
 import React from 'react'
 import App from 'containers/App'
 import Login from 'components/Login'
@@ -16,9 +16,14 @@ import ShoppingCart from 'components/ShoppingCart'
 import Payment from 'components/form/Payment'
 import EditPayment from 'components/form/EditPayment'
 import Submit from 'components/form/Submit'
+import Page from 'components/Page'
+import EditPage from 'components/EditPage'
 
 export default (
     <Route path="/" component={ App }>
+        <IndexRedirect to="page/stockcenter" />
+        <Route path="page/:name" component={ Page } />
+        <Route path="page/:name/edit" component={ EditPage } />
         <Route path="login" component={ Login } />
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />

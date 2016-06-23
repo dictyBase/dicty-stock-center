@@ -12,6 +12,8 @@ import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
+import * as pageActionCreators from 'actions/page'
+import { routerActions } from 'react-router-redux'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -49,8 +51,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order } = state
-    return { auth: auth, routeProps: ownProps, order: order }
+    const { auth, order, page } = state
+    return {
+        auth: auth,
+        routeProps: ownProps,
+        order: order,
+        page: page
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,7 +66,9 @@ const mapDispatchToProps = (dispatch) => {
         orderActions: bindActionCreators(
             Object.assign({}, shippingActionCreators, paymentActionCreators, submitActionCreators),
             dispatch
-        )
+        ),
+        pageActions: bindActionCreators(pageActionCreators, dispatch),
+        routerActions: bindActionCreators(routerActions, dispatch)
     }
 }
 
