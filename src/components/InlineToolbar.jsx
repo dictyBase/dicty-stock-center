@@ -21,6 +21,7 @@ export default class InlineToolbar extends Component {
             onMouseDown={ this.onMouseDown } >
                 { toolSpec.map((type) =>
                   <ToolItem
+                    key={ toolSpec.indexOf(type) }
                     type={ type }
                     clickFn={ clickFn }
                     active={ currentStyle.has(type.style) }

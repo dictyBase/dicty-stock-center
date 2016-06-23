@@ -26,6 +26,7 @@ export default class BlockToolbar extends Component {
             onMouseDown={ this.onMouseDown } >
                 { toolSpec.map((type) =>
                   <ToolItem
+                    key={ toolSpec.indexOf(type) }
                     type={ type }
                     clickFn={ clickFn }
                     active={ blockType === type.style }
