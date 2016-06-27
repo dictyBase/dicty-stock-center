@@ -44,9 +44,10 @@ export default class Page extends Component {
     displayName = 'page component'
     constructor(props) {
         super(props)
-        const blocks = convertFromRaw(simpleStorage.get('page'))
         this.state = {
-            editorState: EditorState.createWithContent(blocks)
+            editorState: simpleStorage.get('page') ? EditorState.createWithContent(
+                convertFromRaw(simpleStorage.get('page'))
+            ) : EditorState.createEmpty()
         }
     }
     onClick = (e) => {
