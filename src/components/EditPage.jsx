@@ -37,7 +37,7 @@ export default class EditPage extends Component {
         }
         return false
     }
-    onToogleBlock = (type) => {
+    onToggleBlock = (type) => {
         this.onChange(
             RichUtils.toggleBlockType(
               this.state.editorState,
@@ -45,7 +45,7 @@ export default class EditPage extends Component {
             )
           )
     }
-    onToogleInline = (type) => {
+    onToggleInline = (type) => {
         this.onChange(
             RichUtils.toggleInlineStyle(
               this.state.editorState,
@@ -62,19 +62,19 @@ export default class EditPage extends Component {
                 <div className="edit-panel">
                   <div className="toolbar-nav">
                     <div className="row">
-                      <div className="col-md-3">
-                        <BlockToolbar
-                          editorState={ editorState }
-                          clickFn={ this.onToogleBlock }
-                          toolSpec={ blockTypes }
-                        />
-                      </div>
-                      <div className="col-md-3">
-                        <InlineToolbar
-                          editorState={ editorState }
-                          clickFn={ this.onToogleInline }
-                          toolSpec={ inlineTypes }
-                        />
+                      <div className="col-xs-12">
+                        <div className="btn-group">
+                          <BlockToolbar
+                            editorState={ editorState }
+                            clickFn={ this.onToggleBlock }
+                            toolSpec={ blockTypes }
+                          />
+                          <InlineToolbar
+                            editorState={ editorState }
+                            clickFn={ this.onToggleInline }
+                            toolSpec={ inlineTypes }
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -87,6 +87,9 @@ export default class EditPage extends Component {
                     />
                   </div>
                   <div className="row">
+                    <div className="col-md-offset-10 col-md-2">
+
+                    </div>
                     <div className="col-md-offset-10 col-md-2">
                       <button
                         type="button"

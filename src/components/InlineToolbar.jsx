@@ -19,9 +19,9 @@ export default class InlineToolbar extends Component {
             className="btn-group"
             role="group"
             onMouseDown={ this.onMouseDown } >
-                { toolSpec.map((type) =>
+                { toolSpec.map((type, index) =>
                   <ToolItem
-                    key={ toolSpec.indexOf(type) }
+                    key={ index }
                     type={ type }
                     clickFn={ clickFn }
                     active={ currentStyle.has(type.style) }
