@@ -7,6 +7,11 @@ import NavbarHeader from 'dicty-react-components/src/NavbarHeader'
 import NavbarItems from 'dicty-react-components/src/NavbarItems'
 import NavbarDropdown from 'dicty-react-components/src/NavbarDropdown'
 import DropdownMenu from 'dicty-react-components/src/DropdownMenu'
+import Header from 'dicty-react-components/src/Header'
+import HeaderLogo from 'dicty-react-components/src/HeaderLogo'
+import HeaderItems from 'dicty-react-components/src/HeaderItems'
+import HeaderLinks from 'dicty-react-components/src/HeaderLinks'
+import SearchBox from 'dicty-react-components/src/SearchBox'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
@@ -27,7 +32,11 @@ class App extends Component {
         })
     };
     render() {
-        const navStyle = { backgroundColor: '#1F4484', border: '1px solid #1F4484' }
+        const navStyle = {
+            backgroundColor: '#1F4484',
+            border: '1px solid #1F4484',
+            marginTop: '10px'
+        }
         const itemStyle = {
             color: '#ffffff',
             fontSize: '18px',
@@ -75,9 +84,23 @@ class App extends Component {
             {href: '#', name: 'Cite Us'},
             {href: '#', name: 'Dicty Annual Conferences'}
         ]
+        const headerLinks = [
+            {href: '#', name: 'Cite Us', iconClass: 'fa fa-book'},
+            {href: '#', name: 'Downloads', iconClass: 'fa fa-download'},
+            {href: '#', name: 'About Us', iconClass: 'fa fa-info-circle'}
+        ]
         return (
             <div>
                 <StyleRoot>
+                    <Header>
+                        <HeaderLogo path= "dicty-logo.png"
+                            href= "http://dictybase.org/"
+                        />
+                        <HeaderItems>
+                            <HeaderLinks links= { headerLinks } />
+                            <SearchBox />
+                        </HeaderItems>
+                    </Header>
                     <Navbar navStyle={ navStyle }>
                         <NavbarHeader href="/" name="dictyBase"/>
                         <NavbarItems>
