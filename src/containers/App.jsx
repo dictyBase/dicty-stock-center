@@ -27,19 +27,85 @@ class App extends Component {
         })
     };
     render() {
+        const navStyle = { backgroundColor: '#1F4484', border: '1px solid #1F4484' }
+        const itemStyle = {
+            color: '#ffffff',
+            fontSize: '18px',
+            ':hover': {
+                color: '#ffffff',
+                backgroundColor: '#1b3c74'
+            },
+            ':focus': {
+                color: '#ffffff',
+                backgroundColor: '#1b3c74'
+            }
+        }
+        const menuItemStyle = {
+            ':hover': {
+                color: '#ffffff',
+                backgroundColor: '#1F4484'
+            },
+            ':focus': {
+                color: '#ffffff',
+                backgroundColor: '#1F4484'
+            },
+            '@media (max-width: 767px)': {
+                color: '#ffffff',
+
+                ':hover': {
+                    color: '#2574A9'
+                }
+            }
+        }
+        const genomes = [
+            {href: '#', name: 'Home'}
+        ]
+        const tools = [
+            {href: '#', name: 'New Genome Browser'}
+        ]
+        const explore = [
+            {href: '#', name: 'Dicty Art'},
+            {href: '#', name: 'Gallery'}
+        ]
+        const research = [
+            {href: '#', name: 'Anatomy Ontology'},
+            {href: '#', name: 'Codon Bias table'}
+        ]
+        const community = [
+            {href: '#', name: 'Cite Us'},
+            {href: '#', name: 'Dicty Annual Conferences'}
+        ]
         return (
             <div>
                 <StyleRoot>
-                    <Navbar>
+                    <Navbar navStyle={ navStyle }>
                         <NavbarHeader href="/" name="dictyBase"/>
                         <NavbarItems>
-                            <NavItem link="#" title="Genomes" />
-                            <NavItem link="#" title="Tools" />
-                            <NavItem link="#" title="Explore" />
-                            <NavItem link="#" title="Research" />
-                            <NavItem link="#" title="Dicty Stock Center" />
-                            <NavbarDropdown name="Community">
-                                <DropdownMenu menuItems={ [{href: '#', name: 'Home'}] }/>
+                            <NavbarDropdown name="Genomes" itemStyle={ itemStyle }>
+                                <DropdownMenu menuItems={ genomes }
+                                    menuItemStyle={ menuItemStyle }
+                                />
+                            </NavbarDropdown>
+                            <NavbarDropdown name="Tools" itemStyle={ itemStyle }>
+                                <DropdownMenu menuItems={ tools }
+                                    menuItemStyle={ menuItemStyle }
+                                />
+                            </NavbarDropdown>
+                            <NavbarDropdown name="Explore" itemStyle={ itemStyle }>
+                                <DropdownMenu menuItems={ explore }
+                                    menuItemStyle={ menuItemStyle }
+                                />
+                            </NavbarDropdown>
+                            <NavbarDropdown name="Research" itemStyle={ itemStyle }>
+                                <DropdownMenu menuItems={ research }
+                                    menuItemStyle={ menuItemStyle }
+                                />
+                            </NavbarDropdown>
+                            <NavItem link="/" title="Dicty Stock Center" itemStyle={ itemStyle }/>
+                            <NavbarDropdown name="Community" itemStyle={ itemStyle }>
+                                <DropdownMenu menuItems={ community }
+                                    menuItemStyle={ menuItemStyle }
+                                />
                             </NavbarDropdown>
                         </NavbarItems>
                     </Navbar>
