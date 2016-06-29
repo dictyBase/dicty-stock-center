@@ -83,7 +83,7 @@ export const oAuthLogin = ({query, provider, url}) => {
             simpleStorage.set('token', data.token)
             const jwtStr = jsr.jws.JWS.parse(data.token)
             dispatch(receiveLogin(jwtStr.payloadObj.user))
-            dispatch(routeActions.push('/home'))
+            dispatch(routeActions.push('/'))
         }).catch(error => {
             dispatch(loginError(error))
             dispatch(routeActions.push('/error'))

@@ -39,7 +39,7 @@ class EditPayment extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel-green">
+                        <div className="panel-dsc panel-green">
                             <EditPanel user={ consumer }
                                 edit={ editShipping }
                                 title={ 'Ship to:' }
