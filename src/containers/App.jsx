@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react'
+import DictyNavbar from 'components/DictyNavbar'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
-import Navbar from 'dicty-react-components/src/Navbar'
-import NavItem from 'dicty-react-components/src/NavItem'
-import NavbarHeader from 'dicty-react-components/src/NavbarHeader'
-import NavbarItems from 'dicty-react-components/src/NavbarItems'
-import NavbarDropdown from 'dicty-react-components/src/NavbarDropdown'
-import DropdownMenu from 'dicty-react-components/src/DropdownMenu'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
+import * as pageActionCreators from 'actions/page'
+import { routerActions } from 'react-router-redux'
 
 class App extends Component {
     displayName = 'the primary app component';
@@ -25,22 +22,34 @@ class App extends Component {
         })
     };
     render() {
+        const genomes = [
+            {href: '#', name: 'Home'}
+        ]
+        const tools = [
+            {href: '#', name: 'New Genome Browser'}
+        ]
+        const explore = [
+            {href: '#', name: 'Dicty Art'},
+            {href: '#', name: 'Gallery'}
+        ]
+        const research = [
+            {href: '#', name: 'Anatomy Ontology'},
+            {href: '#', name: 'Codon Bias table'}
+        ]
+        const community = [
+            {href: '#', name: 'Cite Us'},
+            {href: '#', name: 'Dicty Annual Conferences'}
+        ]
         return (
             <div>
                 <StyleRoot>
-                    <Navbar>
-                        <NavbarHeader href="/" name="dictyBase"/>
-                        <NavbarItems>
-                            <NavItem link="#" title="Genomes" />
-                            <NavItem link="#" title="Tools" />
-                            <NavItem link="#" title="Explore" />
-                            <NavItem link="#" title="Research" />
-                            <NavItem link="#" title="Dicty Stock Center" />
-                            <NavbarDropdown name="Community">
-                                <DropdownMenu menuItems={ [{href: '#', name: 'Home'}] }/>
-                            </NavbarDropdown>
-                        </NavbarItems>
-                    </Navbar>
+                    <DictyNavbar
+                        genomes={ genomes }
+                        tools={ tools }
+                        explore={ explore }
+                        research={ research }
+                        community={ community }
+                    />
                 </StyleRoot>
             { this.renderChildren() }
             </div>
@@ -49,8 +58,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order } = state
-    return { auth: auth, routeProps: ownProps, order: order }
+    const { auth, order, page } = state
+    return {
+        auth: auth,
+        routeProps: ownProps,
+        order: order,
+        page: page
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,7 +73,9 @@ const mapDispatchToProps = (dispatch) => {
         orderActions: bindActionCreators(
             Object.assign({}, shippingActionCreators, paymentActionCreators, submitActionCreators),
             dispatch
-        )
+        ),
+        pageActions: bindActionCreators(pageActionCreators, dispatch),
+        routerActions: bindActionCreators(routerActions, dispatch)
     }
 }
 

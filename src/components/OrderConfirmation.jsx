@@ -28,7 +28,7 @@ export default class OrderConfirmation extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-offset-4 col-md-4">
-                        <Link to="/home"
+                        <Link to="/"
                             className="btn btn-primary btn-lg btn-block">
                             <i className="fa fa-home"></i> Stock Center Home
                         </Link>

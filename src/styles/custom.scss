@@ -1,9 +1,19 @@
 @import "core";
 
-.panel-green {
+.panel-dsc {
   margin: 15px auto;
   padding: 15px;
-  background-color: #dff0d8;
-  border: 1px solid #dff0d8;
   border-radius: 10px;
+}
+.panel-green {
+  background-color: #DFF0d8;
+  border: 1px solid #DFF0d8;
+}
+.panel-blue {
+  background-color: #EFF8FB;
+  border: 1px solid #EFF8FB;
+}
+.panel-gray {
+  background-color: #F2F2F2;
+  border: 1px solid #F2F2F2;
 }

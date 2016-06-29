@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
-import { syncHistory } from 'react-router-redux'
-import history from 'utils/routerHistory'
+import { routerMiddleware } from 'react-router-redux'
+import { browserHistory } from 'react-router'
 
-const middleware = syncHistory(history)
+const middleware = routerMiddleware(browserHistory)
 const enhancer = compose(
     applyMiddleware(middleware, thunk),
     DevTools.instrument(),
@@ -16,9 +16,8 @@ export default function configureStore(initialState) {
 
     if (module.hot) {
         module.hot.accept('../reducers', () =>
-          store.replaceReducer(require('../reducers').default)
+            store.replaceReducer(require('../reducers').default)
         )
     }
-    middleware.listenForReplays(store)
     return store
 }

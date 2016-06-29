@@ -1,0 +1,16 @@
+.editor {
+    border: 1px solid #ddd;
+    cursor: text;
+    min-height: 80px;
+    padding: 10px;
+    margin: 10px auto;
+
+}
+.edit-panel {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+[contenteditable="true"]:focus {
+    outline: none;
+}
