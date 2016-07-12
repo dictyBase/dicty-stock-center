@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import DictyNavbar from 'components/DictyNavbar'
+import DictyHeader from 'components/DictyHeader'
+import DictyFooter from 'components/DictyFooter'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
 import { bindActionCreators } from 'redux'
@@ -22,6 +24,24 @@ class App extends Component {
         })
     };
     render() {
+        // const items = [
+        //     {
+        //         name: 'Genomes',
+        //         href: '#',
+        //         links: [
+        //             {name: 'Home', href: '#'},
+        //             {name: 'Home', href: '#'}
+        //         ]
+        //     },
+        //     {
+        //         name: 'Tools',
+        //         href: '#',
+        //         links: [
+        //             {name: 'Home', href: '#'},
+        //             {name: 'Home', href: '#'}
+        //         ]
+        //     }
+        // ]
         const genomes = [
             {href: '#', name: 'Home'}
         ]
@@ -40,9 +60,19 @@ class App extends Component {
             {href: '#', name: 'Cite Us'},
             {href: '#', name: 'Dicty Annual Conferences'}
         ]
+        const headerLinks = [
+            {href: '#', name: 'Cite Us', iconClass: 'fa fa-book'},
+            {href: '#', name: 'Downloads', iconClass: 'fa fa-download'},
+            {href: '#', name: 'About Us', iconClass: 'fa fa-info-circle'}
+        ]
+        const logo = {
+            path: 'https://betatest.dictybase.org/scripts/dictyHF/dictyLogo.png',
+            href: 'http://dictybase.org/'
+        }
         return (
-            <div>
-                <StyleRoot>
+            <StyleRoot>
+                <div>
+                    <DictyHeader links={ headerLinks } logo={ logo } />
                     <DictyNavbar
                         genomes={ genomes }
                         tools={ tools }
@@ -50,9 +80,10 @@ class App extends Component {
                         research={ research }
                         community={ community }
                     />
-                </StyleRoot>
-            { this.renderChildren() }
-            </div>
+                    { this.renderChildren() }
+                    <DictyFooter />
+                </div>
+            </StyleRoot>
         )
     }
 }
