@@ -1,7 +1,7 @@
 import types from '../constants'
 import querystring from 'querystring'
 import oauthConfig from 'utils/oauthConfig'
-import { routeActions } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import jsr from 'jsrsasign'
 import simpleStorage from 'simplestorage.js'
 
@@ -75,7 +75,7 @@ export const oAuthLogin = ({query, provider, url}) => {
             body: body
         }
         dispatch(requestLogin(provider))
-        dispatch(routeActions.push('/load/auth'))
+        dispatch(push('/load/auth'))
         fetch(`${authserver}/tokens/${provider}`, config)
         .then(status)
         .then(json)
@@ -83,10 +83,10 @@ export const oAuthLogin = ({query, provider, url}) => {
             simpleStorage.set('token', data.token)
             const jwtStr = jsr.jws.JWS.parse(data.token)
             dispatch(receiveLogin(jwtStr.payloadObj.user))
-            dispatch(routeActions.push('/'))
+            dispatch(push('/'))
         }).catch(error => {
             dispatch(loginError(error))
-            dispatch(routeActions.push('/error'))
+            dispatch(push('/error'))
         })
     }
 }
@@ -97,6 +97,6 @@ export const logoutUser = () => {
     return dispatch => {
         simpleStorage.deleteKey('token')
         dispatch(receiveLogout())
-        dispatch(routeActions.push('/'))
+        dispatch(push('/'))
     }
 }
