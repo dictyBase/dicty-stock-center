@@ -24,46 +24,67 @@ class App extends Component {
         })
     };
     render() {
-        // const items = [
-        //     {
-        //         name: 'Genomes',
-        //         href: '#',
-        //         links: [
-        //             {name: 'Home', href: '#'},
-        //             {name: 'Home', href: '#'}
-        //         ]
-        //     },
-        //     {
-        //         name: 'Tools',
-        //         href: '#',
-        //         links: [
-        //             {name: 'Home', href: '#'},
-        //             {name: 'Home', href: '#'}
-        //         ]
-        //     }
-        // ]
-        const genomes = [
-            {href: '#', name: 'Home'}
-        ]
-        const tools = [
-            {href: '#', name: 'New Genome Browser'}
-        ]
-        const explore = [
-            {href: '#', name: 'Dicty Art'},
-            {href: '#', name: 'Gallery'}
-        ]
-        const research = [
-            {href: '#', name: 'Anatomy Ontology'},
-            {href: '#', name: 'Codon Bias table'}
-        ]
-        const community = [
-            {href: '#', name: 'Cite Us'},
-            {href: '#', name: 'Dicty Annual Conferences'}
+        const siteMap = [
+            {
+                name: 'Genomes',
+                links: [
+                    {name: 'Genomes Home', href: '#'}
+                ]
+            },
+            {
+                name: 'Tools',
+                links: [
+                    {name: 'Tools Home', href: '#'},
+                    {name: 'New Genome Browser', href: '#'}
+                ]
+            },
+            {
+                name: 'Explore',
+                links: [
+                    {name: 'Explore Home', href: '#'},
+                    {name: 'Dicty Art', href: '#'},
+                    {name: 'Gallery', href: '#'},
+                    {name: 'Genome Resources', href: '#'},
+                    {name: 'Genome Statistics', href: '#'},
+                    {name: 'Learn About Dicty', href: '#'},
+                    {name: 'teaching Protocols', href: '#'},
+                    {name: 'Useful Links', href: '#'}
+                ]
+            },
+            {
+                name: 'Research',
+                links: [
+                    {name: 'Research Home', href: '#'},
+                    {name: 'Anatomy Ontology', href: '#'},
+                    {name: 'Codon Bias Table', href: '#'},
+                    {name: 'Nomenclature Guidelines', href: '#'},
+                    {name: 'Phenotyping', href: '#'},
+                    {name: 'Techniques', href: '#'}
+                ]
+            },
+            {
+                name: 'Dicty Stock Center',
+                links: [
+                    {name: 'Stock Center Home', href: '/'}
+                ]
+            },
+            {
+                name: 'Community',
+                links: [
+                    {name: 'Community Home', href: '#'},
+                    {name: 'Cite Us', href: '#'},
+                    {name: 'Dicty Annual Conferences', href: '#'},
+                    {name: 'Dicty Email Forum', href: '#'},
+                    {name: 'Dicty Labs', href: '#'},
+                    {name: 'History', href: '#'},
+                    {name: 'Jobs', href: '#'},
+                    {name: 'Upcoming Meetings', href: '#'}
+                ]
+            }
         ]
         const headerLinks = [
-            {href: '#', name: 'Cite Us', iconClass: 'fa fa-book'},
-            {href: '#', name: 'Downloads', iconClass: 'fa fa-download'},
-            {href: '#', name: 'About Us', iconClass: 'fa fa-info-circle'}
+            {href: 'contact', name: 'Contact', iconClass: 'fa fa-envelope'},
+            {href: 'login', name: 'Login', iconClass: 'fa fa-sign-in'}
         ]
         const logo = {
             path: 'https://betatest.dictybase.org/scripts/dictyHF/dictyLogo.png',
@@ -73,13 +94,7 @@ class App extends Component {
             <StyleRoot>
                 <div>
                     <DictyHeader links={ headerLinks } logo={ logo } />
-                    <DictyNavbar
-                        genomes={ genomes }
-                        tools={ tools }
-                        explore={ explore }
-                        research={ research }
-                        community={ community }
-                    />
+                    <DictyNavbar items={ siteMap } />
                     { this.renderChildren() }
                     <DictyFooter />
                 </div>
