@@ -9,29 +9,20 @@ import DropdownMenu from 'dicty-react-components/src/DropdownMenu'
 export default class DictyNavbar extends Component {
     displayName = 'navigation bar';
     render() {
-        const { genomes, tools, explore, research, community } = this.props
+        const { items } = this.props
         return (
             <Navbar navStyle={ {marginTop: '5px'} }>
-                <NavbarHeader href="/" name="Stock Center" />
+                <NavbarHeader href="/" name="Dicty Stock Center" />
                 <NavbarItems>
-                    <NavbarDropdown name="Genomes">
-                        <DropdownMenu menuItems={ genomes } />
-                    </NavbarDropdown>
-                    <NavbarDropdown name="Tools">
-                        <DropdownMenu menuItems={ tools } />
-                    </NavbarDropdown>
-                    <NavbarDropdown name="Explore">
-                        <DropdownMenu menuItems={ explore } />
-                    </NavbarDropdown>
-                    <NavbarDropdown name="Research">
-                        <DropdownMenu menuItems={ research } />
-                    </NavbarDropdown>
-                    <NavbarDropdown name="Stock Center">
-                        <DropdownMenu menuItems={ community } />
-                    </NavbarDropdown>
-                    <NavbarDropdown name="Community">
-                        <DropdownMenu menuItems={ community } />
-                    </NavbarDropdown>
+                    {
+                        items.map((item, index) => {
+                            return (
+                                <NavbarDropdown key={ index } name={ item.name }>
+                                    <DropdownMenu menuItems={ item.links } />
+                                </NavbarDropdown>
+                            )
+                        })
+                    }
                 </NavbarItems>
             </Navbar>
         )
