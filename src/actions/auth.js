@@ -97,6 +97,6 @@ export const logoutUser = () => {
     return dispatch => {
         simpleStorage.deleteKey('token')
         dispatch(receiveLogout())
-        dispatch(push('/'))
+        dispatch(push('/logout'))
     }
 }
