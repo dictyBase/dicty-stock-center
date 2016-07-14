@@ -34,6 +34,16 @@ export default class DictyHeader extends Component {
                                       name="Contact"
                                       iconClass="fa fa-envelope"
                                     />
+
+                                    { auth.isAuthenticated ? (
+                                            <HeaderLink
+                                              router
+                                              to="my-dsc"
+                                              name="My DSC"
+                                              iconClass="fa fa-user"
+                                            />
+                                        ) : null
+                                    }
                                     {
                                         auth.isAuthenticated ? (
                                             <HeaderLink
