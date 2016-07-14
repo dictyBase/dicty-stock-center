@@ -82,10 +82,6 @@ class App extends Component {
                 ]
             }
         ]
-        const headerLinks = [
-            {href: 'contact', name: 'Contact', iconClass: 'fa fa-envelope'},
-            {href: 'login', name: 'Login', iconClass: 'fa fa-sign-in'}
-        ]
         const logo = {
             path: 'https://betatest.dictybase.org/scripts/dictyHF/dictyLogo.png',
             href: 'http://dictybase.org/'
@@ -93,7 +89,11 @@ class App extends Component {
         return (
             <StyleRoot>
                 <div>
-                    <DictyHeader links={ headerLinks } logo={ logo } />
+                    <DictyHeader
+                      auth={ this.props.auth }
+                      logo={ logo }
+                      authActions={ this.props.authActions }
+                    />
                     <DictyNavbar items={ siteMap } />
                     { this.renderChildren() }
                     <DictyFooter />
