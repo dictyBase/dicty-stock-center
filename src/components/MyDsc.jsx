@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import 'styles/core.scss'
 
-export default class Profile extends Component {
+export default class MyDsc extends Component {
     displayName = 'user profile';
     render() {
         const { user } = this.props.auth
