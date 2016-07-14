@@ -5,7 +5,7 @@ import Login from 'components/Login'
 import OauthCallback from 'components/OauthCallback'
 import { AuthLoader, Logout } from 'components/Auth'
 import Home from 'components/Home'
-import Profile from 'components/Profile'
+import MyDsc from 'components/MyDsc'
 import Error from 'components/Error'
 import Shipping from 'components/form/Shipping'
 import EditShipping from 'components/form/EditShipping'
@@ -28,7 +28,7 @@ export default (
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
         <Route path="logout" component={ Logout } />
-        <Route path="home/profile" component={ Profile } />
+        <Route path="my-dsc" component={ MyDsc } />
         <Route path="error" component={ Error } />
         <Route path="order" component={ Order }>
             <Route path="cart" component={ ShoppingCart } />
