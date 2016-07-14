@@ -28,7 +28,7 @@ export class Logout extends Component {
             <div className="container">
                 <Grid>
                     <Cell width="1" align="center">
-                        <div className="alert alert-success text-center">
+                        <div style={ {width: '100%'} } className="alert alert-success text-center">
                             <i className="fa fa-5x fa-check-circle-o"></i>
                             <h1>Logout successful!</h1>
                             <p>You have successfully logged out of Dicty Stock Center</p>
