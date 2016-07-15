@@ -30,7 +30,7 @@ export default class DictyHeader extends Component {
                                 <HeaderLinks>
                                     <HeaderLink
                                       router
-                                      to="contact"
+                                      to="/contact"
                                       name="Contact"
                                       iconClass="fa fa-envelope"
                                     />
@@ -38,7 +38,7 @@ export default class DictyHeader extends Component {
                                     { auth.isAuthenticated ? (
                                             <HeaderLink
                                               router
-                                              to="my-dsc"
+                                              to="/my-dsc"
                                               name="My DSC"
                                               iconClass="fa fa-user"
                                             />
@@ -55,7 +55,7 @@ export default class DictyHeader extends Component {
                                         ) : (
                                             <HeaderLink
                                               router
-                                              to="login"
+                                              to="/login"
                                               name="Login"
                                               iconClass="fa fa-sign-in"
                                             />
