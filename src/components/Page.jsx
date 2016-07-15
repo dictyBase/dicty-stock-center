@@ -21,8 +21,8 @@ import simpleStorage from 'simplestorage.js'
 // const rawContent = {
 //     blocks: [
 //         {
-//             text: 'About dicty stock center',
-//             type: 'unstyled'
+//             text: 'Order Information',
+//             type: 'header-one'
 //         },
 //         {
 //             text: '',
@@ -30,7 +30,7 @@ import simpleStorage from 'simplestorage.js'
 //         },
 //         {
 //             text: about,
-//             type: 'unstyled'
+//             type: 'paragraph'
 //         },
 //         {
 //             text: '',
@@ -44,9 +44,10 @@ export default class Page extends Component {
     displayName = 'page component'
     constructor(props) {
         super(props)
+        const page = props.routeProps.params.name
         this.state = {
-            editorState: simpleStorage.get('page') ? EditorState.createWithContent(
-                convertFromRaw(simpleStorage.get('page'))
+            editorState: simpleStorage.get(page) ? EditorState.createWithContent(
+                convertFromRaw(simpleStorage.get(page))
             ) : EditorState.createEmpty()
         }
     }

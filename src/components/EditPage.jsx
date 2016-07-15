@@ -23,10 +23,10 @@ export default class EditPage extends Component {
     onClick = () => {
       // save the text in local storage
         const { editorState } = this.state
-        const { routerActions } = this.props
+        const { routerActions, routeProps } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
-        simpleStorage.set('page', rawData)
-        routerActions.push('/')
+        simpleStorage.set(routeProps.params.name, rawData)
+        routerActions.push('/page/' + routeProps.params.name)
     }
     handleKeyCommand = (command) => {
         const { editorState } = this.state
