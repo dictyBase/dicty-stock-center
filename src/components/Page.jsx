@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Editor, EditorState, convertFromRaw} from 'draft-js'
 import simpleStorage from 'simplestorage.js'
+import { Grid, Cell } from 'radium-grid'
 // import blockRenderer from 'components/CustomBlocks'
 
 // const about = `
@@ -64,22 +65,20 @@ export default class Page extends Component {
         const { editorState } = this.state
         return (
           <div className="container">
-            <div className="row">
-              <div className="col-xs-1">
-                <a href="#" onClick={ this.onClick }>
-                  <i className="fa fa-2x fa-pencil" title="Edit page"></i>
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-xs-12">
-                <Editor
-                  editorState={ editorState }
-                  ref="editor"
-                  readOnly
-                />
-              </div>
-            </div>
+              <Grid cellWidth="1">
+                  <Cell align="right">
+                      <a href="#" onClick={ this.onClick }>
+                        <i className="fa fa-2x fa-pencil" title="Edit page"></i>
+                      </a>
+                  </Cell>
+                  <Cell>
+                      <Editor
+                        editorState={ editorState }
+                        ref="editor"
+                        readOnly
+                      />
+                  </Cell>
+              </Grid>
           </div>
         )
     }
