@@ -21,12 +21,16 @@ export default class EditPage extends Component {
     }
     onChange = (editorState) => this.setState({editorState})
     focus = () => this.refs.editor.focus()
-    onClick = () => {
+    onSave = () => {
       // save the text in local storage
         const { editorState } = this.state
         const { routerActions, routeProps } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
         simpleStorage.set(routeProps.params.name, rawData)
+        routerActions.push('/page/' + routeProps.params.name)
+    }
+    onCancel= () => {
+        const { routerActions, routeProps } = this.props
         routerActions.push('/page/' + routeProps.params.name)
     }
     handleKeyCommand = (command) => {
@@ -89,7 +93,7 @@ export default class EditPage extends Component {
                             style={ {margin: '5px auto'} }
                             type="button"
                             className="btn btn-block btn-default"
-                            onClick = { this.onClick }>
+                            onClick = { this.onCancel }>
                               Cancel
                           </button>
                       </Cell>
@@ -98,7 +102,7 @@ export default class EditPage extends Component {
                             style={ {margin: '5px auto'} }
                             type="button"
                             className="btn btn-block btn-success"
-                            onClick = { this.onClick }>
+                            onClick = { this.onSave }>
                               Save
                           </button>
                       </Cell>
