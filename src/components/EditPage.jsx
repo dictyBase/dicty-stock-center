@@ -3,9 +3,10 @@ import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
 import BlockToolbar from 'components/BlockToolbar'
 import InlineToolbar from 'components/InlineToolbar'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
+import { Grid, Cell } from 'radium-grid'
+import simpleStorage from 'simplestorage.js'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
-import simpleStorage from 'simplestorage.js'
 
 export default class EditPage extends Component {
     displayName = 'page editor'
@@ -57,26 +58,20 @@ export default class EditPage extends Component {
         const { editorState } = this.state
         return (
           <div className="container">
-            <div className="row">
-              <div className="col-xs-12">
                 <div className="edit-panel">
                   <div className="toolbar-nav">
-                    <div className="row">
-                      <div className="col-xs-12">
-                        <div className="btn-group">
-                          <BlockToolbar
-                            editorState={ editorState }
-                            clickFn={ this.onToggleBlock }
-                            toolSpec={ blockTypes }
-                          />
-                          <InlineToolbar
-                            editorState={ editorState }
-                            clickFn={ this.onToggleInline }
-                            toolSpec={ inlineTypes }
-                          />
-                        </div>
+                      <div className="btn-group">
+                        <BlockToolbar
+                          editorState={ editorState }
+                          clickFn={ this.onToggleBlock }
+                          toolSpec={ blockTypes }
+                        />
+                        <InlineToolbar
+                          editorState={ editorState }
+                          clickFn={ this.onToggleInline }
+                          toolSpec={ inlineTypes }
+                        />
                       </div>
-                    </div>
                   </div>
                   <div className="editor">
                     <Editor
@@ -86,22 +81,29 @@ export default class EditPage extends Component {
                       ref="editor"
                     />
                   </div>
-                  <div className="row">
-                    <div className="col-md-offset-10 col-md-2">
-
-                    </div>
-                    <div className="col-md-offset-10 col-md-2">
-                      <button
-                        type="button"
-                        className="btn btn-block btn-success"
-                        onClick = { this.onClick }>
-                          Save
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  <Grid cellWidth="1/4" smallCellWidth="1">
+                      <Cell />
+                      <Cell />
+                      <Cell>
+                          <button
+                            style={ {margin: '5px auto'} }
+                            type="button"
+                            className="btn btn-block btn-default"
+                            onClick = { this.onClick }>
+                              Cancel
+                          </button>
+                      </Cell>
+                      <Cell>
+                          <button
+                            style={ {margin: '5px auto'} }
+                            type="button"
+                            className="btn btn-block btn-success"
+                            onClick = { this.onClick }>
+                              Save
+                          </button>
+                      </Cell>
+                  </Grid>
               </div>
-            </div>
           </div>
         )
     }
