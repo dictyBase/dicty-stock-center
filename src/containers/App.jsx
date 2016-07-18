@@ -83,7 +83,7 @@ class App extends Component {
             }
         ]
         const logo = {
-            path: 'https://betatest.dictybase.org/scripts/dictyHF/dictyLogo.png',
+            path: '/dicty-logo.png',
             href: 'http://dictybase.org/'
         }
         return (
