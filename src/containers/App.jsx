@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import DictyNavbar from 'components/DictyNavbar'
+import DictyHeader from 'components/DictyHeader'
+import DictyFooter from 'components/DictyFooter'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
 import { bindActionCreators } from 'redux'
@@ -22,37 +24,81 @@ class App extends Component {
         })
     };
     render() {
-        const genomes = [
-            {href: '#', name: 'Home'}
+        const siteMap = [
+            {
+                name: 'Genomes',
+                links: [
+                    {name: 'Genomes Home', href: '#'}
+                ]
+            },
+            {
+                name: 'Tools',
+                links: [
+                    {name: 'Tools Home', href: '#'},
+                    {name: 'New Genome Browser', href: '#'}
+                ]
+            },
+            {
+                name: 'Explore',
+                links: [
+                    {name: 'Explore Home', href: '#'},
+                    {name: 'Dicty Art', href: '#'},
+                    {name: 'Gallery', href: '#'},
+                    {name: 'Genome Resources', href: '#'},
+                    {name: 'Genome Statistics', href: '#'},
+                    {name: 'Learn About Dicty', href: '#'},
+                    {name: 'teaching Protocols', href: '#'},
+                    {name: 'Useful Links', href: '#'}
+                ]
+            },
+            {
+                name: 'Research',
+                links: [
+                    {name: 'Research Home', href: '#'},
+                    {name: 'Anatomy Ontology', href: '#'},
+                    {name: 'Codon Bias Table', href: '#'},
+                    {name: 'Nomenclature Guidelines', href: '#'},
+                    {name: 'Phenotyping', href: '#'},
+                    {name: 'Techniques', href: '#'}
+                ]
+            },
+            {
+                name: 'Dicty Stock Center',
+                links: [
+                    {name: 'Stock Center Home', href: '/'}
+                ]
+            },
+            {
+                name: 'Community',
+                links: [
+                    {name: 'Community Home', href: '#'},
+                    {name: 'Cite Us', href: '#'},
+                    {name: 'Dicty Annual Conferences', href: '#'},
+                    {name: 'Dicty Email Forum', href: '#'},
+                    {name: 'Dicty Labs', href: '#'},
+                    {name: 'History', href: '#'},
+                    {name: 'Jobs', href: '#'},
+                    {name: 'Upcoming Meetings', href: '#'}
+                ]
+            }
         ]
-        const tools = [
-            {href: '#', name: 'New Genome Browser'}
-        ]
-        const explore = [
-            {href: '#', name: 'Dicty Art'},
-            {href: '#', name: 'Gallery'}
-        ]
-        const research = [
-            {href: '#', name: 'Anatomy Ontology'},
-            {href: '#', name: 'Codon Bias table'}
-        ]
-        const community = [
-            {href: '#', name: 'Cite Us'},
-            {href: '#', name: 'Dicty Annual Conferences'}
-        ]
+        const logo = {
+            path: '/dicty-logo.png',
+            href: 'http://dictybase.org/'
+        }
         return (
-            <div>
-                <StyleRoot>
-                    <DictyNavbar
-                        genomes={ genomes }
-                        tools={ tools }
-                        explore={ explore }
-                        research={ research }
-                        community={ community }
+            <StyleRoot>
+                <div>
+                    <DictyHeader
+                      auth={ this.props.auth }
+                      logo={ logo }
+                      authActions={ this.props.authActions }
                     />
-                </StyleRoot>
-            { this.renderChildren() }
-            </div>
+                    <DictyNavbar items={ siteMap } />
+                    { this.renderChildren() }
+                    <DictyFooter items={ siteMap } />
+                </div>
+            </StyleRoot>
         )
     }
 }

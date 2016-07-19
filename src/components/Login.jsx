@@ -36,9 +36,7 @@ export default class Login extends Component {
                 <div className="row">
                     <div className="col-sm-offset-4 col-sm-4">
                         <div className="panel panel-default">
-
                             <div className="panel-body text-center">
-                                <img src="dicty-login.png" width="100" />
                                 <h1>Log in</h1>
                                 { this.renderOauthButtons() }
                             </div>

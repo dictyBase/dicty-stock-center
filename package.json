@@ -1,6 +1,6 @@
 {
   "name": "Dicty-Stock-Center",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "The Dicty Stock Center app rebuilt with React and Redux!",
   "main": "index.js",
   "engines": {
@@ -52,7 +52,7 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "debug": "^2.2.0",
-    "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/update-dependencies",
+    "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/inline-style",
     "draft-js": "^0.7.0",
     "es6-promise": "^3.2.1",
     "fs": "0.0.2",
@@ -60,6 +60,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jsrsasign": "^5.0.5",
     "radium": "^0.17.1",
+    "radium-grid": "^2.0.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.0.0",
