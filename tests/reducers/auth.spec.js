@@ -83,7 +83,9 @@ describe('reducers', () => {
                 })
             ).to.eql({
                 isFetching: false,
-                isAuthenticated: false
+                isAuthenticated: false,
+                provider: null,
+                user: null
             })
         })
     })
