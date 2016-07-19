@@ -96,7 +96,7 @@ class App extends Component {
                     />
                     <DictyNavbar items={ siteMap } />
                     { this.renderChildren() }
-                    <DictyFooter />
+                    <DictyFooter items={ siteMap } />
                 </div>
             </StyleRoot>
         )
