@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid, Cell } from 'radium-grid'
 
 export default class OauthCallback extends Component {
     displayName = 'oauth callback component';
@@ -15,9 +16,11 @@ export default class OauthCallback extends Component {
     }
     render() {
         return (
-            <div>
-                <h2> Transfering to login system ........ </h2>
-            </div>
+            <Grid>
+                <Cell width="1" align="center">
+                    <h1>Transfering to login system ........</h1>
+                </Cell>
+            </Grid>
         )
     }
 }

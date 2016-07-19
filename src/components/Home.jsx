@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
+import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router'
-import 'styles/core.scss'
+import 'styles/custom.scss'
 
 export default class Home extends Component {
     displayName = 'homepage component';
-    renderUserInfo = () => {
+    renderGreeting = () => {
         const { user } = this.props.auth
         return (
-            <div className="row">
-                <div className="col-sm-4">
-                    Hello, { user.name }
-                </div>
-                <div className="col-sm-offset-4 col-sm-4 text-right">
-                    <Link to="home/profile">My Profile</Link>
-                </div>
-            </div>
+            <span>Hello, { user.name }</span>
         )
     }
     render() {
         const { user } = this.props.auth
-        const header = 'Welcome to Dicty Stock Center (DSC)'
         const intro = `
         The DSC is a rapidly growing central repository for Dictyostelium discoideum strains,
         isolates of other cellular slime mold species, plasmids, commonly used food bacteria
@@ -37,97 +30,133 @@ export default class Home extends Component {
         materials. Strains are stored at two different locations in liquid nitrogen, either as
         spores or as vegetative amoebae.
         `
-        const plasmids = 1917
-        const strains = 709
-        const antibodies = 12
-        const cdna = 1
+        const links = [
+            {name: 'Contact the DSC', to: ''},
+            {name: 'DSC FAQ', to: ''},
+            {name: 'Nomenclature Guide', to: ''},
+            {name: 'DSC History', to: ''},
+            {name: 'Other Stock Centers', to: ''}
+        ]
+        const info = [
+            {name: 'Order Information', to: '/page/orderInformation'},
+            {name: 'Payment Information', to: '/page/paymentInformation'},
+            {name: 'Deposit Information', to: '/page/depositInformation'}
+        ]
+        const availability = [
+            {name: 'Strains', amount: 709},
+            {name: 'Plasmids', amount: 1917},
+            {name: 'Antibodies', amount: 12},
+            {name: 'cDNA library', amount: 1}
+        ]
+        const downloads = [
+            {name: 'Phenotype Ontology', to: ''},
+            {name: 'Strain Characteristics', to: ''},
+            {name: 'Mutagenesis Methods', to: ''},
+            {name: 'Plasmid Keywords', to: ''}
+        ]
+        const materials = [
+            {name: 'Strain Catalog', to: ''},
+            {name: 'Plasmid Catalog', to: ''},
+            {name: 'Bacterial Strains', to: ''},
+            {name: 'Other Materials', to: ''}
+        ]
         return (
             <div className="container">
-                { user && this.renderUserInfo() }
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h1 className="page-header">{ header }</h1>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12">
+                <Grid cellWidth="1">
+                    <Cell>{ user && this.renderGreeting() }</Cell>
+                    <Cell>
+                        <h1 className="page-header">
+                            Welcome to Dicty Stock Center (DSC)
+                        </h1>
+                    </Cell>
+                    <Cell>
                         <p>{ intro }</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className="row">
-                            <div className="col-xs-12">
-                                { subIntro }
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12">
+                    </Cell>
+                </Grid>
+                <Grid smallCellWidth="1">
+                    <Cell>
+                        <Grid cellWidth="1">
+                            <Cell>{ subIntro }</Cell>
+                            <Cell>
                                 <div className="panel-dsc panel-blue">
-                                    <a href="#"><h4>Contact the DSC</h4></a>
-                                    <a href="#"><h4>DSC FAQ</h4></a>
-                                    <a href="#"><h4>Nomenclature Guide</h4></a>
-                                    <a href="#"><h4>DSC History</h4></a>
-                                    <a href="#"><h4>Other Stock Centers</h4></a>
+                                    { links.map((link, index) => {
+                                        return (
+                                            <h4 key={ index }>
+                                                <Link to={ link.to }>{ link.name }</Link>
+                                            </h4>
+                                        )
+                                    }) }
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-5">
-                        <div className="row">
-                            <div className="col-xs-12">
+                            </Cell>
+                        </Grid>
+                    </Cell>
+                    <Cell>
+                        <Grid cellWidth="1">
+                            <Cell>
                                 <div className="panel-dsc panel-blue">
-                                    <a href="#"><h4>Order Info</h4></a>
-                                    <a href="#"><h4>Payment Info</h4></a>
-                                    <a href="#"><h4>Deposit Info</h4></a>
+                                    { info.map((link, index) => {
+                                        return (
+                                            <h4 key={ index }>
+                                                <Link to={ link.to }>{ link.name }</Link>
+                                            </h4>
+                                        )
+                                    }) }
                                 </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-6">
+                            </Cell>
+                            <Cell>
                                 <div className="panel-dsc panel-gray">
                                     <h4>Availability</h4>
-                                    <h5><strong>{ strains }</strong> Strains</h5>
-                                    <h5><strong>{ plasmids }</strong> Plasmids</h5>
-                                    <h5><strong>{ antibodies }</strong> Antibodies</h5>
-                                    <h5><strong>{ cdna }</strong> cDNA library</h5>
+                                    { availability.map((item, index) => {
+                                        return (
+                                            <h5 key={ index }>
+                                                <strong>{ item.amount }</strong> { item.name }
+                                            </h5>
+                                        )
+                                    }) }
                                 </div>
-                            </div>
-                            <div className="col-md-6">
+                            </Cell>
+                            <Cell>
                                 <div className="panel-dsc panel-blue">
                                     <h4>Download / View</h4>
-                                    <a href="#"><h5>Phenotype Ontology</h5></a>
-                                    <a href="#"><h5>Strain Characteristics</h5></a>
-                                    <a href="#"><h5>Mutagenesis Methods</h5></a>
-                                    <a href="#"><h5>Plasmid Keywords</h5></a>
+                                    { downloads.map((link, index) => {
+                                        return (
+                                            <h5 key={ index }>
+                                                <Link to={ link.to }>{ link.name }</Link>
+                                            </h5>
+                                        )
+                                    }) }
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <img src="http://placehold.it/260x150" className="img-responsive" />
-                            </div>
-                            <div className="col-xs-12">
-                                <p>The mutant pictures shown here here
-                                    have been provided by Bill Loomis.
-                                    Many mutants are available at the DSC
-                                </p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12">
+                            </Cell>
+                        </Grid>
+                    </Cell>
+                    <Cell>
+                        <Grid cellWidth="1">
+                            <Cell align="center">
+                                <figure>
+                                  <img className="img-responsive"
+                                    src="http://wiki.dictybase.org/dictywiki/images/c/cd/DG1100.jpg"
+                                  />
+                                  <figcaption>
+                                      The mutant pictures shown here here
+                                      have been provided by Bill Loomis.
+                                      Many mutants are available at the DSC
+                                  </figcaption>
+                                </figure>
+                            </Cell>
+                            <Cell>
                                 <div className="panel-dsc panel-gray">
-                                    <a href="#"><h4>Strain Catalog</h4></a>
-                                    <a href="#"><h4>Plasmid Catalog</h4></a>
-                                    <a href="#"><h4>Bacterial Strains</h4></a>
-                                    <a href="#"><h4>Other Materials</h4></a>
+                                { materials.map((link, index) => {
+                                    return (
+                                        <h4 key={ index }>
+                                            <Link to={ link.to }>{ link.name }</Link>
+                                        </h4>
+                                    )
+                                }) }
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </Cell>
+                        </Grid>
+                    </Cell>
+                </Grid>
             </div>
         )
     }

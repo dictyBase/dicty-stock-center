@@ -69,6 +69,19 @@ const oauthConfig = {
             ['state', 'dropbox']
         ],
         popupOptions: { width: 1028, height: 640 }
+    },
+    orcid: {
+        name: 'ORCID',
+        url: '/auth/orcid',
+        authorizationEndpoint: 'https://orcid.org/oauth/authorize',
+        clientId: clientConfig.orcid.clientId,
+        redirectUrl: `${window.location.origin}/orcid/callback`,
+        scopes: ['/authenticate'],
+        scopeDelimiter: ' ',
+        requiredUrlParams: [
+            ['response_type', 'code']
+        ],
+        popupOptions: { width: 1028, height: 640 }
     }
 }
 

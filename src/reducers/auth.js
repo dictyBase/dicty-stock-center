@@ -46,7 +46,9 @@ const authReducer = (state = initialState, action) => {
         return {
             ...state,
             isFetching: false,
-            isAuthenticated: false
+            isAuthenticated: false,
+            provider: null,
+            user: null
         }
     default:
         return state
