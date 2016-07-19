@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import Panel from 'dicty-react-components/src/Panel'
-import PanelHeader from 'dicty-react-components/src/PanelHeader'
-import PanelTitle from 'dicty-react-components/src/PanelTitle'
+// import PanelHeader from 'dicty-react-components/src/PanelHeader'
+// import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
 import { Link } from 'react-router'
 import 'styles/core.scss'
@@ -23,12 +23,13 @@ export default class MyDsc extends Component {
                     <Cell>
                         <h1 className="page-header">My DSC</h1>
                     </Cell>
-                    <Cell width="1">
+                    <Cell width="1" align="center">
                         <Panel>
-                            <PanelHeader>
-                                <PanelTitle>Personal Information</PanelTitle>
-                            </PanelHeader>
                             <PanelBody>
+                                <h1>
+                                    <i className="fa fa-user"></i> Personal Information
+                                </h1>
+                                <hr />
                                 <h3>Name: { user.name }</h3>
                                 <h3>Email: { user.email }</h3>
                                 <h3>Provider: { provider }</h3>
