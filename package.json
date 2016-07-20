@@ -56,7 +56,7 @@
     "draft-js": "^0.7.0",
     "es6-promise": "^3.2.1",
     "fs": "0.0.2",
-    "history": "^3.0.0",
+    "history": "^2.1.2",
     "isomorphic-fetch": "^2.2.1",
     "jsrsasign": "^5.0.5",
     "radium": "^0.17.1",
