@@ -1,4 +1,4 @@
-import createHistory from 'history/lib/createBrowserHistory'
+import { createHistory } from 'history'
 import { useRouterHistory } from 'react-router'
 
 const history = useRouterHistory(createHistory)({
