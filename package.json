@@ -1,6 +1,6 @@
 {
   "name": "Dicty-Stock-Center",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "The Dicty Stock Center app rebuilt with React and Redux!",
   "main": "index.js",
   "engines": {
