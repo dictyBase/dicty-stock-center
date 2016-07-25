@@ -18,6 +18,7 @@ import EditPayment from 'components/form/EditPayment'
 import Submit from 'components/form/Submit'
 import Page from 'components/Page'
 import EditPage from 'components/EditPage'
+import PageNotReady from 'components/PageNotReady'
 
 export default (
     <Route path="/" component={ App }>
@@ -40,6 +41,7 @@ export default (
             <Route path="submitting" component={ SubmitLoader } />
             <Route path="submitted" component={ OrderConfirmation } />
         </Route>
+        <Route path="*" component={ PageNotReady } />
     </Route>
 )
 
