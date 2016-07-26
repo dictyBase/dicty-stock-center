@@ -39,10 +39,11 @@ export default class Home extends Component {
             {name: 'Deposit Information', to: '/deposits/information'}
         ]
         const availability = [
-            {name: 'Strains', amount: 709},
-            {name: 'Plasmids', amount: 1917},
+            {name: 'Strains', amount: 1927},
+            {name: 'Plasmids', amount: 882},
             {name: 'Antibodies', amount: 12},
-            {name: 'cDNA library', amount: 1}
+            {name: 'cDNA library', amount: 1},
+            {name: 'Genomic library', amount: 1}
         ]
         const downloads = [
             {name: 'Phenotype Ontology', to: ''},
