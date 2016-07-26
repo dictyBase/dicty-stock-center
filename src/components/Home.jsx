@@ -38,9 +38,9 @@ export default class Home extends Component {
             {name: 'Other Stock Centers', to: ''}
         ]
         const info = [
-            {name: 'Order Information', to: '/page/orderInformation'},
-            {name: 'Payment Information', to: '/page/paymentInformation'},
-            {name: 'Deposit Information', to: '/page/depositInformation'}
+            {name: 'Order Information', to: '/orders/information'},
+            {name: 'Payment Information', to: '/payments/information'},
+            {name: 'Deposit Information', to: '/deposits/information'}
         ]
         const availability = [
             {name: 'Strains', amount: 709},
