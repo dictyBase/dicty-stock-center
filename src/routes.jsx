@@ -18,6 +18,7 @@ import EditPayment from 'components/form/EditPayment'
 import Submit from 'components/form/Submit'
 import InfoPage from 'components/InfoPage'
 import EditInfoPage from 'components/EditInfoPage'
+import Contact from 'components/Contact'
 import PageNotReady from 'components/PageNotReady'
 
 export default (
@@ -28,6 +29,7 @@ export default (
         <Route path="login" component={ Login } />
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
+        <Route path="contact" component={ Contact } />
         <Route path="logout" component={ Logout } />
         <Route path="my-dsc" component={ MyDsc } />
         <Route path="error" component={ Error } />
