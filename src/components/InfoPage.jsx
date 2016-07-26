@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Editor, EditorState, convertFromRaw} from 'draft-js'
 import simpleStorage from 'simplestorage.js'
 import { Grid, Cell } from 'radium-grid'
+
+// import raw data from utils
 import infoPages from 'utils/infoPages'
 
 export default class InfoPage extends Component {
