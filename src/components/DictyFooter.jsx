@@ -36,15 +36,20 @@ export default class DictyFooter extends Component {
                         <Grid cellWidth="1" align="center">
                             <Cell>
                                 <FooterItem title="Please Cite" link="#">
-                                    <ListItem name="dictyBase" link="#" />
-                                    <ListItem name="Dicty Stock Center" link="#" />
+                                    <ListItem name="dictyBase"
+                                      link="http://www.ncbi.nlm.nih.gov/pubmed/23172289" />
+                                    <ListItem name="Dicty Stock Center"
+                                      link="http://www.ncbi.nlm.nih.gov/pubmed/23494302" />
                                 </FooterItem>
                             </Cell>
                             <Cell>
                                 <FooterItem title="Supported By" link="#">
-                                    <ListItem name="NIH" link="#" />
-                                    <ListItem name="GMOD" link="#" />
-                                    <ListItem name="Gene Ontology" link="#" />
+                                    <ListItem name="NIH"
+                                      link="https://www.nih.gov" />
+                                    <ListItem name="GMOD"
+                                      link="http://gmod.org/wiki/Main_Page" />
+                                    <ListItem name="Gene Ontology"
+                                      link="http://geneontology.org/" />
                                 </FooterItem>
                             </Cell>
                         </Grid>

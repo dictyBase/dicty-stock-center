@@ -18,3 +18,10 @@ export const editPage = (content, name) => {
         dispatch(push(`/page/${name}/edit`))
     }
 }
+
+export const editInfoPage = (content, name) => {
+    return (dispatch) => {
+        dispatch(doEdit(content))
+        dispatch(push(`${name}/information/edit`))
+    }
+}
