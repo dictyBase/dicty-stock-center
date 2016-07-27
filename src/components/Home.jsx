@@ -14,21 +14,17 @@ export default class Home extends Component {
     render() {
         const { user } = this.props.auth
         const intro = `
-        The DSC is a rapidly growing central repository for Dictyostelium discoideum strains,
-        isolates of other cellular slime mold species, plasmids, commonly used food bacteria
-        and other materials, such as antibodies. The DSC is located at Northwestern University
-        in Chicago, IL, USA.
+        The DSC is a rapidly growing central repository for Dictyostelium discoideum strains
+        and those of related species, plasmids, commonly used food bacteria, and other materials
+        such as antibodies. The DSC is located at Northwestern University in Chicago, IL, USA.
         `
         const subIntro = `
-        The collection is being built by requesting published strains and plasmids.
-        We encourage and also periodically remind investigators to send new mutants, natural
-        isolates, and plasmids, once they have been published. Validation of the materials is
-        mostly done by observable phenotypes, while mutants are also tested for drug-resistance
-        markers. Plasmids will be checked by performing one or two diagnostic restriction enzyme
-        digests, and are stored both as DNA and as transformed bacteria at -80°C. However, a large
-        component of the quality control program will consist of feedback from the recipients of
-        materials. Strains are stored at two different locations in liquid nitrogen, either as
-        spores or as vegetative amoebae.
+        The collection is being built by requesting published strains and plasmids. We encourage
+        and also periodically remind investigators to send new mutants, natural isolates, and
+        plasmids, once they have been published. We do regular quality checks, however, a large
+        component of the quality control program consists of feedback from the recipients of
+        materials. DSC orders are placed through a shopping cart system and are filled in the
+        order they are received.
         `
         const links = [
             {name: 'Contact the DSC', to: ''},
@@ -38,15 +34,16 @@ export default class Home extends Component {
             {name: 'Other Stock Centers', to: ''}
         ]
         const info = [
-            {name: 'Order Information', to: '/page/orderInformation'},
-            {name: 'Payment Information', to: '/page/paymentInformation'},
-            {name: 'Deposit Information', to: '/page/depositInformation'}
+            {name: 'Order Information', to: '/orders/information'},
+            {name: 'Payment Information', to: '/payments/information'},
+            {name: 'Deposit Information', to: '/deposits/information'}
         ]
         const availability = [
-            {name: 'Strains', amount: 709},
-            {name: 'Plasmids', amount: 1917},
+            {name: 'Strains', amount: 1927},
+            {name: 'Plasmids', amount: 882},
             {name: 'Antibodies', amount: 12},
-            {name: 'cDNA library', amount: 1}
+            {name: 'cDNA library', amount: 1},
+            {name: 'Genomic library', amount: 1}
         ]
         const downloads = [
             {name: 'Phenotype Ontology', to: ''},

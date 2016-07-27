@@ -16,17 +16,20 @@ import ShoppingCart from 'components/ShoppingCart'
 import Payment from 'components/form/Payment'
 import EditPayment from 'components/form/EditPayment'
 import Submit from 'components/form/Submit'
-import Page from 'components/Page'
-import EditPage from 'components/EditPage'
+import InfoPage from 'components/InfoPage'
+import EditInfoPage from 'components/EditInfoPage'
+import Contact from 'components/Contact'
+import PageNotReady from 'components/PageNotReady'
 
 export default (
     <Route path="/" component={ App }>
         <IndexRoute component={ Home } />
-        <Route path="page/:name" component={ Page } />
-        <Route path="page/:name/edit" component={ EditPage } />
+        <Route path=":name/information" component={ InfoPage } />
+        <Route path=":name/information/edit" component={ EditInfoPage } />
         <Route path="login" component={ Login } />
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
+        <Route path="contact" component={ Contact } />
         <Route path="logout" component={ Logout } />
         <Route path="my-dsc" component={ MyDsc } />
         <Route path="error" component={ Error } />
@@ -40,6 +43,7 @@ export default (
             <Route path="submitting" component={ SubmitLoader } />
             <Route path="submitted" component={ OrderConfirmation } />
         </Route>
+        <Route path="*" component={ PageNotReady } />
     </Route>
 )
 
