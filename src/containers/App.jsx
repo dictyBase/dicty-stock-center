@@ -56,7 +56,7 @@ class App extends Component {
                 links: [
                     {name: 'Research Home', href: '/research'},
                     {name: 'Anatomy Ontology', href: '/research/ontology'},
-                    {name: 'Codon Bias Table', href: 'research/codon'},
+                    {name: 'Codon Bias Table', href: '/research/codon'},
                     {name: 'Nomenclature Guidelines', href: '/research/nomenclature'},
                     {name: 'Phenotyping', href: '/research/phenotyping'},
                     {name: 'Techniques', href: '/research/techniques'}
@@ -74,7 +74,7 @@ class App extends Component {
                     {name: 'Community Home', href: '/community'},
                     {name: 'Cite Us', href: '/citation'},
                     {name: 'Dicty Annual Conferences', href: '/community/conference'},
-                    {name: 'Dicty Email Forum', href: 'community/listserv'},
+                    {name: 'Dicty Email Forum', href: '/community/listserv'},
                     {name: 'Dicty Labs', href: '/community/labs'},
                     {name: 'History', href: '/community/history'},
                     {name: 'Jobs', href: '/community/jobs'},
