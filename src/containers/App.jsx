@@ -28,57 +28,57 @@ class App extends Component {
             {
                 name: 'Genomes',
                 links: [
-                    {name: 'Genomes Home', href: '#'}
+                    {name: 'Genomes Home', href: '/genomes'}
                 ]
             },
             {
                 name: 'Tools',
                 links: [
-                    {name: 'Tools Home', href: '#'},
-                    {name: 'New Genome Browser', href: '#'}
+                    {name: 'Tools Home', href: '/tools'},
+                    {name: 'New Genome Browser', href: '/tools/jbrowse'}
                 ]
             },
             {
                 name: 'Explore',
                 links: [
-                    {name: 'Explore Home', href: '#'},
-                    {name: 'Dicty Art', href: '#'},
-                    {name: 'Gallery', href: '#'},
-                    {name: 'Genome Resources', href: '#'},
-                    {name: 'Genome Statistics', href: '#'},
-                    {name: 'Learn About Dicty', href: '#'},
-                    {name: 'teaching Protocols', href: '#'},
-                    {name: 'Useful Links', href: '#'}
+                    {name: 'Explore Home', href: '/explore'},
+                    {name: 'Dicty Art', href: '/explore/art'},
+                    {name: 'Gallery', href: '/explore/gallery'},
+                    {name: 'Genome Resources', href: '/explore/resources'},
+                    {name: 'Genome Statistics', href: '/explore/statistics'},
+                    {name: 'Learn About Dicty', href: '/explore/learn'},
+                    {name: 'Teaching Protocols', href: '/explore/teach'},
+                    {name: 'Useful Links', href: '/explore/links'}
                 ]
             },
             {
                 name: 'Research',
                 links: [
-                    {name: 'Research Home', href: '#'},
-                    {name: 'Anatomy Ontology', href: '#'},
-                    {name: 'Codon Bias Table', href: '#'},
-                    {name: 'Nomenclature Guidelines', href: '#'},
-                    {name: 'Phenotyping', href: '#'},
-                    {name: 'Techniques', href: '#'}
+                    {name: 'Research Home', href: '/research'},
+                    {name: 'Anatomy Ontology', href: '/research/ontology'},
+                    {name: 'Codon Bias Table', href: 'research/codon'},
+                    {name: 'Nomenclature Guidelines', href: '/research/nomenclature'},
+                    {name: 'Phenotyping', href: '/research/phenotyping'},
+                    {name: 'Techniques', href: '/research/techniques'}
                 ]
             },
             {
                 name: 'Dicty Stock Center',
                 links: [
-                    {name: 'Stock Center Home', href: '/'}
+                    {name: 'Stock Center Home', href: '/stockcenter'}
                 ]
             },
             {
                 name: 'Community',
                 links: [
-                    {name: 'Community Home', href: '#'},
-                    {name: 'Cite Us', href: '#'},
-                    {name: 'Dicty Annual Conferences', href: '#'},
-                    {name: 'Dicty Email Forum', href: '#'},
-                    {name: 'Dicty Labs', href: '#'},
-                    {name: 'History', href: '#'},
-                    {name: 'Jobs', href: '#'},
-                    {name: 'Upcoming Meetings', href: '#'}
+                    {name: 'Community Home', href: '/community'},
+                    {name: 'Cite Us', href: '/citation'},
+                    {name: 'Dicty Annual Conferences', href: '/community/conference'},
+                    {name: 'Dicty Email Forum', href: 'community/listserv'},
+                    {name: 'Dicty Labs', href: '/community/labs'},
+                    {name: 'History', href: '/community/history'},
+                    {name: 'Jobs', href: '/community/jobs'},
+                    {name: 'Upcoming Meetings', href: '/community/meetings'}
                 ]
             }
         ]
