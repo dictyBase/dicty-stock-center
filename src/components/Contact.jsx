@@ -10,7 +10,7 @@ import SubmitButton from './form/SubmitButton'
 import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
-import 'styles/core.scss'
+import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -32,11 +32,11 @@ class Contact extends Component {
           <div className="container">
             <Grid cellWidth="1" align="center">
               <Cell>
-                  <h1 className="page-header">Suggestions and Questions</h1>
+                  <h1 className="dicty-header">Contact Us</h1>
               </Cell>
               <Cell>
-                  <p>Please fill out the following form
-                    to send an email to a dictyBase curator&nbsp;
+                  <p>For questions, comments, or suggestions, please fill out the form below
+                    to send us an email&nbsp;
                     <a href="mailto:dictybase@northwestern.edu?Subject=Question" target="_top">
                       (dictybase@northwestern.edu)
                     </a>
@@ -45,7 +45,7 @@ class Contact extends Component {
               <Cell cellWidth="1/6" smallCellWidth="1"/>
               <Cell cellWidth="4/6" smallCellWidth="1">
                 <Panel style={ {width: '100%'} }>
-                  <PanelHeader>
+                  <PanelHeader style={ {backgroundColor: '#f9f9f9', padding: '20px'} }>
                       <PanelTitle>
                         <i className="fa fa-envelope-o"></i> Email dictyBase
                       </PanelTitle>
