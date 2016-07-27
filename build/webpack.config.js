@@ -64,7 +64,7 @@ if (__DEV__ || __TEST__) {
   webpackConfig.plugins = [
     new webpack.DefinePlugin(config.globals),
     new HtmlWebpackPlugin({
-      title: 'Dictybase stock center',
+      title: 'Dicty Stock Center',
       template: paths.client('index.ejs'),
       inject: false,
       hash: false,
