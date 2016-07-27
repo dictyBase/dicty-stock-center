@@ -17,7 +17,8 @@ export default class PaymentAlert extends Component {
             <div>
                 <div className="alert alert-info">
                     <p><strong>Credit Card: </strong>
-                        Secure payment when billed
+                        Secure payment when billed.
+                        Incurs a <strong>3.5% service fee.</strong>
                     </p>
                     <p><strong>Wire Transfer: </strong>
                         Northwestern bank information will be emailed
