@@ -50,6 +50,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.3",
     "debug": "^2.2.0",
     "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/inline-style",
