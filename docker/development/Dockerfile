@@ -6,10 +6,6 @@ MAINTAINER Siddhartha Basu<siddhartha-basu@northwestern.edu>
 ARG api_server
 ENV API_SERVER ${api_server:-http://localhost:9900}
 
-# base path for react router
-ARG basename
-ENV BASENAME ${basename:-http://localhost:9994}
-
 # Create app directory
 RUN mkdir -p /usr/src/app 
 

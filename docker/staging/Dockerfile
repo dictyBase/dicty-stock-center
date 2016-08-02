@@ -27,12 +27,17 @@ RUN npm install -g express morgan \
 # Install app dependencies \
     && npm install 
 
+# Setup client keys for third party auth
+ARG client_keys
+ENV CLIENT_KEYS ${client_keys:-src/utils/clientConfig.sample.js}
+
 # Bundle app source
 COPY . /usr/src/app
+# overwrite the client key file 
+COPY $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 
 # Create client config file
 RUN cd /usr/src/app \
-    && cp src/utils/clientConfig.sample.js src/utils/clientConfig.js \
     && npm run deploy \
     && mv dist /www \
 # Add our user and group first to make sure their IDs get assigned consistently
