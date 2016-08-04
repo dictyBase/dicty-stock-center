@@ -20,6 +20,10 @@ const blockTypes = [
     { label: 'OL',
         style: 'ordered-list-item',
         icon: <i className="fa fa-list-ol"></i>
+    },
+    { label: 'Blockquote',
+        style: 'blockquote',
+        icon: <i className="fa fa-quote-left"></i>
     }
 ]
 
