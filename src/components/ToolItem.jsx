@@ -14,6 +14,7 @@ export default class ToolItem extends Component {
         return (
           <button
             type="button"
+            title={ type.label }
             className={ className }
             onClick={ this.onClick }
           >
