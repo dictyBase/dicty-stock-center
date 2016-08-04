@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+import { Editor, EditorState, RichUtils, convertToRaw, Entity, CompositeDecorator } from 'draft-js'
 import BlockToolbar from 'components/BlockToolbar'
 import InlineToolbar from 'components/InlineToolbar'
+import EntityToolbar from 'components/EntityToolbar'
+import Link from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
 import { Grid, Cell } from 'radium-grid'
 import simpleStorage from 'simplestorage.js'
+import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
 
@@ -12,10 +15,16 @@ export default class EditInfoPage extends Component {
     displayName = 'information page editor'
     constructor(props) {
         super(props)
+        const decorator = new CompositeDecorator([
+            {
+                strategy: findEntities.bind(null, 'link'),
+                component: Link
+            }
+        ])
         if (props.page.content) {
             this.state = {
                 editorState:
-                    EditorState.createWithContent(props.page.content)
+                    EditorState.createWithContent(props.page.content, decorator)
             }
         }
     }
@@ -58,7 +67,36 @@ export default class EditInfoPage extends Component {
             )
           )
     }
+    addLink() {
+        const { editorState } = this.state
+        const selection = editorState.getSelection()
+        if (selection.isCollapsed()) {
+            return
+        }
+        // hardcoded url for now
+        const href = 'http://www.google.com'
+        const entityKey = Entity.create('link', 'MUTABLE', {href})
+        this.onChange(RichUtils.toggleLink(editorState, selection, entityKey))
+    }
+    removeLink() {
+        const { editorState } = this.state
+        const selection = editorState.getSelection()
+        if (selection.isCollapsed()) {
+            return
+        }
+        this.onChange(RichUtils.toggleLink(editorState, selection, null))
+    }
     render() {
+        const link = [
+          { label: 'Add Link',
+              action: this.addLink.bind(this),
+              icon: <i className="fa fa-link"></i>
+          },
+          { label: 'Remove Link',
+              action: this.removeLink.bind(this),
+              icon: <i className="fa fa-chain-broken"></i>
+          }
+        ]
         const { editorState } = this.state
         return (
           <div className="container">
@@ -74,6 +112,10 @@ export default class EditInfoPage extends Component {
                           editorState={ editorState }
                           clickFn={ this.onToggleInline }
                           toolSpec={ inlineTypes }
+                        />
+                        <EntityToolbar
+                          editorState={ editorState }
+                          toolSpec={ link }
                         />
                       </div>
                   </div>

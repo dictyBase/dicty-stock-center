@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import {Editor, EditorState, convertFromRaw} from 'draft-js'
+import {Editor, EditorState, convertFromRaw, CompositeDecorator} from 'draft-js'
 import simpleStorage from 'simplestorage.js'
 import { Grid, Cell } from 'radium-grid'
+import findEntities from 'utils/findEntities'
+import Link from 'components/Link'
 
 // import raw data from utils
 import infoPages from 'utils/infoPages'
@@ -10,12 +12,18 @@ export default class InfoPage extends Component {
     displayName = 'information page component'
     constructor(props) {
         super(props)
+        const decorator = new CompositeDecorator([
+            {
+                strategy: findEntities.bind(null, 'link'),
+                component: Link
+            }
+        ])
         const page = props.routeProps.params.name
         this.state = {
             editorState: simpleStorage.get(page) ? EditorState.createWithContent(
-                convertFromRaw(simpleStorage.get(page))
+                convertFromRaw(simpleStorage.get(page)), decorator
             ) : EditorState.createWithContent(
-                convertFromRaw(infoPages[page])
+                convertFromRaw(infoPages[page]), decorator
             )
         }
     }

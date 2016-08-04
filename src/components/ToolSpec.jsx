@@ -20,10 +20,6 @@ const blockTypes = [
     { label: 'OL',
         style: 'ordered-list-item',
         icon: <i className="fa fa-list-ol"></i>
-    },
-    { label: 'A',
-        style: 'link',
-        icon: <i className="fa fa-link"></i>
     }
 ]
 
@@ -42,4 +38,13 @@ const inlineTypes = [
     }
 ]
 
-export { blockTypes, inlineTypes }
+const entityTypes = [
+    { label: 'Add Link',
+        icon: <i className="fa fa-link"></i>
+    },
+    { label: 'Remove Link',
+        icon: <i className="fa fa-chain-broken"></i>
+    }
+]
+
+export { blockTypes, inlineTypes, entityTypes }
