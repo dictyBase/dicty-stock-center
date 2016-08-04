@@ -38,13 +38,4 @@ const inlineTypes = [
     }
 ]
 
-const entityTypes = [
-    { label: 'Add Link',
-        icon: <i className="fa fa-link"></i>
-    },
-    { label: 'Remove Link',
-        icon: <i className="fa fa-chain-broken"></i>
-    }
-]
-
-export { blockTypes, inlineTypes, entityTypes }
+export { blockTypes, inlineTypes }

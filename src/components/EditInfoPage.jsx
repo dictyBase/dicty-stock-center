@@ -87,7 +87,7 @@ export default class EditInfoPage extends Component {
         this.onChange(RichUtils.toggleLink(editorState, selection, null))
     }
     render() {
-        const link = [
+        const entityControls = [
           { label: 'Add Link',
               action: this.addLink.bind(this),
               icon: <i className="fa fa-link"></i>
@@ -115,7 +115,7 @@ export default class EditInfoPage extends Component {
                         />
                         <EntityToolbar
                           editorState={ editorState }
-                          toolSpec={ link }
+                          toolSpec={ entityControls }
                         />
                       </div>
                   </div>
