@@ -116,11 +116,11 @@ export default class EditInfoPage extends Component {
     render() {
         const entityControls = [
           { label: 'Add Link',
-              action: this.addLink.bind(this),
+              action: this.addLink,
               icon: <i className="fa fa-link"></i>
           },
           { label: 'Remove Link',
-              action: this.removeLink.bind(this),
+              action: this.removeLink,
               icon: <i className="fa fa-chain-broken"></i>
           }
         ]
