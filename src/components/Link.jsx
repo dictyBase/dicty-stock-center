@@ -5,9 +5,9 @@ export default class Link extends Component {
   displayName = 'editor link'
   render() {
       const { entityKey, children } = this.props
-      const { href } = Entity.get(entityKey).getData()
+      const { url } = Entity.get(entityKey).getData()
       return (
-        <a href={ href }>
+        <a href={ url }>
             { children }
         </a>
       )
