@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Editor, EditorState, RichUtils, convertToRaw, Entity, CompositeDecorator } from 'draft-js'
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    convertToRaw,
+    Entity,
+    CompositeDecorator,
+    Modifier
+} from 'draft-js'
+
 import BlockToolbar from 'components/BlockToolbar'
 import InlineToolbar from 'components/InlineToolbar'
 import EntityToolbar from 'components/EntityToolbar'
@@ -50,6 +59,28 @@ export default class EditInfoPage extends Component {
         if (newState) {
             this.onChange(newState)
             return true
+        }
+        return false
+    }
+    addLineBreak = () => {
+        let newContent
+        let newEditorState
+        const { editorState } = this.state
+        const content = editorState.getCurrentContent()
+        const selection = editorState.getSelection()
+        const block = content.getBlockForKey(selection.getStartKey())
+
+        if (block.type === 'code-block') {
+            newContent = Modifier.insertText(content, selection, '\n')
+            newEditorState = EditorState.push(editorState, newContent, 'add-new-line')
+            this.onChange(newEditorState)
+            return true
+        }
+        return false
+    }
+    handleReturn = (e) => {
+        if (e.metaKey === true) {
+            return this.addLineBreak()
         }
         return false
     }
@@ -177,6 +208,7 @@ export default class EditInfoPage extends Component {
                     <Editor
                       editorState={ editorState }
                       onChange={ this.onChange }
+                      handleReturn={ this.handleReturn }
                       handleKeyCommand={ this.handleKeyCommand }
                       ref="editor"
                     />
