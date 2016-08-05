@@ -24,7 +24,9 @@ export default class EditInfoPage extends Component {
         if (props.page.content) {
             this.state = {
                 editorState:
-                    EditorState.createWithContent(props.page.content, decorator)
+                    EditorState.createWithContent(props.page.content, decorator),
+                showURLInput: false,
+                urlValue: ''
             }
         }
     }
@@ -38,7 +40,7 @@ export default class EditInfoPage extends Component {
         simpleStorage.set(routeProps.params.name, rawData)
         routerActions.push('/' + routeProps.params.name + '/information')
     }
-    onCancel= () => {
+    onCancel = () => {
         const { routerActions, routeProps } = this.props
         routerActions.push('/' + routeProps.params.name + '/information')
     }
@@ -67,18 +69,40 @@ export default class EditInfoPage extends Component {
             )
           )
     }
-    addLink() {
+    onURLChange = (e) => {
+        this.setState({urlValue: e.target.value})
+    }
+    onLinkInputKeyDown = (e) => {
+        if (e.which === 13) {
+            this.confirmLink(e)
+        }
+    }
+    addLink = () => {
         const { editorState } = this.state
         const selection = editorState.getSelection()
         if (selection.isCollapsed()) {
             return
         }
-        // hardcoded url for now
-        const href = 'http://www.google.com'
-        const entityKey = Entity.create('link', 'MUTABLE', {href})
-        this.onChange(RichUtils.toggleLink(editorState, selection, entityKey))
+        this.setState({
+            showURLInput: true,
+            urlValue: ''
+        })
     }
-    removeLink() {
+    confirmLink = (e) => {
+        e.preventDefault()
+        const { editorState, urlValue } = this.state
+        const entityKey = Entity.create('link', 'MUTABLE', { urlValue })
+        this.setState({
+            editorState: RichUtils.toggleLink(
+                editorState,
+                editorState.getSelection(),
+                entityKey
+            ),
+            showURLInput: false,
+            urlValue: ''
+        })
+    }
+    removeLink = () => {
         const { editorState } = this.state
         const selection = editorState.getSelection()
         if (selection.isCollapsed()) {
@@ -97,6 +121,32 @@ export default class EditInfoPage extends Component {
               icon: <i className="fa fa-chain-broken"></i>
           }
         ]
+        let urlInput
+        if (this.state.showURLInput) {
+            urlInput = (
+              <Grid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
+                  <Cell>
+                      <div className="input-group">
+                        <input
+                          className="form-control input-sm"
+                          onChange={ this.onURLChange }
+                          ref="url"
+                          type="text"
+                          value={ this.state.urlValue }
+                          onKeyDown={ this.onLinkInputKeyDown }
+                        />
+                        <span className="input-group-btn">
+                            <button
+                              className="btn btn-default btn-sm"
+                              onMouseDown={ this.confirmLink }>
+                              Confirm
+                            </button>
+                        </span>
+                      </div>
+                  </Cell>
+              </Grid>
+            )
+        }
         const { editorState } = this.state
         return (
           <div className="container">
@@ -118,6 +168,7 @@ export default class EditInfoPage extends Component {
                           toolSpec={ entityControls }
                         />
                       </div>
+                      { urlInput }
                   </div>
                   <div className="editor">
                     <Editor
