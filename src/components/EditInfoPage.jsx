@@ -80,26 +80,29 @@ export default class EditInfoPage extends Component {
     addLink = () => {
         const { editorState } = this.state
         const selection = editorState.getSelection()
-        if (selection.isCollapsed()) {
-            return
+        if (!selection.isCollapsed()) {
+            this.setState({
+                showURLInput: true,
+                urlValue: ''
+            }, () => {
+                setTimeout(() => this.refs.url.focus(), 0)
+            })
         }
-        this.setState({
-            showURLInput: true,
-            urlValue: ''
-        })
     }
     confirmLink = (e) => {
         e.preventDefault()
         const { editorState, urlValue } = this.state
-        const entityKey = Entity.create('link', 'MUTABLE', { urlValue })
+        const entityKey = Entity.create('link', 'MUTABLE', { url: urlValue })
         this.setState({
             editorState: RichUtils.toggleLink(
-                editorState,
-                editorState.getSelection(),
-                entityKey
+              editorState,
+              editorState.getSelection(),
+              entityKey
             ),
             showURLInput: false,
             urlValue: ''
+        }, () => {
+            setTimeout(() => this.refs.editor.focus(), 0)
         })
     }
     removeLink = () => {
@@ -139,7 +142,7 @@ export default class EditInfoPage extends Component {
                             <button
                               className="btn btn-default btn-sm"
                               onMouseDown={ this.confirmLink }>
-                              Confirm
+                              Confirm Link
                             </button>
                         </span>
                       </div>
