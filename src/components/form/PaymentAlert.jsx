@@ -5,11 +5,11 @@ export default class PaymentAlert extends Component {
     displayName = 'payment information'
 
     static propTypes = {
-        orderInfoLink: PropTypes.string.isRequired
+        paymentInfoLink: PropTypes.string.isRequired
     }
 
     static defaultProps = {
-        orderInfoLink: 'http://dictybase.org/StockCenter/OrderInfo.html'
+        paymentInfoLink: '/stockcenter/payments/information'
     }
 
     render() {
@@ -17,7 +17,8 @@ export default class PaymentAlert extends Component {
             <div>
                 <div className="alert alert-info">
                     <p><strong>Credit Card: </strong>
-                        Secure payment when billed
+                        Secure payment when billed.
+                        Incurs a <strong>3.5% service fee.</strong>
                     </p>
                     <p><strong>Wire Transfer: </strong>
                         Northwestern bank information will be emailed
@@ -31,7 +32,7 @@ export default class PaymentAlert extends Component {
                 </div>
                 <div className="alert alert-info">
                     <p>For full payment information please click&nbsp;
-                        <u><a href={ this.props.orderInfoLink } target="_blank">here</a></u>
+                        <u><a href={ this.props.paymentInfoLink } target="_blank">here</a></u>
                     </p>
                 </div>
             </div>

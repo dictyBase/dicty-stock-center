@@ -10,6 +10,10 @@ ENV API_SERVER ${api_server:-https://betatest.dictybase.org/fakeapi/stockcenter}
 ARG basename
 ENV BASENAME ${basename:-/stockcenter}
 
+# google analytics id
+ARG ga_tracking_id
+ENV GA_TRACKING_ID ${ga_tracking_id:-UA-16352781-8}
+
 # Create app directory
 RUN mkdir -p /usr/src/app 
 

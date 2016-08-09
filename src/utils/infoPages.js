@@ -344,7 +344,7 @@ In the case of knockout mutants, we also would like the parental strain and the 
             },
             {
                 text: `A Strain Deposit Form must be filled for each plasmid deposited and emailed \
-    to the Stock Center prior to shipping.`,
+to the Stock Center prior to shipping.`,
                 type: 'unstyled',
                 depth: 0,
                 inlineStyleRanges: [
@@ -825,7 +825,7 @@ will be sent by request, may incur a bank fee.`,
                 entityRanges: []
             },
             {
-                text: `Each DSC order needs to be billed to one dedictated person (payer) who \
+                text: `Each DSC order needs to be billed to one dedicated person (payer) who \
 handles payments for the group or laboratory. We need the following information from you \
 at the TIME YOU ORDER:`,
                 type: 'unstyled',
@@ -886,7 +886,7 @@ at the TIME YOU ORDER:`,
             },
             {
                 text: `We need this complete information to process any order. Soon this \
-information will be automatically reqired when placing an order.`,
+information will be automatically required when placing an order.`,
                 type: 'unstyled',
                 depth: 0
             },

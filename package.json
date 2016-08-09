@@ -50,6 +50,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.3",
     "debug": "^2.2.0",
     "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/inline-style",
@@ -63,6 +64,7 @@
     "radium-grid": "^2.0.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-ga": "^2.1.1",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.5",
