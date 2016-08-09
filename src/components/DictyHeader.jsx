@@ -5,6 +5,7 @@ import HeaderLinks, { HeaderLink } from 'dicty-react-components/src/HeaderLinks'
 import SearchBox from 'dicty-react-components/src/SearchBox'
 import { Grid, Cell } from 'radium-grid'
 import 'styles/core.scss'
+import dictyLogo from 'static/dicty-logo.png'
 
 export default class DictyHeader extends Component {
     displayName = 'navigation bar';
@@ -12,6 +13,12 @@ export default class DictyHeader extends Component {
         logo: PropTypes.object,
         auth: PropTypes.object,
         authActions: PropTypes.object
+    }
+    static defaultProps = {
+        logo: {
+            path: dictyLogo,
+            href: 'http://dictybase.org/'
+        }
     }
     render() {
         const { logo, auth, authActions } = this.props

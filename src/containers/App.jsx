@@ -82,16 +82,11 @@ class App extends Component {
                 ]
             }
         ]
-        const logo = {
-            path: '/stockcenter/assets/dicty-logo.png',
-            href: 'http://dictybase.org/'
-        }
         return (
             <StyleRoot>
                 <div>
                     <DictyHeader
                       auth={ this.props.auth }
-                      logo={ logo }
                       authActions={ this.props.authActions }
                     />
                     <DictyNavbar items={ siteMap } />
