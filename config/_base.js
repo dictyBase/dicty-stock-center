@@ -89,8 +89,8 @@ config.globals = {
     '__DEBUG_NEW_WINDOW__' : !!argv.nw,
     '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
     '__AUTH_SERVER__' : JSON.stringify(process.env.AUTH_SERVER || 'http://localhost:9999'),
-    '__API_SERVER__': JSON.stringify(process.env.API_SERVER || 'http://localhost:8080')
-
+    '__API_SERVER__': JSON.stringify(process.env.API_SERVER || 'http://localhost:8080'),
+    '__GA_TRACKING_ID__': JSON.stringify(process.env.GA_TRACKING_ID || '')
 }
 
 // ------------------------------------

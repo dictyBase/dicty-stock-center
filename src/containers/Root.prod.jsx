@@ -4,7 +4,9 @@ import { Router } from 'react-router'
 import routes from 'routes'
 import ReactGA from 'react-ga'
 
-ReactGA.initialize(process.env.GA_TRACKING_ID)
+// initialize google analytics
+let trackingId = __GA_TRACKING_ID__
+ReactGA.initialize(trackingId)
 
 export default class Root extends Component {
     displayName = 'root component';
