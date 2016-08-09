@@ -23,8 +23,8 @@
     "__DEBUG__"    : false,
     "__DEBUG_NEW_WINDOW__" : false,
     "__BASENAME__" : false,
-    "AUTH_SERVER" : false,
-    "API_SERVER": false
+    "__AUTH_SERVER__" : false,
+    "__API_SERVER__": false
   },
   "rules": {
         "strict": 0,

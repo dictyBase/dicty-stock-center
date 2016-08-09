@@ -57,10 +57,8 @@ const json = response => {
 }
 
 // Getting the url of auth server
-let authserver = AUTH_SERVER
-if (process.env.AUTH_SERVER) {
-    authserver = process.env.AUTH_SERVER
-}
+let authserver = __AUTH_SERVER__
+
 // Calls the API to get a token and
 // dispatch actions along the way
 export const oAuthLogin = ({query, provider, url}) => {
