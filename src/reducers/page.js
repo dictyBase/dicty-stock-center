@@ -1,6 +1,6 @@
 import types from 'constants'
 
-const { EDIT_PAGE } = types
+const { EDIT_PAGE, RECEIVE_PAGE } = types
 
 const initialState = {
     content: null
@@ -12,6 +12,13 @@ const pageReducer = (state = initialState, action) => {
         return {
             ...state,
             content: action.payload.content
+        }
+    case RECEIVE_PAGE:
+        return {
+            ...state,
+            isFetching: false,
+            title: action.title,
+            content: action.content
         }
     default:
         return state
