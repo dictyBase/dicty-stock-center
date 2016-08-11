@@ -14,7 +14,9 @@ const types = {
     CREATE_PAGE: 'CREATE_PAGE',
     READ_PAGE: 'READ_PAGE',
     EDIT_PAGE: 'EDIT_PAGE',
-    DELETE_PAGE: 'DELETE_PAGE'
+    DELETE_PAGE: 'DELETE_PAGE',
+    REQUEST_PAGE: 'REQUEST_PAGE',
+    RECEIVE_PAGE: 'RECEIVE_PAGE'
 }
 
 export default types
