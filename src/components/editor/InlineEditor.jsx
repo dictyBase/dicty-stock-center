@@ -6,6 +6,7 @@ import InlineToolbar from 'components/InlineToolbar'
 import EntityToolbar from 'components/EntityToolbar'
 import EditorLink from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
+import classNames from 'classnames'
 import {
     Editor,
     EditorState,
@@ -179,27 +180,25 @@ export default class InlineEditor extends Component {
         let urlInput
         if (this.state.showURLInput) {
             urlInput = (
-              <Grid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
-                  <Cell>
-                      <div className="input-group">
-                        <input
-                          className="form-control input-sm"
-                          onChange={ this.onURLChange }
-                          ref="url"
-                          type="text"
-                          value={ this.state.urlValue }
-                          onKeyDown={ this.onLinkInputKeyDown }
-                        />
-                        <span className="input-group-btn">
-                            <button
-                              className="btn btn-default btn-sm"
-                              onMouseDown={ this.confirmLink }>
-                              Confirm Link
-                            </button>
-                        </span>
-                      </div>
-                  </Cell>
-              </Grid>
+                <div>
+                    <div className="input-group">
+                      <input
+                        className="form-control input-sm"
+                        onChange={ this.onURLChange }
+                        ref="url"
+                        type="text"
+                        value={ this.state.urlValue }
+                        onKeyDown={ this.onLinkInputKeyDown }
+                      />
+                      <span className="input-group-btn">
+                          <button
+                            className="btn btn-default btn-sm"
+                            onMouseDown={ this.confirmLink }>
+                            Confirm Link
+                          </button>
+                      </span>
+                    </div>
+                </div>
             )
         }
         const { editorState } = this.state
@@ -233,9 +232,12 @@ export default class InlineEditor extends Component {
     }
     render() {
         const { editorState, readOnly } = this.state
-        const { user } = this.props.auth
+        const { auth } = this.props
+        const editPanel = classNames({
+            'edit-panel': !readOnly
+        })
         return (
-            <div>
+            <div className={ editPanel }>
                 <Grid cellWidth="1">
                     <Cell>
                         { !readOnly && this.renderToolbar() }
@@ -250,7 +252,7 @@ export default class InlineEditor extends Component {
                             ref="editor"
                             readOnly = { readOnly }
                           />
-                          { user && readOnly &&
+                          { auth.isAuthenticated && readOnly &&
                             (
                               <a href="#"
                                 onClick={ this.onEdit }
