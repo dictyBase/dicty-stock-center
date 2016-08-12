@@ -10,6 +10,7 @@ import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
 import * as pageActionCreators from 'actions/page'
+import * as dscActionsCreators from 'actions/stockcenter'
 import { routerActions } from 'react-router-redux'
 
 class App extends Component {
@@ -99,12 +100,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order, page } = state
+    const { auth, order, page, stockcenter } = state
     return {
         auth: auth,
         routeProps: ownProps,
         order: order,
-        page: page
+        page: page,
+        stockcenter: stockcenter
     }
 }
 
@@ -116,7 +118,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),
-        routerActions: bindActionCreators(routerActions, dispatch)
+        routerActions: bindActionCreators(routerActions, dispatch),
+        stockcenterActions: bindActionCreators(dscActionsCreators, dispatch)
     }
 }
 
