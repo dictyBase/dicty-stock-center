@@ -2,7 +2,7 @@ import types from 'constants'
 import { push } from 'react-router-redux'
 import simpleStorage from 'simplestorage.js'
 
-const { EDIT_PAGE } = types
+const { EDIT_PAGE, SAVE_PAGE_REQUEST, SAVE_PAGE_SUCCESS } = types
 
 const doEdit = (content) => {
     return {
@@ -13,22 +13,19 @@ const doEdit = (content) => {
     }
 }
 
-// const requestPage = () => {
-//     return {
-//         type: REQUEST_PAGE,
-//         isFetching: true
-//     }
-// }
+const savePageRequest = () => {
+    return {
+        type: SAVE_PAGE_REQUEST,
+        isFetching: true
+    }
+}
 
-// const receivePage = (api) => {
-//     const { attributes } = api.data
-//     return {
-//         type: RECEIVE_PAGE,
-//         isFetching: false,
-//         title: attributes.title,
-//         content: attributes.content
-//     }
-// }
+const savePageSuccess = () => {
+    return {
+        type: SAVE_PAGE_SUCCESS,
+        isFetching: false
+    }
+}
 
 export const editPage = (content, name) => {
     return (dispatch) => {
@@ -39,7 +36,10 @@ export const editPage = (content, name) => {
 
 export const saveEditing = (page, data) => {
     return (dispatch) => {
+        dispatch(savePageRequest())
         simpleStorage.set(page, data)
+        dispatch(savePageSuccess())
+
         dispatch(push(`/${page}/information`))
     }
 }
