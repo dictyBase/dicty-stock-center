@@ -56,7 +56,7 @@ export default class InfoPage extends Component {
         const { editorState } = this.state
         const { pageActions, routeProps } = this.props
         e.preventDefault()
-        pageActions.editInfoPage(
+        pageActions.editPage(
             editorState.getCurrentContent(),
             routeProps.params.name
         )

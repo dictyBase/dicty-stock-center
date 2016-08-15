@@ -15,7 +15,6 @@ import EntityToolbar from 'components/EntityToolbar'
 import Link from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
 import { Grid, Cell } from 'radium-grid'
-import simpleStorage from 'simplestorage.js'
 import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
@@ -42,16 +41,19 @@ export default class EditInfoPage extends Component {
     onChange = (editorState) => this.setState({editorState})
     focus = () => this.refs.editor.focus()
     onSave = () => {
-      // save the text in local storage
         const { editorState } = this.state
-        const { routerActions, routeProps } = this.props
+        const { routeProps, pageActions } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
-        simpleStorage.set(routeProps.params.name, rawData)
-        routerActions.push('/' + routeProps.params.name + '/information')
+        pageActions.saveEditing(
+            routeProps.params.name,
+            rawData
+        )
     }
     onCancel = () => {
-        const { routerActions, routeProps } = this.props
-        routerActions.push('/' + routeProps.params.name + '/information')
+        const { pageActions, routeProps } = this.props
+        pageActions.cancelEditing(
+            routeProps.params.name
+        )
     }
     handleKeyCommand = (command) => {
         const { editorState } = this.state

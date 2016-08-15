@@ -1,8 +1,8 @@
 import types from 'constants'
 import { push } from 'react-router-redux'
-import pageContent from 'utils/temp/content.json'
+import simpleStorage from 'simplestorage.js'
 
-const { EDIT_PAGE, RECEIVE_PAGE } = types
+const { EDIT_PAGE } = types
 
 const doEdit = (content) => {
     return {
@@ -20,32 +20,32 @@ const doEdit = (content) => {
 //     }
 // }
 
-const receivePage = (api) => {
-    const { attributes } = api.data
-    return {
-        type: RECEIVE_PAGE,
-        isFetching: false,
-        title: attributes.title,
-        content: attributes.content
-    }
-}
+// const receivePage = (api) => {
+//     const { attributes } = api.data
+//     return {
+//         type: RECEIVE_PAGE,
+//         isFetching: false,
+//         title: attributes.title,
+//         content: attributes.content
+//     }
+// }
 
 export const editPage = (content, name) => {
-    return (dispatch) => {
-        dispatch(doEdit(content))
-        dispatch(push(`/page/${name}/edit`))
-    }
-}
-
-export const editInfoPage = (content, name) => {
     return (dispatch) => {
         dispatch(doEdit(content))
         dispatch(push(`/${name}/information/edit`))
     }
 }
 
-export const fetchHomepage = () => {
+export const saveEditing = (page, data) => {
     return (dispatch) => {
-        dispatch(receivePage(pageContent))
+        simpleStorage.set(page, data)
+        dispatch(push(`/${page}/information`))
+    }
+}
+
+export const cancelEditing = (page) => {
+    return (dispatch) => {
+        dispatch(push(`/${page}/information`))
     }
 }
