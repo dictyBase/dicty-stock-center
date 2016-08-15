@@ -10,13 +10,16 @@ import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
 import * as pageActionCreators from 'actions/page'
-import * as dscActionsCreators from 'actions/stockcenter'
+import * as dscActionsCreators from 'actions/stockCenter'
 import { routerActions } from 'react-router-redux'
 
 class App extends Component {
     displayName = 'the primary app component';
     static propTypes = {
-        auth: PropTypes.object.isRequired
+        auth: PropTypes.object.isRequired,
+        authActions: PropTypes.object.isRequired,
+        stockCenter: PropTypes.object.isRequired,
+        stockCenterActions: PropTypes.object.isRequired
     };
     renderChildren = () => {
         const { children } = this.props
@@ -100,13 +103,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order, page, stockcenter } = state
+    const { auth, order, page, stockCenter } = state
     return {
         auth: auth,
         routeProps: ownProps,
         order: order,
         page: page,
-        stockcenter: stockcenter
+        stockCenter: stockCenter
     }
 }
 
@@ -119,7 +122,7 @@ const mapDispatchToProps = (dispatch) => {
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-        stockcenterActions: bindActionCreators(dscActionsCreators, dispatch)
+        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch)
     }
 }
 
