@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import Links from './Links'
 import Info from './Info'
@@ -13,6 +13,10 @@ import 'styles/custom.scss'
 
 export default class Home extends Component {
     displayName = 'homepage component'
+    static propTypes = {
+        stockCenter: PropTypes.object,
+        stockCenterActions: PropTypes.object
+    }
     renderGreeting = () => {
         const { user } = this.props.auth
         return (
@@ -21,6 +25,7 @@ export default class Home extends Component {
     }
     render() {
         const { user } = this.props.auth
+        const { stockCenter, stockCenterActions } = this.props
         return (
             <div className="container">
                 <Grid cellWidth="1">
@@ -51,7 +56,10 @@ export default class Home extends Component {
                                 <Info />
                             </Cell>
                             <Cell>
-                                <Availability />
+                                <Availability
+                                  stockCenter={ stockCenter }
+                                  stockCenterActions={ stockCenterActions }
+                                  />
                             </Cell>
                             <Cell>
                                 <Downloads />
