@@ -6,7 +6,8 @@ import {
     convertToRaw,
     Entity,
     CompositeDecorator,
-    Modifier
+    Modifier,
+    convertFromRaw
 } from 'draft-js'
 
 import BlockToolbar from 'components/BlockToolbar'
@@ -32,7 +33,10 @@ export default class EditInfoPage extends Component {
         if (props.page.content) {
             this.state = {
                 editorState:
-                    EditorState.createWithContent(props.page.content, decorator),
+                    EditorState.createWithContent(
+                      convertFromRaw(props.page.content),
+                      decorator
+                    ),
                 showURLInput: false,
                 urlValue: ''
             }
