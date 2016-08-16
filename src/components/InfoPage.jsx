@@ -1,71 +1,60 @@
 import React, { Component } from 'react'
-import {Editor, EditorState, convertFromRaw, CompositeDecorator} from 'draft-js'
-import simpleStorage from 'simplestorage.js'
+import {Editor, EditorState, convertFromRaw, CompositeDecorator, convertToRaw} from 'draft-js'
 import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 
-// import raw data from utils
-import infoPages from 'utils/infoPages'
-
 export default class InfoPage extends Component {
     displayName = 'information page component'
-    constructor(props) {
-        super(props)
+    componentDidMount() {
+        console.log('componentDidMount', this.props.page)
+        const { routeProps, pageActions } = this.props
+        pageActions.fetchInfoPage(routeProps.params.name)
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps', nextProps.page)
+        // const decorator = new CompositeDecorator([
+        //     {
+        //         strategy: findEntities.bind(null, 'link'),
+        //         component: Link
+        //     }
+        // ])
+        // this.setState({
+        //     editorState: EditorState.createWithContent(
+        //         convertFromRaw(nextProps.page.content),
+        //         decorator
+        //     )
+        // })
+    }
+    editorState = () => {
         const decorator = new CompositeDecorator([
             {
                 strategy: findEntities.bind(null, 'link'),
                 component: Link
             }
         ])
-
-        // name of the page
-        const page = props.routeProps.params.name
-
-        // temp page content json data structure.
-        // must come through props. from the server.
-        this.pageContent = {
-            data: {
-                type: 'page',
-                id: 'orderInfo',
-                attributes: {
-                    content: infoPages[page],
-                    lastEdited: {
-                        author: {
-                            name: 'John Smith',
-                            role: 'curator'
-                        },
-                        time: '2016-08-08T14:30:00'
-                    }
-                }
-            }
-        }
-
-        // if there is raw draftjs data for the specific page in localstorage,
-        // then display that. Otherwise display the default page content.
-        this.state = {
-            editorState: simpleStorage.get(page) ? EditorState.createWithContent(
-                convertFromRaw(simpleStorage.get(page)), decorator
-            ) : EditorState.createWithContent(
-                convertFromRaw(infoPages[page]), decorator
-            )
-        }
+        return EditorState.createWithContent(
+            convertFromRaw(this.props.content),
+            decorator
+        )
     }
     onClick = (e) => {
-        const { editorState } = this.state
-        const { pageActions, routeProps } = this.props
         e.preventDefault()
+
+        const { pageActions, routeProps } = this.props
+        const { editorState } = this.state
         pageActions.editPage(
-            editorState.getCurrentContent(),
+            convertToRaw(editorState.getCurrentContent()),
             routeProps.params.name
         )
     }
     render() {
-        const { editorState } = this.state
-        const { lastEdited } = this.pageContent.data.attributes
+        console.log('render', this.props.page)
+        const { lastEdited, content } = this.props.page
         return (
           <div className="container">
+              { content ? (
               <Grid cellWidth="1">
                   <Cell>
                       <div className="toolbar-nav">
@@ -92,12 +81,14 @@ export default class InfoPage extends Component {
                   </Cell>
                   <Cell>
                       <Editor
-                        editorState={ editorState }
+                        editorState={ this.editorState }
                         ref="editor"
                         readOnly
                       />
                   </Cell>
               </Grid>
+              ) : <div>Loading...</div>
+               }
           </div>
         )
     }
