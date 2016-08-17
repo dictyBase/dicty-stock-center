@@ -82,7 +82,9 @@ export const fetchInfoPage = (page) => {
                 }
             }
         }
-        dispatch(fetchPageSuccess(pageContent))
+        setTimeout(() => {
+            dispatch(fetchPageSuccess(pageContent))
+        }, 1000)
     }
 }
 
