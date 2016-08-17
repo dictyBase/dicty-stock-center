@@ -21,13 +21,21 @@ const blockTypes = [
         style: 'ordered-list-item',
         icon: <i className="fa fa-list-ol"></i>
     },
-    { label: 'A',
-        style: 'link',
-        icon: <i className="fa fa-link"></i>
+    { label: 'Blockquote',
+        style: 'blockquote',
+        icon: <i className="fa fa-quote-left"></i>
+    },
+    { label: 'Code Block',
+        style: 'code-block',
+        icon: <i className="fa fa-code"></i>
     }
 ]
 
 const inlineTypes = [
+    { label: 'Monospace',
+        style: 'CODE',
+        icon: <i className="fa fa-terminal"></i>
+    },
     { label: 'Bold',
         style: 'BOLD',
         icon: <i className="fa fa-bold"></i>
@@ -39,6 +47,10 @@ const inlineTypes = [
     { label: 'Underline',
         style: 'UNDERLINE',
         icon: <i className="fa fa-underline"></i>
+    },
+    { label: 'Strikethrough',
+        style: 'STRIKETHROUGH',
+        icon: <i className="fa fa-strikethrough"></i>
     }
 ]
 

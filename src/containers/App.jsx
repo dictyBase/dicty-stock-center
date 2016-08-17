@@ -10,12 +10,16 @@ import * as shippingActionCreators from 'actions/order/shipping'
 import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
 import * as pageActionCreators from 'actions/page'
+import * as dscActionsCreators from 'actions/stockCenter'
 import { routerActions } from 'react-router-redux'
 
 class App extends Component {
     displayName = 'the primary app component';
     static propTypes = {
-        auth: PropTypes.object.isRequired
+        auth: PropTypes.object.isRequired,
+        authActions: PropTypes.object.isRequired,
+        stockCenter: PropTypes.object.isRequired,
+        stockCenterActions: PropTypes.object.isRequired
     };
     renderChildren = () => {
         const { children } = this.props
@@ -82,16 +86,11 @@ class App extends Component {
                 ]
             }
         ]
-        const logo = {
-            path: '/stockcenter/assets/dicty-logo.png',
-            href: 'http://dictybase.org/'
-        }
         return (
             <StyleRoot>
                 <div>
                     <DictyHeader
                       auth={ this.props.auth }
-                      logo={ logo }
                       authActions={ this.props.authActions }
                     />
                     <DictyNavbar items={ siteMap } />
@@ -104,12 +103,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order, page } = state
+    const { auth, order, page, stockCenter } = state
     return {
         auth: auth,
         routeProps: ownProps,
         order: order,
-        page: page
+        page: page,
+        stockCenter: stockCenter
     }
 }
 
@@ -121,7 +121,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),
-        routerActions: bindActionCreators(routerActions, dispatch)
+        routerActions: bindActionCreators(routerActions, dispatch),
+        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch)
     }
 }
 
