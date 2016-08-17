@@ -1,60 +1,41 @@
 import React, { Component } from 'react'
-import {Editor, EditorState, convertFromRaw, CompositeDecorator, convertToRaw} from 'draft-js'
+import {Editor, EditorState, convertFromRaw, CompositeDecorator} from 'draft-js'
 import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 
-export default class InfoPage extends Component {
+export default class InfoPageView extends Component {
     displayName = 'information page component'
-    componentDidMount() {
-        console.log('componentDidMount', this.props.page)
-        const { routeProps, pageActions } = this.props
-        pageActions.fetchInfoPage(routeProps.params.name)
-    }
-    componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', nextProps.page)
-        // const decorator = new CompositeDecorator([
-        //     {
-        //         strategy: findEntities.bind(null, 'link'),
-        //         component: Link
-        //     }
-        // ])
-        // this.setState({
-        //     editorState: EditorState.createWithContent(
-        //         convertFromRaw(nextProps.page.content),
-        //         decorator
-        //     )
-        // })
-    }
-    editorState = () => {
+    constructor(props) {
+        super(props)
+
         const decorator = new CompositeDecorator([
             {
                 strategy: findEntities.bind(null, 'link'),
                 component: Link
             }
         ])
-        return EditorState.createWithContent(
-            convertFromRaw(this.props.content),
-            decorator
-        )
+        this.state = {
+            editorState: EditorState.createWithContent(
+                convertFromRaw(props.page.content),
+                decorator
+            )
+        }
     }
     onClick = (e) => {
         e.preventDefault()
 
-        const { pageActions, routeProps } = this.props
-        const { editorState } = this.state
+        const { pageActions, routeProps, page } = this.props
         pageActions.editPage(
-            convertToRaw(editorState.getCurrentContent()),
+            page.content,
             routeProps.params.name
         )
     }
     render() {
-        console.log('render', this.props.page)
-        const { lastEdited, content } = this.props.page
+        const { lastEdited } = this.props.page
         return (
           <div className="container">
-              { content ? (
               <Grid cellWidth="1">
                   <Cell>
                       <div className="toolbar-nav">
@@ -81,14 +62,12 @@ export default class InfoPage extends Component {
                   </Cell>
                   <Cell>
                       <Editor
-                        editorState={ this.editorState }
+                        editorState={ this.state.editorState }
                         ref="editor"
                         readOnly
                       />
                   </Cell>
               </Grid>
-              ) : <div>Loading...</div>
-               }
           </div>
         )
     }

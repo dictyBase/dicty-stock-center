@@ -17,7 +17,7 @@ import Payment from 'components/form/Payment'
 import EditPayment from 'components/form/EditPayment'
 import Submit from 'components/form/Submit'
 import InfoPage from 'components/InfoPage'
-import EditInfoPage from 'components/EditInfoPage'
+import EditInfoPage from 'components/InfoPage/EditInfoPage'
 import Contact from 'components/Contact'
 import PageNotReady from 'components/PageNotReady'
 
