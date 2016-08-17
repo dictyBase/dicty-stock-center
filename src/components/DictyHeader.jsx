@@ -13,6 +13,12 @@ export default class DictyHeader extends Component {
         auth: PropTypes.object,
         authActions: PropTypes.object
     }
+    static defaultProps = {
+        logo: {
+            path: '/stockcenter/assets/dicty-logo.png',
+            href: 'http://dictybase.org/'
+        }
+    }
     render() {
         const { logo, auth, authActions } = this.props
         return (

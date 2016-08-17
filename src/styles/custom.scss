@@ -6,6 +6,8 @@
   border-radius: 10px;
   width: 100%;
 }
+
+// theme colors that are being used throughout dsc
 .panel-green {
   background-color: #DFF0d8;
   border: 1px solid #DFF0d8;
@@ -18,8 +20,20 @@
   background-color: #F2F2F2;
   border: 1px solid #F2F2F2;
 }
+
 .dicty-header {
   font-size: 62px;
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+// styles for front page links
+.link-list ul,
+.link-list li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.link-list a {
+  font-size: 18px;
 }
