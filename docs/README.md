@@ -9,3 +9,4 @@
   * [Shape of the state](/docs/redux/state.md)
   * [Actions](/docs/redux/actions.md)
   * [Reducers](/docs/redux/reducers.md)
+* [Navigational flow](./navigational-flow.md)
