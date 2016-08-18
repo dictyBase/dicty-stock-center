@@ -10,3 +10,4 @@
   * [Actions](/docs/redux/actions.md)
   * [Reducers](/docs/redux/reducers.md)
 * [Navigational flow](./navigational-flow.md)
+* [Component wireframe](./component-wireframe.md)
