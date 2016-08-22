@@ -1,5 +1,5 @@
 import types from 'constants'
-import avl from 'fake-data/availability.json'
+import availability from 'fake-data/availability'
 
 const { AVAILABILITY_FETCH_SUCCESS } = types
 
@@ -10,16 +10,16 @@ const { AVAILABILITY_FETCH_SUCCESS } = types
 //     }
 // }
 
-const receiveAvailability = (l) => {
+const receiveAvailability = (data) => {
     return {
         type: AVAILABILITY_FETCH_SUCCESS,
         isFetching: false,
-        availability: l.data.attributes.availability
+        availability: data.attributes.availability
     }
 }
 
 export const fetchAvailability = () => {
     return (dispatch) => {
-        dispatch(receiveAvailability(avl))
+        dispatch(receiveAvailability(availability.data))
     }
 }
