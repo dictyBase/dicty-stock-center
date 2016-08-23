@@ -1,9 +1,21 @@
 import types from 'constants'
 
-const { AVAILABILITY_FETCH_SUCCESS, AVAILABILITY_FETCH_REQUEST, AVAILABILITY_FETCH_FAILURE } = types
+const {
+    AVAILABILITY_FETCH_SUCCESS,
+    AVAILABILITY_FETCH_REQUEST,
+    AVAILABILITY_FETCH_FAILURE,
+    STRAINS_FETCH_REQUEST,
+    STRAINS_FETCH_SUCCESS,
+    STRAINS_FETCH_FAILURE
+} = types
 
 const initialState = {
-    isFetching: false
+    availability: {
+        isFetching: false
+    },
+    strainCatalog: {
+        isFetching: false
+    }
 }
 
 const stockCenterReducer = (state = initialState, action) => {
@@ -11,19 +23,48 @@ const stockCenterReducer = (state = initialState, action) => {
     case AVAILABILITY_FETCH_REQUEST:
         return {
             ...state,
-            isFetching: true
+            availability: {
+                isFetching: true
+            }
         }
     case AVAILABILITY_FETCH_SUCCESS:
         return {
             ...state,
-            isFetching: false,
-            availability: action.availability
+            availability: {
+                isFetching: false,
+                data: action.availability
+            }
         }
     case AVAILABILITY_FETCH_FAILURE:
         return {
             ...state,
-            isFetching: false,
-            error: action.error
+            availability: {
+                isFetching: false,
+                error: action.error
+            }
+        }
+    case STRAINS_FETCH_REQUEST:
+        return {
+            ...state,
+            strainCatalog: {
+                isFetching: true
+            }
+        }
+    case STRAINS_FETCH_SUCCESS:
+        return {
+            ...state,
+            strainCatalog: {
+                isFetching: false,
+                data: action.data
+            }
+        }
+    case STRAINS_FETCH_FAILURE:
+        return {
+            ...state,
+            strainCatalog: {
+                isFetching: false,
+                error: action.error
+            }
         }
     default:
         return state
