@@ -17,28 +17,14 @@ const strainList = {
             strain_descriptor: 'acaA-',
             strain_names: 'aca-, acaA-(r)',
             systematic_name: 'DG1108',
-            id: 'DBS0252577',
-            add_to_cart: (
-              <button
-                className="btn btn-primary"
-                onClick={ () => { console.log('clicked') } }>
-                  Add to cart
-              </button>
-            )
+            id: 'DBS0252577'
         },
         {
             availability: true,
             strain_descriptor: 'abcB4-',
             strain_names: 'AK00010',
             systematic_name: 'DBS0350146',
-            id: 'DBS0350146',
-            add_to_cart: (
-              <button
-                className="btn btn-primary"
-                onClick={ () => { console.log('clicked') } }>
-                  Add to cart
-              </button>
-            )
+            id: 'DBS0350146'
         }
     ],
     columns: [
@@ -73,10 +59,17 @@ const strainList = {
             }
         },
         {
-            property: 'add_to_cart',
-            header: {
-                label: ''
-            }
+            cell: {
+                format: (value, { rowData }) => (
+                  <button
+                    className="btn btn-primary"
+                    onClick={ () => { console.log(`${JSON.stringify(rowData, null, 2)}`) } }>
+                      Add to cart
+                  </button>
+                )
+            },
+            width: 200,
+            visible: true
         }
     ]
 }
