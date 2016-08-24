@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import DictyNavbar from 'components/DictyNavbar'
 import DictyHeader from 'components/DictyHeader'
 import DictyFooter from 'components/DictyFooter'
+import Cart from 'components/Cart'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
 import { bindActionCreators } from 'redux'
@@ -94,6 +95,7 @@ class App extends Component {
                       authActions={ this.props.authActions }
                     />
                     <DictyNavbar items={ siteMap } />
+                    <Cart />
                     { this.renderChildren() }
                     <DictyFooter items={ siteMap } />
                 </div>
