@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Table } from 'reactabular'
+import { Grid, Cell } from 'radium-grid'
 import 'styles/custom.scss'
 
 export default class Strains extends Component {
@@ -13,7 +14,11 @@ export default class Strains extends Component {
         const { data } = stockCenter.strainCatalog
         return (
           <div className="container">
-              <h1 className="dicty-header text-center">Strain Catalog</h1>
+              <Grid cellWidth="1" align="center">
+                  <Cell>
+                        <h1 className="dicty-header">Strain Catalog</h1>
+                  </Cell>
+              </Grid>
               <div className="table-responsive">
                   { data &&
                     <Table.Provider
