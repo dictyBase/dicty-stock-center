@@ -12,6 +12,7 @@ import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
 import * as pageActionCreators from 'actions/page'
 import * as dscActionsCreators from 'actions/stockCenter'
+import * as cartActionCreators from 'actions/cart'
 import { routerActions } from 'react-router-redux'
 
 class App extends Component {
@@ -105,13 +106,14 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order, page, stockCenter } = state
+    const { auth, order, page, stockCenter, cart } = state
     return {
         auth: auth,
         routeProps: ownProps,
         order: order,
         page: page,
-        stockCenter: stockCenter
+        stockCenter: stockCenter,
+        cart: cart
     }
 }
 
@@ -124,7 +126,8 @@ const mapDispatchToProps = (dispatch) => {
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch)
+        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch),
+        cartActions: bindActionCreators(cartActionCreators, dispatch)
     }
 }
 
