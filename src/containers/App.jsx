@@ -96,7 +96,7 @@ class App extends Component {
                       authActions={ this.props.authActions }
                     />
                     <DictyNavbar items={ siteMap } />
-                    <Cart />
+                    <Cart cart={ this.props.cart }/>
                     { this.renderChildren() }
                     <DictyFooter items={ siteMap } />
                 </div>
