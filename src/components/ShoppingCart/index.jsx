@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid, Cell } from 'radium-grid'
 import 'styles/core.scss'
 
 export default class ShoppingCart extends Component {
@@ -6,8 +7,12 @@ export default class ShoppingCart extends Component {
 
     render() {
         return (
-            <div className="row">
-                <h2>Shopping Cart</h2>
+            <div className="container">
+                <Grid cellWidth="1">
+                    <Cell align="center">
+                          <h1 className="dicty-header">Shopping Cart</h1>
+                    </Cell>
+                </Grid>
             </div>
         )
     }
