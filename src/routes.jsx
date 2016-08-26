@@ -35,8 +35,8 @@ export default (
         <Route path="logout" component={ Logout } />
         <Route path="my-dsc" component={ MyDsc } />
         <Route path="error" component={ Error } />
+        <Route path="cart" component={ ShoppingCart } />
         <Route path="order" component={ Order }>
-            <Route path="cart" component={ ShoppingCart } />
             <Route path="shipping" component={ Shipping } />
             <Route path="shipping/edit" component={ EditShipping } />
             <Route path="payment" component={ Payment } />
