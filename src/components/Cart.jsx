@@ -9,14 +9,14 @@ export default class Cart extends Component {
         cart: PropTypes.object.isRequired
     }
     render() {
-        const { addedIds } = this.props.cart
+        const { addedItems } = this.props.cart
         return (
             <div className="container">
                 <Grid cellWidth="1/3" style={ { justifyContent: 'flex-end' } }>
                     <Cell align="right">
                         <Link to="/cart">
                           <i className="fa fa-shopping-cart fa-3x"></i>
-                              ({ addedIds.length })
+                              ({ addedItems.length })
                         </Link>
                     </Cell>
                 </Grid>
