@@ -1,10 +1,13 @@
 FROM node:argon
 MAINTAINER Siddhartha Basu<siddhartha-basu@northwestern.edu>
 
-# Setup server url
-# could also be set with docker build
+# URL for api server
 ARG api_server
 ENV API_SERVER $api_server
+
+# URL for auth server
+ARG auth_server
+ENV AUTH_SERVER $auth_server
 
 # base path for react router
 ARG basename
