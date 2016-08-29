@@ -4,29 +4,20 @@ import types from '../constants'
 const { ADD_TO_CART } = types
 
 const initialState = {
-    addedIds: [],
-    nameById: {}
+    addedItems: []
 }
 
-const addedIds = (state = initialState.addedIds, action) => {
+const addedItems = (state = initialState.addedItems, action) => {
     switch (action.type) {
     case ADD_TO_CART:
-        if (state.indexOf(action.item.id) !== -1) {
+        if (state.map(item => { return item.id }).indexOf(action.item.id) !== -1) {
+            // item is already added to the cart
             return state
         }
-        return [ ...state, action.item.id ]
-    default:
-        return state
-    }
-}
-
-const nameById = (state = initialState.nameById, action) => {
-    switch (action.type) {
-    case ADD_TO_CART:
-        return {
+        return [
             ...state,
-            [action.item.id]: action.item.systematicName
-        }
+            {id: action.item.id, name: action.item.systematicName}
+        ]
     default:
         return state
     }
@@ -34,8 +25,7 @@ const nameById = (state = initialState.nameById, action) => {
 
 const cartReducer = (state = initialState, action) => {
     return {
-        addedIds: addedIds(state.addedIds, action),
-        nameById: nameById(state.nameById, action)
+        addedItems: addedItems(state.addedItems, action)
     }
 }
 
