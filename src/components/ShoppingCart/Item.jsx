@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import 'styles/core.scss'
 
-export default class Cart extends Component {
+export default class Item extends Component {
     displayName = 'Shopping cart items'
     static propTypes = {
         item: PropTypes.object.isRequired,

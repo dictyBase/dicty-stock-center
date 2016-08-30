@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Cart from './Cart'
+import Item from './Item'
 import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router'
 import 'styles/core.scss'
@@ -42,7 +42,7 @@ export default class ShoppingCart extends Component {
                             cart.addedItems.map((item, index) => {
                                 return (
                                     <Cell key={ index } width="1" style={ {margin: '10px'} }>
-                                        <Cart
+                                        <Item
                                           item={ item }
                                           cartActions={ cartActions }
                                         />
