@@ -53,13 +53,17 @@ export default class Strains extends Component {
             },
             {
                 cell: {
-                    format: (value, { rowData }) => (
-                      <button
-                        className="btn btn-primary"
-                        onClick={ () => cartActions.addToCart(rowData) }>
-                          <i className="fa fa-cart-arrow-down"></i> Add to cart
-                      </button>
-                    )
+                    format: (value, { rowData }) => {
+                        if (rowData.available) {
+                            return (
+                               <button
+                                 className="btn btn-primary"
+                                 onClick={ () => cartActions.addToCart(rowData) }>
+                                   <i className="fa fa-cart-arrow-down"></i> Add to cart
+                               </button>
+                            )
+                        }
+                    }
                 },
                 width: 200,
                 visible: true
