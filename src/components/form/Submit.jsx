@@ -9,16 +9,12 @@ export default class Submit extends Component {
     displayName = 'submit order'
 
     static propTypes = {
-        order: PropTypes.object
+        order: PropTypes.object,
+        cart: PropTypes.object
     }
 
     render() {
-        // mocking items. order items must be in the state
-        const items = [
-            {id: 'Strain-DBS0238283', name: 'A+/scrA/dis-GFP'},
-            {id: 'Strain-DBS0236054', name: 'DDB_G0268328-'},
-            {id: 'Plasmid-87', name: 'pACA.URA'}
-        ]
+        const { addedItems } = this.props.cart
         const { consumer, shipping, payer, payment } = this.props.order
         const { editShipping, editPayment, submitOrder } = this.props.orderActions
         return (
@@ -63,7 +59,7 @@ export default class Submit extends Component {
                         <Panel>
                             <PanelBody>
                                 <h4><i className="fa fa-shopping-cart"></i> Items</h4>
-                                <Items items={ items }/>
+                                <Items items={ addedItems }/>
                             </PanelBody>
                         </Panel>
                     </div>
