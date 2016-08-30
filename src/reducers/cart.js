@@ -1,7 +1,7 @@
 import types from '../constants'
 // import simpleStorage from 'simplestorage.js'
 
-const { ADD_TO_CART } = types
+const { ADD_TO_CART, REMOVE_FROM_CART } = types
 
 const initialState = {
     addedItems: []
@@ -17,6 +17,11 @@ const addedItems = (state = initialState.addedItems, action) => {
         return [
             ...state,
             {id: action.item.id, name: action.item.systematicName}
+        ]
+    case REMOVE_FROM_CART:
+        return [
+            ...state.slice(0, action.removeIndex),
+            ...state.slice(action.removeIndex + 1)
         ]
     default:
         return state

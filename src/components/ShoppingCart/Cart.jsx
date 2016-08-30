@@ -26,7 +26,7 @@ export default class Cart extends Component {
                         <Cell width="1/4" smallWidth="1/2" align="right" smallAlign="center">
                             <button type="button"
                               className="btn btn-danger"
-                              onClick={ cartActions.removeItem }>
+                              onClick={ () => cartActions.removeItem(item.id) }>
                                 <i className="fa fa-trash-o"></i>
                             </button>
                         </Cell>
