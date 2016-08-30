@@ -4,13 +4,13 @@ LATEST_TAG = $(shell git describe --tags $(TAG_COMMIT_ID))
 fake-api-server:
 	docker run --name fake-api-server -d -p 9900:8080 dictybase/fake-dsc-server
 
-dsc-server:
+dsc-app:
 	docker run --name dsc-server -d -p 9994:9596 dictybase/dsc:dev
 
-start: fake-api-server dsc-server
+start: fake-api-server dsc-app
 
 stop-dsc-server:
-	docker stop dsc-server
+	docker stop dsc-app
 	docker rm dsc-server
 
 stop-fake-server:
@@ -42,5 +42,9 @@ build-staging-tagged:
 	-t dictybase/dsc:staging-$(LATEST_TAG) .
 
 build-staging: build-staging-untagged build-staging-tagged
+
+push-image: 
+	docker push dictybase/dsc:staging
+	docker push dictybase/dsc:staging-$(LATEST_TAG)
 		
 
