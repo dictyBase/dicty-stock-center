@@ -21,7 +21,7 @@ export default class Strains extends Component {
                 cell: {
                     format: (value, { rowData }) => (
                         <div
-                          className={ rowData.available ? 'text-success' : 'text-muted' }>
+                          className={ rowData.available ? 'item-available' : 'item-unavailable' }>
                             <i className="fa fa-shopping-cart fa-2x"></i>
                         </div>
                     )
