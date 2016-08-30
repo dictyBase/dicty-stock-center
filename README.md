@@ -12,6 +12,16 @@ Dicty Stock Center application rebuilt with React and Redux!
     * [API server](#api-server)
   * [Running the application(dev version)](#running-the-applicationdev-version)
   * [Application Structure](#application-structure)
+* [Deployment](#deployment)
+  * [Build and running docker containers](#build-and-running-docker-containers)
+    * [Makefile targets](#makefile-targets)
+        * [make build-dev ](#make-build-dev)
+        * [make dsc-server ](#make-dsc-server)
+        * [make start ](#make-start)
+        * [make stop and <code>make restart</code> ](#make-stop-and-make-restart)
+        * [make build-staging ](#make-build-staging)
+        * [make push-image ](#make-push-image)
+
 
 #Development
 * First clone this repository.
@@ -61,8 +71,9 @@ Dicty Stock Center application rebuilt with React and Redux!
 ├── build                    # All build-related configuration
 │   └── webpack              # Environment-specific configuration files for webpack
 ├── config                   # Project configuration settings
-├── docker                   # Docker scripts
 ├── docs                     # Project documentation 
+├── Dockerfile               # Dockerfile to build docker images for deploying
+├── Makefile                 # Makefile to run various deployment tasks
 ├── src                      # Application source code
 │   ├── actions              # Redux action creators
 │   ├── components           # Generic React Components (generally Dumb components)
@@ -81,5 +92,54 @@ Dicty Stock Center application rebuilt with React and Redux!
 └── tests                    # Unit tests
 ```
 
-For rest of the information make sure to follow the original starter kit
+For additional information make sure to follow the original starter kit
 [documenation](docs/react-redux-starter-kit.md)
+
+#Deployment
+The application is deployed by [building docker
+image](https://docs.docker.com/engine/reference/commandline/build/) and running
+it through [kubernetes](https://k8s.io).
+
+##Build and running docker containers
+The docker image build is done through [Makefile](/Makefile). It can build a dev
+version for quick testing in a developer’s machine and another version to
+deploy in a staging machine.
+
+### Makefile targets
+
+#### `make build-dev` 
+Will built a `dictybase/dsc:dev` image from
+the source code of current branch.
+
+#### `make dsc-server`
+Will run a container from the dev image, accessible through `http://localhost:9994`.
+
+#### `make start`
+Will also start the fake api
+[server](https://github.com/dictyBase/fake-dsc-server) along
+with dev container. It can be started separately using the `make
+fake-api-server` command.
+
+#### `make stop` and `make restart`
+Obvious, isn’t it.
+
+#### `make build-staging`
+Build a tagged and untagged version of docker images. The tag no
+is extracted from the latest git tag available in the local
+working folder. It is built with the following configuration ....
+
+* The [providers](#providers) configuration file is expected to
+  be in `client/hush.js` relative to the root of this git
+  checkout.
+
+* The application is expected to available under `/stockcenter` url subpath.
+
+* The [API server](#api-server) is expected to be available
+  under `https://betatest.dictybase.org/fakeapi/stockcenter`
+
+* The [Auth server](#auth-server) is expected to be available under
+  `https://betatest.dictybase.org/api/authserver`
+
+#### `make push-image`
+Pushes the staging images(tagged and untagged) to [docker
+hub](https://hub.docker.com/r/dictybase/dsc/tags/)

@@ -1,5 +1,8 @@
 TAG_COMMIT_ID = $(shell git rev-list --tags --max-count=1)
 LATEST_TAG = $(shell git describe --tags $(TAG_COMMIT_ID))
+MINIKUBE_STATUS = $(shell minikube status)
+MINIKUBE_API_SERVER = $(shell minikube service fake-dsc-server --url)
+MINIKUBE_AUTH_SERVER = $(shell minikube service authserver --url)
 
 fake-api-server:
 	docker run --name fake-api-server -d -p 9900:8080 dictybase/fake-dsc-server
@@ -46,5 +49,22 @@ build-staging: build-staging-untagged build-staging-tagged
 push-image: 
 	docker push dictybase/dsc:staging
 	docker push dictybase/dsc:staging-$(LATEST_TAG)
+
+check-minikube:
+ifeq ($(MINIKUBE_STATUS),Running)
+	@echo minikube is running
+else
+	@echo minikube is not running
+endif
+
 		
+build-minikube:
+ifeq ($(MINIKUBE_STATUS),Running)
+	docker build --rm --build-arg api_server=$(MINIKUBE_API_SERVER) \
+	--build-arg client_keys=client/hush.js \
+	--build-arg auth_server=$(MINIKUBE_AUTH_SERVER) \
+	-t dictybase/dsc:staging-minikube .
+else
+	@echo minikube is not running
+endif
 
