@@ -38,24 +38,13 @@ export default class ShoppingCart extends Component {
                 <Grid>
                     <Cell width="1">
                         <Grid>
-                        {
-                            cart.addedItems.map((item, index) => {
-                                return (
-                                    <Cell key={ index } width="1" style={ {margin: '10px'} }>
-                                        <Item
-                                          item={ item }
-                                          cartActions={ cartActions }
-                                        />
-                                    </Cell>
-                                )
-                            })
-                        }
+                            <Item cart={ cart } cartActions={ cartActions }/>
                         </Grid>
                     </Cell>
                     <Cell width="1">
                         <Grid style={ {marginTop: '50px'} }>
                             <Cell width="1/2" smallWidth="1">
-                                <Link to="/"
+                                <Link to="/strains"
                                   className="btn btn-primary btn-lg btn-block">
                                     <i className="fa fa-share"></i> Continue Shopping
                                 </Link>
