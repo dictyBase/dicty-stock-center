@@ -1,13 +1,27 @@
-import types from '../constants'
+import types, { fees } from 'constants'
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = types
+const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
+
+const addItem = (item) => {
+    let fee
+    if (item.type === 'strain') {
+        fee = STRAIN_FEE
+    } else if (item.type === 'plasmid') {
+        fee = PLASMID_FEE
+    } else {
+        fee = OTHER_FEE
+    }
+    return {
+        type: ADD_TO_CART,
+        fee: fee,
+        item
+    }
+}
 
 export const addToCart = (item) => {
     return dispatch => {
-        dispatch({
-            type: ADD_TO_CART,
-            item
-        })
+        dispatch(addItem(item))
     }
 }
 

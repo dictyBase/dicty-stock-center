@@ -16,7 +16,11 @@ const addedItems = (state = initialState.addedItems, action) => {
         }
         return [
             ...state,
-            {id: action.item.id, name: action.item.systematicName}
+            {
+                id: action.item.id,
+                name: action.item.systematicName,
+                fee: action.fee
+            }
         ]
     case REMOVE_FROM_CART:
         return [
