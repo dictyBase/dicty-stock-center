@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Item from './Item'
+import Cart from './Cart'
 import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router'
 import 'styles/core.scss'
@@ -38,7 +38,7 @@ export default class ShoppingCart extends Component {
                 <Grid>
                     <Cell width="1">
                         <Grid>
-                            <Item cart={ cart } cartActions={ cartActions }/>
+                            <Cart cart={ cart } cartActions={ cartActions }/>
                         </Grid>
                     </Cell>
                     <Cell width="1">

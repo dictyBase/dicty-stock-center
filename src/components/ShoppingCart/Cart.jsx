@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import 'styles/core.scss'
 
-export default class Item extends Component {
-    displayName = 'Shopping cart items'
+export default class Cart extends Component {
+    displayName = 'Shopping cart'
     static propTypes = {
         cart: PropTypes.object.isRequired,
         cartActions: PropTypes.object.isRequired
