@@ -20,6 +20,7 @@ import InfoPage from 'components/InfoPage'
 import EditInfoPage from 'components/InfoPage/EditInfoPage'
 import Contact from 'components/Contact'
 import PageNotReady from 'components/PageNotReady'
+import Strains from 'components/Strains'
 
 export default (
     <Route path="/" component={ App }>
@@ -29,12 +30,13 @@ export default (
         <Route path="login" component={ Login } />
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
+        <Route path="strains" component={ Strains } />
         <Route path="contact" component={ Contact } />
         <Route path="logout" component={ Logout } />
         <Route path="my-dsc" component={ MyDsc } />
         <Route path="error" component={ Error } />
+        <Route path="cart" component={ ShoppingCart } />
         <Route path="order" component={ Order }>
-            <Route path="cart" component={ ShoppingCart } />
             <Route path="shipping" component={ Shipping } />
             <Route path="shipping/edit" component={ EditShipping } />
             <Route path="payment" component={ Payment } />

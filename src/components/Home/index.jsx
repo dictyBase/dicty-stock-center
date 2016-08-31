@@ -31,7 +31,7 @@ export default class Home extends Component {
                 <Grid cellWidth="1">
                     <Cell>{ user && this.renderGreeting() }</Cell>
                     <Cell>
-                        <h1 className="page-header">
+                        <h1 className="homepage-header">
                             Welcome to Dicty Stock Center (DSC)
                         </h1>
                     </Cell>
