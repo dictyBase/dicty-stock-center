@@ -5,11 +5,12 @@ export default class Order extends Component {
     displayName = 'order parent component'
 
     renderChildren = () => {
-        const { children, order, orderActions } = this.props
+        const { children, order, orderActions, cart } = this.props
         return React.Children.map(children, (child) => {
             return React.cloneElement(child, {
                 order: order,
-                orderActions: orderActions
+                orderActions: orderActions,
+                cart: cart
             })
         })
     }

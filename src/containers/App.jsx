@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import DictyNavbar from 'components/DictyNavbar'
 import DictyHeader from 'components/DictyHeader'
 import DictyFooter from 'components/DictyFooter'
+import Cart from 'components/Cart'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
 import { bindActionCreators } from 'redux'
@@ -11,6 +12,7 @@ import * as paymentActionCreators from 'actions/order/payment'
 import * as submitActionCreators from 'actions/order/submit'
 import * as pageActionCreators from 'actions/page'
 import * as dscActionsCreators from 'actions/stockCenter'
+import * as cartActionCreators from 'actions/cart'
 import { routerActions } from 'react-router-redux'
 
 class App extends Component {
@@ -94,6 +96,7 @@ class App extends Component {
                       authActions={ this.props.authActions }
                     />
                     <DictyNavbar items={ siteMap } />
+                    <Cart cart={ this.props.cart }/>
                     { this.renderChildren() }
                     <DictyFooter items={ siteMap } />
                 </div>
@@ -103,13 +106,14 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth, order, page, stockCenter } = state
+    const { auth, order, page, stockCenter, cart } = state
     return {
         auth: auth,
         routeProps: ownProps,
         order: order,
         page: page,
-        stockCenter: stockCenter
+        stockCenter: stockCenter,
+        cart: cart
     }
 }
 
@@ -122,7 +126,8 @@ const mapDispatchToProps = (dispatch) => {
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch)
+        stockCenterActions: bindActionCreators(dscActionsCreators, dispatch),
+        cartActions: bindActionCreators(cartActionCreators, dispatch)
     }
 }
 

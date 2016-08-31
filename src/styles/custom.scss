@@ -25,6 +25,14 @@
   font-size: 62px;
   margin-top: 25px;
   margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.homepage-header {
+  font-size: 48px;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
 }
 
 // styles for front page links
@@ -36,4 +44,22 @@
 }
 .link-list a {
   font-size: 18px;
+}
+
+// shopping cart items
+.cart-item-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+.cart-item-id {
+  font-size: 12px;
+  color: #808080;
+}
+
+// stocks catalog
+.item-available {
+  color: #04B404;
+}
+.item-unavailable {
+  color: #D8D8D8;
 }

@@ -12,11 +12,11 @@ export default class Availability extends Component {
         stockCenterActions.fetchAvailability()
     }
     render() {
-        const { availability } = this.props.stockCenter
+        const { data } = this.props.stockCenter.availability
         return (
             <div className="panel-dsc panel-gray">
                 <h4>Availability</h4>
-                { availability && availability.map((item, index) => {
+                { data && data.map((item, index) => {
                     return (
                         <h5 key={ index }>
                             <strong>{ item.amount }</strong> { item.name }

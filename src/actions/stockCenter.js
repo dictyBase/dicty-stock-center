@@ -1,7 +1,8 @@
 import types from 'constants'
-import avl from 'fake-data/availability.json'
+import availability from 'fake-data/availability'
+import strainList from 'fake-data/strains'
 
-const { AVAILABILITY_FETCH_SUCCESS } = types
+const { AVAILABILITY_FETCH_SUCCESS, STRAINS_FETCH_REQUEST, STRAINS_FETCH_SUCCESS } = types
 
 // const requestAvailability = () => {
 //     return {
@@ -10,16 +11,38 @@ const { AVAILABILITY_FETCH_SUCCESS } = types
 //     }
 // }
 
-const receiveAvailability = (l) => {
+const requestStrains = () => {
+    return {
+        type: STRAINS_FETCH_REQUEST
+    }
+}
+
+const receiveStrains = (data) => {
+    return {
+        type: STRAINS_FETCH_SUCCESS,
+        data
+    }
+}
+
+const receiveAvailability = (data) => {
     return {
         type: AVAILABILITY_FETCH_SUCCESS,
         isFetching: false,
-        availability: l.data.attributes.availability
+        availability: data.attributes.availability
+    }
+}
+
+export const fetchStrainList = () => {
+    return (dispatch) => {
+        dispatch(requestStrains())
+        setTimeout(() => {
+            dispatch(receiveStrains(strainList))
+        }, 1000)
     }
 }
 
 export const fetchAvailability = () => {
     return (dispatch) => {
-        dispatch(receiveAvailability(avl))
+        dispatch(receiveAvailability(availability.data))
     }
 }
