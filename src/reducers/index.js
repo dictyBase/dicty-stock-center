@@ -64,6 +64,12 @@ Shape of the state
             {name: 'Strains', amount: 1927},
             {name: 'Plasmids', amount: 882}
         ]
+    },
+    cart: {
+        addedItems: [
+            {id: 'DHSJ', name: 'STrain'},
+            {d: 'HSJK', name: 'strain' }
+        ]
     }
 }
 */
