@@ -6,7 +6,10 @@ const {
     AVAILABILITY_FETCH_FAILURE,
     STRAINS_FETCH_REQUEST,
     STRAINS_FETCH_SUCCESS,
-    STRAINS_FETCH_FAILURE
+    STRAINS_FETCH_FAILURE,
+    PAGE_FETCH_REQUEST,
+    PAGE_FETCH_SUCCESS,
+    SEARCH_STRAINS
 } = types
 
 const initialState = {
@@ -14,7 +17,9 @@ const initialState = {
         isFetching: false
     },
     strainCatalog: {
-        isFetching: false
+        isFetching: false,
+        pages: 1,
+        search: ''
     }
 }
 
@@ -47,13 +52,16 @@ const stockCenterReducer = (state = initialState, action) => {
         return {
             ...state,
             strainCatalog: {
-                isFetching: true
+                ...state.strainCatalog,
+                isFetching: true,
+                pages: 1
             }
         }
     case STRAINS_FETCH_SUCCESS:
         return {
             ...state,
             strainCatalog: {
+                ...state.strainCatalog,
                 isFetching: false,
                 data: action.data
             }
@@ -62,8 +70,34 @@ const stockCenterReducer = (state = initialState, action) => {
         return {
             ...state,
             strainCatalog: {
+                ...state.straingCatalog,
                 isFetching: false,
                 error: action.error
+            }
+        }
+    case PAGE_FETCH_REQUEST:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: true
+            }
+        }
+    case PAGE_FETCH_SUCCESS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                pages: state.strainCatalog.pages + 1,
+                isFetching: false
+            }
+        }
+    case SEARCH_STRAINS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                search: action.search
             }
         }
     default:

@@ -2,7 +2,14 @@ import types from 'constants'
 import availability from 'fake-data/availability'
 import strainList from 'fake-data/strains'
 
-const { AVAILABILITY_FETCH_SUCCESS, STRAINS_FETCH_REQUEST, STRAINS_FETCH_SUCCESS } = types
+const {
+  AVAILABILITY_FETCH_SUCCESS,
+  STRAINS_FETCH_REQUEST,
+  STRAINS_FETCH_SUCCESS,
+  PAGE_FETCH_SUCCESS,
+  PAGE_FETCH_REQUEST,
+  SEARCH_STRAINS
+} = types
 
 // const requestAvailability = () => {
 //     return {
@@ -14,6 +21,12 @@ const { AVAILABILITY_FETCH_SUCCESS, STRAINS_FETCH_REQUEST, STRAINS_FETCH_SUCCESS
 const requestStrains = () => {
     return {
         type: STRAINS_FETCH_REQUEST
+    }
+}
+
+const requestNextPage = () => {
+    return {
+        type: PAGE_FETCH_REQUEST
     }
 }
 
@@ -32,6 +45,20 @@ const receiveAvailability = (data) => {
     }
 }
 
+const receiveNextPage = () => {
+    return {
+        type: PAGE_FETCH_SUCCESS,
+        isFetching: false
+    }
+}
+
+const searchStrains = (search) => {
+    return {
+        type: SEARCH_STRAINS,
+        search
+    }
+}
+
 export const fetchStrainList = () => {
     return (dispatch) => {
         dispatch(requestStrains())
@@ -44,5 +71,20 @@ export const fetchStrainList = () => {
 export const fetchAvailability = () => {
     return (dispatch) => {
         dispatch(receiveAvailability(availability.data))
+    }
+}
+
+export const fetchNextPage = () => {
+    return (dispatch) => {
+        dispatch(requestNextPage())
+        setTimeout(() => {
+            dispatch(receiveNextPage())
+        }, 500)
+    }
+}
+
+export const getSearchInput = (search) => {
+    return (dispatch) => {
+        dispatch(searchStrains(search))
     }
 }
