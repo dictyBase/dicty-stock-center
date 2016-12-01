@@ -69,7 +69,7 @@ if (__DEV__ || __TEST__) {
       inject: false,
       hash: false,
       favicon: paths.client('static/favicon.ico'),
-      base: process.env.BASENAME || '/',
+      base: process.env.BASENAME || '',
       minify: {
         collapseWhitespace: true
       }
@@ -270,5 +270,6 @@ if (!__DEV__) {
       })
   )
 }
+
 
 export default webpackConfig
