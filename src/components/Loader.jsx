@@ -19,7 +19,7 @@ export default class Loader extends Component {
                             <i className="fa fa-5x fa-spinner fa-pulse fa-fw margin-bottom"></i>
                             <h4>{ message && message }</h4>
                         </div>
-                  </Cell>
+                    </Cell>
                 </Grid>
             </div>
         )

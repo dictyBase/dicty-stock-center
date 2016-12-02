@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
@@ -6,9 +6,6 @@ import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
-  constructor(props) {
-      super(props)
-  }
   loadNextPage({clientHeight, scrollHeight, scrollTop}) {
       const stockCenterActions = this.props.stockCenterActions
       if (scrollHeight === scrollTop + clientHeight) {
@@ -41,8 +38,7 @@ export default class StrainTable extends Component {
       ? rows.length + 1
       : rows.length
 
-      const cellWidth = 180
-      const cellHeight = 50
+      const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
           <InfiniteLoader
@@ -56,12 +52,12 @@ export default class StrainTable extends Component {
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
                     width={ cellWidth * 6 }
-                    height={ cellHeight * 6 }
+                    height={ cellHeight * 7 }
                     headerHeight={ cellHeight }
                     headerStyle={ {textAlign: 'center'} }
                     rowHeight={ cellHeight }
                     rowGetter={ ({ index }) => rows[index] }
-                    style={ {paddingTop: '2.5%'} }
+                    style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }
                     rowStyle={ ({index}) => {
                         if (index === -1) {
@@ -82,7 +78,7 @@ export default class StrainTable extends Component {
                     rowRenderer={ ({index, rowData, columns, key, style, className}) => {
                         if (index > rowCount - 2 && isFetching) {
                             return (
-                              <div key={ key } style={ style } className={ className }><TableLoader message="Loading next page..." /></div>
+                              <div key={ key } style={ style } className={ className }><TableLoader /></div>
                             )
                         }
                         return (
@@ -156,4 +152,9 @@ export default class StrainTable extends Component {
         </div>
       )
   }
+}
+
+StrainTable.defaultProps = {
+    cellWidth: 180,
+    cellHeight: 50
 }
