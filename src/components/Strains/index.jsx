@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
-// import { Table } from 'reactabular'
 import 'react-virtualized/styles.css'
 import { Table, Column } from 'react-virtualized'
 import { Grid, Cell } from 'radium-grid'
 import styled from 'styled-components'
 import Loader from 'components/Loader'
+import StrainTable from 'components/StrainTable'
 import 'styles/custom.scss'
-
 export default class Strains extends Component {
     displayName = 'strains list'
     constructor(props) {
         super(props)
-        this.state = {
-            rows: 10
-        }
     }
     componentDidMount() {
-        // window.addEventListener('scroll', this.handleScroll.bind(this))
         const { stockCenterActions } = this.props
         stockCenterActions.fetchStrainList()
         document.addEventListener('scroll', (event) => {
@@ -31,44 +26,12 @@ export default class Strains extends Component {
     handleSearch(e) {
         const { stockCenterActions } = this.props
         stockCenterActions.getSearchInput(e.target.value)
-        // let input = e.target.value.toLowerCase()
-        // let { data } = this.props.stockCenter.strainCatalog
-        // let search = data.filter((row) => {
-        //     if (row.descriptor.toLowerCase().includes(input) || row.names.toLowerCase().includes(input) || row.systematicName.toLowerCase().includes(input) || row.id.toLowerCase().includes(input)) {
-        //         return 1
-        //     }
-        //     return 0
-        // })
-        // this.setState({
-        //     data: search
-        // })
     }
-    handleScroll() {
+    handleScroll({clientHeight, scrollHeight, scrollTop}) {
         const { stockCenterActions } = this.props
-        // if (scrollHeight === scrollTop + clientHeight) {
-        stockCenterActions.fetchNextPage()
-        // }
-      // dispatch action to get 5/10 more strains
-        // const { data } = this.props.stockCenter.strainCatalog
-        // const length = data.length
-        // const chunks = data.length / 5
-        // if (this.state.rows < length) {
-        //     if ((this.state.rows / 5) < chunks) {
-        //         if (this.state.rows % 5 > 0) {
-        //             this.setState({
-        //                 rows: this.state.rows + (this.state.rows % 5)
-        //             })6
-        //         } else {
-        //             this.setState({
-        //                 rows: this.state.rows + 5
-        //             })
-        //         }
-        //     } else if (data.length % 5 > 0) {
-        //         this.setState({
-        //             rows: this.state.rows + (data.length % 5)
-        //         })
-        //     }
-        // }
+        if (scrollHeight === scrollTop + clientHeight) {
+            stockCenterActions.fetchNextPage()
+        }
     }
     getColumns = () => {
         const { cartActions } = this.props
@@ -132,68 +95,54 @@ export default class Strains extends Component {
     }
 
     getRows() {
+        let i
         const { cartActions } = this.props
         const { data, pages, search } = this.props.stockCenter.strainCatalog
         let rows = data.slice(0, pages * 10)
         if (search !== '') {
-            rows = rows.filter((row) => {
-                if (search === '') {
-                    return 1
-                } else if (row.descriptor.toLowerCase().includes(search) || row.names.toLowerCase().includes(search) || row.systematicName.toLowerCase().includes(search) || row.id.toLowerCase().includes(search)) {
-                    return 1
+            let filteredRows = []
+            // rows = rows.filter((row) => {
+            //     if (row.descriptor.toLowerCase().includes(search) || row.names.toLowerCase().includes(search) || row.systematicName.toLowerCase().includes(search) || row.id.toLowerCase().includes(search)) {
+            //         return 1
+            //     }
+            //     return 0
+            // })
+            for (i = 0; i < rows.length; i += 1) {
+                for (let property in rows[i]) {
+                    if ((property !== 'available') && rows[i][property].toLowerCase().includes(search.toLowerCase())) {
+                        console.log(rows[i])
+                        filteredRows.push(rows[i])
+                        break
+                    }
                 }
-                return 0
-            })
+            }
+            rows = filteredRows
         }
-        // .map((row, i) => {
-        //     return (
-        //       <Grid key={ i } style={ { borderTop: '1px solid #c9c9c9' } } cellWidth="1/6">
-        //         <Cell align="center" style={ { padding: '.7%' } }>
-        //           <div
-        //             className={ row.available ? 'item-available' : 'item-unavailable' }>
-        //             <i className="fa fa-shopping-cart fa-2x"></i>
-        //           </div>
-        //         </Cell>
-        //         <Cell className={ 'descriptor' } align="center" style={ { padding: '.7%' } }>
-        //           { row.descriptor }
-        //         </Cell>
-        //         <Cell align="center" style={ { padding: '.7%' } }>
-        //           { row.names }
-        //         </Cell>
-        //         <Cell align="center" style={ { padding: '.7%' } }>
-        //           { row.systematicName }
-        //         </Cell>
-        //         <Cell align="center" style={ { padding: '.7%' } }>
-        //           { row.id }
-        //         </Cell>
-        //         <Cell align="center" style={ { padding: '.7%' } }>
-        //           {
-        //             row.available &&
-        //              <button
-        //                className="btn btn-primary"
-        //                onClick={ () => cartActions.addToCart(row) }>
-        //                  <i className="fa fa-cart-arrow-down"></i> Add to cart
-        //              </button>
-        //            }
-        //         </Cell>
-        //       </Grid>
-        //     )
-        // })
-        // return rows
-        const cellWidth = 200
+        const cellWidth = 180
         const cellHeight = 50
         return (
+          <div className="table-responsive">
             <Table
               width={ cellWidth * 6 }
-              height={ 400 }
+              height={ cellHeight * 7 }
               headerHeight={ cellHeight }
               headerStyle={ {textAlign: 'center'} }
               rowHeight={ cellHeight }
               rowCount={ rows.length }
               rowGetter={ ({ index }) => rows[index] }
               style={ {paddingTop: '2.5%'} }
-              rowStyle={ {borderTop: '1px solid grey'} }
-              gridStyle={ {margin: 0, textAlign: 'center', height: '100%'} }
+              rowStyle={ ({index}) => {
+                  if (index === -1) {
+                      return {
+                          margin: '0 auto'
+                      }
+                  }
+                  return {
+                      borderTop: '1px solid grey'
+                  }
+              }
+              }
+              gridStyle={ {margin: '0 auto', textAlign: 'center'} }
               onScroll={ this.handleScroll.bind(this) }
             >
               <Column
@@ -231,27 +180,28 @@ export default class Strains extends Component {
                 width={ cellWidth }
                 dataKey="id"
               />
-            <Column
-              width={ cellWidth }
-              dataKey="available"
-              cellRenderer={ (cellData, rowIndex) => {
-                  if (cellData.cellData) {
-                      return (
-                        <button
-                        className="btn btn-primary"
-                        onClick={ () => cartActions.addToCart(rows[rowIndex]) }
-                        >
-                          <i className="fa fa-cart-arrow-down"></i> Add to cart
-                      </button>
-                      )
-                  }
-              } }
-            />
+              <Column
+                width={ cellWidth }
+                dataKey="available"
+                cellRenderer={ (cellData, rowIndex) => {
+                    if (cellData.cellData) {
+                        return (
+                          <button
+                          className="btn btn-primary"
+                          onClick={ () => cartActions.addToCart(rows[rowIndex]) }
+                          >
+                            <i className="fa fa-cart-arrow-down"></i> Add to cart
+                        </button>
+                        )
+                    }
+                } }
+              />
             </Table>
+          </div>
         )
     }
     render() {
-        const { data } = this.props.stockCenter.strainCatalog
+        const { data, isFetching } = this.props.stockCenter.strainCatalog
         const SearchBar = styled.input`
           border: none;
           border-bottom: 1px solid grey;
@@ -266,17 +216,23 @@ export default class Strains extends Component {
             </Grid>
             <Grid cellWidth="1">
               <Cell align="center">
-                <SearchBar
+                <input
                   type="text"
                   placeholder="Search Strains"
                   onChange={ this.handleSearch.bind(this) }
                 />
               </Cell>
             </Grid>
-              { data
-                ? this.getRows()
-                : <Loader message="We're testing your patience" />
-              }
+            {
+              data
+              ? <StrainTable
+                  strainCatalog={ this.props.stockCenter.strainCatalog }
+                  stockCenterActions={ this.props.stockCenterActions }
+                  columnNames={ ['Availability', 'Strain Descriptor', 'Strain Names', 'Systematic Name', 'Strain ID'] }
+                  rowHeight={50}
+                />
+              : <Loader message="We're testing your patience." />
+            }
           </div>
         )
     }
