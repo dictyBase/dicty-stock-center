@@ -3,6 +3,13 @@ polyfill()
 import 'isomorphic-fetch'
 
 
+export const getStrainPage = (url, page) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${url}/strains/${page}`, config)
+}
 export const createUser = (url, values) => {
     let config = {
         method: 'POST',

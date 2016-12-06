@@ -1,6 +1,8 @@
 import types from 'constants'
 import availability from 'fake-data/availability'
 import strainList from 'fake-data/strains'
+import { status, json } from 'utils/fetch'
+import { getStrainPage } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -8,6 +10,7 @@ const {
   STRAINS_FETCH_SUCCESS,
   PAGE_FETCH_SUCCESS,
   PAGE_FETCH_REQUEST,
+  PAGE_FETCH_FAILURE,
   SEARCH_STRAINS
 } = types
 
@@ -45,10 +48,12 @@ const receiveAvailability = (data) => {
     }
 }
 
-const receiveNextPage = () => {
+const receiveNextPage = (data) => {
     return {
         type: PAGE_FETCH_SUCCESS,
-        isFetching: false
+        isFetching: false,
+        data: data.strains,
+        hasNextPage: data.hasNextPage
     }
 }
 
@@ -56,6 +61,13 @@ const searchStrains = (search) => {
     return {
         type: SEARCH_STRAINS,
         search
+    }
+}
+
+const pageFetchFailure = (error) => {
+    return {
+        type: PAGE_FETCH_FAILURE,
+        error
     }
 }
 
@@ -74,12 +86,21 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchNextPage = () => {
+export const fetchNextPage = (page) => {
+    let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestNextPage())
-        setTimeout(() => {
-            dispatch(receiveNextPage())
-        }, 500)
+        getStrainPage(server, page)
+        .then(status)
+        .then(json)
+        .then((response) => {
+            setTimeout(() => {
+                dispatch(receiveNextPage(response.data))
+            }, 2000)
+        })
+        .catch((error) => {
+            dispatch(pageFetchFailure(error))
+        })
     }
 }
 

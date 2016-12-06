@@ -9,6 +9,7 @@ const {
     STRAINS_FETCH_FAILURE,
     PAGE_FETCH_REQUEST,
     PAGE_FETCH_SUCCESS,
+    PAGE_FETCH_FAILURE,
     SEARCH_STRAINS
 } = types
 
@@ -19,7 +20,9 @@ const initialState = {
     strainCatalog: {
         isFetching: false,
         pages: 1,
-        search: ''
+        search: '',
+        data: [],
+        hasNextPage: true
     }
 }
 
@@ -63,7 +66,8 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 isFetching: false,
-                data: action.data
+                data: action.data.strains,
+                hasNextPage: action.data.hasNextPage
             }
         }
     case STRAINS_FETCH_FAILURE:
@@ -89,6 +93,16 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 pages: state.strainCatalog.pages + 1,
+                isFetching: false,
+                data: state.strainCatalog.data.concat(action.data),
+                hasNextPage: action.hasNextPage
+            }
+        }
+    case PAGE_FETCH_FAILURE:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
                 isFetching: false
             }
         }
