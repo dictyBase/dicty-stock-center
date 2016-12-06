@@ -6,6 +6,7 @@ import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
+<<<<<<< HEAD
   componentDidMount() {
       const { stockCenterActions } = this.props
       const { pages } = this.props.stockCenter.strainCatalog
@@ -22,6 +23,7 @@ export default class StrainTable extends Component {
   render() {
       let i
       const { cartActions } = this.props
+<<<<<<< HEAD
       const { data, search, isFetching, hasNextPage } = this.props.stockCenter.strainCatalog
       let rows = data
       if (search !== '') {
@@ -37,9 +39,9 @@ export default class StrainTable extends Component {
           rows = filteredRows
       }
 
-      const isRowLoaded = ({ index }) => !hasNextPage || index < rows.length
 
-      const rowCount = isFetching
+      const isRowLoaded = ({ index }) => !this.props.hasNextPage || index < rows.length
+      const rowCount = this.props.hasNextPage
       ? rows.length + 1
       : rows.length
 
@@ -87,6 +89,7 @@ export default class StrainTable extends Component {
                               <div key={ key } style={ style } className={ className }>
                                 <TableLoader />
                               </div>
+
                             )
                         }
                         return (
@@ -148,6 +151,7 @@ export default class StrainTable extends Component {
                                 >
                                   <i className="fa fa-cart-arrow-down"></i> Add to cart
                                 </button>
+
                               )
                           }
                       } }

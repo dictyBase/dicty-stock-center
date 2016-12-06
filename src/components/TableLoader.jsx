@@ -11,7 +11,11 @@ export default class TableLoader extends Component {
     render() {
         const { title, message } = this.props
         return (
+<<<<<<< HEAD
             <div style={ {width: '100%'} }>
+=======
+            <div className="container">
+>>>>>>> 26a2704ea6445b231b5c4024e8814f36398d23fc
                 <Grid cellWidth="1">
                     <Cell align="center">
                         <div className="text-center">
