@@ -30,7 +30,7 @@ export default class Strains extends Component {
               </Cell>
             </Grid>
             {
-              data
+              data !== []
               ? <StrainTable
                   {...this.props}
                 />

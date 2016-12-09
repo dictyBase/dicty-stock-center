@@ -6,7 +6,6 @@ import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
-<<<<<<< HEAD
   componentDidMount() {
       const { stockCenterActions } = this.props
       const { pages } = this.props.stockCenter.strainCatalog
@@ -23,8 +22,7 @@ export default class StrainTable extends Component {
   render() {
       let i
       const { cartActions } = this.props
-<<<<<<< HEAD
-      const { data, search, isFetching, hasNextPage } = this.props.stockCenter.strainCatalog
+      const { data, search, hasNextPage } = this.props.stockCenter.strainCatalog
       let rows = data
       if (search !== '') {
           let filteredRows = []
@@ -84,7 +82,6 @@ export default class StrainTable extends Component {
                     gridStyle={ {margin: '0 auto', textAlign: 'center'} }
                     rowRenderer={ ({index, columns, key, style, className}) => {
                         if ((index === rows.length - 1) && hasNextPage) {
-                          console.log(index)
                             return (
                               <div key={ key } style={ style } className={ className }>
                                 <TableLoader />
