@@ -8,14 +8,15 @@ export default class StrainTable extends Component {
   displayName = 'strain table'
   componentDidMount() {
       const { stockCenterActions } = this.props
-      const { pages } = this.props.stockCenter.strainCatalog
-      stockCenterActions.fetchNextPage(pages)
+      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+      stockCenterActions.fetchNextPage(number, 10)
   }
   loadNextPage({clientHeight, scrollHeight, scrollTop}) {
       const { stockCenterActions } = this.props
-      const { pages, hasNextPage } = this.props.stockCenter.strainCatalog
-      if ((scrollHeight === scrollTop + clientHeight) && hasNextPage) {
-          stockCenterActions.fetchNextPage(pages)
+      const { isFetching } = this.props.stockCenter.strainCatalog
+      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+      if ((scrollHeight === scrollTop + clientHeight) && !isFetching) {
+          stockCenterActions.fetchNextPage(number, 10)
       }
       this.forceUpdate()
   }
@@ -39,7 +40,7 @@ export default class StrainTable extends Component {
 
 
       const isRowLoaded = ({ index }) => !this.props.hasNextPage || index < rows.length
-      const rowCount = this.props.hasNextPage
+      const rowCount = false
       ? rows.length + 1
       : rows.length
 
@@ -119,17 +120,18 @@ export default class StrainTable extends Component {
                     <Column
                       label="Strain Descriptor"
                       width={ cellWidth }
-                      dataKey="descriptor"
+                      dataKey="description"
+                      cellDataGetter= { ({rowData, dataKey}) => {
+                          return rowData.attributes[dataKey]
+                      } }
                     />
                     <Column
-                      label="Strain Names"
+                      label="Strain Name"
                       width={ cellWidth }
-                      dataKey="names"
-                    />
-                    <Column
-                      label="Systematic Name"
-                      width={ cellWidth }
-                      dataKey="systematicName"
+                      dataKey="name"
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          return rowData.attributes[dataKey]
+                      } }
                     />
                     <Column
                       label="Strain ID"

@@ -31,9 +31,7 @@ export default class Strains extends Component {
             </Grid>
             {
               data !== []
-              ? <StrainTable
-                  {...this.props}
-                />
+              ? <StrainTable {...this.props} />
               : <Loader message="We're testing your patience." />
             }
           </div>

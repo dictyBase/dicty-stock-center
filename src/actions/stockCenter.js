@@ -52,8 +52,9 @@ const receiveNextPage = (data) => {
     return {
         type: PAGE_FETCH_SUCCESS,
         isFetching: false,
-        data: data.strains,
-        hasNextPage: data.hasNextPage
+        data: data.data,
+        links: data.links,
+        meta: data.meta
     }
 }
 
@@ -86,17 +87,17 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchNextPage = (page) => {
+export const fetchNextPage = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestNextPage())
-        getStrainPage(server, page)
+        getStrainPage(server, page, size)
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
-                dispatch(receiveNextPage(response.data))
-            }, 2000)
+                dispatch(receiveNextPage(response))
+            }, 100)
         })
         .catch((error) => {
             dispatch(pageFetchFailure(error))

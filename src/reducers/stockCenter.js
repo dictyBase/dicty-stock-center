@@ -19,10 +19,13 @@ const initialState = {
     },
     strainCatalog: {
         isFetching: false,
-        pages: 1,
         search: '',
         data: [],
-        hasNextPage: true
+        meta: {
+            pagination: {
+                number: 1
+            }
+        }
     }
 }
 
@@ -92,10 +95,9 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
-                pages: state.strainCatalog.pages + 1,
                 isFetching: false,
-                data: state.strainCatalog.data.concat(action.data),
-                hasNextPage: action.hasNextPage
+                ...action,
+                data: state.strainCatalog.data.concat(action.data)
             }
         }
     case PAGE_FETCH_FAILURE:
