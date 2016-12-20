@@ -1,35 +1,65 @@
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
+import { Grid, Cell } from 'radium-grid'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
   componentDidMount() {
-      const { stockCenterActions } = this.props
-      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-      stockCenterActions.fetchNextPage(number, 10)
   }
   loadNextPage({clientHeight, scrollHeight, scrollTop}) {
       const { stockCenterActions } = this.props
       const { isFetching } = this.props.stockCenter.strainCatalog
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-      if ((scrollHeight === scrollTop + clientHeight) && !isFetching) {
-          stockCenterActions.fetchNextPage(number, 10)
+      const { links } = this.props.stockCenter.strainCatalog
+      if (scrollHeight === scrollTop + clientHeight) {
+          if (!isFetching && links.next) {
+              stockCenterActions.fetchNextPage(number + 1, 10)
+          }
       }
+      // this.forceUpdate()
+  }
+  // handleChange(e) {
+  //     const { stockCenterActions } = this.props
+  //     stockCenterActions.getSearchInput(e.target.value)
+  // }
+  handleKeyDown(e) {
+      if (e.keyCode === 13) {
+          this.search(e.target.value)
+      }
+  }
+  search(text) {
+      const { stockCenterActions } = this.props
+      const { data } = this.props.stockCenter.strainCatalog
+      const { meta } = this.props.stockCenter.strainCatalog
+      stockCenterActions.searchAllStrains(data.length, meta.pagination.records, text)
       this.forceUpdate()
+  }
+  handleSearch() {
+      this.search(this.searchInput.value)
+  }
+  handleClear() {
+      this.clearSearch()
+  }
+  clearSearch() {
+      this.searchInput.value = ''
+      this.search('')
   }
   render() {
       let i
       const { cartActions } = this.props
-      const { data, search, hasNextPage } = this.props.stockCenter.strainCatalog
+      const { data, search, links } = this.props.stockCenter.strainCatalog
       let rows = data
       if (search !== '') {
           let filteredRows = []
           for (i = 0; i < rows.length; i += 1) {
-              for (let property in rows[i]) {
-                  if ((property !== 'available') && rows[i][property].toLowerCase().includes(search.toLowerCase())) {
+              if (rows[i]['id'].toLowerCase().includes(search.toLowerCase())) {
+                  filteredRows.push(rows[i])
+              }
+              for (let attribute in rows[i]['attributes']) {
+                  if (rows[i]['attributes'][attribute].toLowerCase().includes(search.toLowerCase())) {
                       filteredRows.push(rows[i])
                       break
                   }
@@ -39,17 +69,33 @@ export default class StrainTable extends Component {
       }
 
 
-      const isRowLoaded = ({ index }) => !this.props.hasNextPage || index < rows.length
-      const rowCount = false
-      ? rows.length + 1
+      // const isRowLoaded = ({ index }) => !links.next || index < rows.length
+      const { isFetching } = this.props.stockCenter.strainCatalog
+      const rowCount = links.next
+      ? rows.length
       : rows.length
-
+      // const rowCount = rows.lenth
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
+          <Grid cellWidth="1">
+            <Cell align="center">
+              <input
+                style={ {textAlign: 'center', height: '100%'} }
+                type="text"
+                placeholder="Search Strains"
+                ref={ el => { this.searchInput = el } }
+                onKeyDown={ this.handleKeyDown.bind(this) }
+              />
+            <button className="btn btn-primary" style={ {marginLeft: 7} } onClick={ this.handleSearch.bind(this) }>SEARCH</button>
+            <button className="btn btn-primary" style={ {marginLeft: 7} } onClick={ this.handleClear.bind(this) }>CLEAR</button>
+
+            </Cell>
+          </Grid>
           <InfiniteLoader
-            isRowLoaded={ isRowLoaded }
+            isRowLoaded={ !isFetching }
             rowCount={ rowCount }
+            loadMoreRows={ this.loadNextPage.bind(this) }
           >
           {
             ({ onRowsRendered, registerChild }) => {
@@ -57,7 +103,7 @@ export default class StrainTable extends Component {
                   <Table
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
-                    width={ cellWidth * 6 }
+                    width={ cellWidth * 5 }
                     height={ cellHeight * 7 }
                     headerHeight={ cellHeight }
                     headerStyle={ {textAlign: 'center'} }
@@ -68,7 +114,10 @@ export default class StrainTable extends Component {
                     rowStyle={ ({index}) => {
                         if (index === -1) {
                             return {
-                                margin: '0 auto'
+                                margin: '0 auto',
+                                borderTop: '1px solid #efefef',
+                                borderBottom: '1px solid #efefef',
+                                border: '1px solid #efefef'
                             }
                         } else if ((index > rows.length - 2)) {
                             return {
@@ -80,9 +129,15 @@ export default class StrainTable extends Component {
                             }
                         }
                     } }
-                    gridStyle={ {margin: '0 auto', textAlign: 'center'} }
+                    gridStyle={
+                        {
+                            margin: '0 auto',
+                            textAlign: 'center'
+                            // border: '1px solid #efefef'
+                        }
+                    }
                     rowRenderer={ ({index, columns, key, style, className}) => {
-                        if ((index === rows.length - 1) && hasNextPage) {
+                        if ((index === rows.length - 1) && links.next) {
                             return (
                               <div key={ key } style={ style } className={ className }>
                                 <TableLoader />
@@ -91,11 +146,7 @@ export default class StrainTable extends Component {
                             )
                         }
                         return (
-                          <div
-                            className={ className }
-                            key={ key }
-                            style={ style }
-                          >
+                          <div className={ className } key={ key } style={ style }>
                             { columns }
                           </div>
                         )

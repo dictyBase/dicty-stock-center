@@ -6,9 +6,10 @@ import 'styles/custom.scss'
 
 export default class Strains extends Component {
     displayName = 'strains list'
-    handleSearch(e) {
+    componentDidMount() {
         const { stockCenterActions } = this.props
-        stockCenterActions.getSearchInput(e.target.value)
+        const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+        stockCenterActions.fetchNextPage(number, 10)
     }
     render() {
         const { data } = this.props.stockCenter.strainCatalog
@@ -19,18 +20,8 @@ export default class Strains extends Component {
                       <h1 className="dicty-header">Strain Catalog</h1>
                 </Cell>
             </Grid>
-            <Grid cellWidth="1">
-              <Cell align="center">
-                <input
-                  style={ {textAlign: 'center'} }
-                  type="text"
-                  placeholder="Search Strains"
-                  onChange={ this.handleSearch.bind(this) }
-                />
-              </Cell>
-            </Grid>
             {
-              data !== []
+              data.length !== 0
               ? <StrainTable {...this.props} />
               : <Loader message="We're testing your patience." />
             }

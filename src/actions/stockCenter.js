@@ -11,7 +11,8 @@ const {
   PAGE_FETCH_SUCCESS,
   PAGE_FETCH_REQUEST,
   PAGE_FETCH_FAILURE,
-  SEARCH_STRAINS
+  SEARCH_STRAINS,
+  RECEIVE_ALL_STRAINS_SUCCESS
 } = types
 
 // const requestAvailability = () => {
@@ -27,7 +28,7 @@ const requestStrains = () => {
     }
 }
 
-const requestNextPage = () => {
+const requestPage = () => {
     return {
         type: PAGE_FETCH_REQUEST
     }
@@ -51,6 +52,16 @@ const receiveAvailability = (data) => {
 const receiveNextPage = (data) => {
     return {
         type: PAGE_FETCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const receiveAllStrains = (data) => {
+    return {
+        type: RECEIVE_ALL_STRAINS_SUCCESS,
         isFetching: false,
         data: data.data,
         links: data.links,
@@ -90,14 +101,14 @@ export const fetchAvailability = () => {
 export const fetchNextPage = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestNextPage())
+        dispatch(requestPage())
         getStrainPage(server, page, size)
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
                 dispatch(receiveNextPage(response))
-            }, 100)
+            }, 500)
         })
         .catch((error) => {
             dispatch(pageFetchFailure(error))
@@ -105,8 +116,35 @@ export const fetchNextPage = (page, size) => {
     }
 }
 
-export const getSearchInput = (search) => {
-    return (dispatch) => {
-        dispatch(searchStrains(search))
+export const searchAllStrains = (currentRecords, totalRecords, search) => {
+    let server = __API_SERVER__
+    if ((totalRecords !== currentRecords) && search.length > 0) {
+        return (dispatch) => {
+            dispatch(requestPage())
+            getStrainPage(server, 1, totalRecords)
+            .then(status)
+            .then(json)
+            .then((response) => {
+                setTimeout(() => {
+                    dispatch(receiveAllStrains(response))
+                }, 500)
+            })
+            .catch((error) => {
+                dispatch(pageFetchFailure(error))
+            })
+            .then(() => {
+                dispatch(searchStrains(search))
+            })
+        }
+    } else if ((totalRecords === currentRecords) || search.length === 0) {
+        return (dispatch) => {
+            dispatch(searchStrains(search))
+        }
     }
 }
+
+// export const searchStrains = (search) => {
+//     return (dispatch) => {
+//         dispatch(searchStrains(search))
+//     }
+// }

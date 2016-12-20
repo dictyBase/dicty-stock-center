@@ -10,7 +10,8 @@ const {
     PAGE_FETCH_REQUEST,
     PAGE_FETCH_SUCCESS,
     PAGE_FETCH_FAILURE,
-    SEARCH_STRAINS
+    SEARCH_STRAINS,
+    RECEIVE_ALL_STRAINS_SUCCESS
 } = types
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
         isFetching: false,
         search: '',
         data: [],
+        links: {},
         meta: {
             pagination: {
                 number: 1
@@ -69,8 +71,7 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 isFetching: false,
-                data: action.data.strains,
-                hasNextPage: action.data.hasNextPage
+                data: action.data.strains
             }
         }
     case STRAINS_FETCH_FAILURE:
@@ -114,6 +115,16 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 search: action.search
+            }
+        }
+    case RECEIVE_ALL_STRAINS_SUCCESS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: false,
+                ...action,
+                data: action.data
             }
         }
     default:
