@@ -9,16 +9,16 @@ export default class StrainTable extends Component {
   displayName = 'strain table'
   componentDidMount() {
   }
-  loadNextPage({clientHeight, scrollHeight, scrollTop}) {
+  loadNextPage() {
       const { stockCenterActions } = this.props
       const { isFetching } = this.props.stockCenter.strainCatalog
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       const { links } = this.props.stockCenter.strainCatalog
-      if (scrollHeight === scrollTop + clientHeight) {
+      // if (scrollHeight === scrollTop + clientHeight) {
           if (!isFetching && links.next) {
               stockCenterActions.fetchNextPage(number + 1, 10)
           }
-      }
+      // }
       // this.forceUpdate()
   }
   // handleChange(e) {
@@ -50,7 +50,7 @@ export default class StrainTable extends Component {
   render() {
       let i
       const { cartActions } = this.props
-      const { data, search, links } = this.props.stockCenter.strainCatalog
+      const { data, search, links, isFetching } = this.props.stockCenter.strainCatalog
       let rows = data
       if (search !== '') {
           let filteredRows = []
@@ -67,35 +67,46 @@ export default class StrainTable extends Component {
           }
           rows = filteredRows
       }
-
-
-      // const isRowLoaded = ({ index }) => !links.next || index < rows.length
-      const { isFetching } = this.props.stockCenter.strainCatalog
-      const rowCount = links.next
-      ? rows.length
-      : rows.length
-      // const rowCount = rows.lenth
+      const loadMoreRows = isFetching
+        ? () => {}
+        : this.loadNextPage.bind(this)
+      const isRowLoaded = ({ index }) => { return !!rows[index] }
+      const rowCount = rows.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
           <Grid cellWidth="1">
             <Cell align="center">
               <input
-                style={ {textAlign: 'center', height: '100%'} }
-                type="text"
+                className="search-box"
+                style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
+                type="search"
                 placeholder="Search Strains"
                 ref={ el => { this.searchInput = el } }
                 onKeyDown={ this.handleKeyDown.bind(this) }
               />
-            <button className="btn btn-primary" style={ {marginLeft: 7} } onClick={ this.handleSearch.bind(this) }>SEARCH</button>
-            <button className="btn btn-primary" style={ {marginLeft: 7} } onClick={ this.handleClear.bind(this) }>CLEAR</button>
+            <button
+              className="btn btn-primary"
+              style={ {marginLeft: 7} }
+              onClick={ this.handleSearch.bind(this) }
+            >
+              SEARCH
+            </button>
+            <button
+              className="btn btn-primary"
+              style={ {marginLeft: 7} }
+              onClick={ this.handleClear.bind(this) }
+            >
+              CLEAR
+            </button>
 
             </Cell>
           </Grid>
           <InfiniteLoader
-            isRowLoaded={ !isFetching }
+            isRowLoaded={ isRowLoaded }
             rowCount={ rowCount }
-            loadMoreRows={ this.loadNextPage.bind(this) }
+            loadMoreRows={ loadMoreRows }
+            threshold={ 2 }
           >
           {
             ({ onRowsRendered, registerChild }) => {
@@ -106,9 +117,13 @@ export default class StrainTable extends Component {
                     width={ cellWidth * 5 }
                     height={ cellHeight * 7 }
                     headerHeight={ cellHeight }
-                    headerStyle={ {textAlign: 'center'} }
+                    headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ cellHeight }
-                    rowGetter={ ({ index }) => rows[index] }
+                    rowGetter={ ({ index }) => {
+                        if (rows[index]) {
+                            return rows[index]
+                        }
+                    } }
                     style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }
                     rowStyle={ ({index}) => {
@@ -116,48 +131,63 @@ export default class StrainTable extends Component {
                             return {
                                 margin: '0 auto',
                                 borderTop: '1px solid #efefef',
-                                borderBottom: '1px solid #efefef',
-                                border: '1px solid #efefef'
+                                borderBottom: '1px solid #efefef'
+                                // border: '1px solid #efefef'
                             }
-                        } else if ((index > rows.length - 2)) {
+                        } else if ((index === rows.length)) {
+                            // return {
+                            //     background: 'white'
+                            // }
                             return {
-                                background: 'white'
+                                // background: '#efefef',
+                                borderBottom: '1px solid #efefef'
                             }
                         } else if (index % 2 > 0) {
                             return {
-                                background: '#efefef'
+                                // background: '#efefef',
+                                borderBottom: '1px solid #efefef'
+                            }
+                        } else if (index % 2 === 0) {
+                            return {
+                                borderBottom: '1px solid #efefef'
                             }
                         }
                     } }
                     gridStyle={
                         {
                             margin: '0 auto',
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                             // border: '1px solid #efefef'
                         }
                     }
                     rowRenderer={ ({index, columns, key, style, className}) => {
-                        if ((index === rows.length - 1) && links.next) {
-                            return (
-                              <div key={ key } style={ style } className={ className }>
-                                <TableLoader />
-                              </div>
-
-                            )
+                        // if ((index === rows.length + 1) && isFetching) {
+                        //     return (
+                        //       <div key={ key } style={ style } className={ className }>
+                        //         <TableLoader />
+                        //       </div>
+                        //     )
+                        // }
+                        let content
+                        if (!isRowLoaded({index})) {
+                            content = <TableLoader />
+                        } else {
+                            content = columns
                         }
                         return (
                           <div className={ className } key={ key } style={ style }>
-                            { columns }
+                            { content }
                           </div>
                         )
                     } }
-                    onScroll={ this.loadNextPage.bind(this) }
                   >
                     <Column
                       label="Availability"
                       width={ cellWidth }
                       dataKey="available"
                       cellRenderer={ (cellData) => {
+                          console.log(cellData)
                           return (
                             <div
                               className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
@@ -165,15 +195,21 @@ export default class StrainTable extends Component {
                               <i className="fa fa-shopping-cart fa-2x"></i>
                             </div>
                           )
-                      }
-                    }
+                      } }
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          if (rowData) {
+                              return rowData.attributes[dataKey]
+                          }
+                      } }
                     />
                     <Column
                       label="Strain Descriptor"
                       width={ cellWidth }
                       dataKey="description"
-                      cellDataGetter= { ({rowData, dataKey}) => {
-                          return rowData.attributes[dataKey]
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          if (rowData) {
+                              return rowData.attributes[dataKey]
+                          }
                       } }
                     />
                     <Column
@@ -181,13 +217,20 @@ export default class StrainTable extends Component {
                       width={ cellWidth }
                       dataKey="name"
                       cellDataGetter={ ({rowData, dataKey}) => {
-                          return rowData.attributes[dataKey]
+                          if (rowData) {
+                              return rowData.attributes[dataKey]
+                          }
                       } }
                     />
                     <Column
                       label="Strain ID"
                       width={ cellWidth }
                       dataKey="id"
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          if (rowData) {
+                              return rowData[dataKey]
+                          }
+                      } }
                     />
                     <Column
                       width={ cellWidth }
@@ -203,6 +246,11 @@ export default class StrainTable extends Component {
                                 </button>
 
                               )
+                          }
+                      } }
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          if (rowData) {
+                              return rowData.attributes[dataKey]
                           }
                       } }
                     />
