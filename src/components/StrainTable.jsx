@@ -7,8 +7,6 @@ import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
-  componentDidMount() {
-  }
   loadNextPage() {
       const { stockCenterActions } = this.props
       const { isFetching } = this.props.stockCenter.strainCatalog
