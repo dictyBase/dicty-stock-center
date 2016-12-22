@@ -14,17 +14,10 @@ export default class StrainTable extends Component {
       const { isFetching } = this.props.stockCenter.strainCatalog
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       const { links } = this.props.stockCenter.strainCatalog
-      // if (scrollHeight === scrollTop + clientHeight) {
-          if (!isFetching && links.next) {
-              stockCenterActions.fetchNextPage(number + 1, 10)
-          }
-      // }
-      // this.forceUpdate()
+      if (!isFetching && links.next) {
+          stockCenterActions.fetchNextPage(number + 1, 10)
+      }
   }
-  // handleChange(e) {
-  //     const { stockCenterActions } = this.props
-  //     stockCenterActions.getSearchInput(e.target.value)
-  // }
   handleKeyDown(e) {
       if (e.keyCode === 13) {
           this.search(e.target.value)
@@ -134,19 +127,12 @@ export default class StrainTable extends Component {
                                 margin: '0 auto',
                                 borderTop: '1px solid #efefef',
                                 borderBottom: '1px solid #efefef'
-                                // border: '1px solid #efefef'
                             }
                         } else if ((index === rows.length)) {
-                            // return {
-                            //     background: 'white'
-                            // }
                             return {
-                                // background: '#efefef',
-                                // borderBottom: '1px solid #efefef'
                             }
                         } else if (index % 2 > 0) {
                             return {
-                                // background: '#efefef',
                                 borderBottom: '1px solid #efefef'
                             }
                         } else if (index % 2 === 0) {
@@ -160,17 +146,9 @@ export default class StrainTable extends Component {
                             margin: '0 auto',
                             textAlign: 'center',
                             verticalAlign: 'middle'
-                            // border: '1px solid #efefef'
                         }
                     }
                     rowRenderer={ ({index, columns, key, style, className}) => {
-                        // if ((index === rows.length + 1) && isFetching) {
-                        //     return (
-                        //       <div key={ key } style={ style } className={ className }>
-                        //         <TableLoader />
-                        //       </div>
-                        //     )
-                        // }
                         let content
                         if (!isRowLoaded({index})) {
                             content = <TableLoader />
