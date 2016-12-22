@@ -59,9 +59,11 @@ export default class StrainTable extends Component {
                   filteredRows.push(rows[i])
               }
               for (let attribute in rows[i]['attributes']) {
-                  if (rows[i]['attributes'][attribute].toLowerCase().includes(search.toLowerCase())) {
-                      filteredRows.push(rows[i])
-                      break
+                  if (attribute !== 'in_stock') {
+                    if (rows[i]['attributes'][attribute].toLowerCase().includes(search.toLowerCase())) {
+                        filteredRows.push(rows[i])
+                        break
+                    }
                   }
               }
           }
@@ -140,7 +142,7 @@ export default class StrainTable extends Component {
                             // }
                             return {
                                 // background: '#efefef',
-                                borderBottom: '1px solid #efefef'
+                                // borderBottom: '1px solid #efefef'
                             }
                         } else if (index % 2 > 0) {
                             return {
@@ -185,7 +187,7 @@ export default class StrainTable extends Component {
                     <Column
                       label="Availability"
                       width={ cellWidth }
-                      dataKey="available"
+                      dataKey="in_stock"
                       cellRenderer={ (cellData) => {
                           console.log(cellData)
                           return (
@@ -234,7 +236,7 @@ export default class StrainTable extends Component {
                     />
                     <Column
                       width={ cellWidth }
-                      dataKey="available"
+                      dataKey="in_stock"
                       cellRenderer={ ({ cellData, rowIndex, rowData }) => {
                           if (cellData) {
                               return (
