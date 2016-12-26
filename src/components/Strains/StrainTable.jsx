@@ -3,6 +3,7 @@ import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import { Grid, Cell } from 'radium-grid'
 import TableLoader from 'components/TableLoader'
+import { Link } from 'react-router'
 import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
@@ -165,7 +166,6 @@ export default class StrainTable extends Component {
                       width={ cellWidth }
                       dataKey="in_stock"
                       cellRenderer={ (cellData) => {
-                          console.log(cellData)
                           return (
                             <div
                               className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
@@ -187,6 +187,16 @@ export default class StrainTable extends Component {
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
                               return rowData.attributes[dataKey]
+                          }
+                      } }
+                      cellRenderer= { ({rowData, cellData}) => {
+                          if (rowData) {
+                              const { id } = rowData
+                              return (
+                                <div>
+                                  <Link to={ `/strains/${id}` }>{ cellData }</Link>
+                                </div>
+                              )
                           }
                       } }
                     />
