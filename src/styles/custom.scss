@@ -63,3 +63,14 @@
 .item-unavailable {
   color: #D8D8D8;
 }
+
+.strain-detail-row {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1290px) {
+  .strain-detail-row {
+    flex-direction: column !important;
+    height: 60px;
+  }
+}
