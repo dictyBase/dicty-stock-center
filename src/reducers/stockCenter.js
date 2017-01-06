@@ -11,7 +11,10 @@ const {
     PAGE_FETCH_SUCCESS,
     PAGE_FETCH_FAILURE,
     SEARCH_STRAINS,
-    RECEIVE_ALL_STRAINS_SUCCESS
+    RECEIVE_ALL_STRAINS_SUCCESS,
+    STRAIN_FETCH_REQUEST,
+    STRAIN_FETCH_SUCCESS,
+    STRAIN_FETCH_FAILURE
 } = types
 
 const initialState = {
@@ -28,6 +31,9 @@ const initialState = {
                 number: 1
             }
         }
+    },
+    strain: {
+        isFetching: false
     }
 }
 
@@ -125,6 +131,30 @@ const stockCenterReducer = (state = initialState, action) => {
                 isFetching: false,
                 ...action,
                 data: action.data
+            }
+        }
+    case STRAIN_FETCH_REQUEST:
+        return {
+            ...state,
+            strain: {
+                ...state.strain,
+                isFetching: true
+            }
+        }
+    case STRAIN_FETCH_SUCCESS:
+        return {
+            ...state,
+            strain: {
+                isFetching: false,
+                ...action.data
+            }
+        }
+    case STRAIN_FETCH_FAILURE:
+        return {
+            ...state,
+            strain: {
+                ...state.strain,
+                isFetching: false
             }
         }
     default:

@@ -2,10 +2,13 @@ import types from 'constants'
 import availability from 'fake-data/availability'
 import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getStrainPage } from 'utils/api'
+import { getStrainPage, getStrain } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
+  STRAIN_FETCH_REQUEST,
+  STRAIN_FETCH_SUCCESS,
+  STRAIN_FETCH_FAILURE,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
   PAGE_FETCH_SUCCESS,
@@ -82,7 +85,22 @@ const pageFetchFailure = (error) => {
         error
     }
 }
-
+const requestStrain = () => {
+    return {
+        type: STRAIN_FETCH_REQUEST
+    }
+}
+const receiveStrain = (data) => {
+    return {
+        type: STRAIN_FETCH_SUCCESS,
+        data
+    }
+}
+const strainFetchFailure = () => {
+    return {
+        type: STRAIN_FETCH_FAILURE
+    }
+}
 export const fetchStrainList = () => {
     return (dispatch) => {
         dispatch(requestStrains())
@@ -101,7 +119,7 @@ export const fetchAvailability = () => {
 export const fetchNextPage = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestPage())
+        dispatch(requestStrain())
         getStrainPage(server, page, size)
         .then(status)
         .then(json)
@@ -115,7 +133,6 @@ export const fetchNextPage = (page, size) => {
         })
     }
 }
-
 export const searchAllStrains = (currentRecords, totalRecords, search) => {
     let server = __API_SERVER__
     if ((totalRecords !== currentRecords) && search.length > 0) {
@@ -142,7 +159,23 @@ export const searchAllStrains = (currentRecords, totalRecords, search) => {
         }
     }
 }
-
+export const fetchStrain = (id) => {
+    let server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(requestPage())
+        getStrain(server, id)
+        .then(status)
+        .then(json)
+        .then((response) => {
+            setTimeout(() => {
+                dispatch(receiveStrain(response))
+            }, 1000)
+        })
+        .catch((error) => {
+            dispatch(strainFetchFailure(error))
+        })
+    }
+}
 // export const searchStrains = (search) => {
 //     return (dispatch) => {
 //         dispatch(searchStrains(search))
