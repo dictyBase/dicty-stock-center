@@ -109,9 +109,9 @@ export const fetchPage = (page, size) => {
         .then(status)
         .then(json)
         .then((response) => {
-            setTimeout(() => {
-                dispatch(receiveStrains(response))
-            }, 250)
+            // setTimeout(() => {
+            dispatch(receiveStrains(response))
+            // }, 250)
         })
         .catch((error) => {
             dispatch(strainFetchFailure(error))

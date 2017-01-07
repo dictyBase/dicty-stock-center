@@ -15,6 +15,7 @@ export default class SearchBar extends Component {
     }
     handleClear() {
         this.props.clearSearch()
+        this.searchInput.value = ''
     }
     render() {
         return (
