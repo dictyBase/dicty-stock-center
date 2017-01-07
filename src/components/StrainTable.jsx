@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
-import { Grid, Cell } from 'radium-grid'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
 
@@ -13,53 +12,14 @@ export default class StrainTable extends Component {
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       const { links } = this.props.stockCenter.strainCatalog
       if (!isFetching && links.next) {
-          stockCenterActions.fetchNextPage(number + 1, 10)
+          stockCenterActions.fetchPage(number + 1, 10)
       }
-  }
-  handleKeyDown(e) {
-      if (e.keyCode === 13) {
-          this.search(e.target.value)
-      }
-  }
-  search(text) {
-      const { stockCenterActions } = this.props
-      const { data } = this.props.stockCenter.strainCatalog
-      const { meta } = this.props.stockCenter.strainCatalog
-      stockCenterActions.searchAllStrains(data.length, meta.pagination.records, text)
-      this.forceUpdate()
-  }
-  handleSearch() {
-      this.search(this.searchInput.value)
-  }
-  handleClear() {
-      this.clearSearch()
-  }
-  clearSearch() {
-      this.searchInput.value = ''
-      this.search('')
   }
   render() {
       let i
       const { cartActions } = this.props
-      const { data, search, links, isFetching } = this.props.stockCenter.strainCatalog
+      const { data, links, isFetching } = this.props.stockCenter.strainCatalog
       let rows = data
-      if (search !== '') {
-          let filteredRows = []
-          for (i = 0; i < rows.length; i += 1) {
-              if (rows[i]['id'].toLowerCase().includes(search.toLowerCase())) {
-                  filteredRows.push(rows[i])
-              }
-              for (let attribute in rows[i]['attributes']) {
-                  if (attribute !== 'in_stock') {
-                    if (rows[i]['attributes'][attribute].toLowerCase().includes(search.toLowerCase())) {
-                        filteredRows.push(rows[i])
-                        break
-                    }
-                  }
-              }
-          }
-          rows = filteredRows
-      }
       const loadMoreRows = isFetching
         ? () => {}
         : this.loadNextPage.bind(this)
@@ -68,33 +28,6 @@ export default class StrainTable extends Component {
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
-          <Grid cellWidth="1">
-            <Cell align="center">
-              <input
-                className="search-box"
-                style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
-                type="search"
-                placeholder="Search Strains"
-                ref={ el => { this.searchInput = el } }
-                onKeyDown={ this.handleKeyDown.bind(this) }
-              />
-            <button
-              className="btn btn-primary"
-              style={ {marginLeft: 7} }
-              onClick={ this.handleSearch.bind(this) }
-            >
-              SEARCH
-            </button>
-            <button
-              className="btn btn-primary"
-              style={ {marginLeft: 7} }
-              onClick={ this.handleClear.bind(this) }
-            >
-              CLEAR
-            </button>
-
-            </Cell>
-          </Grid>
           <InfiniteLoader
             isRowLoaded={ isRowLoaded }
             rowCount={ rowCount }
@@ -165,7 +98,6 @@ export default class StrainTable extends Component {
                       width={ cellWidth }
                       dataKey="in_stock"
                       cellRenderer={ (cellData) => {
-                          console.log(cellData)
                           return (
                             <div
                               className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
