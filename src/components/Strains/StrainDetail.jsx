@@ -17,6 +17,25 @@ const Row = (props) => {
       </div>
     )
 }
+const Phenotype = (props) => {
+    return (
+      <div className="phenotype-row" style={ {display: 'flex', maxWidth: '100%', border: '1px solid black'} }>
+        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 0px 5px 10px'} }>
+          { props.phenotype }
+        </div>
+        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 0px 5px 10px'} }>
+          { props.notes }
+        </div>
+        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 10px 5px 10px'} }>
+          { props.reference }
+        </div>
+        <div style={ {flexGrow: 1, flexBasis: '10%', padding: '5px 0px 5px 10px', textAlign: 'center'} }>
+          <i className="fa fa-file fa-2x" style={ {padding: 5} }/>
+          <i className="fa fa-file fa-2x" style={ {padding: 5} }/>
+        </div>
+      </div>
+    )
+}
 
 export default class StrainDetail extends Component {
     displayName = 'strain detail'
@@ -48,6 +67,13 @@ export default class StrainDetail extends Component {
           {'Associated Gene(s)': 'mcln'},
           {'_blank': 'asdf '}
         ]
+        const phenotypes = [
+            {
+                phenotype: 'i\'m not really sure what this data should look like',
+                notes: 'this is a sample note',
+                reference: 'some person\'s name followed by something they wrote'
+            }
+        ]
         return (
           <div className="strain-details">
             <Grid cellWidth="1" style={ {width: '85%'} }>
@@ -57,8 +83,7 @@ export default class StrainDetail extends Component {
                         {
                             borderBottom: '1px solid #eee',
                             fontSize: 45,
-                            padding: 10,
-                            margin: '0 auto'
+                            margin: 10
                         }
                     }
                 >
@@ -66,6 +91,38 @@ export default class StrainDetail extends Component {
                 </h1>
               </Cell>
             </Grid>
+            <div className="phenotype-container" style={ {maxWidth: '85%', margin: '0 auto 20px auto'} }>
+              <div className="phenotype-header">
+                <div style={
+                    {
+                        padding: 10,
+                        maxWidth: '100%',
+                        minWidth: 304,
+                        background: '#15317e',
+                        color: 'white',
+                        margin: '0 auto',
+                        textAlign: 'center',
+                        display: 'flex'
+                    }
+                  }
+                >
+                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Phenotype</b></div>
+                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Notes</b></div>
+                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Reference</b></div>
+                  <div style={ {flexGrow: 1, flexBasis: '10%'} } />
+                </div>
+              </div>
+              { phenotypes && phenotypes.map((phenotype) => {
+                  return (
+                    <Phenotype
+                      phenotype={ phenotype.phenotype }
+                      notes={ phenotype.notes }
+                      reference={ phenotype.reference }
+                    />
+                )
+              })
+              }
+            </div>
             <div
                 align="center"
                 style={
