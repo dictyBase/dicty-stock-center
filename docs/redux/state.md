@@ -70,6 +70,29 @@
         shipping: {account: "Fedex" accountNum: "123", comments: ""},
         payer: {type: "user", id: "sara@gmail.com", firstName: "Sara", ...},
         payment: {method: "Credit card", poNum: ""}
+    },
+    stockCenter: {
+        availability: {
+            isFetching: false
+        },
+        strainCatalog: {
+            isFetching: false,
+            data: [ {type: "stocks", id: "DBS0252577", attributes: ...}, ...],
+            links: {
+                self:"/stocks?page[number]=1&page[size]=10",
+                first:"/stocks?page[number]=1&page[size]=10",
+                next:"/stocks?page[number]=2&page[size]=10",
+                last:"/stocks?page[number]=13&page[size]=10"
+            },
+            meta: {
+                pagination: {records:126, total:13, size:10, number:1}
+            }
+        },
+        strain: {
+            isFetching: false,
+            links: {self:"/stocks/DBS0236225"},
+            data: {type: "stocks", id: "DBS0252577", attributes: ...}
+        }
     }
 }
 ```
