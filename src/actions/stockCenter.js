@@ -159,6 +159,46 @@ export const searchAllStrains = (currentRecords, totalRecords, search) => {
         }
     }
 }
+// const commaFormat = (vals) => {
+//     const length = vals.length
+//     let result = ''
+//     for (let i = 0; i < length; i += 1) {
+//         if (length === 1) {
+//             result += vals[i]
+//         } else if (length > 1 && i < length - 1) {
+//             result += vals[i]
+//             result += ', '
+//         } else if (i === length - 1) {
+//             result += vals[i]
+//         }
+//     }
+// }
+const transformStrain = (strain) => {
+    const characteristics = strain.included[0].data.map((characteristic) => {
+        return characteristic.attributes.value
+    })
+    const phenotypes = strain.included[1].data.map((phenotype) => {
+        return {
+            name: phenotype.attributes.name,
+            observation: phenotype.attributes.observation,
+            attribute: phenotype.attributes.phen_attribute,
+            value: phenotype.attributes.value,
+            evidence: phenotype.attributes.evidence
+        }
+    })
+    const genotypes = strain.included[2].data.map((genotype) => {
+        return genotype.attributes.name
+    })
+    return {
+        links: strain.links,
+        id: strain.data.id,
+        name: strain.data.attributes.name,
+        description: strain.data.attributes.description,
+        characteristics: characteristics.join(', '),
+        phenotypes,
+        genotypes
+    }
+}
 export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
@@ -168,7 +208,7 @@ export const fetchStrain = (id) => {
         .then(json)
         .then((response) => {
             setTimeout(() => {
-                dispatch(receiveStrain(response))
+                dispatch(receiveStrain(transformStrain(response)))
             }, 1000)
         })
         .catch((error) => {

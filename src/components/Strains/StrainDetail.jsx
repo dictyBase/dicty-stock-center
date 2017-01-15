@@ -19,7 +19,7 @@ const Row = (props) => {
 }
 const Phenotype = (props) => {
     return (
-      <div className="phenotype-row" style={ {display: 'flex', maxWidth: '100%', border: '1px solid black'} }>
+      <div className="phenotype-row" style={ {display: 'flex', maxWidth: '100%', borderBottom: '1px solid black'} }>
         <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 0px 5px 10px'} }>
           { props.phenotype }
         </div>
@@ -44,35 +44,68 @@ export default class StrainDetail extends Component {
         const { id } = this.props.params
         stockCenterActions.fetchStrain(id)
     }
+    phenotypes() {
+        const { strain } = this.props.stockCenter
+        const rows = strain && strain.phenotypes.map((phenotype, i) => {
+            return (
+              <Phenotype
+                phenotype={ phenotype.observation }
+                notes={ phenotype.notes }
+                reference={ phenotype.reference }
+                key={ i }
+              />
+          )
+        })
+        return (
+          <div className="phenotype-container">
+            <div className="phenotype-header" style={ {maxWidth: '85%', margin: '0 auto 20px auto'} }>
+              <div style={
+                  {
+                      padding: 10,
+                      maxWidth: '100%',
+                      minWidth: 304,
+                      background: '#15317e',
+                      color: 'white',
+                      margin: '0 auto',
+                      textAlign: 'center',
+                      display: 'flex'
+                  }
+                }
+              >
+                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Phenotype</b></div>
+                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Notes</b></div>
+                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Reference</b></div>
+                <div style={ {flexGrow: 1, flexBasis: '10%'} } />
+              </div>
+              <div style={ {borderWidth: '1px 1px 0px 1px', borderColor: 'black', borderStyle: 'solid'} }>
+                { rows }
+              </div>
+            </div>
+          </div>
+        )
+    }
     render() {
         const { strain } = this.props.stockCenter
         const { isFetching } = this.props.stockCenter.strain
         const data1 = [
-          {'Strain Descriptor': strain.data ? strain.data.attributes.description : 'N/A'},
-          {'Strain Names': strain.data ? strain.data.attributes.name : 'N/A'},
+          {'Strain Descriptor': strain && strain.description},
+          {'Strain Names': strain && strain.name},
           {'Strain Summary': 'mcln null mutant expressed in DH1-10 cell'},
           {'Genetic Modification': 'endogenous substitution'},
-          {'Strain Characteristics': '	blasticidin resistant, null mutant, axenic'},
+          {'Strain Characteristics': strain && strain.characteristics},
           {'Parental Strain': 'DH1-10 (DBS0302388)'},
-          {'Plasmid': 'bsr cassette'},
+          {Plasmid: 'bsr cassette'},
           {'Reference(s)': '22357942'}
         ]
         const data2 = [
-          {'Strain ID': this.props.params.id},
+          {'Strain ID': strain && strain.id},
           {'Systematic Name': 'γS18'},
-          {'Genotype': 'axeA1, axeB1, axeC1, pyr5-6- [pRG24], ura-, mcln-, bsr'},
+          {Genotype: strain.genotypes && strain.genotypes[0]},
           {'Mutagenesis Method': 'Homologous Recombination'},
-          {'Depositor': 'N/A '},
-          {'Species': 'Dictyostelium discoideum'},
+          {Depositor: strain.depositor ? strain.depositor : 'N/A '},
+          {Species: 'Dictyostelium discoideum'},
           {'Associated Gene(s)': 'mcln'},
-          {'_blank': 'asdf '}
-        ]
-        const phenotypes = [
-            {
-                phenotype: 'i\'m not really sure what this data should look like',
-                notes: 'this is a sample note',
-                reference: 'some person\'s name followed by something they wrote'
-            }
+          {_blank: 'asdf '}
         ]
         return (
           <div className="strain-details">
@@ -91,56 +124,22 @@ export default class StrainDetail extends Component {
                 </h1>
               </Cell>
             </Grid>
-            <div className="phenotype-container" style={ {maxWidth: '85%', margin: '0 auto 20px auto'} }>
-              <div className="phenotype-header">
-                <div style={
-                    {
-                        padding: 10,
-                        maxWidth: '100%',
-                        minWidth: 304,
-                        background: '#15317e',
-                        color: 'white',
-                        margin: '0 auto',
-                        textAlign: 'center',
-                        display: 'flex'
-                    }
-                  }
-                >
-                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Phenotype</b></div>
-                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Notes</b></div>
-                  <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Reference</b></div>
-                  <div style={ {flexGrow: 1, flexBasis: '10%'} } />
-                </div>
-              </div>
-              { phenotypes && phenotypes.map((phenotype) => {
-                  return (
-                    <Phenotype
-                      phenotype={ phenotype.phenotype }
-                      notes={ phenotype.notes }
-                      reference={ phenotype.reference }
-                    />
-                )
-              })
-              }
-            </div>
+            { strain.phenotypes && this.phenotypes() }
             <div
-                align="center"
-                style={
-                    {
-                        padding: 10,
-                        maxWidth: '85%',
-                        minWidth: 304,
-                        background: '#15317e',
-                        color: 'white',
-                        margin: '0 auto',
-                        textAlign: 'center'
-                    }
-                }
+                style={ {
+                    padding: 10,
+                    maxWidth: '85%',
+                    minWidth: 304,
+                    background: '#15317e',
+                    color: 'white',
+                    margin: '0 auto',
+                    textAlign: 'center'
+                } }
             >
               <h3>Strain Details</h3>
             </div>
             {
-                isFetching || !strain.data
+                isFetching || !strain
                 ? <Loader message="Loading..." />
                 : (
                     <div

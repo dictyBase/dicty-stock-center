@@ -8,7 +8,7 @@ export const getStrain = (url, id) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${url}/stocks/${id}`, config)
+    return fetch(`${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`, config)
 }
 export const getStrainPage = (url, page, size) => {
     let config = {
