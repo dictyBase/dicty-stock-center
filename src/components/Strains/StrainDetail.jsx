@@ -1,41 +1,9 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
+import { StrainDetailRow } from 'components/Strains/StrainDetailRow'
+import { PhenotypeRow } from 'components/Strains/PhenotypeRow'
 import Loader from 'components/Loader'
 import 'styles/custom.scss'
-
-const Row = (props) => {
-    return (
-      <div className="strain-detail-row" style={ {flexGrow: 1, flexBasis: 0, display: 'flex', width: '100%', minWidth: 304, justifyContent: 'center', alignItems: 'center'} }>
-        <div className="strain-detail-item" style={ {display: 'flex', flexGrow: 1, flexBasis: 0, width: '100%', borderBottom: '1px solid grey', height: '100%'} }>
-          <div style={ {padding: '5px 0px 5px 10px', width: '33.3333%', minWidth: 117, height: '100%', borderRight: '1px solid grey'} }><b>{ Object.keys(props.left)[0] }</b></div>
-          <div style={ {padding: '5px 0px 5px 10px', width: '66.66666%', minWidth: 187, height: '100%', borderRight: '1px solid grey'} }>{ Object.values(props.left)[0] }</div>
-        </div>
-        <div className="strain-detail-item" style={ {display: 'flex', flexGrow: 1, flexBasis: 0, width: '100%', borderBottom: '1px solid grey', height: '100%'} }>
-          <div style={ {padding: '5px 0px 5px 10px', width: '33.3333%', minWidth: 117, height: '100%', borderRight: '1px solid grey'} }><b>{ Object.keys(props.right)[0] }</b></div>
-          <div style={ {padding: '5px 0px 5px 10px', width: '66.66666%', minWidth: 187} }>{ Object.values(props.right)[0] }</div>
-        </div>
-      </div>
-    )
-}
-const Phenotype = (props) => {
-    return (
-      <div className="phenotype-row" style={ {display: 'flex', maxWidth: '100%', borderBottom: '1px solid black'} }>
-        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 0px 5px 10px'} }>
-          { props.phenotype }
-        </div>
-        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 0px 5px 10px'} }>
-          { props.notes }
-        </div>
-        <div style={ {flexGrow: 1, flexBasis: '30%', borderRight: '1px solid black', padding: '5px 10px 5px 10px'} }>
-          { props.reference }
-        </div>
-        <div style={ {flexGrow: 1, flexBasis: '10%', padding: '5px 0px 5px 10px', textAlign: 'center'} }>
-          <i className="fa fa-file fa-2x" style={ {padding: 5} }/>
-          <i className="fa fa-file fa-2x" style={ {padding: 5} }/>
-        </div>
-      </div>
-    )
-}
 
 export default class StrainDetail extends Component {
     displayName = 'strain detail'
@@ -48,7 +16,7 @@ export default class StrainDetail extends Component {
         const { strain } = this.props.stockCenter
         const rows = strain && strain.phenotypes.map((phenotype, i) => {
             return (
-              <Phenotype
+              <PhenotypeRow
                 phenotype={ phenotype.observation }
                 notes={ phenotype.notes }
                 reference={ phenotype.reference }
@@ -155,14 +123,14 @@ export default class StrainDetail extends Component {
                             }
                         }
                     >
-                      <Row left={ data1[0] } right={ data2[0] } />
-                      <Row left={ data1[1] } right={ data2[1] } />
-                      <Row left={ data1[2] } right={ data2[2] } />
-                      <Row left={ data1[3] } right={ data2[3] } />
-                      <Row left={ data1[4] } right={ data2[4] } />
-                      <Row left={ data1[5] } right={ data2[5] } />
-                      <Row left={ data1[6] } right={ data2[6] } />
-                      <Row left={ data1[7] } right={ data2[7] } />
+                      <StrainDetailRow left={ data1[0] } right={ data2[0] } />
+                      <StrainDetailRow left={ data1[1] } right={ data2[1] } />
+                      <StrainDetailRow left={ data1[2] } right={ data2[2] } />
+                      <StrainDetailRow left={ data1[3] } right={ data2[3] } />
+                      <StrainDetailRow left={ data1[4] } right={ data2[4] } />
+                      <StrainDetailRow left={ data1[5] } right={ data2[5] } />
+                      <StrainDetailRow left={ data1[6] } right={ data2[6] } />
+                      <StrainDetailRow left={ data1[7] } right={ data2[7] } />
                     </div>
                 )
             }
