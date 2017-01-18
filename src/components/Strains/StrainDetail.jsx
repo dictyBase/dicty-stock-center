@@ -53,6 +53,7 @@ export default class StrainDetail extends Component {
         )
     }
     render() {
+        const { cartActions } = this.props
         const { strain } = this.props.stockCenter
         const { isFetching } = this.props.stockCenter.strain
         const data1 = [
@@ -105,6 +106,12 @@ export default class StrainDetail extends Component {
                 } }
             >
               <h3>Strain Details</h3>
+              <button
+              className="btn btn-primary"
+              onClick={ () => cartActions.addToCart(rows[rowIndex]) }
+              >
+                <i className="fa fa-cart-arrow-down"></i> Add to cart
+              </button>
             </div>
             {
                 isFetching || !strain
