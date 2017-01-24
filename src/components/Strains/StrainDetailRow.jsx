@@ -3,7 +3,7 @@ import React from 'react'
 export const StrainDetailRow = (props) => {
     return (
       <div
-        className="strain-detail-row"
+        className={props.right ? 'strain-detail-row' : 'strain-detail-row single' }
         style={ {
             flexGrow: 1,
             flexBasis: 0,

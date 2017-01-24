@@ -76,4 +76,10 @@
   .strain-detail-item div + div {
       border-right: none !important;
   }
+  .strain-detail-row.single {
+    height: 45px;
+  }
+  .strain-detail-row.single > .strain-detail-item:nth-child(2) {
+    display: none !important;
+  }
 }
