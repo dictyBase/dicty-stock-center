@@ -68,7 +68,7 @@ export const StrainDetailRow = (props) => {
                 borderRight: props.right && '1px solid grey'
             } }
           >
-            <b>{ props.right ? Object.keys(props.right)[0] : 'a' }</b>
+            <b>{ props.right ? Object.keys(props.right)[0] : '\u00A0' }</b>
           </div>
           <div
             style={ {

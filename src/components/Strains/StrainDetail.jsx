@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import { StrainDetailRow } from 'components/Strains/StrainDetailRow'
 import { PhenotypeRow } from 'components/Strains/PhenotypeRow'
+import { Link } from 'react-router'
 import Loader from 'components/Loader'
 import 'styles/custom.scss'
 
@@ -63,7 +64,7 @@ export default class StrainDetail extends Component {
         const { cartActions } = this.props
         const { strain } = this.props.stockCenter
         const { isFetching } = this.props.stockCenter.strain
-        const item = {
+        const cartItem = {
             type: 'strain',
             id: strain.id,
             systematicName: strain.name
@@ -147,6 +148,26 @@ export default class StrainDetail extends Component {
                     </div>
                 )
             }
+            <Grid style={ {marginTop: '50px', maxWidth: '85%'} }>
+              <Cell width="1/2" smallWidth="1" align="right">
+                <button to="/strains"
+                  className="btn btn-primary btn-block"
+                  style={ {maxWidth: '50%'} }
+                  onClick={ () => cartActions.addToCart(cartItem) }
+                >
+                  <i className="fa fa-share"></i> Add to Cart
+                </button>
+              </Cell>
+              <Cell width="1/2" smallWidth="1" align="left">
+                <Link
+                  to="/order/shipping"
+                  className="btn btn-success btn-block"
+                  style={ {maxWidth: '50%'} }
+                >
+                  <i className="fa fa-shopping-cart"></i> Checkout
+                </Link>
+              </Cell>
+            </Grid>
           </div>
         )
     }
