@@ -13,7 +13,14 @@ export default class StrainDetail extends Component {
         stockCenterActions.fetchStrain(id)
     }
     phenotypes() {
-        const { strain } = this.props.stockCenter
+        // const { strain } = this.props.stockCenter
+        const strain = {
+            phenotypes: [{
+                observation: 'placeholder',
+                notes: 'placeholder',
+                reference: '000000001'
+            }]
+        }
         const rows = strain && strain.phenotypes.map((phenotype, i) => {
             return (
               <PhenotypeRow
@@ -56,25 +63,30 @@ export default class StrainDetail extends Component {
         const { cartActions } = this.props
         const { strain } = this.props.stockCenter
         const { isFetching } = this.props.stockCenter.strain
+        const item = {
+            type: 'strain',
+            id: strain.id,
+            systematicName: strain.name
+        }
         const data1 = [
-          {'Strain Descriptor': strain && strain.description},
-          {'Strain Names': strain && strain.name},
-          {'Strain Summary': 'mcln null mutant expressed in DH1-10 cell'},
-          {'Genetic Modification': 'endogenous substitution'},
+          {'Strain Descriptor': 'No Information'},
+          {'Strain Names': 'No Information'},
+          {'Systematic Name': strain && strain.name},
+          {'Strain Summary': strain && strain.description},
+          {Genotype: strain.genotypes && strain.genotypes[0]},
           {'Strain Characteristics': strain && strain.characteristics},
-          {'Parental Strain': 'DH1-10 (DBS0302388)'},
-          {Plasmid: 'bsr cassette'},
-          {'Reference(s)': '22357942'}
+          {Plasmid: 'No Information'},
+          {'Reference(s)': '22357942' /* just display id, no link > eventually go to internal publication id*/}
         ]
         const data2 = [
           {'Strain ID': strain && strain.id},
-          {'Systematic Name': 'γS18'},
-          {Genotype: strain.genotypes && strain.genotypes[0]},
-          {'Mutagenesis Method': 'Homologous Recombination'},
-          {Depositor: strain.depositor ? strain.depositor : 'N/A '},
           {Species: 'Dictyostelium discoideum'},
+          {'Genetic Modification': 'No Information'},
+          {'Mutagenesis Method': 'Homologous Recombination'},
+          {'Parental Strain': 'DH1-10 (DBS0302388)'/*multiple possible*/},
           {'Associated Gene(s)': 'mcln'},
-          {_blank: 'asdf '}
+          {Depositor: 'No Information'}
+          // {_blank: 'asdf '}
         ]
         return (
           <div className="strain-details">
@@ -106,12 +118,6 @@ export default class StrainDetail extends Component {
                 } }
             >
               <h3>Strain Details</h3>
-              <button
-              className="btn btn-primary"
-              onClick={ () => cartActions.addToCart(rows[rowIndex]) }
-              >
-                <i className="fa fa-cart-arrow-down"></i> Add to cart
-              </button>
             </div>
             {
                 isFetching || !strain
@@ -130,14 +136,14 @@ export default class StrainDetail extends Component {
                             }
                         }
                     >
-                      <StrainDetailRow left={ data1[0] } right={ data2[0] } />
-                      <StrainDetailRow left={ data1[1] } right={ data2[1] } />
-                      <StrainDetailRow left={ data1[2] } right={ data2[2] } />
-                      <StrainDetailRow left={ data1[3] } right={ data2[3] } />
-                      <StrainDetailRow left={ data1[4] } right={ data2[4] } />
-                      <StrainDetailRow left={ data1[5] } right={ data2[5] } />
-                      <StrainDetailRow left={ data1[6] } right={ data2[6] } />
-                      <StrainDetailRow left={ data1[7] } right={ data2[7] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[0] } right={ data2[0] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[1] } right={ data2[1] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[2] } right={ data2[2] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[3] } right={ data2[3] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[4] } right={ data2[4] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[5] } right={ data2[5] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[6] } right={ data2[6] } />
+                      <StrainDetailRow breakpoint={ 1290 } left={ data1[7] } />
                     </div>
                 )
             }

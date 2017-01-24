@@ -42,7 +42,7 @@ export const StrainDetailRow = (props) => {
                 width: '66.66666%',
                 minWidth: 187,
                 height: '100%',
-                borderRight: '1px solid grey'
+                borderRight: props.right && '1px solid grey'
             } }
           >
             { Object.values(props.left)[0] }
@@ -65,10 +65,10 @@ export const StrainDetailRow = (props) => {
                 width: '33.3333%',
                 minWidth: 117,
                 height: '100%',
-                borderRight: '1px solid grey'
+                borderRight: props.right && '1px solid grey'
             } }
           >
-            <b>{ Object.keys(props.right)[0] }</b>
+            <b>{ props.right ? Object.keys(props.right)[0] : 'a' }</b>
           </div>
           <div
             style={ {
@@ -77,7 +77,7 @@ export const StrainDetailRow = (props) => {
                 minWidth: 187
             } }
           >
-            { Object.values(props.right)[0] }
+            { props.right && Object.values(props.right)[0] }
           </div>
         </div>
       </div>
