@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import { StrainDetailRow } from 'components/Strains/StrainDetailRow'
-import { PhenotypeRow } from 'components/Strains/PhenotypeRow'
+import StrainDetailRow from 'components/Strains/StrainDetailRow'
+import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
 import 'styles/custom.scss'
@@ -14,15 +14,15 @@ export default class StrainDetail extends Component {
         stockCenterActions.fetchStrain(id)
     }
     phenotypes() {
-        // const { strain } = this.props.stockCenter
-        const strain = {
-            phenotypes: [{
-                observation: 'placeholder',
-                notes: 'placeholder',
-                reference: '000000001'
-            }]
-        }
-        const rows = strain && strain.phenotypes.map((phenotype, i) => {
+        const { phenotypes } = this.props.stockCenter.strain
+        // const strain = {
+        //     phenotypes: [{
+        //         observation: 'placeholder',
+        //         notes: 'placeholder',
+        //         reference: '000000001'
+        //     }]
+        // }
+        const rows = phenotypes.map((phenotype, i) => {
             return (
               <PhenotypeRow
                 phenotype={ phenotype.observation }
@@ -137,21 +137,21 @@ export default class StrainDetail extends Component {
                             }
                         }
                     >
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[0] } right={ data2[0] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[1] } right={ data2[1] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[2] } right={ data2[2] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[3] } right={ data2[3] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[4] } right={ data2[4] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[5] } right={ data2[5] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[6] } right={ data2[6] } />
-                      <StrainDetailRow breakpoint={ 1290 } left={ data1[7] } />
+                      <StrainDetailRow left={ data1[0] } right={ data2[0] } />
+                      <StrainDetailRow left={ data1[1] } right={ data2[1] } />
+                      <StrainDetailRow left={ data1[2] } right={ data2[2] } />
+                      <StrainDetailRow left={ data1[3] } right={ data2[3] } />
+                      <StrainDetailRow left={ data1[4] } right={ data2[4] } />
+                      <StrainDetailRow left={ data1[5] } right={ data2[5] } />
+                      <StrainDetailRow left={ data1[6] } right={ data2[6] } />
+                      <StrainDetailRow left={ data1[7] } />
                     </div>
                 )
             }
             <Grid style={ {marginTop: '50px', maxWidth: '85%'} }>
               <Cell width="1/2" smallWidth="1" align="right">
-                <button to="/strains"
-                  className="btn btn-primary btn-block"
+                <button
+                  className="btn btn-primary btn-block add-to-cart"
                   style={ {maxWidth: '50%'} }
                   onClick={ () => cartActions.addToCart(cartItem) }
                 >

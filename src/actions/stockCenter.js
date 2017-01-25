@@ -182,8 +182,9 @@ const transformStrain = (strain) => {
             name: phenotype.attributes.name,
             observation: phenotype.attributes.observation,
             attribute: phenotype.attributes.phen_attribute,
-            value: phenotype.attributes.value,
-            evidence: phenotype.attributes.evidence
+            notes: phenotype.attributes.value,
+            evidence: phenotype.attributes.evidence,
+            reference: 'placeholder'
         }
     })
     const genotypes = strain.included[2].data.map((genotype) => {
