@@ -22,6 +22,7 @@ import Contact from 'components/Contact'
 import PageNotReady from 'components/PageNotReady'
 import Strains from 'components/Strains'
 import StrainDetail from 'components/Strains/StrainDetail'
+import Plasmids from 'components/Plasmids'
 
 export default (
     <Route path="/" component={ App }>
@@ -32,6 +33,7 @@ export default (
         <Route path=":provider/callback" component={ OauthCallback } />
         <Route path="load/auth" component={ AuthLoader } />
         <Route path="strains" component={ Strains } />
+        <Route path="plasmids" component={ Plasmids } />
         <Route path="strains/:id" component={ StrainDetail } />
         <Route path="contact" component={ Contact } />
         <Route path="logout" component={ Logout } />

@@ -17,6 +17,13 @@ export const getStrainPage = (url, page, size) => {
     }
     return fetch(`${url}/stocks?page[number]=${page}&page[size]=${size}`, config)
 }
+export const getPage = (url, page, size, type) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${url}/stocks?filter[type]=${type}&page[number]=${page}&page[size]=${size}`, config)
+}
 export const createUser = (url, values) => {
     let config = {
         method: 'POST',

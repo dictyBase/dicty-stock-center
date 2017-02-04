@@ -34,6 +34,17 @@ const initialState = {
     },
     strain: {
         isFetching: false
+    },
+    plasmidCatalog: {
+        isFetching: false,
+        search: '',
+        data: [],
+        links: {},
+        meta: {
+            pagination: {
+                number: 1
+            }
+        }
     }
 }
 

@@ -2,7 +2,7 @@ import types from 'constants'
 import availability from 'fake-data/availability'
 import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getStrainPage, getStrain } from 'utils/api'
+import { getStrainPage, getStrain, getPage } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -52,19 +52,9 @@ const receiveAvailability = (data) => {
     }
 }
 
-const receiveNextPage = (data) => {
+const receiveStrainPage = (data) => {
     return {
         type: PAGE_FETCH_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
-
-const receiveAllStrains = (data) => {
-    return {
-        type: RECEIVE_ALL_STRAINS_SUCCESS,
         isFetching: false,
         data: data.data,
         links: data.links,
@@ -116,16 +106,16 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchNextPage = (page, size) => {
+export const fetchStrainPage = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
-        getStrainPage(server, page, size)
+        getPage(server, page, size, 'strain')
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
-                dispatch(receiveNextPage(response))
+                dispatch(receiveStrainPage(response))
             }, 500)
         })
         .catch((error) => {
@@ -133,46 +123,23 @@ export const fetchNextPage = (page, size) => {
         })
     }
 }
-export const searchAllStrains = (currentRecords, totalRecords, search) => {
+export const fetchPlasmidPage = (page, size) => {
     let server = __API_SERVER__
-    if ((totalRecords !== currentRecords) && search.length > 0) {
-        return (dispatch) => {
-            dispatch(requestPage())
-            getStrainPage(server, 1, totalRecords)
-            .then(status)
-            .then(json)
-            .then((response) => {
-                setTimeout(() => {
-                    dispatch(receiveAllStrains(response))
-                }, 500)
-            })
-            .catch((error) => {
-                dispatch(pageFetchFailure(error))
-            })
-            .then(() => {
-                dispatch(searchStrains(search))
-            })
-        }
-    } else if ((totalRecords === currentRecords) || search.length === 0) {
-        return (dispatch) => {
-            dispatch(searchStrains(search))
-        }
+    return dispatch => {
+        dispatch(requestPage())
+        getPage(server, page, size, 'plasmid')
+        .then(status)
+        .then(json)
+        .then(response => {
+            setTimeout(() => {
+              dispatch(receivePlasmidPage(response))
+            }, 300)
+        })
+        .catch(error => {
+            dispatch(pageFetchFailure(error))
+        })
     }
 }
-// const commaFormat = (vals) => {
-//     const length = vals.length
-//     let result = ''
-//     for (let i = 0; i < length; i += 1) {
-//         if (length === 1) {
-//             result += vals[i]
-//         } else if (length > 1 && i < length - 1) {
-//             result += vals[i]
-//             result += ', '
-//         } else if (i === length - 1) {
-//             result += vals[i]
-//         }
-//     }
-// }
 const transformStrain = (strain) => {
     const characteristics = strain.included[0].data.map((characteristic) => {
         return characteristic.attributes.value
