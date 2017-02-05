@@ -11,10 +11,12 @@ const {
     PAGE_FETCH_SUCCESS,
     PAGE_FETCH_FAILURE,
     SEARCH_STRAINS,
-    RECEIVE_ALL_STRAINS_SUCCESS,
     STRAIN_FETCH_REQUEST,
     STRAIN_FETCH_SUCCESS,
-    STRAIN_FETCH_FAILURE
+    STRAIN_FETCH_FAILURE,
+    PLASMIDS_FETCH_REQUEST,
+    PLASMIDS_FETCH_SUCCESS,
+    PLASMIDS_FETCH_FAILURE
 } = types
 
 const initialState = {
@@ -78,8 +80,7 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
-                isFetching: true,
-                pages: 1
+                isFetching: true
             }
         }
     case STRAINS_FETCH_SUCCESS:
@@ -88,7 +89,8 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 isFetching: false,
-                data: action.data.strains
+                ...action,
+                data: state.strainCatalog.data.concat(action.data)
             }
         }
     case STRAINS_FETCH_FAILURE:
@@ -134,16 +136,6 @@ const stockCenterReducer = (state = initialState, action) => {
                 search: action.search
             }
         }
-    case RECEIVE_ALL_STRAINS_SUCCESS:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: false,
-                ...action,
-                data: action.data
-            }
-        }
     case STRAIN_FETCH_REQUEST:
         return {
             ...state,
@@ -166,6 +158,14 @@ const stockCenterReducer = (state = initialState, action) => {
             strain: {
                 ...state.strain,
                 isFetching: false
+            }
+        }
+    case PLASMIDS_FETCH_REQUEST:
+        return {
+            ...state,
+            plasmidCatalog: {
+                ...state.plasmidCatalog,
+                isFetching: true
             }
         }
     default:

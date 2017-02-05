@@ -9,7 +9,7 @@ export default class Strains extends Component {
     componentDidMount() {
         const { stockCenterActions } = this.props
         const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-        stockCenterActions.fetchNextPage(number, 10)
+        stockCenterActions.fetchStrains(number, 10)
     }
     render() {
         const { data } = this.props.stockCenter.strainCatalog

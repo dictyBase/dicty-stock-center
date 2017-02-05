@@ -11,11 +11,10 @@ const {
   STRAIN_FETCH_FAILURE,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
-  PAGE_FETCH_SUCCESS,
-  PAGE_FETCH_REQUEST,
+  PLASMIDS_FETCH_REQUEST,
+  PLASMIDS_FETCH_SUCCESS,
   PAGE_FETCH_FAILURE,
-  SEARCH_STRAINS,
-  RECEIVE_ALL_STRAINS_SUCCESS
+  SEARCH_STRAINS
 } = types
 
 // const requestAvailability = () => {
@@ -31,16 +30,29 @@ const requestStrains = () => {
     }
 }
 
-const requestPage = () => {
+const requestPlasmids = () => {
     return {
-        type: PAGE_FETCH_REQUEST
+        type: PLASMIDS_FETCH_REQUEST
     }
 }
 
 const receiveStrains = (data) => {
     return {
         type: STRAINS_FETCH_SUCCESS,
-        data
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const receivePlasmids = (data) => {
+    return {
+        type: PLASMIDS_FETCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
     }
 }
 
@@ -49,16 +61,6 @@ const receiveAvailability = (data) => {
         type: AVAILABILITY_FETCH_SUCCESS,
         isFetching: false,
         availability: data.attributes.availability
-    }
-}
-
-const receiveStrainPage = (data) => {
-    return {
-        type: PAGE_FETCH_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
     }
 }
 
@@ -91,14 +93,6 @@ const strainFetchFailure = () => {
         type: STRAIN_FETCH_FAILURE
     }
 }
-export const fetchStrainList = () => {
-    return (dispatch) => {
-        dispatch(requestStrains())
-        setTimeout(() => {
-            dispatch(receiveStrains(strainList))
-        }, 1000)
-    }
-}
 
 export const fetchAvailability = () => {
     return (dispatch) => {
@@ -106,16 +100,16 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchStrainPage = (page, size) => {
+export const fetchStrains = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestStrain())
+        dispatch(requestStrains())
         getPage(server, page, size, 'strain')
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
-                dispatch(receiveStrainPage(response))
+                dispatch(receiveStrains(response))
             }, 500)
         })
         .catch((error) => {
@@ -123,16 +117,16 @@ export const fetchStrainPage = (page, size) => {
         })
     }
 }
-export const fetchPlasmidPage = (page, size) => {
+export const fetchPlasmids = (page, size) => {
     let server = __API_SERVER__
     return dispatch => {
-        dispatch(requestPage())
+        dispatch(requestPlasmids())
         getPage(server, page, size, 'plasmid')
         .then(status)
         .then(json)
         .then(response => {
             setTimeout(() => {
-              dispatch(receivePlasmidPage(response))
+                dispatch(receivePlasmids(response))
             }, 300)
         })
         .catch(error => {
@@ -170,7 +164,7 @@ const transformStrain = (strain) => {
 export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestPage())
+        dispatch(requestStrain())
         getStrain(server, id)
         .then(status)
         .then(json)

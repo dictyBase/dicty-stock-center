@@ -9,7 +9,7 @@ export default class Plasmids extends Component {
     componentDidMount() {
         const { stockCenterActions } = this.props
         const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
-        stockCenterActions.fetchNextPage(number, 10)
+        stockCenterActions.fetchPlasmids(number, 10)
     }
     render() {
         const { data } = this.props.stockCenter.plasmidCatalog

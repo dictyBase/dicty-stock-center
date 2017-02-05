@@ -14,7 +14,7 @@ export default class StrainTable extends Component {
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       const { links } = this.props.stockCenter.strainCatalog
       if (!isFetching && links.next) {
-          stockCenterActions.fetchNextPage(number + 1, 10)
+          stockCenterActions.fetchStrains(number + 1, 10)
       }
   }
   handleKeyDown(e) {
@@ -42,25 +42,8 @@ export default class StrainTable extends Component {
   render() {
       let i
       const { cartActions } = this.props
-      const { data, search, links, isFetching } = this.props.stockCenter.strainCatalog
+      const { data, links, isFetching } = this.props.stockCenter.strainCatalog
       let rows = data
-      if (search !== '') {
-          let filteredRows = []
-          for (i = 0; i < rows.length; i += 1) {
-              if (rows[i]['id'].toLowerCase().includes(search.toLowerCase())) {
-                  filteredRows.push(rows[i])
-              }
-              for (let attribute in rows[i]['attributes']) {
-                  if (attribute !== 'in_stock') {
-                    if (rows[i]['attributes'][attribute].toLowerCase().includes(search.toLowerCase())) {
-                        filteredRows.push(rows[i])
-                        break
-                    }
-                  }
-              }
-          }
-          rows = filteredRows
-      }
       const loadMoreRows = isFetching
         ? () => {}
         : this.loadNextPage.bind(this)
@@ -100,7 +83,7 @@ export default class StrainTable extends Component {
             isRowLoaded={ isRowLoaded }
             rowCount={ rowCount }
             loadMoreRows={ loadMoreRows }
-            threshold={ 2 }
+            threshold={ 0 }
           >
           {
             ({ onRowsRendered, registerChild }) => {

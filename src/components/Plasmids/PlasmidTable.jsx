@@ -12,7 +12,7 @@ export default class PlasmidTable extends Component {
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
       const { links } = this.props.stockCenter.plasmidCatalog
       if (!isFetching && links.next) {
-          stockCenterActions.fetchPage(number + 1, 10)
+          stockCenterActions.fetchPlasmids(number + 1, 10)
       }
   }
   render() {
