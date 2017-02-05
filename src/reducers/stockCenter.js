@@ -97,35 +97,9 @@ const stockCenterReducer = (state = initialState, action) => {
         return {
             ...state,
             strainCatalog: {
-                ...state.straingCatalog,
+                ...state.strainCatalog,
                 isFetching: false,
                 error: action.error
-            }
-        }
-    case PAGE_FETCH_REQUEST:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: true
-            }
-        }
-    case PAGE_FETCH_SUCCESS:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: false,
-                ...action,
-                data: state.strainCatalog.data.concat(action.data)
-            }
-        }
-    case PAGE_FETCH_FAILURE:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: false
             }
         }
     case SEARCH_STRAINS:
@@ -166,6 +140,25 @@ const stockCenterReducer = (state = initialState, action) => {
             plasmidCatalog: {
                 ...state.plasmidCatalog,
                 isFetching: true
+            }
+        }
+    case PLASMIDS_FETCH_SUCCESS:
+        return {
+            ...state,
+            plasmidCatalog: {
+                ...state.plasmidCatalog,
+                isFetching: false,
+                ...action,
+                data: state.plasmidCatalog.data.concat(action.data)
+            }
+        }
+    case PLASMIDS_FETCH_FAILURE:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.pasmidCatalog,
+                isFetching: false,
+                error: action.error
             }
         }
     default:

@@ -1,8 +1,8 @@
 import types from 'constants'
 import availability from 'fake-data/availability'
-import strainList from 'fake-data/strains'
+// import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getStrainPage, getStrain, getPage } from 'utils/api'
+import { getPage } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -13,6 +13,7 @@ const {
   STRAINS_FETCH_SUCCESS,
   PLASMIDS_FETCH_REQUEST,
   PLASMIDS_FETCH_SUCCESS,
+  PLASMIDS_FETCH_FAILURE,
   PAGE_FETCH_FAILURE,
   SEARCH_STRAINS
 } = types
@@ -46,6 +47,13 @@ const receiveStrains = (data) => {
     }
 }
 
+const strainsFetchFailure = (error) => {
+    return {
+        type: PLASMIDS_FETCH_FAILURE,
+        error
+    }
+}
+
 const receivePlasmids = (data) => {
     return {
         type: PLASMIDS_FETCH_SUCCESS,
@@ -53,6 +61,13 @@ const receivePlasmids = (data) => {
         data: data.data,
         links: data.links,
         meta: data.meta
+    }
+}
+
+const plasmidsFetchFailure = (error) => {
+    return {
+        type: PLASMIDS_FETCH_FAILURE,
+        error
     }
 }
 
@@ -71,12 +86,12 @@ const searchStrains = (search) => {
     }
 }
 
-const pageFetchFailure = (error) => {
-    return {
-        type: PAGE_FETCH_FAILURE,
-        error
-    }
-}
+// const pageFetchFailure = (error) => {
+//     return {
+//         type: PAGE_FETCH_FAILURE,
+//         error
+//     }
+// }
 const requestStrain = () => {
     return {
         type: STRAIN_FETCH_REQUEST
@@ -108,12 +123,10 @@ export const fetchStrains = (page, size) => {
         .then(status)
         .then(json)
         .then((response) => {
-            setTimeout(() => {
-                dispatch(receiveStrains(response))
-            }, 500)
+            dispatch(receiveStrains(response))
         })
         .catch((error) => {
-            dispatch(pageFetchFailure(error))
+            dispatch(strainsFetchFailure(error))
         })
     }
 }
@@ -125,12 +138,10 @@ export const fetchPlasmids = (page, size) => {
         .then(status)
         .then(json)
         .then(response => {
-            setTimeout(() => {
-                dispatch(receivePlasmids(response))
-            }, 300)
+            dispatch(receivePlasmids(response))
         })
         .catch(error => {
-            dispatch(pageFetchFailure(error))
+            dispatch(plasmidsFetchFailure(error))
         })
     }
 }

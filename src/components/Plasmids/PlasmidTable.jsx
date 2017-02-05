@@ -8,9 +8,8 @@ export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage() {
       const { stockCenterActions } = this.props
-      const { isFetching } = this.props.stockCenter.plasmidCatalog
+      const { isFetching, links } = this.props.stockCenter.plasmidCatalog
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
-      const { links } = this.props.stockCenter.plasmidCatalog
       if (!isFetching && links.next) {
           stockCenterActions.fetchPlasmids(number + 1, 10)
       }

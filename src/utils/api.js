@@ -10,13 +10,6 @@ export const getStrain = (url, id) => {
     }
     return fetch(`${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`, config)
 }
-export const getStrainPage = (url, page, size) => {
-    let config = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }
-    return fetch(`${url}/stocks?page[number]=${page}&page[size]=${size}`, config)
-}
 export const getPage = (url, page, size, type) => {
     let config = {
         method: 'GET',
