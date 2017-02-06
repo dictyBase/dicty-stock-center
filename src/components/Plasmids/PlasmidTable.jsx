@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
+import { Grid, Cell } from 'radium-grid'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
@@ -10,9 +11,29 @@ export default class PlasmidTable extends Component {
       const { stockCenterActions } = this.props
       const { isFetching, links } = this.props.stockCenter.plasmidCatalog
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
-      if (!isFetching && links.next) {
+      if ((!isFetching && links.next) && (this.searchInput.value === '')) {
           stockCenterActions.fetchPlasmids(number + 1, 10)
       }
+  }
+  handleKeyDown(e) {
+      if (e.keyCode === 13) {
+          this.search(e.target.value)
+      }
+  }
+  search(text) {
+      const { stockCenterActions } = this.props
+      stockCenterActions.searchPlasmids(1, 1, text)
+      this.forceUpdate()
+  }
+  handleSearch() {
+      this.search(this.searchInput.value)
+  }
+  handleClear() {
+      this.clearSearch()
+  }
+  clearSearch() {
+      this.searchInput.value = ''
+      this.search('')
   }
   render() {
       let i
@@ -27,6 +48,33 @@ export default class PlasmidTable extends Component {
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
+          <Grid cellWidth="1">
+            <Cell align="center">
+              <input
+                className="search-box"
+                style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
+                type="search"
+                placeholder="Search Plasmids"
+                ref={ el => { this.searchInput = el } }
+                onKeyDown={ this.handleKeyDown.bind(this) }
+              />
+            <button
+              className="btn btn-primary"
+              style={ {marginLeft: 7} }
+              onClick={ this.handleSearch.bind(this) }
+            >
+              SEARCH
+            </button>
+            <button
+              className="btn btn-primary"
+              style={ {marginLeft: 7} }
+              onClick={ this.handleClear.bind(this) }
+            >
+              CLEAR
+            </button>
+
+            </Cell>
+          </Grid>
           <InfiniteLoader
             isRowLoaded={ isRowLoaded }
             rowCount={ rowCount }

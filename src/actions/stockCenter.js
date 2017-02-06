@@ -2,7 +2,7 @@ import types from 'constants'
 import availability from 'fake-data/availability'
 // import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getPage } from 'utils/api'
+import { getPage, searchStocks } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -14,6 +14,9 @@ const {
   PLASMIDS_FETCH_REQUEST,
   PLASMIDS_FETCH_SUCCESS,
   PLASMIDS_FETCH_FAILURE,
+  PLASMIDS_SEARCH_REQUEST,
+  PLASMIDS_SEARCH_SUCCESS,
+  PLASMIDS_SEARCH_FAILURE,
   PAGE_FETCH_FAILURE,
   SEARCH_STRAINS
 } = types
@@ -71,6 +74,30 @@ const plasmidsFetchFailure = (error) => {
     }
 }
 
+const plasmidsSearch = (search) => {
+    return {
+        type: PLASMIDS_SEARCH_REQUEST,
+        search
+    }
+}
+
+const receivePlasmidsSearch = (data) => {
+    return {
+        type: PLASMIDS_SEARCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const plasmidsSearchFailure = (error) => {
+    return {
+        type: PLASMIDS_SEARCH_FAILURE,
+        error
+    }
+}
+
 const receiveAvailability = (data) => {
     return {
         type: AVAILABILITY_FETCH_SUCCESS,
@@ -97,12 +124,14 @@ const requestStrain = () => {
         type: STRAIN_FETCH_REQUEST
     }
 }
+
 const receiveStrain = (data) => {
     return {
         type: STRAIN_FETCH_SUCCESS,
         data
     }
 }
+
 const strainFetchFailure = () => {
     return {
         type: STRAIN_FETCH_FAILURE
@@ -130,6 +159,7 @@ export const fetchStrains = (page, size) => {
         })
     }
 }
+
 export const fetchPlasmids = (page, size) => {
     let server = __API_SERVER__
     return dispatch => {
@@ -145,6 +175,23 @@ export const fetchPlasmids = (page, size) => {
         })
     }
 }
+
+export const searchPlasmids = (page, size, search) => {
+    const server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(plasmidsSearch())
+        searchStocks(server, page, size, search, 'plasmid')
+        .then(status)
+        .then(json)
+        .then(response => {
+            dispatch(receivePlasmidsSearch(response))
+        })
+        .catch(error => {
+            dispatch(plasmidsSearchFailure(error))
+        })
+    }
+}
+
 const transformStrain = (strain) => {
     const characteristics = strain.included[0].data.map((characteristic) => {
         return characteristic.attributes.value
@@ -172,6 +219,7 @@ const transformStrain = (strain) => {
         genotypes
     }
 }
+
 export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {

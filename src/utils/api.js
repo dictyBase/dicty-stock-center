@@ -17,6 +17,13 @@ export const getPage = (url, page, size, type) => {
     }
     return fetch(`${url}/stocks?filter[type]=${type}&page[number]=${page}&page[size]=${size}`, config)
 }
+export const searchStocks = (url, page, size, search, type) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch(`${url}/stocks?filter[type]=${type}&filter[id]=${search}&page[number]=${page}&page[size]=${size}`, config)
+}
 export const createUser = (url, values) => {
     let config = {
         method: 'POST',
