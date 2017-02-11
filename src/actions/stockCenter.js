@@ -2,7 +2,7 @@ import types from 'constants'
 import availability from 'fake-data/availability'
 // import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getPage, searchStocks } from 'utils/api'
+import { getPage, getStock, searchStocks } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -17,7 +17,6 @@ const {
   PLASMIDS_SEARCH_REQUEST,
   PLASMIDS_SEARCH_SUCCESS,
   PLASMIDS_SEARCH_FAILURE,
-  PAGE_FETCH_FAILURE,
   SEARCH_STRAINS
 } = types
 
@@ -224,13 +223,14 @@ export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
-        getStrain(server, id)
+        getStock(server, id)
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
+                console.log(response)
                 dispatch(receiveStrain(transformStrain(response)))
-            }, 1000)
+            }, 400)
         })
         .catch((error) => {
             dispatch(strainFetchFailure(error))

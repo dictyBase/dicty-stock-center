@@ -36,7 +36,7 @@ export default class StrainDetailRow extends Component {
                     borderRight: '1px solid grey'
                 } }
               >
-                <b>{ Object.keys(this.props.left)[0] }</b>
+                { Object.keys(this.props.left)[0] }
               </div>
               <div
                 style={ {
@@ -70,7 +70,7 @@ export default class StrainDetailRow extends Component {
                     borderRight: this.props.right && '1px solid grey'
                 } }
               >
-                <b>{ this.props.right ? Object.keys(this.props.right)[0] : '\u00A0' }</b>
+                { this.props.right ? Object.keys(this.props.right)[0] : '\u00A0' }
               </div>
               <div
                 style={ {

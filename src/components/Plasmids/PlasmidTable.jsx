@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Grid, Cell } from 'radium-grid'
+import { Link } from 'react-router'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
@@ -166,6 +167,16 @@ export default class PlasmidTable extends Component {
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
                               return rowData.attributes[dataKey]
+                          }
+                      } }
+                      cellRenderer= { ({rowData, cellData}) => {
+                          if (rowData) {
+                              const { id } = rowData
+                              return (
+                                <div>
+                                  <Link to={ `/plasmids/${id}` }>{ cellData }</Link>
+                                </div>
+                              )
                           }
                       } }
                     />

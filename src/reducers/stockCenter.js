@@ -47,6 +47,9 @@ const initialState = {
                 number: 1
             }
         }
+    },
+    plasmid: {
+        isFetching: false
     }
 }
 

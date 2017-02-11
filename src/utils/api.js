@@ -3,7 +3,7 @@ polyfill()
 import 'isomorphic-fetch'
 
 
-export const getStrain = (url, id) => {
+export const getStock = (url, id) => {
     let config = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }

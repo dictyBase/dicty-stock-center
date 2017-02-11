@@ -172,7 +172,7 @@ export default class StrainTable extends Component {
                               return rowData.attributes[dataKey]
                           }
                       } }
-                      cellRenderer= { ({rowData, cellData}) => {
+                      cellRenderer={ ({rowData, cellData}) => {
                           if (rowData) {
                               const { id } = rowData
                               return (
