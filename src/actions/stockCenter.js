@@ -175,6 +175,28 @@ export const fetchPlasmids = (page, size) => {
     }
 }
 
+const transformPlasmid = (plasmid) => {
+
+}
+
+export const fetchPlasmid = (id) => {
+    let server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(requestStrain())
+        getStock(server, id)
+        .then(status)
+        .then(json)
+        .then((response) => {
+            setTimeout(() => {
+                dispatch(receiveStrain(transformPlasmid(response)))
+            }, 400)
+        })
+        .catch((error) => {
+            dispatch(strainFetchFailure(error))
+        })
+    }
+}
+
 export const searchPlasmids = (page, size, search) => {
     const server = __API_SERVER__
     return (dispatch) => {

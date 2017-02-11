@@ -13,7 +13,7 @@ export default class StrainDetailRow extends Component {
                 width: '100%',
                 minWidth: 304,
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'stretch'
             } }
           >
             <div
@@ -23,24 +23,26 @@ export default class StrainDetailRow extends Component {
                   flexGrow: 1,
                   flexBasis: 0,
                   width: '100%',
-                  borderBottom: '1px solid grey',
-                  height: '100%'
+                  borderBottom: '1px solid grey'
+                  // height: '100%'
               } }
             >
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '33.3333%',
                     minWidth: 117,
                     height: '100%',
                     borderRight: '1px solid grey'
                 } }
               >
-                { Object.keys(this.props.left)[0] }
+                <b>{ Object.keys(this.props.left)[0] }</b>
               </div>
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '66.66666%',
                     minWidth: 187,
                     height: '100%',
@@ -57,24 +59,26 @@ export default class StrainDetailRow extends Component {
                   flexGrow: 1,
                   flexBasis: 0,
                   width: '100%',
-                  borderBottom: '1px solid grey',
-                  height: '100%'
+                  borderBottom: '1px solid grey'
+                  // height: '100%'
               } }
             >
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '33.3333%',
                     minWidth: 117,
                     height: '100%',
                     borderRight: this.props.right && '1px solid grey'
                 } }
               >
-                { this.props.right ? Object.keys(this.props.right)[0] : '\u00A0' }
+                <b>{ this.props.right ? Object.keys(this.props.right)[0] : '\u00A0' }</b>
               </div>
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '66.66666%',
                     minWidth: 187
                 } }
