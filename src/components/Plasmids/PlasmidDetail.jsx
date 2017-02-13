@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import PlasmidDetailRow from 'components/Strains/StrainDetailRow'
+import StockDetailRow from 'components/Strains/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
@@ -80,10 +80,10 @@ export default class PlasmidDetail extends Component {
                             }
                         }
                     >
-                      <PlasmidDetailRow left={ data1[0] } right={ data2[0] } />
-                      <PlasmidDetailRow left={ data1[1] } right={ data2[1] } />
-                      <PlasmidDetailRow left={ data1[2] } right={ data2[2] } />
-                      <PlasmidDetailRow left={ data1[3] } />
+                      <StockDetailRow left={ data1[0] } right={ data2[0] } />
+                      <StockDetailRow left={ data1[1] } right={ data2[1] } />
+                      <StockDetailRow left={ data1[2] } right={ data2[2] } />
+                      <StockDetailRow left={ data1[3] } />
                     </div>
                 )
             }

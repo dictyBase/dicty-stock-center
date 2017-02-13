@@ -3,12 +3,16 @@ polyfill()
 import 'isomorphic-fetch'
 
 
-export const getStock = (url, id) => {
+export const getStock = (url, id, type) => {
     let config = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`, config)
+    if (type === 'strain') {
+        return fetch(`${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`, config)
+    } else if (type === 'plasmid') {
+        return fetch(`${url}/stocks/${id}?include=`)
+    }
 }
 export const getPage = (url, page, size, type) => {
     let config = {

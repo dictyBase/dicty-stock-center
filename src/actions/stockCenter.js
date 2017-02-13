@@ -183,7 +183,7 @@ export const fetchPlasmid = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
-        getStock(server, id)
+        getStock(server, id, 'plasmid')
         .then(status)
         .then(json)
         .then((response) => {
@@ -245,7 +245,7 @@ export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
-        getStock(server, id)
+        getStock(server, id, 'strain')
         .then(status)
         .then(json)
         .then((response) => {

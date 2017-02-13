@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import StrainDetailRow from 'components/Strains/StrainDetailRow'
+import StockDetailRow from 'components/Strains/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
@@ -137,14 +137,14 @@ export default class StrainDetail extends Component {
                             }
                         }
                     >
-                      <StrainDetailRow left={ data1[0] } right={ data2[0] } />
-                      <StrainDetailRow left={ data1[1] } right={ data2[1] } />
-                      <StrainDetailRow left={ data1[2] } right={ data2[2] } />
-                      <StrainDetailRow left={ data1[3] } right={ data2[3] } />
-                      <StrainDetailRow left={ data1[4] } right={ data2[4] } />
-                      <StrainDetailRow left={ data1[5] } right={ data2[5] } />
-                      <StrainDetailRow left={ data1[6] } right={ data2[6] } />
-                      <StrainDetailRow left={ data1[7] } />
+                      <StockDetailRow left={ data1[0] } right={ data2[0] } />
+                      <StockDetailRow left={ data1[1] } right={ data2[1] } />
+                      <StockDetailRow left={ data1[2] } right={ data2[2] } />
+                      <StockDetailRow left={ data1[3] } right={ data2[3] } />
+                      <StockDetailRow left={ data1[4] } right={ data2[4] } />
+                      <StockDetailRow left={ data1[5] } right={ data2[5] } />
+                      <StockDetailRow left={ data1[6] } right={ data2[6] } />
+                      <StockDetailRow left={ data1[7] } />
                     </div>
                 )
             }
