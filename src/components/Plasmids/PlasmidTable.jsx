@@ -88,9 +88,9 @@ export default class PlasmidTable extends Component {
                   <Table
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
-                    width={ cellWidth * 5 }
+                    width={ (cellWidth * 3) + 350 + 260 }
                     height={ cellHeight * 7 }
-                    headerHeight={ cellHeight }
+                    headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ cellHeight }
                     rowGetter={ ({ index }) => {
@@ -162,7 +162,7 @@ export default class PlasmidTable extends Component {
                     />
                     <Column
                       label="Description"
-                      width={ 300 }
+                      width={ 350 }
                       dataKey="description"
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
@@ -192,7 +192,7 @@ export default class PlasmidTable extends Component {
                     />
                     <Column
                       label="Plasmid Name"
-                      width={ cellWidth }
+                      width={ 260 }
                       dataKey="name"
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
@@ -232,6 +232,6 @@ export default class PlasmidTable extends Component {
 }
 
 PlasmidTable.defaultProps = {
-    cellWidth: 220,
+    cellWidth: 130,
     cellHeight: 90
 }

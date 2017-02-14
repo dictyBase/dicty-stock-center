@@ -91,9 +91,9 @@ export default class StrainTable extends Component {
                   <Table
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
-                    width={ cellWidth * 5 }
+                    width={ (cellWidth * 3) + 350 + 260 }
                     height={ cellHeight * 7 }
-                    headerHeight={ cellHeight }
+                    headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ cellHeight }
                     rowGetter={ ({ index }) => {
@@ -165,7 +165,7 @@ export default class StrainTable extends Component {
                     />
                     <Column
                       label="Strain Descriptor"
-                      width={ cellWidth }
+                      width={ 350 }
                       dataKey="description"
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
@@ -176,7 +176,7 @@ export default class StrainTable extends Component {
                           if (rowData) {
                               const { id } = rowData
                               return (
-                                <div>
+                                <div style={ {whiteSpace: 'normal'} }>
                                   <Link to={ `/strains/${id}` }>{ cellData }</Link>
                                 </div>
                               )
@@ -185,7 +185,7 @@ export default class StrainTable extends Component {
                     />
                     <Column
                       label="Strain Name"
-                      width={ cellWidth }
+                      width={ 260 }
                       dataKey="name"
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
@@ -236,6 +236,6 @@ export default class StrainTable extends Component {
 }
 
 StrainTable.defaultProps = {
-    cellWidth: 180,
-    cellHeight: 50
+    cellWidth: 130,
+    cellHeight: 60
 }
