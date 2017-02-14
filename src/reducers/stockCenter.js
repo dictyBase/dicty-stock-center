@@ -7,10 +7,12 @@ const {
     STRAINS_FETCH_REQUEST,
     STRAINS_FETCH_SUCCESS,
     STRAINS_FETCH_FAILURE,
-    SEARCH_STRAINS,
     STRAIN_FETCH_REQUEST,
     STRAIN_FETCH_SUCCESS,
     STRAIN_FETCH_FAILURE,
+    STRAIN_SEARCH_REQUEST,
+    STRAIN_SEARCH_SUCCESS,
+    STRAIN_SEARCH_FAILURE,
     PLASMIDS_FETCH_REQUEST,
     PLASMIDS_FETCH_SUCCESS,
     PLASMIDS_FETCH_FAILURE,
@@ -105,12 +107,30 @@ const stockCenterReducer = (state = initialState, action) => {
                 error: action.error
             }
         }
-    case SEARCH_STRAINS:
+    case STRAIN_SEARCH_REQUEST:
         return {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
-                search: action.search
+                isFetching: true
+            }
+        }
+    case STRAIN_SEARCH_SUCCESS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: false,
+                data: action.data
+            }
+        }
+    case STRAIN_SEARCH_FAILURE:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: false,
+                error: action.error
             }
         }
     case STRAIN_FETCH_REQUEST:

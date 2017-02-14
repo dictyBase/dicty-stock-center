@@ -13,7 +13,7 @@ export default class StrainTable extends Component {
       const { isFetching } = this.props.stockCenter.strainCatalog
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       const { links } = this.props.stockCenter.strainCatalog
-      if (!isFetching && links.next) {
+      if ((!isFetching && links.next) && (this.searchInput.value === '')) {
           stockCenterActions.fetchStrains(number + 1, 10)
       }
   }
@@ -24,9 +24,9 @@ export default class StrainTable extends Component {
   }
   search(text) {
       const { stockCenterActions } = this.props
-      const { data } = this.props.stockCenter.strainCatalog
-      const { meta } = this.props.stockCenter.strainCatalog
-      stockCenterActions
+      // const { data } = this.props.stockCenter.strainCatalog
+      // const { meta } = this.props.stockCenter.strainCatalog
+      stockCenterActions.searchStrains(1, 1, text)
       this.forceUpdate()
   }
   handleSearch() {

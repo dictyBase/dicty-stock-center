@@ -162,7 +162,7 @@ export default class PlasmidTable extends Component {
                     />
                     <Column
                       label="Description"
-                      width={ cellWidth }
+                      width={ 300 }
                       dataKey="description"
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
@@ -173,7 +173,7 @@ export default class PlasmidTable extends Component {
                           if (rowData) {
                               const { id } = rowData
                               return (
-                                <div>
+                                <div style={ {whiteSpace: 'normal'} }>
                                   <Link to={ `/plasmids/${id}` }>{ cellData }</Link>
                                 </div>
                               )
@@ -232,6 +232,6 @@ export default class PlasmidTable extends Component {
 }
 
 PlasmidTable.defaultProps = {
-    cellWidth: 180,
-    cellHeight: 50
+    cellWidth: 220,
+    cellHeight: 90
 }

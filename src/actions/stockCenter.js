@@ -11,13 +11,16 @@ const {
   STRAIN_FETCH_FAILURE,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
+  STRAINS_FETCH_FAILURE,
+  STRAIN_SEARCH_REQUEST,
+  STRAIN_SEARCH_SUCCESS,
+  STRAIN_SEARCH_FAILURE,
   PLASMIDS_FETCH_REQUEST,
   PLASMIDS_FETCH_SUCCESS,
   PLASMIDS_FETCH_FAILURE,
   PLASMIDS_SEARCH_REQUEST,
   PLASMIDS_SEARCH_SUCCESS,
-  PLASMIDS_SEARCH_FAILURE,
-  SEARCH_STRAINS
+  PLASMIDS_SEARCH_FAILURE
 } = types
 
 // const requestAvailability = () => {
@@ -33,12 +36,6 @@ const requestStrains = () => {
     }
 }
 
-const requestPlasmids = () => {
-    return {
-        type: PLASMIDS_FETCH_REQUEST
-    }
-}
-
 const receiveStrains = (data) => {
     return {
         type: STRAINS_FETCH_SUCCESS,
@@ -51,8 +48,40 @@ const receiveStrains = (data) => {
 
 const strainsFetchFailure = (error) => {
     return {
-        type: PLASMIDS_FETCH_FAILURE,
+        type: STRAINS_FETCH_FAILURE,
         error
+    }
+}
+
+const strainSearch = (search) => {
+    return {
+        type: STRAIN_SEARCH_REQUEST,
+        search
+    }
+}
+
+const requestStrain = () => {
+    return {
+        type: STRAIN_FETCH_REQUEST
+    }
+}
+
+const receiveStrain = (data) => {
+    return {
+        type: STRAIN_FETCH_SUCCESS,
+        data
+    }
+}
+
+const strainFetchFailure = () => {
+    return {
+        type: STRAIN_FETCH_FAILURE
+    }
+}
+
+const requestPlasmids = () => {
+    return {
+        type: PLASMIDS_FETCH_REQUEST
     }
 }
 
@@ -63,6 +92,23 @@ const receivePlasmids = (data) => {
         data: data.data,
         links: data.links,
         meta: data.meta
+    }
+}
+
+const receiveStrainSearch = (data) => {
+    return {
+        type: STRAIN_SEARCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const strainSearchFailure = (error) => {
+    return {
+        type: STRAIN_SEARCH_FAILURE,
+        error
     }
 }
 
@@ -102,38 +148,6 @@ const receiveAvailability = (data) => {
         type: AVAILABILITY_FETCH_SUCCESS,
         isFetching: false,
         availability: data.attributes.availability
-    }
-}
-
-const searchStrains = (search) => {
-    return {
-        type: SEARCH_STRAINS,
-        search
-    }
-}
-
-// const pageFetchFailure = (error) => {
-//     return {
-//         type: PAGE_FETCH_FAILURE,
-//         error
-//     }
-// }
-const requestStrain = () => {
-    return {
-        type: STRAIN_FETCH_REQUEST
-    }
-}
-
-const receiveStrain = (data) => {
-    return {
-        type: STRAIN_FETCH_SUCCESS,
-        data
-    }
-}
-
-const strainFetchFailure = () => {
-    return {
-        type: STRAIN_FETCH_FAILURE
     }
 }
 
@@ -250,7 +264,6 @@ export const fetchStrain = (id) => {
         .then(json)
         .then((response) => {
             setTimeout(() => {
-                console.log(response)
                 dispatch(receiveStrain(transformStrain(response)))
             }, 400)
         })
@@ -259,6 +272,22 @@ export const fetchStrain = (id) => {
         })
     }
 }
+export const searchStrains = (page, size, search) => {
+    const server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(strainSearch())
+        searchStocks(server, page, size, search, 'strain')
+        .then(status)
+        .then(json)
+        .then(response => {
+            dispatch(receiveStrainSearch(response))
+        })
+        .catch(error => {
+            dispatch(strainSearchFailure(error))
+        })
+    }
+}
+
 // export const searchStrains = (search) => {
 //     return (dispatch) => {
 //         dispatch(searchStrains(search))
