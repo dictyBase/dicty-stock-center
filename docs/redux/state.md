@@ -77,21 +77,39 @@
         },
         strainCatalog: {
             isFetching: false,
-            data: [ {type: "stocks", id: "DBS0252577", attributes: ...}, ...],
+            data: [ {type: "strain", id: "DBS0252577", attributes: ...}, ...],
             links: {
-                self:"/stocks?page[number]=1&page[size]=10",
-                first:"/stocks?page[number]=1&page[size]=10",
-                next:"/stocks?page[number]=2&page[size]=10",
-                last:"/stocks?page[number]=13&page[size]=10"
+                self: "/stocks?page[number]=1&page[size]=10",
+                first: "/stocks?page[number]=1&page[size]=10",
+                next: "/stocks?page[number]=2&page[size]=10",
+                last: "/stocks?page[number]=13&page[size]=10"
             },
             meta: {
-                pagination: {records:126, total:13, size:10, number:1}
+                pagination: {records: 126, total: 13, size: 10, number: 1}
             }
         },
         strain: {
             isFetching: false,
-            links: {self:"/stocks/DBS0236225"},
-            data: {type: "stocks", id: "DBS0252577", attributes: ...}
+            links: {self: "/stocks/DBS0236225"},
+            data: {type: "strain", id: "DBS0252577", attributes: ...}
+        },
+        plasmidCatalog: {
+            isFetching: false,
+            data: [ {type: "plasmid", id: "DBS0252577", attributes: ...}, ...],
+            links: {
+                self: "/stocks?page[number]=1&page[size]=10",
+                first: "/stocks?page[number]=1&page[size]=10",
+                next: "/stocks?page[number]=2&page[size]=10",
+                last: "/stocks?page[number]=13&page[size]=10"
+            },
+            meta: {
+                pagination: {records: 126, total: 13, size: 10, number: 1}
+            }
+        },
+        plasmid: {
+            isFetching: false,
+            links: {self: "/stocks/DBS0236225"},
+            data: {type: "plasmid", id: "DBS0252577", attributes: ...}
         }
     }
 }
