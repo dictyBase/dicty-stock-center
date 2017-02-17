@@ -36,17 +36,40 @@ export default class PlasmidTable extends Component {
       this.searchInput.value = ''
       this.search('')
   }
+  // getRowHeight({ index }, rows) {
+  //     if (index === -1) {
+  //         const height = 50
+  //     } else {
+  //         const remainder = rows[index].description.length % 54
+  //         let lines = rows[index].description.length / 54
+  //         if (remainder > 0) {
+  //             lines += 1
+  //         }
+  //         const height = lines * 20
+  //     }
+  //     return height
+  // }
   render() {
       let i
-      const { cartActions } = this.props
+      const { cartActions, cellWidth, cellHeight } = this.props
       const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
       let rows = data
       const loadMoreRows = isFetching
         ? () => {}
         : this.loadNextPage.bind(this)
       const isRowLoaded = ({ index }) => { return !!rows[index] }
+      const getRowHeight = ({ index }) => {
+          if (rows[index]) {
+              const remainder = rows[index].attributes.description.length % 54
+              let lines = rows[index].attributes.description.length / 54
+              if (remainder > 0) {
+                  lines += 1
+              }
+              return lines * 30
+          }
+          return cellHeight
+      }
       const rowCount = rows.length + (links.next ? 1 : 0)
-      const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive">
           <Grid cellWidth="1">
@@ -92,7 +115,7 @@ export default class PlasmidTable extends Component {
                     height={ cellHeight * 7 }
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
-                    rowHeight={ cellHeight }
+                    rowHeight={ getRowHeight }
                     rowGetter={ ({ index }) => {
                         if (rows[index]) {
                             return rows[index]
