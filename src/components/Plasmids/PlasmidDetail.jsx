@@ -1,10 +1,11 @@
+// @flow
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import StockDetailRow from 'components/Strains/StockDetailRow'
-import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
 import 'styles/custom.scss'
+
 
 export default class PlasmidDetail extends Component {
     displayName = 'plasmid detail'
@@ -17,21 +18,22 @@ export default class PlasmidDetail extends Component {
         const { cartActions } = this.props
         const { plasmid } = this.props.stockCenter
         const { isFetching } = this.props.stockCenter.plasmid
-        const cartItem = {
+        const cartItem: {type: string, id: number, systematicName: string} = {
             type: 'plasmid',
             id: plasmid.id,
             systematicName: plasmid.name
         }
         const data1 = [
           {'Plasmid Name': plasmid && plasmid.name},
-          {'Description': 'No Information'},
-          {'Depositor': 'N/A'},
-          {'Reference(s)': '22357942' /* just display id, no link > eventually go to internal publication id*/}
+          {Description: 'No Information'},
+          {Depositor: 'N/A'},
+          /* just display id, no link > eventually go to internal publication id*/
+          {'Reference(s)': '22357942'}
         ]
         const data2 = [
           {'Plasmid ID': plasmid && plasmid.id},
           {'Plasmid Keywords': 'No Information'},
-          {'GenBank Accession': 'No Information'},
+          {'GenBank Accession': 'No Information'}
         ]
         return (
           <div className="plasmid-details">

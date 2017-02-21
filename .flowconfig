@@ -1,0 +1,9 @@
+[include]
+/src/components/*
+
+[ignore]
+.*/node_modules/.*
+.*/__tests__/.*
+
+[options]
+module.name_mapper='^src\(.*\)$' -> '/src\1'

@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 
+type Props = {
+  right: Object,
+  left: Object
+}
+
 export default class StrainDetailRow extends Component {
     displayName = 'strain detail row'
     render() {

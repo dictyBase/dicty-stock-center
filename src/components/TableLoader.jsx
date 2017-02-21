@@ -4,6 +4,9 @@ import 'styles/core.scss'
 
 export default class TableLoader extends Component {
     displayName = 'loading component';
+    type Props = {
+      message: string
+    }
     static propTypes = {
         title: PropTypes.string,
         message: PropTypes.string
