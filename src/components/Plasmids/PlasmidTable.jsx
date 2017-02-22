@@ -39,8 +39,13 @@ export default class PlasmidTable extends Component {
       this.clearSearch()
   }
   clearSearch() {
-      this.searchInput.value = ''
-      this.search('')
+      const { stockCenterActions } = this.props
+      const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
+      if (this.searchInput.value !== '') {
+          this.searchInput.value = ''
+          stockCenterActions.clearPlasmidSearch()
+          stockCenterActions.fetchPlasmids(number + 1, 10)
+      }
   }
   // getRowHeight({ index }, rows) {
   //     if (index === -1) {
@@ -129,7 +134,7 @@ export default class PlasmidTable extends Component {
       }
       const rowCount: number = rows.length + (links.next ? 1 : 0)
       return (
-        <div className="table-responsive">
+        <div className="table-responsive" style={ {border: 'none'} }>
           <Grid cellWidth="1">
             <Cell align="center">
               <input
@@ -214,7 +219,11 @@ export default class PlasmidTable extends Component {
                       label="Plasmid ID"
                       width={ cellWidth }
                       dataKey="id"
-                      cellDataGetter={ cellDataGetter }
+                      cellDataGetter={ ({rowData, dataKey}) => {
+                          if (rowData) {
+                              return rowData[dataKey]
+                          }
+                      } }
                     />
                     <Column
                       label="Plasmid Name"

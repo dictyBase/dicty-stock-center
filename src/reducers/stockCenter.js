@@ -13,12 +13,14 @@ const {
     STRAIN_SEARCH_REQUEST,
     STRAIN_SEARCH_SUCCESS,
     STRAIN_SEARCH_FAILURE,
+    CLEAR_STRAINS,
     PLASMIDS_FETCH_REQUEST,
     PLASMIDS_FETCH_SUCCESS,
     PLASMIDS_FETCH_FAILURE,
     PLASMIDS_SEARCH_REQUEST,
     PLASMIDS_SEARCH_SUCCESS,
-    PLASMIDS_SEARCH_FAILURE
+    PLASMIDS_SEARCH_FAILURE,
+    CLEAR_PLASMIDS
 } = types
 
 const initialState = {
@@ -120,6 +122,7 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
+                ...action,
                 isFetching: false,
                 data: action.data
             }
@@ -131,6 +134,14 @@ const stockCenterReducer = (state = initialState, action) => {
                 ...state.strainCatalog,
                 isFetching: false,
                 error: action.error
+            }
+        }
+    case CLEAR_STRAINS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                data: []
             }
         }
     case STRAIN_FETCH_REQUEST:
@@ -197,6 +208,7 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             plasmidCatalog: {
                 ...state.plasmidCatalog,
+                ...action,
                 isFetching: false,
                 data: action.data
             }
@@ -208,6 +220,14 @@ const stockCenterReducer = (state = initialState, action) => {
                 ...state.plasmidCatalog,
                 isFetching: false,
                 error: action.error
+            }
+        }
+    case CLEAR_PLASMIDS:
+        return {
+            ...state,
+            plasmidCatalog: {
+                ...state.plasmidCatalog,
+                data: []
             }
         }
     default:

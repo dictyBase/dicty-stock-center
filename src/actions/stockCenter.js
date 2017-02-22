@@ -15,12 +15,14 @@ const {
   STRAIN_SEARCH_REQUEST,
   STRAIN_SEARCH_SUCCESS,
   STRAIN_SEARCH_FAILURE,
+  CLEAR_STRAINS,
   PLASMIDS_FETCH_REQUEST,
   PLASMIDS_FETCH_SUCCESS,
   PLASMIDS_FETCH_FAILURE,
   PLASMIDS_SEARCH_REQUEST,
   PLASMIDS_SEARCH_SUCCESS,
-  PLASMIDS_SEARCH_FAILURE
+  PLASMIDS_SEARCH_FAILURE,
+  CLEAR_PLASMIDS
 } = types
 
 // const requestAvailability = () => {
@@ -79,22 +81,6 @@ const strainFetchFailure = () => {
     }
 }
 
-const requestPlasmids = () => {
-    return {
-        type: PLASMIDS_FETCH_REQUEST
-    }
-}
-
-const receivePlasmids = (data) => {
-    return {
-        type: PLASMIDS_FETCH_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
-
 const receiveStrainSearch = (data) => {
     return {
         type: STRAIN_SEARCH_SUCCESS,
@@ -109,6 +95,28 @@ const strainSearchFailure = (error) => {
     return {
         type: STRAIN_SEARCH_FAILURE,
         error
+    }
+}
+
+const clearStrains = () => {
+    return {
+        type: CLEAR_STRAINS
+    }
+}
+
+const requestPlasmids = () => {
+    return {
+        type: PLASMIDS_FETCH_REQUEST
+    }
+}
+
+const receivePlasmids = (data) => {
+    return {
+        type: PLASMIDS_FETCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
     }
 }
 
@@ -143,6 +151,12 @@ const plasmidsSearchFailure = (error) => {
     }
 }
 
+const clearPlasmids = () => {
+    return {
+        type: CLEAR_PLASMIDS
+    }
+}
+
 const receiveAvailability = (data) => {
     return {
         type: AVAILABILITY_FETCH_SUCCESS,
@@ -170,6 +184,12 @@ export const fetchStrains = (page, size) => {
         .catch((error) => {
             dispatch(strainsFetchFailure(error))
         })
+    }
+}
+
+export const clearStrainSearch = () => {
+    return (dispatch) => {
+        dispatch(clearStrains())
     }
 }
 
@@ -224,6 +244,12 @@ export const searchPlasmids = (page, size, search) => {
         .catch(error => {
             dispatch(plasmidsSearchFailure(error))
         })
+    }
+}
+
+export const clearPlasmidSearch = () => {
+    return (dispatch) => {
+        dispatch(clearPlasmids())
     }
 }
 

@@ -36,8 +36,13 @@ export default class StrainTable extends Component {
       this.clearSearch()
   }
   clearSearch() {
-      this.searchInput.value = ''
-      this.search('')
+      const { stockCenterActions } = this.props
+      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+      if (this.searchInput.value !== '') {
+          this.searchInput.value = ''
+          stockCenterActions.clearStrainSearch()
+          stockCenterActions.fetchStrains(number + 1, 10)
+      }
   }
   render() {
       let i
@@ -51,7 +56,7 @@ export default class StrainTable extends Component {
       const rowCount = rows.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
       return (
-        <div className="table-responsive">
+        <div className="table-responsive" style={ {border: 'none'} }>
           <Grid cellWidth="1">
             <Cell align="center">
               <input
