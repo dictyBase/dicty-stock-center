@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Grid, Cell } from 'radium-grid'
@@ -6,6 +7,11 @@ import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
 
+type Props = {
+  cellWidth: number,
+  cellHeight: number,
+  height: number
+}
 export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage() {
@@ -51,7 +57,7 @@ export default class PlasmidTable extends Component {
   // }
   render() {
       let i
-      const { cartActions, cellWidth, cellHeight } = this.props
+      const { cartActions, cellWidth, cellHeight, height } = this.props
       const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
       let rows = data
       const loadMoreRows = isFetching
@@ -60,8 +66,8 @@ export default class PlasmidTable extends Component {
       const isRowLoaded = ({ index }) => { return !!rows[index] }
       const getRowHeight = ({ index }) => {
           if (rows[index]) {
-              const remainder = rows[index].attributes.description.length % 54
-              let lines = rows[index].attributes.description.length / 54
+              const remainder: number = rows[index].attributes.description.length % 54
+              let lines: number = rows[index].attributes.description.length / 54
               if (remainder > 0) {
                   lines += 1
               }
@@ -69,7 +75,59 @@ export default class PlasmidTable extends Component {
           }
           return cellHeight
       }
-      const rowCount = rows.length + (links.next ? 1 : 0)
+      const getRowStyle = ({ index }) => {
+          if (index === -1) {
+              return {
+                  margin: '0 auto',
+                  borderTop: '1px solid #efefef',
+                  borderBottom: '1px solid #efefef'
+              }
+          } else if ((index === rows.length)) {
+              return {
+              }
+          } else if (index % 2 > 0) {
+              return {
+                  borderBottom: '1px solid #efefef'
+              }
+          } else if (index % 2 === 0) {
+              return {
+                  borderBottom: '1px solid #efefef'
+              }
+          }
+      }
+      const rowRenderer = ({index, columns, key, style, className}) => {
+          let content
+          if (!isRowLoaded({index})) {
+              content = <TableLoader />
+          } else {
+              content = columns
+          }
+          return (
+            <div className={ className } key={ key } style={ style }>
+              { content }
+            </div>
+          )
+      }
+      const rowGetter = ({ index }) => {
+          if (rows[index]) {
+              return rows[index]
+          }
+      }
+      const availabilityRenderer = (cellData) => {
+          return (
+            <div
+              className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
+            >
+              <i className="fa fa-shopping-cart fa-2x"></i>
+            </div>
+          )
+      }
+      const cellDataGetter = ({rowData, dataKey}) => {
+          if (rowData) {
+              return rowData.attributes[dataKey]
+          }
+      }
+      const rowCount: number = rows.length + (links.next ? 1 : 0)
       return (
         <div className="table-responsive">
           <Grid cellWidth="1">
@@ -112,37 +170,14 @@ export default class PlasmidTable extends Component {
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
                     width={ (cellWidth * 3) + 350 + 260 }
-                    height={ cellHeight * 7 }
+                    height={ height }
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ getRowHeight }
-                    rowGetter={ ({ index }) => {
-                        if (rows[index]) {
-                            return rows[index]
-                        }
-                    } }
+                    rowGetter={ rowGetter }
                     style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }
-                    rowStyle={ ({index}) => {
-                        if (index === -1) {
-                            return {
-                                margin: '0 auto',
-                                borderTop: '1px solid #efefef',
-                                borderBottom: '1px solid #efefef'
-                            }
-                        } else if ((index === rows.length)) {
-                            return {
-                            }
-                        } else if (index % 2 > 0) {
-                            return {
-                                borderBottom: '1px solid #efefef'
-                            }
-                        } else if (index % 2 === 0) {
-                            return {
-                                borderBottom: '1px solid #efefef'
-                            }
-                        }
-                    } }
+                    rowStyle={ getRowStyle }
                     gridStyle={
                         {
                             margin: '0 auto',
@@ -150,48 +185,20 @@ export default class PlasmidTable extends Component {
                             verticalAlign: 'middle'
                         }
                     }
-                    rowRenderer={ ({index, columns, key, style, className}) => {
-                        let content
-                        if (!isRowLoaded({index})) {
-                            content = <TableLoader />
-                        } else {
-                            content = columns
-                        }
-                        return (
-                          <div className={ className } key={ key } style={ style }>
-                            { content }
-                          </div>
-                        )
-                    } }
+                    rowRenderer={ rowRenderer }
                   >
                     <Column
                       label="Availability"
                       width={ cellWidth }
                       dataKey="in_stock"
-                      cellRenderer={ (cellData) => {
-                          return (
-                            <div
-                              className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
-                            >
-                              <i className="fa fa-shopping-cart fa-2x"></i>
-                            </div>
-                          )
-                      } }
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellRenderer={ availabilityRenderer }
+                      cellDataGetter={ cellDataGetter }
                     />
                     <Column
                       label="Description"
                       width={ 350 }
                       dataKey="description"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ cellDataGetter }
                       cellRenderer= { ({rowData, cellData}) => {
                           if (rowData) {
                               const { id } = rowData
@@ -207,21 +214,13 @@ export default class PlasmidTable extends Component {
                       label="Plasmid ID"
                       width={ cellWidth }
                       dataKey="id"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ cellDataGetter }
                     />
                     <Column
                       label="Plasmid Name"
                       width={ 260 }
                       dataKey="name"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ cellDataGetter }
                     />
                     <Column
                       width={ cellWidth }
@@ -238,11 +237,7 @@ export default class PlasmidTable extends Component {
                               )
                           }
                       } }
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ cellDataGetter }
                     />
                   </Table>
                 )
@@ -256,5 +251,6 @@ export default class PlasmidTable extends Component {
 
 PlasmidTable.defaultProps = {
     cellWidth: 130,
-    cellHeight: 90
+    cellHeight: 90,
+    height: 630
 }
