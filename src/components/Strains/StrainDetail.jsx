@@ -77,14 +77,16 @@ export default class StrainDetail extends Component {
           {Genotype: strain.genotypes && strain.genotypes[0]},
           {'Strain Characteristics': strain && strain.characteristics},
           {Plasmid: 'No Information'},
-          {'Reference(s)': '22357942' /* just display id, no link > eventually go to internal publication id*/}
+          /* just display id, no link > eventually go to internal publication id*/
+          {'Reference(s)': '22357942'}
         ]
         const data2 = [
           {'Strain ID': strain && strain.id},
           {Species: 'Dictyostelium discoideum'},
           {'Genetic Modification': 'No Information'},
           {'Mutagenesis Method': 'Homologous Recombination'},
-          {'Parental Strain': 'DH1-10 (DBS0302388)'/*multiple possible*/},
+          /* multiple possible parental strains*/
+          {'Parental Strain': 'DH1-10 (DBS0302388)'},
           {'Associated Gene(s)': 'mcln'},
           {Depositor: 'No Information'}
           // {_blank: 'asdf '}

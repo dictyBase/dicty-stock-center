@@ -24,8 +24,6 @@ export default class StrainTable extends Component {
   }
   search(text) {
       const { stockCenterActions } = this.props
-      // const { data } = this.props.stockCenter.strainCatalog
-      // const { meta } = this.props.stockCenter.strainCatalog
       stockCenterActions.searchStrains(1, 1, text)
       this.forceUpdate()
   }
