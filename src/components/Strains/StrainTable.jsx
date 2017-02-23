@@ -42,16 +42,100 @@ export default class StrainTable extends Component {
           stockCenterActions.fetchStrains(number + 1, 10)
       }
   }
-  render() {
-      let i
+  rowGetter = ({ index }) => {
+      const { data } = this.props.stockCenter.strainCatalog
+      if (data[index]) {
+          return data[index]
+      }
+  }
+  getRowStyle = ({index}) => {
+      const { data } = this.props.stockCenter.strainCatalog
+      if (index === -1) {
+          return {
+              margin: '0 auto',
+              borderTop: '1px solid #efefef',
+              borderBottom: '1px solid #efefef'
+          }
+      } else if ((index === data.length)) {
+          return {
+          }
+      } else if (index % 2 > 0) {
+          return {
+              borderBottom: '1px solid #efefef'
+          }
+      } else if (index % 2 === 0) {
+          return {
+              borderBottom: '1px solid #efefef'
+          }
+      }
+  }
+  isRowLoaded = ({ index }) => {
+      const { data } = this.props.stockCenter.strainCatalog
+      return !!data[index]
+  }
+  rowRenderer = ({index, columns, key, style, className}) => {
+      let content
+      if (!this.isRowLoaded({index})) {
+          content = <TableLoader />
+      } else {
+          content = columns
+      }
+      return (
+        <div className={ className } key={ key } style={ style }>
+          { content }
+        </div>
+      )
+  }
+  availabilityRenderer = (cellData) => {
+      return (
+        <div
+          className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
+        >
+          <i className="fa fa-shopping-cart fa-2x"></i>
+        </div>
+      )
+  }
+  attributeGetter = ({rowData, dataKey}) => {
+      if (rowData) {
+          return rowData.attributes[dataKey]
+      }
+  }
+  inStockRenderer = ({ cellData, rowIndex, rowData }) => {
       const { cartActions } = this.props
+      const { data } = this.props.stockCenter.strainCatalog
+      if (cellData) {
+          return (
+            <button
+            className="btn btn-primary"
+            onClick={ () => cartActions.addToCart(data[rowIndex]) }
+            >
+              <i className="fa fa-cart-arrow-down"></i> Add to cart
+            </button>
+
+          )
+      }
+  }
+  cellDataGetter = ({rowData, dataKey}) => {
+      if (rowData) {
+          return rowData[dataKey]
+      }
+  }
+  descriptorRenderer = ({rowData, cellData}) => {
+      if (rowData) {
+          const { id } = rowData
+          return (
+            <div style={ {whiteSpace: 'normal'} }>
+              <Link to={ `/strains/${id}` }>{ cellData }</Link>
+            </div>
+          )
+      }
+  }
+  render() {
       const { data, links, isFetching } = this.props.stockCenter.strainCatalog
-      let rows = data
       const loadMoreRows = isFetching
         ? () => {}
         : this.loadNextPage.bind(this)
-      const isRowLoaded = ({ index }) => { return !!rows[index] }
-      const rowCount = rows.length + (links.next ? 1 : 0)
+      const rowCount = data.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
@@ -83,7 +167,7 @@ export default class StrainTable extends Component {
             </Cell>
           </Grid>
           <InfiniteLoader
-            isRowLoaded={ isRowLoaded }
+            isRowLoaded={ this.isRowLoaded }
             rowCount={ rowCount }
             loadMoreRows={ loadMoreRows }
             threshold={ 0 }
@@ -99,33 +183,10 @@ export default class StrainTable extends Component {
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ cellHeight }
-                    rowGetter={ ({ index }) => {
-                        if (rows[index]) {
-                            return rows[index]
-                        }
-                    } }
+                    rowGetter={ this.rowGetter }
                     style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }
-                    rowStyle={ ({index}) => {
-                        if (index === -1) {
-                            return {
-                                margin: '0 auto',
-                                borderTop: '1px solid #efefef',
-                                borderBottom: '1px solid #efefef'
-                            }
-                        } else if ((index === rows.length)) {
-                            return {
-                            }
-                        } else if (index % 2 > 0) {
-                            return {
-                                borderBottom: '1px solid #efefef'
-                            }
-                        } else if (index % 2 === 0) {
-                            return {
-                                borderBottom: '1px solid #efefef'
-                            }
-                        }
-                    } }
+                    rowStyle={ this.getRowStyle }
                     gridStyle={
                         {
                             margin: '0 auto',
@@ -133,100 +194,39 @@ export default class StrainTable extends Component {
                             verticalAlign: 'middle'
                         }
                     }
-                    rowRenderer={ ({index, columns, key, style, className}) => {
-                        let content
-                        if (!isRowLoaded({index})) {
-                            content = <TableLoader />
-                        } else {
-                            content = columns
-                        }
-                        return (
-                          <div className={ className } key={ key } style={ style }>
-                            { content }
-                          </div>
-                        )
-                    } }
+                    rowRenderer={ this.rowRenderer }
                   >
                     <Column
                       label="Availability"
                       width={ cellWidth }
                       dataKey="in_stock"
-                      cellRenderer={ (cellData) => {
-                          return (
-                            <div
-                              className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
-                            >
-                              <i className="fa fa-shopping-cart fa-2x"></i>
-                            </div>
-                          )
-                      } }
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellRenderer={ this.availabilityRenderer }
+                      cellDataGetter={ this.attributeGetter }
                     />
                     <Column
                       label="Strain Descriptor"
                       width={ 350 }
                       dataKey="description"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
-                      cellRenderer={ ({rowData, cellData}) => {
-                          if (rowData) {
-                              const { id } = rowData
-                              return (
-                                <div style={ {whiteSpace: 'normal'} }>
-                                  <Link to={ `/strains/${id}` }>{ cellData }</Link>
-                                </div>
-                              )
-                          }
-                      } }
+                      cellDataGetter={ this.attributeGetter }
+                      cellRenderer={ this.descriptorRenderer }
                     />
                     <Column
                       label="Strain Name"
                       width={ 260 }
                       dataKey="name"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ this.attributeGetter }
                     />
                     <Column
                       label="Strain ID"
                       width={ cellWidth }
                       dataKey="id"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
                       width={ cellWidth }
                       dataKey="in_stock"
-                      cellRenderer={ ({ cellData, rowIndex, rowData }) => {
-                          if (cellData) {
-                              return (
-                                <button
-                                className="btn btn-primary"
-                                onClick={ () => cartActions.addToCart(rows[rowIndex]) }
-                                >
-                                  <i className="fa fa-cart-arrow-down"></i> Add to cart
-                                </button>
-
-                              )
-                          }
-                      } }
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData.attributes[dataKey]
-                          }
-                      } }
+                      cellRenderer={ this.inStockRenderer }
+                      cellDataGetter={ this.attributeGetter }
                     />
                   </Table>
                 )

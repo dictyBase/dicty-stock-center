@@ -47,92 +47,102 @@ export default class PlasmidTable extends Component {
           stockCenterActions.fetchPlasmids(number + 1, 10)
       }
   }
-  // getRowHeight({ index }, rows) {
-  //     if (index === -1) {
-  //         const height = 50
-  //     } else {
-  //         const remainder = rows[index].description.length % 54
-  //         let lines = rows[index].description.length / 54
-  //         if (remainder > 0) {
-  //             lines += 1
-  //         }
-  //         const height = lines * 20
-  //     }
-  //     return height
-  // }
+  getRowHeight = ({ index }) => {
+      const { data } = this.props.stockCenter.plasmidCatalog
+      if (data[index]) {
+          const remainder: number = data[index].attributes.description.length % 54
+          let lines: number = data[index].attributes.description.length / 54
+          if (remainder > 0) {
+              lines += 1
+          }
+          return lines * 30
+      }
+      return this.props.cellHeight
+  }
+  getRowStyle = ({ index }) => {
+      const { data } = this.props.stockCenter.plasmidCatalog
+      if (index === -1) {
+          return {
+              margin: '0 auto',
+              borderTop: '1px solid #efefef',
+              borderBottom: '1px solid #efefef'
+          }
+      } else if ((index === data.length)) {
+          return {
+          }
+      } else if (index % 2 > 0) {
+          return {
+              borderBottom: '1px solid #efefef'
+          }
+      } else if (index % 2 === 0) {
+          return {
+              borderBottom: '1px solid #efefef'
+          }
+      }
+  }
+  isRowLoaded = ({ index }) => {
+      const { data } = this.props.stockCenter.plasmidCatalog
+      return !!data[index]
+  }
+  rowRenderer = ({index, columns, key, style, className}) => {
+      let content
+      if (!this.isRowLoaded({index})) {
+          content = <TableLoader />
+      } else {
+          content = columns
+      }
+      return (
+        <div className={ className } key={ key } style={ style }>
+          { content }
+        </div>
+      )
+  }
+  availabilityRenderer = (cellData) => {
+      return (
+        <div
+          className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
+        >
+          <i className="fa fa-shopping-cart fa-2x"></i>
+        </div>
+      )
+  }
+  rowGetter = ({ index }) => {
+      const { data } = this.props.stockCenter.plasmidCatalog
+      if (data[index]) {
+          return data[index]
+      }
+  }
+  cellDataGetter = ({rowData, dataKey}) => {
+      if (rowData) {
+          return rowData.attributes[dataKey]
+      }
+  }
+  idGetter = ({rowData, dataKey}) => {
+      if (rowData) {
+          return rowData[dataKey]
+      }
+  }
+  inStockRenderer = ({ cellData, rowIndex, rowData }) => {
+      const { cartActions } = this.props
+      const { data } = this.props.stockCenter.plasmidCatalog
+      if (cellData) {
+          return (
+            <button
+            className="btn btn-primary"
+            onClick={ () => cartActions.addToCart(data[rowIndex]) }
+            >
+              <i className="fa fa-cart-arrow-down"></i> Add to cart
+            </button>
+          )
+      }
+  }
   render() {
-      let i
-      const { cartActions, cellWidth, cellHeight, height } = this.props
+      const { cellWidth, height } = this.props
       const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
-      let rows = data
       const loadMoreRows = isFetching
         ? () => {}
         : this.loadNextPage.bind(this)
-      const isRowLoaded = ({ index }) => { return !!rows[index] }
-      const getRowHeight = ({ index }) => {
-          if (rows[index]) {
-              const remainder: number = rows[index].attributes.description.length % 54
-              let lines: number = rows[index].attributes.description.length / 54
-              if (remainder > 0) {
-                  lines += 1
-              }
-              return lines * 30
-          }
-          return cellHeight
-      }
-      const getRowStyle = ({ index }) => {
-          if (index === -1) {
-              return {
-                  margin: '0 auto',
-                  borderTop: '1px solid #efefef',
-                  borderBottom: '1px solid #efefef'
-              }
-          } else if ((index === rows.length)) {
-              return {
-              }
-          } else if (index % 2 > 0) {
-              return {
-                  borderBottom: '1px solid #efefef'
-              }
-          } else if (index % 2 === 0) {
-              return {
-                  borderBottom: '1px solid #efefef'
-              }
-          }
-      }
-      const rowRenderer = ({index, columns, key, style, className}) => {
-          let content
-          if (!isRowLoaded({index})) {
-              content = <TableLoader />
-          } else {
-              content = columns
-          }
-          return (
-            <div className={ className } key={ key } style={ style }>
-              { content }
-            </div>
-          )
-      }
-      const rowGetter = ({ index }) => {
-          if (rows[index]) {
-              return rows[index]
-          }
-      }
-      const availabilityRenderer = (cellData) => {
-          return (
-            <div
-              className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
-            >
-              <i className="fa fa-shopping-cart fa-2x"></i>
-            </div>
-          )
-      }
-      const cellDataGetter = ({rowData, dataKey}) => {
-          if (rowData) {
-              return rowData.attributes[dataKey]
-          }
-      }
-      const rowCount: number = rows.length + (links.next ? 1 : 0)
+      const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
           <Grid cellWidth="1">
@@ -163,7 +173,7 @@ export default class PlasmidTable extends Component {
             </Cell>
           </Grid>
           <InfiniteLoader
-            isRowLoaded={ isRowLoaded }
+            isRowLoaded={ this.isRowLoaded }
             rowCount={ rowCount }
             loadMoreRows={ loadMoreRows }
             threshold={ 2 }
@@ -178,11 +188,11 @@ export default class PlasmidTable extends Component {
                     height={ height }
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
-                    rowHeight={ getRowHeight }
-                    rowGetter={ rowGetter }
+                    rowHeight={ this.getRowHeight }
+                    rowGetter={ this.rowGetter }
                     style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }
-                    rowStyle={ getRowStyle }
+                    rowStyle={ this.getRowStyle }
                     gridStyle={
                         {
                             margin: '0 auto',
@@ -190,20 +200,20 @@ export default class PlasmidTable extends Component {
                             verticalAlign: 'middle'
                         }
                     }
-                    rowRenderer={ rowRenderer }
+                    rowRenderer={ this.rowRenderer }
                   >
                     <Column
                       label="Availability"
                       width={ cellWidth }
                       dataKey="in_stock"
-                      cellRenderer={ availabilityRenderer }
-                      cellDataGetter={ cellDataGetter }
+                      cellRenderer={ this.availabilityRenderer }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
                       label="Description"
                       width={ 350 }
                       dataKey="description"
-                      cellDataGetter={ cellDataGetter }
+                      cellDataGetter={ this.cellDataGetter }
                       cellRenderer= { ({rowData, cellData}) => {
                           if (rowData) {
                               const { id } = rowData
@@ -219,34 +229,19 @@ export default class PlasmidTable extends Component {
                       label="Plasmid ID"
                       width={ cellWidth }
                       dataKey="id"
-                      cellDataGetter={ ({rowData, dataKey}) => {
-                          if (rowData) {
-                              return rowData[dataKey]
-                          }
-                      } }
+                      cellDataGetter={ this.idGetter }
                     />
                     <Column
                       label="Plasmid Name"
                       width={ 260 }
                       dataKey="name"
-                      cellDataGetter={ cellDataGetter }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
                       width={ cellWidth }
                       dataKey="in_stock"
-                      cellRenderer={ ({ cellData, rowIndex, rowData }) => {
-                          if (cellData) {
-                              return (
-                                <button
-                                className="btn btn-primary"
-                                onClick={ () => cartActions.addToCart(rows[rowIndex]) }
-                                >
-                                  <i className="fa fa-cart-arrow-down"></i> Add to cart
-                                </button>
-                              )
-                          }
-                      } }
-                      cellDataGetter={ cellDataGetter }
+                      cellRenderer={ this.inStockRenderer }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                   </Table>
                 )

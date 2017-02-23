@@ -24,14 +24,14 @@ export default class PlasmidDetail extends Component {
             systematicName: plasmid.name
         }
         const data1 = [
-          {'Plasmid Name': plasmid && plasmid.name},
+          {'Plasmid Name': 'No Information'},
           {Description: 'No Information'},
           {Depositor: 'N/A'},
           /* just display id, no link > eventually go to internal publication id*/
           {'Reference(s)': '22357942'}
         ]
         const data2 = [
-          {'Plasmid ID': plasmid && plasmid.id},
+          {'Plasmid ID': this.props.params.id},
           {'Plasmid Keywords': 'No Information'},
           {'GenBank Accession': 'No Information'}
         ]
