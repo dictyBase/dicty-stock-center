@@ -14,7 +14,7 @@ type Props = {
 }
 export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
-  loadNextPage() {
+  loadNextPage = () => {
       const { stockCenterActions } = this.props
       const { isFetching, links } = this.props.stockCenter.plasmidCatalog
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
@@ -22,23 +22,23 @@ export default class PlasmidTable extends Component {
           stockCenterActions.fetchPlasmids(number + 1, 10)
       }
   }
-  handleKeyDown(e) {
+  handleKeyDown = (e) => {
       if (e.keyCode === 13) {
           this.search(e.target.value)
       }
   }
-  search(text) {
+  search = (text) => {
       const { stockCenterActions } = this.props
       stockCenterActions.searchPlasmids(1, 1, text)
       this.forceUpdate()
   }
-  handleSearch() {
+  handleSearch = () => {
       this.search(this.searchInput.value)
   }
-  handleClear() {
+  handleClear = () => {
       this.clearSearch()
   }
-  clearSearch() {
+  clearSearch = () => {
       const { stockCenterActions } = this.props
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
       if (this.searchInput.value !== '') {
@@ -141,7 +141,7 @@ export default class PlasmidTable extends Component {
       const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
       const loadMoreRows = isFetching
         ? () => {}
-        : this.loadNextPage.bind(this)
+        : this.loadNextPage
       const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
@@ -153,19 +153,19 @@ export default class PlasmidTable extends Component {
                 type="search"
                 placeholder="Search Plasmids"
                 ref={ el => { this.searchInput = el } }
-                onKeyDown={ this.handleKeyDown.bind(this) }
+                onKeyDown={ this.handleKeyDown }
               />
             <button
               className="btn btn-primary"
               style={ {marginLeft: 7} }
-              onClick={ this.handleSearch.bind(this) }
+              onClick={ this.handleSearch }
             >
               SEARCH
             </button>
             <button
               className="btn btn-primary"
               style={ {marginLeft: 7} }
-              onClick={ this.handleClear.bind(this) }
+              onClick={ this.handleClear }
             >
               CLEAR
             </button>

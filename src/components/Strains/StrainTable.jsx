@@ -8,7 +8,7 @@ import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
-  loadNextPage() {
+  loadNextPage = () => {
       const { stockCenterActions } = this.props
       const { isFetching } = this.props.stockCenter.strainCatalog
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
@@ -17,23 +17,23 @@ export default class StrainTable extends Component {
           stockCenterActions.fetchStrains(number + 1, 10)
       }
   }
-  handleKeyDown(e) {
+  handleKeyDown = (e) => {
       if (e.keyCode === 13) {
           this.search(e.target.value)
       }
   }
-  search(text) {
+  search = (text) => {
       const { stockCenterActions } = this.props
       stockCenterActions.searchStrains(1, 1, text)
       this.forceUpdate()
   }
-  handleSearch() {
+  handleSearch = () => {
       this.search(this.searchInput.value)
   }
-  handleClear() {
+  handleClear = () => {
       this.clearSearch()
   }
-  clearSearch() {
+  clearSearch = () => {
       const { stockCenterActions } = this.props
       const { number } = this.props.stockCenter.strainCatalog.meta.pagination
       if (this.searchInput.value !== '') {
@@ -134,7 +134,7 @@ export default class StrainTable extends Component {
       const { data, links, isFetching } = this.props.stockCenter.strainCatalog
       const loadMoreRows = isFetching
         ? () => {}
-        : this.loadNextPage.bind(this)
+        : this.loadNextPage
       const rowCount = data.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
       return (
@@ -147,19 +147,19 @@ export default class StrainTable extends Component {
                 type="search"
                 placeholder="Search Strains"
                 ref={ el => { this.searchInput = el } }
-                onKeyDown={ this.handleKeyDown.bind(this) }
+                onKeyDown={ this.handleKeyDown }
               />
             <button
               className="btn btn-primary"
               style={ {marginLeft: 7} }
-              onClick={ this.handleSearch.bind(this) }
+              onClick={ this.handleSearch }
             >
               SEARCH
             </button>
             <button
               className="btn btn-primary"
               style={ {marginLeft: 7} }
-              onClick={ this.handleClear.bind(this) }
+              onClick={ this.handleClear }
             >
               CLEAR
             </button>
