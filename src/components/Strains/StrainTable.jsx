@@ -42,6 +42,20 @@ export default class StrainTable extends Component {
           stockCenterActions.fetchStrains(number + 1, 10)
       }
   }
+  getRowHeight = ({ index }) => {
+      const { data } = this.props.stockCenter.strainCatalog
+      const { cellHeight } = this.props
+      if (data[index]) {
+          const remainder: number = data[index].attributes.description.length % 54
+          let lines: number = data[index].attributes.description.length / 54
+          if (remainder > 0) {
+              lines += 1
+          }
+          const height: number = lines * 30
+          return height >= cellHeight ? height : cellHeight
+      }
+      return cellHeight
+  }
   rowGetter = ({ index }) => {
       const { data } = this.props.stockCenter.strainCatalog
       if (data[index]) {
@@ -182,7 +196,7 @@ export default class StrainTable extends Component {
                     height={ cellHeight * 7 }
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
-                    rowHeight={ cellHeight }
+                    rowHeight={ this.getRowHeight }
                     rowGetter={ this.rowGetter }
                     style={ {paddingTop: '2%'} }
                     rowCount={ rowCount }

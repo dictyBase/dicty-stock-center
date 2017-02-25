@@ -49,15 +49,17 @@ export default class PlasmidTable extends Component {
   }
   getRowHeight = ({ index }) => {
       const { data } = this.props.stockCenter.plasmidCatalog
+      const { cellHeight } = this.props
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
           let lines: number = data[index].attributes.description.length / 54
           if (remainder > 0) {
               lines += 1
           }
-          return lines * 30
+          const height: number = lines * 30
+          return height >= cellHeight ? height : cellHeight
       }
-      return this.props.cellHeight
+      return cellHeight
   }
   getRowStyle = ({ index }) => {
       const { data } = this.props.stockCenter.plasmidCatalog
@@ -210,6 +212,12 @@ export default class PlasmidTable extends Component {
                       cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
+                      label="Plasmid Name"
+                      width={ 260 }
+                      dataKey="name"
+                      cellDataGetter={ this.cellDataGetter }
+                    />
+                    <Column
                       label="Description"
                       width={ 350 }
                       dataKey="description"
@@ -230,12 +238,6 @@ export default class PlasmidTable extends Component {
                       width={ cellWidth }
                       dataKey="id"
                       cellDataGetter={ this.idGetter }
-                    />
-                    <Column
-                      label="Plasmid Name"
-                      width={ 260 }
-                      dataKey="name"
-                      cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
                       width={ cellWidth }
