@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import StockDetailRow from 'components/Strains/StockDetailRow'
+import StockDetailRow from 'components/StockDetailRow'
 
 describe('components', () => {
     describe('strains/StockDetailRow', () => {

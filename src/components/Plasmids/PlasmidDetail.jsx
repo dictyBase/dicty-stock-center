@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import StockDetailRow from 'components/Strains/StockDetailRow'
+import StockDetailRow from 'components/StockDetailRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
 import 'styles/custom.scss'

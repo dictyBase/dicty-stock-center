@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import PlasmidDetail from 'components/Plasmids/PlasmidDetail'
-import StockDetailRow from 'components/Strains/StockDetailRow'
+import StockDetailRow from 'components/StockDetailRow'
 import sinon from 'sinon'
 
 describe('components', () => {
