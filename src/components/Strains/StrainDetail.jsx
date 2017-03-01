@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import StockDetailRow from 'components/StockDetailRow'
@@ -9,12 +10,12 @@ import 'styles/custom.scss'
 export default class StrainDetail extends Component {
     displayName = 'strain detail'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { id } = this.props.params
-        stockCenterActions.fetchStrain(id)
+        const fetchStrain: Function = this.props.stockCenterActions.fetchStrain
+        const id: string = this.props.params.id
+        fetchStrain(id)
     }
     phenotypes() {
-        const { phenotypes } = this.props.stockCenter.strain
+        const phenotypes: Array<Object> = this.props.stockCenter.strain.phenotypes
         // const strain = {
         //     phenotypes: [{
         //         observation: 'placeholder',
@@ -22,7 +23,7 @@ export default class StrainDetail extends Component {
         //         reference: '000000001'
         //     }]
         // }
-        const rows = phenotypes.map((phenotype, i) => {
+        const rows: Array<PhenotypeRow> = phenotypes.map((phenotype, i) => {
             return (
               <PhenotypeRow
                 phenotype={ phenotype.observation }
@@ -61,9 +62,9 @@ export default class StrainDetail extends Component {
         )
     }
     render() {
-        const { cartActions } = this.props
-        const { strain } = this.props.stockCenter
-        const { isFetching } = this.props.stockCenter.strain
+        const addToCart: Function = this.props.cartActions.addToCart
+        const strain: Object = this.props.stockCenter.strain
+        const isFetching: boolean = this.props.stockCenter.strain.isFetching
         const cartItem = {
             type: 'strain',
             id: strain.id,
@@ -155,7 +156,7 @@ export default class StrainDetail extends Component {
                 <button
                   className="btn btn-primary btn-block add-to-cart"
                   style={ {maxWidth: '50%'} }
-                  onClick={ () => cartActions.addToCart(cartItem) }
+                  onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>
