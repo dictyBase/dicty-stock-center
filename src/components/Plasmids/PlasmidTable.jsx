@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Grid, Cell } from 'radium-grid'
@@ -7,11 +6,11 @@ import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import 'styles/custom.scss'
 
-type Props = {
-  cellWidth: number,
-  cellHeight: number,
-  height: number
-}
+// type Props = {
+//   cellWidth: number,
+//   cellHeight: number,
+//   height: number
+// }
 export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage = () => {

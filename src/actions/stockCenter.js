@@ -41,7 +41,6 @@ const requestStrains = () => {
 const receiveStrains = (data) => {
     return {
         type: STRAINS_FETCH_SUCCESS,
-        isFetching: false,
         data: data.data,
         links: data.links,
         meta: data.meta
