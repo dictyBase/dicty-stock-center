@@ -54,13 +54,6 @@ const strainsFetchFailure = (error) => {
     }
 }
 
-const strainSearch = (search) => {
-    return {
-        type: STRAIN_SEARCH_REQUEST,
-        search
-    }
-}
-
 const requestStrain = () => {
     return {
         type: STRAIN_FETCH_REQUEST
@@ -77,6 +70,12 @@ const receiveStrain = (data) => {
 const strainFetchFailure = () => {
     return {
         type: STRAIN_FETCH_FAILURE
+    }
+}
+
+const strainSearch = (search) => {
+    return {
+        type: STRAIN_SEARCH_REQUEST
     }
 }
 

@@ -29,7 +29,6 @@ const initialState = {
     },
     strainCatalog: {
         isFetching: false,
-        search: '',
         data: [],
         links: {},
         meta: {
@@ -43,7 +42,6 @@ const initialState = {
     },
     plasmidCatalog: {
         isFetching: false,
-        search: '',
         data: [],
         links: {},
         meta: {
@@ -96,7 +94,8 @@ const stockCenterReducer = (state = initialState, action) => {
             strainCatalog: {
                 ...state.strainCatalog,
                 isFetching: false,
-                ...action,
+                links: action.links,
+                meta: action.meta,
                 data: state.strainCatalog.data.concat(action.data)
             }
         }
@@ -122,9 +121,10 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
-                ...action,
                 isFetching: false,
-                data: action.data
+                data: action.data,
+                links: action.links,
+                meta: action.meta
             }
         }
     case STRAIN_SEARCH_FAILURE:
@@ -141,7 +141,13 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
-                data: []
+                data: [],
+                meta: {
+                    pagination: {
+                        number: 1
+                    }
+                },
+                links: {}
             }
         }
     case STRAIN_FETCH_REQUEST:
