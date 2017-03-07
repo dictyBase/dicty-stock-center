@@ -67,9 +67,10 @@ const receiveStrain = (data) => {
     }
 }
 
-const strainFetchFailure = () => {
+const strainFetchFailure = (error) => {
     return {
-        type: STRAIN_FETCH_FAILURE
+        type: STRAIN_FETCH_FAILURE,
+        error
     }
 }
 
@@ -111,7 +112,6 @@ const requestPlasmids = () => {
 const receivePlasmids = (data) => {
     return {
         type: PLASMIDS_FETCH_SUCCESS,
-        isFetching: false,
         data: data.data,
         links: data.links,
         meta: data.meta

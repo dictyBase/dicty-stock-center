@@ -171,7 +171,8 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             strain: {
                 ...state.strain,
-                isFetching: false
+                isFetching: false,
+                error: action.error
             }
         }
     case PLASMIDS_FETCH_REQUEST:
@@ -188,7 +189,8 @@ const stockCenterReducer = (state = initialState, action) => {
             plasmidCatalog: {
                 ...state.plasmidCatalog,
                 isFetching: false,
-                ...action,
+                links: action.links,
+                meta: action.meta,
                 data: state.plasmidCatalog.data.concat(action.data)
             }
         }
