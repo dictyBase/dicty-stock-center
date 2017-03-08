@@ -65,7 +65,7 @@ export default class StrainDetail extends Component {
         const addToCart: Function = this.props.cartActions.addToCart
         const strain: Object = this.props.stockCenter.strain
         const isFetching: boolean = this.props.stockCenter.strain.isFetching
-        const cartItem = {
+        const cartItem: { type: string, id: string, systematicName: string } = {
             type: 'strain',
             id: strain.id,
             systematicName: strain.name

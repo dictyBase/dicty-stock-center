@@ -10,15 +10,15 @@ import 'styles/custom.scss'
 export default class PlasmidDetail extends Component {
     displayName = 'plasmid detail'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { id } = this.props.params
-        stockCenterActions.fetchPlasmid(id)
+        const fetchPlasmid: Function = this.props.stockCenterActions.fetchPlasmid
+        const id: number = this.props.params.id
+        fetchPlasmid(id)
     }
     render() {
-        const { cartActions } = this.props
-        const { plasmid } = this.props.stockCenter
-        const { isFetching } = this.props.stockCenter.plasmid
-        const cartItem: {type: string, id: number, systematicName: string} = {
+        const addToCart: Function = this.props.cartActions.addToCart
+        const plasmid: Object = this.props.stockCenter.plasmid
+        const isFetching: boolean = this.props.stockCenter.plasmid.isFetching
+        const cartItem: { type: string, id: number, systematicName: string } = {
             type: 'plasmid',
             id: plasmid.id,
             systematicName: plasmid.name
@@ -94,7 +94,7 @@ export default class PlasmidDetail extends Component {
                 <button
                   className="btn btn-primary btn-block add-to-cart"
                   style={ {maxWidth: '50%'} }
-                  onClick={ () => cartActions.addToCart(cartItem) }
+                  onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>

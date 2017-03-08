@@ -7,12 +7,12 @@ import 'styles/custom.scss'
 export default class Plasmids extends Component {
     displayName = 'plasmids list'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
+        const stockCenterActions: Object = this.props.stockCenterActions
+        const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
         stockCenterActions.fetchPlasmids(number, 10)
     }
     render() {
-        const { data } = this.props.stockCenter.plasmidCatalog
+        const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
         return (
           <div className="container">
             <Grid cellWidth="1">

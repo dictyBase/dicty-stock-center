@@ -7,12 +7,12 @@ import 'styles/custom.scss'
 export default class Strains extends Component {
     displayName = 'strains list'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+        const stockCenterActions: Object = this.props.stockCenterActions
+        const number: number = this.props.stockCenter.strainCatalog.meta.pagination.number
         stockCenterActions.fetchStrains(number, 10)
     }
     render() {
-        const { data } = this.props.stockCenter.strainCatalog
+        const data: Array<Object> = this.props.stockCenter.strainCatalog.data
         return (
           <div className="container">
             <Grid cellWidth="1">

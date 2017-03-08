@@ -14,11 +14,12 @@ import 'styles/custom.scss'
 export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage = () => {
-      const { stockCenterActions } = this.props
-      const { isFetching, links } = this.props.stockCenter.plasmidCatalog
-      const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
+      const fetchPlasmids: Function = this.props.stockCenter.fetchPlasmids
+      const isFetching: boolean = this.props.stockCenter.plasmidCatalog.isFetching
+      const links: Object = this.props.stockCenter.plasmidCatalog.links
+      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
       if ((!isFetching && links.next) && (this.searchInput.value === '')) {
-          stockCenterActions.fetchPlasmids(number + 1, 10)
+          fetchPlasmids(number + 1, 10)
       }
   }
   handleKeyDown = (e) => {
@@ -38,17 +39,18 @@ export default class PlasmidTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const { stockCenterActions } = this.props
+      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
+      const clearPlasmidSearch: Function = this.props.stockCenterActions.clearPlasmidSearch
       const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
-          stockCenterActions.clearPlasmidSearch()
-          stockCenterActions.fetchPlasmids(number + 1, 10)
+          clearPlasmidSearch()
+          fetchPlasmids(number + 1, 10)
       }
   }
   getRowHeight = ({ index }) => {
-      const { data } = this.props.stockCenter.plasmidCatalog
-      const { cellHeight } = this.props
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const cellHeight: number = this.props.cellHeight
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
           let lines: number = data[index].attributes.description.length / 54
@@ -61,7 +63,7 @@ export default class PlasmidTable extends Component {
       return cellHeight
   }
   getRowStyle = ({ index }) => {
-      const { data } = this.props.stockCenter.plasmidCatalog
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (index === -1) {
           return {
               margin: '0 auto',
@@ -82,7 +84,7 @@ export default class PlasmidTable extends Component {
       }
   }
   isRowLoaded = ({ index }) => {
-      const { data } = this.props.stockCenter.plasmidCatalog
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       return !!data[index]
   }
   rowRenderer = ({index, columns, key, style, className}) => {
@@ -108,7 +110,7 @@ export default class PlasmidTable extends Component {
       )
   }
   rowGetter = ({ index }) => {
-      const { data } = this.props.stockCenter.plasmidCatalog
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog
       if (data[index]) {
           return data[index]
       }
@@ -124,13 +126,13 @@ export default class PlasmidTable extends Component {
       }
   }
   inStockRenderer = ({ cellData, rowIndex, rowData }) => {
-      const { cartActions } = this.props
-      const { data } = this.props.stockCenter.plasmidCatalog
+      const addToCart: Function = this.props.cartActions.addToCart
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (cellData) {
           return (
             <button
             className="btn btn-primary"
-            onClick={ () => cartActions.addToCart(data[rowIndex]) }
+            onClick={ () => addToCart(data[rowIndex]) }
             >
               <i className="fa fa-cart-arrow-down"></i> Add to cart
             </button>
@@ -140,7 +142,7 @@ export default class PlasmidTable extends Component {
   render() {
       const { cellWidth, height } = this.props
       const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
-      const loadMoreRows = isFetching
+      const loadMoreRows: Function = isFetching
         ? () => {}
         : this.loadNextPage
       const rowCount: number = data.length + (links.next ? 1 : 0)
