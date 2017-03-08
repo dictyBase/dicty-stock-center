@@ -12,9 +12,9 @@ const {
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
   STRAINS_FETCH_FAILURE,
-  STRAIN_SEARCH_REQUEST,
-  STRAIN_SEARCH_SUCCESS,
-  STRAIN_SEARCH_FAILURE,
+  STRAINS_SEARCH_REQUEST,
+  STRAINS_SEARCH_SUCCESS,
+  STRAINS_SEARCH_FAILURE,
   CLEAR_STRAINS,
   PLASMIDS_FETCH_REQUEST,
   PLASMIDS_FETCH_SUCCESS,
@@ -76,13 +76,13 @@ const strainFetchFailure = (error) => {
 
 const strainSearch = (search) => {
     return {
-        type: STRAIN_SEARCH_REQUEST
+        type: STRAINS_SEARCH_REQUEST
     }
 }
 
 const receiveStrainSearch = (data) => {
     return {
-        type: STRAIN_SEARCH_SUCCESS,
+        type: STRAINS_SEARCH_SUCCESS,
         isFetching: false,
         data: data.data,
         links: data.links,
@@ -92,7 +92,7 @@ const receiveStrainSearch = (data) => {
 
 const strainSearchFailure = (error) => {
     return {
-        type: STRAIN_SEARCH_FAILURE,
+        type: STRAINS_SEARCH_FAILURE,
         error
     }
 }
@@ -127,8 +127,7 @@ const plasmidsFetchFailure = (error) => {
 
 const plasmidsSearch = (search) => {
     return {
-        type: PLASMIDS_SEARCH_REQUEST,
-        search
+        type: PLASMIDS_SEARCH_REQUEST
     }
 }
 

@@ -10,9 +10,9 @@ const {
     STRAIN_FETCH_REQUEST,
     STRAIN_FETCH_SUCCESS,
     STRAIN_FETCH_FAILURE,
-    STRAIN_SEARCH_REQUEST,
-    STRAIN_SEARCH_SUCCESS,
-    STRAIN_SEARCH_FAILURE,
+    STRAINS_SEARCH_REQUEST,
+    STRAINS_SEARCH_SUCCESS,
+    STRAINS_SEARCH_FAILURE,
     CLEAR_STRAINS,
     PLASMIDS_FETCH_REQUEST,
     PLASMIDS_FETCH_SUCCESS,
@@ -108,7 +108,7 @@ const stockCenterReducer = (state = initialState, action) => {
                 error: action.error
             }
         }
-    case STRAIN_SEARCH_REQUEST:
+    case STRAINS_SEARCH_REQUEST:
         return {
             ...state,
             strainCatalog: {
@@ -116,7 +116,7 @@ const stockCenterReducer = (state = initialState, action) => {
                 isFetching: true
             }
         }
-    case STRAIN_SEARCH_SUCCESS:
+    case STRAINS_SEARCH_SUCCESS:
         return {
             ...state,
             strainCatalog: {
@@ -127,7 +127,7 @@ const stockCenterReducer = (state = initialState, action) => {
                 meta: action.meta
             }
         }
-    case STRAIN_SEARCH_FAILURE:
+    case STRAINS_SEARCH_FAILURE:
         return {
             ...state,
             strainCatalog: {
@@ -198,7 +198,7 @@ const stockCenterReducer = (state = initialState, action) => {
         return {
             ...state,
             plasmidCatalog: {
-                ...state.pasmidCatalog,
+                ...state.plasmidCatalog,
                 isFetching: false,
                 error: action.error
             }
@@ -216,9 +216,10 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             plasmidCatalog: {
                 ...state.plasmidCatalog,
-                ...action,
                 isFetching: false,
-                data: action.data
+                data: action.data,
+                links: action.links,
+                meta: action.meta
             }
         }
     case PLASMIDS_SEARCH_FAILURE:
@@ -235,7 +236,13 @@ const stockCenterReducer = (state = initialState, action) => {
             ...state,
             plasmidCatalog: {
                 ...state.plasmidCatalog,
-                data: []
+                data: [],
+                links: {},
+                meta: {
+                    pagination: {
+                        number: 1
+                    }
+                }
             }
         }
     default:

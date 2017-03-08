@@ -225,12 +225,12 @@ describe('reducers', () => {
                 }
             })
         })
-        it('should handle STRAIN_SEARCH_REQUEST', () => {
+        it('should handle STRAINS_SEARCH_REQUEST', () => {
             expect(
                 reducer(
                     initialState,
                     {
-                        type: types.STRAIN_SEARCH_REQUEST
+                        type: types.STRAINS_SEARCH_REQUEST
                     }
                 )
             ).to.eql({
@@ -241,7 +241,7 @@ describe('reducers', () => {
                 }
             })
         })
-        it('should handle STRAIN_SEARCH_SUCCESS', () => {
+        it('should handle STRAINS_SEARCH_SUCCESS', () => {
             expect(
                 reducer(
                     {
@@ -252,7 +252,7 @@ describe('reducers', () => {
                         }
                     },
                     {
-                        type: types.STRAIN_SEARCH_SUCCESS,
+                        type: types.STRAINS_SEARCH_SUCCESS,
                         ...strainData
                     }
                 )
@@ -265,7 +265,7 @@ describe('reducers', () => {
                 }
             })
         })
-        it('should handle STRAIN_SEARCH_FAILURE', () => {
+        it('should handle STRAINS_SEARCH_FAILURE', () => {
             expect(
                 reducer(
                     {
@@ -276,7 +276,7 @@ describe('reducers', () => {
                         }
                     },
                     {
-                        type: types.STRAIN_SEARCH_FAILURE,
+                        type: types.STRAINS_SEARCH_FAILURE,
                         error
                     }
                 )
@@ -407,6 +407,110 @@ describe('reducers', () => {
                     data: initialState.plasmidCatalog.data.concat(plasmidData.data)
                 }
             })
+        })
+        it('should handle PLASMIDS_FETCH_FAILURE', () => {
+            expect(
+                reducer(
+                    {
+                        ...initialState,
+                        plasmidCatalog: {
+                            ...initialState.plasmidCatalog,
+                            isFetching: true
+                        }
+                    },
+                    {
+                        type: types.PLASMIDS_FETCH_FAILURE,
+                        error
+                    }
+                )
+            ).to.eql({
+                ...initialState,
+                plasmidCatalog: {
+                    ...initialState.plasmidCatalog,
+                    isFetching: false,
+                    error
+                }
+            })
+        })
+        it('should handle PLASMIDS_SEARCH_REQUEST', () => {
+            expect(
+                reducer(
+                    initialState,
+                    {
+                        type: types.PLASMIDS_SEARCH_REQUEST
+                    }
+                )
+            ).to.eql({
+                ...initialState,
+                plasmidCatalog: {
+                    ...initialState.plasmidCatalog,
+                    isFetching: true
+                }
+            })
+        })
+        it('should handle PLASMIDS_SEARCH_SUCCESS', () => {
+            expect(
+                reducer(
+                    {
+                        ...initialState,
+                        plasmidCatalog: {
+                            ...initialState.plasmidCatalog,
+                            isFetching: true
+                        }
+                    },
+                    {
+                        type: types.PLASMIDS_SEARCH_SUCCESS,
+                        ...plasmidData
+                    }
+                )
+            ).to.eql({
+                ...initialState,
+                plasmidCatalog: {
+                    ...initialState.plasmidCatalog,
+                    isFetching: false,
+                    ...plasmidData
+                }
+            })
+        })
+        it('should handle PLASMIDS_SEARCH_FAILURE', () => {
+            expect(
+                reducer(
+                    {
+                        ...initialState,
+                        plasmidCatalog: {
+                            ...initialState.plasmidCatalog,
+                            isFetching: true
+                        }
+                    },
+                    {
+                        type: types.PLASMIDS_SEARCH_FAILURE,
+                        error
+                    }
+                )
+            ).to.eql({
+                ...initialState,
+                plasmidCatalog: {
+                    ...initialState.plasmidCatalog,
+                    isFetching: false,
+                    error
+                }
+            })
+        })
+        it('should handle CLEAR_PLASMIDS', () => {
+            expect(
+                reducer(
+                    {
+                        ...initialState,
+                        plasmidCatalog: {
+                            ...initialState.plasmidCatalog,
+                            ...plasmidData
+                        }
+                    },
+                    {
+                        type: types.CLEAR_PLASMIDS
+                    }
+                )
+            ).to.eql(initialState)
         })
     })
 })
