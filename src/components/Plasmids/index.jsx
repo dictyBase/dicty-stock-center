@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import Loader from 'components/Loader'

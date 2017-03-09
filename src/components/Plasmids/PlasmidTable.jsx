@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Grid, Cell } from 'radium-grid'
@@ -22,12 +23,12 @@ export default class PlasmidTable extends Component {
           fetchPlasmids(number + 1, 10)
       }
   }
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: Event) => {
       if (e.keyCode === 13) {
           this.search(e.target.value)
       }
   }
-  search = (text) => {
+  search = (text: string) => {
       const { stockCenterActions } = this.props
       stockCenterActions.searchPlasmids(1, 1, text)
       this.forceUpdate()
@@ -41,14 +42,14 @@ export default class PlasmidTable extends Component {
   clearSearch = () => {
       const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
       const clearPlasmidSearch: Function = this.props.stockCenterActions.clearPlasmidSearch
-      const { number } = this.props.stockCenter.plasmidCatalog.meta.pagination
+      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
           clearPlasmidSearch()
           fetchPlasmids(number + 1, 10)
       }
   }
-  getRowHeight = ({ index }) => {
+  getRowHeight = ({ index }: {index: number}) => {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       const cellHeight: number = this.props.cellHeight
       if (data[index]) {
@@ -62,7 +63,7 @@ export default class PlasmidTable extends Component {
       }
       return cellHeight
   }
-  getRowStyle = ({ index }) => {
+  getRowStyle = ({ index }: {index: number}) => {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (index === -1) {
           return {
@@ -83,11 +84,13 @@ export default class PlasmidTable extends Component {
           }
       }
   }
-  isRowLoaded = ({ index }) => {
+  isRowLoaded = ({ index }: {index: number}) => {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       return !!data[index]
   }
-  rowRenderer = ({index, columns, key, style, className}) => {
+  rowRenderer = ({index, columns, key, style, className}:
+                 {index: number, columns: any, key: string, style: Object, className: string}
+               ) => {
       let content
       if (!this.isRowLoaded({index})) {
           content = <TableLoader />
@@ -100,7 +103,7 @@ export default class PlasmidTable extends Component {
         </div>
       )
   }
-  availabilityRenderer = (cellData) => {
+  availabilityRenderer = (cellData: boolean) => {
       return (
         <div
           className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
@@ -109,23 +112,23 @@ export default class PlasmidTable extends Component {
         </div>
       )
   }
-  rowGetter = ({ index }) => {
+  rowGetter = ({ index }: {index: number}) => {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog
       if (data[index]) {
           return data[index]
       }
   }
-  cellDataGetter = ({rowData, dataKey}) => {
+  cellDataGetter = ({rowData, dataKey}: {rowData: Object, dataKey: string}) => {
       if (rowData) {
           return rowData.attributes[dataKey]
       }
   }
-  idGetter = ({rowData, dataKey}) => {
+  idGetter = ({rowData, dataKey}: {rowData: Object, dataKey: string}) => {
       if (rowData) {
           return rowData[dataKey]
       }
   }
-  inStockRenderer = ({ cellData, rowIndex, rowData }) => {
+  inStockRenderer = ({ cellData, rowIndex, rowData }: {cellData: any, rowIndex: number, rowData: Object}) => {
       const addToCart: Function = this.props.cartActions.addToCart
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (cellData) {
