@@ -125,9 +125,16 @@ export default class StrainTable extends Component {
             >
               <i className="fa fa-cart-arrow-down"></i> Add to cart
             </button>
-
           )
       }
+      return (
+        <button
+          className="btn btn-disabled"
+          style={ {cursor: 'not-allowed', color: '#777'} }
+        >
+          <i className="fa fa-cart-arrow-down"></i> Add to cart
+        </button>
+      )
   }
   cellDataGetter = ({rowData, dataKey}) => {
       if (rowData) {
@@ -210,13 +217,6 @@ export default class StrainTable extends Component {
                     }
                     rowRenderer={ this.rowRenderer }
                   >
-                    <Column
-                      label="Availability"
-                      width={ cellWidth }
-                      dataKey="in_stock"
-                      cellRenderer={ this.availabilityRenderer }
-                      cellDataGetter={ this.attributeGetter }
-                    />
                     <Column
                       label="Strain Descriptor"
                       width={ 350 }
