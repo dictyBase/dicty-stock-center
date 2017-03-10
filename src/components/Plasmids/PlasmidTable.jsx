@@ -15,7 +15,7 @@ import 'styles/custom.scss'
 export default class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage = () => {
-      const fetchPlasmids: Function = this.props.stockCenter.fetchPlasmids
+      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
       const isFetching: boolean = this.props.stockCenter.plasmidCatalog.isFetching
       const links: Object = this.props.stockCenter.plasmidCatalog.links
       const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
@@ -88,7 +88,7 @@ export default class PlasmidTable extends Component {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       return !!data[index]
   }
-  rowRenderer = ({index, columns, key, style, className}:
+  rowRenderer = ({ index, columns, key, style, className }:
                  {index: number, columns: any, key: string, style: Object, className: string}
                ) => {
       let content
@@ -113,7 +113,7 @@ export default class PlasmidTable extends Component {
       )
   }
   rowGetter = ({ index }: {index: number}) => {
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (data[index]) {
           return data[index]
       }
@@ -134,13 +134,21 @@ export default class PlasmidTable extends Component {
       if (cellData) {
           return (
             <button
-            className="btn btn-primary"
-            onClick={ () => addToCart(data[rowIndex]) }
+              className="btn btn-primary"
+              onClick={ () => addToCart(data[rowIndex]) }
             >
               <i className="fa fa-cart-arrow-down"></i> Add to cart
             </button>
           )
       }
+      return (
+        <button
+          className="btn btn-disabled"
+          style={ {cursor: 'not-allowed', color: '#777'} }
+        >
+          <i className="fa fa-cart-arrow-down"></i> Add to cart
+        </button>
+      )
   }
   render() {
       const { cellWidth, height } = this.props
@@ -208,13 +216,6 @@ export default class PlasmidTable extends Component {
                     }
                     rowRenderer={ this.rowRenderer }
                   >
-                    <Column
-                      label="Availability"
-                      width={ cellWidth }
-                      dataKey="in_stock"
-                      cellRenderer={ this.availabilityRenderer }
-                      cellDataGetter={ this.cellDataGetter }
-                    />
                     <Column
                       label="Plasmid Name"
                       width={ 260 }
