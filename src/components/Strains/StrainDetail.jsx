@@ -151,26 +151,33 @@ export default class StrainDetail extends Component {
                     </div>
                 )
             }
-            <Grid style={ {marginTop: '50px', maxWidth: '60%'} }>
-              <Cell width="1/2" smallWidth="1" align="right">
+            <div style={
+                {
+                    marginTop: '50px',
+                    maxWidth: '60%',
+                    margin: '0 auto',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '2.75%'
+                }
+            }>
+              <div style={ {width: '44%', paddingRight: '4%'} }>
                 <button
                   className="btn btn-primary btn-block add-to-cart"
-                  style={ {maxWidth: '50%'} }
                   onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>
-              </Cell>
-              <Cell width="1/2" smallWidth="1" align="left">
+              </div>
+              <div style={ {width: '44%', paddingLeft: '4%'} }>
                 <Link
                   to="/order/shipping"
                   className="btn btn-success btn-block"
-                  style={ {maxWidth: '50%'} }
                 >
                   <i className="fa fa-shopping-cart"></i> Checkout
                 </Link>
-              </Cell>
-            </Grid>
+              </div>
+            </div>
           </div>
         )
     }

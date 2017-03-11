@@ -28,7 +28,7 @@ export default class PlasmidDetail extends Component {
           {Description: 'No Information'},
           {Depositor: 'N/A'},
           /* just display id, no link > eventually go to internal publication id*/
-          {'Reference(s)': '23456789543234567890987 654345678sdfghjpojih ugfytdresghtcjv kblio;lhukyjdtrhsex fgcjhvkjblhiugkyfjt dhrxfgjhkjlguyfdh i7tuyrduytifyglu;gjdrtghiug jbkjh buygdwe b,fkwlejf kjebflkwe'}
+          {'Reference(s)': '22357942'}
         ]
         const data2 = [
           {'Plasmid ID': this.props.params.id},
@@ -89,26 +89,33 @@ export default class PlasmidDetail extends Component {
                     </div>
                 )
             }
-            <Grid style={ {marginTop: '50px', maxWidth: '60%'} }>
-              <Cell width="1/2" smallWidth="1" align="right">
+            <div style={
+                {
+                    marginTop: '50px',
+                    maxWidth: '60%',
+                    margin: '0 auto',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '2.75%'
+                }
+            }>
+              <div style={ {width: '44%', paddingRight: '4%'} }>
                 <button
                   className="btn btn-primary btn-block add-to-cart"
-                  style={ {maxWidth: '50%'} }
                   onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>
-              </Cell>
-              <Cell width="1/2" smallWidth="1" align="left">
+              </div>
+              <div style={ {width: '44%', paddingLeft: '4%'} }>
                 <Link
                   to="/order/shipping"
                   className="btn btn-success btn-block"
-                  style={ {maxWidth: '50%'} }
                 >
                   <i className="fa fa-shopping-cart"></i> Checkout
                 </Link>
-              </Cell>
-            </Grid>
+              </div>
+            </div>
           </div>
         )
     }
