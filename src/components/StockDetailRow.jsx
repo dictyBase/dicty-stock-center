@@ -6,11 +6,11 @@ type Props = {
 }
 
 export default class StrainDetailRow extends Component {
-    displayName = 'strain detail row'
+    displayName = 'stock detail row'
     render() {
         return (
           <div
-            className={ this.props.right ? 'strain-detail-row' : 'strain-detail-row single' }
+            className={ this.props.right ? 'stock-detail-row' : 'stock-detail-row single' }
             style={ {
                 flexGrow: 1,
                 flexBasis: 0,
@@ -22,7 +22,7 @@ export default class StrainDetailRow extends Component {
             } }
           >
             <div
-              className="strain-detail-item"
+              className="stock-detail-item"
               style={ {
                   display: 'flex',
                   flexGrow: 1,
@@ -58,14 +58,13 @@ export default class StrainDetailRow extends Component {
               </div>
             </div>
             <div
-              className="strain-detail-item"
+              className="stock-detail-item"
               style={ {
-                  display: 'flex',
                   flexGrow: 1,
                   flexBasis: 0,
                   width: '100%',
-                  borderBottom: '1px solid grey'
-                  // height: '100%'
+                  borderBottom: '1px solid grey',
+                  display: this.props.right ? 'flex' : 'none'
               } }
             >
               <div

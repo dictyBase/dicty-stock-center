@@ -28,7 +28,7 @@ export default class PlasmidDetail extends Component {
           {Description: 'No Information'},
           {Depositor: 'N/A'},
           /* just display id, no link > eventually go to internal publication id*/
-          {'Reference(s)': '22357942'}
+          {'Reference(s)': '23456789543234567890987 654345678sdfghjpojih ugfytdresghtcjv kblio;lhukyjdtrhsex fgcjhvkjblhiugkyfjt dhrxfgjhkjlguyfdh i7tuyrduytifyglu;gjdrtghiug jbkjh buygdwe b,fkwlejf kjebflkwe'}
         ]
         const data2 = [
           {'Plasmid ID': this.props.params.id},
