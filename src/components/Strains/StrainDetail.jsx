@@ -35,7 +35,7 @@ export default class StrainDetail extends Component {
         })
         return (
           <div className="phenotype-container">
-            <div className="phenotype-header" style={ {maxWidth: '85%', margin: '0 auto 20px auto'} }>
+            <div className="phenotype-header" style={ {maxWidth: '60%', margin: '0 auto 20px auto'} }>
               <div style={
                   {
                       padding: 10,
@@ -94,7 +94,7 @@ export default class StrainDetail extends Component {
         ]
         return (
           <div className="strain-details">
-            <Grid cellWidth="1" style={ {width: '85%'} }>
+            <Grid cellWidth="1" style={ {width: '60%'} }>
               <Cell align="center">
                 <h1
                     style={
@@ -113,7 +113,7 @@ export default class StrainDetail extends Component {
             <div
                 style={ {
                     padding: 10,
-                    maxWidth: '85%',
+                    maxWidth: '60%',
                     minWidth: 304,
                     background: '#15317e',
                     color: 'white',
@@ -131,7 +131,7 @@ export default class StrainDetail extends Component {
                         className="detail-container"
                         style={
                             {
-                                maxWidth: '85%',
+                                maxWidth: '60%',
                                 minWidth: 304,
                                 margin: '0 auto',
                                 borderTop: '1px solid grey',
@@ -151,7 +151,7 @@ export default class StrainDetail extends Component {
                     </div>
                 )
             }
-            <Grid style={ {marginTop: '50px', maxWidth: '85%'} }>
+            <Grid style={ {marginTop: '50px', maxWidth: '60%'} }>
               <Cell width="1/2" smallWidth="1" align="right">
                 <button
                   className="btn btn-primary btn-block add-to-cart"

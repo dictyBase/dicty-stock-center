@@ -37,7 +37,7 @@ export default class PlasmidDetail extends Component {
         ]
         return (
           <div className="plasmid-details">
-            <Grid cellWidth="1" style={ {width: '85%'} }>
+            <Grid cellWidth="1" style={ {width: '60%'} }>
               <Cell align="center">
                 <h1
                     style={
@@ -55,7 +55,7 @@ export default class PlasmidDetail extends Component {
             <div
                 style={ {
                     padding: 10,
-                    maxWidth: '85%',
+                    maxWidth: '60%',
                     minWidth: 304,
                     background: '#15317e',
                     color: 'white',
@@ -73,7 +73,7 @@ export default class PlasmidDetail extends Component {
                         className="detail-container"
                         style={
                             {
-                                maxWidth: '85%',
+                                maxWidth: '60%',
                                 minWidth: 304,
                                 margin: '0 auto',
                                 borderTop: '1px solid grey',
@@ -89,7 +89,7 @@ export default class PlasmidDetail extends Component {
                     </div>
                 )
             }
-            <Grid style={ {marginTop: '50px', maxWidth: '85%'} }>
+            <Grid style={ {marginTop: '50px', maxWidth: '60%'} }>
               <Cell width="1/2" smallWidth="1" align="right">
                 <button
                   className="btn btn-primary btn-block add-to-cart"
