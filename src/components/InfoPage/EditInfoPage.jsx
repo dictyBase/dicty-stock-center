@@ -15,10 +15,12 @@ import InlineToolbar from 'components/InlineToolbar'
 import EntityToolbar from 'components/EntityToolbar'
 import Link from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
-import { Grid, Cell } from 'radium-grid'
+import { InfoGrid, InfoCell } from '../../styles/EditInfoPage'
 import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
+
+// Consider react-rte or react-draft-wysiwyg for new toolbar
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
@@ -164,8 +166,8 @@ export default class EditInfoPage extends Component {
         let urlInput
         if (this.state.showURLInput) {
             urlInput = (
-              <Grid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
-                  <Cell>
+              <InfoGrid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
+                  <InfoCell>
                       <div className="input-group">
                         <input
                           className="form-control input-sm"
@@ -183,8 +185,8 @@ export default class EditInfoPage extends Component {
                             </button>
                         </span>
                       </div>
-                  </Cell>
-              </Grid>
+                  </InfoCell>
+              </InfoGrid>
             )
         }
         const { editorState } = this.state
@@ -219,10 +221,10 @@ export default class EditInfoPage extends Component {
                       ref="editor"
                     />
                   </div>
-                  <Grid cellWidth="1/4" smallCellWidth="1">
-                      <Cell />
-                      <Cell />
-                      <Cell>
+                  <InfoGrid cellWidth="1/4" smallCellWidth="1">
+                      <InfoCell />
+                      <InfoCell />
+                      <InfoCell>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -230,8 +232,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onCancel }>
                               Cancel
                           </button>
-                      </Cell>
-                      <Cell>
+                      </InfoCell>
+                      <InfoCell>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -239,8 +241,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onSave }>
                               Save
                           </button>
-                      </Cell>
-                  </Grid>
+                      </InfoCell>
+                  </InfoGrid>
               </div>
           </div>
         )

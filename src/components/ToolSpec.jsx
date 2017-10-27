@@ -32,10 +32,6 @@ const blockTypes = [
 ]
 
 const inlineTypes = [
-    { label: 'Monospace',
-        style: 'CODE',
-        icon: <i className="fa fa-terminal"></i>
-    },
     { label: 'Bold',
         style: 'BOLD',
         icon: <i className="fa fa-bold"></i>
@@ -51,6 +47,10 @@ const inlineTypes = [
     { label: 'Strikethrough',
         style: 'STRIKETHROUGH',
         icon: <i className="fa fa-strikethrough"></i>
+    },
+    { label: 'Monospace',
+        style: 'CODE',
+        icon: <i className="fa fa-terminal"></i>
     }
 ]
 
