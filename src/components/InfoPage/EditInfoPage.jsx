@@ -1,24 +1,63 @@
 import React, { Component } from 'react'
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    convertToRaw,
+    Entity,
+    CompositeDecorator,
+    Modifier,
+    convertFromRaw
+} from 'draft-js'
 import RichTextEditor from 'react-rte'
 
+import Link from 'components/Link'
 import { Grid, Cell } from 'radium-grid'
+import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
 
-// Consider react-rte or react-draft-wysiwyg for new toolbar
-
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
-    state = {
-        value: RichTextEditor.createEmptyValue()
+
+    constructor(props) {
+        super(props)
+        let newValue = RichTextEditor.createEmptyValue()
+        newValue._editorState = EditorState.createWithContent(
+          convertFromRaw(props.page.content)
+        )
+
+        if (props.page.content) {
+            this.state = {
+                value: newValue
+            }
+        }
+    }
+
+    // state = {
+    //     value: RichTextEditor.createEmptyValue()
+    // }
+
+    onSave = () => {
+        const { editorState } = this.state
+        const { routeProps, pageActions } = this.props
+        const rawData = convertToRaw(editorState.getCurrentContent())
+        pageActions.saveEditing(
+            routeProps.params.name,
+            rawData
+        )
+    }
+
+    onCancel = () => {
+        const { pageActions, routeProps } = this.props
+        pageActions.cancelEditing(
+            routeProps.params.name
+        )
     }
 
   onChange = (value) => {
       this.setState({value})
       if (this.props.onChange) {
-      // Send the changes up to the parent component as an HTML string.
-      // This is here to demonstrate using `.toString()` but in a real app it
-      // would be better to avoid generating a string on each change.
           this.props.onChange(
         value.toString('html')
       )
@@ -33,6 +72,7 @@ export default class EditInfoPage extends Component {
                     <RichTextEditor
                       value={ this.state.value }
                       onChange={ this.onChange }
+                      autoFocus={ true }
                       ref="editor"
                     />
                   </div>
