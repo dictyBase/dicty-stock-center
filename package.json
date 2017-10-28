@@ -70,6 +70,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.5",
+    "react-rte": "^0.15.0",
     "react-virtualized": "^8.5.3",
     "reactabular": "^2.0.2",
     "redux": "^3.0.0",

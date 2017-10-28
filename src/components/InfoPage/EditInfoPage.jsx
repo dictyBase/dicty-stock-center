@@ -15,7 +15,7 @@ import InlineToolbar from 'components/InlineToolbar'
 import EntityToolbar from 'components/EntityToolbar'
 import Link from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
-import { InfoGrid, InfoCell } from '../../styles/EditInfoPage'
+import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
@@ -166,8 +166,8 @@ export default class EditInfoPage extends Component {
         let urlInput
         if (this.state.showURLInput) {
             urlInput = (
-              <InfoGrid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
-                  <InfoCell>
+              <Grid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
+                  <Cell>
                       <div className="input-group">
                         <input
                           className="form-control input-sm"
@@ -185,8 +185,8 @@ export default class EditInfoPage extends Component {
                             </button>
                         </span>
                       </div>
-                  </InfoCell>
-              </InfoGrid>
+                  </Cell>
+              </Grid>
             )
         }
         const { editorState } = this.state
@@ -221,10 +221,10 @@ export default class EditInfoPage extends Component {
                       ref="editor"
                     />
                   </div>
-                  <InfoGrid cellWidth="1/4" smallCellWidth="1">
-                      <InfoCell />
-                      <InfoCell />
-                      <InfoCell>
+                  <Grid cellWidth="1/4" smallCellWidth="1">
+                      <Cell />
+                      <Cell />
+                      <Cell>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -232,8 +232,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onCancel }>
                               Cancel
                           </button>
-                      </InfoCell>
-                      <InfoCell>
+                      </Cell>
+                      <Cell>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -241,8 +241,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onSave }>
                               Save
                           </button>
-                      </InfoCell>
-                  </InfoGrid>
+                      </Cell>
+                  </Grid>
               </div>
           </div>
         )
