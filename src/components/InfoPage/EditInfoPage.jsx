@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-    // Editor,
     EditorState,
     RichUtils,
     convertToRaw,
@@ -9,22 +8,93 @@ import {
     Modifier,
     convertFromRaw
 } from 'draft-js'
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'
-import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
+import Editor from 'draft-js-plugins-editor'
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton
+} from 'draft-js-buttons'
 
-import BlockToolbar from 'components/BlockToolbar'
-import InlineToolbar from 'components/InlineToolbar'
-import EntityToolbar from 'components/EntityToolbar'
 import Link from 'components/Link'
-import { blockTypes, inlineTypes } from 'components/ToolSpec'
 import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
+import editorStyles from 'styles/editorStyles.scss'
 
-const staticToolbar = createToolbarPlugin()
-const { Toolbar } = staticToolbar
-const plugins = [ Toolbar ]
+// need to split classes into new components
+
+class HeadlinesPicker extends Component {
+  displayName = 'headlines picker'
+  componentDidMount() {
+      setTimeout(() => { window.addEventListener('click', this.onWindowClick) })
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('click', this.onWindowClick)
+  }
+
+  onWindowClick = () =>
+    // Call `onOverrideContent` again with `undefined`
+    // so the toolbar can show its regular content again.
+    this.props.onOverrideContent(undefined)
+
+  render() {
+      const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton]
+      return (
+        <div>
+          { buttons.map((Button, i) => // eslint-disable-next-line
+          <Button key={ i } { ...this.props } />
+        )
+      }
+      </div>
+    )
+  }
+}
+
+class HeadlinesButton extends Component {
+  displayName = 'headlines button'
+  onClick = () =>
+    // A button can call `onOverrideContent` to replace the content
+    // of the toolbar. This can be useful for displaying sub
+    // menus or requesting additional information from the user.
+    this.props.onOverrideContent(HeadlinesPicker)
+
+  render() {
+      return (
+      <div className={ editorStyles.headlineButtonWrapper }>
+        <button onClick={ this.onClick } className={ editorStyles.headlineButton }>
+          H
+        </button>
+      </div>
+    )
+  }
+}
+
+const toolbarPlugin = createToolbarPlugin({
+    structure: [
+        BoldButton,
+        ItalicButton,
+        UnderlineButton,
+        CodeButton,
+        Separator,
+        HeadlinesButton,
+        UnorderedListButton,
+        OrderedListButton,
+        BlockquoteButton
+    ]
+})
+const { Toolbar } = toolbarPlugin
+const plugins = [toolbarPlugin]
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
@@ -65,37 +135,6 @@ export default class EditInfoPage extends Component {
         pageActions.cancelEditing(
             routeProps.params.name
         )
-    }
-    handleKeyCommand = (command) => {
-        const { editorState } = this.state
-        const newState = RichUtils.handleKeyCommand(editorState, command)
-        if (newState) {
-            this.onChange(newState)
-            return true
-        }
-        return false
-    }
-    addLineBreak = () => {
-        let newContent
-        let newEditorState
-        const { editorState } = this.state
-        const content = editorState.getCurrentContent()
-        const selection = editorState.getSelection()
-        const block = content.getBlockForKey(selection.getStartKey())
-
-        if (block.type === 'code-block') {
-            newContent = Modifier.insertText(content, selection, '\n')
-            newEditorState = EditorState.push(editorState, newContent, 'add-new-line')
-            this.onChange(newEditorState)
-            return true
-        }
-        return false
-    }
-    handleReturn = (e) => {
-        if (e.metaKey === true) {
-            return this.addLineBreak()
-        }
-        return false
     }
     onToggleBlock = (type) => {
         this.onChange(
@@ -200,7 +239,7 @@ export default class EditInfoPage extends Component {
                 <div className="edit-panel">
                   <div className="toolbar-nav">
                       <div className="btn-group">
-                        <BlockToolbar
+                        {/* <BlockToolbar
                           editorState={ editorState }
                           clickFn={ this.onToggleBlock }
                           toolSpec={ blockTypes }
@@ -213,19 +252,17 @@ export default class EditInfoPage extends Component {
                         <EntityToolbar
                           editorState={ editorState }
                           toolSpec={ entityControls }
-                        />
+                        /> */}
                       </div>
-                      { urlInput }
                   </div>
-                  <div className="editor">
+                  <div className={editorStyles.editor}>
                     <Toolbar />
+                    { urlInput }
                     <Editor
                       editorState={ editorState }
                       onChange={ this.onChange }
-                      handleReturn={ this.handleReturn }
-                      handleKeyCommand={ this.handleKeyCommand }
                       plugins={ plugins }
-                      ref="editor"
+                      ref="{(element) => { this.editor = element }}"
                     />
                   </div>
                   <Grid cellWidth="1/4" smallCellWidth="1">
