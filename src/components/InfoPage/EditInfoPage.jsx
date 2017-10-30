@@ -9,7 +9,7 @@ import {
     Modifier,
     convertFromRaw
 } from 'draft-js'
-import RichTextEditor from 'react-rte'
+import RichTextEditor, {EditorValue} from 'react-rte'
 
 import Link from 'components/Link'
 import { Grid, Cell } from 'radium-grid'
@@ -22,21 +22,29 @@ export default class EditInfoPage extends Component {
 
     constructor(props) {
         super(props)
-        let newValue = RichTextEditor.createEmptyValue()
-        newValue._editorState = EditorState.createWithContent(
-          convertFromRaw(props.page.content)
-        )
-
+        // let newValue = RichTextEditor.createEmptyValue()
+        // newValue._editorState = EditorState.createWithContent(
+        //   convertFromRaw(props.page.content)
+        // )
+        //
+        // if (props.page.content) {
+        //     this.state = {
+        //         value: newValue
+        //     }
+        // }
+        let newValue
         if (props.page.content) {
-            this.state = {
-                value: newValue
-            }
+          const contentState = convertFromRaw(props.page.content)
+          const editorState = EditorState.createWithContent(contentState)
+          newValue = new EditorValue(editorState)
+        }
+
+        this.state = {
+          value: (newValue) || RichTextEditor.createEmptyValue()
         }
     }
 
-    // state = {
-    //     value: RichTextEditor.createEmptyValue()
-    // }
+    // newContent.getEntityMap is not a function (error on button click)
 
     onSave = () => {
         const { editorState } = this.state
