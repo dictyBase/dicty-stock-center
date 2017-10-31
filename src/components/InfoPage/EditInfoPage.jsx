@@ -30,7 +30,9 @@ import findEntities from 'utils/findEntities'
 
 import 'styles/toolbar.scss'
 import 'styles/editorStyles.css'
+import 'styles/buttonStyles.scss'
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
+import 'draft-js-undo-plugin/lib/plugin.css'
 
 const undoPlugin = createUndoPlugin()
 
@@ -51,7 +53,7 @@ const toolbarPlugin = createToolbarPlugin({
     ]
 })
 const { Toolbar } = toolbarPlugin
-const { UndoButton, RedoButton } = undoPlugin
+// const { UndoButton, RedoButton } = undoPlugin
 const plugins = [toolbarPlugin, undoPlugin]
 
 export default class EditInfoPage extends Component {
@@ -212,8 +214,8 @@ export default class EditInfoPage extends Component {
                           toolSpec={ entityControls }
                         /> */}
                         <Toolbar />
-                        <UndoButton />
-                        <RedoButton />
+                        {/* <UndoButton />
+                        <RedoButton /> */}
                         { urlInput }
                       </div>
                   </div>
