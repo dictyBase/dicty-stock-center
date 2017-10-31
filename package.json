@@ -57,6 +57,7 @@
     "draft-js": "^0.10.1",
     "draft-js-plugins-editor": "^2.0.0-beta1",
     "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
+    "draft-js-undo-plugin": "^2.0.0-rc8",
     "es6-promise": "^3.2.1",
     "fs": "0.0.2",
     "history": "^2.1.2",

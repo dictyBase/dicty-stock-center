@@ -5,10 +5,10 @@ import {
     convertToRaw,
     Entity,
     CompositeDecorator,
-    Modifier,
     convertFromRaw
 } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
+import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
 import {
   ItalicButton,
@@ -32,6 +32,8 @@ import 'styles/toolbar.scss'
 import 'styles/editorStyles.css'
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 
+const undoPlugin = createUndoPlugin()
+
 const toolbarPlugin = createToolbarPlugin({
     structure: [
         BoldButton,
@@ -49,7 +51,8 @@ const toolbarPlugin = createToolbarPlugin({
     ]
 })
 const { Toolbar } = toolbarPlugin
-const plugins = [toolbarPlugin]
+const { UndoButton, RedoButton } = undoPlugin
+const plugins = [toolbarPlugin, undoPlugin]
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
@@ -209,11 +212,12 @@ export default class EditInfoPage extends Component {
                           toolSpec={ entityControls }
                         /> */}
                         <Toolbar />
+                        <UndoButton />
+                        <RedoButton />
                         { urlInput }
                       </div>
                   </div>
                   <div className="editor">
-
                     <Editor
                       editorState={ editorState }
                       onChange={ this.onChange }
