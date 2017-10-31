@@ -20,65 +20,17 @@ import {
   HeadlineThreeButton,
   UnorderedListButton,
   OrderedListButton,
-  BlockquoteButton,
-  CodeBlockButton
+  BlockquoteButton
 } from 'draft-js-buttons'
 
+import EntityToolbar from 'components/EntityToolbar'
 import Link from 'components/Link'
 import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
-import 'styles/editor.scss'
+
 import 'styles/toolbar.scss'
-import editorStyles from 'styles/editorStyles.scss'
-
-// need to split classes into new components
-
-class HeadlinesPicker extends Component {
-  displayName = 'headlines picker'
-  componentDidMount() {
-      setTimeout(() => { window.addEventListener('click', this.onWindowClick) })
-  }
-
-  componentWillUnmount() {
-      window.removeEventListener('click', this.onWindowClick)
-  }
-
-  onWindowClick = () =>
-    // Call `onOverrideContent` again with `undefined`
-    // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined)
-
-  render() {
-      const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton]
-      return (
-        <div>
-          { buttons.map((Button, i) => // eslint-disable-next-line
-          <Button key={ i } { ...this.props } />
-        )
-      }
-      </div>
-    )
-  }
-}
-
-class HeadlinesButton extends Component {
-  displayName = 'headlines button'
-  onClick = () =>
-    // A button can call `onOverrideContent` to replace the content
-    // of the toolbar. This can be useful for displaying sub
-    // menus or requesting additional information from the user.
-    this.props.onOverrideContent(HeadlinesPicker)
-
-  render() {
-      return (
-      <div className={ editorStyles.headlineButtonWrapper }>
-        <button onClick={ this.onClick } className={ editorStyles.headlineButton }>
-          H
-        </button>
-      </div>
-    )
-  }
-}
+import 'styles/editorStyles.css'
+import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 
 const toolbarPlugin = createToolbarPlugin({
     structure: [
@@ -87,7 +39,10 @@ const toolbarPlugin = createToolbarPlugin({
         UnderlineButton,
         CodeButton,
         Separator,
-        HeadlinesButton,
+        HeadlineOneButton,
+        HeadlineTwoButton,
+        HeadlineThreeButton,
+        Separator,
         UnorderedListButton,
         OrderedListButton,
         BlockquoteButton
@@ -248,16 +203,17 @@ export default class EditInfoPage extends Component {
                           editorState={ editorState }
                           clickFn={ this.onToggleInline }
                           toolSpec={ inlineTypes }
-                        />
-                        <EntityToolbar
+                        /> */}
+                        {/* <EntityToolbar
                           editorState={ editorState }
                           toolSpec={ entityControls }
                         /> */}
+                        <Toolbar />
+                        { urlInput }
                       </div>
                   </div>
-                  <div className={editorStyles.editor}>
-                    <Toolbar />
-                    { urlInput }
+                  <div className="editor">
+
                     <Editor
                       editorState={ editorState }
                       onChange={ this.onChange }
