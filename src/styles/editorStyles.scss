@@ -2,16 +2,16 @@
   box-sizing: border-box;
   border: 1px solid #ddd;
   cursor: text;
-  padding: 16px;
+  padding: 10px;
   border-radius: 2px;
   margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: #fefefe;
+  margin: 10px auto;
 }
 
-button {
-  margin-bottom: 0px;
-  margin-right: 0px;
+.edit-panel {
+    border: 1px solid #ddd;
+    padding: 10px;
 }
 
 .editor :global(.public-DraftEditor-content) {

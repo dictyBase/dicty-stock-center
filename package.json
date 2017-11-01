@@ -55,6 +55,8 @@
     "debug": "^2.2.0",
     "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/inline-style",
     "draft-js": "^0.10.1",
+    "draft-js-anchor-plugin": "^2.0.0-rc10",
+    "draft-js-inline-toolbar-plugin": "^2.0.0-rc8",
     "draft-js-plugins-editor": "^2.0.0-beta1",
     "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
     "draft-js-undo-plugin": "^2.0.0-rc8",

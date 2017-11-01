@@ -5,6 +5,7 @@ import {
     convertFromRaw
 } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
+import createLinkPlugin from 'draft-js-anchor-plugin'
 import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
 import {
@@ -17,7 +18,8 @@ import {
   HeadlineThreeButton,
   UnorderedListButton,
   OrderedListButton,
-  BlockquoteButton
+  BlockquoteButton,
+  CodeBlockButton
 } from 'draft-js-buttons'
 
 import { Grid, Cell } from 'radium-grid'
@@ -29,7 +31,7 @@ import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 import 'draft-js-undo-plugin/lib/plugin.css'
 
 const undoPlugin = createUndoPlugin()
-
+const linkPlugin = createLinkPlugin()
 const toolbarPlugin = createToolbarPlugin({
     structure: [
         BoldButton,
@@ -43,12 +45,14 @@ const toolbarPlugin = createToolbarPlugin({
         Separator,
         UnorderedListButton,
         OrderedListButton,
-        BlockquoteButton
+        BlockquoteButton,
+        CodeBlockButton,
+        // linkPlugin.LinkButton
     ]
 })
 const { Toolbar } = toolbarPlugin
 // const { UndoButton, RedoButton } = undoPlugin
-const plugins = [toolbarPlugin, undoPlugin]
+const plugins = [toolbarPlugin, undoPlugin, linkPlugin]
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
