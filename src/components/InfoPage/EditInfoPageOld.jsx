@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import {
     EditorState,
+    RichUtils,
+    Entity,
+    CompositeDecorator,
     convertToRaw,
     convertFromRaw
 } from 'draft-js'
@@ -21,7 +24,9 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
-
+import Link from 'components/Link'
+import findEntities from 'utils/findEntities'
+import EntityToolbar from 'components/EntityToolbar'
 import { Grid, Cell } from 'radium-grid'
 
 import 'styles/toolbar.scss'
@@ -47,7 +52,7 @@ const toolbarPlugin = createToolbarPlugin({
         OrderedListButton,
         BlockquoteButton,
         CodeBlockButton,
-        linkPlugin.LinkButton
+        // linkPlugin.LinkButton
     ]
 })
 const { Toolbar } = toolbarPlugin
@@ -59,19 +64,26 @@ export default class EditInfoPage extends Component {
     constructor(props) {
         super(props)
 
+        const decorator = new CompositeDecorator([
+            {
+                strategy: findEntities.bind(null, 'link'),
+                component: Link
+            }
+        ])
         if (props.page.content) {
             this.state = {
                 editorState:
                     EditorState.createWithContent(
-                      convertFromRaw(props.page.content)
-                    )
+                      convertFromRaw(props.page.content),
+                      decorator
+                    ),
+                showURLInput: false,
+                urlValue: ''
             }
         }
     }
 
-    onChange = (editorState) => this.setState({editorState}, () => {
-        Toolbar.onEditorChange(editorState)
-    })
+    onChange = (editorState) => this.setState({editorState})
     focus = () => this.refs.editor.focus()
     onSave = () => {
         const { editorState } = this.state
@@ -88,7 +100,102 @@ export default class EditInfoPage extends Component {
             routeProps.params.name
         )
     }
-    render() {
+    onToggleBlock = (type) => {
+        this.onChange(
+            RichUtils.toggleBlockType(
+              this.state.editorState,
+              type
+            )
+          )
+    }
+    onToggleInline = (type) => {
+        this.onChange(
+            RichUtils.toggleInlineStyle(
+              this.state.editorState,
+              type
+            )
+          )
+    }
+    onURLChange = (e) => {
+        this.setState({urlValue: e.target.value})
+    }
+    onLinkInputKeyDown = (e) => {
+        if (e.which === 13) {
+            this.confirmLink(e)
+        }
+    }
+    addLink = () => {
+        const { editorState } = this.state
+        const selection = editorState.getSelection()
+        if (!selection.isCollapsed()) {
+            this.setState({
+                showURLInput: true,
+                urlValue: ''
+            }, () => {
+                setTimeout(() => this.refs.url.focus(), 0)
+            })
+        }
+    }
+    confirmLink = (e) => {
+        e.preventDefault()
+        const { editorState, urlValue } = this.state
+        const entityKey = Entity.create('link', 'MUTABLE', { url: urlValue })
+        this.setState({
+            editorState: RichUtils.toggleLink(
+              editorState,
+              editorState.getSelection(),
+              entityKey
+            ),
+            showURLInput: false,
+            urlValue: ''
+        }, () => {
+            setTimeout(() => this.refs.editor.focus(), 0)
+        })
+    }
+    removeLink = () => {
+        const { editorState } = this.state
+        const selection = editorState.getSelection()
+        if (selection.isCollapsed()) {
+            return
+        }
+        this.onChange(RichUtils.toggleLink(editorState, selection, null))
+    }
+    render() {const entityControls = [
+          { label: 'Add Link',
+              action: this.addLink,
+              icon: <i className="fa fa-link"></i>
+          },
+          { label: 'Remove Link',
+              action: this.removeLink,
+              icon: <i className="fa fa-chain-broken"></i>
+          }
+        ]
+        let urlInput
+        if (this.state.showURLInput) {
+            urlInput = (
+              <Grid smallCellWidth="1" mediumCellWidth="1/2" cellWidth="1/3">
+                  <Cell>
+                      <div className="input-group">
+                        <input
+                          className="form-control input-sm"
+                          onChange={ this.onURLChange }
+                          ref="url"
+                          type="text"
+                          value={ this.state.urlValue }
+                          onKeyDown={ this.onLinkInputKeyDown }
+                        />
+                        <span className="input-group-btn">
+                            <button
+                              className="btn btn-default btn-sm"
+                              onMouseDown={ this.confirmLink }>
+                              Confirm Link
+                            </button>
+                        </span>
+                      </div>
+                  </Cell>
+              </Grid>
+            )
+        }
         const { editorState } = this.state
         return (
           <div className="container">
@@ -96,6 +203,11 @@ export default class EditInfoPage extends Component {
                   <div className="toolbar-nav">
                       <div className="btn-group">
                         <Toolbar />
+                        <EntityToolbar
+                          editorState={ editorState }
+                          toolSpec={ entityControls }
+                        />
+                        { urlInput }
                         {/* <UndoButton />
                         <RedoButton /> */}
                       </div>
