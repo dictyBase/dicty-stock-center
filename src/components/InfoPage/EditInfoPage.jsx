@@ -5,9 +5,9 @@ import {
     convertFromRaw
 } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
-import createLinkPlugin from 'draft-js-anchor-plugin'
 import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
+import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
 import {
   ItalicButton,
   BoldButton,
@@ -31,7 +31,10 @@ import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 import 'draft-js-undo-plugin/lib/plugin.css'
 
 const undoPlugin = createUndoPlugin()
-const linkPlugin = createLinkPlugin()
+const toolbarLinkPlugin = createToolbarLinkPlugin({
+    inputPlaceholder: 'Insert URL here...'
+})
+const { LinkButton } = toolbarLinkPlugin
 const toolbarPlugin = createToolbarPlugin({
     structure: [
         BoldButton,
@@ -47,12 +50,12 @@ const toolbarPlugin = createToolbarPlugin({
         OrderedListButton,
         BlockquoteButton,
         CodeBlockButton,
-        linkPlugin.LinkButton
+        LinkButton
     ]
 })
 const { Toolbar } = toolbarPlugin
 // const { UndoButton, RedoButton } = undoPlugin
-const plugins = [toolbarPlugin, undoPlugin, linkPlugin]
+const plugins = [toolbarPlugin, undoPlugin]
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
@@ -70,7 +73,7 @@ export default class EditInfoPage extends Component {
     }
 
     onChange = (editorState) => this.setState({editorState}, () => {
-        Toolbar.onEditorChange(editorState)
+        toolbarPlugin.onEditorChange(editorState)
     })
     focus = () => this.refs.editor.focus()
     onSave = () => {
@@ -95,7 +98,7 @@ export default class EditInfoPage extends Component {
                 <div className="edit-panel">
                   <div className="toolbar-nav">
                       <div className="btn-group">
-                        <Toolbar />
+                        <Toolbar editorState={ editorState } />
                         {/* <UndoButton />
                         <RedoButton /> */}
                       </div>
