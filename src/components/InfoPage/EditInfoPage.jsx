@@ -25,16 +25,16 @@ import {
 import { Grid, Cell } from 'radium-grid'
 
 import 'styles/toolbar.scss'
-import 'styles/editorStyles.scss'
-import 'styles/buttonStyles.scss'
+import 'styles/editor.scss'
+import 'styles/buttons.scss'
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
-import 'draft-js-undo-plugin/lib/plugin.css'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
     inputPlaceholder: 'Insert URL here...'
 })
 const { LinkButton } = toolbarLinkPlugin
+const { UndoButton, RedoButton } = undoPlugin
 const toolbarPlugin = createToolbarPlugin({
     structure: [
         BoldButton,
@@ -50,12 +50,14 @@ const toolbarPlugin = createToolbarPlugin({
         OrderedListButton,
         BlockquoteButton,
         CodeBlockButton,
-        LinkButton
+        LinkButton,
+        Separator,
+        UndoButton,
+        RedoButton
     ]
 })
 const { Toolbar } = toolbarPlugin
-// const { UndoButton, RedoButton } = undoPlugin
-const plugins = [toolbarPlugin, undoPlugin]
+const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 export default class EditInfoPage extends Component {
     displayName = 'information page editor'
@@ -72,9 +74,7 @@ export default class EditInfoPage extends Component {
         }
     }
 
-    onChange = (editorState) => this.setState({editorState}, () => {
-        toolbarPlugin.onEditorChange(editorState)
-    })
+    onChange = (editorState) => this.setState({editorState})
     focus = () => this.refs.editor.focus()
     onSave = () => {
         const { editorState } = this.state
@@ -98,9 +98,7 @@ export default class EditInfoPage extends Component {
                 <div className="edit-panel">
                   <div className="toolbar-nav">
                       <div className="btn-group">
-                        <Toolbar editorState={ editorState } />
-                        {/* <UndoButton />
-                        <RedoButton /> */}
+                        <Toolbar />
                       </div>
                   </div>
                   <div className="editor">
