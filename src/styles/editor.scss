@@ -1,11 +1,14 @@
 .editor {
-    border: 1px solid #ddd;
-    cursor: text;
-    min-height: 80px;
-    padding: 10px;
-    margin: 10px auto;
-
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 10px;
+  border-radius: 2px;
+  margin-bottom: 2em;
+  background: #fefefe;
+  margin: 10px auto;
 }
+
 .edit-panel {
     border: 1px solid #ddd;
     padding: 10px;
