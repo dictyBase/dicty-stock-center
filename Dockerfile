@@ -1,18 +1,21 @@
 FROM node:argon
 MAINTAINER Siddhartha Basu<siddhartha-basu@northwestern.edu>
 
-# Setup server url
-# could also be set with docker build
+# URL for api server
 ARG api_server
-ENV API_SERVER ${api_server:-https://betatest.dictybase.org/fakeapi/stockcenter}
+ENV API_SERVER $api_server
+
+# URL for auth server
+ARG auth_server
+ENV AUTH_SERVER $auth_server
 
 # base path for react router
 ARG basename
-ENV BASENAME ${basename:-/stockcenter}
+ENV BASENAME $basename
 
-# google analytics id
-ARG ga_tracking_id
-ENV GA_TRACKING_ID ${ga_tracking_id:-UA-16352781-8}
+# Setup client keys for third party auth
+ARG client_keys
+ENV CLIENT_KEYS ${client_keys:-src/utils/clientConfig.sample.js}
 
 # Create app directory
 RUN mkdir -p /usr/src/app 
@@ -27,12 +30,14 @@ RUN npm install -g express morgan \
 # Install app dependencies \
     && npm install 
 
+
 # Bundle app source
 COPY . /usr/src/app
+# overwrite the client key file 
+COPY $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 
 # Create client config file
 RUN cd /usr/src/app \
-    && cp src/utils/clientConfig.sample.js src/utils/clientConfig.js \
     && npm run deploy \
     && mv dist /www \
 # Add our user and group first to make sure their IDs get assigned consistently
