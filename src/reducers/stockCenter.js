@@ -7,11 +7,10 @@ const {
     STRAINS_FETCH_REQUEST,
     STRAINS_FETCH_SUCCESS,
     STRAINS_FETCH_FAILURE,
-    PAGE_FETCH_REQUEST,
-    PAGE_FETCH_SUCCESS,
-    PAGE_FETCH_FAILURE,
-    SEARCH_STRAINS,
-    RECEIVE_ALL_STRAINS_SUCCESS
+    SEARCH_STRAINS_REQUEST,
+    SEARCH_STRAINS_SUCCESS,
+    SEARCH_STRAINS_FAILURE,
+    CLEAR_STRAIN_SEARCH
 } = types
 
 const initialState = {
@@ -56,34 +55,34 @@ const stockCenterReducer = (state = initialState, action) => {
                 error: action.error
             }
         }
+    // case STRAINS_FETCH_REQUEST:
+    //     return {
+    //         ...state,
+    //         strainCatalog: {
+    //             ...state.strainCatalog,
+    //             isFetching: true,
+    //             pages: 1
+    //         }
+    //     }
+    // case STRAINS_FETCH_SUCCESS:
+    //     return {
+    //         ...state,
+    //         strainCatalog: {
+    //             ...state.strainCatalog,
+    //             isFetching: false,
+    //             data: action.data.strains
+    //         }
+    //     }
+    // case STRAINS_FETCH_FAILURE:
+    //     return {
+    //         ...state,
+    //         strainCatalog: {
+    //             ...state.straingCatalog,
+    //             isFetching: false,
+    //             error: action.error
+    //         }
+    //     }
     case STRAINS_FETCH_REQUEST:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: true,
-                pages: 1
-            }
-        }
-    case STRAINS_FETCH_SUCCESS:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: false,
-                data: action.data.strains
-            }
-        }
-    case STRAINS_FETCH_FAILURE:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.straingCatalog,
-                isFetching: false,
-                error: action.error
-            }
-        }
-    case PAGE_FETCH_REQUEST:
         return {
             ...state,
             strainCatalog: {
@@ -91,7 +90,7 @@ const stockCenterReducer = (state = initialState, action) => {
                 isFetching: true
             }
         }
-    case PAGE_FETCH_SUCCESS:
+    case STRAINS_FETCH_SUCCESS:
         return {
             ...state,
             strainCatalog: {
@@ -101,32 +100,59 @@ const stockCenterReducer = (state = initialState, action) => {
                 data: state.strainCatalog.data.concat(action.data)
             }
         }
-    case PAGE_FETCH_FAILURE:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                isFetching: false
-            }
-        }
-    case SEARCH_STRAINS:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.strainCatalog,
-                search: action.search
-            }
-        }
-    case RECEIVE_ALL_STRAINS_SUCCESS:
+    case STRAINS_FETCH_FAILURE:
         return {
             ...state,
             strainCatalog: {
                 ...state.strainCatalog,
                 isFetching: false,
-                ...action,
+                error: action.error
+            }
+        }
+    case SEARCH_STRAINS_REQUEST:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: true
+            }
+        }
+    case SEARCH_STRAINS_SUCCESS:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: false,
+                ...action
+            }
+        }
+    case SEARCH_STRAINS_FAILURE:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
+                isFetching: false,
+                error: action.error
+            }
+        }
+    case CLEAR_STRAIN_SEARCH:
+        return {
+            ...state,
+            strainCatalog: {
+                ...state.strainCatalog,
                 data: action.data
             }
         }
+    // case RECEIVE_ALL_STRAINS_SUCCESS:
+    //     return {
+    //         ...state,
+    //         strainCatalog: {
+    //             ...state.strainCatalog,
+    //             isFetching: false,
+    //             ...action,
+    //             data: action.data
+    //         }
+    //     }
     default:
         return state
     }

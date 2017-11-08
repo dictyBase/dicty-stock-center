@@ -1,18 +1,18 @@
 import types from 'constants'
 import availability from 'fake-data/availability'
-import strainList from 'fake-data/strains'
+// import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getStrainPage } from 'utils/api'
+import { getStrainPage, searchStrains } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
-  PAGE_FETCH_SUCCESS,
-  PAGE_FETCH_REQUEST,
-  PAGE_FETCH_FAILURE,
-  SEARCH_STRAINS,
-  RECEIVE_ALL_STRAINS_SUCCESS
+  STRAINS_FETCH_FAILURE,
+  SEARCH_STRAINS_REQUEST,
+  SEARCH_STRAINS_SUCCESS,
+  SEARCH_STRAINS_FAILURE,
+  CLEAR_STRAIN_SEARCH
 } = types
 
 // const requestAvailability = () => {
@@ -22,25 +22,6 @@ const {
 //     }
 // }
 
-const requestStrains = () => {
-    return {
-        type: STRAINS_FETCH_REQUEST
-    }
-}
-
-const requestPage = () => {
-    return {
-        type: PAGE_FETCH_REQUEST
-    }
-}
-
-const receiveStrains = (data) => {
-    return {
-        type: STRAINS_FETCH_SUCCESS,
-        data
-    }
-}
-
 const receiveAvailability = (data) => {
     return {
         type: AVAILABILITY_FETCH_SUCCESS,
@@ -49,9 +30,15 @@ const receiveAvailability = (data) => {
     }
 }
 
-const receiveNextPage = (data) => {
+const requestStrains = () => {
     return {
-        type: PAGE_FETCH_SUCCESS,
+        type: STRAINS_FETCH_REQUEST
+    }
+}
+
+const receiveStrains = (data) => {
+    return {
+        type: STRAINS_FETCH_SUCCESS,
         isFetching: false,
         data: data.data,
         links: data.links,
@@ -59,38 +46,54 @@ const receiveNextPage = (data) => {
     }
 }
 
-const receiveAllStrains = (data) => {
+const strainFetchFailure = (error) => {
     return {
-        type: RECEIVE_ALL_STRAINS_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
-
-const searchStrains = (search) => {
-    return {
-        type: SEARCH_STRAINS,
-        search
-    }
-}
-
-const pageFetchFailure = (error) => {
-    return {
-        type: PAGE_FETCH_FAILURE,
+        type: STRAINS_FETCH_FAILURE,
         error
     }
 }
 
-export const fetchStrainList = () => {
-    return (dispatch) => {
-        dispatch(requestStrains())
-        setTimeout(() => {
-            dispatch(receiveStrains(strainList))
-        }, 1000)
+// const receiveAllStrains = (data) => {
+//     return {
+//         type: RECEIVE_ALL_STRAINS_SUCCESS,
+//         isFetching: false,
+//         data: data.data,
+//         links: data.links,
+//         meta: data.meta
+//     }
+// }
+
+const requestStrainSearch = () => {
+    return {
+        type: SEARCH_STRAINS_REQUEST
     }
 }
+
+const receiveStrainSearch = (data) => {
+    return {
+        type: SEARCH_STRAINS_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const strainSearchFailure = (error) => {
+    return {
+        type: SEARCH_STRAINS_FAILURE,
+        error
+    }
+}
+
+// export const fetchStrainList = () => {
+//     return (dispatch) => {
+//         dispatch(requestStrains())
+//         setTimeout(() => {
+//             dispatch(receiveStrains(strainList))
+//         }, 1000)
+//     }
+// }
 
 export const fetchAvailability = () => {
     return (dispatch) => {
@@ -98,53 +101,45 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchNextPage = (page, size) => {
+export const fetchPage = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestPage())
+        dispatch(requestStrains())
         getStrainPage(server, page, size)
         .then(status)
         .then(json)
         .then((response) => {
-            setTimeout(() => {
-                dispatch(receiveNextPage(response))
-            }, 500)
+            // setTimeout(() => {
+            dispatch(receiveStrains(response))
+            // }, 250)
         })
         .catch((error) => {
-            dispatch(pageFetchFailure(error))
+            dispatch(strainFetchFailure(error))
         })
     }
 }
 
-export const searchAllStrains = (currentRecords, totalRecords, search) => {
+export const fetchStrainSearch = (search) => {
     let server = __API_SERVER__
-    if ((totalRecords !== currentRecords) && search.length > 0) {
-        return (dispatch) => {
-            dispatch(requestPage())
-            getStrainPage(server, 1, totalRecords)
-            .then(status)
-            .then(json)
-            .then((response) => {
-                setTimeout(() => {
-                    dispatch(receiveAllStrains(response))
-                }, 500)
-            })
-            .catch((error) => {
-                dispatch(pageFetchFailure(error))
-            })
-            .then(() => {
-                dispatch(searchStrains(search))
-            })
-        }
-    } else if ((totalRecords === currentRecords) || search.length === 0) {
-        return (dispatch) => {
-            dispatch(searchStrains(search))
-        }
+    return (dispatch) => {
+        dispatch(requestStrainSearch())
+        searchStrains(server, search)
+        .then(status)
+        .then(json)
+        .then((response) => {
+            setTimeout(() => {
+                dispatch(receiveStrainSearch(response))
+            }, 250)
+        })
+        .catch((error) => {
+            dispatch(strainSearchFailure(error))
+        })
     }
 }
 
-// export const searchStrains = (search) => {
-//     return (dispatch) => {
-//         dispatch(searchStrains(search))
-//     }
-// }
+export const clearStrainSearch = () => {
+    return {
+        type: CLEAR_STRAIN_SEARCH,
+        data: []
+    }
+}
