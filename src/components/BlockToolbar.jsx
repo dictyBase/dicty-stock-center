@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ToolItem from 'components/ToolItem'
 
-
 export default class BlockToolbar extends Component {
     displayName = 'toolbar with block controls'
     static propTypes = {
