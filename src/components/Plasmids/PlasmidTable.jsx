@@ -1,30 +1,36 @@
+// @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
+import { Grid, Cell } from 'radium-grid'
+import { Link } from 'react-router'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
-import { Link } from 'react-router'
 import 'styles/custom.scss'
-import { Grid, Cell } from 'radium-grid'
 
-export default class StrainTable extends Component {
-  displayName = 'strain table'
+// type Props = {
+//   cellWidth: number,
+//   cellHeight: number,
+//   height: number
+// }
+export default class PlasmidTable extends Component {
+  displayName = 'plasmid table'
   loadNextPage = () => {
-      const { stockCenterActions } = this.props
-      const { isFetching } = this.props.stockCenter.strainCatalog
-      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-      const { links } = this.props.stockCenter.strainCatalog
+      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
+      const isFetching: boolean = this.props.stockCenter.plasmidCatalog.isFetching
+      const links: Object = this.props.stockCenter.plasmidCatalog.links
+      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
       if ((!isFetching && links.next) && (this.searchInput.value === '')) {
-          stockCenterActions.fetchStrains(number + 1, 10)
+          fetchPlasmids(number + 1, 10)
       }
   }
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: Event) => {
       if (e.keyCode === 13) {
           this.search(e.target.value)
       }
   }
-  search = (text) => {
+  search = (text: string) => {
       const { stockCenterActions } = this.props
-      stockCenterActions.searchStrains(1, 1, text)
+      stockCenterActions.searchPlasmids(1, 1, text)
       this.forceUpdate()
   }
   handleSearch = () => {
@@ -34,17 +40,18 @@ export default class StrainTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const { stockCenterActions } = this.props
-      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
+      const clearPlasmidSearch: Function = this.props.stockCenterActions.clearPlasmidSearch
+      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
-          stockCenterActions.clearStrainSearch()
-          stockCenterActions.fetchStrains(number + 1, 10)
+          clearPlasmidSearch()
+          fetchPlasmids(number + 1, 10)
       }
   }
-  getRowHeight = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
-      const { cellHeight } = this.props
+  getRowHeight = ({ index }: {index: number}) => {
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const cellHeight: number = this.props.cellHeight
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
           let lines: number = data[index].attributes.description.length / 54
@@ -56,14 +63,8 @@ export default class StrainTable extends Component {
       }
       return cellHeight
   }
-  rowGetter = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
-      if (data[index]) {
-          return data[index]
-      }
-  }
-  getRowStyle = ({index}) => {
-      const { data } = this.props.stockCenter.strainCatalog
+  getRowStyle = ({ index }: {index: number}) => {
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (index === -1) {
           return {
               margin: '0 auto',
@@ -83,11 +84,13 @@ export default class StrainTable extends Component {
           }
       }
   }
-  isRowLoaded = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
+  isRowLoaded = ({ index }: {index: number}) => {
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       return !!data[index]
   }
-  rowRenderer = ({index, columns, key, style, className}) => {
+  rowRenderer = ({ index, columns, key, style, className }:
+                 {index: number, columns: any, key: string, style: Object, className: string}
+               ) => {
       let content
       if (!this.isRowLoaded({index})) {
           content = <TableLoader />
@@ -100,7 +103,7 @@ export default class StrainTable extends Component {
         </div>
       )
   }
-  availabilityRenderer = (cellData) => {
+  availabilityRenderer = (cellData: boolean) => {
       return (
         <div
           className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
@@ -109,19 +112,30 @@ export default class StrainTable extends Component {
         </div>
       )
   }
-  attributeGetter = ({rowData, dataKey}) => {
+  rowGetter = ({ index }: {index: number}) => {
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      if (data[index]) {
+          return data[index]
+      }
+  }
+  cellDataGetter = ({rowData, dataKey}: {rowData: Object, dataKey: string}) => {
       if (rowData) {
           return rowData.attributes[dataKey]
       }
   }
-  inStockRenderer = ({ cellData, rowIndex, rowData }) => {
-      const { cartActions } = this.props
-      const { data } = this.props.stockCenter.strainCatalog
+  idGetter = ({rowData, dataKey}: {rowData: Object, dataKey: string}) => {
+      if (rowData) {
+          return rowData[dataKey]
+      }
+  }
+  inStockRenderer = ({ cellData, rowIndex, rowData }: {cellData: any, rowIndex: number, rowData: Object}) => {
+      const addToCart: Function = this.props.cartActions.addToCart
+      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
       if (cellData) {
           return (
             <button
-            className="btn btn-primary"
-            onClick={ () => cartActions.addToCart(data[rowIndex]) }
+              className="btn btn-primary"
+              onClick={ () => addToCart(data[rowIndex]) }
             >
               <i className="fa fa-cart-arrow-down"></i> Add to cart
             </button>
@@ -136,28 +150,13 @@ export default class StrainTable extends Component {
         </button>
       )
   }
-  cellDataGetter = ({rowData, dataKey}) => {
-      if (rowData) {
-          return rowData[dataKey]
-      }
-  }
-  descriptorRenderer = ({rowData, cellData}) => {
-      if (rowData) {
-          const { id } = rowData
-          return (
-            <div style={ {whiteSpace: 'normal'} }>
-              <Link to={ `/strains/${id}` }>{ cellData }</Link>
-            </div>
-          )
-      }
-  }
   render() {
-      const { data, links, isFetching } = this.props.stockCenter.strainCatalog
-      const loadMoreRows = isFetching
+      const { cellWidth, height } = this.props
+      const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
+      const loadMoreRows: Function = isFetching
         ? () => {}
         : this.loadNextPage
-      const rowCount = data.length + (links.next ? 1 : 0)
-      const { cellWidth, cellHeight } = this.props
+      const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
           <Grid cellWidth="1">
@@ -166,7 +165,7 @@ export default class StrainTable extends Component {
                 className="search-box"
                 style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
                 type="search"
-                placeholder="Search Strains"
+                placeholder="Search Plasmids"
                 ref={ el => { this.searchInput = el } }
                 onKeyDown={ this.handleKeyDown }
               />
@@ -191,7 +190,7 @@ export default class StrainTable extends Component {
             isRowLoaded={ this.isRowLoaded }
             rowCount={ rowCount }
             loadMoreRows={ loadMoreRows }
-            threshold={ 0 }
+            threshold={ 2 }
           >
           {
             ({ onRowsRendered, registerChild }) => {
@@ -200,7 +199,7 @@ export default class StrainTable extends Component {
                     ref={ registerChild }
                     onRowsRendered={ onRowsRendered }
                     width={ (cellWidth * 3) + 350 + 260 }
-                    height={ cellHeight * 7 }
+                    height={ height }
                     headerHeight={ 50 }
                     headerStyle={ {textAlign: 'center', verticalAlign: 'middle'} }
                     rowHeight={ this.getRowHeight }
@@ -218,29 +217,38 @@ export default class StrainTable extends Component {
                     rowRenderer={ this.rowRenderer }
                   >
                     <Column
-                      label="Strain Descriptor"
-                      width={ 350 }
-                      dataKey="description"
-                      cellDataGetter={ this.attributeGetter }
-                      cellRenderer={ this.descriptorRenderer }
-                    />
-                    <Column
-                      label="Strain Name"
+                      label="Plasmid Name"
                       width={ 260 }
                       dataKey="name"
-                      cellDataGetter={ this.attributeGetter }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                     <Column
-                      label="Strain ID"
+                      label="Description"
+                      width={ 350 }
+                      dataKey="description"
+                      cellDataGetter={ this.cellDataGetter }
+                      cellRenderer= { ({rowData, cellData}) => {
+                          if (rowData) {
+                              const { id } = rowData
+                              return (
+                                <div style={ {whiteSpace: 'normal'} }>
+                                  <Link to={ `/plasmids/${id}` }>{ cellData }</Link>
+                                </div>
+                              )
+                          }
+                      } }
+                    />
+                    <Column
+                      label="Plasmid ID"
                       width={ cellWidth }
                       dataKey="id"
-                      cellDataGetter={ this.cellDataGetter }
+                      cellDataGetter={ this.idGetter }
                     />
                     <Column
                       width={ cellWidth }
                       dataKey="in_stock"
                       cellRenderer={ this.inStockRenderer }
-                      cellDataGetter={ this.attributeGetter }
+                      cellDataGetter={ this.cellDataGetter }
                     />
                   </Table>
                 )
@@ -252,7 +260,8 @@ export default class StrainTable extends Component {
   }
 }
 
-StrainTable.defaultProps = {
+PlasmidTable.defaultProps = {
     cellWidth: 130,
-    cellHeight: 60
+    cellHeight: 90,
+    height: 630
 }

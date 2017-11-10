@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 
+type Props = {
+  right: Object,
+  left: Object
+}
+
 export default class StrainDetailRow extends Component {
-    displayName = 'strain detail row'
+    displayName = 'stock detail row'
     render() {
         return (
           <div
-            className={ this.props.right ? 'strain-detail-row' : 'strain-detail-row single' }
+            className={ this.props.right ? 'stock-detail-row' : 'stock-detail-row single' }
             style={ {
                 flexGrow: 1,
                 flexBasis: 0,
@@ -13,23 +18,24 @@ export default class StrainDetailRow extends Component {
                 width: '100%',
                 minWidth: 304,
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'stretch'
             } }
           >
             <div
-              className="strain-detail-item"
+              className="stock-detail-item"
               style={ {
                   display: 'flex',
                   flexGrow: 1,
                   flexBasis: 0,
                   width: '100%',
-                  borderBottom: '1px solid grey',
-                  height: '100%'
+                  borderBottom: '1px solid grey'
+                  // height: '100%'
               } }
             >
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '33.3333%',
                     minWidth: 117,
                     height: '100%',
@@ -40,7 +46,8 @@ export default class StrainDetailRow extends Component {
               </div>
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '66.66666%',
                     minWidth: 187,
                     height: '100%',
@@ -51,19 +58,19 @@ export default class StrainDetailRow extends Component {
               </div>
             </div>
             <div
-              className="strain-detail-item"
+              className="stock-detail-item"
               style={ {
-                  display: 'flex',
                   flexGrow: 1,
                   flexBasis: 0,
                   width: '100%',
                   borderBottom: '1px solid grey',
-                  height: '100%'
+                  display: this.props.right ? 'flex' : 'none'
               } }
             >
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '33.3333%',
                     minWidth: 117,
                     height: '100%',
@@ -74,7 +81,8 @@ export default class StrainDetailRow extends Component {
               </div>
               <div
                 style={ {
-                    padding: '5px 0px 5px 10px',
+                    display: 'flex',
+                    padding: '5px 10px 5px 10px',
                     width: '66.66666%',
                     minWidth: 187
                 } }

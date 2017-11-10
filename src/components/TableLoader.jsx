@@ -1,15 +1,22 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import 'styles/core.scss'
 
+type Props = {
+    title: string,
+    message: string
+}
+
 export default class TableLoader extends Component {
-    displayName = 'loading component';
-    static propTypes = {
-        title: PropTypes.string,
-        message: PropTypes.string
-    }
+    displayName = 'table loader'
+    // static propTypes = {
+    //     title: PropTypes.string,
+    //     message: PropTypes.string
+    // }
     render() {
-        const { title, message } = this.props
+        const title: string = this.props.title
+        const message: string = this.props.message
         return (
             <div style={ {width: '100%'} }>
                 <Grid cellWidth="1">

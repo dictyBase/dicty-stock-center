@@ -1,4 +1,11 @@
+// @flow
 import React, { Component } from 'react'
+
+type Props = {
+  phenotype: string,
+  notes: string,
+  reference: string
+}
 
 export default class PhenotypeRow extends Component {
     displayName = 'phenotype row'

@@ -8,9 +8,9 @@ import 'styles/custom.scss'
 export default class Strains extends Component {
     displayName = 'strains list'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-        stockCenterActions.fetchPage(number, 10)
+        const stockCenterActions: Object = this.props.stockCenterActions
+        const number: number = this.props.stockCenter.strainCatalog.meta.pagination.number
+        stockCenterActions.fetchStrains(number, 10)
     }
     search(text) {
         const { stockCenterActions } = this.props
@@ -21,9 +21,10 @@ export default class Strains extends Component {
         const { stockCenterActions } = this.props
         stockCenterActions.clearStrainSearch()
         stockCenterActions.fetchPage(1, 10)
+
     }
     render() {
-        const { data } = this.props.stockCenter.strainCatalog
+        const data: Array<Object> = this.props.stockCenter.strainCatalog.data
         return (
           <div className="container">
             <Grid cellWidth="1">

@@ -1,6 +1,7 @@
+// @flow
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import StrainDetailRow from 'components/Strains/StrainDetailRow'
+import StockDetailRow from 'components/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router'
 import Loader from 'components/Loader'
@@ -9,12 +10,12 @@ import 'styles/custom.scss'
 export default class StrainDetail extends Component {
     displayName = 'strain detail'
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        const { id } = this.props.params
-        stockCenterActions.fetchStrain(id)
+        const fetchStrain: Function = this.props.stockCenterActions.fetchStrain
+        const id: string = this.props.params.id
+        fetchStrain(id)
     }
     phenotypes() {
-        const { phenotypes } = this.props.stockCenter.strain
+        const phenotypes: Array<Object> = this.props.stockCenter.strain.phenotypes
         // const strain = {
         //     phenotypes: [{
         //         observation: 'placeholder',
@@ -22,7 +23,7 @@ export default class StrainDetail extends Component {
         //         reference: '000000001'
         //     }]
         // }
-        const rows = phenotypes.map((phenotype, i) => {
+        const rows: Array<PhenotypeRow> = phenotypes.map((phenotype, i) => {
             return (
               <PhenotypeRow
                 phenotype={ phenotype.observation }
@@ -34,7 +35,7 @@ export default class StrainDetail extends Component {
         })
         return (
           <div className="phenotype-container">
-            <div className="phenotype-header" style={ {maxWidth: '85%', margin: '0 auto 20px auto'} }>
+            <div className="phenotype-header" style={ {maxWidth: '60%', margin: '0 auto 20px auto'} }>
               <div style={
                   {
                       padding: 10,
@@ -61,10 +62,10 @@ export default class StrainDetail extends Component {
         )
     }
     render() {
-        const { cartActions } = this.props
-        const { strain } = this.props.stockCenter
-        const { isFetching } = this.props.stockCenter.strain
-        const cartItem = {
+        const addToCart: Function = this.props.cartActions.addToCart
+        const strain: Object = this.props.stockCenter.strain
+        const isFetching: boolean = this.props.stockCenter.strain.isFetching
+        const cartItem: { type: string, id: string, systematicName: string } = {
             type: 'strain',
             id: strain.id,
             systematicName: strain.name
@@ -77,21 +78,23 @@ export default class StrainDetail extends Component {
           {Genotype: strain.genotypes && strain.genotypes[0]},
           {'Strain Characteristics': strain && strain.characteristics},
           {Plasmid: 'No Information'},
-          {'Reference(s)': '22357942' /* just display id, no link > eventually go to internal publication id*/}
+          /* just display id, no link > eventually go to internal publication id*/
+          {'Reference(s)': '22357942'}
         ]
         const data2 = [
           {'Strain ID': strain && strain.id},
           {Species: 'Dictyostelium discoideum'},
           {'Genetic Modification': 'No Information'},
           {'Mutagenesis Method': 'Homologous Recombination'},
-          {'Parental Strain': 'DH1-10 (DBS0302388)'/*multiple possible*/},
+          /* multiple possible parental strains*/
+          {'Parental Strain': 'DH1-10 (DBS0302388)'},
           {'Associated Gene(s)': 'mcln'},
           {Depositor: 'No Information'}
           // {_blank: 'asdf '}
         ]
         return (
           <div className="strain-details">
-            <Grid cellWidth="1" style={ {width: '85%'} }>
+            <Grid cellWidth="1" style={ {width: '60%'} }>
               <Cell align="center">
                 <h1
                     style={
@@ -110,7 +113,7 @@ export default class StrainDetail extends Component {
             <div
                 style={ {
                     padding: 10,
-                    maxWidth: '85%',
+                    maxWidth: '60%',
                     minWidth: 304,
                     background: '#15317e',
                     color: 'white',
@@ -128,7 +131,7 @@ export default class StrainDetail extends Component {
                         className="detail-container"
                         style={
                             {
-                                maxWidth: '85%',
+                                maxWidth: '60%',
                                 minWidth: 304,
                                 margin: '0 auto',
                                 borderTop: '1px solid grey',
@@ -137,37 +140,44 @@ export default class StrainDetail extends Component {
                             }
                         }
                     >
-                      <StrainDetailRow left={ data1[0] } right={ data2[0] } />
-                      <StrainDetailRow left={ data1[1] } right={ data2[1] } />
-                      <StrainDetailRow left={ data1[2] } right={ data2[2] } />
-                      <StrainDetailRow left={ data1[3] } right={ data2[3] } />
-                      <StrainDetailRow left={ data1[4] } right={ data2[4] } />
-                      <StrainDetailRow left={ data1[5] } right={ data2[5] } />
-                      <StrainDetailRow left={ data1[6] } right={ data2[6] } />
-                      <StrainDetailRow left={ data1[7] } />
+                      <StockDetailRow left={ data1[0] } right={ data2[0] } />
+                      <StockDetailRow left={ data1[1] } right={ data2[1] } />
+                      <StockDetailRow left={ data1[2] } right={ data2[2] } />
+                      <StockDetailRow left={ data1[3] } right={ data2[3] } />
+                      <StockDetailRow left={ data1[4] } right={ data2[4] } />
+                      <StockDetailRow left={ data1[5] } right={ data2[5] } />
+                      <StockDetailRow left={ data1[6] } right={ data2[6] } />
+                      <StockDetailRow left={ data1[7] } />
                     </div>
                 )
             }
-            <Grid style={ {marginTop: '50px', maxWidth: '85%'} }>
-              <Cell width="1/2" smallWidth="1" align="right">
+            <div style={
+                {
+                    marginTop: '50px',
+                    maxWidth: '60%',
+                    margin: '0 auto',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '2.75%'
+                }
+            }>
+              <div style={ {width: '44%', paddingRight: '4%'} }>
                 <button
                   className="btn btn-primary btn-block add-to-cart"
-                  style={ {maxWidth: '50%'} }
-                  onClick={ () => cartActions.addToCart(cartItem) }
+                  onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>
-              </Cell>
-              <Cell width="1/2" smallWidth="1" align="left">
+              </div>
+              <div style={ {width: '44%', paddingLeft: '4%'} }>
                 <Link
                   to="/order/shipping"
                   className="btn btn-success btn-block"
-                  style={ {maxWidth: '50%'} }
                 >
                   <i className="fa fa-shopping-cart"></i> Checkout
                 </Link>
-              </Cell>
-            </Grid>
+              </div>
+            </div>
           </div>
         )
     }

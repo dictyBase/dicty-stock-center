@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import StrainDetail from 'components/Strains/StrainDetail'
-import StrainDetailRow from 'components/Strains/StrainDetailRow'
+import StrainDetailRow from 'components/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import sinon from 'sinon'
 

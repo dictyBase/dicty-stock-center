@@ -1,8 +1,8 @@
 import types from 'constants'
 import availability from 'fake-data/availability'
-import strainList from 'fake-data/strains'
+// import strainList from 'fake-data/strains'
 import { status, json } from 'utils/fetch'
-import { getStrainPage, getStrain } from 'utils/api'
+import { getPage, getStock, searchStocks } from 'utils/api'
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -11,15 +11,18 @@ const {
   STRAIN_FETCH_FAILURE,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
-//   STRAINS_FETCH_FAILURE,
-  PAGE_FETCH_SUCCESS,
-  PAGE_FETCH_REQUEST,
-  PAGE_FETCH_FAILURE,
-//   SEARCH_STRAINS_REQUEST,
-//   SEARCH_STRAINS_SUCCESS,
-//   SEARCH_STRAINS_FAILURE,
-  SEARCH_STRAINS,
-  RECEIVE_ALL_STRAINS_SUCCESS
+  STRAINS_FETCH_FAILURE,
+  STRAINS_SEARCH_REQUEST,
+  STRAINS_SEARCH_SUCCESS,
+  STRAINS_SEARCH_FAILURE,
+  CLEAR_STRAINS,
+  PLASMIDS_FETCH_REQUEST,
+  PLASMIDS_FETCH_SUCCESS,
+  PLASMIDS_FETCH_FAILURE,
+  PLASMIDS_SEARCH_REQUEST,
+  PLASMIDS_SEARCH_SUCCESS,
+  PLASMIDS_SEARCH_FAILURE,
+  CLEAR_PLASMIDS
 } = types
 
 // const requestAvailability = () => {
@@ -43,101 +46,119 @@ const requestStrains = () => {
     }
 }
 
-const requestPage = () => {
+const receiveStrains = (data) => {
     return {
-        type: PAGE_FETCH_REQUEST
-    }
-}
-
-const receiveNextPage = (data) => {
-    return {
-        type: PAGE_FETCH_SUCCESS,
-        isFetching: false,
+        type: STRAINS_FETCH_SUCCESS,
         data: data.data,
         links: data.links,
         meta: data.meta
     }
 }
 
-const searchStrains = (search) => {
+const strainsFetchFailure = (error) => {
     return {
-        type: SEARCH_STRAINS,
-        search
-    }
-}
-
-const pageFetchFailure = (error) => {
-    return {
-        type: PAGE_FETCH_FAILURE,
+        type: STRAINS_FETCH_FAILURE,
         error
     }
 }
 
-const receiveStrains = (data) => {
-    return {
-        type: STRAINS_FETCH_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
-
-const receiveAllStrains = (data) => {
-    return {
-        type: RECEIVE_ALL_STRAINS_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
-
-// const requestStrainSearch = () => {
-//     return {
-//         type: SEARCH_STRAINS_REQUEST
-//     }
-// }
-
-// const receiveStrainSearch = (data) => {
-//     return {
-//         type: SEARCH_STRAINS_SUCCESS,
-//         isFetching: false,
-//         data: data.data,
-//         links: data.links,
-//         meta: data.meta
-//     }
-// }
-
-// const strainSearchFailure = (error) => {
-//     return {
-//         type: SEARCH_STRAINS_FAILURE,
-//         error
-//     }
-// }
 const requestStrain = () => {
     return {
         type: STRAIN_FETCH_REQUEST
     }
 }
+
 const receiveStrain = (data) => {
     return {
         type: STRAIN_FETCH_SUCCESS,
         data
     }
 }
-const strainFetchFailure = () => {
+
+const strainFetchFailure = (error) => {
     return {
-        type: STRAIN_FETCH_FAILURE
+        type: STRAIN_FETCH_FAILURE,
+        error
     }
 }
 
-export const fetchStrainList = () => {
-    return (dispatch) => {
-        dispatch(requestStrains())
-        setTimeout(() => {
-            dispatch(receiveStrains(strainList))
-        }, 1000)
+const strainSearch = (search) => {
+    return {
+        type: STRAINS_SEARCH_REQUEST
+    }
+}
+
+const receiveStrainSearch = (data) => {
+    return {
+        type: STRAINS_SEARCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const strainSearchFailure = (error) => {
+    return {
+        type: STRAINS_SEARCH_FAILURE,
+        error
+    }
+}
+
+const clearStrains = () => {
+    return {
+        type: CLEAR_STRAINS
+    }
+}
+
+const requestPlasmids = () => {
+    return {
+        type: PLASMIDS_FETCH_REQUEST
+    }
+}
+
+const receivePlasmids = (data) => {
+    return {
+        type: PLASMIDS_FETCH_SUCCESS,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const plasmidsFetchFailure = (error) => {
+    return {
+        type: PLASMIDS_FETCH_FAILURE,
+        error
+    }
+}
+
+const plasmidsSearch = (search) => {
+    return {
+        type: PLASMIDS_SEARCH_REQUEST
+    }
+}
+
+const receivePlasmidsSearch = (data) => {
+    return {
+        type: PLASMIDS_SEARCH_SUCCESS,
+        isFetching: false,
+        data: data.data,
+        links: data.links,
+        meta: data.meta
+    }
+}
+
+const plasmidsSearchFailure = (error) => {
+    return {
+        type: PLASMIDS_SEARCH_FAILURE,
+        error
+    }
+}
+
+const clearPlasmids = () => {
+    return {
+        type: CLEAR_PLASMIDS
     }
 }
 
@@ -147,17 +168,59 @@ export const fetchAvailability = () => {
     }
 }
 
-export const fetchPage = (page, size) => {
+export const fetchStrains = (page, size) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestStrain())
-        getStrainPage(server, page, size)
+        dispatch(requestStrains())
+        getPage(server, page, size, 'strain')
         .then(status)
         .then(json)
         .then((response) => {
-            // setTimeout(() => {
             dispatch(receiveStrains(response))
-            // }, 250)
+        })
+        .catch((error) => {
+            dispatch(strainsFetchFailure(error))
+        })
+    }
+}
+
+export const clearStrainSearch = () => {
+    return (dispatch) => {
+        dispatch(clearStrains())
+    }
+}
+
+export const fetchPlasmids = (page, size) => {
+    let server = __API_SERVER__
+    return dispatch => {
+        dispatch(requestPlasmids())
+        getPage(server, page, size, 'plasmid')
+        .then(status)
+        .then(json)
+        .then(response => {
+            dispatch(receivePlasmids(response))
+        })
+        .catch(error => {
+            dispatch(plasmidsFetchFailure(error))
+        })
+    }
+}
+
+const transformPlasmid = (plasmid) => {
+
+}
+
+export const fetchPlasmid = (id) => {
+    let server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(requestStrain())
+        getStock(server, id, 'plasmid')
+        .then(status)
+        .then(json)
+        .then((response) => {
+            setTimeout(() => {
+                dispatch(receiveStrain(transformPlasmid(response)))
+            }, 400)
         })
         .catch((error) => {
             dispatch(strainFetchFailure(error))
@@ -165,64 +228,28 @@ export const fetchPage = (page, size) => {
     }
 }
 
-export const fetchNextPage = (page, size) => {
-    let server = __API_SERVER__
+export const searchPlasmids = (page, size, search) => {
+    const server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestStrain())
-        getStrainPage(server, page, size)
+        dispatch(plasmidsSearch())
+        searchStocks(server, page, size, search, 'plasmid')
         .then(status)
         .then(json)
-        .then((response) => {
-            setTimeout(() => {
-                dispatch(receiveNextPage(response))
-            }, 500)
+        .then(response => {
+            dispatch(receivePlasmidsSearch(response))
         })
-        .catch((error) => {
-            dispatch(pageFetchFailure(error))
+        .catch(error => {
+            dispatch(plasmidsSearchFailure(error))
         })
     }
 }
 
-export const searchAllStrains = (currentRecords, totalRecords, search) => {
-    let server = __API_SERVER__
-    if ((totalRecords !== currentRecords) && search.length > 0) {
-        return (dispatch) => {
-            dispatch(requestPage())
-            getStrainPage(server, 1, totalRecords)
-            .then(status)
-            .then(json)
-            .then((response) => {
-                setTimeout(() => {
-                    dispatch(receiveAllStrains(response))
-                }, 500)
-            })
-            .catch((error) => {
-                dispatch(pageFetchFailure(error))
-            })
-            .then(() => {
-                dispatch(searchStrains(search))
-            })
-        }
-    } else if ((totalRecords === currentRecords) || search.length === 0) {
-        return (dispatch) => {
-            dispatch(searchStrains(search))
-        }
+export const clearPlasmidSearch = () => {
+    return (dispatch) => {
+        dispatch(clearPlasmids())
     }
 }
-// const commaFormat = (vals) => {
-//     const length = vals.length
-//     let result = ''
-//     for (let i = 0; i < length; i += 1) {
-//         if (length === 1) {
-//             result += vals[i]
-//         } else if (length > 1 && i < length - 1) {
-//             result += vals[i]
-//             result += ', '
-//         } else if (i === length - 1) {
-//             result += vals[i]
-//         }
-//     }
-// }
+
 const transformStrain = (strain) => {
     const characteristics = strain.included[0].data.map((characteristic) => {
         return characteristic.attributes.value
@@ -250,23 +277,40 @@ const transformStrain = (strain) => {
         genotypes
     }
 }
+
 export const fetchStrain = (id) => {
     let server = __API_SERVER__
     return (dispatch) => {
-        dispatch(requestPage())
-        getStrain(server, id)
+        dispatch(requestStrain())
+        getStock(server, id, 'strain')
         .then(status)
         .then(json)
         .then((response) => {
             setTimeout(() => {
                 dispatch(receiveStrain(transformStrain(response)))
-            }, 1000)
+            }, 400)
         })
         .catch((error) => {
             dispatch(strainFetchFailure(error))
         })
     }
 }
+export const searchStrains = (page, size, search) => {
+    const server = __API_SERVER__
+    return (dispatch) => {
+        dispatch(strainSearch())
+        searchStocks(server, page, size, search, 'strain')
+        .then(status)
+        .then(json)
+        .then(response => {
+            dispatch(receiveStrainSearch(response))
+        })
+        .catch(error => {
+            dispatch(strainSearchFailure(error))
+        })
+    }
+}
+
 // export const searchStrains = (search) => {
 //     return (dispatch) => {
 //         dispatch(searchStrains(search))
