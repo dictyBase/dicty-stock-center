@@ -2,12 +2,13 @@ import { polyfill } from 'es6-promise'
 polyfill()
 import 'isomorphic-fetch'
 
-export const searchStrains = (url, search) => {
+
+export const getStrain = (url, id) => {
     let config = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${url}/stocks?filter[id]=${search}`, config)
+    return fetch(`${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`, config)
 }
 export const getStrainPage = (url, page, size) => {
     let config = {

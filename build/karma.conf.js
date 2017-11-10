@@ -36,7 +36,8 @@ const karmaConfig = {
       'jsdom': 'window',
       'cheerio': 'window',
       'react/lib/ReactContext': 'window',
-      'react/lib/ExecutionEnvironment': true
+      'react/lib/ExecutionEnvironment': true,
+      'react/addons': true
     },
     module: {
       noParse: [

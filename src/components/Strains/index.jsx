@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import Loader from 'components/Loader'
 import SearchBar from 'components/SearchBar'
-import StrainTable from 'components/StrainTable'
+import StrainTable from 'components/Strains/StrainTable'
 import 'styles/custom.scss'
 
 export default class Strains extends Component {

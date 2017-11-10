@@ -63,3 +63,23 @@
 .item-unavailable {
   color: #D8D8D8;
 }
+
+.strain-detail-row {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1290px) {
+  .strain-detail-row {
+    flex-direction: column !important;
+    height: 90px;
+  }
+  .strain-detail-item div + div {
+      border-right: none !important;
+  }
+  .strain-detail-row.single {
+    height: 45px;
+  }
+  .strain-detail-row.single > .strain-detail-item:nth-child(2) {
+    display: none !important;
+  }
+}

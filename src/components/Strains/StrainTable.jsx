@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
+import { Link } from 'react-router'
 import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
@@ -119,6 +120,16 @@ export default class StrainTable extends Component {
                       cellDataGetter={ ({rowData, dataKey}) => {
                           if (rowData) {
                               return rowData.attributes[dataKey]
+                          }
+                      } }
+                      cellRenderer= { ({rowData, cellData}) => {
+                          if (rowData) {
+                              const { id } = rowData
+                              return (
+                                <div>
+                                  <Link to={ `/strains/${id}` }>{ cellData }</Link>
+                                </div>
+                              )
                           }
                       } }
                     />
