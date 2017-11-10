@@ -11,14 +11,13 @@ const {
   STRAIN_FETCH_FAILURE,
   STRAINS_FETCH_REQUEST,
   STRAINS_FETCH_SUCCESS,
-  STRAINS_FETCH_FAILURE,
+//   STRAINS_FETCH_FAILURE,
   PAGE_FETCH_SUCCESS,
   PAGE_FETCH_REQUEST,
   PAGE_FETCH_FAILURE,
-  SEARCH_STRAINS_REQUEST,
-  SEARCH_STRAINS_SUCCESS,
-  SEARCH_STRAINS_FAILURE,
-  CLEAR_STRAIN_SEARCH,
+//   SEARCH_STRAINS_REQUEST,
+//   SEARCH_STRAINS_SUCCESS,
+//   SEARCH_STRAINS_FAILURE,
   SEARCH_STRAINS,
   RECEIVE_ALL_STRAINS_SUCCESS
 } = types
@@ -84,13 +83,6 @@ const receiveStrains = (data) => {
     }
 }
 
-const strainFetchFailure = (error) => {
-    return {
-        type: STRAINS_FETCH_FAILURE,
-        error
-    }
-}
-
 const receiveAllStrains = (data) => {
     return {
         type: RECEIVE_ALL_STRAINS_SUCCESS,
@@ -101,28 +93,28 @@ const receiveAllStrains = (data) => {
     }
 }
 
-const requestStrainSearch = () => {
-    return {
-        type: SEARCH_STRAINS_REQUEST
-    }
-}
+// const requestStrainSearch = () => {
+//     return {
+//         type: SEARCH_STRAINS_REQUEST
+//     }
+// }
 
-const receiveStrainSearch = (data) => {
-    return {
-        type: SEARCH_STRAINS_SUCCESS,
-        isFetching: false,
-        data: data.data,
-        links: data.links,
-        meta: data.meta
-    }
-}
+// const receiveStrainSearch = (data) => {
+//     return {
+//         type: SEARCH_STRAINS_SUCCESS,
+//         isFetching: false,
+//         data: data.data,
+//         links: data.links,
+//         meta: data.meta
+//     }
+// }
 
-const strainSearchFailure = (error) => {
-    return {
-        type: SEARCH_STRAINS_FAILURE,
-        error
-    }
-}
+// const strainSearchFailure = (error) => {
+//     return {
+//         type: SEARCH_STRAINS_FAILURE,
+//         error
+//     }
+// }
 const requestStrain = () => {
     return {
         type: STRAIN_FETCH_REQUEST
@@ -139,6 +131,7 @@ const strainFetchFailure = () => {
         type: STRAIN_FETCH_FAILURE
     }
 }
+
 export const fetchStrainList = () => {
     return (dispatch) => {
         dispatch(requestStrains())

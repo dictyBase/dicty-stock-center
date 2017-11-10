@@ -6,7 +6,7 @@ const {
     AVAILABILITY_FETCH_FAILURE,
     STRAINS_FETCH_REQUEST,
     STRAINS_FETCH_SUCCESS,
-    STRAINS_FETCH_FAILURE,
+    // STRAINS_FETCH_FAILURE,
     SEARCH_STRAINS_REQUEST,
     SEARCH_STRAINS_SUCCESS,
     SEARCH_STRAINS_FAILURE,
@@ -84,15 +84,15 @@ const stockCenterReducer = (state = initialState, action) => {
                 data: action.data.strains
             }
         }
-    case STRAINS_FETCH_FAILURE:
-        return {
-            ...state,
-            strainCatalog: {
-                ...state.straingCatalog,
-                isFetching: false,
-                error: action.error
-            }
-        }
+    // case STRAINS_FETCH_FAILURE:
+    //     return {
+    //         ...state,
+    //         strainCatalog: {
+    //             ...state.strainCatalog,
+    //             isFetching: false,
+    //             error: action.error
+    //         }
+    //     }
     case SEARCH_STRAINS_REQUEST:
         return {
             ...state,
