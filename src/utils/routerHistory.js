@@ -1,7 +1,6 @@
-import { createHistory } from 'history'
-import { useRouterHistory } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 
-const history = useRouterHistory(createHistory)({
+const history = createHistory({
     basename: __BASENAME__
 })
 
