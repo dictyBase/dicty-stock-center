@@ -41,7 +41,7 @@ const config = {
     'history',
     'react',
     'react-redux',
-    'react-router',
+    'react-router-dom',
     'redux',
     'jsrsasign',
     'radium',

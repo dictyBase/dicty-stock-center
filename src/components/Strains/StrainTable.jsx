@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'styles/custom.scss'
 import { Grid, Cell } from 'radium-grid'
 

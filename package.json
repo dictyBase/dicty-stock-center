@@ -73,7 +73,7 @@
     "react-dom": "^15.1.0",
     "react-ga": "^2.1.1",
     "react-redux": "^4.0.0",
-    "react-router": "^2.0.0",
+    "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.5",
     "react-virtualized": "^8.5.3",
     "reactabular": "^2.0.2",

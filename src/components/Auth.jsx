@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'styles/core.scss'
 
 export class AuthLoader extends Component {

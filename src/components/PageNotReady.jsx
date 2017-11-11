@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'styles/core.scss'
 
 export default class PageNotReady extends Component {

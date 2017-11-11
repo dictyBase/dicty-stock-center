@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Router } from 'react-router'
+import { Router } from 'react-router-dom'
 import routes from 'routes'
 import ReactGA from 'react-ga'
 

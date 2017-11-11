@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Grid, Cell } from 'radium-grid'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'styles/core.scss'
 
 export default class Cart extends Component {

@@ -1,4 +1,4 @@
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute } from 'react-router-dom'
 import React from 'react'
 import App from 'containers/App'
 import Login from 'components/Login'

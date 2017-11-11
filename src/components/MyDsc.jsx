@@ -4,7 +4,7 @@ import Panel from 'dicty-react-components/src/Panel'
 // import PanelHeader from 'dicty-react-components/src/PanelHeader'
 // import PanelTitle from 'dicty-react-components/src/PanelTitle'
 import PanelBody from 'dicty-react-components/src/PanelBody'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import 'styles/core.scss'
 
 export default class MyDsc extends Component {
