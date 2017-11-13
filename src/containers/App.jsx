@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
+import { Footer } from 'dicty-components-header-footer'
 import DictyNavbar from 'components/DictyNavbar'
 import DictyHeader from 'components/DictyHeader'
-import DictyFooter from 'components/DictyFooter'
 import Cart from 'components/Cart'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
@@ -31,62 +31,64 @@ class App extends Component {
     };
     render() {
         const siteMap = [
-            {
-                name: 'Genomes',
-                links: [
-                    {name: 'Genomes Home', href: '/genomes'}
-                ]
-            },
-            {
-                name: 'Tools',
-                links: [
-                    {name: 'Tools Home', href: '/tools'},
-                    {name: 'New Genome Browser', href: '/tools/jbrowse'}
-                ]
-            },
-            {
-                name: 'Explore',
-                links: [
-                    {name: 'Explore Home', href: '/explore'},
-                    {name: 'Dicty Art', href: '/explore/art'},
-                    {name: 'Gallery', href: '/explore/gallery'},
-                    {name: 'Genome Resources', href: '/explore/resources'},
-                    {name: 'Genome Statistics', href: '/explore/statistics'},
-                    {name: 'Learn About Dicty', href: '/explore/learn'},
-                    {name: 'Teaching Protocols', href: '/explore/teach'},
-                    {name: 'Useful Links', href: '/explore/links'}
-                ]
-            },
-            {
-                name: 'Research',
-                links: [
-                    {name: 'Research Home', href: '/research'},
-                    {name: 'Anatomy Ontology', href: '/research/ontology'},
-                    {name: 'Codon Bias Table', href: '/research/codon'},
-                    {name: 'Nomenclature Guidelines', href: '/research/nomenclature'},
-                    {name: 'Phenotyping', href: '/research/phenotyping'},
-                    {name: 'Techniques', href: '/research/techniques'}
-                ]
-            },
-            {
-                name: 'Dicty Stock Center',
-                links: [
-                    {name: 'Stock Center Home', href: '/stockcenter'}
-                ]
-            },
-            {
-                name: 'Community',
-                links: [
-                    {name: 'Community Home', href: '/community'},
-                    {name: 'Cite Us', href: '/citation'},
-                    {name: 'Dicty Annual Conferences', href: '/community/conference'},
-                    {name: 'Dicty Email Forum', href: '/community/listserv'},
-                    {name: 'Dicty Labs', href: '/community/labs'},
-                    {name: 'History', href: '/community/history'},
-                    {name: 'Jobs', href: '/community/jobs'},
-                    {name: 'Upcoming Meetings', href: '/community/meetings'}
-                ]
-            }
+            [
+                {
+                    header: {description: 'Genomes Home', link: '/genomes'},
+                    items: []
+                }
+            ],
+            [
+                {
+                    header: {description: 'Tools Home', link: '/tools'},
+                    items: [
+                        {description: 'New Genome Browser', link: '/tools/jbrowse'}
+                    ]
+                }
+            ],
+            [
+                {
+                    header: {description: 'Explore Home', link: '/explore'},
+                    items: [
+                        {description: 'Dicty Art', link: '/explore/art'},
+                        {description: 'Gallery', link: '/explore/gallery'},
+                        {description: 'Genome Resources', link: '/explore/resources'},
+                        {description: 'Genome Statistics', link: '/explore/statistics'},
+                        {description: 'Learn About Dicty', link: '/explore/learn'},
+                        {description: 'Teaching Protocols', link: '/explore/teach'},
+                        {description: 'Useful Links', link: '/explore/links'}
+                    ]
+                }
+            ],
+            [
+                {
+                    header: {description: 'Research Home', link: '/research'},
+                    items: [
+                        {description: 'Anatomy Ontology', link: '/research/ontology'},
+                        {description: 'Codon Bias Table', link: '/research/codon'},
+                        {description: 'Nomenclature Guidelines', link: '/research/nomenclature'},
+                        {description: 'Phenotyping', link: '/research/phenotyping'},
+                        {description: 'Techniques', link: '/research/techniques'}
+                    ]
+                }
+            ],
+            [
+                {
+                    header: {description: 'Stock Center Home', link: '/stockcenter'},
+                    items: []
+                },
+                {
+                    header: {description: 'Community Home', link: '/community'},
+                    items: [
+                        {description: 'Cite Us', link: '/citation'},
+                        {description: 'Dicty Annual Conferences', link: '/community/conference'},
+                        {description: 'Dicty Email Forum', link: '/community/listserv'},
+                        {description: 'Dicty Labs', link: '/community/labs'},
+                        {description: 'History', link: '/community/history'},
+                        {description: 'Jobs', link: '/community/jobs'},
+                        {description: 'Upcoming Meetings', link: '/community/meetings'}
+                    ]
+                }
+            ]
         ]
         return (
             <StyleRoot>
@@ -95,10 +97,10 @@ class App extends Component {
                       auth={ this.props.auth }
                       authActions={ this.props.authActions }
                     />
-                    <DictyNavbar items={ siteMap } />
+                    {/* <DictyNavbar items={ siteMap } /> */}
                     <Cart cart={ this.props.cart }/>
                     { this.renderChildren() }
-                    <DictyFooter items={ siteMap } />
+                    <Footer items={ siteMap } />
                 </div>
             </StyleRoot>
         )

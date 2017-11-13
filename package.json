@@ -54,6 +54,8 @@
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.3",
     "debug": "^2.2.0",
+    "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer",
+    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar",
     "dicty-react-components": "git://github.com/dictyBase/dicty-react-components.git#refactor/inline-style",
     "draft-js": "^0.10.1",
     "draft-js-plugins-editor": "^2.0.0-beta1",
