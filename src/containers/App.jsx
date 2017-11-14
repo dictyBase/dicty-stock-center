@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import DictyNavbar from 'components/DictyNavbar'
-import DictyHeader from 'components/DictyHeader'
-import DictyFooter from 'components/DictyFooter'
+import { Header, Footer } from 'dicty-components-header-footer'
+import { Navbar } from 'dicty-components-navbar'
 import Cart from 'components/Cart'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
@@ -15,6 +14,8 @@ import * as pageActionCreators from 'actions/page'
 import * as dscActionsCreators from 'actions/stockCenter'
 import * as cartActionCreators from 'actions/cart'
 import { routerActions } from 'react-router-redux'
+import { FooterLinks } from 'constants/Footer'
+import { NavbarLinks } from 'constants/Navbar'
 
 import Login from 'components/Login'
 import OauthCallback from 'components/OauthCallback'
@@ -48,72 +49,17 @@ class App extends Component {
         })
     };
     render() {
-        const siteMap = [
-            {
-                name: 'Genomes',
-                links: [
-                    {name: 'Genomes Home', href: '/genomes'}
-                ]
-            },
-            {
-                name: 'Tools',
-                links: [
-                    {name: 'Tools Home', href: '/tools'},
-                    {name: 'New Genome Browser', href: '/tools/jbrowse'}
-                ]
-            },
-            {
-                name: 'Explore',
-                links: [
-                    {name: 'Explore Home', href: '/explore'},
-                    {name: 'Dicty Art', href: '/explore/art'},
-                    {name: 'Gallery', href: '/explore/gallery'},
-                    {name: 'Genome Resources', href: '/explore/resources'},
-                    {name: 'Genome Statistics', href: '/explore/statistics'},
-                    {name: 'Learn About Dicty', href: '/explore/learn'},
-                    {name: 'Teaching Protocols', href: '/explore/teach'},
-                    {name: 'Useful Links', href: '/explore/links'}
-                ]
-            },
-            {
-                name: 'Research',
-                links: [
-                    {name: 'Research Home', href: '/research'},
-                    {name: 'Anatomy Ontology', href: '/research/ontology'},
-                    {name: 'Codon Bias Table', href: '/research/codon'},
-                    {name: 'Nomenclature Guidelines', href: '/research/nomenclature'},
-                    {name: 'Phenotyping', href: '/research/phenotyping'},
-                    {name: 'Techniques', href: '/research/techniques'}
-                ]
-            },
-            {
-                name: 'Dicty Stock Center',
-                links: [
-                    {name: 'Stock Center Home', href: '/stockcenter'}
-                ]
-            },
-            {
-                name: 'Community',
-                links: [
-                    {name: 'Community Home', href: '/community'},
-                    {name: 'Cite Us', href: '/citation'},
-                    {name: 'Dicty Annual Conferences', href: '/community/conference'},
-                    {name: 'Dicty Email Forum', href: '/community/listserv'},
-                    {name: 'Dicty Labs', href: '/community/labs'},
-                    {name: 'History', href: '/community/history'},
-                    {name: 'Jobs', href: '/community/jobs'},
-                    {name: 'Upcoming Meetings', href: '/community/meetings'}
-                ]
-            }
-        ]
         return (
             <StyleRoot>
                 <div>
-                    <DictyHeader
+                    <Header
                       auth={ this.props.auth }
                       authActions={ this.props.authActions }
+                      downloads=""
+                      info=""
+                      cite=""
                     />
-                    <DictyNavbar items={ siteMap } />
+                    <Navbar items={ NavbarLinks } />
                     <Cart cart={ this.props.cart }/>
                     <Switch>
                         <Route exact path="/" component={ Home } />
@@ -134,7 +80,7 @@ class App extends Component {
                         <Route exact path="order" component={ Order } />
                         <Route component={ PageNotReady } />
                     </Switch>
-                    <DictyFooter items={ siteMap } />
+                    <Footer items={ FooterLinks } />
                 </div>
             </StyleRoot>
         )
