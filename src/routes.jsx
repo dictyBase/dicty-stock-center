@@ -19,7 +19,6 @@ import Plasmids from 'components/Plasmids'
 import PlasmidDetail from 'components/Plasmids/PlasmidDetail'
 
 export default (
-    <Route exact path="/" component={ App }>
         <Switch>
             <Route exact path="/" component={ Home } />
             <Route exact path=":name/information" component={ InfoPage } />
@@ -36,9 +35,7 @@ export default (
             <Route exact path="my-dsc" component={ MyDsc } />
             <Route exact path="error" component={ Error } />
             <Route exact path="cart" component={ ShoppingCart } />
-            <Route exact path="order" component={ Order }>
-            </Route>
+            <Route exact path="order" component={ Order } />
             <Route component={ PageNotReady } />
         </Switch>
-    </Route>
 )

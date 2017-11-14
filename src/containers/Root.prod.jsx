@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import App from 'containers/App'
 import ReactGA from 'react-ga'
 
@@ -21,13 +22,15 @@ export default class Root extends Component {
     render() {
         const { store, history } = this.props
         return (
-          <Provider store={ store }>
-              <div>
-                  <Router history= { history } onUpdate={ this.logPageView }>
-                    <Route exact path="/" component={ App } />
-                  </Router>
-              </div>
-          </Provider>
+        <Provider store={ store }>
+            <div>
+                <ConnectedRouter history= { history } onUpdate={ this.logPageView }>
+                  <Switch>
+                      <Route exact path="/" component={ App } />
+                  </Switch>
+                </ConnectedRouter>
+            </div>
+        </Provider>
         )
     }
 }
