@@ -3,6 +3,10 @@ export const FooterLinks = [
         {
             header: {description: 'Genomes Home', link: '/genomes'},
             items: []
+        },
+        {
+            header: {description: 'Stock Center Home', link: '/stockcenter'},
+            items: []
         }
     ],
     [
@@ -40,10 +44,6 @@ export const FooterLinks = [
         }
     ],
     [
-        {
-            header: {description: 'Stock Center Home', link: '/stockcenter'},
-            items: []
-        },
         {
             header: {description: 'Community Home', link: '/community'},
             items: [
