@@ -88,6 +88,23 @@ class App extends Component {
                         {description: 'Upcoming Meetings', link: '/community/meetings'}
                     ]
                 }
+            ],
+            [
+                {
+                    header: {description: 'Please Cite:', link: '#'},
+                    items: [
+                        {description: 'dictyBase', link: 'http://www.ncbi.nlm.nih.gov/pubmed/23172289'},
+                        {description: 'Dicty Stock Center', link: 'http://www.ncbi.nlm.nih.gov/pubmed/23494302'}
+                    ]
+                },
+                {
+                    header: {description: 'Supported By:', link: '#'},
+                    items: [
+                        {description: 'NIH', link: 'https://www.nih.gov/'},
+                        {description: 'GMOD', link: 'http://gmod.org/wiki/Main_Page'},
+                        {description: 'Gene Ontology', link: 'http://geneontology.org/'}
+                    ]
+                }
             ]
         ]
         return (
