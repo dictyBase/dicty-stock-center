@@ -22,8 +22,8 @@ export default class Routes extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={ Home } />
-                <Route exact path=":name/information" component={ InfoPage } />
+                <Route exact path="/" render={() => <Home {...this.props} />} />
+                <Route path=":name/information" render={() => <InfoPage {...this.props} />} />
                 <Route exact path=":name/information/edit" component={ EditInfoPage } />
                 <Route path="login" component={ Login } />
                 <Route exact path=":provider/callback" component={ OauthCallback } />
@@ -32,7 +32,7 @@ export default class Routes extends Component {
                 <Route exact path="strains/:id" component={ StrainDetail } />
                 <Route path="plasmids" component={ Plasmids } />
                 <Route exact path="plasmids/:id" component={ PlasmidDetail } />
-                <Route path="contact" component={ Contact } />
+                <Route exact path="contact" component={ Contact } />
                 <Route path="logout" component={ Logout } />
                 <Route path="my-dsc" component={ MyDsc } />
                 <Route path="error" component={ Error } />
@@ -43,3 +43,4 @@ export default class Routes extends Component {
         )
     }
 }
+

@@ -1,6 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
 import React from 'react'
-import App from 'containers/App'
 import Login from 'components/Login'
 import OauthCallback from 'components/OauthCallback'
 import { AuthLoader, Logout } from 'components/Auth'
@@ -18,24 +17,75 @@ import StrainDetail from 'components/Strains/StrainDetail'
 import Plasmids from 'components/Plasmids'
 import PlasmidDetail from 'components/Plasmids/PlasmidDetail'
 
-export default (
-        <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route exact path=":name/information" component={ InfoPage } />
-            <Route exact path=":name/information/edit" component={ EditInfoPage } />
-            <Route exact path="login" component={ Login } />
-            <Route exact path=":provider/callback" component={ OauthCallback } />
-            <Route exact path="load/auth" component={ AuthLoader } />
-            <Route exact path="strains" component={ Strains } />
-            <Route exact path="strains/:id" component={ StrainDetail } />
-            <Route exact path="plasmids" component={ Plasmids } />
-            <Route exact path="plasmids/:id" component={ PlasmidDetail } />
-            <Route exact path="contact" component={ Contact } />
-            <Route exact path="logout" component={ Logout } />
-            <Route exact path="my-dsc" component={ MyDsc } />
-            <Route exact path="error" component={ Error } />
-            <Route exact path="cart" component={ ShoppingCart } />
-            <Route exact path="order" component={ Order } />
-            <Route component={ PageNotReady } />
-        </Switch>
-)
+// export default (
+//         <Switch>
+//             <Route exact path="/" component={ Home } />
+//             <Route exact path=":name/information" component={ InfoPage } />
+//             <Route exact path=":name/information/edit" component={ EditInfoPage } />
+//             <Route exact path="login" component={ Login } />
+//             <Route exact path=":provider/callback" component={ OauthCallback } />
+//             <Route exact path="load/auth" component={ AuthLoader } />
+//             <Route exact path="strains" component={ Strains } />
+//             <Route exact path="strains/:id" component={ StrainDetail } />
+//             <Route exact path="plasmids" component={ Plasmids } />
+//             <Route exact path="plasmids/:id" component={ PlasmidDetail } />
+//             <Route exact path="contact" component={ Contact } />
+//             <Route exact path="logout" component={ Logout } />
+//             <Route exact path="my-dsc" component={ MyDsc } />
+//             <Route exact path="error" component={ Error } />
+//             <Route exact path="cart" component={ ShoppingCart } />
+//             <Route exact path="order" component={ Order } />
+//             <Route component={ PageNotReady } />
+//         </Switch>
+// )
+
+export default [
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    },
+    {
+        path: '/',
+        Component: Home
+    }
+]

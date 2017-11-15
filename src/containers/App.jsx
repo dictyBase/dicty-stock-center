@@ -44,7 +44,7 @@ class App extends Component {
                     />
                     <Navbar items={ NavbarLinks } />
                     <Cart cart={ this.props.cart }/>
-                    <Routes />
+                    <Routes {...this.props} />
                     <Footer items={ FooterLinks } />
                 </div>
             </StyleRoot>
