@@ -25,12 +25,12 @@ class App extends Component {
         stockCenter: PropTypes.object.isRequired,
         stockCenterActions: PropTypes.object.isRequired
     };
-    renderChildren = () => {
-        const { children } = this.props
-        return React.Children.map(children, (child) => {
-            return React.cloneElement(child, {...this.props})
-        })
-    };
+    // renderChildren = () => {
+    //     const { children } = this.props
+    //     return React.Children.map(children, (child) => {
+    //         return React.cloneElement(child, {...this.props})
+    //     })
+    // };
     render() {
         return (
             <StyleRoot>
