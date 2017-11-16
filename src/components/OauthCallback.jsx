@@ -4,11 +4,11 @@ import { Grid, Cell } from 'radium-grid'
 export default class OauthCallback extends Component {
     displayName = 'oauth callback component';
     componentDidMount() {
-        const { location, params } = this.props.routeProps
+        const { location } = this.props.routeProps
         window.opener.postMessage(
             {
                 query: location.search,
-                provider: params.provider,
+                provider: this.props.match.params.provider,
                 url: `${window.location.origin}${location.pathname}`
             },
             window.location)
@@ -18,7 +18,7 @@ export default class OauthCallback extends Component {
         return (
             <Grid>
                 <Cell width="1" align="center">
-                    <h1>Transfering to login system ........</h1>
+                    <h1>Transferring to login system ........</h1>
                 </Cell>
             </Grid>
         )

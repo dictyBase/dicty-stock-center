@@ -15,16 +15,18 @@ export default class Root extends Component {
         store: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired
     }
-    logPageView = () => {
-        ReactGA.set({ page: window.location.pathname })
-        ReactGA.pageview(window.location.pathname)
-    }
     render() {
         const { store, history } = this.props
+        const logPageView = () => {
+            ReactGA.set({ page: window.location.pathname })
+            ReactGA.pageview(window.location.pathname)
+            return null
+        }
         return (
         <Provider store={ store }>
             <div>
-                <ConnectedRouter history= { history } onUpdate={ this.logPageView }>
+                <ConnectedRouter history= { history } >
+                <Route path="/" component={ logPageView } />
                   <Switch>
                       <Route exact path="/" component={ App } />
                   </Switch>
