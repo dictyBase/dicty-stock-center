@@ -13,27 +13,27 @@ import OrderConfirmation from 'components/OrderConfirmation'
 export default class Order extends Component {
     displayName = 'order parent component'
 
-    renderChildren = () => {
-        const { children, order, orderActions, cart } = this.props
-        return React.Children.map(children, (child) => {
-            return React.cloneElement(child, {
-                order: order,
-                orderActions: orderActions,
-                cart: cart
-            })
-        })
-    }
+    // renderChildren = () => {
+    //     const { children, order, orderActions, cart } = this.props
+    //     return React.Children.map(children, (child) => {
+    //         return React.cloneElement(child, {
+    //             order: order,
+    //             orderActions: orderActions,
+    //             cart: cart
+    //         })
+    //     })
+    // }
 
     render() {
         return (
             <div className="container">
-                <Route exact path="shipping" component={ Shipping } />
-                <Route exact path="shipping/edit" component={ EditShipping } />
-                <Route exact path="payment" component={ Payment } />
-                <Route exact path="payment/edit" component={ EditPayment } />
-                <Route exact path="submit" component={ Submit } />
-                <Route exact path="submitting" component={ SubmitLoader } />
-                <Route exact path="submitted" component={ OrderConfirmation } />
+                <Route exact path="/shipping" render={ () => <Shipping {...this.props} /> } />
+                <Route exact path="/shipping/edit" render={ () => <EditShipping {...this.props} /> } />
+                <Route exact path="/payment" render={ () => <Payment {...this.props} /> } />
+                <Route exact path="/payment/edit" render={ () => <EditPayment {...this.props} /> } />
+                <Route exact path="/submit" render={ () => <Submit {...this.props} /> } />
+                <Route exact path="/submitting" render={ () => <SubmitLoader {...this.props} /> } />
+                <Route exact path="/submitted" render={ () => <OrderConfirmation {...this.props} /> } />
             </div>
         )
     }
