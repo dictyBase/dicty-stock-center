@@ -6,12 +6,12 @@ export default class InfoPage extends Component {
     displayName = 'toolbar with entity controls'
     componentDidMount() {
         const { routeProps, pageActions } = this.props
-        pageActions.fetchInfoPage(routeProps.params.name)
+        pageActions.fetchInfoPage(routeProps.match.params.name)
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.page.page !== nextProps.page.page) {
             const { routeProps, pageActions } = nextProps
-            pageActions.fetchInfoPage(routeProps.params.name)
+            pageActions.fetchInfoPage(routeProps.match.params.name)
         }
     }
     render() {

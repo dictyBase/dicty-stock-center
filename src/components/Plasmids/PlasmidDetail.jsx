@@ -11,7 +11,7 @@ export default class PlasmidDetail extends Component {
     displayName = 'plasmid detail'
     componentDidMount() {
         const fetchPlasmid: Function = this.props.stockCenterActions.fetchPlasmid
-        const id: number = this.props.params.id
+        const id: number = this.props.match.params.id
         fetchPlasmid(id)
     }
     render() {
@@ -31,7 +31,7 @@ export default class PlasmidDetail extends Component {
           {'Reference(s)': '22357942'}
         ]
         const data2 = [
-          {'Plasmid ID': this.props.params.id},
+          {'Plasmid ID': this.props.match.params.id},
           {'Plasmid Keywords': 'No Information'},
           {'GenBank Accession': 'No Information'}
         ]
@@ -48,7 +48,7 @@ export default class PlasmidDetail extends Component {
                         }
                     }
                 >
-                  { this.props.params.id }
+                  { this.props.match.params.id }
                 </h1>
               </Cell>
             </Grid>

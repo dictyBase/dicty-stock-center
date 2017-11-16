@@ -81,14 +81,14 @@ export default class EditInfoPage extends Component {
         const { routeProps, pageActions } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
         pageActions.saveEditing(
-            routeProps.params.name,
+            routeProps.match.params.name,
             rawData
         )
     }
     onCancel = () => {
         const { pageActions, routeProps } = this.props
         pageActions.cancelEditing(
-            routeProps.params.name
+            routeProps.match.params.name
         )
     }
     render() {

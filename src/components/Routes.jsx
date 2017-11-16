@@ -17,6 +17,7 @@ import StrainDetail from 'components/Strains/StrainDetail'
 import Plasmids from 'components/Plasmids'
 import PlasmidDetail from 'components/Plasmids/PlasmidDetail'
 
+// convert to array map later
 export default class Routes extends Component {
     displayName = 'list of routes';
     render() {

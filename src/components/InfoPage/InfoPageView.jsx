@@ -29,7 +29,7 @@ export default class InfoPageView extends Component {
         const { pageActions, routeProps, page } = this.props
         pageActions.editPage(
             page.content,
-            routeProps.params.name
+            routeProps.match.params.name
         )
     }
     render() {

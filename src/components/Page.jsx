@@ -58,7 +58,7 @@ export default class Page extends Component {
     displayName = 'page component'
     constructor(props) {
         super(props)
-        const page = props.routeProps.params.name
+        const page = props.routeProps.match.params.name
         this.state = {
             editorState: simpleStorage.get(page) ? EditorState.createWithContent(
                 convertFromRaw(simpleStorage.get(page))
@@ -73,7 +73,7 @@ export default class Page extends Component {
         e.preventDefault()
         pageActions.editPage(
             editorState.getCurrentContent(),
-            routeProps.params.name
+            routeProps.match.params.name
         )
     }
     render() {

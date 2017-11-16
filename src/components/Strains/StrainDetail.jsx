@@ -11,7 +11,7 @@ export default class StrainDetail extends Component {
     displayName = 'strain detail'
     componentDidMount() {
         const fetchStrain: Function = this.props.stockCenterActions.fetchStrain
-        const id: string = this.props.params.id
+        const id: string = this.props.match.params.id
         fetchStrain(id)
     }
     phenotypes() {
@@ -105,7 +105,7 @@ export default class StrainDetail extends Component {
                         }
                     }
                 >
-                  { this.props.params.id }
+                  { this.props.match.params.id }
                 </h1>
               </Cell>
             </Grid>

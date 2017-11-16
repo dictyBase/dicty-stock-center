@@ -26,12 +26,12 @@ export default class EditPage extends Component {
         const { editorState } = this.state
         const { routerActions, routeProps } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
-        simpleStorage.set(routeProps.params.name, rawData)
-        routerActions.push('/page/' + routeProps.params.name)
+        simpleStorage.set(routeProps.match.params.name, rawData)
+        routerActions.push('/page/' + routeProps.match.params.name)
     }
     onCancel= () => {
         const { routerActions, routeProps } = this.props
-        routerActions.push('/page/' + routeProps.params.name)
+        routerActions.push('/page/' + routeProps.match.params.name)
     }
     handleKeyCommand = (command) => {
         const { editorState } = this.state
