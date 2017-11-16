@@ -22,22 +22,22 @@ export default class Routes extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" render={() => <Home {...this.props} />} />
-                <Route path=":name/information" render={() => <InfoPage {...this.props} />} />
-                <Route exact path=":name/information/edit" component={ EditInfoPage } />
-                <Route path="login" component={ Login } />
-                <Route exact path=":provider/callback" component={ OauthCallback } />
-                <Route path="load/auth" component={ AuthLoader } />
-                <Route path="strains" component={ Strains } />
-                <Route exact path="strains/:id" component={ StrainDetail } />
-                <Route path="plasmids" component={ Plasmids } />
-                <Route exact path="plasmids/:id" component={ PlasmidDetail } />
-                <Route exact path="contact" component={ Contact } />
-                <Route path="logout" component={ Logout } />
-                <Route path="my-dsc" component={ MyDsc } />
-                <Route path="error" component={ Error } />
-                <Route path="cart" component={ ShoppingCart } />
-                <Route path="order" component={ Order } />
+                <Route exact path="/" render={ () => <Home {...this.props} /> } />
+                <Route exact path="/:name/information" render={ () => <InfoPage {...this.props} /> } />
+                <Route exact path="/:name/information/edit" render={ () => <EditInfoPage {...this.props} /> } />
+                <Route exact path="/login" render={ () => <Login {...this.props} /> } />
+                <Route exact path="/:provider/callback" render={ () => <OauthCallback {...this.props} /> } />
+                <Route exact path="/load/auth" render={ () => <AuthLoader {...this.props} /> } />
+                <Route exact path="/strains" render={ () => <Strains {...this.props} /> } />
+                <Route exact path="/strains/:id" render={ () => <StrainDetail {...this.props} /> } />
+                <Route exact path="/plasmids" render={ () => <Plasmids {...this.props} /> } />
+                <Route exact path="/plasmids/:id" render={ () => <PlasmidDetail {...this.props} /> } />
+                <Route exact path="/contact" render={ () => <Contact {...this.props} /> } />
+                <Route exact path="/logout" render={ () => <Logout {...this.props} /> } />
+                <Route exact path="/my-dsc" render={ () => <MyDsc {...this.props} /> } />
+                <Route exact path="/error" render={ () => <Error {...this.props} /> } />
+                <Route exact path="/cart" render={ () => <ShoppingCart {...this.props} /> } />
+                <Route exact path="/order" render={ () => <Order {...this.props} /> } />
                 <Route component={ PageNotReady } />
             </Switch>
         )

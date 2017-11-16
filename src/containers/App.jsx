@@ -3,6 +3,7 @@ import { Header, Footer } from 'dicty-components-header-footer'
 import { Navbar } from 'dicty-components-navbar'
 import Cart from 'components/Cart'
 import Routes from 'components/Routes'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
 import { bindActionCreators } from 'redux'
@@ -78,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
