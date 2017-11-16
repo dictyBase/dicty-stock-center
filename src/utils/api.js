@@ -26,7 +26,8 @@ export const searchStocks = (url, page, size, search, type) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`${url}/stocks?filter[type]=${type}&filter[id]=${search}&page[number]=${page}&page[size]=${size}`, config)
+    return fetch(`${url}/stocks?filter[type]=${type}&filter[id]=${search}
+    &page[number]=${page}&page[size]=${size}`, config)
 }
 export const createUser = (url, values) => {
     let config = {

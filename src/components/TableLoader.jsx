@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import { Grid, Cell } from 'radium-grid'
 import 'styles/core.scss'
 
-type Props = {
-    title: string,
-    message: string
-}
+// type Props = {
+//     title: string,
+//     message: string
+// }
 
 export default class TableLoader extends Component {
     displayName = 'table loader'

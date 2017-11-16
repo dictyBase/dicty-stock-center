@@ -25,6 +25,7 @@ export default class InfoPage extends Component {
               />
             )
         }
+        // console.log(this.props.routeProps)
         return <Loader title="Page loading..." />
     }
 }

@@ -25,7 +25,8 @@ export default class Routes extends Component {
             <Switch>
                 <Route exact path="/" render={ () => <Home {...this.props} /> } />
                 <Route exact path="/:name/information" render={ () => <InfoPage {...this.props} /> } />
-                <Route exact path="/:name/information/edit" render={ () => <EditInfoPage {...this.props} /> } />
+                <Route exact path="/:name/information/edit" render={ () =>
+                    <EditInfoPage {...this.props} /> } />
                 <Route exact path="/login" render={ () => <Login {...this.props} /> } />
                 <Route exact path="/:provider/callback" render={ () => <OauthCallback {...this.props} /> } />
                 <Route exact path="/load/auth" render={ () => <AuthLoader {...this.props} /> } />

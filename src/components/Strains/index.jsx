@@ -21,7 +21,6 @@ export default class Strains extends Component {
         const { stockCenterActions } = this.props
         stockCenterActions.clearStrainSearch()
         stockCenterActions.fetchPage(1, 10)
-
     }
     render() {
         const data: Array<Object> = this.props.stockCenter.strainCatalog.data

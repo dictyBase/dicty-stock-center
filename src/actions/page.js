@@ -64,7 +64,7 @@ export const fetchInfoPage = (page) => {
         if (simpleStorage.get(page)) {
             content = simpleStorage.get(page)
         } else {
-            content = infoPages[page]
+            content = infoPages.orders
         }
         const pageContent = {
             data: {
