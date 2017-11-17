@@ -6,7 +6,15 @@ export default class InfoPage extends Component {
     displayName = 'toolbar with entity controls'
     componentDidMount() {
         const { routeProps, pageActions } = this.props
+        console.log(routeProps)
         pageActions.fetchInfoPage(routeProps.match.params.name)
+        
+
+        // alternate option
+        // const { routeProps, pageActions, location: { pathname } } = this.props
+        // const [name, post] = pathname.split('/').slice(1,3)
+        // console.log(name)
+        // pageActions.fetchInfoPage(name)
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.page.page !== nextProps.page.page) {
@@ -25,7 +33,9 @@ export default class InfoPage extends Component {
               />
             )
         }
-        // console.log(this.props.routeProps)
+        console.log(this.props.page)
+        // console.log(this.props.match.params.name)
+        // console.log(this.props.location.pathname)
         return <Loader title="Page loading..." />
     }
 }
