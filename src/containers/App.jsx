@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Header, Footer } from 'dicty-components-header-footer'
 import { Navbar } from 'dicty-components-navbar'
 import Cart from 'components/Cart'
-import Routes from 'Routes'
+import RenderRoutes from 'components/RenderRoutes'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleRoot } from 'radium'
@@ -45,7 +45,7 @@ class App extends Component {
                     />
                     <Navbar items={ NavbarLinks } />
                     <Cart cart={ this.props.cart }/>
-                    <Routes {...this.props} />
+                    <RenderRoutes {...this.props} />
                     <Footer items={ FooterLinks } />
                 </div>
             </StyleRoot>
