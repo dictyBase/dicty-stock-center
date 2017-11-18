@@ -24,7 +24,6 @@ export default class Home extends Component {
         )
     }
     render() {
-        console.log(this.props)
         const { user } = this.props.auth
         const { stockCenter, stockCenterActions } = this.props
         return (

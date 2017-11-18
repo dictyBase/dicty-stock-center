@@ -88,7 +88,7 @@ Dicty Stock Center application rebuilt with React and Redux!
 │   ├── index.ejs            # Template for generating index.html file for production
 │   ├── index.html           # Template for application development. 
 │   ├── index.jsx            # Application rendering
-│   └── routes.js            # Application route definitions
+│   └── Routes.jsx           # Application route definitions
 └── tests                    # Unit tests
 ```
 
