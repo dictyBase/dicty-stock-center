@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import App from 'containers/App'
 import ReactGA from 'react-ga'
@@ -17,19 +16,15 @@ export default class Root extends Component {
     }
     render() {
         const { store, history } = this.props
-        const logPageView = () => {
+        history.listen((location, action) => {
             ReactGA.set({ page: window.location.pathname })
             ReactGA.pageview(window.location.pathname)
-            return null
-        }
+        })
         return (
         <Provider store={ store }>
             <div>
                 <ConnectedRouter history= { history } >
-                <Route path="/" component={ logPageView } />
-                  <Switch>
-                      <Route exact path="/" component={ App } />
-                  </Switch>
+                    <App />
                 </ConnectedRouter>
             </div>
         </Provider>

@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import DevTools from 'containers/DevTools'
 import { ConnectedRouter } from 'react-router-redux'
-// import { BrowserRouter as Router } from 'react-router-dom'
+import DevTools from 'containers/DevTools'
 import App from 'containers/App'
 
 export default class Root extends Component {
