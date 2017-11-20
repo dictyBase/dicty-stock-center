@@ -4,7 +4,6 @@ import { AuthLoader, Logout } from 'components/Auth'
 import Home from 'components/Home'
 import MyDsc from 'components/MyDsc'
 import Error from 'components/Error'
-import Order from 'components/Order'
 import ShoppingCart from 'components/ShoppingCart'
 import InfoPage from 'components/InfoPage'
 import EditInfoPage from 'components/InfoPage/EditInfoPage'
@@ -14,6 +13,13 @@ import Strains from 'components/Strains'
 import StrainDetail from 'components/Strains/StrainDetail'
 import Plasmids from 'components/Plasmids'
 import PlasmidDetail from 'components/Plasmids/PlasmidDetail'
+import Shipping from 'components/form/Shipping'
+import EditShipping from 'components/form/EditShipping'
+import Payment from 'components/form/Payment'
+import EditPayment from 'components/form/EditPayment'
+import Submit from 'components/form/Submit'
+import SubmitLoader from 'components/form/SubmitLoader'
+import OrderConfirmation from 'components/OrderConfirmation'
 
 const routes = [
     {
@@ -77,8 +83,32 @@ const routes = [
         component: ShoppingCart
     },
     {
-        path: '/order',
-        component: Order
+        path: '/order/shipping',
+        component: Shipping
+    },
+    {
+        path: '/order/shipping/edit',
+        component: EditShipping
+    },
+    {
+        path: '/order/payment',
+        component: Payment
+    },
+    {
+        path: '/order/payment/edit',
+        component: EditPayment
+    },
+    {
+        path: '/order/submit',
+        component: Submit
+    },
+    {
+        path: '/order/submitting',
+        component: SubmitLoader
+    },
+    {
+        path: '/order/submitted',
+        component: OrderConfirmation
     },
     {
         path: '*',
