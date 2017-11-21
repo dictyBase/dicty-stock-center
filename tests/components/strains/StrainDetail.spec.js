@@ -8,8 +8,10 @@ import sinon from 'sinon'
 describe('components', () => {
     describe('strains/StrainDetail', () => {
         const props = {
-            params: {
-                id: 'ID number'
+            match: {
+                params: {
+                    id: 'ID number'
+                }
             },
             cartActions: {
                 addToCart: sinon.spy()

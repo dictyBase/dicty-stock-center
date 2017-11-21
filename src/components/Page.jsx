@@ -58,7 +58,7 @@ export default class Page extends Component {
     displayName = 'page component'
     constructor(props) {
         super(props)
-        const page = props.routeProps.match.params.name
+        const page = this.props.match.params.name
         this.state = {
             editorState: simpleStorage.get(page) ? EditorState.createWithContent(
                 convertFromRaw(simpleStorage.get(page))
@@ -69,11 +69,11 @@ export default class Page extends Component {
     }
     onClick = (e) => {
         const { editorState } = this.state
-        const { pageActions, routeProps } = this.props
+        const { pageActions, match } = this.props
         e.preventDefault()
         pageActions.editPage(
             editorState.getCurrentContent(),
-            routeProps.match.params.name
+            match.params.name
         )
     }
     render() {
