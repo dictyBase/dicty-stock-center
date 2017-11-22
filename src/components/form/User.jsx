@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Panel from 'dicty-react-components/src/Panel'
-import PanelHeader from 'dicty-react-components/src/PanelHeader'
-import PanelTitle from 'dicty-react-components/src/PanelTitle'
-import PanelBody from 'dicty-react-components/src/PanelBody'
+import { Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
 import Personal from './Personal'
 import Organization from './Organization'
 import Address from './Address'
 import Contact from './Contact'
 import 'styles/core.scss'
+
+// still need to pass in custom styles
 
 export default class User extends Component {
     displayName = 'user information';

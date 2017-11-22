@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Panel from 'dicty-react-components/src/Panel'
-import PanelHeader from 'dicty-react-components/src/PanelHeader'
-import PanelTitle from 'dicty-react-components/src/PanelTitle'
-import PanelBody from 'dicty-react-components/src/PanelBody'
+import { Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
 import PaymentInfo from './PaymentInfo'
 import 'styles/core.scss'
+
+// still need to pass in custom styles
 
 export default class PaymentMethod extends Component {
     displayName = 'payment method';

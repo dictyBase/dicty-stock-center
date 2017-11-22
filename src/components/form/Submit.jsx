@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import EditPanel from './EditPanel'
 import Items from 'components/Items'
-import Panel from 'dicty-react-components/src/Panel'
-import PanelBody from 'dicty-react-components/src/PanelBody'
+import { Panel, PanelBody } from 'dicty-components-panel'
 import 'styles/core.scss'
 
 export default class Submit extends Component {
