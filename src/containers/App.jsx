@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Header, Footer } from 'dicty-components-header-footer'
 import { Navbar } from 'dicty-components-navbar'
 import Cart from 'components/Cart'

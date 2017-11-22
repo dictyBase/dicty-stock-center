@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Cart from './Cart'
 import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router-dom'

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import EditPanel from './EditPanel'
 import Items from 'components/Items'
 import Panel from 'dicty-react-components/src/Panel'

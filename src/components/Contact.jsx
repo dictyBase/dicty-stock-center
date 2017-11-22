@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Grid, Cell } from 'radium-grid'
 import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'

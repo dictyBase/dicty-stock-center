@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import OauthSignInButton from 'components/OauthSignInButton'
 import clientConfig from 'utils/clientConfig'
 import 'styles/core.scss'

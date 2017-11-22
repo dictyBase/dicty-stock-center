@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Panel from 'dicty-react-components/src/Panel'
 import PanelHeader from 'dicty-react-components/src/PanelHeader'
 import PanelTitle from 'dicty-react-components/src/PanelTitle'
