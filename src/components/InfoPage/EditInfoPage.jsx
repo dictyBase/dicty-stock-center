@@ -21,8 +21,7 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
-
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'grid-styled'
 
 import 'styles/toolbar.scss'
 import 'styles/editor.scss'
@@ -78,17 +77,17 @@ export default class EditInfoPage extends Component {
     focus = () => this.refs.editor.focus()
     onSave = () => {
         const { editorState } = this.state
-        const { routeProps, pageActions } = this.props
+        const { match, pageActions } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
         pageActions.saveEditing(
-            routeProps.match.params.name,
+            match.params.name,
             rawData
         )
     }
     onCancel = () => {
-        const { pageActions, routeProps } = this.props
+        const { pageActions, match } = this.props
         pageActions.cancelEditing(
-            routeProps.match.params.name
+            match.params.name
         )
     }
     render() {
@@ -109,10 +108,10 @@ export default class EditInfoPage extends Component {
                       ref="{(element) => { this.editor = element }}"
                     />
                   </div>
-                  <Grid cellWidth="1/4" smallCellWidth="1">
-                      <Cell />
-                      <Cell />
-                      <Cell>
+                  <Flex justify="space-between">
+                    <Box width="25%" />
+                    <Box width="25%" />
+                      <Box width="25%" mr={ 1 }>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -120,8 +119,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onCancel }>
                               Cancel
                           </button>
-                      </Cell>
-                      <Cell>
+                      </Box>
+                      <Box width="25%">
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -129,8 +128,8 @@ export default class EditInfoPage extends Component {
                             onClick = { this.onSave }>
                               Save
                           </button>
-                      </Cell>
-                  </Grid>
+                      </Box>
+                  </Flex>
               </div>
           </div>
         )

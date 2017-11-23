@@ -49,7 +49,7 @@ class Contact extends Component {
               <Cell cellWidth="1/6" smallCellWidth="1"/>
               <Cell cellWidth="4/6" smallCellWidth="1">
                 <PanelGroup theme={ theme }>
-                <Panel style={ {width: '100%'} }>
+                <Panel collapse style={ {width: '100%'} }>
                   <PanelHeader style={ {padding: '20px'} }>
                       <PanelTitle>
                         <i className="fa fa-envelope-o"></i> Email dictyBase
