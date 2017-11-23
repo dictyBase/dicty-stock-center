@@ -84,7 +84,7 @@
     "redux-form": "^5.2.5",
     "redux-thunk": "^2.1.0",
     "simplestorage.js": "^0.2.1",
-    "styled-components": "^1.4.6",
+    "styled-components": "^2.2.3",
     "url": "^0.11.0",
     "validator": "^5.1.0"
   },

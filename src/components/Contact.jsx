@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Cell } from 'radium-grid'
 import { PanelGroup, Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
 import FormGroupInput from './form/FormGroupInput'
 import Comments from './form/Comments'
@@ -8,6 +7,7 @@ import SubmitButton from './form/SubmitButton'
 import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
+import styled from 'styled-components'
 import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']
@@ -17,6 +17,26 @@ const theme = {
 }
 
 // still need to find way to add custom width/padding to new panels
+
+const Cell = styled.div`
+  justify-content: center;
+  width: 100%;
+`
+
+const Grid = styled.div`
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  min-width: 100%;
+`
+
+const GridHalf = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  min-width: 50%;
+`
 
 class Contact extends Component {
     displayName = 'contact page'
@@ -34,7 +54,7 @@ class Contact extends Component {
         } = this.props
         return (
           <div className="container">
-            <Grid cellWidth="1" align="center">
+            <Grid cellWidth="1">
               <Cell>
                   <h1 className="dicty-header">Contact Us</h1>
               </Cell>
@@ -49,7 +69,7 @@ class Contact extends Component {
               <Cell cellWidth="1/6" smallCellWidth="1"/>
               <Cell cellWidth="4/6" smallCellWidth="1">
                 <PanelGroup theme={ theme }>
-                <Panel style={ {width: '100%'} }>
+                <Panel collapse style={ {width: '100%'} }>
                   <PanelHeader style={ {padding: '20px'} }>
                       <PanelTitle>
                         <i className="fa fa-envelope-o"></i> Email dictyBase
@@ -72,7 +92,7 @@ class Contact extends Component {
                         placeholder = { 'Please enter your message here' }>
                           Message:
                       </Comments>
-                      <Grid cellWidth="1/2">
+                      <GridHalf>
                         <Cell>
                           <button type="button" className="btn btn-default btn-lg btn-block"
                             disabled={ submitting }
@@ -86,7 +106,7 @@ class Contact extends Component {
                             icon = { 'fa fa-paper-plane-o' }
                           />
                         </Cell>
-                      </Grid>
+                      </GridHalf>
                     </form>
                   </PanelBody>
                 </Panel>
