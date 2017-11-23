@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { Grid } from 'styles'
+import { Flex, Box } from 'grid-styled'
 import 'styles/core.scss'
-
-const Cell = styled.div`
-    float: right
-`
 
 // remove Bootstrap?
 
@@ -20,14 +15,14 @@ export default class Cart extends Component {
         const { addedItems } = this.props.cart
         return (
             <div className="container">
-                <Grid>
-                    <Cell>
+                <Flex justify="flex-end">
+                    <Box>
                         <Link to="/cart">
                           <i className="fa fa-shopping-cart fa-3x"></i>
                               ({ addedItems.length })
                         </Link>
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }

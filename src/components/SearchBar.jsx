@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'grid-styled'
 import 'styles/custom.scss'
 
 
@@ -19,8 +19,8 @@ export default class SearchBar extends Component {
     }
     render() {
         return (
-            <Grid cellWidth="1">
-              <Cell align="center">
+            <Flex justify="center">
+              <Box>
                 <input
                   className="search-box"
                   style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
@@ -43,8 +43,8 @@ export default class SearchBar extends Component {
                 >
                   CLEAR
                 </button>
-              </Cell>
-            </Grid>
+              </Box>
+            </Flex>
         )
     }
 }

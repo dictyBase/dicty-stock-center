@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Flex, Box } from 'grid-styled'
 import { Grid } from 'styles'
 import 'styles/core.scss'
-
-// formerly width="1" align="center"
-const Cell = styled.div`
-    text-align: center;
-    width: 100%;
-`
 
 // update Bootstrap references?
 
@@ -17,14 +11,14 @@ export class AuthLoader extends Component {
     render() {
         return (
             <div className="container">
-                <Grid>
-                    <Cell>
+                <Flex justify="center">
+                    <Box>
                         <h1>Logging in...</h1>
-                    </Cell>
-                    <Cell>
+                    </Box>
+                    <Box>
                         <i className="fa fa-5x fa-spinner fa-pulse fa-fw"></i>
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }
