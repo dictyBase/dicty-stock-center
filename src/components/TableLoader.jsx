@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'rebass'
 import 'styles/core.scss'
 
 // type Props = {
@@ -20,15 +20,15 @@ export default class TableLoader extends Component {
         const message: string = this.props.message
         return (
             <div style={ {width: '100%'} }>
-                <Grid cellWidth="1">
-                    <Cell align="center">
+                <Flex justify="space-between">
+                    <Box align="center">
                         <div className="text-center">
                             <h1>{ title && title }</h1>
                             <i className="fa fa-spinner fa-2x fa-pulse fa-fw margin-bottom"></i>
                             { message && message }
                         </div>
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Editor, EditorState, convertFromRaw} from 'draft-js'
 import simpleStorage from 'simplestorage.js'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'rebass'
 // import blockRenderer from 'components/CustomBlocks'
 
 const step1 =

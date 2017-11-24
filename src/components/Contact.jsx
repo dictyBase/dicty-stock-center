@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Cell } from 'radium-grid'
 import { PanelGroup, Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
 import FormGroupInput from './form/FormGroupInput'
 import Comments from './form/Comments'
@@ -8,6 +7,7 @@ import SubmitButton from './form/SubmitButton'
 import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
+import { Grid, Cell } from 'radium-grid'
 import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']

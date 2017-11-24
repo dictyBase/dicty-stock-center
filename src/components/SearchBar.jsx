@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 

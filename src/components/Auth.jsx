@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Flex, Box } from 'grid-styled'
-import { Grid } from 'styles'
+import { Flex, Box } from 'rebass'
 import 'styles/core.scss'
 
 // update Bootstrap references?
@@ -29,20 +28,20 @@ export class Logout extends Component {
     render() {
         return (
             <div className="container">
-                <Grid>
-                    <Cell>
+                <Flex>
+                    <Box>
                         <div style={ {width: '100%'} } className="alert alert-success text-center">
                             <i className="fa fa-5x fa-check-circle-o"></i>
                             <h1>Logout successful!</h1>
                             <p>You have successfully logged out of Dicty Stock Center</p>
                         </div>
-                    </Cell>
-                    <Cell>
+                    </Box>
+                    <Box>
                         <Link to="/" className="btn btn-lg btn-primary">
                             Stock Center Home
                         </Link>
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }

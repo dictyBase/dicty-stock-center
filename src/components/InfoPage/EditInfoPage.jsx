@@ -21,7 +21,7 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'rebass'
 
 import 'styles/toolbar.scss'
 import 'styles/editor.scss'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'rebass'
 import 'styles/core.scss'
 
 // remove Bootstrap?
