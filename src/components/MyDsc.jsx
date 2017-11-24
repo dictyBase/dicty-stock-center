@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Link } from 'react-router-dom'
+import { Flex, Box } from 'rebass'
 import 'styles/core.scss'
+
+// double-check proper center alignment
 
 export default class MyDsc extends Component {
     displayName = 'user profile';
@@ -10,17 +12,17 @@ export default class MyDsc extends Component {
         const { user, provider } = this.props.auth
         return (
             <div className="container">
-                <Grid>
-                    <Cell width="1">
+                <Flex>
+                    <Box width={ 1 }>
                         <ol className="breadcrumb">
                           <li><Link to="/">Home</Link></li>
                           <li className="active">My DSC</li>
                         </ol>
-                    </Cell>
-                    <Cell>
+                    </Box>
+                    <Box>
                         <h1 className="page-header">My DSC</h1>
-                    </Cell>
-                    <Cell width="1" align="center">
+                    </Box>
+                    <Box width={ 1 } align="center">
                         <Panel>
                             <PanelBody>
                                 <h1>
@@ -32,8 +34,8 @@ export default class MyDsc extends Component {
                                 <h3>Provider: { provider }</h3>
                             </PanelBody>
                         </Panel>
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }

@@ -3,8 +3,8 @@ import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
-import { Grid, Cell } from 'radium-grid'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'
@@ -160,8 +160,8 @@ export default class StrainTable extends Component {
       const { cellWidth, cellHeight } = this.props
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
-          <Grid cellWidth="1">
-            <Cell align="center">
+          <Flex justify="center">
+            <Box>
               <input
                 className="search-box"
                 style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
@@ -185,8 +185,8 @@ export default class StrainTable extends Component {
               CLEAR
             </button>
 
-            </Cell>
-          </Grid>
+            </Box>
+          </Flex>
           <InfiniteLoader
             isRowLoaded={ this.isRowLoaded }
             rowCount={ rowCount }

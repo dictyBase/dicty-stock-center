@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Cart from './Cart'
-import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router-dom'
+import { Flex, Box } from 'rebass'
 import 'styles/core.scss'
+
+// tweak mobile responsiveness
 
 export default class ShoppingCart extends Component {
     displayName = 'Shopping cart'
@@ -13,52 +15,58 @@ export default class ShoppingCart extends Component {
     }
     renderAlert = () => {
         return (
-            <Grid>
-                <Cell width="1">
+            <Flex>
+                <Box width={ 1 }>
                     <div className="container">
                         <div className="alert alert-danger">
-                          <strong>
-                                <i className="fa fa-exclamation-circle"></i>
-                          </strong> There are no items in your cart.
+                            <strong>
+                                <i className="fa fa-exclamation-circle" />
+                            </strong>{ ' ' }
+                            There are no items in your cart.
                         </div>
                     </div>
-                </Cell>
-            </Grid>
+                </Box>
+            </Flex>
         )
     }
     render() {
         const { cart, cartActions } = this.props
         return (
             <div className="container">
-                <Grid>
-                    <Cell align="center" width="1">
-                          <h1 className="dicty-header">Shopping Cart</h1>
-                    </Cell>
-                </Grid>
+                <Flex justify="center">
+                    <Box>
+                        <h1 className="dicty-header">Shopping Cart</h1>
+                    </Box>
+                </Flex>
                 { cart.addedItems.length > 0 ? (
-                <Grid>
-                    <Cell width="1">
-                        <Grid>
-                            <Cart cart={ cart } cartActions={ cartActions }/>
-                        </Grid>
-                    </Cell>
-                    <Cell width="1">
-                        <Grid style={ {marginTop: '50px'} }>
-                            <Cell width="1/2" smallWidth="1">
-                                <Link to="/strains"
-                                  className="btn btn-primary btn-lg btn-block">
-                                    <i className="fa fa-share"></i> Continue Shopping
+                    <div>
+                        <Flex>
+                            <Box width={ [1, 1 / 2] } >
+                                <Cart cart={ cart } cartActions={ cartActions } />
+                            </Box>
+                        </Flex>
+                        <Flex justify="left">
+                            <Box width={ [1, 1 / 2] } mt={ 50 } mr={ 1 }>
+                                <Link
+                                    to="/strains"
+                                    className="btn btn-primary btn-lg btn-block">
+                                    <i className="fa fa-share" /> Continue
+                                    Shopping
                                 </Link>
-                            </Cell>
-                            <Cell width="1/2" smallWidth="1">
-                                <Link to="/order/shipping"
-                                  className="btn btn-success btn-lg btn-block">
-                                    <i className="fa fa-shopping-cart"></i> Checkout
+                            </Box>
+                            <Box width={ [1, 1 / 2] } mt={ 50 }>
+                                <Link
+                                    to="/order/shipping"
+                                    className="btn btn-success btn-lg btn-block">
+                                    <i className="fa fa-shopping-cart" />{ ' ' }
+                                    Checkout
                                 </Link>
-                            </Cell>
-                        </Grid>
-                    </Cell>
-                </Grid>) : this.renderAlert() }
+                            </Box>
+                        </Flex>
+                    </div>
+                ) : (
+                    this.renderAlert()
+                ) }
             </div>
         )
     }

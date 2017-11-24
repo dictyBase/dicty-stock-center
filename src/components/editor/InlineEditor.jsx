@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
 import findEntities from 'utils/findEntities'
 import BlockToolbar from 'components/BlockToolbar'
 import InlineToolbar from 'components/InlineToolbar'
@@ -16,6 +15,7 @@ import {
     CompositeDecorator,
     Modifier
 } from 'draft-js'
+import { Flex, Box } from 'rebass'
 
 import 'styles/custom.scss'
 
@@ -204,29 +204,29 @@ export default class InlineEditor extends Component {
         const { editorState } = this.state
         return (
             <div className="toolbar-nav">
-                <Grid cellWidth="1">
-                  <Cell>
+                <Flex>
+                  <Box>
                     <BlockToolbar
                       editorState={ editorState }
                       clickFn={ this.onToggleBlock }
                       toolSpec={ blockTypes }
                     />
-                  </Cell>
-                  <Cell>
+                  </Box>
+                  <Box>
                     <InlineToolbar
                       editorState={ editorState }
                       clickFn={ this.onToggleInline }
                       toolSpec={ inlineTypes }
                     />
-                  </Cell>
-                  <Cell>
+                  </Box>
+                  <Box>
                     <EntityToolbar
                       editorState={ editorState }
                       toolSpec={ entityControls }
                     />
-                  </Cell>
-                  <Cell>{ urlInput }</Cell>
-                </Grid>
+                  </Box>
+                  <Box>{ urlInput }</Box>
+                </Flex>
             </div>
         )
     }
@@ -238,11 +238,11 @@ export default class InlineEditor extends Component {
         })
         return (
             <div className={ editPanel }>
-                <Grid cellWidth="1">
-                    <Cell>
+                <Flex>
+                    <Box>
                         { !readOnly && this.renderToolbar() }
-                    </Cell>
-                    <Cell>
+                    </Box>
+                    <Box>
                         <div>
                           <Editor
                             editorState={ editorState }
@@ -263,8 +263,8 @@ export default class InlineEditor extends Component {
                             )
                           }
                         </div>
-                    </Cell>
-                    <Cell width="1/2">
+                    </Box>
+                    <Box width={ 1/2 }>
                         { !readOnly && (<button
                           style={ {margin: '5px auto'} }
                           type="button"
@@ -272,8 +272,8 @@ export default class InlineEditor extends Component {
                           onClick = { this.onCancel }>
                             Cancel
                         </button>) }
-                    </Cell>
-                    <Cell width="1/2">
+                    </Box>
+                    <Box width={ 1/2 }>
                         { !readOnly && (<button
                           style={ {margin: '5px auto'} }
                           type="button"
@@ -281,8 +281,8 @@ export default class InlineEditor extends Component {
                           onClick = { this.onSave }>
                             Save
                         </button>) }
-                    </Cell>
-                </Grid>
+                    </Box>
+                </Flex>
             </div>
         )
     }

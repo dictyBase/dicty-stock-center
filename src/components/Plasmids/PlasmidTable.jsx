@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
-import { Grid, Cell } from 'radium-grid'
 import { Link } from 'react-router-dom'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 // type Props = {
@@ -159,8 +159,8 @@ export default class PlasmidTable extends Component {
       const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
         <div className="table-responsive" style={ {border: 'none'} }>
-          <Grid cellWidth="1">
-            <Cell align="center">
+          <Flex justify="center">
+            <Box>
               <input
                 className="search-box"
                 style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
@@ -184,8 +184,8 @@ export default class PlasmidTable extends Component {
               CLEAR
             </button>
 
-            </Cell>
-          </Grid>
+            </Box>
+          </Flex>
           <InfiniteLoader
             isRowLoaded={ this.isRowLoaded }
             rowCount={ rowCount }

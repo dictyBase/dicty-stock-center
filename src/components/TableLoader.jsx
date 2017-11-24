@@ -21,7 +21,7 @@ export default class TableLoader extends Component {
         return (
             <div style={ {width: '100%'} }>
                 <Flex justify="space-between">
-                    <Box align="center">
+                    <Box>
                         <div className="text-center">
                             <h1>{ title && title }</h1>
                             <i className="fa fa-spinner fa-2x fa-pulse fa-fw margin-bottom"></i>

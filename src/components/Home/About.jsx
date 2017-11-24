@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from '../editor/InlineEditor'
-import 'styles/custom.scss'
 
 export default class About extends Component {
     displayName = 'front page about dsc'

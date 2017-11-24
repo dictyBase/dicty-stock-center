@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
 import StockDetailRow from 'components/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 export default class StrainDetail extends Component {
@@ -94,8 +94,8 @@ export default class StrainDetail extends Component {
         ]
         return (
           <div className="strain-details">
-            <Grid cellWidth="1" style={ {width: '60%'} }>
-              <Cell align="center">
+            <Flex justify="center">
+              <Box>
                 <h1
                     style={
                         {
@@ -107,8 +107,8 @@ export default class StrainDetail extends Component {
                 >
                   { this.props.match.params.id }
                 </h1>
-              </Cell>
-            </Grid>
+              </Box>
+            </Flex>
             { strain.phenotypes && this.phenotypes() }
             <div
                 style={ {

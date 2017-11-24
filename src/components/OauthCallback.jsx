@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'rebass'
 
 export default class OauthCallback extends Component {
     displayName = 'oauth callback component';
@@ -16,11 +16,11 @@ export default class OauthCallback extends Component {
     }
     render() {
         return (
-            <Grid>
-                <Cell width="1" align="center">
+            <Flex justify="center">
+                <Box>
                     <h1>Transferring to login system ........</h1>
-                </Cell>
-            </Grid>
+                </Box>
+            </Flex>
         )
     }
 }

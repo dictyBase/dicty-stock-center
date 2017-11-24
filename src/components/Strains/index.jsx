@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
 import Loader from 'components/Loader'
 import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 export default class Strains extends Component {
@@ -26,11 +26,11 @@ export default class Strains extends Component {
         const data: Array<Object> = this.props.stockCenter.strainCatalog.data
         return (
           <div className="container">
-            <Grid cellWidth="1">
-                <Cell align="center">
+            <Flex justify="center">
+                <Box>
                       <h1 className="dicty-header">Strain Catalog</h1>
-                </Cell>
-            </Grid>
+                </Box>
+            </Flex>
             <SearchBar
               clearSearch={ this.clearSearch.bind(this) }
               search={ this.search.bind(this) }

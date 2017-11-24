@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react'
-import { Grid, Cell } from 'radium-grid'
 import Loader from 'components/Loader'
 import PlasmidTable from 'components/Plasmids/PlasmidTable'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 export default class Plasmids extends Component {
@@ -16,11 +16,11 @@ export default class Plasmids extends Component {
         const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
         return (
           <div className="container">
-            <Grid cellWidth="1">
-                <Cell align="center">
-                      <h1 className="dicty-header">Plasmid Catalog</h1>
-                </Cell>
-            </Grid>
+            <Flex justify="center">
+                <Box>
+                    <h1 className="dicty-header">Plasmid Catalog</h1>
+                </Box>
+            </Flex>
             {
               data.length !== 0
               ? <PlasmidTable {...this.props} />
