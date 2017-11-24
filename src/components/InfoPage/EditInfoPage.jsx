@@ -1,25 +1,21 @@
 import React, { Component } from 'react'
-import {
-    EditorState,
-    convertToRaw,
-    convertFromRaw
-} from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
 import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
 import {
-  ItalicButton,
-  BoldButton,
-  UnderlineButton,
-  CodeButton,
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  HeadlineThreeButton,
-  UnorderedListButton,
-  OrderedListButton,
-  BlockquoteButton,
-  CodeBlockButton
+    ItalicButton,
+    BoldButton,
+    UnderlineButton,
+    CodeButton,
+    HeadlineOneButton,
+    HeadlineTwoButton,
+    HeadlineThreeButton,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton,
+    CodeBlockButton
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
 
@@ -65,73 +61,67 @@ export default class EditInfoPage extends Component {
 
         if (props.page.content) {
             this.state = {
-                editorState:
-                    EditorState.createWithContent(
-                      convertFromRaw(props.page.content)
-                    )
+                editorState: EditorState.createWithContent(
+                    convertFromRaw(props.page.content)
+                )
             }
         }
     }
 
-    onChange = (editorState) => this.setState({editorState})
+    onChange = editorState => this.setState({ editorState })
     focus = () => this.refs.editor.focus()
     onSave = () => {
         const { editorState } = this.state
         const { match, pageActions } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
-        pageActions.saveEditing(
-            match.params.name,
-            rawData
-        )
+        pageActions.saveEditing(match.params.name, rawData)
     }
     onCancel = () => {
         const { pageActions, match } = this.props
-        pageActions.cancelEditing(
-            match.params.name
-        )
+        pageActions.cancelEditing(match.params.name)
     }
     render() {
         const { editorState } = this.state
         return (
-          <div className="container">
+            <div className="container">
                 <div className="edit-panel">
-                  <div className="toolbar-nav">
-                      <div className="btn-group">
-                        <Toolbar />
-                      </div>
-                  </div>
-                  <div className="editor">
-                    <Editor
-                      editorState={ editorState }
-                      onChange={ this.onChange }
-                      plugins={ plugins }
-                      ref="{(element) => { this.editor = element }}"
-                    />
-                  </div>
-                  <Flex justify="space-between">
-                    <Box width="25%" />
-                    <Box width="25%" />
-                      <Box width="25%" mr={ 1 }>
-                          <button
-                            style={ {margin: '5px auto'} }
-                            type="button"
-                            className="btn btn-block btn-default"
-                            onClick = { this.onCancel }>
-                              Cancel
-                          </button>
-                      </Box>
-                      <Box width="25%">
-                          <button
-                            style={ {margin: '5px auto'} }
-                            type="button"
-                            className="btn btn-block btn-success"
-                            onClick = { this.onSave }>
-                              Save
-                          </button>
-                      </Box>
-                  </Flex>
-              </div>
-          </div>
+                    <div className="toolbar-nav">
+                        <div className="btn-group">
+                            <Toolbar />
+                        </div>
+                    </div>
+                    <div className="editor">
+                        <Editor
+                            editorState={ editorState }
+                            onChange={ this.onChange }
+                            plugins={ plugins }
+                            ref="{(element) => { this.editor = element }}"
+                        />
+                    </div>
+                    <Flex justify="space-between">
+                        <Box width="25%" />
+                        <Box width="25%" />
+                        <Box width="25%" mr={ 1 }>
+                            <button
+                                style={ { margin: '5px auto' } }
+                                type="button"
+                                className="btn btn-block btn-default"
+                                onClick={ this.onCancel }>
+                                Cancel
+                            </button>
+                        </Box>
+                        <Box width="25%">
+                            <button
+                                style={ { margin: '5px auto' } }
+                                type="button"
+                                className="btn btn-block btn-success"
+                                onClick={ this.onSave }>
+                                Save
+                            </button>
+                        </Box>
+                    </Flex>
+                </div>
+            </div>
         )
     }
 }
