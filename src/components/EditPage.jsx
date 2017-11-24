@@ -3,7 +3,7 @@ import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
 import BlockToolbar from 'components/BlockToolbar'
 import InlineToolbar from 'components/InlineToolbar'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'rebass'
 import simpleStorage from 'simplestorage.js'
 import 'styles/editor.scss'
 import 'styles/toolbar.scss'
@@ -24,14 +24,14 @@ export default class EditPage extends Component {
     onSave = () => {
       // save the text in local storage
         const { editorState } = this.state
-        const { routerActions, routeProps } = this.props
+        const { routerActions, match } = this.props
         const rawData = convertToRaw(editorState.getCurrentContent())
-        simpleStorage.set(routeProps.match.params.name, rawData)
-        routerActions.push('/page/' + routeProps.match.params.name)
+        simpleStorage.set(match.params.name, rawData)
+        routerActions.push('/page/' + match.params.name)
     }
     onCancel= () => {
-        const { routerActions, routeProps } = this.props
-        routerActions.push('/page/' + routeProps.match.params.name)
+        const { routerActions, match } = this.props
+        routerActions.push('/page/' + match.params.name)
     }
     handleKeyCommand = (command) => {
         const { editorState } = this.state
@@ -85,10 +85,10 @@ export default class EditPage extends Component {
                       ref="editor"
                     />
                   </div>
-                  <Grid cellWidth="1/4" smallCellWidth="1">
-                      <Cell />
-                      <Cell />
-                      <Cell>
+                  <Flex justify="space-between">
+                      <Box width="25%" />
+                      <Box width="25%" />
+                      <Box width="25%" mr={ 1 }>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -96,8 +96,8 @@ export default class EditPage extends Component {
                             onClick = { this.onCancel }>
                               Cancel
                           </button>
-                      </Cell>
-                      <Cell>
+                      </Box>
+                      <Box width="25%" mr={ 1 }>
                           <button
                             style={ {margin: '5px auto'} }
                             type="button"
@@ -105,8 +105,8 @@ export default class EditPage extends Component {
                             onClick = { this.onSave }>
                               Save
                           </button>
-                      </Cell>
-                  </Grid>
+                      </Box>
+                  </Flex>
               </div>
           </div>
         )

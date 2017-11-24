@@ -69,8 +69,6 @@
     "jsrsasign": "^5.0.5",
     "lodash": "^4.15.0",
     "prop-types": "^15.6.0",
-    "radium": "^0.17.1",
-    "radium-grid": "^2.0.1",
     "react": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dom": "^15.1.0",

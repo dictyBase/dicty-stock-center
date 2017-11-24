@@ -6,7 +6,7 @@ import Cart from 'components/Cart'
 import RenderRoutes from 'components/RenderRoutes'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { StyleRoot } from 'radium'
+import { Provider } from 'rebass'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
@@ -27,15 +27,9 @@ class App extends Component {
         stockCenter: PropTypes.object.isRequired,
         stockCenterActions: PropTypes.object.isRequired
     };
-    // renderChildren = () => {
-    //     const { children } = this.props
-    //     return React.Children.map(children, (child) => {
-    //         return React.cloneElement(child, {...this.props})
-    //     })
-    // };
     render() {
         return (
-            <StyleRoot>
+            <Provider>
                 <div>
                     <Header
                       auth={ this.props.auth }
@@ -49,7 +43,7 @@ class App extends Component {
                     <RenderRoutes {...this.props} />
                     <Footer items={ FooterLinks } />
                 </div>
-            </StyleRoot>
+            </Provider>
         )
     }
 }

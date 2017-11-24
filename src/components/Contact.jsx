@@ -7,7 +7,7 @@ import SubmitButton from './form/SubmitButton'
 import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'rebass'
 import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']
@@ -34,20 +34,19 @@ class Contact extends Component {
         } = this.props
         return (
           <div className="container">
-            <Grid cellWidth="1" align="center">
-              <Cell>
+            <Flex wrap justify="center">
+              <Box>
                   <h1 className="dicty-header">Contact Us</h1>
-              </Cell>
-              <Cell>
+              </Box>
+              <Box>
                   <p>For questions, comments, or suggestions, please fill out the form below
                     to send us an email&nbsp;
                     <a href="mailto:dictybase@northwestern.edu?Subject=Question" target="_top">
                       (dictybase@northwestern.edu)
                     </a>
                   </p>
-              </Cell>
-              <Cell cellWidth="1/6" smallCellWidth="1"/>
-              <Cell cellWidth="4/6" smallCellWidth="1">
+              </Box>
+              <Box>
                 <PanelGroup theme={ theme }>
                 <Panel collapse style={ {width: '100%'} }>
                   <PanelHeader style={ {padding: '20px'} }>
@@ -72,28 +71,27 @@ class Contact extends Component {
                         placeholder = { 'Please enter your message here' }>
                           Message:
                       </Comments>
-                      <Grid cellWidth="1/2">
-                        <Cell>
+                      <Flex width={ 1 / 2 }>
+                        <Box>
                           <button type="button" className="btn btn-default btn-lg btn-block"
                             disabled={ submitting }
                             onClick={ resetForm }>
                               Reset
                           </button>
-                        </Cell>
-                        <Cell>
+                        </Box>
+                        <Box>
                           <SubmitButton name={ 'Submit ' }
                             submitting={ submitting }
                             icon = { 'fa fa-paper-plane-o' }
                           />
-                        </Cell>
-                      </Grid>
+                        </Box>
+                      </Flex>
                     </form>
                   </PanelBody>
                 </Panel>
                 </PanelGroup>
-              </Cell>
-              <Cell cellWidth="1/6" smallCellWidth="1"/>
-            </Grid>
+              </Box>
+            </Flex>
           </div>
         )
     }

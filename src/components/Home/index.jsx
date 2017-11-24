@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Cell } from 'radium-grid'
+import { Flex, Box } from 'rebass'
 import Links from './Links'
 import Info from './Info'
 import Availability from './Availability'
@@ -29,55 +29,55 @@ export default class Home extends Component {
         const { stockCenter, stockCenterActions } = this.props
         return (
             <div className="container">
-                <Grid cellWidth="1">
-                    <Cell>{ user && this.renderGreeting() }</Cell>
-                    <Cell>
+                <Flex wrap>
+                    <Box width={ 1 }>{ user && this.renderGreeting() }</Box>
+                    <Box width={ 1 }>
                         <h1 className="homepage-header">
                             Welcome to Dicty Stock Center (DSC)
                         </h1>
-                    </Cell>
-                    <Cell>
+                    </Box>
+                    <Box width={ 1 }>
                         <Intro />
-                    </Cell>
-                </Grid>
-                <Grid smallCellWidth="1">
-                    <Cell>
-                        <Grid cellWidth="1">
-                            <Cell>
+                    </Box>
+                </Flex>
+                <Flex>
+                    <Box width={ 1 / 3 } mr={ 3 }>
+                        <Flex direction="column">
+                            <Box>
                                 <About auth={ this.props.auth } />
-                            </Cell>
-                            <Cell>
+                            </Box>
+                            <Box>
                                 <Links />
-                            </Cell>
-                        </Grid>
-                    </Cell>
-                    <Cell>
-                        <Grid cellWidth="1">
-                            <Cell>
+                            </Box>
+                        </Flex>
+                    </Box>
+                    <Box width={ 1 / 3 } mr={ 3 }>
+                        <Flex direction="column">
+                            <Box>
                                 <Info />
-                            </Cell>
-                            <Cell>
+                            </Box>
+                            <Box>
                                 <Availability
                                   stockCenter={ stockCenter }
                                   stockCenterActions={ stockCenterActions }
                                   />
-                            </Cell>
-                            <Cell>
+                            </Box>
+                            <Box>
                                 <Downloads />
-                            </Cell>
-                        </Grid>
-                    </Cell>
-                    <Cell>
-                        <Grid cellWidth="1">
-                            <Cell align="center">
+                            </Box>
+                        </Flex>
+                    </Box>
+                    <Box width={ 1 / 3 }>
+                        <Flex justify="center" direction="column">
+                            <Box>
                                 <Carousel />
-                            </Cell>
-                            <Cell>
+                            </Box>
+                            <Box>
                                 <Materials />
-                            </Cell>
-                        </Grid>
-                    </Cell>
-                </Grid>
+                            </Box>
+                        </Flex>
+                    </Box>
+                </Flex>
             </div>
         )
     }
