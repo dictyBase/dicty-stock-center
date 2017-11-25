@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Cart from './Cart'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 import 'styles/core.scss'
 
 // tweak mobile responsiveness
@@ -35,13 +36,15 @@ export default class ShoppingCart extends Component {
             <div className="container">
                 <Flex justify="center">
                     <Box>
-                        <h1 className="dicty-header">Shopping Cart</h1>
+                        <DictyHeader>
+                            <h1>Shopping Cart</h1>
+                        </DictyHeader>
                     </Box>
                 </Flex>
                 { cart.addedItems.length > 0 ? (
                     <div>
                         <Flex>
-                            <Box width={ [1, 1 / 2] } >
+                            <Box width={ [1, 1 / 2] }>
                                 <Cart cart={ cart } cartActions={ cartActions } />
                             </Box>
                         </Flex>

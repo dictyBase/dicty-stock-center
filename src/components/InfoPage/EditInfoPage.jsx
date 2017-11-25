@@ -18,10 +18,7 @@ import {
     CodeBlockButton
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
-import { ToolbarNav, EditorStyle, EditPanel } from 'styles'
-
-import 'styles/buttons.scss'
-import 'draft-js-static-toolbar-plugin/lib/plugin.css'
+import { ToolbarNav, EditorStyle, EditPanel, StaticToolbar } from 'styles'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
@@ -85,9 +82,9 @@ export default class EditInfoPage extends Component {
             <div className="container">
                 <EditPanel>
                     <ToolbarNav>
-                        <div className="btn-group">
+                        <StaticToolbar>
                             <Toolbar />
-                        </div>
+                        </StaticToolbar>
                     </ToolbarNav>
                     <EditorStyle>
                         <Editor

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Loader from 'components/Loader'
 import PlasmidTable from 'components/Plasmids/PlasmidTable'
 import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 import 'styles/custom.scss'
 
 export default class Plasmids extends Component {
@@ -18,7 +19,9 @@ export default class Plasmids extends Component {
           <div className="container">
             <Flex justify="center">
                 <Box>
-                    <h1 className="dicty-header">Plasmid Catalog</h1>
+                  <DictyHeader>
+                    <h1>Plasmid Catalog</h1>
+                  </DictyHeader>
                 </Box>
             </Flex>
             {

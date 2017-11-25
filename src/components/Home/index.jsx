@@ -9,7 +9,7 @@ import Carousel from './Carousel'
 import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
-
+import { HomepageHeader } from 'styles'
 import 'styles/custom.scss'
 
 export default class Home extends Component {
@@ -32,9 +32,9 @@ export default class Home extends Component {
                 <Flex wrap>
                     <Box>{ user && this.renderGreeting() }</Box>
                     <Box>
-                        <h1 className="homepage-header">
-                            Welcome to Dicty Stock Center (DSC)
-                        </h1>
+                        <HomepageHeader>
+                            <h1>Welcome to Dicty Stock Center (DSC)</h1>
+                        </HomepageHeader>
                     </Box>
                     <Box>
                         <Intro />

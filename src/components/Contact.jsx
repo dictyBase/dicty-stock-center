@@ -8,6 +8,7 @@ import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']
@@ -36,7 +37,9 @@ class Contact extends Component {
           <div className="container">
             <Flex wrap justify="center">
               <Box>
-                  <h1 className="dicty-header">Contact Us</h1>
+                  <DictyHeader>
+                    <h1>Contact Us</h1>
+                  </DictyHeader>
               </Box>
               <Box>
                   <p>For questions, comments, or suggestions, please fill out the form below

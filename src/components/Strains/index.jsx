@@ -3,13 +3,15 @@ import Loader from 'components/Loader'
 import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'
 import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 import 'styles/custom.scss'
 
 export default class Strains extends Component {
     displayName = 'strains list'
     componentDidMount() {
         const stockCenterActions: Object = this.props.stockCenterActions
-        const number: number = this.props.stockCenter.strainCatalog.meta.pagination.number
+        const number: number = this.props.stockCenter.strainCatalog.meta
+            .pagination.number
         stockCenterActions.fetchStrains(number, 10)
     }
     search(text) {
@@ -25,23 +27,25 @@ export default class Strains extends Component {
     render() {
         const data: Array<Object> = this.props.stockCenter.strainCatalog.data
         return (
-          <div className="container">
-            <Flex justify="center">
-                <Box>
-                      <h1 className="dicty-header">Strain Catalog</h1>
-                </Box>
-            </Flex>
-            <SearchBar
-              clearSearch={ this.clearSearch.bind(this) }
-              search={ this.search.bind(this) }
-              placeholder="Search Strains"
-            />
-            {
-              data.length !== 0
-              ? <StrainTable {...this.props} />
-              : <Loader message="We're testing your patience." />
-            }
-          </div>
+            <div className="container">
+                <Flex justify="center">
+                    <Box>
+                        <DictyHeader>
+                            <h1>Contact Us</h1>
+                        </DictyHeader>
+                    </Box>
+                </Flex>
+                <SearchBar
+                    clearSearch={ this.clearSearch.bind(this) }
+                    search={ this.search.bind(this) }
+                    placeholder="Search Strains"
+                />
+                { data.length !== 0 ? (
+                    <StrainTable {...this.props} />
+                ) : (
+                    <Loader message="We're testing your patience." />
+                ) }
+            </div>
         )
     }
 }
