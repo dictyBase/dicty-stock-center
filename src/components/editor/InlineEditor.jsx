@@ -16,7 +16,6 @@ import {
 } from 'draft-js'
 import { Flex, Box } from 'rebass'
 import { ToolbarNav, EditPanel } from 'styles'
-import 'styles/custom.scss'
 
 export default class InlineEditor extends Component {
     displayName = 'inline editor component';

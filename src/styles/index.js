@@ -19,8 +19,11 @@ export const EditorStyle = styled.div`
     margin: 10px auto;
 `
 export const EditPanel = styled.div`
-    border: 1px solid #ddd;
-    padding: 10px;
+    /* border: 1px solid #ddd; */
+    /* padding: 10px; */
+    [contenteditable="true"]:focus {
+     outline: none;
+    }
 `
 
 export const DictyHeader = styled.div`

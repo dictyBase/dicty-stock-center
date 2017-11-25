@@ -29,6 +29,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <br />
                 <Header
                     auth={ this.props.auth }
                     authActions={ this.props.authActions }
@@ -37,6 +38,7 @@ class App extends Component {
                     cite=""
                 />
                 <Navbar items={ NavbarLinks } />
+                <br />
                 <Cart cart={ this.props.cart } />
                 <RenderRoutes {...this.props} />
                 <Footer items={ FooterLinks } />
