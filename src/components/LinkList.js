@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import 'styles/custom.scss'
+import { LinkedList } from 'styles'
 
 export default class LinkList extends Component {
     displayName = 'list of links';
@@ -12,7 +12,7 @@ export default class LinkList extends Component {
     render() {
         const { title, list } = this.props
         return (
-            <div className="link-list">
+            <LinkedList>
                 { title && <h3>{ title }</h3> }
                 <ul>
                     { list.map((link, index) => {
@@ -25,7 +25,7 @@ export default class LinkList extends Component {
                         )
                     }) }
                 </ul>
-            </div>
+            </LinkedList>
         )
     }
 }

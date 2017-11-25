@@ -8,6 +8,7 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
+import { PanelGreen } from 'styles'
 import 'styles/custom.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
@@ -40,12 +41,12 @@ class EditPayment extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel-dsc panel-green">
+                        <PanelGreen>
                             <EditPanel user={ consumer }
                                 edit={ editShipping }
                                 title={ 'Ship to:' }
                             />
-                        </div>
+                        </PanelGreen>
                     </div>
                 </div>
                 <hr />

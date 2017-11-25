@@ -5,6 +5,7 @@ import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
+import { DetailContainer } from 'styles'
 import 'styles/custom.scss'
 
 export default class StrainDetail extends Component {
@@ -127,19 +128,7 @@ export default class StrainDetail extends Component {
                 isFetching || !strain
                 ? <Loader message="Loading..." />
                 : (
-                    <div
-                        className="detail-container"
-                        style={
-                            {
-                                maxWidth: '60%',
-                                minWidth: 304,
-                                margin: '0 auto',
-                                borderTop: '1px solid grey',
-                                borderLeft: '1px solid grey',
-                                borderRight: '1px solid grey'
-                            }
-                        }
-                    >
+                    <DetailContainer>
                       <StockDetailRow left={ data1[0] } right={ data2[0] } />
                       <StockDetailRow left={ data1[1] } right={ data2[1] } />
                       <StockDetailRow left={ data1[2] } right={ data2[2] } />
@@ -148,7 +137,7 @@ export default class StrainDetail extends Component {
                       <StockDetailRow left={ data1[5] } right={ data2[5] } />
                       <StockDetailRow left={ data1[6] } right={ data2[6] } />
                       <StockDetailRow left={ data1[7] } />
-                    </div>
+                    </DetailContainer>
                 )
             }
             <div style={

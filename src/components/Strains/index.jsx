@@ -31,7 +31,7 @@ export default class Strains extends Component {
                 <Flex justify="center">
                     <Box>
                         <DictyHeader>
-                            <h1>Contact Us</h1>
+                            <h1>Strain Catalog</h1>
                         </DictyHeader>
                     </Box>
                 </Flex>

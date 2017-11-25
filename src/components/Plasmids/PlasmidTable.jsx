@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import { Flex, Box } from 'rebass'
+import { ItemAvailable, ItemUnavailable } from 'styles'
 import 'styles/custom.scss'
 
 // type Props = {
@@ -104,13 +105,18 @@ export default class PlasmidTable extends Component {
       )
   }
   availabilityRenderer = (cellData: boolean) => {
+      if (cellData.cellData) {
+          return (
+                <ItemAvailable>
+                    <i className="fa fa-shopping-cart fa-2x" />
+                </ItemAvailable>
+            )
+      }
       return (
-        <div
-          className={ cellData.cellData ? 'item-available' : 'item-unavailable' }
-        >
-          <i className="fa fa-shopping-cart fa-2x"></i>
-        </div>
-      )
+            <ItemUnavailable>
+                <i className="fa fa-shopping-cart fa-2x" />
+            </ItemUnavailable>
+        )
   }
   rowGetter = ({ index }: {index: number}) => {
       const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data

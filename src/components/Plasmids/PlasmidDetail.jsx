@@ -4,6 +4,7 @@ import StockDetailRow from 'components/StockDetailRow'
 import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
+import { DetailContainer } from 'styles'
 import 'styles/custom.scss'
 
 
@@ -69,24 +70,12 @@ export default class PlasmidDetail extends Component {
                 isFetching || !plasmid
                 ? <Loader message="Loading..." />
                 : (
-                    <div
-                        className="detail-container"
-                        style={
-                            {
-                                maxWidth: '60%',
-                                minWidth: 304,
-                                margin: '0 auto',
-                                borderTop: '1px solid grey',
-                                borderLeft: '1px solid grey',
-                                borderRight: '1px solid grey'
-                            }
-                        }
-                    >
+                    <DetailContainer>
                       <StockDetailRow left={ data1[0] } right={ data2[0] } />
                       <StockDetailRow left={ data1[1] } right={ data2[1] } />
                       <StockDetailRow left={ data1[2] } right={ data2[2] } />
                       <StockDetailRow left={ data1[3] } />
-                    </div>
+                    </DetailContainer>
                 )
             }
             <div style={

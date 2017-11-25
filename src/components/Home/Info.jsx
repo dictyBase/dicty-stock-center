@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LinkList from '../LinkList'
-import 'styles/custom.scss'
+import { PanelBlue } from 'styles'
 
 export default class Info extends Component {
     displayName = 'links to info pages'
@@ -11,9 +11,9 @@ export default class Info extends Component {
             {name: 'Deposit Information', to: '/deposits/information', routerAware: true}
         ]
         return (
-            <div className="panel-dsc panel-blue">
+            <PanelBlue>
                 <LinkList list={ info }/>
-            </div>
+            </PanelBlue>
         )
     }
 }

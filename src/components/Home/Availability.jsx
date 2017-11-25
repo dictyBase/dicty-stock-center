@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/custom.scss'
+import { PanelGray } from 'styles'
 
 export default class Availability extends Component {
     displayName = 'stock center availability'
@@ -15,7 +15,7 @@ export default class Availability extends Component {
     render() {
         const { data } = this.props.stockCenter.availability
         return (
-            <div className="panel-dsc panel-gray">
+            <PanelGray>
                 <h4>Availability</h4>
                 { data && data.map((item, index) => {
                     return (
@@ -24,7 +24,7 @@ export default class Availability extends Component {
                         </h5>
                     )
                 }) }
-            </div>
+            </PanelGray>
         )
     }
 }

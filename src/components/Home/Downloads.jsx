@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LinkList from '../LinkList'
-import 'styles/custom.scss'
+import { PanelBlue } from 'styles'
 
 export default class Downloads extends Component {
     displayName = 'downloads links'
@@ -12,9 +12,9 @@ export default class Downloads extends Component {
             {name: 'Plasmid Keywords', to: '', routerAware: true}
         ]
         return (
-            <div className="panel-dsc panel-blue">
+            <PanelBlue>
                 <LinkList list={ downloads } title="Download / View"/>
-            </div>
+            </PanelBlue>
         )
     }
 }

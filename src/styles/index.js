@@ -41,6 +41,100 @@ export const HomepageHeader = styled.div`
     }
 `
 
+export const PanelGray = styled.div`
+    background-color: #F2F2F2;
+    border: 1px solid #F2F2F2;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+`
+
+export const PanelGreen = styled.div`
+    background-color: #DFF0d8;
+    border: 1px solid #DFF0d8;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+`
+
+export const PanelBlue = styled.div`
+    background-color: #EFF8FB;
+    border: 1px solid #EFF8FB;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+`
+
+export const LinkedList = styled.div`
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    a {
+        font-size: 18px;
+    }
+`
+
+export const ItemAvailable = styled.div`
+    color: #04B404;
+`
+
+export const ItemUnavailable = styled.div`
+    color: #D8D8D8;
+`
+
+export const DetailContainer = styled.div`
+    max-width: 60%;
+    min-width: 304;
+    margin: 0 auto;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+`
+
+// export const StockDetailItem = styled.div`
+//     display: flex;
+//     flex-grow: 1;
+//     flex-basis: 0;
+//     width: 100%;
+//     border-bottom: 1px solid grey;
+//     border-right: none !important;
+// `
+
+// export const StockDetailRows = styled.div`
+//     flex-direction: row;
+
+//     .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+//         width: calc(33.333% / 2) !important;
+//         }
+
+//     @media screen and (max-width: 1290px) {
+//         flex-direction: column !important;
+//         min-height: 90px;
+
+//         .stock-detail-item div + div {
+//             border-right: none !important;
+//         }
+//         .stock-detail-row.single {
+//             height: 45px;
+//             display: inline !important;
+//         }
+//         .stock-detail-row.single > .stock-detail-item:nth-child(2) {
+//             display: none !important;
+//         }
+//         .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+//             width: 33.333% !important;
+//         }
+//         .stock-detail-row > .stock-detail-item > div {
+//             height: initial !important;
+//         }
+//     }
+// `
+
 // mostly taken from 'draft-js-static-toolbar-plugin/lib/plugin.css'
 export const StaticToolbar = styled.div`
     .draftJsToolbar__buttonWrapper__1Dmqh {
