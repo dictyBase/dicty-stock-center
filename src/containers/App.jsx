@@ -6,7 +6,6 @@ import Cart from 'components/Cart'
 import RenderRoutes from 'components/RenderRoutes'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Provider } from 'rebass'
 import { bindActionCreators } from 'redux'
 import * as authActionCreators from 'actions/auth'
 import * as shippingActionCreators from 'actions/order/shipping'
@@ -20,30 +19,28 @@ import { FooterLinks } from 'constants/Footer'
 import { NavbarLinks } from 'constants/Navbar'
 
 class App extends Component {
-    displayName = 'the primary app component';
+    displayName = 'the primary app component'
     static propTypes = {
         auth: PropTypes.object.isRequired,
         authActions: PropTypes.object.isRequired,
         stockCenter: PropTypes.object.isRequired,
         stockCenterActions: PropTypes.object.isRequired
-    };
+    }
     render() {
         return (
-            <Provider>
-                <div>
-                    <Header
-                      auth={ this.props.auth }
-                      authActions={ this.props.authActions }
-                      downloads=""
-                      info=""
-                      cite=""
-                    />
-                    <Navbar items={ NavbarLinks } />
-                    <Cart cart={ this.props.cart }/>
-                    <RenderRoutes {...this.props} />
-                    <Footer items={ FooterLinks } />
-                </div>
-            </Provider>
+            <div>
+                <Header
+                    auth={ this.props.auth }
+                    authActions={ this.props.authActions }
+                    downloads=""
+                    info=""
+                    cite=""
+                />
+                <Navbar items={ NavbarLinks } />
+                <Cart cart={ this.props.cart } />
+                <RenderRoutes {...this.props} />
+                <Footer items={ FooterLinks } />
+            </div>
         )
     }
 }
@@ -60,11 +57,16 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         authActions: bindActionCreators(authActionCreators, dispatch),
         orderActions: bindActionCreators(
-            Object.assign({}, shippingActionCreators, paymentActionCreators, submitActionCreators),
+            Object.assign(
+                {},
+                shippingActionCreators,
+                paymentActionCreators,
+                submitActionCreators
+            ),
             dispatch
         ),
         pageActions: bindActionCreators(pageActionCreators, dispatch),

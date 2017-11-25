@@ -30,13 +30,13 @@ export default class Home extends Component {
         return (
             <div className="container">
                 <Flex wrap>
-                    <Box width={ 1 }>{ user && this.renderGreeting() }</Box>
-                    <Box width={ 1 }>
+                    <Box>{ user && this.renderGreeting() }</Box>
+                    <Box>
                         <h1 className="homepage-header">
                             Welcome to Dicty Stock Center (DSC)
                         </h1>
                     </Box>
-                    <Box width={ 1 }>
+                    <Box>
                         <Intro />
                     </Box>
                 </Flex>

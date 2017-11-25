@@ -5,7 +5,6 @@ import InlineToolbar from 'components/InlineToolbar'
 import EntityToolbar from 'components/EntityToolbar'
 import EditorLink from 'components/Link'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
-import classNames from 'classnames'
 import {
     Editor,
     EditorState,
@@ -16,7 +15,7 @@ import {
     Modifier
 } from 'draft-js'
 import { Flex, Box } from 'rebass'
-
+import { ToolbarNav, EditPanel } from 'styles'
 import 'styles/custom.scss'
 
 export default class InlineEditor extends Component {
@@ -203,7 +202,7 @@ export default class InlineEditor extends Component {
         }
         const { editorState } = this.state
         return (
-            <div className="toolbar-nav">
+            <ToolbarNav>
                 <Flex>
                   <Box>
                     <BlockToolbar
@@ -227,17 +226,14 @@ export default class InlineEditor extends Component {
                   </Box>
                   <Box>{ urlInput }</Box>
                 </Flex>
-            </div>
+            </ToolbarNav>
         )
     }
     render() {
         const { editorState, readOnly } = this.state
         const { auth } = this.props
-        const editPanel = classNames({
-            'edit-panel': !readOnly
-        })
         return (
-            <div className={ editPanel }>
+            <EditPanel>
                 <Flex>
                     <Box>
                         { !readOnly && this.renderToolbar() }
@@ -283,7 +279,7 @@ export default class InlineEditor extends Component {
                         </button>) }
                     </Box>
                 </Flex>
-            </div>
+            </EditPanel>
         )
     }
 }

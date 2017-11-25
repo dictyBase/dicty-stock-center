@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import oauthConfig from 'utils/oauthConfig'
-import 'styles/login.scss'
+import 'styles/core.scss'
 
 export default class oauthSignInButton extends Component {
     displayName = 'oauth button component';

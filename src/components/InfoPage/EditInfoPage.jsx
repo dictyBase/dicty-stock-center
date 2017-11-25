@@ -18,9 +18,8 @@ import {
     CodeBlockButton
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
+import { ToolbarNav, EditorStyle, EditPanel } from 'styles'
 
-import 'styles/toolbar.scss'
-import 'styles/editor.scss'
 import 'styles/buttons.scss'
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 
@@ -84,20 +83,20 @@ export default class EditInfoPage extends Component {
         const { editorState } = this.state
         return (
             <div className="container">
-                <div className="edit-panel">
-                    <div className="toolbar-nav">
+                <EditPanel>
+                    <ToolbarNav>
                         <div className="btn-group">
                             <Toolbar />
                         </div>
-                    </div>
-                    <div className="editor">
+                    </ToolbarNav>
+                    <EditorStyle>
                         <Editor
                             editorState={ editorState }
                             onChange={ this.onChange }
                             plugins={ plugins }
                             ref="{(element) => { this.editor = element }}"
                         />
-                    </div>
+                    </EditorStyle>
                     <Flex justify="space-between">
                         <Box width="25%" />
                         <Box width="25%" />
@@ -120,7 +119,7 @@ export default class EditInfoPage extends Component {
                             </button>
                         </Box>
                     </Flex>
-                </div>
+                </EditPanel>
             </div>
         )
     }
