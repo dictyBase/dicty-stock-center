@@ -32,6 +32,14 @@ export const DictyHeader = styled.div`
       margin-top: 25px;
       margin-bottom: 25px;
       border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    h2 {
+      font-size: 32px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
     }
 `
 
@@ -99,44 +107,43 @@ export const DetailContainer = styled.div`
     border-right: 1px solid grey;
 `
 
-// export const StockDetailItem = styled.div`
-//     display: flex;
-//     flex-grow: 1;
-//     flex-basis: 0;
-//     width: 100%;
-//     border-bottom: 1px solid grey;
-//     border-right: none !important;
-// `
+export const StockDetailItem = styled.div`
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 100%;
+    border-bottom: 1px solid grey;
+`
 
-// export const StockDetailRows = styled.div`
-//     flex-direction: row;
+export const StockDetailRows = styled.div`
+    flex-direction: row;
 
-//     .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
-//         width: calc(33.333% / 2) !important;
-//         }
+    .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+        width: calc(33.333% / 2) !important;
+        }
 
-//     @media screen and (max-width: 1290px) {
-//         flex-direction: column !important;
-//         min-height: 90px;
+    @media screen and (max-width: 1290px) {
+        flex-direction: column !important;
+        min-height: 90px;
 
-//         .stock-detail-item div + div {
-//             border-right: none !important;
-//         }
-//         .stock-detail-row.single {
-//             height: 45px;
-//             display: inline !important;
-//         }
-//         .stock-detail-row.single > .stock-detail-item:nth-child(2) {
-//             display: none !important;
-//         }
-//         .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
-//             width: 33.333% !important;
-//         }
-//         .stock-detail-row > .stock-detail-item > div {
-//             height: initial !important;
-//         }
-//     }
-// `
+        .stock-detail-item div + div {
+            border-right: none !important;
+        }
+        .stock-detail-row.single {
+            height: 45px;
+            display: inline !important;
+        }
+        .stock-detail-row.single > .stock-detail-item:nth-child(2) {
+            display: none !important;
+        }
+        .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+            width: 33.333% !important;
+        }
+        .stock-detail-row > .stock-detail-item > div {
+            height: initial !important;
+        }
+    }
+`
 
 // mostly taken from 'draft-js-static-toolbar-plugin/lib/plugin.css'
 export const StaticToolbar = styled.div`

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StockDetailItem } from 'styles'
 
 // type Props = {
 //   right: Object,
@@ -21,17 +22,7 @@ export default class StrainDetailRow extends Component {
                 alignItems: 'stretch'
             } }
           >
-            <div
-              className="stock-detail-item"
-              style={ {
-                  display: 'flex',
-                  flexGrow: 1,
-                  flexBasis: 0,
-                  width: '100%',
-                  borderBottom: '1px solid grey'
-                  // height: '100%'
-              } }
-            >
+            <StockDetailItem>
               <div
                 style={ {
                     display: 'flex',
@@ -56,7 +47,7 @@ export default class StrainDetailRow extends Component {
               >
                 { Object.values(this.props.left)[0] }
               </div>
-            </div>
+            </StockDetailItem>
             <div
               className="stock-detail-item"
               style={ {

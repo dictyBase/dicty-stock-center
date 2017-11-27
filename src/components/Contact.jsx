@@ -14,7 +14,8 @@ import 'styles/custom.scss'
 export const fields = ['name', 'email', 'subject', 'message']
 
 const theme = {
-    headerBackgroundColor: '#f9f9f9'
+    headerBackgroundColor: '#f9f9f9',
+    headerTextColor: '#000000'
 }
 
 // still need to find way to add custom width/padding to new panels
@@ -35,13 +36,13 @@ class Contact extends Component {
         } = this.props
         return (
           <div className="container">
-            <Flex wrap justify="center">
-              <Box>
+            <Flex wrap justify="center" align="center">
+              <Box w={ 1 / 2 }>
                   <DictyHeader>
                     <h1>Contact Us</h1>
                   </DictyHeader>
               </Box>
-              <Box>
+              <Box w={ 3 / 4 }>
                   <p>For questions, comments, or suggestions, please fill out the form below
                     to send us an email&nbsp;
                     <a href="mailto:dictybase@northwestern.edu?Subject=Question" target="_top">
@@ -49,9 +50,9 @@ class Contact extends Component {
                     </a>
                   </p>
               </Box>
-              <Box>
+              <Box w={ 3 / 4 }>
                 <PanelGroup theme={ theme }>
-                <Panel collapse style={ {width: '100%'} }>
+                <Panel collapse>
                   <PanelHeader style={ {padding: '20px'} }>
                       <PanelTitle>
                         <i className="fa fa-envelope-o"></i> Email dictyBase
@@ -74,15 +75,15 @@ class Contact extends Component {
                         placeholder = { 'Please enter your message here' }>
                           Message:
                       </Comments>
-                      <Flex width={ 1 / 2 }>
-                        <Box>
+                      <Flex width={ 1 }>
+                        <Box width={ 1 / 2 } mr={ 2 }>
                           <button type="button" className="btn btn-default btn-lg btn-block"
                             disabled={ submitting }
                             onClick={ resetForm }>
                               Reset
                           </button>
                         </Box>
-                        <Box>
+                        <Box width={ 1 / 2 }>
                           <SubmitButton name={ 'Submit ' }
                             submitting={ submitting }
                             icon = { 'fa fa-paper-plane-o' }

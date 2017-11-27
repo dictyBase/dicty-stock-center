@@ -7,7 +7,9 @@ import SubmitButton from './SubmitButton'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
-import 'styles/core.scss'
+// import 'styles/core.scss'
+import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -29,15 +31,15 @@ class Shipping extends Component {
                 state, zip, country, phone, shipAccount, shipAccountNum, comments }
         } = this.props
         return (
-            <div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h2 className="page-header">Please enter shipping information</h2>
-                    </div>
-                </div>
-                <div className="row">
+            <Flex wrap justify="center">
+                <Box w={ 1 }>
+                    <DictyHeader>
+                        <h2>Please enter shipping information</h2>
+                    </DictyHeader>
+                </Box>
+                <Box w={ 2 / 3 }>
                     <form onSubmit={ handleSubmit } className="form-horizontal">
-                        <div className="col-md-6">
+                        <Box w={ 1 / 2 }>
                             <User title = { 'Shipping Address' }
                                 firstName = { firstName }
                                 lastName = { lastName }
@@ -52,47 +54,47 @@ class Shipping extends Component {
                                 country = { country }
                                 phone = { phone }
                             />
-                        </div>
-                        <div className= "col-md-6">
-                            <div className="row">
-                                <div className="col-xs-12">
+                        </Box>
+                        <Box w={ 1 / 2 }>
+                            <Flex>
+                                <Box w={ 1 }>
                                     <ShippingMethod title = { 'Shipping Method' }
                                         shipAccount = { shipAccount }
                                         shipAccountNum = { shipAccountNum }
                                     />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-xs-12">
+                                </Box>
+                            </Flex>
+                            <Flex>
+                                <Box w={ 1 }>
                                     <ShippingAdditional title = { 'Additional Information' }
                                         comments = { comments }
                                     />
-                                </div>
-                            </div>
-                            <hr />
+                                </Box>
+                            </Flex>
+                            
                             {
                                 error &&
-                                <div className="row">
-                                    <div className="col-xs-12">
+                                <Flex>
+                                    <Box w={ 1 }>
                                         <div className="alert alert-danger">
                                             <i className="fa fa-exclamation-circle"></i>
                                             <strong> Error! </strong> { error }
                                         </div>
-                                    </div>
-                                </div>
+                                    </Box>
+                                </Flex>
                             }
-                            <div className="row">
-                                <div className="col-md-offset-4 col-md-8">
+                            <Flex>
+                                <Box w={ 1 }>
                                     <SubmitButton name={ 'Continue ' }
                                         submitting={ submitting }
                                         icon = { 'fa fa-arrow-circle-right' }
                                     />
-                                </div>
-                            </div>
-                        </div>
+                                </Box>
+                            </Flex>
+                        </Box>
                     </form>
-                </div>
-            </div>
+                </Box>
+            </Flex>
         )
     }
 }

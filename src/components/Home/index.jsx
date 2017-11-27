@@ -41,8 +41,8 @@ export default class Home extends Component {
                     </Box>
                 </Flex>
                 <Flex>
-                    <Box width={ 1 / 3 } mr={ 3 }>
-                        <Flex direction="column">
+                    <Box w={ [1, 1 / 3, 1 / 3] } mr={ 3 }>
+                        <Flex column>
                             <Box>
                                 <About auth={ this.props.auth } />
                             </Box>
@@ -51,8 +51,8 @@ export default class Home extends Component {
                             </Box>
                         </Flex>
                     </Box>
-                    <Box width={ 1 / 3 } mr={ 3 }>
-                        <Flex direction="column">
+                    <Box w={ [1, 1 / 3, 1 / 3] } mr={ 3 }>
+                        <Flex column>
                             <Box>
                                 <Info />
                             </Box>
@@ -67,8 +67,8 @@ export default class Home extends Component {
                             </Box>
                         </Flex>
                     </Box>
-                    <Box width={ 1 / 3 }>
-                        <Flex justify="center" direction="column">
+                    <Box w={ [1, 1 / 3, 1 / 3] }>
+                        <Flex justify="center" column>
                             <Box>
                                 <Carousel />
                             </Box>
