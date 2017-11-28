@@ -4,9 +4,6 @@ import Cart from './Cart'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
-import 'styles/core.scss'
-
-// tweak mobile responsiveness
 
 export default class ShoppingCart extends Component {
     displayName = 'Shopping cart'
@@ -17,7 +14,7 @@ export default class ShoppingCart extends Component {
     renderAlert = () => {
         return (
             <Flex>
-                <Box width={ 1 }>
+                <Box>
                     <div className="container">
                         <div className="alert alert-danger">
                             <strong>
@@ -43,13 +40,13 @@ export default class ShoppingCart extends Component {
                 </Flex>
                 { cart.addedItems.length > 0 ? (
                     <div>
-                        <Flex>
-                            <Box width={ [1, 1 / 2] }>
+                        <Flex justify="center" wrap>
+                            <Box w={ 1 }>
                                 <Cart cart={ cart } cartActions={ cartActions } />
                             </Box>
                         </Flex>
-                        <Flex justify="left">
-                            <Box width={ [1, 1 / 2] } mt={ 50 } mr={ 1 }>
+                        <Flex wrap justify="center">
+                            <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
                                 <Link
                                     to="/strains"
                                     className="btn btn-primary btn-lg btn-block">
@@ -57,7 +54,7 @@ export default class ShoppingCart extends Component {
                                     Shopping
                                 </Link>
                             </Box>
-                            <Box width={ [1, 1 / 2] } mt={ 50 }>
+                            <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
                                 <Link
                                     to="/order/shipping"
                                     className="btn btn-success btn-lg btn-block">

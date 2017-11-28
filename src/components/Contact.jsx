@@ -24,8 +24,6 @@ const theme = {
     headerTextColor: '#000000'
 }
 
-// still need to find way to add custom width/padding to new panels
-
 class Contact extends Component {
     displayName = 'contact page'
     static propTypes = {
@@ -41,14 +39,14 @@ class Contact extends Component {
             submitting
         } = this.props
         return (
-            <div className="container">
+            <div>
                 <Flex wrap justify="center">
-                    <Box w={ 1 / 2 }>
+                    <Box>
                         <DictyHeader>
                             <h1>Contact Us</h1>
                         </DictyHeader>
                     </Box>
-                    <Box w={ 3 / 4 }>
+                    <Box w={ ["90%", 3 / 4] }>
                         <p>
                             For questions, comments, or suggestions, please fill
                             out the form below to send us an email&nbsp;
@@ -59,7 +57,7 @@ class Contact extends Component {
                             </a>
                         </p>
                     </Box>
-                    <Box w={ 3 / 4 }>
+                    <Box w={ ["90%", 3 / 4] }>
                         <PanelGroup theme={ theme }>
                             <Panel collapse>
                                 <PanelHeader style={ { padding: '20px' } }>
@@ -99,8 +97,8 @@ class Contact extends Component {
                                             }>
                                             Message:
                                         </Comments>
-                                        <Flex width={ 1 }>
-                                            <Box width={ 1 / 2 } mr={ 2 }>
+                                        <Flex>
+                                            <Box w={ 1 / 2 } mr={ 2 }>
                                                 <button
                                                     type="button"
                                                     className="btn btn-default btn-lg btn-block"
@@ -109,7 +107,7 @@ class Contact extends Component {
                                                     Reset
                                                 </button>
                                             </Box>
-                                            <Box width={ 1 / 2 }>
+                                            <Box w={ 1 / 2 }>
                                                 <SubmitButton
                                                     name={ 'Submit ' }
                                                     submitting={ submitting }
