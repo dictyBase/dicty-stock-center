@@ -63,12 +63,12 @@ class Payment extends Component {
         } = this.props
         return (
             <Flex wrap justify="center">
-                <Box w={ 2 / 3 }>
+                <Box>
                     <DictyHeader>
                         <h2>Please enter payment information</h2>
                     </DictyHeader>
                 </Box>
-                <Box w={ 3 / 5 }>
+                <Box w={ '85%' }>
                     <PanelGreen>
                         <EditPanel
                             user={ consumer }
@@ -85,8 +85,8 @@ class Payment extends Component {
                     </button>{ ' ' }
                     Click here if payer address is the same as shipping address
                     <form onSubmit={ handleSubmit } className="form-horizontal">
-                        <Flex>
-                            <Box w={ 1 / 2 } mr={ 2 }>
+                        <Flex wrap justify="center">
+                            <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                                 <User
                                     title={ 'Payer Address' }
                                     firstName={ firstName }
@@ -103,7 +103,7 @@ class Payment extends Component {
                                     phone={ phone }
                                 />
                             </Box>
-                            <Box w={ 1 / 2 }>
+                            <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                                 <Flex>
                                     <Box w={ 1 }>
                                         <PaymentMethod
@@ -132,7 +132,7 @@ class Payment extends Component {
                                     </Flex>
                                 ) }
                                 <Flex justify="flex-end">
-                                    <Box w={ 2 / 3 }>
+                                    <Box w={ [1, 1, 1, 2 / 3] }>
                                         <SubmitButton
                                             name={ 'Continue ' }
                                             submitting={ submitting }

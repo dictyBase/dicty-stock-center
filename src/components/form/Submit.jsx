@@ -24,7 +24,7 @@ export default class Submit extends Component {
         } = this.props.orderActions
         return (
             <Flex wrap justify="center">
-                <Box w={ 3 / 5 }>
+                <Box w={ '60%' }>
                     <DictyHeader>
                         <h2>Review Your Order</h2>
                         <p>
@@ -34,9 +34,9 @@ export default class Submit extends Component {
                         </p>
                     </DictyHeader>
                 </Box>
-                <Box w={ 1 / 2 }>
-                    <Flex>
-                        <Box w={ 1 / 2 } mr={ 2 }>
+                <Box w={ 3 / 4 }>
+                    <Flex wrap>
+                        <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                             <Panel collapse>
                                 <PanelBody>
                                     <EditPanel
@@ -49,7 +49,7 @@ export default class Submit extends Component {
                                 </PanelBody>
                             </Panel>
                         </Box>
-                        <Box w={ 1 / 2 }>
+                        <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                             <Panel collapse>
                                 <PanelBody>
                                     <EditPanel
