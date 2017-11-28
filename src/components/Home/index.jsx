@@ -20,9 +20,7 @@ export default class Home extends Component {
     }
     renderGreeting = () => {
         const { user } = this.props.auth
-        return (
-            <span>Hello, { user.name }</span>
-        )
+        return <span>Hello, { user.name }</span>
     }
     render() {
         const { user } = this.props.auth
@@ -39,9 +37,7 @@ export default class Home extends Component {
                     <Box>
                         <Intro />
                     </Box>
-                </Flex>
-                <Flex>
-                    <Box w={ [1, 1 / 3, 1 / 3] } mr={ 3 }>
+                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
                         <Flex column>
                             <Box>
                                 <About auth={ this.props.auth } />
@@ -51,23 +47,23 @@ export default class Home extends Component {
                             </Box>
                         </Flex>
                     </Box>
-                    <Box w={ [1, 1 / 3, 1 / 3] } mr={ 3 }>
+                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
                         <Flex column>
                             <Box>
                                 <Info />
                             </Box>
                             <Box>
                                 <Availability
-                                  stockCenter={ stockCenter }
-                                  stockCenterActions={ stockCenterActions }
-                                  />
+                                    stockCenter={ stockCenter }
+                                    stockCenterActions={ stockCenterActions }
+                                />
                             </Box>
                             <Box>
                                 <Downloads />
                             </Box>
                         </Flex>
                     </Box>
-                    <Box w={ [1, 1 / 3, 1 / 3] }>
+                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
                         <Flex justify="center" column>
                             <Box>
                                 <Carousel />

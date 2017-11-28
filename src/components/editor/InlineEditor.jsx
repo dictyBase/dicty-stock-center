@@ -259,7 +259,7 @@ export default class InlineEditor extends Component {
                           }
                         </div>
                     </Box>
-                    <Box width={ 1 / 2 }>
+                    <Box>
                         { !readOnly && (<button
                           style={ {margin: '5px auto'} }
                           type="button"
@@ -268,7 +268,7 @@ export default class InlineEditor extends Component {
                             Cancel
                         </button>) }
                     </Box>
-                    <Box width={ 1 / 2 }>
+                    <Box>
                         { !readOnly && (<button
                           style={ {margin: '5px auto'} }
                           type="button"
