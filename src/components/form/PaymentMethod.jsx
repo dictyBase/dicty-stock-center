@@ -4,8 +4,6 @@ import { Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-pane
 import PaymentInfo from './PaymentInfo'
 import 'styles/core.scss'
 
-// still need to pass in custom styles
-
 export default class PaymentMethod extends Component {
     displayName = 'payment method';
 
@@ -17,7 +15,10 @@ export default class PaymentMethod extends Component {
 
     render() {
         const { payMethod, poNum, title } = this.props
-        const panelStyle = { border: '1px solid #D2D7D3' }
+        const panelStyle = { 
+            border: '1px solid #D2D7D3',
+            height: '100%'
+        }
         const headerStyle = {
             backgroundColor: '#337ab7',
             padding: '20px',
@@ -29,7 +30,7 @@ export default class PaymentMethod extends Component {
             fontSize: '20px'
         }
         return (
-            <Panel style={ panelStyle }>
+            <Panel collapse style={ panelStyle }>
                 <PanelHeader style={ headerStyle }>
                    <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
                 </PanelHeader>

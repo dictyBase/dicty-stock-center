@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
+import {
+    Panel,
+    PanelHeader,
+    PanelTitle,
+    PanelBody
+} from 'dicty-components-panel'
 import Personal from './Personal'
 import Organization from './Organization'
 import Address from './Address'
 import Contact from './Contact'
 import 'styles/core.scss'
 
-// still need to pass in custom styles
-
 export default class User extends Component {
-    displayName = 'user information';
+    displayName = 'user information'
 
     static propTypes = {
         firstName: PropTypes.object.isRequired,
@@ -29,8 +32,21 @@ export default class User extends Component {
     }
 
     render() {
-        const { firstName, lastName, email, org, group, address, address2, city,
-                state, zip, country, phone, title } = this.props
+        const {
+            firstName,
+            lastName,
+            email,
+            org,
+            group,
+            address,
+            address2,
+            city,
+            state,
+            zip,
+            country,
+            phone,
+            title
+        } = this.props
         const panelStyle = { border: '1px solid #D2D7D3' }
         const headerStyle = {
             backgroundColor: '#337ab7',
@@ -43,9 +59,9 @@ export default class User extends Component {
             fontSize: '20px'
         }
         return (
-            <Panel style={ panelStyle }>
+            <Panel collapse style={ panelStyle }>
                 <PanelHeader style={ headerStyle }>
-                   <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
+                    <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
                     <Personal
@@ -53,10 +69,7 @@ export default class User extends Component {
                         lastName={ lastName }
                         email={ email }
                     />
-                    <Organization
-                        org={ org }
-                        group={ group }
-                    />
+                    <Organization org={ org } group={ group } />
                     <Address
                         address={ address }
                         address2={ address2 }

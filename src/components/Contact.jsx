@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { PanelGroup, Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
+import {
+    PanelGroup,
+    Panel,
+    PanelHeader,
+    PanelTitle,
+    PanelBody
+} from 'dicty-components-panel'
 import FormGroupInput from './form/FormGroupInput'
 import Comments from './form/Comments'
 import SubmitButton from './form/SubmitButton'
@@ -35,68 +41,89 @@ class Contact extends Component {
             submitting
         } = this.props
         return (
-          <div className="container">
-            <Flex wrap justify="center" align="center">
-              <Box w={ 1 / 2 }>
-                  <DictyHeader>
-                    <h1>Contact Us</h1>
-                  </DictyHeader>
-              </Box>
-              <Box w={ 3 / 4 }>
-                  <p>For questions, comments, or suggestions, please fill out the form below
-                    to send us an email&nbsp;
-                    <a href="mailto:dictybase@northwestern.edu?Subject=Question" target="_top">
-                      (dictybase@northwestern.edu)
-                    </a>
-                  </p>
-              </Box>
-              <Box w={ 3 / 4 }>
-                <PanelGroup theme={ theme }>
-                <Panel collapse>
-                  <PanelHeader style={ {padding: '20px'} }>
-                      <PanelTitle>
-                        <i className="fa fa-envelope-o"></i> Email dictyBase
-                      </PanelTitle>
-                  </PanelHeader>
-                  <PanelBody>
-                    <form onSubmit={ handleSubmit } className="form-horizontal">
-                      <FormGroupInput field={ name } >
-                          <span className="text-danger" title="required field">* </span>
-                          Name:
-                      </FormGroupInput>
-                      <FormGroupInput field={ email } >
-                          <span className="text-danger" title="required field">* </span>
-                          Email:
-                      </FormGroupInput>
-                      <FormGroupInput field={ subject } >
-                          Subject:
-                      </FormGroupInput>
-                      <Comments comments= { message } rows = { '5' }
-                        placeholder = { 'Please enter your message here' }>
-                          Message:
-                      </Comments>
-                      <Flex width={ 1 }>
-                        <Box width={ 1 / 2 } mr={ 2 }>
-                          <button type="button" className="btn btn-default btn-lg btn-block"
-                            disabled={ submitting }
-                            onClick={ resetForm }>
-                              Reset
-                          </button>
-                        </Box>
-                        <Box width={ 1 / 2 }>
-                          <SubmitButton name={ 'Submit ' }
-                            submitting={ submitting }
-                            icon = { 'fa fa-paper-plane-o' }
-                          />
-                        </Box>
-                      </Flex>
-                    </form>
-                  </PanelBody>
-                </Panel>
-                </PanelGroup>
-              </Box>
-            </Flex>
-          </div>
+            <div className="container">
+                <Flex wrap justify="center">
+                    <Box w={ 1 / 2 }>
+                        <DictyHeader>
+                            <h1>Contact Us</h1>
+                        </DictyHeader>
+                    </Box>
+                    <Box w={ 3 / 4 }>
+                        <p>
+                            For questions, comments, or suggestions, please fill
+                            out the form below to send us an email&nbsp;
+                            <a
+                                href="mailto:dictybase@northwestern.edu?Subject=Question"
+                                target="_top">
+                                (dictybase@northwestern.edu)
+                            </a>
+                        </p>
+                    </Box>
+                    <Box w={ 3 / 4 }>
+                        <PanelGroup theme={ theme }>
+                            <Panel collapse>
+                                <PanelHeader style={ { padding: '20px' } }>
+                                    <PanelTitle>
+                                        <i className="fa fa-envelope-o" /> Email
+                                        dictyBase
+                                    </PanelTitle>
+                                </PanelHeader>
+                                <PanelBody style={ { height: '100%' } }>
+                                    <form
+                                        onSubmit={ handleSubmit }
+                                        className="form-horizontal">
+                                        <FormGroupInput field={ name }>
+                                            <span
+                                                className="text-danger"
+                                                title="required field">
+                                                *{ ' ' }
+                                            </span>
+                                            Name:
+                                        </FormGroupInput>
+                                        <FormGroupInput field={ email }>
+                                            <span
+                                                className="text-danger"
+                                                title="required field">
+                                                *{ ' ' }
+                                            </span>
+                                            Email:
+                                        </FormGroupInput>
+                                        <FormGroupInput field={ subject }>
+                                            Subject:
+                                        </FormGroupInput>
+                                        <Comments
+                                            comments={ message }
+                                            rows={ '5' }
+                                            placeholder={
+                                                'Please enter your message here'
+                                            }>
+                                            Message:
+                                        </Comments>
+                                        <Flex width={ 1 }>
+                                            <Box width={ 1 / 2 } mr={ 2 }>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-default btn-lg btn-block"
+                                                    disabled={ submitting }
+                                                    onClick={ resetForm }>
+                                                    Reset
+                                                </button>
+                                            </Box>
+                                            <Box width={ 1 / 2 }>
+                                                <SubmitButton
+                                                    name={ 'Submit ' }
+                                                    submitting={ submitting }
+                                                    icon={ 'fa fa-paper-plane-o' }
+                                                />
+                                            </Box>
+                                        </Flex>
+                                    </form>
+                                </PanelBody>
+                            </Panel>
+                        </PanelGroup>
+                    </Box>
+                </Flex>
+            </div>
         )
     }
 }
@@ -110,11 +137,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default reduxForm({
-    form: 'contact',
-    fields,
-    onSubmit: submitEmail,
-    validate: syncValidate
-},
-mapStateToProps
+export default reduxForm(
+    {
+        form: 'contact',
+        fields,
+        onSubmit: submitEmail,
+        validate: syncValidate
+    },
+    mapStateToProps
 )(Contact)
