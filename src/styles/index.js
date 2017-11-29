@@ -107,43 +107,99 @@ export const DetailContainer = styled.div`
     border-right: 1px solid grey;
 `
 
-export const StockDetailItem = styled.div`
+export const PhenotypeData = styled.div`
+    padding: 10;
+    max-width: 100%;
+    min-width: 304;
+    background: #15317e;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
     display: flex;
-    flex-grow: 1;
-    flex-basis: 0;
-    width: 100%;
-    border-bottom: 1px solid grey;
 `
 
-export const StockDetailRows = styled.div`
-    flex-direction: row;
-
-    .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
-        width: calc(33.333% / 2) !important;
-        }
-
-    @media screen and (max-width: 1290px) {
-        flex-direction: column !important;
-        min-height: 90px;
-
-        .stock-detail-item div + div {
-            border-right: none !important;
-        }
-        .stock-detail-row.single {
-            height: 45px;
-            display: inline !important;
-        }
-        .stock-detail-row.single > .stock-detail-item:nth-child(2) {
-            display: none !important;
-        }
-        .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
-            width: 33.333% !important;
-        }
-        .stock-detail-row > .stock-detail-item > div {
-            height: initial !important;
-        }
-    }
+export const StrainDetailsHeader = styled.div`
+    padding: 10;
+    max-width: 60%;
+    min-width: 304;
+    background: #15317e;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
 `
+
+// export const StockDetailItem = styled.div`
+//     display: flex;
+//     flex-grow: 1;
+//     flex-basis: 0;
+//     width: 100%;
+//     border-bottom: 1px solid grey;
+//     /* height: 100%; */
+// `
+
+// export const StockTableLeftKey = styled.div`
+//     display: flex;
+//     padding: 5px 10px 5px 10px;
+//     width: 33.3333%;
+//     min-width: 117;
+//     height: 100%;
+//     border-right: 1px solid grey;
+// `
+
+// export const StockTableLeftValue = styled.div`
+//     display: flex;
+//     padding: 5px 10px 5px 10px;
+//     width: 66.66666%;
+//     min-width: 187;
+//     height: 100%;
+//     border-right: this.props.right && 1px solid grey;
+// `
+
+// export const StockTableRightKey = styled.div`
+//     display: flex;
+//     padding: 5px 10px 5px 10px;
+//     width: 33.3333%;
+//     min-width: 117;
+//     height: 100%;
+//     border-right: this.props.right && 1px solid grey;
+// `
+
+// export const StockTableRightValue = styled.div`
+//     display: flex;
+//     padding: 5px 10px 5px 10px;
+//     width: 66.66666%;
+//     min-width: 187;
+// `
+
+// export const StockDetailRows = styled.div`
+//     flex-direction: row;
+
+//     .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+//         width: calc(33.333% / 2) !important;
+//         }
+
+//     @media screen and (max-width: 1290px) {
+//         flex-direction: column !important;
+//         min-height: 90px;
+
+//         .stock-detail-item div + div {
+//             border-right: none !important;
+//         }
+//         .stock-detail-row.single {
+//             height: 45px;
+//             display: inline !important;
+//         }
+//         .stock-detail-row.single > .stock-detail-item:nth-child(2) {
+//             display: none !important;
+//         }
+//         .stock-detail-row.single > .stock-detail-item:nth-child(1) > div:nth-child(1) {
+//             width: 33.333% !important;
+//         }
+//         .stock-detail-row > .stock-detail-item > div {
+//             height: initial !important;
+//         }
+//     }
+// `
 
 // mostly taken from 'draft-js-static-toolbar-plugin/lib/plugin.css'
 export const StaticToolbar = styled.div`

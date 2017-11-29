@@ -5,7 +5,7 @@ import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
-import { DetailContainer } from 'styles'
+import { DetailContainer, PhenotypeData, DictyHeader, StrainDetailsHeader } from 'styles'
 import 'styles/custom.scss'
 
 export default class StrainDetail extends Component {
@@ -35,31 +35,19 @@ export default class StrainDetail extends Component {
           )
         })
         return (
-          <div className="phenotype-container">
-            <div className="phenotype-header" style={ {maxWidth: '60%', margin: '0 auto 20px auto'} }>
-              <div style={
-                  {
-                      padding: 10,
-                      maxWidth: '100%',
-                      minWidth: 304,
-                      background: '#15317e',
-                      color: 'white',
-                      margin: '0 auto',
-                      textAlign: 'center',
-                      display: 'flex'
-                  }
-                }
-              >
-                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Phenotype</b></div>
-                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Notes</b></div>
-                <div style={ {flexGrow: 1, flexBasis: '30%'} }><b>Reference</b></div>
-                <div style={ {flexGrow: 1, flexBasis: '10%'} } />
-              </div>
-              <div style={ {borderWidth: '1px 1px 0px 1px', borderColor: 'black', borderStyle: 'solid'} }>
+          <Flex justify="center">
+            <Box w={ '60%' } mt={ 0 } my="auto" ml={ 20 }>
+              <PhenotypeData>
+                <Box w={ '30%' }><b>Phenotype</b></Box>
+                <Box w={ '30%' }><b>Notes</b></Box>
+                <Box w={ '30%' }><b>Reference</b></Box>
+                <Box w={ '10%' } />
+              </PhenotypeData>
+              <Box borderColor="black" borderWidth={ 1 } borderTop borderRight borderLeft>
                 { rows }
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Flex>
         )
     }
     render() {
@@ -94,36 +82,18 @@ export default class StrainDetail extends Component {
           // {_blank: 'asdf '}
         ]
         return (
-          <div className="strain-details">
+          <div>
             <Flex justify="center">
               <Box>
-                <h1
-                    style={
-                        {
-                            borderBottom: '1px solid #eee',
-                            fontSize: 45,
-                            margin: 10
-                        }
-                    }
-                >
-                  { this.props.match.params.id }
-                </h1>
+                <DictyHeader>
+                  <h2>{ this.props.match.params.id }</h2>
+                </DictyHeader>
               </Box>
             </Flex>
             { strain.phenotypes && this.phenotypes() }
-            <div
-                style={ {
-                    padding: 10,
-                    maxWidth: '60%',
-                    minWidth: 304,
-                    background: '#15317e',
-                    color: 'white',
-                    margin: '0 auto',
-                    textAlign: 'center'
-                } }
-            >
+            <StrainDetailsHeader>
               <h3>Strain Details</h3>
-            </div>
+            </StrainDetailsHeader>
             {
                 isFetching || !strain
                 ? <Loader message="Loading..." />
@@ -140,33 +110,24 @@ export default class StrainDetail extends Component {
                     </DetailContainer>
                 )
             }
-            <div style={
-                {
-                    marginTop: '50px',
-                    maxWidth: '60%',
-                    margin: '0 auto',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    paddingTop: '2.75%'
-                }
-            }>
-              <div style={ {width: '44%', paddingRight: '4%'} }>
+            <Flex wrap justify="center">
+              <Box w={ [1, '30%'] } mt={ 10 } mr={ 1 }>
                 <button
                   className="btn btn-primary btn-block add-to-cart"
                   onClick={ () => addToCart(cartItem) }
                 >
                   <i className="fa fa-share"></i> Add to Cart
                 </button>
-              </div>
-              <div style={ {width: '44%', paddingLeft: '4%'} }>
+              </Box>
+              <Box w={ [1, '30%'] } mt={ 10 } mr={ 1 }>
                 <Link
                   to="/order/shipping"
                   className="btn btn-success btn-block"
                 >
                   <i className="fa fa-shopping-cart"></i> Checkout
                 </Link>
-              </div>
-            </div>
+              </Box>
+            </Flex>
           </div>
         )
     }

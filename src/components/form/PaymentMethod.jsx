@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Panel, PanelHeader, PanelTitle, PanelBody } from 'dicty-components-panel'
+import {
+    Panel,
+    PanelHeader,
+    PanelTitle,
+    PanelBody
+} from 'dicty-components-panel'
 import PaymentInfo from './PaymentInfo'
 import 'styles/core.scss'
 
 export default class PaymentMethod extends Component {
-    displayName = 'payment method';
+    displayName = 'payment method'
 
     static propTypes = {
         payMethod: PropTypes.object.isRequired,
@@ -15,7 +20,7 @@ export default class PaymentMethod extends Component {
 
     render() {
         const { payMethod, poNum, title } = this.props
-        const panelStyle = { 
+        const panelStyle = {
             border: '1px solid #D2D7D3',
             height: '100%'
         }
@@ -32,10 +37,10 @@ export default class PaymentMethod extends Component {
         return (
             <Panel collapse style={ panelStyle }>
                 <PanelHeader style={ headerStyle }>
-                   <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
+                    <PanelTitle style={ titleStyle }>{ title }</PanelTitle>
                 </PanelHeader>
                 <PanelBody>
-                    <PaymentInfo payMethod={ payMethod } poNum={ poNum }/>
+                    <PaymentInfo payMethod={ payMethod } poNum={ poNum } />
                 </PanelBody>
             </Panel>
         )
