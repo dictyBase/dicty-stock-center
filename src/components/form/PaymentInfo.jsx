@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import 'styles/core.scss'
+import { RequiredText } from 'styles'
 
 export default class PaymentInfo extends Component {
     displayName = 'payment information';
@@ -34,7 +34,7 @@ export default class PaymentInfo extends Component {
             <div>
                 <div className={ groupClass }>
                     <label className="col-sm-3 control-label">
-                        <span className="text-danger" title="required field">* </span>
+                        <RequiredText title="required field">* </RequiredText>
                         Payment Method:
                     </label>
                     <div className="col-sm-9">

@@ -14,7 +14,7 @@ import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
+import { DictyHeader, RequiredText } from 'styles'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -70,19 +70,17 @@ class Contact extends Component {
                                         onSubmit={ handleSubmit }
                                         className="form-horizontal">
                                         <FormGroupInput field={ name }>
-                                            <span
-                                                className="text-danger"
+                                            <RequiredText
                                                 title="required field">
                                                 *{ ' ' }
-                                            </span>
+                                            </RequiredText>
                                             Name:
                                         </FormGroupInput>
                                         <FormGroupInput field={ email }>
-                                            <span
-                                                className="text-danger"
+                                            <RequiredText
                                                 title="required field">
                                                 *{ ' ' }
-                                            </span>
+                                            </RequiredText>
                                             Email:
                                         </FormGroupInput>
                                         <FormGroupInput field={ subject }>

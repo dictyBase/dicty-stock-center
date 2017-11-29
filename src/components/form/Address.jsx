@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
 import FormGroupSelect from './FormGroupSelect'
 import countryList from 'forms/utils/countryList'
-import 'styles/core.scss'
+import { RequiredText } from 'styles'
 
 export default class Address extends Component {
     displayName = 'form address information';
@@ -22,25 +22,25 @@ export default class Address extends Component {
         return (
             <div>
                 <FormGroupInput field={ address } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     Address:
                 </FormGroupInput>
                 <FormGroupInput field={ address2 } >
                     Address:
                 </FormGroupInput>
                 <FormGroupInput field={ city } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     City:
                 </FormGroupInput>
                 <FormGroupInput field={ state } >
                     State/Province:
                 </FormGroupInput>
                 <FormGroupInput field={ zip } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     ZIP:
                 </FormGroupInput>
                 <FormGroupSelect field={ country } list={ countryList }>
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     Country:
                 </FormGroupSelect>
             </div>

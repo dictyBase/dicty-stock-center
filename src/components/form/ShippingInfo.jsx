@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import 'styles/core.scss'
+import { RequiredText } from 'styles'
 
 export default class ShippingInfo extends Component {
     displayName = 'form shipping information';
@@ -41,7 +41,7 @@ export default class ShippingInfo extends Component {
             <div>
                 <div className={ groupClass }>
                     <label className="col-sm-3 control-label">
-                        <span className="text-danger">* </span>
+                        <RequiredText>* </RequiredText>
                         Shipping Account:
                     </label>
                     <div className="col-sm-9">

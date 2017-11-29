@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
-import 'styles/core.scss'
+import { RequiredText } from 'styles'
 
 export default class Organization extends Component {
     displayName = 'component for organization/lab/group info';
@@ -16,11 +16,11 @@ export default class Organization extends Component {
         return (
             <div>
                 <FormGroupInput field={ org } >
-                    <span className="text-danger" title="required field">* </span>
+                    <RequiredText title="required field">* </RequiredText>
                     Organization:
                 </FormGroupInput>
                 <FormGroupInput field={ group } >
-                    <span className="text-danger" title="required field">* </span>
+                    <RequiredText title="required field">* </RequiredText>
                     Lab/Group:
                 </FormGroupInput>
             </div>

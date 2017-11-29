@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
-import 'styles/core.scss'
+import { RequiredText } from 'styles'
 
 export default class Personal extends Component {
     displayName = 'form personal information';
@@ -17,15 +17,15 @@ export default class Personal extends Component {
         return (
             <div>
                 <FormGroupInput field={ firstName } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     First Name:
                 </FormGroupInput>
                 <FormGroupInput field={ lastName } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     Last Name:
                 </FormGroupInput>
                 <FormGroupInput field={ email } >
-                    <span className="text-danger">* </span>
+                    <RequiredText>* </RequiredText>
                     Email:
                 </FormGroupInput>
             </div>

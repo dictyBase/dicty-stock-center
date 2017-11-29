@@ -4,7 +4,7 @@ import StockDetailRow from 'components/StockDetailRow'
 import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, PhenotypeData } from 'styles'
+import { DictyHeader, StrainDetailsHeader } from 'styles'
 
 export default class PlasmidDetail extends Component {
     displayName = 'plasmid detail'
@@ -44,9 +44,9 @@ export default class PlasmidDetail extends Component {
                         </DictyHeader>
                     </Box>
                     <Box w={ ['95%', '80%'] }>
-                        <PhenotypeData>
+                        <StrainDetailsHeader>
                             <h3>Plasmid Details</h3>
-                        </PhenotypeData>
+                        </StrainDetailsHeader>
                     </Box>
 
                     { isFetching || !plasmid ? (

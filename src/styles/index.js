@@ -124,6 +124,10 @@ export const StrainDetailsHeader = styled.div`
     text-align: center;
 `
 
+export const RequiredText = styled.span`
+    color: #dc3545;
+`
+
 // mostly taken from 'draft-js-static-toolbar-plugin/lib/plugin.css'
 export const StaticToolbar = styled.div`
     .draftJsToolbar__buttonWrapper__1Dmqh {
