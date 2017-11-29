@@ -9,7 +9,6 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { PanelGreen } from 'styles'
-import 'styles/custom.scss'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',

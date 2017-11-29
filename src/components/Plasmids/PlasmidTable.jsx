@@ -6,7 +6,6 @@ import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import { Flex, Box } from 'rebass'
 import { ItemAvailable, ItemUnavailable } from 'styles'
-import 'styles/custom.scss'
 
 // type Props = {
 //   cellWidth: number,

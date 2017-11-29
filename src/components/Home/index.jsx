@@ -10,7 +10,6 @@ import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
 import { HomepageHeader } from 'styles'
-import 'styles/custom.scss'
 
 export default class Home extends Component {
     displayName = 'homepage component'

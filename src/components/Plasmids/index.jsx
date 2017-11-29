@@ -4,7 +4,6 @@ import Loader from 'components/Loader'
 import PlasmidTable from 'components/Plasmids/PlasmidTable'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
-import 'styles/custom.scss'
 
 export default class Plasmids extends Component {
     displayName = 'plasmids list'

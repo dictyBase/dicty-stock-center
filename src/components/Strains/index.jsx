@@ -4,7 +4,6 @@ import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
-import 'styles/custom.scss'
 
 export default class Strains extends Component {
     displayName = 'strains list'

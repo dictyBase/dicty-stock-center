@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Flex, Box } from 'rebass'
-import 'styles/custom.scss'
-
 
 export default class SearchBar extends Component {
     displayName = 'search bar'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import 'styles/custom.scss'
 
 export default class Intro extends Component {
     displayName = 'downloads links'

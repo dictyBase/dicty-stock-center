@@ -15,7 +15,6 @@ import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
-import 'styles/custom.scss'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -46,7 +45,7 @@ class Contact extends Component {
                             <h1>Contact Us</h1>
                         </DictyHeader>
                     </Box>
-                    <Box w={ ["90%", 3 / 4] }>
+                    <Box w={ ['90%', 3 / 4] }>
                         <p>
                             For questions, comments, or suggestions, please fill
                             out the form below to send us an email&nbsp;
@@ -57,7 +56,7 @@ class Contact extends Component {
                             </a>
                         </p>
                     </Box>
-                    <Box w={ ["90%", 3 / 4] }>
+                    <Box w={ ['90%', 3 / 4] }>
                         <PanelGroup theme={ theme }>
                             <Panel collapse>
                                 <PanelHeader style={ { padding: '20px' } }>

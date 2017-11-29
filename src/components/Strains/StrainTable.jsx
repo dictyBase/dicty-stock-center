@@ -5,7 +5,6 @@ import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { ItemAvailable, ItemUnavailable } from 'styles'
-import 'styles/custom.scss'
 
 export default class StrainTable extends Component {
     displayName = 'strain table'
