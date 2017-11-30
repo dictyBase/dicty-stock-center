@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import { Container } from 'styles'
 
 export default class Error extends Component {
     displayName = 'homepage component';
@@ -8,13 +8,13 @@ export default class Error extends Component {
         const orderError = order.error
         const authError = auth.error
         return (
-            <div className="container">
+            <Container>
                 <div className="alert alert-danger text-center">
                     <h1><i className="fa fa-exclamation-triangle" ></i> Error</h1>
                     <h2>{ authError && authError }</h2>
                     <h2>{ orderError && orderError }</h2>
                 </div>
-            </div>
+            </Container>
         )
     }
 }

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
-import 'styles/core.scss'
+import styled from 'styled-components'
+
+const CenteredBox = styled(Box)`
+    text-align: center;
+`
 
 export default class Loader extends Component {
-    displayName = 'loading component';
+    displayName = 'loading component'
     static propTypes = {
         title: PropTypes.string,
         message: PropTypes.string
@@ -12,17 +16,13 @@ export default class Loader extends Component {
     render() {
         const { title, message } = this.props
         return (
-            <div className="container">
-                <Flex justify="center">
-                    <Box>
-                        <div className="text-center">
-                            <h1>{ title && title }</h1>
-                            <i className="fa fa-5x fa-spinner fa-pulse fa-fw margin-bottom"></i>
-                            <h4>{ message && message }</h4>
-                        </div>
-                    </Box>
-                </Flex>
-            </div>
+            <Flex wrap justify="center">
+                <CenteredBox>
+                    <h1>{ title && title }</h1>
+                    <i className="fa fa-5x fa-spinner fa-pulse fa-fw margin-bottom" />
+                    <h4>{ message && message }</h4>
+                </CenteredBox>
+            </Flex>
         )
     }
 }

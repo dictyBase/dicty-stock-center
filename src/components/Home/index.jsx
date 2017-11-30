@@ -9,7 +9,7 @@ import Carousel from './Carousel'
 import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
-import { HomepageHeader } from 'styles'
+import { HomepageHeader, Container } from 'styles'
 
 export default class Home extends Component {
     displayName = 'homepage component'
@@ -25,7 +25,7 @@ export default class Home extends Component {
         const { user } = this.props.auth
         const { stockCenter, stockCenterActions } = this.props
         return (
-            <div className="container">
+            <Container>
                 <Flex wrap>
                     <Box>{ user && this.renderGreeting() }</Box>
                     <Box>
@@ -73,7 +73,7 @@ export default class Home extends Component {
                         </Flex>
                     </Box>
                 </Flex>
-            </div>
+            </Container>
         )
     }
 }

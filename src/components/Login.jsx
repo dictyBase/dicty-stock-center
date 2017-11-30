@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import OauthSignInButton from 'components/OauthSignInButton'
 import clientConfig from 'utils/clientConfig'
-import 'styles/core.scss'
+import { Flex, Box } from 'rebass'
+import { DictyHeader } from 'styles'
 
 const getDefaultProviders = () => {
     let providers = []
@@ -13,13 +14,13 @@ const getDefaultProviders = () => {
 }
 
 export default class Login extends Component {
-    displayName = 'login display';
+    displayName = 'login display'
     static propTypes = {
         providers: PropTypes.array
-    };
+    }
     static defaultProps = {
         providers: getDefaultProviders()
-    };
+    }
     constructor(props) {
         super(props)
     }
@@ -27,24 +28,24 @@ export default class Login extends Component {
         const { providers } = this.props
         return providers.map((provider, index) => {
             return (
-                <OauthSignInButton provider={ provider } key={ index } {...this.props}/>
+                <OauthSignInButton
+                    provider={ provider }
+                    key={ index }
+                    {...this.props}
+                />
             )
         })
-    };
+    }
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-offset-4 col-sm-4">
-                        <div className="panel panel-default">
-                            <div className="panel-body text-center">
-                                <h1>Log in</h1>
-                                { this.renderOauthButtons() }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Flex justify="center">
+                <Box w={ [1, 1 / 2, 1 / 3] }>
+                    <DictyHeader>
+                        <h1>Log in</h1>
+                    </DictyHeader>
+                    { this.renderOauthButtons() }
+                </Box>
+            </Flex>
         )
     }
 }

@@ -5,7 +5,7 @@ import InlineToolbar from 'components/InlineToolbar'
 import { blockTypes, inlineTypes } from 'components/ToolSpec'
 import { Flex, Box } from 'rebass'
 import simpleStorage from 'simplestorage.js'
-import { ToolbarNav, EditorStyle, EditPanel } from 'styles'
+import { ToolbarNav, EditorStyle, EditPanel, Container } from 'styles'
 
 export default class EditPage extends Component {
     displayName = 'page editor'
@@ -49,7 +49,7 @@ export default class EditPage extends Component {
     render() {
         const { editorState } = this.state
         return (
-            <div className="container">
+            <Container>
                 <EditPanel>
                     <ToolbarNav>
                         <div className="btn-group">
@@ -96,7 +96,7 @@ export default class EditPage extends Component {
                         </Box>
                     </Flex>
                 </EditPanel>
-            </div>
+            </Container>
         )
     }
 }

@@ -3,7 +3,7 @@ import Loader from 'components/Loader'
 import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
+import { DictyHeader, Container } from 'styles'
 
 export default class Strains extends Component {
     displayName = 'strains list'
@@ -26,7 +26,7 @@ export default class Strains extends Component {
     render() {
         const data: Array<Object> = this.props.stockCenter.strainCatalog.data
         return (
-            <div className="container">
+            <Container>
                 <Flex justify="center">
                     <Box>
                         <DictyHeader>
@@ -44,7 +44,7 @@ export default class Strains extends Component {
                 ) : (
                     <Loader message="We're testing your patience." />
                 ) }
-            </div>
+            </Container>
         )
     }
 }

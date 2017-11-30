@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Loader from 'components/Loader'
 import PlasmidTable from 'components/Plasmids/PlasmidTable'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
+import { DictyHeader, Container } from 'styles'
 
 export default class Plasmids extends Component {
     displayName = 'plasmids list'
@@ -15,7 +15,7 @@ export default class Plasmids extends Component {
     render() {
         const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
         return (
-          <div className="container">
+          <Container>
             <Flex justify="center">
                 <Box>
                   <DictyHeader>
@@ -28,7 +28,7 @@ export default class Plasmids extends Component {
               ? <PlasmidTable {...this.props} />
               : <Loader message="We're testing your patience." />
             }
-          </div>
+          </Container>
         )
     }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Cart from './Cart'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
+import { DictyHeader, Container } from 'styles'
 
 export default class ShoppingCart extends Component {
     displayName = 'Shopping cart'
@@ -15,14 +15,14 @@ export default class ShoppingCart extends Component {
         return (
             <Flex>
                 <Box>
-                    <div className="container">
+                    <Container>
                         <div className="alert alert-danger">
                             <strong>
                                 <i className="fa fa-exclamation-circle" />
                             </strong>{ ' ' }
                             There are no items in your cart.
                         </div>
-                    </div>
+                    </Container>
                 </Box>
             </Flex>
         )
@@ -30,7 +30,7 @@ export default class ShoppingCart extends Component {
     render() {
         const { cart, cartActions } = this.props
         return (
-            <div className="container">
+            <Container>
                 <Flex justify="center">
                     <Box>
                         <DictyHeader>
@@ -67,7 +67,7 @@ export default class ShoppingCart extends Component {
                 ) : (
                     this.renderAlert()
                 ) }
-            </div>
+            </Container>
         )
     }
 }

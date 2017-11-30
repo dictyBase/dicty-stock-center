@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
-import 'styles/core.scss'
-
-// remove Bootstrap?
+import { Container } from 'styles'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart icon'
@@ -14,7 +12,7 @@ export default class Cart extends Component {
     render() {
         const { addedItems } = this.props.cart
         return (
-            <div className="container">
+            <Container>
                 <Flex justify="flex-end">
                     <Box>
                         <Link to="/cart">
@@ -23,7 +21,7 @@ export default class Cart extends Component {
                         </Link>
                     </Box>
                 </Flex>
-            </div>
+            </Container>
         )
     }
 }

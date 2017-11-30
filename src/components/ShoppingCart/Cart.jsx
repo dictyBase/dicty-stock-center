@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import { Container } from 'styles'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart'
@@ -12,39 +12,42 @@ export default class Cart extends Component {
     render() {
         const { cart, cartActions } = this.props
         return (
-                <div className="container">
+            <Container>
                 <div className="table-responsive">
                     <table className="table table-condensed">
                         <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Strain/Plasmid Name</th>
-                            <th>Fee</th>
-                          </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Strain/Plasmid Name</th>
+                                <th>Fee</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            {
-                                cart.addedItems.map((item, index) => {
-                                    return (
-                                        <tr key={ index }>
-                                          <td>{ item.id }</td>
-                                          <td>{ item.name }</td>
-                                          <td>{ item.fee }</td>
-                                          <td>
-                                            <button type="button"
-                                              className="btn btn-danger"
-                                              onClick={ () => cartActions.removeItem(item.id) }>
-                                              <i className="fa fa-trash-o"></i>
+                            { cart.addedItems.map((item, index) => {
+                                return (
+                                    <tr key={ index }>
+                                        <td>{ item.id }</td>
+                                        <td>{ item.name }</td>
+                                        <td>{ item.fee }</td>
+                                        <td>
+                                            <button
+                                                type="button"
+                                                className="btn btn-danger"
+                                                onClick={ () =>
+                                                    cartActions.removeItem(
+                                                        item.id
+                                                    )
+                                                }>
+                                                <i className="fa fa-trash-o" />
                                             </button>
-                                          </td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                        </td>
+                                    </tr>
+                                )
+                            }) }
                         </tbody>
-                      </table>
+                    </table>
                 </div>
-                </div>
+            </Container>
         )
     }
 }

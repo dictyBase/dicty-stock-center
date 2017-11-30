@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
-import 'styles/core.scss'
+import { Container } from 'styles'
 
 // double-check proper center alignment
 
@@ -11,7 +11,7 @@ export default class MyDsc extends Component {
     render() {
         const { user, provider } = this.props.auth
         return (
-            <div className="container">
+            <Container>
                 <Flex>
                     <Box width={ 1 }>
                         <ol className="breadcrumb">
@@ -36,7 +36,7 @@ export default class MyDsc extends Component {
                         </Panel>
                     </Box>
                 </Flex>
-            </div>
+            </Container>
         )
     }
 }

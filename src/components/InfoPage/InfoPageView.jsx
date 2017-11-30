@@ -9,7 +9,7 @@ import findEntities from 'utils/findEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 import { Flex, Box } from 'rebass'
-import { ToolbarNav } from 'styles'
+import { Container, ToolbarNav } from 'styles'
 
 export default class InfoPageView extends Component {
     displayName = 'information page component'
@@ -38,7 +38,7 @@ export default class InfoPageView extends Component {
     render() {
         const { lastEdited } = this.props.page
         return (
-            <div className="container">
+            <Container>
                 <ToolbarNav>
                     <Flex>
                         <Box>
@@ -75,7 +75,7 @@ export default class InfoPageView extends Component {
                         />
                     </Box>
                 </Flex>
-            </div>
+            </Container>
         )
     }
 }

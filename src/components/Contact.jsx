@@ -14,7 +14,7 @@ import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, RequiredText } from 'styles'
+import { DictyHeader, RequiredText, Container } from 'styles'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -38,7 +38,7 @@ class Contact extends Component {
             submitting
         } = this.props
         return (
-            <div>
+            <Container>
                 <Flex wrap justify="center">
                     <Box>
                         <DictyHeader>
@@ -118,7 +118,7 @@ class Contact extends Component {
                         </PanelGroup>
                     </Box>
                 </Flex>
-            </div>
+            </Container>
         )
     }
 }
