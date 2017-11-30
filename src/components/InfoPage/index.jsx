@@ -18,11 +18,12 @@ export default class InfoPage extends Component {
         const { isFetching, content } = this.props.page
         if (!isFetching && content) {
             return (
-              <InfoPageView
-                page={ this.props.page }
-                pageActions={ this.props.pageActions }
-                routeProps={ this.props.routeProps }
-              />
+                <InfoPageView
+                    page={ this.props.page }
+                    pageActions={ this.props.pageActions }
+                    routeProps={ this.props.routeProps }
+                    match={ this.props.match }
+                />
             )
         }
         return <Loader title="Page loading..." />

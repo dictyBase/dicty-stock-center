@@ -32,8 +32,8 @@ export default class InfoPageView extends Component {
     onClick = e => {
         e.preventDefault()
 
-        const { pageActions, routeProps, page } = this.props
-        pageActions.editPage(page.content, routeProps.match.params.name)
+        const { pageActions, match, page } = this.props
+        pageActions.editPage(page.content, match.params.name)
     }
     render() {
         const { lastEdited } = this.props.page
