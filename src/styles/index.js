@@ -17,6 +17,17 @@ export const Container = styled.div`
     }
 `
 
+export const AlertBox = styled.div`
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    text-align: center;
+`
+
 export const ToolbarNav = styled.div`
     background-color: #fafafa;
     border-radius: 2px;

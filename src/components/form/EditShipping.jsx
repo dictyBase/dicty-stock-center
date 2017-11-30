@@ -7,7 +7,7 @@ import SubmitButton from './SubmitButton'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
-import 'styles/core.scss'
+import { AlertBox } from 'styles'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -74,10 +74,10 @@ class EditShipping extends Component {
                                 error &&
                                 <div className="row">
                                     <div className="col-xs-12">
-                                        <div className="alert alert-danger">
+                                        <AlertBox>
                                             <i className="fa fa-exclamation-circle"></i>
                                             <strong> Error! </strong> { error } { error.message }
-                                        </div>
+                                        </AlertBox>
                                     </div>
                                 </div>
                             }

@@ -8,7 +8,7 @@ import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
+import { DictyHeader, AlertBox } from 'styles'
 
 export const fields = [
     'firstName',
@@ -102,10 +102,10 @@ class Shipping extends Component {
 
                                 { error && (
                                     <Box mb={ 2 }>
-                                        <div className="alert alert-danger">
+                                        <AlertBox>
                                             <i className="fa fa-exclamation-circle" />
                                             <strong> Error! </strong> { error }
-                                        </div>
+                                        </AlertBox>
                                     </Box>
                                 ) }
                                 <hr />

@@ -9,7 +9,7 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { PanelGreen, DictyHeader } from 'styles'
+import { PanelGreen, DictyHeader, AlertBox } from 'styles'
 
 export const fields = [
     'firstName',
@@ -123,11 +123,11 @@ class Payment extends Component {
                                 { error && (
                                     <Flex>
                                         <Box w={ 1 }>
-                                            <div className="alert alert-danger">
+                                            <AlertBox>
                                                 <i className="fa fa-exclamation-circle" />
                                                 <strong> Error! </strong>{ ' ' }
                                                 { error }
-                                            </div>
+                                            </AlertBox>
                                         </Box>
                                     </Flex>
                                 ) }

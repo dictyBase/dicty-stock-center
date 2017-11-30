@@ -8,7 +8,7 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
-import { PanelGreen } from 'styles'
+import { PanelGreen, AlertBox } from 'styles'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -90,10 +90,10 @@ class EditPayment extends Component {
                                 error &&
                                 <div className="row">
                                     <div className="col-xs-12">
-                                        <div className="alert alert-danger">
+                                        <AlertBox>
                                             <i className="fa fa-exclamation-circle"></i>
                                             <strong> Error! </strong> { error }
-                                        </div>
+                                        </AlertBox>
                                     </div>
                                 </div>
                             }
