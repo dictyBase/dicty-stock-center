@@ -28,6 +28,12 @@ export const AlertBox = styled.div`
     text-align: center;
 `
 
+export const ResponsiveImage = styled.img`
+    display: block;
+    max-width: 100%;
+    height: auto;
+`
+
 export const ToolbarNav = styled.div`
     background-color: #fafafa;
     border-radius: 2px;

@@ -35,7 +35,7 @@ export default class Submit extends Component {
                     </DictyHeader>
                 </Box>
                 <Box w={ 3 / 4 }>
-                    <Flex wrap>
+                    <Flex wrap justify="center">
                         <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                             <Panel collapse>
                                 <PanelBody>

@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import { Container } from 'styles'
+import { Flex, Box } from 'rebass'
+import styled from 'styled-components'
+
+const CenteredBox = styled(Box)`
+    text-align: center;
+`
 
 export default class SubmitLoader extends Component {
-    displayName = 'loading component';
+    displayName = 'loading component'
     render() {
         return (
-            <div className="container">
-                <div className="col-md-offset-4 col-md-4 text-center">
-                    <h1>Please wait...</h1>
-                    <i className="fa fa-5x fa-spinner fa-pulse fa-fw margin-bottom"></i>
-                </div>
-            </div>
+            <Container>
+                <Flex wrap justify="center">
+                    <CenteredBox>
+                        <h1>Please wait...</h1>
+                        <i className="fa fa-5x fa-spinner fa-pulse fa-fw margin-bottom" />
+                    </CenteredBox>
+                </Flex>
+            </Container>
         )
     }
 }

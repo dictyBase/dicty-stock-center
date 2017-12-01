@@ -69,24 +69,30 @@ class Payment extends Component {
                     </DictyHeader>
                 </Box>
                 <Box w={ '85%' }>
-                    <PanelGreen>
-                        <EditPanel
-                            user={ consumer }
-                            edit={ editShipping }
-                            title={ 'Ship to:' }
-                        />
-                    </PanelGreen>
-                    <hr />
-                    <button
-                        type="button"
-                        className="btn btn-success btn-xs"
-                        onClick={ sameAsShipping }>
-                        Same as shipping
-                    </button>{ ' ' }
-                    Click here if payer address is the same as shipping address
+                    <Flex wrap justify="center">
+                        <Box w={ '95%' }>
+                            <PanelGreen>
+                                <EditPanel
+                                    user={ consumer }
+                                    edit={ editShipping }
+                                    title={ 'Ship to:' }
+                                />
+                            </PanelGreen>
+                            <hr />
+                            <button
+                                type="button"
+                                className="btn btn-success btn-xs"
+                                onClick={ sameAsShipping }>
+                                Same as shipping
+                            </button>{ ' ' }
+                            Click here if payer address is the same as shipping
+                            address<br />
+                            <br />
+                        </Box>
+                    </Flex>
                     <form onSubmit={ handleSubmit } className="form-horizontal">
                         <Flex wrap justify="center">
-                            <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
+                            <Box w={ [1, 1, 1, 1 / 2] } mr={ 1 }>
                                 <User
                                     title={ 'Payer Address' }
                                     firstName={ firstName }
@@ -132,7 +138,7 @@ class Payment extends Component {
                                     </Flex>
                                 ) }
                                 <Flex justify="flex-end">
-                                    <Box w={ [1, 1, 1, 2 / 3] }>
+                                    <Box w={ [1, 1, 1, 1 / 2] }>
                                         <SubmitButton
                                             name={ 'Continue ' }
                                             submitting={ submitting }

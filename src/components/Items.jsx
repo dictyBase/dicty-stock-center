@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import { Flex, Box } from 'rebass'
 
 export default class Items extends Component {
-    displayName = 'Items in the cart';
+    displayName = 'Items in the cart'
 
     static propTypes = {
         items: PropTypes.array.isRequired
@@ -12,16 +12,20 @@ export default class Items extends Component {
         const { items } = this.props
         return (
             <div>
-                <div className="row">
-                    <div className="col-xs-6 col-sm-4"><h5>ID</h5></div>
-                    <div className="col-xs-6 col-sm-4"><h5>Strain/Plasmid Name</h5></div>
-                </div>
+                <Flex wrap>
+                    <Box w={ 1 / 2 }>
+                        <h5>ID</h5>
+                    </Box>
+                    <Box w={ 1 / 2 }>
+                        <h5>Strain/Plasmid Name</h5>
+                    </Box>
+                </Flex>
                 { items.map((item, index) => {
                     return (
-                        <div className="row" key={ index }>
-                            <div className="col-xs-6 col-sm-4">{ item.id }</div>
-                            <div className="col-xs-6 col-sm-4">{ item.name }</div>
-                        </div>
+                        <Flex wrap key={ index }>
+                            <Box w={ 1 / 2 }>{ item.id }</Box>
+                            <Box w={ 1 / 2 }>{ item.name }</Box>
+                        </Flex>
                     )
                 }) }
             </div>
