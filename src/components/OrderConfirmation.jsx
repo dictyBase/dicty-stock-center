@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
+import { AlertSuccess } from 'styles'
 
 const CenteredBox = styled(Box)`
     text-align: center;
@@ -22,7 +23,7 @@ export default class OrderConfirmation extends Component {
                 <Box w={ '75%' }>
                     <Flex wrap justify="center">
                         <CenteredBox w={ 1 }>
-                            <div className="alert alert-success">
+                            <AlertSuccess>
                                 <i className="fa fa-5x fa-check-circle-o" />
                                 <h3>
                                     Thank you, your order has been submitted
@@ -37,7 +38,7 @@ export default class OrderConfirmation extends Component {
                                     emails through the <strong>NU Core</strong>{ ' ' }
                                     system to complete payment.
                                 </p>
-                            </div>
+                            </AlertSuccess>
                         </CenteredBox>
                         <Box w={ 1 }>
                             <Link

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import { AlertInfo } from 'styles'
 
 export default class PaymentAlert extends Component {
     displayName = 'payment information'
@@ -16,7 +16,7 @@ export default class PaymentAlert extends Component {
     render() {
         return (
             <div>
-                <div className="alert alert-info">
+                <AlertInfo>
                     <p><strong>Credit Card: </strong>
                         Secure payment when billed.
                         Incurs a <strong>3.5% service fee.</strong>
@@ -30,12 +30,12 @@ export default class PaymentAlert extends Component {
                             dictystocks@northwestern.edu
                         </a></u>
                     </p>
-                </div>
-                <div className="alert alert-info">
+                </AlertInfo>
+                <AlertInfo>
                     <p>For full payment information please click&nbsp;
                         <u><a href={ this.props.paymentInfoLink } target="_blank">here</a></u>
                     </p>
-                </div>
+                </AlertInfo>
             </div>
         )
     }

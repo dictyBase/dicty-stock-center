@@ -9,7 +9,7 @@ import findEntities from 'utils/findEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 import { Flex, Box } from 'rebass'
-import { Container, ToolbarNav } from 'styles'
+import { Container, ToolbarNav, TextInfo, Label } from 'styles'
 
 export default class InfoPageView extends Component {
     displayName = 'information page component'
@@ -42,19 +42,19 @@ export default class InfoPageView extends Component {
                 <ToolbarNav>
                     <Flex>
                         <Box>
-                            <span className="text-info">
+                            <TextInfo>
                                 <strong>
                                     <i className="fa fa-user" />{ ' ' }
                                     { lastEdited.author.name }
                                 </strong>{ ' ' }
                                 edited { timeSince(lastEdited.time) } ago
-                            </span>
+                            </TextInfo>
                         </Box>
                         <Box ml="auto">
                             <div>
-                                <span className="label label-primary ">
+                                <Label>
                                     { lastEdited.author.role }
-                                </span>{ ' ' }
+                                </Label>{ ' ' }
                                 &nbsp; &nbsp;
                                 <a href="#" onClick={ this.onClick }>
                                     <i

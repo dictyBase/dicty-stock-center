@@ -9,7 +9,7 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { PanelGreen, DictyHeader, AlertBox } from 'styles'
+import { PanelGreen, DictyHeader, AlertBox, TextInfo } from 'styles'
 
 export const fields = [
     'firstName',
@@ -144,10 +144,12 @@ class Payment extends Component {
                                             submitting={ submitting }
                                             icon={ 'fa fa-arrow-circle-right' }
                                         />
-                                        <small className="text-info">
-                                            You can review this order before
-                                            it's final.
-                                        </small>
+                                        <TextInfo>
+                                            <small>
+                                                You can review this order before
+                                                it's final.
+                                            </small>
+                                        </TextInfo>
                                     </Box>
                                 </Flex>
                             </Box>

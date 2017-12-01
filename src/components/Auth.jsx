@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
-import { Container } from 'styles'
+import { Container, AlertSuccess } from 'styles'
 
 export class AuthLoader extends Component {
-    displayName = 'loading component during authentication';
+    displayName = 'loading component during authentication'
     render() {
         return (
             <Container>
@@ -13,7 +13,7 @@ export class AuthLoader extends Component {
                         <h1>Logging in...</h1>
                     </Box>
                     <Box>
-                        <i className="fa fa-5x fa-spinner fa-pulse fa-fw"></i>
+                        <i className="fa fa-5x fa-spinner fa-pulse fa-fw" />
                     </Box>
                 </Flex>
             </Container>
@@ -22,17 +22,20 @@ export class AuthLoader extends Component {
 }
 
 export class Logout extends Component {
-    displayName = 'logout confirmation';
+    displayName = 'logout confirmation'
     render() {
         return (
             <Container>
                 <Flex>
-                    <Box w={ 1 }>
-                        <div className="alert alert-success text-center">
-                            <i className="fa fa-5x fa-check-circle-o"></i>
+                    <Box>
+                        <AlertSuccess>
+                            <i className="fa fa-5x fa-check-circle-o" />
                             <h1>Logout successful!</h1>
-                            <p>You have successfully logged out of Dicty Stock Center</p>
-                        </div>
+                            <p>
+                                You have successfully logged out of Dicty Stock
+                                Center
+                            </p>
+                        </AlertSuccess>
                     </Box>
                     <Box>
                         <Link to="/" className="btn btn-lg btn-primary">

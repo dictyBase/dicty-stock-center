@@ -8,11 +8,24 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
-import { PanelGreen, AlertBox } from 'styles'
+import { PanelGreen, AlertBox, TextInfo } from 'styles'
 
-export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
-    'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
-    'payMethod', 'poNum' ]
+export const fields = [
+    'firstName',
+    'lastName',
+    'email',
+    'org',
+    'group',
+    'address',
+    'address2',
+    'city',
+    'state',
+    'zip',
+    'country',
+    'phone',
+    'payMethod',
+    'poNum'
+]
 
 class EditPayment extends Component {
     displayName = 'payment information'
@@ -26,22 +39,41 @@ class EditPayment extends Component {
     render() {
         const { consumer } = this.props.order
         const { editShipping, sameAsShipping } = this.props.orderActions
-        const { submitting, handleSubmit, error,
-            fields: { firstName, lastName, email, org, group, address, address2, city,
-                state, zip, country, phone, payMethod, poNum
+        const {
+            submitting,
+            handleSubmit,
+            error,
+            fields: {
+                firstName,
+                lastName,
+                email,
+                org,
+                group,
+                address,
+                address2,
+                city,
+                state,
+                zip,
+                country,
+                phone,
+                payMethod,
+                poNum
             }
         } = this.props
         return (
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <h2 className="page-header">Edit payment information</h2>
+                        <h2 className="page-header">
+                            Edit payment information
+                        </h2>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
                         <PanelGreen>
-                            <EditPanel user={ consumer }
+                            <EditPanel
+                                user={ consumer }
                                 edit={ editShipping }
                                 title={ 'Ship to:' }
                             />
@@ -49,31 +81,37 @@ class EditPayment extends Component {
                     </div>
                 </div>
                 <hr />
-                <button type="button" className="btn btn-success btn-xs" onClick={ sameAsShipping }>
+                <button
+                    type="button"
+                    className="btn btn-success btn-xs"
+                    onClick={ sameAsShipping }>
                     Same as shipping
-                </button> Click here if payer address is the same as shipping address
+                </button>{ ' ' }
+                Click here if payer address is the same as shipping address
                 <div className="row">
                     <form onSubmit={ handleSubmit } className="form-horizontal">
                         <div className="col-md-6">
-                            <User title = { 'Payer Address' }
-                                firstName = { firstName }
-                                lastName = { lastName }
-                                email = { email }
-                                org ={ org }
-                                group = { group }
-                                address = { address }
-                                address2 = { address2 }
-                                city = { city }
-                                state = { state }
-                                zip = { zip }
-                                country = { country }
-                                phone = { phone }
+                            <User
+                                title={ 'Payer Address' }
+                                firstName={ firstName }
+                                lastName={ lastName }
+                                email={ email }
+                                org={ org }
+                                group={ group }
+                                address={ address }
+                                address2={ address2 }
+                                city={ city }
+                                state={ state }
+                                zip={ zip }
+                                country={ country }
+                                phone={ phone }
                             />
                         </div>
                         <div className="col-md-6">
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <PaymentMethod title={ 'Payment Method' }
+                                    <PaymentMethod
+                                        title={ 'Payment Method' }
                                         payMethod={ payMethod }
                                         poNum={ poNum }
                                     />
@@ -86,26 +124,29 @@ class EditPayment extends Component {
                                 </div>
                             </div>
                             <hr />
-                            {
-                                error &&
+                            { error && (
                                 <div className="row">
                                     <div className="col-xs-12">
                                         <AlertBox>
-                                            <i className="fa fa-exclamation-circle"></i>
+                                            <i className="fa fa-exclamation-circle" />
                                             <strong> Error! </strong> { error }
                                         </AlertBox>
                                     </div>
                                 </div>
-                            }
+                            ) }
                             <div className="row">
                                 <div className="col-md-offset-4 col-md-8 text-center">
-                                    <SubmitButton name={ 'Continue ' }
+                                    <SubmitButton
+                                        name={ 'Continue ' }
                                         submitting={ submitting }
-                                        icon = { 'fa fa-arrow-circle-right' }
+                                        icon={ 'fa fa-arrow-circle-right' }
                                     />
-                                    <small className="text-info">
-                                        You can review this order before it's final.
-                                    </small>
+                                    <TextInfo>
+                                        <small>
+                                            You can review this order before
+                                            it's final.
+                                        </small>
+                                    </TextInfo>
                                 </div>
                             </div>
                         </div>
@@ -119,8 +160,18 @@ class EditPayment extends Component {
 // pull state into forms initial values
 const mapStateToProps = state => {
     const { payer, payment } = state.order
-    const { firstName, lastName, email, org, group, address,
-        address2, city, zip, country, phone
+    const {
+        firstName,
+        lastName,
+        email,
+        org,
+        group,
+        address,
+        address2,
+        city,
+        zip,
+        country,
+        phone
     } = payer
     const { method, poNum } = payment
 
@@ -144,11 +195,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default reduxForm({
-    form: 'editPayment',
-    fields,
-    onSubmit: submitForm,
-    validate: syncValidatePayment
-},
-mapStateToProps
+export default reduxForm(
+    {
+        form: 'editPayment',
+        fields,
+        onSubmit: submitForm,
+        validate: syncValidatePayment
+    },
+    mapStateToProps
 )(EditPayment)

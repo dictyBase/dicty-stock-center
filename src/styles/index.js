@@ -17,6 +17,13 @@ export const Container = styled.div`
     }
 `
 
+export const ContainerFluid = styled.div`
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+`
+
 export const AlertBox = styled.div`
     padding: 15px;
     margin-bottom: 20px;
@@ -28,10 +35,80 @@ export const AlertBox = styled.div`
     text-align: center;
 `
 
+export const AlertSuccess = styled.div`
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    text-align: center;
+`
+
+export const AlertInfo = styled.div`
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+`
+
+export const Jumbotron = styled.div`
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+    text-align: center;
+
+    h1 {
+        color: inherit;
+    }
+
+    p {
+        margin-bottom: 15px;
+        font-size: 21px;
+        font-weight: 200;
+    }
+`
+
 export const ResponsiveImage = styled.img`
     display: block;
     max-width: 100%;
     height: auto;
+`
+
+export const TextInfo = styled.span`
+    color: #31708f;
+    &:hover {
+        color: #245269;
+    }
+    &:focus {
+        color: #245269;
+    }
+`
+
+export const Label = styled.span`
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #337ab7;
+    &:hover {
+        background-color: #337ab7;
+    }
+    &:focus {
+        background-color: #337ab7;
+    }
 `
 
 export const ToolbarNav = styled.div`
@@ -55,40 +132,40 @@ export const EditorStyle = styled.div`
 export const EditPanel = styled.div`
     /* border: 1px solid #ddd; */
     /* padding: 10px; */
-    [contenteditable="true"]:focus {
-     outline: none;
+    [contenteditable='true']:focus {
+        outline: none;
     }
 `
 
 export const DictyHeader = styled.div`
     h1 {
-      font-size: 62px;
-      margin-top: 25px;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #eee;
-      text-align: center;
+        font-size: 62px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
     }
     h2 {
-      font-size: 32px;
-      margin-top: 25px;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #eee;
-      text-align: center;
+        font-size: 32px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
     }
 `
 
 export const HomepageHeader = styled.div`
     h1 {
-      font-size: 48px;
-      margin-top: 0px;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #eee;
+        font-size: 48px;
+        margin-top: 0px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
     }
 `
 
 export const PanelGray = styled.div`
-    background-color: #F2F2F2;
-    border: 1px solid #F2F2F2;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
     margin: 15px auto;
     padding: 15px;
     border-radius: 10px;
@@ -96,8 +173,8 @@ export const PanelGray = styled.div`
 `
 
 export const PanelGreen = styled.div`
-    background-color: #DFF0d8;
-    border: 1px solid #DFF0d8;
+    background-color: #dff0d8;
+    border: 1px solid #dff0d8;
     margin: 15px auto;
     padding: 15px;
     border-radius: 10px;
@@ -105,8 +182,8 @@ export const PanelGreen = styled.div`
 `
 
 export const PanelBlue = styled.div`
-    background-color: #EFF8FB;
-    border: 1px solid #EFF8FB;
+    background-color: #eff8fb;
+    border: 1px solid #eff8fb;
     margin: 15px auto;
     padding: 15px;
     border-radius: 10px;
@@ -114,7 +191,8 @@ export const PanelBlue = styled.div`
 `
 
 export const LinkedList = styled.div`
-    ul, li {
+    ul,
+    li {
         margin: 0;
         padding: 0;
         list-style: none;
@@ -125,11 +203,11 @@ export const LinkedList = styled.div`
 `
 
 export const ItemAvailable = styled.div`
-    color: #04B404;
+    color: #04b404;
 `
 
 export const ItemUnavailable = styled.div`
-    color: #D8D8D8;
+    color: #d8d8d8;
 `
 
 export const DetailContainer = styled.div`

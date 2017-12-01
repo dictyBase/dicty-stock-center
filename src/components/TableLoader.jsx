@@ -1,8 +1,12 @@
 // @flow
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
-import 'styles/core.scss'
+
+const CenteredBox = styled(Box)`
+    text-align: center;
+`
 
 // type Props = {
 //     title: string,
@@ -19,15 +23,13 @@ export default class TableLoader extends Component {
         const title: string = this.props.title
         const message: string = this.props.message
         return (
-            <div style={ {width: '100%'} }>
+            <div style={ { width: '100%' } }>
                 <Flex justify="space-between">
-                    <Box>
-                        <div className="text-center">
-                            <h1>{ title && title }</h1>
-                            <i className="fa fa-spinner fa-2x fa-pulse fa-fw margin-bottom"></i>
-                            { message && message }
-                        </div>
-                    </Box>
+                    <CenteredBox>
+                        <h1>{ title && title }</h1>
+                        <i className="fa fa-spinner fa-2x fa-pulse fa-fw margin-bottom" />
+                        { message && message }
+                    </CenteredBox>
                 </Flex>
             </div>
         )
