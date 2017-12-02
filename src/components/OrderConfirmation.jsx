@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import { AlertSuccess } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 const CenteredBox = styled(Box)`
     text-align: center;
@@ -24,7 +25,7 @@ export default class OrderConfirmation extends Component {
                     <Flex wrap justify="center">
                         <CenteredBox w={ 1 }>
                             <AlertSuccess>
-                                <i className="fa fa-5x fa-check-circle-o" />
+                                <FontAwesome name="check-circle-o" size="5x" />
                                 <h3>
                                     Thank you, your order has been submitted
                                     successfully!
@@ -44,7 +45,7 @@ export default class OrderConfirmation extends Component {
                             <Link
                                 to="/"
                                 className="btn btn-primary btn-lg btn-block">
-                                <i className="fa fa-home" /> Stock Center Home
+                                <FontAwesome name="home" /> Stock Center Home
                             </Link>
                         </Box>
                     </Flex>

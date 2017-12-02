@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, StrainDetailsHeader } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class PlasmidDetail extends Component {
     displayName = 'plasmid detail'
@@ -65,14 +66,14 @@ export default class PlasmidDetail extends Component {
                         <button
                             className="btn btn-primary btn-block add-to-cart"
                             onClick={ () => addToCart(cartItem) }>
-                            <i className="fa fa-share" /> Add to Cart
+                            <FontAwesome name="share" /> Add to Cart
                         </button>
                     </Box>
                     <Box w={ ['80%', '35%'] } mt={ 10 } mr={ 1 }>
                         <Link
                             to="/order/shipping"
                             className="btn btn-success btn-block">
-                            <i className="fa fa-shopping-cart" /> Checkout
+                            <FontAwesome name="shopping-cart" /> Checkout
                         </Link>
                     </Box>
                 </Flex>

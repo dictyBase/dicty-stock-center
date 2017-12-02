@@ -4,6 +4,7 @@ import Cart from './Cart'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, Container, AlertBox } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class ShoppingCart extends Component {
     displayName = 'Shopping cart'
@@ -17,7 +18,7 @@ export default class ShoppingCart extends Component {
                 <Box w={ ['85%', 2 / 3] }>
                     <AlertBox>
                         <strong>
-                            <i className="fa fa-exclamation-circle" />
+                            <FontAwesome name="exclamation-circle" />
                         </strong>{ ' ' }
                         There are no items in your cart.
                     </AlertBox>
@@ -48,7 +49,7 @@ export default class ShoppingCart extends Component {
                                 <Link
                                     to="/strains"
                                     className="btn btn-primary btn-lg btn-block">
-                                    <i className="fa fa-share" /> Continue
+                                    <FontAwesome name="share" /> Continue
                                     Shopping
                                 </Link>
                             </Box>
@@ -56,7 +57,7 @@ export default class ShoppingCart extends Component {
                                 <Link
                                     to="/order/shipping"
                                     className="btn btn-success btn-lg btn-block">
-                                    <i className="fa fa-shopping-cart" />{ ' ' }
+                                    <FontAwesome name="shopping-cart" />{ ' ' }
                                     Checkout
                                 </Link>
                             </Box>

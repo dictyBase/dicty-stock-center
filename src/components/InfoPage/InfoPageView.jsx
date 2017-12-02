@@ -10,6 +10,7 @@ import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 import { Flex, Box } from 'rebass'
 import { Container, ToolbarNav, TextInfo, Label } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class InfoPageView extends Component {
     displayName = 'information page component'
@@ -44,7 +45,7 @@ export default class InfoPageView extends Component {
                         <Box>
                             <TextInfo>
                                 <strong>
-                                    <i className="fa fa-user" />{ ' ' }
+                                    <FontAwesome name="user" />{ ' ' }
                                     { lastEdited.author.name }
                                 </strong>{ ' ' }
                                 edited { timeSince(lastEdited.time) } ago
@@ -52,13 +53,11 @@ export default class InfoPageView extends Component {
                         </Box>
                         <Box ml="auto">
                             <div>
-                                <Label>
-                                    { lastEdited.author.role }
-                                </Label>{ ' ' }
-                                &nbsp; &nbsp;
+                                <Label>{ lastEdited.author.role }</Label> &nbsp;
+                                &nbsp;
                                 <a href="#" onClick={ this.onClick }>
-                                    <i
-                                        className="fa fa-pencil"
+                                    <FontAwesome
+                                        name="pencil"
                                         title="Edit page"
                                     />
                                 </a>

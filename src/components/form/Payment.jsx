@@ -10,6 +10,7 @@ import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
 import { PanelGreen, DictyHeader, AlertBox, TextInfo } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export const fields = [
     'firstName',
@@ -130,7 +131,7 @@ class Payment extends Component {
                                     <Flex>
                                         <Box w={ 1 }>
                                             <AlertBox>
-                                                <i className="fa fa-exclamation-circle" />
+                                                <FontAwesome name="exclamation-circle" />
                                                 <strong> Error! </strong>{ ' ' }
                                                 { error }
                                             </AlertBox>
@@ -142,7 +143,7 @@ class Payment extends Component {
                                         <SubmitButton
                                             name={ 'Continue ' }
                                             submitting={ submitting }
-                                            icon={ 'fa fa-arrow-circle-right' }
+                                            icon={ 'arrow-circle-right' }
                                         />
                                         <TextInfo>
                                             <small>

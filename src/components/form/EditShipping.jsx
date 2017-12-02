@@ -8,6 +8,7 @@ import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
 import { AlertBox } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
     'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
@@ -75,7 +76,7 @@ class EditShipping extends Component {
                                 <div className="row">
                                     <div className="col-xs-12">
                                         <AlertBox>
-                                            <i className="fa fa-exclamation-circle"></i>
+                                            <FontAwesome name="exclamation-circle" />
                                             <strong> Error! </strong> { error } { error.message }
                                         </AlertBox>
                                     </div>
@@ -85,7 +86,7 @@ class EditShipping extends Component {
                                 <div className="col-md-offset-4 col-md-8">
                                     <SubmitButton name={ 'Continue ' }
                                         submitting={ submitting }
-                                        icon = { 'fa fa-arrow-circle-right' }
+                                        icon = { 'arrow-circle-right' }
                                     />
                                 </div>
                             </div>

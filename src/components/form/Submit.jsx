@@ -5,6 +5,7 @@ import Items from 'components/Items'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class Submit extends Component {
     displayName = 'submit order'
@@ -43,7 +44,7 @@ export default class Submit extends Component {
                                         user={ consumer }
                                         edit={ editShipping }
                                         title={ ' Ship to:' }
-                                        icon={ 'fa fa-truck' }
+                                        icon={ 'truck' }
                                         shipping={ shipping }
                                     />
                                 </PanelBody>
@@ -56,7 +57,7 @@ export default class Submit extends Component {
                                         user={ payer }
                                         edit={ editPayment }
                                         title={ ' Payer:' }
-                                        icon={ 'fa fa-credit-card-alt' }
+                                        icon={ 'credit-card-alt' }
                                         payment={ payment }
                                     />
                                 </PanelBody>
@@ -68,7 +69,7 @@ export default class Submit extends Component {
                         <Panel collapse>
                             <PanelBody>
                                 <h4>
-                                    <i className="fa fa-shopping-cart" /> Items
+                                    <FontAwesome name="shopping-cart" /> Items
                                 </h4>
                                 <Items items={ addedItems } />
                             </PanelBody>
@@ -81,7 +82,7 @@ export default class Submit extends Component {
                             className="btn btn-primary btn-lg btn-block"
                             onClick={ submitOrder }>
                             Complete Your Order{ ' ' }
-                            <i className="fa fa-check-circle" />
+                            <FontAwesome name="check-circle" />
                         </button>
                     </Box>
                 </Box>

@@ -7,6 +7,7 @@ import Loader from 'components/Loader'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import { PhenotypeData, DictyHeader, StrainDetailsHeader } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 const BorderBox = styled(Box)`
     border: 1px solid grey;
@@ -150,14 +151,14 @@ export default class StrainDetail extends Component {
                         <button
                             className="btn btn-primary btn-block add-to-cart"
                             onClick={ () => addToCart(cartItem) }>
-                            <i className="fa fa-share" /> Add to Cart
+                            <FontAwesome name="share" /> Add to Cart
                         </button>
                     </Box>
                     <Box w={ ['80%', '35%'] } mt={ 10 } mr={ 1 }>
                         <Link
                             to="/order/shipping"
                             className="btn btn-success btn-block">
-                            <i className="fa fa-shopping-cart" /> Checkout
+                            <FontAwesome name="shopping-cart" /> Checkout
                         </Link>
                     </Box>
                 </Flex>

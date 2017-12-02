@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Container } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart'
@@ -38,7 +39,7 @@ export default class Cart extends Component {
                                                         item.id
                                                     )
                                                 }>
-                                                <i className="fa fa-trash-o" />
+                                                <FontAwesome name="trash-o" />
                                             </button>
                                         </td>
                                     </tr>

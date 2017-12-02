@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { Container } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart icon'
@@ -16,8 +17,8 @@ export default class Cart extends Component {
                 <Flex justify="flex-end">
                     <Box>
                         <Link to="/cart">
-                          <i className="fa fa-shopping-cart fa-3x"></i>
-                              ({ addedItems.length })
+                            <FontAwesome name="shopping-cart" size="3x" />
+                            ({ addedItems.length })
                         </Link>
                     </Box>
                 </Flex>

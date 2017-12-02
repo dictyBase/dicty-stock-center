@@ -3,6 +3,7 @@ import { Panel, PanelBody } from 'dicty-components-panel'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { Container } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 // double-check proper center alignment
 
@@ -26,7 +27,7 @@ export default class MyDsc extends Component {
                         <Panel>
                             <PanelBody>
                                 <h1>
-                                    <i className="fa fa-user"></i> Personal Information
+                                    <FontAwesome name="user" /> Personal Information
                                 </h1>
                                 <hr />
                                 <h3>Name: { user.name }</h3>

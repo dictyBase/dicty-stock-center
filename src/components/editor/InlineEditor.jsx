@@ -16,6 +16,7 @@ import {
 } from 'draft-js'
 import { Flex, Box } from 'rebass'
 import { ToolbarNav, EditPanel, TextInfo } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class InlineEditor extends Component {
     displayName = 'inline editor component'
@@ -165,12 +166,12 @@ export default class InlineEditor extends Component {
             {
                 label: 'Add Link',
                 action: this.addLink,
-                icon: <i className="fa fa-link" />
+                icon: <FontAwesome name="link" />
             },
             {
                 label: 'Remove Link',
                 action: this.removeLink,
-                icon: <i className="fa fa-chain-broken" />
+                icon: <FontAwesome name="chain-broken" />
             }
         ]
         let urlInput
@@ -250,7 +251,7 @@ export default class InlineEditor extends Component {
                                             href="#"
                                             onClick={ this.onEdit }
                                             title="Edit">
-                                            <i className="fa fa-pencil" /> Edit
+                                            <FontAwesome name="pencil" /> Edit
                                         </a>
                                     </TextInfo>
                                 ) }

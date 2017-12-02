@@ -3,6 +3,7 @@ import {Editor, EditorState, convertFromRaw} from 'draft-js'
 import simpleStorage from 'simplestorage.js'
 import { Flex, Box } from 'rebass'
 import { Container } from 'styles'
+import FontAwesome from 'react-fontawesome'
 // import blockRenderer from 'components/CustomBlocks'
 
 const step1 =
@@ -84,7 +85,7 @@ export default class Page extends Component {
               <Flex justify="flex-end">
                   <Box>
                       <a href="#" onClick={ this.onClick }>
-                        <i className="fa fa-2x fa-pencil" title="Edit page"></i>
+                        <FontAwesome name="pencil" size="2x" title="Edit page" />
                       </a>
                   </Box>
                   <Box>

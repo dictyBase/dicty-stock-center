@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import oauthConfig from 'utils/oauthConfig'
-import 'styles/core.scss'
+import FontAwesome from 'react-fontawesome'
 
 export default class oauthSignInButton extends Component {
     displayName = 'oauth button component';
@@ -51,7 +51,7 @@ export default class oauthSignInButton extends Component {
                 className={ `btn btn-block btn-social btn-lg btn-${provider}` }
                 onClick={ this.onClick }
             >
-                <i className={ `fa fa-${provider}` }></i>
+                <FontAwesome name={ `${provider}` } />
                 Sign in with { name }
             </a>
         )

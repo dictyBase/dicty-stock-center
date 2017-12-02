@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
+import FontAwesome from 'react-fontawesome'
 
 const CenteredBox = styled(Box)`
     text-align: center;
@@ -27,7 +28,7 @@ export default class TableLoader extends Component {
                 <Flex justify="space-between">
                     <CenteredBox>
                         <h1>{ title && title }</h1>
-                        <i className="fa fa-spinner fa-2x fa-pulse fa-fw margin-bottom" />
+                        <FontAwesome name="spinner" size="2x" pulse fw />
                         { message && message }
                     </CenteredBox>
                 </Flex>

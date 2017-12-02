@@ -9,6 +9,7 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { PanelGreen, AlertBox, TextInfo } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export const fields = [
     'firstName',
@@ -128,7 +129,7 @@ class EditPayment extends Component {
                                 <div className="row">
                                     <div className="col-xs-12">
                                         <AlertBox>
-                                            <i className="fa fa-exclamation-circle" />
+                                            <FontAwesome name="exclamation-circle" />
                                             <strong> Error! </strong> { error }
                                         </AlertBox>
                                     </div>
@@ -139,7 +140,7 @@ class EditPayment extends Component {
                                     <SubmitButton
                                         name={ 'Continue ' }
                                         submitting={ submitting }
-                                        icon={ 'fa fa-arrow-circle-right' }
+                                        icon={ 'arrow-circle-right' }
                                     />
                                     <TextInfo>
                                         <small>

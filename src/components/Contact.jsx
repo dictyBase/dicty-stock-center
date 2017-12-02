@@ -15,6 +15,7 @@ import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, RequiredText, Container } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -61,7 +62,7 @@ class Contact extends Component {
                             <Panel collapse>
                                 <PanelHeader style={ { padding: '20px' } }>
                                     <PanelTitle>
-                                        <i className="fa fa-envelope-o" /> Email
+                                        <FontAwesome name="envelope-o" /> Email
                                         dictyBase
                                     </PanelTitle>
                                 </PanelHeader>
@@ -108,7 +109,7 @@ class Contact extends Component {
                                                 <SubmitButton
                                                     name={ 'Submit ' }
                                                     submitting={ submitting }
-                                                    icon={ 'fa fa-paper-plane-o' }
+                                                    icon={ 'paper-plane-o' }
                                                 />
                                             </Box>
                                         </Flex>

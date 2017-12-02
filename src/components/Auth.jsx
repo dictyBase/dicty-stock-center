@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { Container, AlertSuccess } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export class AuthLoader extends Component {
     displayName = 'loading component during authentication'
@@ -13,7 +14,7 @@ export class AuthLoader extends Component {
                         <h1>Logging in...</h1>
                     </Box>
                     <Box>
-                        <i className="fa fa-5x fa-spinner fa-pulse fa-fw" />
+                        <FontAwesome name="spinner" size="5x" pulse fw />
                     </Box>
                 </Flex>
             </Container>
@@ -29,7 +30,7 @@ export class Logout extends Component {
                 <Flex>
                     <Box>
                         <AlertSuccess>
-                            <i className="fa fa-5x fa-check-circle-o" />
+                            <FontAwesome name="check-circle-o" size="5x" />
                             <h1>Logout successful!</h1>
                             <p>
                                 You have successfully logged out of Dicty Stock

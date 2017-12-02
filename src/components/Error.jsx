@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, AlertBox } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class Error extends Component {
     displayName = 'homepage component';
@@ -10,7 +11,7 @@ export default class Error extends Component {
         return (
             <Container>
                 <AlertBox>
-                    <h1><i className="fa fa-exclamation-triangle" ></i> Error</h1>
+                    <h1><FontAwesome name="exclamation-triangle" /> Error</h1>
                     <h2>{ authError && authError }</h2>
                     <h2>{ orderError && orderError }</h2>
                 </AlertBox>

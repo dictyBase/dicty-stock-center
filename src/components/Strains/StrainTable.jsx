@@ -5,6 +5,7 @@ import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { ItemAvailable, ItemUnavailable } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export default class StrainTable extends Component {
     displayName = 'strain table'
@@ -104,13 +105,13 @@ export default class StrainTable extends Component {
         if (cellData.cellData) {
             return (
                 <ItemAvailable>
-                    <i className="fa fa-shopping-cart fa-2x" />
+                    <FontAwesome name="shopping-cart" size="2x" />
                 </ItemAvailable>
             )
         }
         return (
             <ItemUnavailable>
-                <i className="fa fa-shopping-cart fa-2x" />
+                <FontAwesome name="shopping-cart" size="2x" />
             </ItemUnavailable>
         )
     }
@@ -127,7 +128,7 @@ export default class StrainTable extends Component {
                 <button
                     className="btn btn-primary"
                     onClick={ () => cartActions.addToCart(data[rowIndex]) }>
-                    <i className="fa fa-cart-arrow-down" /> Add to cart
+                    <FontAwesome name="cart-arrow-down" /> Add to cart
                 </button>
             )
         }
@@ -135,7 +136,7 @@ export default class StrainTable extends Component {
             <button
                 className="btn btn-disabled"
                 style={ { cursor: 'not-allowed', color: '#777' } }>
-                <i className="fa fa-cart-arrow-down" /> Add to cart
+                <FontAwesome name="cart-arrow-down" /> Add to cart
             </button>
         )
     }

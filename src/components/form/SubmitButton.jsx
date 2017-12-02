@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import FontAwesome from 'react-fontawesome'
 
 export default class SubmitButton extends Component {
     displayName = 'form submit button';
@@ -17,8 +17,8 @@ export default class SubmitButton extends Component {
             <button type="submit"
                 className="btn btn-primary btn-lg btn-block"
                 disabled={ submitting }> { name }
-                { submitting ? <i className="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>
-                    : <i className={ icon && icon } aria-hidden="true"></i>
+                { submitting ? <FontAwesome name="spinner" pulse fw />
+                    : <FontAwesome name={ icon && icon } aria-hidden="true" />
                 }
             </button>
         )

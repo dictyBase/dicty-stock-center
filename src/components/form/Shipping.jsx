@@ -9,6 +9,7 @@ import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, AlertBox } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 export const fields = [
     'firstName',
@@ -103,7 +104,7 @@ class Shipping extends Component {
                                 { error && (
                                     <Box mb={ 2 }>
                                         <AlertBox>
-                                            <i className="fa fa-exclamation-circle" />
+                                            <FontAwesome name="exclamation-circle" />
                                             <strong> Error! </strong> { error }
                                         </AlertBox>
                                     </Box>
@@ -113,7 +114,7 @@ class Shipping extends Component {
                                     <SubmitButton
                                         name={ 'Continue ' }
                                         submitting={ submitting }
-                                        icon={ 'fa fa-arrow-circle-right' }
+                                        icon={ 'arrow-circle-right' }
                                     />
                                 </Box>
                             </Box>

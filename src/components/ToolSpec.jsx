@@ -1,56 +1,57 @@
 import React from 'react'
+import FontAwesome from 'react-fontawesome'
 
 const blockTypes = [
     { label: 'H3',
         style: 'header-three',
-        icon: <i className="fa fa-font" style={ {fontSize: '0.8em'} }></i>
+        icon: <FontAwesome name="font" style={ {fontSize: '0.8em'} } />
     },
     { label: 'H2',
         style: 'header-two',
-        icon: <i className="fa fa-font" ></i>
+        icon: <FontAwesome name="font" />
     },
     { label: 'H1',
         style: 'header-one',
-        icon: <i className="fa fa-lg fa-font" ></i>
+        icon: <FontAwesome name="font" size="lg" />
     },
     { label: 'UL',
         style: 'unordered-list-item',
-        icon: <i className="fa fa-list-ul"></i>
+        icon: <FontAwesome name="list-ul" />
     },
     { label: 'OL',
         style: 'ordered-list-item',
-        icon: <i className="fa fa-list-ol"></i>
+        icon: <FontAwesome name="list-ol" />
     },
     { label: 'Blockquote',
         style: 'blockquote',
-        icon: <i className="fa fa-quote-left"></i>
+        icon: <FontAwesome name="quote-left" />
     },
     { label: 'Code Block',
         style: 'code-block',
-        icon: <i className="fa fa-code"></i>
+        icon: <FontAwesome name="code" />
     }
 ]
 
 const inlineTypes = [
     { label: 'Bold',
         style: 'BOLD',
-        icon: <i className="fa fa-bold"></i>
+        icon: <FontAwesome name="bold" />
     },
     { label: 'Italic',
         style: 'ITALIC',
-        icon: <i className="fa fa-italic"></i>
+        icon: <FontAwesome name="italic" />
     },
     { label: 'Underline',
         style: 'UNDERLINE',
-        icon: <i className="fa fa-underline"></i>
+        icon: <FontAwesome name="underline" />
     },
     { label: 'Strikethrough',
         style: 'STRIKETHROUGH',
-        icon: <i className="fa fa-strikethrough"></i>
+        icon: <FontAwesome name="strikethrough" />
     },
     { label: 'Monospace',
         style: 'CODE',
-        icon: <i className="fa fa-terminal"></i>
+        icon: <FontAwesome name="terminal" />
     }
 ]
 

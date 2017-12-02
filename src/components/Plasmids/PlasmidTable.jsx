@@ -6,6 +6,7 @@ import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import { Flex, Box } from 'rebass'
 import { ItemAvailable, ItemUnavailable } from 'styles'
+import FontAwesome from 'react-fontawesome'
 
 // type Props = {
 //   cellWidth: number,
@@ -107,13 +108,13 @@ export default class PlasmidTable extends Component {
       if (cellData.cellData) {
           return (
                 <ItemAvailable>
-                    <i className="fa fa-shopping-cart fa-2x" />
+                    <FontAwesome name="shopping-cart" size="2x" />
                 </ItemAvailable>
             )
       }
       return (
             <ItemUnavailable>
-                <i className="fa fa-shopping-cart fa-2x" />
+                <FontAwesome name="shopping-cart" size="2x" />
             </ItemUnavailable>
         )
   }
@@ -142,7 +143,7 @@ export default class PlasmidTable extends Component {
               className="btn btn-primary"
               onClick={ () => addToCart(data[rowIndex]) }
             >
-              <i className="fa fa-cart-arrow-down"></i> Add to cart
+              <FontAwesome name="cart-arrow-down" /> Add to cart
             </button>
           )
       }
@@ -151,7 +152,7 @@ export default class PlasmidTable extends Component {
           className="btn btn-disabled"
           style={ {cursor: 'not-allowed', color: '#777'} }
         >
-          <i className="fa fa-cart-arrow-down"></i> Add to cart
+          <FontAwesome name="cart-arrow-down" /> Add to cart
         </button>
       )
   }

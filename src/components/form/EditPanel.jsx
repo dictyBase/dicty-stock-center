@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import FontAwesome from 'react-fontawesome'
 
 export default class EditPanel extends Component {
     displayName = 'panel to edit order info';
@@ -49,7 +49,7 @@ export default class EditPanel extends Component {
         return (
             <div>
                 <h4>
-                    { icon && <i className={ icon }></i> }
+                    { icon && <FontAwesome name={ icon } /> }
                     { title }
                 </h4>
                 <div>{ firstName } { lastName }</div>
@@ -63,7 +63,7 @@ export default class EditPanel extends Component {
                 <br />
                 <div>
                     <a href="#" onClick = { edit }>
-                        <i className="fa fa-pencil-square-o"></i>
+                        <FontAwesome name="pencil-square-o" />
                         { payment ? ' Edit payment info' : ' Edit shipping info' }
                     </a>
                 </div>
