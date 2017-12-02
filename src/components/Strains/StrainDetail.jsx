@@ -40,21 +40,21 @@ export default class StrainDetail extends Component {
             )
         })
         return (
-                <BorderBox>
-                    <PhenotypeData>
-                        <Box w={ '30%' }>
-                            <b>Phenotype</b>
-                        </Box>
-                        <Box w={ '30%' }>
-                            <b>Notes</b>
-                        </Box>
-                        <Box w={ '30%' }>
-                            <b>Reference</b>
-                        </Box>
-                        <Box w={ '10%' } />
-                    </PhenotypeData>
-                    <Box>{ rows }</Box>
-                </BorderBox>
+            <BorderBox>
+                <PhenotypeData>
+                    <Box w={ '30%' }>
+                        <b>Phenotype</b>
+                    </Box>
+                    <Box w={ '30%' }>
+                        <b>Notes</b>
+                    </Box>
+                    <Box w={ '30%' }>
+                        <b>Reference</b>
+                    </Box>
+                    <Box w={ '10%' } />
+                </PhenotypeData>
+                <Box>{ rows }</Box>
+            </BorderBox>
         )
     }
     render() {
@@ -106,20 +106,43 @@ export default class StrainDetail extends Component {
                         </StrainDetailsHeader>
                     </Box>
 
-                    { isFetching || !strain ? (
-                        <Loader message="Loading..." />
-                    ) : (
-                        <Box w={ ['95%', '80%'] }>
-                            <StockDetailRow left={ data1[0] } right={ data2[0] } />
-                            <StockDetailRow left={ data1[1] } right={ data2[1] } />
-                            <StockDetailRow left={ data1[2] } right={ data2[2] } />
-                            <StockDetailRow left={ data1[3] } right={ data2[3] } />
-                            <StockDetailRow left={ data1[4] } right={ data2[4] } />
-                            <StockDetailRow left={ data1[5] } right={ data2[5] } />
-                            <StockDetailRow left={ data1[6] } right={ data2[6] } />
-                            <StockDetailRow left={ data1[7] } />
-                        </Box>
-                    ) }
+                    <Box w={ ['95%', '80%'] }>
+                        { isFetching || !strain ? (
+                            <Loader message="Loading..." />
+                        ) : (
+                            <div>
+                                <StockDetailRow
+                                    left={ data1[0] }
+                                    right={ data2[0] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[1] }
+                                    right={ data2[1] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[2] }
+                                    right={ data2[2] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[3] }
+                                    right={ data2[3] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[4] }
+                                    right={ data2[4] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[5] }
+                                    right={ data2[5] }
+                                />
+                                <StockDetailRow
+                                    left={ data1[6] }
+                                    right={ data2[6] }
+                                />
+                                <StockDetailRow left={ data1[7] } />
+                            </div>
+                        ) }
+                    </Box>
                 </Flex>
 
                 <Flex wrap justify="center">

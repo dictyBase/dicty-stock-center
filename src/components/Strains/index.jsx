@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Loader from 'components/Loader'
-import SearchBar from 'components/SearchBar'
+// import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, Container } from 'styles'
@@ -34,11 +34,11 @@ export default class Strains extends Component {
                         </DictyHeader>
                     </Box>
                 </Flex>
-                <SearchBar
+                {/* <SearchBar
                     clearSearch={ this.clearSearch.bind(this) }
                     search={ this.search.bind(this) }
                     placeholder="Search Strains"
-                />
+                /> */}
                 { data.length !== 0 ? (
                     <StrainTable {...this.props} />
                 ) : (
