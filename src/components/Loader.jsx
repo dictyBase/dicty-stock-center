@@ -20,7 +20,7 @@ export default class Loader extends Component {
             <Flex wrap justify="center">
                 <CenteredBox>
                     <h1>{ title && title }</h1>
-                    <FontAwesome name="spinner" pulse size="5x" fw />
+                    <FontAwesome name="spinner" pulse size="5x" fixedWidth />
                     <h4>{ message && message }</h4>
                 </CenteredBox>
             </Flex>

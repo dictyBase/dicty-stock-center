@@ -28,7 +28,7 @@ export default class TableLoader extends Component {
                 <Flex justify="space-between">
                     <CenteredBox>
                         <h1>{ title && title }</h1>
-                        <FontAwesome name="spinner" size="2x" pulse fw />
+                        <FontAwesome name="spinner" size="2x" pulse fixedWidth />
                         { message && message }
                     </CenteredBox>
                 </Flex>

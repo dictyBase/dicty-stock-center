@@ -14,7 +14,7 @@ export class AuthLoader extends Component {
                         <h1>Logging in...</h1>
                     </Box>
                     <Box>
-                        <FontAwesome name="spinner" size="5x" pulse fw />
+                        <FontAwesome name="spinner" size="5x" pulse fixedWidth />
                     </Box>
                 </Flex>
             </Container>

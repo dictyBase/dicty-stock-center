@@ -17,7 +17,7 @@ export default class SubmitButton extends Component {
             <button type="submit"
                 className="btn btn-primary btn-lg btn-block"
                 disabled={ submitting }> { name }
-                { submitting ? <FontAwesome name="spinner" pulse fw />
+                { submitting ? <FontAwesome name="spinner" pulse fixedWidth />
                     : <FontAwesome name={ icon && icon } aria-hidden="true" />
                 }
             </button>
