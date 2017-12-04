@@ -111,6 +111,28 @@ export const Label = styled.span`
     }
 `
 
+export const Breadcrumb = styled.ol`
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+
+    li {
+        display: inline-block;
+    }
+
+    li + li:before {
+        padding: 0 5px;
+        color: #ccc;
+        content: "/\00a0";
+    }
+
+    &:active {
+        color: #777;
+    }
+`
+
 export const ToolbarNav = styled.div`
     background-color: #fafafa;
     border-radius: 2px;

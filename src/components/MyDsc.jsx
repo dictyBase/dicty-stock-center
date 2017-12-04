@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
-import { Container } from 'styles'
+import { Container, DictyHeader, Breadcrumb } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
 // double-check proper center alignment
@@ -13,17 +13,19 @@ export default class MyDsc extends Component {
         const { user, provider } = this.props.auth
         return (
             <Container>
-                <Flex>
-                    <Box width={ 1 }>
-                        <ol className="breadcrumb">
+                <Flex justify="center">
+                    <Box w={ 1 }>
+                        <Breadcrumb>
                           <li><Link to="/">Home</Link></li>
                           <li className="active">My DSC</li>
-                        </ol>
+                        </Breadcrumb>
                     </Box>
                     <Box>
-                        <h1 className="page-header">My DSC</h1>
+                        <DictyHeader>
+                            <h1>My DSC</h1>
+                        </DictyHeader>
                     </Box>
-                    <Box width={ 1 } align="center">
+                    <Box w={ 1 }>
                         <Panel>
                             <PanelBody>
                                 <h1>
