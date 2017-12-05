@@ -19,7 +19,11 @@ export default class Home extends Component {
     }
     renderGreeting = () => {
         const { user } = this.props.auth
-        return <span>Hello, { user.name }</span>
+        return (
+            <span>
+                <h3>Hello, { user.name }</h3>
+            </span>
+        )
     }
     render() {
         const { user } = this.props.auth
