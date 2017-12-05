@@ -13,20 +13,20 @@ export default class MyDsc extends Component {
         const { user, provider } = this.props.auth
         return (
             <Container>
-                <Flex justify="center">
+                <Flex wrap justify="center">
                     <Box w={ 1 }>
                         <Breadcrumb>
                           <li><Link to="/">Home</Link></li>
                           <li className="active">My DSC</li>
                         </Breadcrumb>
                     </Box>
-                    <Box>
+                    <Box w={ 1 }>
                         <DictyHeader>
-                            <h1>My DSC</h1>
+                            <h2>My DSC</h2>
                         </DictyHeader>
                     </Box>
-                    <Box w={ 1 }>
-                        <Panel>
+                    <Box w={ 3 / 4 }>
+                        <Panel collapse>
                             <PanelBody>
                                 <h1>
                                     <FontAwesome name="user" /> Personal Information

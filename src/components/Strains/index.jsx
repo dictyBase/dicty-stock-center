@@ -34,11 +34,6 @@ export default class Strains extends Component {
                         </DictyHeader>
                     </Box>
                 </Flex>
-                {/* <SearchBar
-                    clearSearch={ this.clearSearch.bind(this) }
-                    search={ this.search.bind(this) }
-                    placeholder="Search Strains"
-                /> */}
                 { data.length !== 0 ? (
                     <StrainTable {...this.props} />
                 ) : (

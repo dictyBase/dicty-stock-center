@@ -5,7 +5,6 @@ import { push } from 'react-router-redux'
 import jsr from 'jsrsasign'
 import simpleStorage from 'simplestorage.js'
 
-
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = types
 
 const requestLogin = provider => {
@@ -43,9 +42,8 @@ const receiveLogout = () => {
     }
 }
 
-
 const status = response => {
-  // HTTP response codes 2xx indicate that the request was processed successfully
+    // HTTP response codes 2xx indicate that the request was processed successfully
     if (response.status >= 200 && response.status < 300) {
         return Promise.resolve(response)
     }
@@ -61,7 +59,7 @@ let authserver = __AUTH_SERVER__
 
 // Calls the API to get a token and
 // dispatch actions along the way
-export const oAuthLogin = ({query, provider, url}) => {
+export const oAuthLogin = ({ query, provider, url }) => {
     return dispatch => {
         const parsed = querystring.parse(query.replace('?', ''))
         let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
@@ -75,20 +73,20 @@ export const oAuthLogin = ({query, provider, url}) => {
         dispatch(requestLogin(provider))
         dispatch(push('/load/auth'))
         fetch(`${authserver}/tokens/${provider}`, config)
-        .then(status)
-        .then(json)
-        .then(data => {
-            simpleStorage.set('token', data.token)
-            const jwtStr = jsr.jws.JWS.parse(data.token)
-            dispatch(receiveLogin(jwtStr.payloadObj.user))
-            dispatch(push('/'))
-        }).catch(error => {
-            dispatch(loginError(error))
-            dispatch(push('/error'))
-        })
+            .then(status)
+            .then(json)
+            .then(data => {
+                simpleStorage.set('token', data.token)
+                const jwtStr = jsr.jws.JWS.parse(data.token)
+                dispatch(receiveLogin(jwtStr.payloadObj.user))
+                dispatch(push('/my-dsc'))
+            })
+            .catch(error => {
+                dispatch(loginError(error))
+                dispatch(push('/error'))
+            })
     }
 }
-
 
 // Logs the user out
 export const logoutUser = () => {

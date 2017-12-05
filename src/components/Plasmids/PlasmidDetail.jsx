@@ -38,12 +38,14 @@ export default class PlasmidDetail extends Component {
         ]
         return (
             <div>
-                <Flex wrap justify="center">
+                <Flex justify="center">
                     <Box>
                         <DictyHeader>
                             <h2>{ this.props.match.params.id }</h2>
                         </DictyHeader>
                     </Box>
+                    </Flex>
+                    <Flex wrap justify="center">
                     <Box w={ ['95%', '80%'] }>
                         <StrainDetailsHeader>
                             <h3>Plasmid Details</h3>
