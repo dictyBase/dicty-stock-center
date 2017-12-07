@@ -87,8 +87,7 @@ class Payment extends Component {
                                 Same as shipping
                             </button>{ ' ' }
                             Click here if payer address is the same as shipping
-                            address<br />
-                            <br />
+                            address<br /><br />
                         </Box>
                     </Flex>
                     <form onSubmit={ handleSubmit } className="form-horizontal">

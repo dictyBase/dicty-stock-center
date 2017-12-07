@@ -8,7 +8,8 @@ import PaymentMethod from './PaymentMethod'
 import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
-import { PanelGreen, AlertBox, TextInfo } from 'styles'
+import { Flex, Box } from 'rebass'
+import { DictyHeader, PanelGreen, AlertBox, TextInfo } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
 export const fields = [
@@ -62,98 +63,100 @@ class EditPayment extends Component {
             }
         } = this.props
         return (
-            <div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h2 className="page-header">
-                            Edit payment information
-                        </h2>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <PanelGreen>
-                            <EditPanel
-                                user={ consumer }
-                                edit={ editShipping }
-                                title={ 'Ship to:' }
-                            />
-                        </PanelGreen>
-                    </div>
-                </div>
-                <hr />
-                <button
-                    type="button"
-                    className="btn btn-success btn-xs"
-                    onClick={ sameAsShipping }>
-                    Same as shipping
-                </button>{ ' ' }
-                Click here if payer address is the same as shipping address
-                <div className="row">
+            <Flex wrap justify="center">
+                <Box>
+                    <DictyHeader>
+                        <h2>Edit Payment Information</h2>
+                    </DictyHeader>
+                </Box>
+                <Box w={ '85%' }>
+                    <Flex wrap justify="center">
+                        <Box w={ '95%' }>
+                            <PanelGreen>
+                                <EditPanel
+                                    user={ consumer }
+                                    edit={ editShipping }
+                                    title={ 'Ship to:' }
+                                />
+                            </PanelGreen>
+                            <hr />
+                            <button
+                                type="button"
+                                className="btn btn-success btn-xs"
+                                onClick={ sameAsShipping }>
+                                Same as shipping
+                            </button>{ ' ' }
+                            Click here if payer address is the same as shipping
+                            address<br /><br />
+                        </Box>
+                    </Flex>
                     <form onSubmit={ handleSubmit } className="form-horizontal">
-                        <div className="col-md-6">
-                            <User
-                                title={ 'Payer Address' }
-                                firstName={ firstName }
-                                lastName={ lastName }
-                                email={ email }
-                                org={ org }
-                                group={ group }
-                                address={ address }
-                                address2={ address2 }
-                                city={ city }
-                                state={ state }
-                                zip={ zip }
-                                country={ country }
-                                phone={ phone }
-                            />
-                        </div>
-                        <div className="col-md-6">
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <PaymentMethod
-                                        title={ 'Payment Method' }
-                                        payMethod={ payMethod }
-                                        poNum={ poNum }
-                                    />
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <PaymentAlert />
-                                </div>
-                            </div>
-                            <hr />
-                            { error && (
-                                <div className="row">
-                                    <div className="col-xs-12">
-                                        <AlertBox>
-                                            <FontAwesome name="exclamation-circle" />
-                                            <strong> Error! </strong> { error }
-                                        </AlertBox>
-                                    </div>
-                                </div>
-                            ) }
-                            <div className="row">
-                                <div className="col-md-offset-4 col-md-8 text-center">
-                                    <SubmitButton
-                                        name={ 'Continue ' }
-                                        submitting={ submitting }
-                                        icon={ 'arrow-circle-right' }
-                                    />
-                                    <TextInfo>
-                                        <small>
-                                            You can review this order before
-                                            it's final.
-                                        </small>
-                                    </TextInfo>
-                                </div>
-                            </div>
-                        </div>
+                        <Flex wrap justify="center">
+                            <Box w={ [1, 1, 1, 1 / 2] } mr={ 1 }>
+                                <User
+                                    title={ 'Payer Address' }
+                                    firstName={ firstName }
+                                    lastName={ lastName }
+                                    email={ email }
+                                    org={ org }
+                                    group={ group }
+                                    address={ address }
+                                    address2={ address2 }
+                                    city={ city }
+                                    state={ state }
+                                    zip={ zip }
+                                    country={ country }
+                                    phone={ phone }
+                                />
+                            </Box>
+                            <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
+                                <Flex>
+                                    <Box w={ 1 }>
+                                        <PaymentMethod
+                                            title={ 'Payment Method' }
+                                            payMethod={ payMethod }
+                                            poNum={ poNum }
+                                        />
+                                    </Box>
+                                </Flex>
+                                <hr />
+                                <Flex>
+                                    <Box w={ 1 }>
+                                        <PaymentAlert />
+                                    </Box>
+                                </Flex>
+                                <hr />
+                                { error && (
+                                    <Flex>
+                                        <Box w={ 1 }>
+                                            <AlertBox>
+                                                <FontAwesome name="exclamation-circle" />
+                                                <strong> Error! </strong>{ ' ' }
+                                                { error }
+                                            </AlertBox>
+                                        </Box>
+                                    </Flex>
+                                ) }
+                                <Flex justify="flex-end">
+                                    <Box w={ [1, 1, 1, 1 / 2] }>
+                                        <SubmitButton
+                                            name={ 'Continue ' }
+                                            submitting={ submitting }
+                                            icon={ 'arrow-circle-right' }
+                                        />
+                                        <TextInfo>
+                                            <small>
+                                                You can review this order before
+                                                it's final.
+                                            </small>
+                                        </TextInfo>
+                                    </Box>
+                                </Flex>
+                            </Box>
+                        </Flex>
                     </form>
-                </div>
-            </div>
+                </Box>
+            </Flex>
         )
     }
 }

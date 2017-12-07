@@ -7,15 +7,30 @@ import SubmitButton from './SubmitButton'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
-import { AlertBox } from 'styles'
+import { Flex, Box } from 'rebass'
+import { DictyHeader, AlertBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-export const fields = [ 'firstName', 'lastName', 'email', 'org', 'group',
-    'address', 'address2', 'city', 'state', 'zip', 'country', 'phone',
-    'shipAccount', 'shipAccountNum', 'comments' ]
+export const fields = [
+    'firstName',
+    'lastName',
+    'email',
+    'org',
+    'group',
+    'address',
+    'address2',
+    'city',
+    'state',
+    'zip',
+    'country',
+    'phone',
+    'shipAccount',
+    'shipAccountNum',
+    'comments'
+]
 
 class EditShipping extends Component {
-    displayName = 'shipping information';
+    displayName = 'shipping information'
 
     static propTypes = {
         fields: PropTypes.object.isRequired,
@@ -26,74 +41,94 @@ class EditShipping extends Component {
     render() {
         const { handleSubmit, submitting, error } = this.props
         const {
-            fields: { firstName, lastName, email, org, group, address, address2, city,
-                state, zip, country, phone, shipAccount, shipAccountNum, comments }
+            fields: {
+                firstName,
+                lastName,
+                email,
+                org,
+                group,
+                address,
+                address2,
+                city,
+                state,
+                zip,
+                country,
+                phone,
+                shipAccount,
+                shipAccountNum,
+                comments
+            }
         } = this.props
         return (
-            <div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h2 className="page-header">Edit shipping information</h2>
-                    </div>
-                </div>
-                <div className="row">
+            <Flex wrap justify="center">
+                <Box>
+                    <DictyHeader>
+                        <h2>Edit Shipping Information</h2>
+                    </DictyHeader>
+                </Box>
+                <Box w={ '85%' }>
                     <form onSubmit={ handleSubmit } className="form-horizontal">
-                        <div className="col-md-6">
-                            <User title = { 'Shipping Address' }
-                                firstName = { firstName }
-                                lastName = { lastName }
-                                email = { email }
-                                org ={ org }
-                                group = { group }
-                                address = { address }
-                                address2 = { address2 }
-                                city = { city }
-                                state = { state }
-                                zip = { zip }
-                                country = { country }
-                                phone = { phone }
-                            />
-                        </div>
-                        <div className= "col-md-6">
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <ShippingMethod title = { 'Shipping Method' }
-                                        shipAccount = { shipAccount }
-                                        shipAccountNum = { shipAccountNum }
-                                    />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <ShippingAdditional title = { 'Additional Information' }
-                                        comments = { comments }
-                                    />
-                                </div>
-                            </div>
-                            <hr />
-                            {
-                                error &&
-                                <div className="row">
-                                    <div className="col-xs-12">
-                                        <AlertBox>
-                                            <FontAwesome name="exclamation-circle" />
-                                            <strong> Error! </strong> { error } { error.message }
-                                        </AlertBox>
-                                    </div>
-                                </div>
-                            }
-                            <div className="row">
-                                <div className="col-md-offset-4 col-md-8">
-                                    <SubmitButton name={ 'Continue ' }
-                                        submitting={ submitting }
-                                        icon = { 'arrow-circle-right' }
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <Flex wrap justify="center">
+                            <Box w={ [1, 1, 1, 1 / 2] } mr={ 1 }>
+                                <User
+                                    title={ 'Shipping Address' }
+                                    firstName={ firstName }
+                                    lastName={ lastName }
+                                    email={ email }
+                                    org={ org }
+                                    group={ group }
+                                    address={ address }
+                                    address2={ address2 }
+                                    city={ city }
+                                    state={ state }
+                                    zip={ zip }
+                                    country={ country }
+                                    phone={ phone }
+                                />
+                            </Box>
+                            <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
+                                <Flex>
+                                    <Box w={ 1 }>
+                                        <ShippingMethod
+                                            title={ 'Shipping Method' }
+                                            shipAccount={ shipAccount }
+                                            shipAccountNum={ shipAccountNum }
+                                        />
+                                    </Box>
+                                </Flex>
+                                <Flex>
+                                    <Box w={ 1 }>
+                                        <ShippingAdditional
+                                            title={ 'Additional Information' }
+                                            comments={ comments }
+                                        />
+                                    </Box>
+                                </Flex>
+                                { error && (
+                                    <Flex>
+                                        <Box w={ 1 }>
+                                            <AlertBox>
+                                                <FontAwesome name="exclamation-circle" />
+                                                <strong> Error! </strong>{ ' ' }
+                                                { error } { error.message }
+                                            </AlertBox>
+                                        </Box>
+                                    </Flex>
+                                ) }
+                                <Flex justify="flex-end">
+                                    <Box w={ [1, 1, 1, 1 / 2] }>
+                                        <SubmitButton
+                                            name={ 'Continue ' }
+                                            submitting={ submitting }
+                                            icon={ 'arrow-circle-right' }
+                                        />
+                                    </Box>
+                                </Flex>
+                            </Box>
+                        </Flex>
                     </form>
-                </div>
-            </div>
+                </Box>
+            </Flex>
         )
     }
 }
@@ -101,8 +136,18 @@ class EditShipping extends Component {
 // pull state into forms initial values
 const mapStateToProps = state => {
     const { order } = state
-    const { firstName, lastName, email, org, group, address,
-        address2, city, zip, country, phone
+    const {
+        firstName,
+        lastName,
+        email,
+        org,
+        group,
+        address,
+        address2,
+        city,
+        zip,
+        country,
+        phone
     } = order.consumer
     const { account, accountNum, comments } = order.shipping
 
@@ -127,11 +172,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default reduxForm({
-    form: 'editShipping',
-    fields,
-    onSubmit: submitForm,
-    validate: syncValidateShipping
-},
-mapStateToProps
+export default reduxForm(
+    {
+        form: 'editShipping',
+        fields,
+        onSubmit: submitForm,
+        validate: syncValidateShipping
+    },
+    mapStateToProps
 )(EditShipping)
