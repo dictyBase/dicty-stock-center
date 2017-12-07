@@ -30,13 +30,21 @@ class App extends Component {
         return (
             <div>
                 <br />
-                <Header
-                    auth={ this.props.auth }
-                    authActions={ this.props.authActions }
-                    downloads=""
-                    info=""
-                    cite=""
-                />
+                { this.props.auth.isAuthenticated ? (
+                    <Header
+                        downloads="/downloads"
+                        info="/information"
+                        cite="/citation"
+                        logout="/logout"
+                    />
+                ) : (
+                    <Header
+                        downloads="/downloads"
+                        info="/information"
+                        cite="/citation"
+                        login="/login"
+                    />
+                ) }
                 <Navbar items={ NavbarLinks } />
                 <br />
                 <Cart cart={ this.props.cart } />
