@@ -29,7 +29,6 @@ class App extends Component {
     render() {
         return (
             <div>
-                <br />
                 { this.props.auth.isAuthenticated ? (
                     <Header
                         downloads="/downloads"
@@ -45,6 +44,7 @@ class App extends Component {
                         login="/login"
                     />
                 ) }
+                <br />
                 <Navbar items={ NavbarLinks } />
                 <br />
                 <Cart cart={ this.props.cart } />
