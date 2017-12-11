@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import styled from 'styled-components'
-import { AlertSuccess } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { AlertSuccess } from 'styles'
+import { PrimaryButton } from 'styles/buttons'
 
 const CenteredBox = styled(Box)`
     text-align: center;
@@ -37,9 +38,9 @@ export class Logout extends Component {
                             You have successfully logged out of Dicty Stock
                             Center
                         </p>
-                        <Link to="/" className="btn btn-lg btn-primary">
-                            Stock Center Home
-                        </Link>
+                        <PrimaryButton large>
+                            <Link to="/">Stock Center Home</Link>
+                        </PrimaryButton>
                     </AlertSuccess>
                 </CenteredBox>
             </Flex>

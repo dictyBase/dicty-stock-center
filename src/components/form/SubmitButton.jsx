@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
+import { PrimaryButton } from 'styles/buttons'
 
 export default class SubmitButton extends Component {
     displayName = 'form submit button';
@@ -14,13 +15,13 @@ export default class SubmitButton extends Component {
     render() {
         const { submitting, name, icon } = this.props
         return (
-            <button type="submit"
-                className="btn btn-primary btn-lg btn-block"
+            <PrimaryButton type="submit"
+                large block
                 disabled={ submitting }> { name }
                 { submitting ? <FontAwesome name="spinner" pulse fixedWidth />
                     : <FontAwesome name={ icon && icon } aria-hidden="true" />
                 }
-            </button>
+            </PrimaryButton>
         )
     }
 }

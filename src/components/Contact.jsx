@@ -14,8 +14,9 @@ import { submitEmail } from 'actions/contact'
 import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, RequiredText, Container } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { DictyHeader, RequiredText, Container } from 'styles'
+import { DefaultButton } from 'styles/buttons'
 
 export const fields = ['name', 'email', 'subject', 'message']
 
@@ -97,13 +98,13 @@ class Contact extends Component {
                                         </Comments>
                                         <Flex>
                                             <Box w={ 1 / 2 } mr={ 2 }>
-                                                <button
+                                                <DefaultButton
                                                     type="button"
-                                                    className="btn btn-default btn-lg btn-block"
+                                                    large block
                                                     disabled={ submitting }
                                                     onClick={ resetForm }>
                                                     Reset
-                                                </button>
+                                                </DefaultButton>
                                             </Box>
                                             <Box w={ 1 / 2 }>
                                                 <SubmitButton
