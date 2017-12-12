@@ -142,4 +142,14 @@ export const DisabledButton = Button.extend`
     border-color: #fff;
 `
 
-//  navbar-btn
+export const LinkButton = Button.withComponent('a')
+
+export const SocialButton = LinkButton.extend`
+    position: relative;
+    padding-left: 21px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+`

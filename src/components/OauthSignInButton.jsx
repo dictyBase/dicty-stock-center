@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import oauthConfig from 'utils/oauthConfig'
+import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 
 export default class oauthSignInButton extends Component {
@@ -47,13 +48,25 @@ export default class oauthSignInButton extends Component {
         const { provider } = this.props
         const name = oauthConfig[provider] ? oauthConfig[provider].name : this.titleCase(provider)
         return (
-            <a
-                className={ `btn btn-block btn-social btn-lg btn-${provider}` }
-                onClick={ this.onClick }
-            >
-                <FontAwesome name={ `${provider}` } />
-                Sign in with { name }
-            </a>
+            <Flex justify="center">
+                <Box w={ '90%' } mb={ '5px' }>
+                    <a
+                        className={ `btn btn-block btn-social btn-lg btn-${provider}` }
+                        onClick={ this.onClick }
+                    >
+                        <FontAwesome name={ `${provider}` } />
+                        Sign in with { name }
+                    </a>
+                </Box>
+            </Flex>
+
+            // <SocialButton block large
+            // className={ `btn-${provider}` }
+            // onClick={ this.onClick }
+            // >
+            // <FontAwesome name={ `${provider}` } />&nbsp;
+            // Sign in with { name }
+            // </SocialButton>
         )
     }
 }
