@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Flex, Box } from 'rebass'
+import { PrimaryButton } from 'styles/buttons'
 
 export default class SearchBar extends Component {
     displayName = 'search bar'
@@ -27,20 +28,18 @@ export default class SearchBar extends Component {
                   ref={ el => { this.searchInput = el } }
                   onKeyDown={ this.handleKeyDown.bind(this) }
                 />
-                <button
-                  className="btn btn-primary"
+                <PrimaryButton
                   style={ {marginLeft: 7} }
                   onClick={ this.handleSearch.bind(this) }
                 >
                   SEARCH
-                </button>
-                <button
-                  className="btn btn-primary"
+                </PrimaryButton>
+                <PrimaryButton
                   style={ {marginLeft: 7} }
                   onClick={ this.handleClear.bind(this) }
                 >
                   CLEAR
-                </button>
+                </PrimaryButton>
               </Box>
             </Flex>
         )

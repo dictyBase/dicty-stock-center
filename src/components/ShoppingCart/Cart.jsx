@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { Container } from 'styles'
+import { DangerButton } from 'styles/buttons'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart'
@@ -31,16 +32,15 @@ export default class Cart extends Component {
                                         <td>{ item.name }</td>
                                         <td>{ item.fee }</td>
                                         <td>
-                                            <button
+                                            <DangerButton
                                                 type="button"
-                                                className="btn btn-danger"
                                                 onClick={ () =>
                                                     cartActions.removeItem(
                                                         item.id
                                                     )
                                                 }>
                                                 <FontAwesome name="trash-o" />
-                                            </button>
+                                            </DangerButton>
                                         </td>
                                     </tr>
                                 )

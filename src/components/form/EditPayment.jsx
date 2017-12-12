@@ -10,6 +10,7 @@ import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, PanelGreen, AlertBox, TextInfo } from 'styles'
+import { SuccessButton } from 'styles/buttons'
 import FontAwesome from 'react-fontawesome'
 
 export const fields = [
@@ -80,12 +81,12 @@ class EditPayment extends Component {
                                 />
                             </PanelGreen>
                             <hr />
-                            <button
+                            <SuccessButton
                                 type="button"
-                                className="btn btn-success btn-xs"
+                                xs
                                 onClick={ sameAsShipping }>
                                 Same as shipping
-                            </button>{ ' ' }
+                            </SuccessButton>{ ' ' }
                             Click here if payer address is the same as shipping
                             address<br /><br />
                         </Box>

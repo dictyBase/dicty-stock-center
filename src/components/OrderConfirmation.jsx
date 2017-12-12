@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
-import { AlertSuccess } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { AlertSuccess } from 'styles'
+import { PrimaryButton } from 'styles/buttons'
 
 const CenteredBox = styled(Box)`
     text-align: center;
@@ -42,11 +43,11 @@ export default class OrderConfirmation extends Component {
                             </AlertSuccess>
                         </CenteredBox>
                         <Box w={ 1 }>
-                            <Link
-                                to="/"
-                                className="btn btn-primary btn-lg btn-block">
+                        <PrimaryButton large block>
+                            <Link to="/">
                                 <FontAwesome name="home" /> Stock Center Home
                             </Link>
+                            </PrimaryButton>
                         </Box>
                     </Flex>
                 </Box>

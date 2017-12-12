@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Jumbotron } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { Container, Jumbotron } from 'styles'
+import { PrimaryButton } from 'styles/buttons'
 
 export default class PageNotReady extends Component {
     displayName = 'homepage component';
@@ -11,7 +12,9 @@ export default class PageNotReady extends Component {
                 <Jumbotron>
                     <h1><FontAwesome name="wrench" /> Under Construction</h1>
                     <p>This page is not ready yet.</p>
-                    <Link to="/" className="btn btn-primary">Stock Center Home</Link>
+                    <PrimaryButton>
+                        <Link to="/">Stock Center Home</Link>
+                    </PrimaryButton>
                 </Jumbotron>
             </Container>
         )

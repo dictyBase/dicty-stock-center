@@ -18,8 +18,9 @@ import {
     CodeBlockButton
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
-import { ToolbarNav, EditPanel, StaticToolbar, TextInfo } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { ToolbarNav, EditPanel, StaticToolbar, TextInfo } from 'styles'
+import { DefaultButton, SuccessButton } from 'styles/buttons'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
@@ -131,26 +132,24 @@ export default class InlineEditor extends Component {
                                 </TextInfo>
                             ) }
                     </Box>
-                    <Box width={ "40%" } mr={ 1 }>
+                    <Box width={ "40%" } mr={ 1 } mt={ 1 }>
                         { !readOnly && (
-                            <button
-                                style={ { margin: '5px auto' } }
+                            <DefaultButton
+                                block
                                 type="button"
-                                className="btn btn-block btn-default"
                                 onClick={ this.onCancel }>
                                 Cancel
-                            </button>
+                            </DefaultButton>
                         ) }
                     </Box>
-                    <Box width={ "40%" }>
+                    <Box width={ "40%" } mt={ 1 }>
                         { !readOnly && (
-                            <button
-                                style={ { margin: '5px auto' } }
+                            <SuccessButton
+                                block
                                 type="button"
-                                className="btn btn-block btn-success"
                                 onClick={ this.onSave }>
                                 Save
-                            </button>
+                            </SuccessButton>
                         ) }
                     </Box>
                 </Flex>

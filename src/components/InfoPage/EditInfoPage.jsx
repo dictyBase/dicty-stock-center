@@ -19,6 +19,7 @@ import {
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
 import { Container, ToolbarNav, EditorStyle, EditPanel, StaticToolbar } from 'styles'
+import { DefaultButton, SuccessButton } from 'styles/buttons'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
@@ -98,22 +99,20 @@ export default class EditInfoPage extends Component {
                         <Box width="25%" />
                         <Box width="25%" />
                         <Box width="25%" mr={ 1 }>
-                            <button
-                                style={ { margin: '5px auto' } }
+                            <DefaultButton
                                 type="button"
-                                className="btn btn-block btn-default"
+                                block
                                 onClick={ this.onCancel }>
                                 Cancel
-                            </button>
+                            </DefaultButton>
                         </Box>
                         <Box width="25%">
-                            <button
-                                style={ { margin: '5px auto' } }
+                            <SuccessButton
                                 type="button"
-                                className="btn btn-block btn-success"
+                                block
                                 onClick={ this.onSave }>
                                 Save
-                            </button>
+                            </SuccessButton>
                         </Box>
                     </Flex>
                 </EditPanel>

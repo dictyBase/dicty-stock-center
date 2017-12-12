@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { ContainerFluid } from 'styles'
-import 'styles/core.scss'
+import { DefaultButton } from 'styles/buttons'
 
 export default class AuthNavbar extends Component {
     displayName = 'navbar display';
@@ -12,7 +12,9 @@ export default class AuthNavbar extends Component {
                     <div className="navbar-header">
                         <a className="navbar-brand" href="#">Auth App</a>
                     </div>
-                    <Link to="login" className="btn btn-default navbar-btn">Login</Link>
+                    <DefaultButton>
+                        <Link to="login">Login</Link>
+                    </DefaultButton>
                 </ContainerFluid>
             </nav>
         )

@@ -4,8 +4,9 @@ import EditPanel from './EditPanel'
 import Items from 'components/Items'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Flex, Box } from 'rebass'
-import { DictyHeader } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { DictyHeader } from 'styles'
+import { PrimaryButton } from 'styles/buttons'
 
 export default class Submit extends Component {
     displayName = 'submit order'
@@ -77,13 +78,14 @@ export default class Submit extends Component {
                     </Box>
                     <hr />
                     <Box>
-                        <button
+                        <PrimaryButton
                             type="button"
-                            className="btn btn-primary btn-lg btn-block"
+                            large
+                            block
                             onClick={ submitOrder }>
                             Complete Your Order{ ' ' }
                             <FontAwesome name="check-circle" />
-                        </button>
+                        </PrimaryButton>
                     </Box>
                 </Box>
             </Flex>

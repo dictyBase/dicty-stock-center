@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
     display: ${props => props.block ? 'block' : 'inline-block'};
-    padding: ${props => props.large ? '10px 16px' : '6px 12px'};
+    padding: ${props => props.large ? '10px 16px' : props.xs ? '1px 5px' : '6px 12px'};
     margin-bottom: 0;
-    font-size: ${props => props.large ? '18px' : '14px'};
+    font-size: ${props => props.large ? '18px' : props.xs ? '12px' : '14px'};
     font-weight: normal;
-    line-height: ${props => props.large ? '1.3333333' : '1.42857143'};
+    line-height: ${props => props.large ? '1.3333333' : props.xs ? '1.5' : '1.42857143'};
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -19,8 +19,8 @@ export const Button = styled.button`
             user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: ${props => props.large ? '6px' : '4px'};
-    width: ${props => props.block ? '100% ' : 'inherit'};
+    border-radius: ${props => props.large ? '6px' : props.xs ? '3px' : '4px'};
+    width: ${props => props.block ? '100% ' : props.xs ? '20%' : 'inherit'};
 `
 
 export const PrimaryButton = Button.extend`
@@ -81,7 +81,65 @@ export const DefaultButton = Button.extend`
 `
 
 export const SuccessButton = Button.extend`
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 
+    a {
+        color: #fff;
+    }
+
+    a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &:focus {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #255625;
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439;
+    }
+
+    &:active {
+        color: #333;
+        background-color: #449d44;
+        border-color: #398439;
+    }
 `
 
-//  navbar-btn, btn-success, btn-disabled, btn-danger, btn-xs
+export const DangerButton = Button.extend`
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+
+    &:focus {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #761c19;
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #ac2925;
+    }
+
+    &:active {
+        color: #333;
+        background-color: #c9302c;
+        border-color: #ac2925;
+    }
+`
+
+export const DisabledButton = Button.extend`
+    background-color: #fff;
+    border-color: #fff;
+`
+
+//  navbar-btn
