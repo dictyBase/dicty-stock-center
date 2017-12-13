@@ -52,7 +52,6 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
-    "classnames": "^2.2.3",
     "debug": "^2.2.0",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v2.1.0",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar",
