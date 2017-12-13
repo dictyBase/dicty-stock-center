@@ -153,3 +153,99 @@ export const SocialButton = LinkButton.extend`
     text-overflow: ellipsis;
     margin-top: 5px;
 `
+
+export const GoogleButton = SocialButton.extend`
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        color: #fff;
+        background-color: #c23321;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #c23321;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #c23321;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+`
+
+export const FacebookButton = SocialButton.extend`
+    color: #fff;
+    background-color: #3b5998;
+    border-color: rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        color: #fff;
+        background-color: #2d4373;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #2d4373;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #2d4373;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+`
+
+export const LinkedinButton = SocialButton.extend`
+    color: #fff;
+    background-color: #007bb6;
+    border-color: rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        color: #fff;
+        background-color: #005983;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #005983;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #005983;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+`
+
+export const OrcidButton = SocialButton.extend`
+    color: #fff;
+    background-color: #a6ce39;
+    border-color: rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        color: #fff;
+        background-color: #88aa2a;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #88aa2a;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #88aa2a;
+        border-color: rgba(0, 0, 0, 0.2)
+    }
+`
