@@ -269,9 +269,11 @@ export const HorizontalForm = styled.form`
 `
 
 export const ControlLabel = styled.label`
+    display: inline-block;
     padding-top: 7px;
     margin-bottom: 0;
     text-align: right;
+    font-weight: 600;
 `
 
 export const FormGroup = styled.div`

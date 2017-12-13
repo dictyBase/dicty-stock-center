@@ -23,8 +23,8 @@ export default class PaymentInfo extends Component {
       return (
       <FormGroup>
         <Flex wrap justify="center">
-          <Box w={ 1 / 5 } />
-          <Box w={ ['90%', '90%', 2 / 3] } mb={ 1 }>
+          <Box w={ [1, '30%', '30%'] } ml={ 1 } mb={ 2 } mr={ 1 } />
+          <Box w={ ['85%', '55%', '55%'] } mr={ 1 } ml={ 1 } mt={ 1 }>
             <FormControl {...poNum} placeholder="PO Number" />
           </Box>
         </Flex>
@@ -38,13 +38,13 @@ export default class PaymentInfo extends Component {
       return (
       <FormGroup>
         <Flex wrap justify="center">
-          <Box w={ 1 / 4 } ml={ 1 } mb={ 2 }>
+          <Box w={ [1, '30%', '30%'] } ml={ 1 } mb={ 2 } mr={ 1 }>
             <ControlLabel>
               <RequiredText title="required field">* </RequiredText>
               Payment Method:
             </ControlLabel>
           </Box>
-          <Box w={ 2 / 3 } mr={ 2 } mb={ 1 }>
+          <Box w={ [1, '55%', '55%'] } mr={ 1 } ml={ 1 }>
             <RadioInline>
               <input
                 type="radio"

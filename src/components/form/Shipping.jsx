@@ -8,7 +8,7 @@ import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/shipping'
 import { syncValidateShipping } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, AlertBox } from 'styles'
+import { DictyHeader, AlertBox, HorizontalForm } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
 export const fields = [
@@ -66,8 +66,8 @@ class Shipping extends Component {
                         <h2>Please enter shipping information</h2>
                     </DictyHeader>
                 </Box>
-                <Box w={ '85%' }>
-                    <form onSubmit={ handleSubmit } className="form-horizontal">
+                <Box w={ ['95%', '95%', '95%'] }>
+                    <HorizontalForm onSubmit={ handleSubmit }>
                         <Flex wrap justify="center">
                             <Box w={ [1, 1, 1, '45%'] } mr={ 1 }>
                                 <User
@@ -119,7 +119,7 @@ class Shipping extends Component {
                                 </Box>
                             </Box>
                         </Flex>
-                    </form>
+                    </HorizontalForm>
                 </Box>
             </Flex>
         )

@@ -97,7 +97,7 @@ class Contact extends Component {
                                             Message:
                                         </Comments>
                                         <Flex>
-                                            <Box w={ 1 / 2 } mr={ 2 }>
+                                            <Box w={ 1 / 2 } mr={ 2 } mt={ 1 }>
                                                 <DefaultButton
                                                     type="button"
                                                     large block
@@ -106,7 +106,7 @@ class Contact extends Component {
                                                     Reset
                                                 </DefaultButton>
                                             </Box>
-                                            <Box w={ 1 / 2 }>
+                                            <Box w={ 1 / 2 } mt={ 1 }>
                                                 <SubmitButton
                                                     name={ 'Submit ' }
                                                     submitting={ submitting }

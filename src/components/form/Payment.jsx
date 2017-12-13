@@ -70,7 +70,7 @@ class Payment extends Component {
                         <h2>Please enter payment information</h2>
                     </DictyHeader>
                 </Box>
-                <Box w={ '85%' }>
+                <Box w={ ['95%', '95%', '95%'] }>
                     <Flex wrap justify="center">
                         <Box w={ '95%' }>
                             <PanelGreen>
