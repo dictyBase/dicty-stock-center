@@ -7,9 +7,6 @@ import {
     PanelBody
 } from 'dicty-components-panel'
 import ShippingInfo from './ShippingInfo'
-import 'styles/core.scss'
-
-// still need to pass in custom styles
 
 export default class ShippingMethod extends Component {
     displayName = 'shipping method'

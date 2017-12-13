@@ -1,32 +1,35 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'styles/core.scss'
+import { Flex, Box } from 'rebass'
+import { ControlLabel, FormGroup, FormTextArea } from 'styles'
 
 export default class Comments extends Component {
-    displayName = 'form contact information';
+  displayName = 'form contact information'
 
-    static propTypes = {
-        comments: PropTypes.object.isRequired,
-        placeholder: PropTypes.string,
-        rows: PropTypes.string
-    }
+  static propTypes = {
+      comments: PropTypes.object.isRequired,
+      placeholder: PropTypes.string,
+      rows: PropTypes.string
+  }
 
-    render() {
-        const { comments, placeholder, rows, children } = this.props
-        return (
-            <div>
-                <div className="form-group">
-                    <label className="col-sm-3 control-label">
-                        { children }
-                    </label>
-                    <div className="col-sm-9">
-                        <textarea className="form-control" rows={ rows } { ...comments }
-                          value={ comments.value }
-                          placeholder= { placeholder } >
-                        </textarea>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+  render() {
+      const { comments, placeholder, rows, children } = this.props
+      return (
+      <FormGroup>
+        <Flex wrap justify="center">
+          <Box w={ 1 / 4 } ml={ 2 } mb={ 2 }>
+            <ControlLabel>{ children }</ControlLabel>
+          </Box>
+          <Box w={ 2 / 3 } mr={ 2 } mb={ 2 }>
+            <FormTextArea
+              rows={ rows }
+              {...comments}
+              value={ comments.value }
+              placeholder={ placeholder }
+            />
+          </Box>
+        </Flex>
+      </FormGroup>
+    )
+  }
 }

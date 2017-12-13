@@ -1,66 +1,79 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { RequiredText } from 'styles'
+import { Flex, Box } from 'rebass'
+import {
+  RequiredText,
+  FormGroup,
+  FormControl,
+  HelpBlock,
+  ControlLabel,
+  RadioInline
+} from 'styles'
 
 export default class PaymentInfo extends Component {
-    displayName = 'payment information';
+  displayName = 'payment information'
 
-    static propTypes = {
-        payMethod: PropTypes.object.isRequired,
-        poNum: PropTypes.object.isRequired
-    }
+  static propTypes = {
+      payMethod: PropTypes.object.isRequired,
+      poNum: PropTypes.object.isRequired
+  }
 
-    renderPoNumber = () => {
-        const { poNum } = this.props
-        return (
-            <div className="form-group">
-                <div className="col-sm-offset-3 col-sm-9">
-                    <input type="text" className="form-control" { ...poNum }
-                        placeholder="PO Number"
-                    />
-                </div>
-            </div>
-        )
-    }
+  renderPoNumber = () => {
+      const { poNum } = this.props
+      return (
+      <FormGroup>
+        <Flex wrap justify="center">
+          <Box w={ 1 / 5 } />
+          <Box w={ ['90%', '90%', 2 / 3] } mb={ 1 }>
+            <FormControl {...poNum} placeholder="PO Number" />
+          </Box>
+        </Flex>
+      </FormGroup>
+    )
+  }
 
-    render() {
-        const { payMethod } = this.props
-        const hasError = (payMethod.touched && payMethod.error)
-        let groupClass = classNames('form-group', {
-            'has-error': hasError
-        })
-        return (
-            <div>
-                <div className={ groupClass }>
-                    <label className="col-sm-3 control-label">
-                        <RequiredText title="required field">* </RequiredText>
-                        Payment Method:
-                    </label>
-                    <div className="col-sm-9">
-                        <label className="radio-inline">
-                            <input type="radio" { ...payMethod } value="Credit card"
-                                checked={ payMethod.value === 'Credit card' }
-                            />
-                            Credit Card
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" { ...payMethod } value="Wire transfer"
-                                checked={ payMethod.value === 'Wire transfer' }
-                            />
-                            Wire Transfer
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" { ...payMethod } value="PO"
-                                checked={ payMethod.value === 'PO' }
-                            />
-                            Purchase Order (PO)
-                        </label>
-                        { hasError && <div className="help-block">{ payMethod.error }</div> }
-                    </div>
-                </div>
-                { payMethod.value === 'PO' && this.renderPoNumber() }
-            </div>
-        )
-    }
+  render() {
+      const { payMethod } = this.props
+      const hasError = payMethod.touched && payMethod.error
+      return (
+      <FormGroup>
+        <Flex wrap justify="center">
+          <Box w={ 1 / 4 } ml={ 1 } mb={ 2 }>
+            <ControlLabel>
+              <RequiredText title="required field">* </RequiredText>
+              Payment Method:
+            </ControlLabel>
+          </Box>
+          <Box w={ 2 / 3 } mr={ 2 } mb={ 1 }>
+            <RadioInline>
+              <input
+                type="radio"
+                {...payMethod}
+                value="Credit card"
+                checked={ payMethod.value === 'Credit card' }
+              />&nbsp; Credit Card
+            </RadioInline>
+            <RadioInline>
+              <input
+                type="radio"
+                {...payMethod}
+                value="Wire transfer"
+                checked={ payMethod.value === 'Wire transfer' }
+              />&nbsp; Wire Transfer
+            </RadioInline>
+            <RadioInline>
+              <input
+                type="radio"
+                {...payMethod}
+                value="PO"
+                checked={ payMethod.value === 'PO' }
+              />&nbsp; Purchase Order (PO)
+            </RadioInline>
+            { hasError && <HelpBlock>{ payMethod.error }</HelpBlock> }
+          </Box>
+        </Flex>
+        { payMethod.value === 'PO' && this.renderPoNumber() }
+      </FormGroup>
+    )
+  }
 }

@@ -15,7 +15,7 @@ import { reduxForm } from 'redux-form'
 import { syncValidate } from 'forms/validate/contact-form'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader, RequiredText, Container } from 'styles'
+import { DictyHeader, RequiredText, Container, HorizontalForm } from 'styles'
 import { DefaultButton } from 'styles/buttons'
 
 export const fields = ['name', 'email', 'subject', 'message']
@@ -67,8 +67,8 @@ class Contact extends Component {
                                         dictyBase
                                     </PanelTitle>
                                 </PanelHeader>
-                                <PanelBody style={ { height: '100%' } }>
-                                    <form
+                                <PanelBody style={ { height: 'auto' } }>
+                                    <HorizontalForm
                                         onSubmit={ handleSubmit }
                                         className="form-horizontal">
                                         <FormGroupInput field={ name }>
@@ -114,7 +114,7 @@ class Contact extends Component {
                                                 />
                                             </Box>
                                         </Flex>
-                                    </form>
+                                    </HorizontalForm>
                                 </PanelBody>
                             </Panel>
                         </PanelGroup>

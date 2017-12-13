@@ -1,84 +1,94 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { RequiredText } from 'styles'
+import { Flex, Box } from 'rebass'
+import {
+  RequiredText,
+  FormGroup,
+  FormControl,
+  HelpBlock,
+  ControlLabel,
+  RadioInline
+} from 'styles'
 
 export default class ShippingInfo extends Component {
-    displayName = 'form shipping information';
+  displayName = 'form shipping information'
 
-    static propTypes = {
-        shipAccount: PropTypes.object.isRequired,
-        shipAccountNum: PropTypes.object.isRequired
-    }
+  static propTypes = {
+      shipAccount: PropTypes.object.isRequired,
+      shipAccountNum: PropTypes.object.isRequired
+  }
 
-    renderShipAccountNum = () => {
-        const { shipAccountNum } = this.props
-        let groupClass = classNames('form-group', {
-            'has-error': shipAccountNum.error
-        })
-        return (
-            <div className={ groupClass }>
-                <div className="col-sm-offset-3 col-sm-9">
-                    <input type="text" className="form-control" { ...shipAccountNum }
-                        placeholder="Shipping Account Number"
-                    />
-                    { shipAccountNum.error && <div className="help-block">
-                        { shipAccountNum.error }
-                        </div>
-                    }
-                </div>
-            </div>
-        )
-    }
+  renderShipAccountNum = () => {
+      const { shipAccountNum } = this.props
+      return (
+      <FormGroup>
+        <Flex wrap justify="center">
+          <Box w={ 1 / 5 } />
+          <Box w={ ['90%', '90%', 2 / 3] }>
+            <FormControl
+              {...shipAccountNum}
+              placeholder="Shipping Account Number"
+            />
+            { shipAccountNum.error && (
+              <HelpBlock>{ shipAccountNum.error }</HelpBlock>
+            ) }
+          </Box>
+        </Flex>
+      </FormGroup>
+    )
+  }
 
-    render() {
-        const { shipAccount } = this.props
-        const hasError = (shipAccount.touched && shipAccount.error)
-        let groupClass = classNames('form-group', {
-            'has-error': hasError
-        })
-        return (
-            <div>
-                <div className={ groupClass }>
-                    <label className="col-sm-3 control-label">
-                        <RequiredText>* </RequiredText>
-                        Shipping Account:
-                    </label>
-                    <div className="col-sm-9">
-                        <label className="radio-inline">
-                            <input type="radio" { ...shipAccount } value="Fedex"
-                                checked={ shipAccount.value === 'Fedex' }
-                            />
-                            FedEx
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" { ...shipAccount } value="UPS"
-                                checked={ shipAccount.value === 'UPS' }
-                            />
-                            UPS
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" { ...shipAccount } value="DHL"
-                                checked={ shipAccount.value === 'DHL' }
-                            />
-                            DHL
-                        </label>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" { ...shipAccount }
-                                    value="Will call 1-312-503-4169"
-                                    checked={ shipAccount.value === 'Will call 1-312-503-4169' }
-                                />
-                                Call in Credit card # for FedEx waybill 1-312-503-4169
-                            </label>
-                            { hasError && <div className="help-block">{ shipAccount.error }</div> }
-                        </div>
-                    </div>
-                </div>
-                { !(shipAccount.value === 'Will call 1-312-503-4169') &&
-                    this.renderShipAccountNum()
-                }
-            </div>
-        )
-    }
+  render() {
+      const { shipAccount } = this.props
+      const hasError = shipAccount.touched && shipAccount.error
+      return (
+      <FormGroup>
+        <Flex wrap justify="center">
+          <Box w={ 1 / 4 } ml={ 1 } mb={ 2 }>
+            <ControlLabel>
+              <RequiredText>* </RequiredText>
+              Shipping Account:
+            </ControlLabel>
+          </Box>
+          <Box w={ 2 / 3 } mr={ 2 } mb={ 1 }>
+            <RadioInline>
+              <input
+                type="radio"
+                {...shipAccount}
+                value="Fedex"
+                checked={ shipAccount.value === 'Fedex' }
+              />&nbsp; FedEx
+            </RadioInline>
+            <RadioInline>
+              <input
+                type="radio"
+                {...shipAccount}
+                value="UPS"
+                checked={ shipAccount.value === 'UPS' }
+              />&nbsp; UPS
+            </RadioInline>
+            <RadioInline>
+              <input
+                type="radio"
+                {...shipAccount}
+                value="DHL"
+                checked={ shipAccount.value === 'DHL' }
+              />&nbsp; DHL
+            </RadioInline>
+            <RadioInline>
+              <input
+                type="radio"
+                {...shipAccount}
+                value="Will call 1-312-503-4169"
+                checked={ shipAccount.value === 'Will call 1-312-503-4169' }
+              />&nbsp; Call in Credit card # for FedEx Waybill 1-312-503-4169
+            </RadioInline>
+            { hasError && <HelpBlock>{ shipAccount.error }</HelpBlock> }
+          </Box>
+        </Flex>
+        { !(shipAccount.value === 'Will call 1-312-503-4169') &&
+          this.renderShipAccountNum() }
+      </FormGroup>
+    )
+  }
 }
