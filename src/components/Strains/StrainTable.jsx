@@ -5,7 +5,7 @@ import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { ItemAvailable, ItemUnavailable } from 'styles'
+import { ItemAvailable, ItemUnavailable, TableResponsive } from 'styles'
 import { PrimaryButton, DisabledButton } from 'styles/buttons'
 
 export default class StrainTable extends Component {
@@ -157,11 +157,10 @@ export default class StrainTable extends Component {
       const rowCount = data.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
       return (
-      <div className="table-responsive" style={ { border: 'none' } }>
+      <TableResponsive style={ { border: 'none' } }>
         <Flex justify="center">
           <Box>
             <input
-              className="search-box"
               style={ {
                   textAlign: 'center',
                   height: '100%',
@@ -241,7 +240,7 @@ export default class StrainTable extends Component {
             )
           } }
         </InfiniteLoader>
-      </div>
+      </TableResponsive>
     )
   }
 }

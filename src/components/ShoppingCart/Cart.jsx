@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
-import { Container } from 'styles'
+import { Container, TableResponsive, Table } from 'styles'
 import { DangerButton } from 'styles/buttons'
 
 export default class Cart extends Component {
@@ -15,8 +15,8 @@ export default class Cart extends Component {
         const { cart, cartActions } = this.props
         return (
             <Container>
-                <div className="table-responsive">
-                    <table className="table table-condensed">
+                <TableResponsive>
+                    <Table condensed>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -46,8 +46,8 @@ export default class Cart extends Component {
                                 )
                             }) }
                         </tbody>
-                    </table>
-                </div>
+                    </Table>
+                </TableResponsive>
             </Container>
         )
     }
