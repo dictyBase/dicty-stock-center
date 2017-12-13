@@ -5,8 +5,6 @@ import { Flex, Box } from 'rebass'
 import { Container, DictyHeader, Breadcrumb } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-// double-check proper center alignment
-
 export default class MyDsc extends Component {
     displayName = 'user profile';
     render() {
@@ -17,7 +15,7 @@ export default class MyDsc extends Component {
                     <Box w={ 1 }>
                         <Breadcrumb>
                           <li><Link to="/">Home</Link></li>
-                          <li className="active">My DSC</li>
+                          <li>My DSC</li>
                         </Breadcrumb>
                     </Box>
                     <Box w={ 1 }>

@@ -9,7 +9,7 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, PanelGreen, AlertBox, TextInfo } from 'styles'
+import { DictyHeader, PanelGreen, AlertBox, TextInfo, HorizontalForm } from 'styles'
 import { SuccessButton } from 'styles/buttons'
 import FontAwesome from 'react-fontawesome'
 
@@ -91,7 +91,7 @@ class EditPayment extends Component {
                             address<br /><br />
                         </Box>
                     </Flex>
-                    <form onSubmit={ handleSubmit } className="form-horizontal">
+                    <HorizontalForm onSubmit={ handleSubmit }>
                         <Flex wrap justify="center">
                             <Box w={ [1, 1, 1, 1 / 2] } mr={ 1 }>
                                 <User
@@ -155,7 +155,7 @@ class EditPayment extends Component {
                                 </Flex>
                             </Box>
                         </Flex>
-                    </form>
+                    </HorizontalForm>
                 </Box>
             </Flex>
         )

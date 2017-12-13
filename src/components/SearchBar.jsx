@@ -21,7 +21,6 @@ export default class SearchBar extends Component {
             <Flex justify="center">
               <Box>
                 <input
-                  className="search-box"
                   style={ {textAlign: 'center', height: '100%', WebkitAppearance: 'textfield'} }
                   type="search"
                   placeholder={ this.props.placeholder }

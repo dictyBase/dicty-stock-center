@@ -69,8 +69,7 @@ class Contact extends Component {
                                 </PanelHeader>
                                 <PanelBody style={ { height: 'auto' } }>
                                     <HorizontalForm
-                                        onSubmit={ handleSubmit }
-                                        className="form-horizontal">
+                                        onSubmit={ handleSubmit }>
                                         <FormGroupInput field={ name }>
                                             <RequiredText
                                                 title="required field">
