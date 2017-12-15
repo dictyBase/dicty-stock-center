@@ -7,7 +7,6 @@ import {
     PanelBody
 } from 'dicty-components-panel'
 import PaymentInfo from './PaymentInfo'
-import 'styles/core.scss'
 
 export default class PaymentMethod extends Component {
     displayName = 'payment method'

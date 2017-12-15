@@ -7,7 +7,6 @@ import {
     PanelBody
 } from 'dicty-components-panel'
 import Comments from './Comments'
-import 'styles/core.scss'
 
 export default class ShippingAdditional extends Component {
     displayName = 'shipping details'

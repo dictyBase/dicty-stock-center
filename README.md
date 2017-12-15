@@ -39,7 +39,7 @@ Dicty Stock Center application rebuilt with React and Redux!
   configuration parameters for every new provider in that file.
 * For each of the provider name a corresponding login button will be shown up
   in the login route. The list of supported buttons are given
-  [here](https://lipis.github.io/bootstrap-social/)
+  [here](http://fontawesome.io/icons/#brand)
 
 ###Auth server
 * By default, the application expect it to run on `http://localhost:9999`

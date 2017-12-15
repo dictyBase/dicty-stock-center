@@ -10,7 +10,6 @@ import Personal from './Personal'
 import Organization from './Organization'
 import Address from './Address'
 import Contact from './Contact'
-import 'styles/core.scss'
 
 export default class User extends Component {
     displayName = 'user information'
