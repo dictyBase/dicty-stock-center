@@ -12,6 +12,7 @@ injectGlobal`
         line-height: 1.42857;
         color: #333;
         background-color: #fff;
+        margin: auto;
 
         h1, h2, h3, h4, h5, h6 {
             font-family: inherit;
