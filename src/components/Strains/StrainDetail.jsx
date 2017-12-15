@@ -127,12 +127,14 @@ export default class StrainDetail extends Component {
 
         <Flex wrap justify="center">
           <Box w={ ['80%', '35%'] } mt={ 10 } mr={ 1 }>
-            <PrimaryButton block onClick={ () => addToCart(cartItem) }>
+            <PrimaryButton
+              className={ `block` }
+              onClick={ () => addToCart(cartItem) }>
               <FontAwesome name="share" /> Add to Cart
             </PrimaryButton>
           </Box>
           <Box w={ ['80%', '35%'] } mt={ 10 } mr={ 1 }>
-            <SuccessButton block>
+            <SuccessButton className={ `block` }>
               <Link to="/order/shipping">
                 <FontAwesome name="shopping-cart" /> Checkout
               </Link>

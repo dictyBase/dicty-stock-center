@@ -47,14 +47,14 @@ export default class ShoppingCart extends Component {
             </Flex>
             <Flex wrap justify="center">
               <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
-                <PrimaryButton large block>
+                <PrimaryButton className={ `large block` }>
                   <Link to="/strains">
                     <FontAwesome name="share" /> Continue Shopping
                   </Link>
                 </PrimaryButton>
               </Box>
               <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
-                <SuccessButton large block>
+                <SuccessButton className={ `large block` }>
                   <Link to="/order/shipping">
                     <FontAwesome name="shopping-cart" /> Checkout
                   </Link>

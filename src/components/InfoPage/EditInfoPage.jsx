@@ -101,7 +101,7 @@ export default class EditInfoPage extends Component {
                         <Box width="25%" mr={ 1 }>
                             <DefaultButton
                                 type="button"
-                                block
+                                className={ `block` }
                                 onClick={ this.onCancel }>
                                 Cancel
                             </DefaultButton>
@@ -109,7 +109,7 @@ export default class EditInfoPage extends Component {
                         <Box width="25%">
                             <SuccessButton
                                 type="button"
-                                block
+                                className={ `block` }
                                 onClick={ this.onSave }>
                                 Save
                             </SuccessButton>

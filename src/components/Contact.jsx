@@ -99,7 +99,7 @@ class Contact extends Component {
                                             <Box w={ 1 / 2 } mr={ 2 } mt={ 1 }>
                                                 <DefaultButton
                                                     type="button"
-                                                    large block
+                                                    className={ `large block` }
                                                     disabled={ submitting }
                                                     onClick={ resetForm }>
                                                     Reset

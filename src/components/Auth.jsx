@@ -38,7 +38,7 @@ export class Logout extends Component {
                             You have successfully logged out of Dicty Stock
                             Center
                         </p>
-                        <PrimaryButton large>
+                        <PrimaryButton className={ `large` }>
                             <Link to="/">Stock Center Home</Link>
                         </PrimaryButton>
                     </AlertSuccess>

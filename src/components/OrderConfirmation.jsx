@@ -43,7 +43,7 @@ export default class OrderConfirmation extends Component {
                             </AlertSuccess>
                         </CenteredBox>
                         <Box w={ 1 }>
-                        <PrimaryButton large block>
+                        <PrimaryButton className={ `large block` }>
                             <Link to="/">
                                 <FontAwesome name="home" /> Stock Center Home
                             </Link>

@@ -81,8 +81,7 @@ export default class Submit extends Component {
                         <hr />
                         <PrimaryButton
                             type="button"
-                            large
-                            block
+                            className={ `large block` }
                             onClick={ submitOrder }>
                             Complete Your Order{ ' ' }
                             <FontAwesome name="check-circle" />

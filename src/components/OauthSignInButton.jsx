@@ -51,8 +51,8 @@ export default class oauthSignInButton extends Component {
         return (
             <Flex justify="center">
                 <Box w={ '90%' } mb={ '5px' }>
-                    <SocialButton large block
-                        className={ `btn-${provider}` }
+                    <SocialButton
+                        className={ `large block ${provider}` }
                         onClick={ this.onClick }
                     >
                         <FontAwesome name={ `${provider}` } />&nbsp;

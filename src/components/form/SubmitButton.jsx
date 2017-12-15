@@ -16,7 +16,7 @@ export default class SubmitButton extends Component {
         const { submitting, name, icon } = this.props
         return (
             <PrimaryButton type="submit"
-                large block
+            className={ `large block` }
                 disabled={ submitting }> { name }
                 { submitting ? <FontAwesome name="spinner" pulse fixedWidth />
                     : <FontAwesome name={ icon && icon } aria-hidden="true" />

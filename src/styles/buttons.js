@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-    display: ${props => props.block ? 'block' : 'inline-block'};
-    padding: ${props => props.large ? '10px 16px' : props.xs ? '1px 5px' : '6px 12px'};
+    display: inline-block;
+    padding: 6px 12px;
     margin-bottom: 0;
-    font-size: ${props => props.large ? '18px' : props.xs ? '12px' : '14px'};
+    font-size: 14px;
     font-weight: normal;
-    line-height: ${props => props.large ? '1.3333333' : props.xs ? '1.5' : '1.42857143'};
+    line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -19,8 +19,27 @@ export const Button = styled.button`
             user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: ${props => props.large ? '6px' : props.xs ? '3px' : '4px'};
-    width: ${props => props.block ? '100% ' : props.xs ? '20%' : 'inherit'};
+    border-radius: 4px;
+
+    &.block {
+        display: block;
+        width: 100%;
+    }
+
+    &.large {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 6px;
+    }
+
+    &.xs {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+        width: 20%;
+    }
 `
 
 export const PrimaryButton = Button.extend`

@@ -83,7 +83,7 @@ class Payment extends Component {
                             <hr />
                             <SuccessButton
                                 type="button"
-                                xs
+                                className={ `xs` }
                                 onClick={ sameAsShipping }>
                                 Same as shipping
                             </SuccessButton>{ ' ' }
