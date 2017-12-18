@@ -133,8 +133,8 @@ webpackConfig.module.loaders = [{
     cacheDirectory: true,
     plugins: ['transform-runtime', 'transform-decorators-legacy'],
     presets: __DEV__
-      ? ['es2015', 'react', 'stage-0', 'react-hmre']
-      : ['es2015', 'react', 'stage-0']
+      ? ['env', 'react', 'stage-0', 'react-hmre']
+      : ['env', 'react', 'stage-0']
   }
 },
 {
@@ -149,8 +149,8 @@ webpackConfig.module.loaders = [{
     cacheDirectory: true,
     plugins: ['transform-runtime', 'transform-decorators-legacy'],
     presets: __DEV__
-      ? ['es2015', 'react', 'stage-0', 'react-hmre']
-      : ['es2015', 'react', 'stage-0']
+      ? ['env', 'react', 'stage-0', 'react-hmre']
+      : ['env', 'react', 'stage-0']
   }
 }
 ]
