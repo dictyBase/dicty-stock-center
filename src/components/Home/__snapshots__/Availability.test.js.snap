@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Availability 1`] = `
+<div
+  className="sc-fjdhpX kKPLiW"
+>
+  <h4>
+    Availability
+  </h4>
+</div>
+`;

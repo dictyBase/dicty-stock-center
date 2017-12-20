@@ -8,6 +8,7 @@
     "npm": "^3.0.0"
   },
   "jest": {
+    "moduleDirectories": ["node_modules", "src"],
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/"
     ],
