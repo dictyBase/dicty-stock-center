@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of SubmitLoader 1`] = `
+<div
+  className="sc-bdVaJa jqSxTV"
+>
+  <div
+    className="sc-iRbamj blSEcj sc-gPEVay diKSJM sc-jAaTju eGyRlb"
+    is={null}
+  >
+    <div
+      className="sc-bmyXtO cjEiu sc-jlyJG bbyJzT sc-jAaTju eGyRlb"
+      is={null}
+    >
+      <h1>
+        Please wait...
+      </h1>
+      <span
+        aria-hidden={true}
+        className="fa fa-spinner fa-5x fa-pulse"
+        mw={true}
+      />
+    </div>
+  </div>
+</div>
+`;

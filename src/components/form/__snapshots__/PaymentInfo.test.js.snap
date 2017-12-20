@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of PaymentInfo 1`] = `
+<div
+  className="sc-VJcYb eoqXel"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa cyncUw"
+      is={null}
+    >
+      <label
+        className="sc-fONwsr jwUYlu"
+      >
+        <span
+          className="sc-kUaPvJ frTkXt"
+          title="required field"
+        >
+          * 
+        </span>
+        Payment Method:
+      </label>
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa XupaC"
+      is={null}
+    >
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="Credit card"
+        />
+          Credit Card
+      </label>
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="Wire transfer"
+        />
+          Wire Transfer
+      </label>
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="PO"
+        />
+          Purchase Order (PO)
+      </label>
+    </div>
+  </div>
+</div>
+`;

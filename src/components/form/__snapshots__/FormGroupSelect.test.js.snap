@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of FormGroupSelect 1`] = `
+<div
+  className="sc-VJcYb eoqXel"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+      is={null}
+    >
+      <label
+        className="sc-fONwsr jwUYlu"
+      />
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+      is={null}
+    >
+      <select
+        className="sc-cqCuEk bJVHks"
+        value=""
+      >
+        <option
+          value="select"
+        >
+          -- Select --
+        </option>
+        <option
+          value="USA"
+        >
+          USA
+        </option>
+        <option
+          value="Iceland"
+        >
+          Iceland
+        </option>
+        <option
+          value="Japan"
+        >
+          Japan
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Comments 1`] = `
+<div
+  className="sc-VJcYb eoqXel"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+      is={null}
+    >
+      <label
+        className="sc-fONwsr jwUYlu"
+      />
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+      is={null}
+    >
+      <textarea
+        className="sc-dliRfk eByuMY"
+        placeholder="placeholder"
+        rows="20"
+        value={undefined}
+      />
+    </div>
+  </div>
+</div>
+`;
