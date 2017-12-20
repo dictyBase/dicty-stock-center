@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Downloads 1`] = `
+<div
+  className="sc-cSHVUG dyYMvt"
+>
+  <div
+    className="sc-kAzzGY FynjO"
+  >
+    <h3>
+      Download / View
+    </h3>
+    <ul>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Phenotype Ontology
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Strain Characteristics
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Mutagenesis Methods
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Plasmid Keywords
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Info 1`] = `
+<div
+  className="sc-cSHVUG dyYMvt"
+>
+  <div
+    className="sc-kAzzGY FynjO"
+  >
+    <ul>
+      <li>
+        <a
+          href="/orders/information"
+          onClick={[Function]}
+        >
+          Order Information
+        </a>
+      </li>
+      <li>
+        <a
+          href="/payments/information"
+          onClick={[Function]}
+        >
+          Payment Information
+        </a>
+      </li>
+      <li>
+        <a
+          href="/deposits/information"
+          onClick={[Function]}
+        >
+          Deposit Information
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

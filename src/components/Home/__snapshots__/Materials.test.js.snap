@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Materials 1`] = `
+<div
+  className="sc-fjdhpX kKPLiW"
+>
+  <div
+    className="sc-kAzzGY FynjO"
+  >
+    <ul>
+      <li>
+        <a
+          href="/strains"
+          onClick={[Function]}
+        >
+          Strain Catalog
+        </a>
+      </li>
+      <li>
+        <a
+          href="/plasmids"
+          onClick={[Function]}
+        >
+          Plasmid Catalog
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Bacterial Strains
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Other Materials
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

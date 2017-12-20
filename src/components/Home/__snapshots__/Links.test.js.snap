@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Links 1`] = `
+<div
+  className="sc-cSHVUG dyYMvt"
+>
+  <div
+    className="sc-kAzzGY FynjO"
+  >
+    <ul>
+      <li>
+        <a
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact the DSC
+        </a>
+      </li>
+      <li>
+        <a
+          href="/faq"
+          onClick={[Function]}
+        >
+          DSC FAQ
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.google.com"
+        >
+          Nomenclature Guide
+        </a>
+      </li>
+      <li>
+        <a
+          href="/history"
+          onClick={[Function]}
+        >
+          DSC History
+        </a>
+      </li>
+      <li>
+        <a
+          href="/other"
+          onClick={[Function]}
+        >
+          Other Stock Centers
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
