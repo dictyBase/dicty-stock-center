@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of PaymentMethod 1`] = `
+<div
+  className="gsdTnU"
+  style={
+    Object {
+      "border": "1px solid #D2D7D3",
+      "height": "100%",
+      "marginBottom": 0,
+    }
+  }
+>
+  <div
+    className="bBgvkp"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#337ab7",
+        "borderBottom": "0px none #ddd",
+        "borderColor": "#4B77BE",
+        "padding": "20px",
+      }
+    }
+  >
+    <h3
+      className="jXCrp"
+      style={
+        Object {
+          "color": "#ffffff",
+          "fontSize": "20px",
+          "fontWeight": "200",
+        }
+      }
+    >
+      <div
+        className="kyzudI"
+        onClick={[Function]}
+      >
+        Method
+      </div>
+    </h3>
+  </div>
+  <div
+    className="panel-body cgBkWQ"
+    open={true}
+    style={Object {}}
+  >
+    <div
+      className="DRXhs"
+    />
+    <div
+      className="sc-VJcYb eoqXel"
+    >
+      <div
+        className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+        is={null}
+      >
+        <div
+          className="sc-ifAKCX cFlEyZ sc-bdVaJa cyncUw"
+          is={null}
+        >
+          <label
+            className="sc-fONwsr jwUYlu"
+          >
+            <span
+              className="sc-kUaPvJ frTkXt"
+              title="required field"
+            >
+              * 
+            </span>
+            Payment Method:
+          </label>
+        </div>
+        <div
+          className="sc-ifAKCX cFlEyZ sc-bdVaJa XupaC"
+          is={null}
+        >
+          <label
+            className="sc-kLIISr iFiaWe"
+          >
+            <input
+              checked={false}
+              touched={true}
+              type="radio"
+              value="Credit card"
+            />
+              Credit Card
+          </label>
+          <label
+            className="sc-kLIISr iFiaWe"
+          >
+            <input
+              checked={false}
+              touched={true}
+              type="radio"
+              value="Wire transfer"
+            />
+              Wire Transfer
+          </label>
+          <label
+            className="sc-kLIISr iFiaWe"
+          >
+            <input
+              checked={false}
+              touched={true}
+              type="radio"
+              value="PO"
+            />
+              Purchase Order (PO)
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="DRXhs"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of ShippingInfo 1`] = `
+<div
+  className="sc-VJcYb eoqXel"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa cyncUw"
+      is={null}
+    >
+      <label
+        className="sc-fONwsr jwUYlu"
+      >
+        <span
+          className="sc-kUaPvJ frTkXt"
+        >
+          * 
+        </span>
+        Shipping Account:
+      </label>
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa XupaC"
+      is={null}
+    >
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={true}
+          touched={true}
+          type="radio"
+          value="Fedex"
+        />
+          FedEx
+      </label>
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="UPS"
+        />
+          UPS
+      </label>
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="DHL"
+        />
+          DHL
+      </label>
+      <label
+        className="sc-kLIISr iFiaWe"
+      >
+        <input
+          checked={false}
+          touched={true}
+          type="radio"
+          value="Will call 1-312-503-4169"
+        />
+          Call in Credit card # for FedEx Waybill 1-312-503-4169
+      </label>
+    </div>
+  </div>
+  <div
+    className="sc-VJcYb eoqXel"
+  >
+    <div
+      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa cyncUw"
+        is={null}
+      />
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa cjDWjg"
+        is={null}
+      >
+        <input
+          className="sc-ipXKqB dNZJKP"
+          placeholder="Shipping Account Number"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

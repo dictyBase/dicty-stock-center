@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of EditPanel 1`] = `
+<div>
+  <h4 />
+  <div>
+    Jane
+     
+    Doe
+  </div>
+  <div />
+  <div />
+  <div>
+     
+     
+  </div>
+  <div />
+  <br />
+  <div>
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-pencil-square-o"
+      />
+       Edit shipping info
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Personal 1`] = `
+<div>
+  <div
+    className="sc-VJcYb eoqXel"
+  >
+    <div
+      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        is={null}
+      >
+        <label
+          className="sc-fONwsr jwUYlu"
+        >
+          <span
+            className="sc-kUaPvJ frTkXt"
+          >
+            * 
+          </span>
+          First Name:
+        </label>
+      </div>
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        is={null}
+      >
+        <input
+          className="sc-ipXKqB dNZJKP"
+          placeholder={undefined}
+          type="text"
+          value="Jane"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-VJcYb eoqXel"
+  >
+    <div
+      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        is={null}
+      >
+        <label
+          className="sc-fONwsr jwUYlu"
+        >
+          <span
+            className="sc-kUaPvJ frTkXt"
+          >
+            * 
+          </span>
+          Last Name:
+        </label>
+      </div>
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        is={null}
+      >
+        <input
+          className="sc-ipXKqB dNZJKP"
+          placeholder={undefined}
+          type="text"
+          value="Doe"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-VJcYb eoqXel"
+  >
+    <div
+      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        is={null}
+      >
+        <label
+          className="sc-fONwsr jwUYlu"
+        >
+          <span
+            className="sc-kUaPvJ frTkXt"
+          >
+            * 
+          </span>
+          Email:
+        </label>
+      </div>
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        is={null}
+      >
+        <input
+          className="sc-ipXKqB dNZJKP"
+          placeholder={undefined}
+          type="text"
+          value="janedoe@gmail.com"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
