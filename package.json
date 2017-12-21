@@ -22,12 +22,16 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "styles": "<rootDir>/src/styles/index.js"
+      "styles": "<rootDir>/src/styles/index.js",
+      "styles/buttons": "<rootDir>/src/styles/buttons.js"
     },
     "roots": [
       "<rootDir>/src/"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js",
+    "globals": {
+      "__API_SERVER__": "http://localhost:8080"
+    }
   },
   "scripts": {
     "clean": "rm -rf dist",
@@ -165,7 +169,7 @@
     "redux-devtools": "^3.1.0",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.4",
-    "redux-mock-store": "^1.0.3",
+    "redux-mock-store": "^1.3.0",
     "regenerator-runtime": "^0.11.1",
     "sass-loader": "^3.0.0",
     "sinon": "^4.1.3",

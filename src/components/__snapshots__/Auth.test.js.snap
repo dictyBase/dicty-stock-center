@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of AuthLoader 1`] = `
+<div
+  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  is={null}
+>
+  <div
+    className="sc-bmyXtO cjEiu sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <h1>
+      Logging in...
+    </h1>
+    <br />
+    <span
+      aria-hidden={true}
+      className="fa fa-spinner fa-5x fa-pulse fa-fw"
+    />
+  </div>
+</div>
+`;
