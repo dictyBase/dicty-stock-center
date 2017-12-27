@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
-import { Container, Jumbotron } from 'styles'
-import { PrimaryButton } from 'styles/buttons'
+import { Container, Jumbotron, PrimaryButton } from 'styles'
 
 export default class PageNotReady extends Component {
     displayName = 'homepage component';

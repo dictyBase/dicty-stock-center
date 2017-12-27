@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import styled from 'styled-components'
 import FontAwesome from 'react-fontawesome'
-import { AlertSuccess } from 'styles'
-import { PrimaryButton } from 'styles/buttons'
+import { AlertSuccess, PrimaryButton } from 'styles'
 
 const CenteredBox = styled(Box)`
     text-align: center;

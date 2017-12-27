@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
-import { Container, TableResponsive, Table } from 'styles'
-import { DangerButton } from 'styles/buttons'
+import { Container, TableResponsive, Table, DangerButton } from 'styles'
 
 export default class Cart extends Component {
     displayName = 'Shopping cart'

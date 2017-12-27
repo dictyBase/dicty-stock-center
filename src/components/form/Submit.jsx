@@ -5,8 +5,7 @@ import Items from 'components/Items'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader } from 'styles'
-import { PrimaryButton } from 'styles/buttons'
+import { DictyHeader, PrimaryButton } from 'styles'
 
 export default class Submit extends Component {
     displayName = 'submit order'

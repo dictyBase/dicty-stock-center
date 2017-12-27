@@ -9,8 +9,7 @@ import SubmitButton from './SubmitButton'
 import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
-import { DictyHeader, PanelGreen, AlertBox, TextInfo, HorizontalForm } from 'styles'
-import { SuccessButton } from 'styles/buttons'
+import { DictyHeader, PanelGreen, AlertBox, TextInfo, HorizontalForm, SuccessButton } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
 export const fields = [

@@ -18,8 +18,7 @@ import {
     CodeBlockButton
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
-import { Container, ToolbarNav, EditorStyle, EditPanel, StaticToolbar } from 'styles'
-import { DefaultButton, SuccessButton } from 'styles/buttons'
+import { Container, ToolbarNav, EditorStyle, EditPanel, StaticToolbar, DefaultButton, SuccessButton } from 'styles'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({

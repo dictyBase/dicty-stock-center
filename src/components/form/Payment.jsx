@@ -10,8 +10,7 @@ import PaymentAlert from './PaymentAlert'
 import { syncValidatePayment } from 'forms/validate/order-form'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { PanelGreen, DictyHeader, AlertBox, TextInfo, HorizontalForm } from 'styles'
-import { SuccessButton } from 'styles/buttons'
+import { PanelGreen, DictyHeader, AlertBox, TextInfo, HorizontalForm, SuccessButton } from 'styles'
 
 export const fields = [
     'firstName',

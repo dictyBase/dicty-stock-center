@@ -19,8 +19,7 @@ import {
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { ToolbarNav, EditPanel, StaticToolbar, TextInfo } from 'styles'
-import { DefaultButton, SuccessButton } from 'styles/buttons'
+import { ToolbarNav, EditPanel, StaticToolbar, TextInfo, DefaultButton, SuccessButton } from 'styles'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({

@@ -4,8 +4,7 @@ import Cart from './Cart'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader, Container, AlertBox } from 'styles'
-import { PrimaryButton, SuccessButton } from 'styles/buttons'
+import { DictyHeader, Container, AlertBox, PrimaryButton, SuccessButton } from 'styles'
 
 export default class ShoppingCart extends Component {
   displayName = 'Shopping cart'

@@ -6,8 +6,7 @@ import { Table, Column, InfiniteLoader } from 'react-virtualized'
 import TableLoader from 'components/TableLoader'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { ItemAvailable, ItemUnavailable, TableResponsive } from 'styles'
-import { PrimaryButton, DisabledButton } from 'styles/buttons'
+import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
 
 // type Props = {
 //   cellWidth: number,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
-import { PrimaryButton } from 'styles/buttons'
+import { PrimaryButton } from 'styles'
 
 export default class SubmitButton extends Component {
     displayName = 'form submit button';

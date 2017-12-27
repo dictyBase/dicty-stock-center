@@ -5,8 +5,7 @@ import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { ItemAvailable, ItemUnavailable, TableResponsive } from 'styles'
-import { PrimaryButton, DisabledButton } from 'styles/buttons'
+import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
 
 export default class StrainTable extends Component {
   displayName = 'strain table'

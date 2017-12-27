@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 import Loader from 'components/Loader'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader, StrainDetailsHeader } from 'styles'
-import { PrimaryButton, SuccessButton } from 'styles/buttons'
+import { DictyHeader, StrainDetailsHeader, PrimaryButton, SuccessButton } from 'styles'
 
 export default class PlasmidDetail extends Component {
   displayName = 'plasmid detail'

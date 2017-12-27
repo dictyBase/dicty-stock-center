@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Flex, Box } from 'rebass'
-import { PrimaryButton } from 'styles/buttons'
+import { PrimaryButton } from 'styles'
 
 export default class SearchBar extends Component {
     displayName = 'search bar'

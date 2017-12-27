@@ -7,8 +7,7 @@ import Loader from 'components/Loader'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { PhenotypeData, DictyHeader, StrainDetailsHeader } from 'styles'
-import { PrimaryButton, SuccessButton } from 'styles/buttons'
+import { PhenotypeData, DictyHeader, StrainDetailsHeader, PrimaryButton, SuccessButton } from 'styles'
 
 const BorderBox = styled(Box)`
   border: 1px solid grey;
