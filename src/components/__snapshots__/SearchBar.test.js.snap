@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of SearchBar 1`] = `
+<div
+  className="sc-bxivhb bUZGRr sc-htpNat iZBBQa sc-bdVaJa iHZvIS"
+  is={null}
+>
+  <div
+    className="sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <input
+      onKeyDown={[Function]}
+      placeholder={undefined}
+      style={
+        Object {
+          "WebkitAppearance": "textfield",
+          "height": "100%",
+          "textAlign": "center",
+        }
+      }
+      type="search"
+    />
+    <button
+      className="sc-bmyXtO dHjBJs"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": 7,
+        }
+      }
+    >
+      SEARCH
+    </button>
+    <button
+      className="sc-bmyXtO dHjBJs"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": 7,
+        }
+      }
+    >
+      CLEAR
+    </button>
+  </div>
+</div>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of PageNotReady 1`] = `
+<div
+  className="sc-bdVaJa jqSxTV"
+>
+  <div
+    className="sc-EHOje dVUPbG"
+  >
+    <h1>
+      <span
+        aria-hidden={true}
+        className="fa fa-wrench"
+      />
+       Under Construction
+    </h1>
+    <p>
+      This page is not ready yet.
+    </p>
+    <button
+      className="sc-jAaTju ddurCY"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Stock Center Home
+      </a>
+    </button>
+  </div>
+</div>
+`;

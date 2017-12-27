@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of SubmitButton 1`] = `
+<button
+  className="large block sc-jAaTju ddurCY"
+  disabled={false}
+  type="submit"
+>
+   
+  Submit
+  <span
+    aria-hidden={true}
+    className="fa fa-Submit"
+  />
+</button>
+`;

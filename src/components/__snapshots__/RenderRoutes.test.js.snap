@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of RenderRoutes 1`] = `
+<div
+  className="sc-eerKOB gRmrxR"
+>
+  <div
+    className="sc-gFaPwZ hPYVgC"
+  >
+    <h1>
+      <span
+        aria-hidden={true}
+        className="fa fa-wrench"
+      />
+       Under Construction
+    </h1>
+    <p>
+      This page is not ready yet.
+    </p>
+    <button
+      className="sc-bmyXtO dHjBJs"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Stock Center Home
+      </a>
+    </button>
+  </div>
+</div>
+`;

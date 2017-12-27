@@ -6,7 +6,7 @@ exports[`matching a snapshot of AuthLoader 1`] = `
   is={null}
 >
   <div
-    className="sc-bmyXtO cjEiu sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+    className="sc-hzNEM fyqJHU sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
     is={null}
   >
     <h1>
@@ -17,6 +17,43 @@ exports[`matching a snapshot of AuthLoader 1`] = `
       aria-hidden={true}
       className="fa fa-spinner fa-5x fa-pulse fa-fw"
     />
+  </div>
+</div>
+`;
+
+exports[`matching a snapshot of Logout 1`] = `
+<div
+  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  is={null}
+>
+  <div
+    className="sc-hzNEM fyqJHU sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
+    is={null}
+  >
+    <div
+      className="sc-dymIpo dmPwKo"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-check-circle-o fa-5x"
+      />
+      <h1>
+        Logout successful!
+      </h1>
+      <p>
+        You have successfully logged out of Dicty Stock Center
+      </p>
+      <button
+        className="large sc-bmyXtO dHjBJs"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Stock Center Home
+        </a>
+      </button>
+    </div>
   </div>
 </div>
 `;
