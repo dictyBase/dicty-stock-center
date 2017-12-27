@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Submit 1`] = `
+<div
+  className="sc-fBuWsC eeihxG sc-jhAzac ebYTGO sc-bRBYWo doPqru"
+  is={null}
+>
+  <div
+    className="sc-fMiknA bxZCMx sc-bRBYWo kAYKaX"
+    is={null}
+  >
+    <div
+      className="sc-VigVT fSOgUr"
+    >
+      <h2>
+        Review Your Order
+      </h2>
+      <p>
+         
+        Please review your order and click "Complete Your Order" button to place your order
+      </p>
+    </div>
+  </div>
+  <div
+    className="sc-fMiknA bxZCMx sc-bRBYWo ctOxpL"
+    is={null}
+  >
+    <div
+      className="sc-fBuWsC eeihxG sc-jhAzac ebYTGO sc-bRBYWo doPqru"
+      is={null}
+    >
+      <div
+        className="sc-fMiknA bxZCMx sc-bRBYWo hgUpzn"
+        is={null}
+      >
+        <div
+          className="gsdTnU"
+          style={
+            Object {
+              "marginBottom": 0,
+            }
+          }
+        >
+          <div
+            className="panel-body cgBkWQ"
+            open={true}
+            style={Object {}}
+          >
+            <div
+              className="DRXhs"
+            />
+            <div>
+              <h4>
+                <span
+                  aria-hidden={true}
+                  className="fa fa-truck"
+                />
+                 Ship to:
+              </h4>
+              <div>
+                Jane
+                 
+              </div>
+              <div />
+              <div />
+              <div>
+                 
+                 
+              </div>
+              <div />
+              <br />
+              <div>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-pencil-square-o"
+                  />
+                   Edit shipping info
+                </a>
+              </div>
+            </div>
+            <div
+              className="DRXhs"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-fMiknA bxZCMx sc-bRBYWo hgUpzn"
+        is={null}
+      >
+        <div
+          className="gsdTnU"
+          style={
+            Object {
+              "marginBottom": 0,
+            }
+          }
+        >
+          <div
+            className="panel-body cgBkWQ"
+            open={true}
+            style={Object {}}
+          >
+            <div
+              className="DRXhs"
+            />
+            <div>
+              <h4>
+                <span
+                  aria-hidden={true}
+                  className="fa fa-credit-card-alt"
+                />
+                 Payer:
+              </h4>
+              <div>
+                John
+                 
+              </div>
+              <div />
+              <div />
+              <div>
+                 
+                 
+              </div>
+              <div />
+              <br />
+              <div>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-pencil-square-o"
+                  />
+                   Edit shipping info
+                </a>
+              </div>
+            </div>
+            <div
+              className="DRXhs"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div
+      className="sc-fBuWsC eeihxG sc-jhAzac ebYTGO sc-bRBYWo doPqru"
+      is={null}
+    >
+      <div
+        className="sc-fMiknA bxZCMx sc-bRBYWo jLVBMb"
+        is={null}
+      >
+        <div
+          className="gsdTnU"
+          style={
+            Object {
+              "marginBottom": 0,
+            }
+          }
+        >
+          <div
+            className="panel-body cgBkWQ"
+            open={true}
+            style={Object {}}
+          >
+            <div
+              className="DRXhs"
+            />
+            <h4>
+              <span
+                aria-hidden={true}
+                className="fa fa-shopping-cart"
+              />
+               Items
+            </h4>
+            <div>
+              <div
+                className="sc-fBuWsC eeihxG sc-jhAzac jtssgA sc-bRBYWo doPqru"
+                is={null}
+              >
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                >
+                  <h5>
+                    ID
+                  </h5>
+                </div>
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                >
+                  <h5>
+                    Strain/Plasmid Name
+                  </h5>
+                </div>
+              </div>
+              <div
+                className="sc-fBuWsC eeihxG sc-jhAzac jtssgA sc-bRBYWo doPqru"
+                is={null}
+              >
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                />
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                />
+              </div>
+              <div
+                className="sc-fBuWsC eeihxG sc-jhAzac jtssgA sc-bRBYWo doPqru"
+                is={null}
+              >
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                />
+                <div
+                  className="sc-fMiknA bxZCMx sc-bRBYWo gcXcNW"
+                  is={null}
+                />
+              </div>
+            </div>
+            <div
+              className="DRXhs"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-fMiknA bxZCMx sc-bRBYWo pvPzc"
+        is={null}
+      >
+        <hr />
+        <button
+          className="large block sc-jAaTju ddurCY"
+          onClick={undefined}
+          type="button"
+        >
+          Complete Your Order
+           
+          <span
+            aria-hidden={true}
+            className="fa fa-check-circle"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

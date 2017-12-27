@@ -11,10 +11,12 @@ test('matching a snapshot of Submit', () => {
         editShipping: () => {},
         editPayment: () => {}
     }
-    const addedItems = ['1', '2']
+    const cart = {
+        addedItems: ['1', '2']
+    }
 
     const component = renderer.create(
-    <Submit order={ order } orderActions={ orderActions } addedItems={ addedItems } />)
+    <Submit order={ order } orderActions={ orderActions } cart={ cart } />)
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
 })

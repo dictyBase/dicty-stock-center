@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Cart 1`] = `
+<div
+  className="sc-eerKOB gRmrxR"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat cPcSwG sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <a
+        href="/cart"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-shopping-cart fa-3x"
+        />
+        (
+        0
+        )
+      </a>
+    </div>
+  </div>
+</div>
+`;

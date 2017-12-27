@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of OrderConfirmation 1`] = `
+<div
+  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  is={null}
+>
+  <div
+    className="sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
+    is={null}
+  >
+    <div
+      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      is={null}
+    >
+      <div
+        className="sc-hzNEM fyqJHU sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        is={null}
+      >
+        <div
+          className="sc-dymIpo dmPwKo"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-check-circle-o fa-5x"
+          />
+          <h3>
+            Thank you, your order has been submitted successfully!
+          </h3>
+          <p>
+            Order Number: 
+            <strong>
+              test
+            </strong>
+          </p>
+          <p>
+            We have sent you a confirmation email.
+          </p>
+          <p>
+            The 
+            <strong>
+              Payer
+            </strong>
+             will soon receive emails through the 
+            <strong>
+              NU Core
+            </strong>
+             
+            system to complete payment.
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        is={null}
+      >
+        <button
+          className="large block sc-bmyXtO dHjBJs"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-home"
+            />
+             Stock Center Home
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

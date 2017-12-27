@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Error 1`] = `
+<div
+  className="sc-bdVaJa jqSxTV"
+>
+  <div
+    className="sc-htpNat itEKZS"
+  >
+    <h1>
+      <span
+        aria-hidden={true}
+        className="fa fa-exclamation-triangle"
+      />
+       Error
+    </h1>
+    <h2>
+      404
+    </h2>
+    <h2>
+      404
+    </h2>
+  </div>
+</div>
+`;

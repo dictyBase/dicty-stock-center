@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of MyDsc 1`] = `
+<div
+  className="sc-eerKOB gRmrxR"
+>
+  <div
+    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    is={null}
+  >
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+      is={null}
+    >
+      <ol
+        className="sc-rBLzX jyfUlY"
+      >
+        <li>
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          My DSC
+        </li>
+      </ol>
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+      is={null}
+    >
+      <div
+        className="sc-hGoxap deENbu"
+      >
+        <h2>
+          My DSC
+        </h2>
+      </div>
+    </div>
+    <div
+      className="sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
+      is={null}
+    >
+      <div
+        className="gsdTnU"
+        style={
+          Object {
+            "marginBottom": 0,
+          }
+        }
+      >
+        <div
+          className="panel-body cgBkWQ"
+          open={true}
+          style={Object {}}
+        >
+          <div
+            className="DRXhs"
+          />
+          <h1>
+            <span
+              aria-hidden={true}
+              className="fa fa-user"
+            />
+             Personal Information
+          </h1>
+          <hr />
+          <h3>
+            Name: 
+            Jane Doe
+          </h3>
+          <h3>
+            Email: 
+            janedoe@gmail.com
+          </h3>
+          <h3>
+            Provider: 
+            google
+          </h3>
+          <div
+            className="DRXhs"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
