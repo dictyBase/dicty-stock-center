@@ -1,12 +1,12 @@
 ## Master branch
 [![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master)
-[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master#info=devDependencies)
+[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master?type=dev)
 
 
 ## Develop branch
 [![Build Status](https://travis-ci.org/dictyBase/Dicty-Stock-Center.svg?branch=master)](https://travis-ci.org/dictyBase/Dicty-Stock-Center)
 [![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop)
-[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop#info=devDependencies)
+[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop?type=dev)
 
 
 # Dicty Stock Center
