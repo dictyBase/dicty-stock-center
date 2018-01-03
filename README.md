@@ -1,8 +1,15 @@
+## Master branch
+[![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master)
+[![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master#info=devDependencies)
+
+
+## Develop branch
+[![Build Status](https://travis-ci.org/dictyBase/Dicty-Stock-Center.svg?branch=master)](https://travis-ci.org/dictyBase/Dicty-Stock-Center)
 [![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop)
 [![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop#info=devDependencies)
 
 
-#Dicty Stock Center
+# Dicty Stock Center
 Dicty Stock Center application rebuilt with React and Redux!
 
 * [Development](#development)
@@ -23,13 +30,13 @@ Dicty Stock Center application rebuilt with React and Redux!
         * [make push-image ](#make-push-image)
 
 
-#Development
+# Development
 * First clone this repository.
 * Next configure the application as described below.
 
-##Configuration
+## Configuration
 
-###Providers
+### Providers
 * This is the most important part and it is absolutely needed to run the application.
 * Copy the provided sample [clientConfig.sample.js](src/utils/clientConfig.sample.js) file
   to __clientConfig.js__  in the same folder. 
@@ -41,7 +48,7 @@ Dicty Stock Center application rebuilt with React and Redux!
   in the login route. The list of supported buttons are given
   [here](http://fontawesome.io/icons/#brand)
 
-###Auth server
+### Auth server
 * By default, the application expect it to run on `http://localhost:9999`
 * The url of the auth server can be configured by __AUTH_SERVER__ environmental variable.
 * The binaries for the auth server could be downloaded from its release
@@ -51,7 +58,7 @@ Dicty Stock Center application rebuilt with React and Redux!
   global variable in the webpack [config](config/_base.js) file. 
 
 
-###API server
+### API server
 * By default, the application expect it to run on `http://localhost:8080`
 * The url of the auth server can be configured by __API_SERVER__ environmental variable.
 * An API server to **test** the application can be found [here](https://github.com/dictyBase/fake-dsc-server)
@@ -63,7 +70,7 @@ Dicty Stock Center application rebuilt with React and Redux!
 * ```npm install```
 * ```npm start```
 
-##Application Structure
+## Application Structure
 
 ```
 .
@@ -95,12 +102,12 @@ Dicty Stock Center application rebuilt with React and Redux!
 For additional information make sure to follow the original starter kit
 [documenation](docs/react-redux-starter-kit.md)
 
-#Deployment
+# Deployment
 The application is deployed by [building docker
 image](https://docs.docker.com/engine/reference/commandline/build/) and running
 it through [kubernetes](https://k8s.io).
 
-##Build and running docker containers
+## Build and running docker containers
 The docker image build is done through [Makefile](/Makefile). It can build a dev
 version for quick testing in a developer’s machine and another version to
 deploy in a staging machine.
