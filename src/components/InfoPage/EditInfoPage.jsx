@@ -27,6 +27,7 @@ import {
   DefaultButton,
   SuccessButton
 } from 'styles'
+import 'draft-js/dist/draft.css'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
@@ -78,6 +79,7 @@ export default class EditInfoPage extends Component {
       const { editorState } = this.state
       const { match, pageActions } = this.props
       const rawData = convertToRaw(editorState.getCurrentContent())
+      console.log(rawData)
       pageActions.saveEditing(match.params.name, rawData)
   }
   onCancel = () => {
@@ -86,6 +88,7 @@ export default class EditInfoPage extends Component {
   }
   render() {
       const { editorState } = this.state
+      
       return (
       <Container>
         <EditPanel>
