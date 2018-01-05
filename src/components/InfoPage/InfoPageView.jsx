@@ -8,9 +8,10 @@ import {
 import findEntities from 'utils/findEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
+import FontAwesome from 'react-fontawesome'
 import { Flex, Box } from 'rebass'
 import { Container, ToolbarNav, TextInfo, Label } from 'styles'
-import FontAwesome from 'react-fontawesome'
+import 'draft-js/dist/draft.css'
 
 export default class InfoPageView extends Component {
     displayName = 'information page component'
