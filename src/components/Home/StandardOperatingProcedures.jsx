@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import LinkList from '../LinkList'
+import FontAwesome from 'react-fontawesome'
 import { PanelGray } from 'styles'
 
 export default class Materials extends Component {
-    displayName = 'links to stock catalogs'
-    render() {
-        const procedures = [
-            {name: 'Standard Operating Procedures', to: '#', routerAware: true}
-        ]
-        return (
-            <PanelGray>
-                <LinkList list={ procedures }/>
-            </PanelGray>
-        )
-    }
+  displayName = 'links to stock catalogs'
+  render() {
+      return (
+      <PanelGray>
+        <a href="http://wiki.dictybase.org/dictywiki/index.php/Standard_Operating_Procedures" target="_blank">
+          Standard Operating Procedures
+        </a>&nbsp;
+        <FontAwesome name="file-pdf-o" />
+      </PanelGray>
+    )
+  }
 }
-
