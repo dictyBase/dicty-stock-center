@@ -12,6 +12,11 @@ import About from './About'
 import StandardOperatingProcedures from './StandardOperatingProcedures'
 import { HomepageHeader, Container } from 'styles'
 
+const images = [
+    'https://i.imgur.com/SqHpamt.png',
+    'https://i.imgur.com/gP5FAAf.png'
+]
+
 export default class Home extends Component {
     displayName = 'homepage component'
     static propTypes = {
@@ -73,7 +78,7 @@ export default class Home extends Component {
                     <Box w={ [1, '33%', '33%'] }>
                         <Flex justify="center" column>
                             <Box>
-                                <Carousel />
+                                <Carousel images={ images } time={ 5000 } />
                             </Box>
                             <Box>
                                 <Materials />
