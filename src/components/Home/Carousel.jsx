@@ -18,12 +18,9 @@ const Slideshow = styled.div`
   width: 100%;
   height: 100%;
 `
-const ImageContainer = styled.div`
-  max-width: 100%;
-  height: 100%;
-`
 const Slide = styled.img`
   height: 100%;
+  max-width: 100%;
 `
 const Button = styled.i`
   cursor: pointer;
@@ -90,10 +87,8 @@ export default class Carousel extends Component {
       const { images } = this.props
       return images.map((image, i) => {
           return (
-        <ImageContainer key={ i }>
-          <Slide length={ images.length } src={ image } />
-        </ImageContainer>
-      )
+            <Slide src={ image } key={ i } />
+        )
       })
   }
   renderDots = () => {
