@@ -122,6 +122,10 @@ export const ResponsiveImage = styled.img`
     height: auto;
 `
 
+export const Figure = styled.figure`
+    margin: 0;
+`
+
 export const TextInfo = styled.span`
     color: #31708f;
     &:hover {

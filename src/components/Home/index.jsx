@@ -9,6 +9,7 @@ import Carousel from './Carousel'
 import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
+import StandardOperatingProcedures from './StandardOperatingProcedures'
 import { HomepageHeader, Container } from 'styles'
 
 export default class Home extends Component {
@@ -30,8 +31,8 @@ export default class Home extends Component {
         const { stockCenter, stockCenterActions } = this.props
         return (
             <Container>
-                <Flex wrap>
-                    <Box>{ user && this.renderGreeting() }</Box>
+                { user && this.renderGreeting() }
+                <Flex wrap justify="space-between">
                     <Box>
                         <HomepageHeader>
                             <h1>Welcome to Dicty Stock Center (DSC)</h1>
@@ -40,7 +41,7 @@ export default class Home extends Component {
                     <Box>
                         <Intro />
                     </Box>
-                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
+                    <Box w={ [1, '30%', '30%'] }>
                         <Flex column>
                             <Box>
                                 <About auth={ this.props.auth } />
@@ -48,9 +49,12 @@ export default class Home extends Component {
                             <Box>
                                 <Links />
                             </Box>
+                            <Box>
+                                <StandardOperatingProcedures />
+                            </Box>
                         </Flex>
                     </Box>
-                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
+                    <Box w={ [1, '30%', '30%'] }>
                         <Flex column>
                             <Box>
                                 <Info />
@@ -66,7 +70,7 @@ export default class Home extends Component {
                             </Box>
                         </Flex>
                     </Box>
-                    <Box w={ [1, '30%', '30%'] } mr={ 2 }>
+                    <Box w={ [1, '33%', '33%'] }>
                         <Flex justify="center" column>
                             <Box>
                                 <Carousel />
