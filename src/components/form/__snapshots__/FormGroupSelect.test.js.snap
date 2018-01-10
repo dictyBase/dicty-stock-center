@@ -2,7 +2,7 @@
 
 exports[`matching a snapshot of FormGroupSelect 1`] = `
 <div
-  className="sc-VJcYb eoqXel"
+  className="sc-ipXKqB eOLIpB"
 >
   <div
     className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -13,7 +13,7 @@ exports[`matching a snapshot of FormGroupSelect 1`] = `
       is={null}
     >
       <label
-        className="sc-fONwsr jwUYlu"
+        className="sc-VJcYb mTwLq"
       />
     </div>
     <div
@@ -21,7 +21,7 @@ exports[`matching a snapshot of FormGroupSelect 1`] = `
       is={null}
     >
       <select
-        className="sc-cqCuEk bJVHks"
+        className="sc-dliRfk jSrqmO"
         value=""
       >
         <option

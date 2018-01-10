@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome'
 import { PanelGray } from 'styles'
 
 export default class Materials extends Component {
-  displayName = 'links to stock catalogs'
+  displayName = 'link to SOPs'
   render() {
       return (
       <PanelGray>

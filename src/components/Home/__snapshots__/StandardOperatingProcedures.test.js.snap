@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of StandardOperatingProcedures 1`] = `
+<div
+  className="sc-jzJRlG kEfCTO"
+>
+  <a
+    href="http://wiki.dictybase.org/dictywiki/index.php/Standard_Operating_Procedures"
+    target="_blank"
+  >
+    Standard Operating Procedures
+  </a>
+   
+  <span
+    aria-hidden={true}
+    className="fa fa-file-pdf-o"
+  />
+</div>
+`;

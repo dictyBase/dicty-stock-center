@@ -6,7 +6,7 @@ exports[`matching a snapshot of AuthLoader 1`] = `
   is={null}
 >
   <div
-    className="sc-hzNEM fyqJHU sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+    className="sc-chbbiW ePtbcQ sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
     is={null}
   >
     <h1>
@@ -27,7 +27,7 @@ exports[`matching a snapshot of Logout 1`] = `
   is={null}
 >
   <div
-    className="sc-hzNEM fyqJHU sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
+    className="sc-chbbiW ePtbcQ sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
     is={null}
   >
     <div
@@ -44,7 +44,7 @@ exports[`matching a snapshot of Logout 1`] = `
         You have successfully logged out of Dicty Stock Center
       </p>
       <button
-        className="large sc-bmyXtO dHjBJs"
+        className="large sc-dEoRIm fXhViD"
       >
         <a
           href="/"
