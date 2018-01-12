@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of Carousel 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      className="control-arrow control-prev"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0%,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0%,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0%,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              src="https://i.imgur.com/SqHpamt.png"
+            />
+          </div>
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              src="https://i.imgur.com/gP5FAAf.png"
+            />
+          </div>
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              src="https://i.imgur.com/pgX6ZhN.png"
+            />
+          </div>
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              src="https://i.imgur.com/6srEh3F.png"
+            />
+          </div>
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              src="http://betatest.dictybase.org/images/dictyFront01.jpg"
+            />
+          </div>
+        </li>
+      </ul>
+    </div>
+    <button
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
