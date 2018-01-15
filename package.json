@@ -100,6 +100,7 @@
     "react-dom": "^15.6.2",
     "react-fontawesome": "^1.6.1",
     "react-ga": "^2.1.1",
+    "react-loading-skeleton": "^0.3.2",
     "react-redux": "^5.0.6",
     "react-responsive-carousel": "^3.1.30",
     "react-router-dom": "^4.2.2",

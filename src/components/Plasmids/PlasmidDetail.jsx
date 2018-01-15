@@ -2,10 +2,15 @@
 import React, { Component } from 'react'
 import StockDetailRow from 'components/StockDetailRow'
 import { Link } from 'react-router-dom'
-import Loader from 'components/Loader'
+import Skeleton from 'react-loading-skeleton'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader, StrainDetailsHeader, PrimaryButton, SuccessButton } from 'styles'
+import {
+  DictyHeader,
+  StrainDetailsHeader,
+  PrimaryButton,
+  SuccessButton
+} from 'styles'
 
 export default class PlasmidDetail extends Component {
   displayName = 'plasmid detail'
@@ -52,7 +57,18 @@ export default class PlasmidDetail extends Component {
           </Box>
 
           { isFetching || !plasmid ? (
-            <Loader message="Loading..." />
+            <Flex justify="center">
+              <Box w={ '80%' }>
+                <h1>{ this.props.title || <Skeleton /> }</h1>
+                <Skeleton count={ 10 } />
+                <br />
+                <br />
+                <Skeleton count={ 10 } />
+                <br />
+                <br />
+                <Skeleton count={ 10 } />
+              </Box>
+            </Flex>
           ) : (
             <Box w={ ['95%', '80%'] }>
               <StockDetailRow left={ data1[0] } right={ data2[0] } />

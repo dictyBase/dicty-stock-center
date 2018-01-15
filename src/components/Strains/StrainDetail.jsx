@@ -3,11 +3,17 @@ import React, { Component } from 'react'
 import StockDetailRow from 'components/StockDetailRow'
 import PhenotypeRow from 'components/Strains/PhenotypeRow'
 import { Link } from 'react-router-dom'
-import Loader from 'components/Loader'
+import Skeleton from 'react-loading-skeleton'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { PhenotypeData, DictyHeader, StrainDetailsHeader, PrimaryButton, SuccessButton } from 'styles'
+import {
+  PhenotypeData,
+  DictyHeader,
+  StrainDetailsHeader,
+  PrimaryButton,
+  SuccessButton
+} from 'styles'
 
 const BorderBox = styled(Box)`
   border: 1px solid grey;
@@ -108,7 +114,18 @@ export default class StrainDetail extends Component {
 
           <Box w={ ['95%', '80%'] }>
             { isFetching || !strain ? (
-              <Loader message="Loading..." />
+              <Flex justify="center">
+                <Box w={ '80%' }>
+                  <h1>{ this.props.title || <Skeleton /> }</h1>
+                  <Skeleton count={ 10 } />
+                  <br />
+                  <br />
+                  <Skeleton count={ 10 } />
+                  <br />
+                  <br />
+                  <Skeleton count={ 10 } />
+                </Box>
+              </Flex>
             ) : (
               <div>
                 <StockDetailRow left={ data1[0] } right={ data2[0] } />

@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import Loader from 'components/Loader'
+import Skeleton from 'react-loading-skeleton'
 import PlasmidTable from 'components/Plasmids/PlasmidTable'
 import { Flex, Box } from 'rebass'
 import { DictyHeader, Container } from 'styles'
@@ -26,7 +26,18 @@ export default class Plasmids extends Component {
             {
               data.length !== 0
               ? <PlasmidTable {...this.props} />
-              : <Loader message="We're testing your patience." />
+              : (
+                <Flex justify="center">
+                    <Box w={ '80%' }>
+                        <h1>{ this.props.title || <Skeleton /> }</h1>
+                        <Skeleton count={ 10 } />
+                        <br /><br />
+                        <Skeleton count={ 10 } />
+                        <br /><br />
+                        <Skeleton count={ 10 } />
+                    </Box>
+                </Flex>
+              )
             }
           </Container>
         )

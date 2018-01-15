@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InfoPageView from './InfoPageView'
-import Loader from '../Loader'
+import Skeleton from 'react-loading-skeleton'
+import { Flex, Box } from 'rebass'
 
 export default class InfoPage extends Component {
     displayName = 'toolbar with entity controls'
@@ -26,6 +27,17 @@ export default class InfoPage extends Component {
                 />
             )
         }
-        return <Loader title="Page loading..." />
+        return (
+            <Flex justify="center">
+                <Box w={ '80%' }>
+                    <h1>{ this.props.title || <Skeleton /> }</h1>
+                    <Skeleton count={ 10 } />
+                    <br /><br />
+                    <Skeleton count={ 10 } />
+                    <br /><br />
+                    <Skeleton count={ 10 } />
+                </Box>
+            </Flex>
+        )
     }
 }
