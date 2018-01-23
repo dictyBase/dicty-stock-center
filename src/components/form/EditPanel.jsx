@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
+import { InlineLink } from 'styles'
 
 export default class EditPanel extends Component {
     displayName = 'panel to edit order info';
@@ -62,10 +63,10 @@ export default class EditPanel extends Component {
                     { payment && this.renderPaymentMethod() }
                 <br />
                 <div>
-                    <a href="#" onClick = { edit }>
+                    <InlineLink onClick = { edit }>
                         <FontAwesome name="pencil-square-o" />
                         { payment ? ' Edit payment info' : ' Edit shipping info' }
-                    </a>
+                    </InlineLink>
                 </div>
             </div>
         )

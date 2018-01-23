@@ -278,6 +278,10 @@ export const ItemUnavailable = styled.div`
   color: #d8d8d8;
 `
 
+export const InlineLink = styled.a`
+  cursor: pointer
+`
+
 export const DetailContainer = styled.div`
   max-width: 100%;
   min-width: 304px;

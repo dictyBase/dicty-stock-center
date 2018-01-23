@@ -21,9 +21,6 @@ export default class Login extends Component {
     static defaultProps = {
         providers: getDefaultProviders()
     }
-    constructor(props) {
-        super(props)
-    }
     renderOauthButtons = () => {
         const { providers } = this.props
         return providers.map((provider, index) => {

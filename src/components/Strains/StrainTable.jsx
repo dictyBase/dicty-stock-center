@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import 'react-virtualized/styles.css'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'

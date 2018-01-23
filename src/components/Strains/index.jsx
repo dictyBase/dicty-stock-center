@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 // import SearchBar from 'components/SearchBar'
 import StrainTable from 'components/Strains/StrainTable'

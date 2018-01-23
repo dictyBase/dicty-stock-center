@@ -19,7 +19,7 @@ import {
 } from 'draft-js-buttons'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { ToolbarNav, EditPanel, StaticToolbar, TextInfo, DefaultButton, SuccessButton } from 'styles'
+import { ToolbarNav, EditPanel, StaticToolbar, TextInfo, DefaultButton, SuccessButton, InlineLink } from 'styles'
 
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
@@ -120,9 +120,9 @@ export default class InlineEditor extends Component {
             { auth.isAuthenticated &&
               readOnly && (
                 <TextInfo>
-                  <a href="#" onClick={ this.onEdit } title="Edit">
+                  <InlineLink onClick={ this.onEdit } title="Edit">
                     <FontAwesome name="pencil" /> Edit
-                  </a>
+                  </InlineLink>
                 </TextInfo>
               ) }
           </Box>

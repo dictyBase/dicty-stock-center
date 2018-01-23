@@ -10,7 +10,7 @@ import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
 import FontAwesome from 'react-fontawesome'
 import { Flex, Box } from 'rebass'
-import { Container, ToolbarNav, TextInfo, Label } from 'styles'
+import { Container, ToolbarNav, TextInfo, Label, InlineLink } from 'styles'
 import 'draft-js/dist/draft.css'
 
 const decorator = [
@@ -56,9 +56,9 @@ export default class InfoPageView extends Component {
             <Box ml="auto">
               <div>
                 <Label>{ lastEdited.author.role }</Label> &nbsp; &nbsp;
-                <a href="#" onClick={ this.onClick }>
+                <InlineLink onClick={ this.onClick }>
                   <FontAwesome name="pencil" title="Edit page" />
-                </a>
+                </InlineLink>
               </div>
             </Box>
           </Flex>

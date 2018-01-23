@@ -7,7 +7,7 @@ export default class Materials extends Component {
   render() {
       return (
       <PanelGray>
-        <a href="http://wiki.dictybase.org/dictywiki/index.php/Standard_Operating_Procedures" target="_blank">
+        <a href="http://wiki.dictybase.org/dictywiki/index.php/Standard_Operating_Procedures" rel="noopener noreferrer" target="_blank">
           Standard Operating Procedures
         </a>&nbsp;
         <FontAwesome name="file-pdf-o" />

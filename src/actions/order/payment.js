@@ -13,17 +13,17 @@ export const addPayment = (user, payment) => {
         attributes: {
             first_name: firstName,
             last_name: lastName,
-            email: email,
+            email,
             organization: org,
-            group: group,
+            group,
             address: {
                 first: address, second: address2
             },
-            city: city,
-            state: state,
-            zip: zip,
-            country: country,
-            phone: phone
+            city,
+            state,
+            zip,
+            country,
+            phone
         }
     } = user.data
 
