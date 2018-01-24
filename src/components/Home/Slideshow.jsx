@@ -15,19 +15,16 @@ export default class Slideshow extends Component {
         interval={ 5000 }
         infiniteLoop>
         <div>
-          <img src="https://i.imgur.com/SqHpamt.png" alt="" />
+          <img src="https://i.imgur.com/iFrIK6E.png" alt="" />
         </div>
         <div>
-          <img src="https://i.imgur.com/gP5FAAf.png" alt="" />
+          <img src="https://i.imgur.com/aQJoxgo.png" alt="" />
         </div>
         <div>
-          <img src="https://i.imgur.com/pgX6ZhN.png" alt="" />
+          <img src="https://i.imgur.com/SYhCvdJ.png" alt="" />
         </div>
         <div>
-          <img src="https://i.imgur.com/6srEh3F.png" alt="" />
-        </div>
-        <div>
-          <img src="http://betatest.dictybase.org/images/dictyFront01.jpg" alt="" />
+          <img src="https://i.imgur.com/28xvWRd.png" alt="" />
         </div>
       </Carousel>
     )
