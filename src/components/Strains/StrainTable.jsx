@@ -1,22 +1,24 @@
 // @flow
 import React, { Component } from 'react'
-import 'react-virtualized/styles.css'
+import { connect } from 'react-redux'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
-import TableLoader from 'components/TableLoader'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
+import TableLoader from 'components/TableLoader'
+import { fetchStrains, searchStrains, clearStrainSearch } from 'actions/stockCenter'
+import { addToCart } from 'actions/cart'
 import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
+import 'react-virtualized/styles.css'
 
-export default class StrainTable extends Component {
+class StrainTable extends Component {
   displayName = 'strain table'
   loadNextPage = () => {
-      const { stockCenterActions } = this.props
-      const { isFetching } = this.props.stockCenter.strainCatalog
-      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
-      const { links } = this.props.stockCenter.strainCatalog
+      const isFetching = this.props.isFetching
+      const number = this.props.paginationNumber
+      const links = this.props.links
       if (!isFetching && links.next && this.searchInput.value === '') {
-          stockCenterActions.fetchStrains(number + 1, 10)
+          this.props.fetchStrains(number + 1, 10)
       }
   }
   handleKeyDown = e => {
@@ -25,8 +27,7 @@ export default class StrainTable extends Component {
       }
   }
   search = text => {
-      const { stockCenterActions } = this.props
-      stockCenterActions.searchStrains(1, 1, text)
+      this.props.searchStrains(1, 1, text)
       this.forceUpdate()
   }
   handleSearch = () => {
@@ -36,16 +37,16 @@ export default class StrainTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const { stockCenterActions } = this.props
-      const { number } = this.props.stockCenter.strainCatalog.meta.pagination
+      const 
+      number = this.props.paginationNumber
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
-          stockCenterActions.clearStrainSearch()
-          stockCenterActions.fetchStrains(number + 1, 10)
+          this.props.clearStrainSearch()
+          this.props.fetchStrains(number + 1, 10)
       }
   }
   getRowHeight = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
+      const data = this.props.strainCatalogData
       const { cellHeight } = this.props
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
@@ -59,13 +60,13 @@ export default class StrainTable extends Component {
       return cellHeight
   }
   rowGetter = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
+      const data = this.props.strainCatalogData
       if (data[index]) {
           return data[index]
       }
   }
   getRowStyle = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
+      const data = this.props.strainCatalogData
       if (index === -1) {
           return {
               margin: '0 auto',
@@ -85,7 +86,7 @@ export default class StrainTable extends Component {
       }
   }
   isRowLoaded = ({ index }) => {
-      const { data } = this.props.stockCenter.strainCatalog
+      const data = this.props.strainCatalogData
       return !!data[index]
   }
   rowRenderer = ({ index, columns, key, style, className }) => {
@@ -121,11 +122,10 @@ export default class StrainTable extends Component {
       }
   }
   inStockRenderer = ({ cellData, rowIndex, rowData }) => {
-      const { cartActions } = this.props
-      const { data } = this.props.stockCenter.strainCatalog
+      const data = this.props.strainCatalogData
       if (cellData) {
           return (
-        <PrimaryButton onClick={ () => cartActions.addToCart(data[rowIndex]) }>
+        <PrimaryButton onClick={ () => this.props.addToCart(data[rowIndex]) }>
           <FontAwesome name="cart-arrow-down" /> Add to cart
         </PrimaryButton>
       )
@@ -152,7 +152,9 @@ export default class StrainTable extends Component {
       }
   }
   render() {
-      const { data, links, isFetching } = this.props.stockCenter.strainCatalog
+      const data: Array<Object> = this.props.strainCatalogData
+      const isFetching: boolean = this.props.isFetching
+      const links: Object = this.props.links
       const loadMoreRows = isFetching ? () => {} : this.loadNextPage
       const rowCount = data.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
@@ -249,3 +251,32 @@ StrainTable.defaultProps = {
     cellWidth: 130,
     cellHeight: 60
 }
+
+const mapStateToProps = state => {
+    return {
+        isFetching: state.stockCenter.strainCatalog.isFetching,
+        links: state.stockCenter.strainCatalog.links,
+        paginationNumber: state.stockCenter.strainCatalog.meta.pagination.number,
+        strainCatalogData: state.stockCenter.strainCatalog.data
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        fetchStrains: (page, size) => {
+            dispatch(fetchStrains(page, size))
+        },
+        searchStrains: (page, size, search) => {
+            dispatch(searchStrains(page, size, search))
+        },
+        clearStrainSearch: () => {
+            dispatch(clearStrainSearch())
+        },
+        addToCart: (id) => {
+            dispatch(addToCart(id))
+        }
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(StrainTable)
+  

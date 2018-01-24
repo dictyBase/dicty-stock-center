@@ -1,33 +1,32 @@
 // @flow
 import React, { Component } from 'react'
-import StockDetailRow from 'components/StockDetailRow'
-import PhenotypeRow from 'components/Strains/PhenotypeRow'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
-import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
+import StockDetailRow from 'components/StockDetailRow'
+import PhenotypeRow from './PhenotypeRow'
+import { fetchStrain } from 'actions/stockCenter'
+import { addToCart } from 'actions/cart'
 import {
   PhenotypeData,
   DictyHeader,
   StrainDetailsHeader,
   PrimaryButton,
-  SuccessButton
+  SuccessButton,
+  BorderBox
 } from 'styles'
 
-const BorderBox = styled(Box)`
-  border: 1px solid grey;
-`
-
-export default class StrainDetail extends Component {
+class StrainDetail extends Component {
   displayName = 'strain detail'
   componentDidMount() {
-      const fetchStrain: Function = this.props.stockCenterActions.fetchStrain
+      const fetchStrain: Function = this.props.fetchStrain
       const id: string = this.props.match.params.id
       fetchStrain(id)
   }
   phenotypes() {
-      const phenotypes: Array<Object> = this.props.stockCenter.strain.phenotypes
+      const phenotypes: Array<Object> = this.props.phenotypes
     // const strain = {
     //     phenotypes: [{
     //         observation: 'placeholder',
@@ -37,36 +36,36 @@ export default class StrainDetail extends Component {
     // }
       const rows: Array<PhenotypeRow> = phenotypes.map((phenotype, i) => {
           return (
-        <PhenotypeRow
-          phenotype={ phenotype.observation }
-          notes={ phenotype.notes }
-          reference={ phenotype.reference }
-          key={ i }
-        />
-      )
+            <PhenotypeRow
+              phenotype={ phenotype.observation }
+              notes={ phenotype.notes }
+              reference={ phenotype.reference }
+              key={ i }
+            />
+          )
       })
       return (
-      <BorderBox>
-        <PhenotypeData>
-          <Box w={ '30%' }>
-            <b>Phenotype</b>
-          </Box>
-          <Box w={ '30%' }>
-            <b>Notes</b>
-          </Box>
-          <Box w={ '30%' }>
-            <b>Reference</b>
-          </Box>
-          <Box w={ '10%' } />
-        </PhenotypeData>
-        <Box>{ rows }</Box>
-      </BorderBox>
-    )
+        <BorderBox>
+          <PhenotypeData>
+            <Box w={ '30%' }>
+              <b>Phenotype</b>
+            </Box>
+            <Box w={ '30%' }>
+              <b>Notes</b>
+            </Box>
+            <Box w={ '30%' }>
+              <b>Reference</b>
+            </Box>
+            <Box w={ '10%' } />
+          </PhenotypeData>
+          <Box>{ rows }</Box>
+        </BorderBox>
+      )
   }
   render() {
-      const addToCart: Function = this.props.cartActions.addToCart
-      const strain: Object = this.props.stockCenter.strain
-      const isFetching: boolean = this.props.stockCenter.strain.isFetching
+      const addToCart: Function = this.props.addToCart
+      const strain: Object = this.props.strain
+      const isFetching: boolean = this.props.isFetching
       const cartItem: { type: string, id: string, systematicName: string } = {
           type: 'strain',
           id: strain.id,
@@ -161,3 +160,24 @@ export default class StrainDetail extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      phenotypes: state.stockCenter.strain.phenotypes,
+      strain: state.stockCenter.strain,
+      isFetching: state.stockCenter.strain.isFetching
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchStrain: (id) => {
+          dispatch(fetchStrain(id))
+      },
+      addToCart: (id) => {
+        dispatch(addToCart(id))
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StrainDetail)

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { injectGlobal } from 'styled-components'
+import { Box } from 'rebass'
 
 injectGlobal([`
 *, :after, :before {
@@ -220,6 +221,10 @@ export const DictyHeader = styled.div`
     border-bottom: 1px solid #eee;
     text-align: center;
   }
+`
+
+export const BorderBox = styled(Box)`
+  border: 1px solid grey;
 `
 
 export const HomepageHeader = styled.div`

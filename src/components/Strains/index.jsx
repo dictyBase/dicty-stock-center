@@ -1,31 +1,29 @@
 // @flow
 import React, { Component } from 'react'
-// import SearchBar from 'components/SearchBar'
-import StrainTable from 'components/Strains/StrainTable'
+import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import { Flex, Box } from 'rebass'
+import { fetchStrains, clearStrainSearch } from 'actions/stockCenter'
+import StrainTable from 'components/Strains/StrainTable'
 import { DictyHeader, Container } from 'styles'
 
-export default class Strains extends Component {
+class Strains extends Component {
   displayName = 'strains list'
   componentDidMount() {
-      const stockCenterActions: Object = this.props.stockCenterActions
-      const number: number = this.props.stockCenter.strainCatalog.meta.pagination
-      .number
-      stockCenterActions.fetchStrains(number, 10)
+      const fetchStrains: Function = this.props.fetchStrains
+      const number: number = this.props.paginationNumber
+      fetchStrains(number, 10)
   }
   search(text) {
-      const { stockCenterActions } = this.props
-      stockCenterActions.fetchStrainSearch(text)
+      // implement strain search
       this.forceUpdate()
   }
   clearSearch() {
-      const { stockCenterActions } = this.props
-      stockCenterActions.clearStrainSearch()
-      stockCenterActions.fetchPage(1, 10)
+      this.props.clearStrainSearch()
+      this.props.fetchStrains(1, 10)
   }
   render() {
-      const data: Array<Object> = this.props.stockCenter.strainCatalog.data
+      const data: Array<Object> = this.props.strainCatalogData
       return (
       <Container>
         <Flex justify="center">
@@ -53,3 +51,23 @@ export default class Strains extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      strainCatalogData: state.stockCenter.strainCatalog.data,
+      paginationNumber: state.stockCenter.strainCatalog.meta.pagination.number
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchStrains: (page, size) => {
+          dispatch(fetchStrains(page, size))
+      },
+      clearStrainSearch: () => {
+        dispatch(clearStrainSearch())
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Strains)
