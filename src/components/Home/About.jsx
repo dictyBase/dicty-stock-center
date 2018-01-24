@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import InlineEditor from '../editor/InlineEditor'
 
-export default class About extends Component {
-    displayName = 'front page about dsc'
-    static propTypes = {
-        auth: PropTypes.object.isRequired
-    }
+class About extends Component {
+    displayName = 'front page about DSC'
+
     render() {
         const about = {
             entityMap: {},
@@ -31,3 +29,10 @@ export default class About extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(About)

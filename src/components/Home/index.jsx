@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
+
 import Links from './Links'
 import Info from './Info'
 import Availability from './Availability'
@@ -10,14 +11,12 @@ import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
 import StandardOperatingProcedures from './StandardOperatingProcedures'
+
 import { HomepageHeader, Container } from 'styles'
 
-export default class Home extends Component {
+class Home extends Component {
     displayName = 'homepage component'
-    static propTypes = {
-        stockCenter: PropTypes.object,
-        stockCenterActions: PropTypes.object
-    }
+
     renderGreeting = () => {
         const { user } = this.props.auth
         return (
@@ -28,7 +27,6 @@ export default class Home extends Component {
     }
     render() {
         const { user } = this.props.auth
-        const { stockCenter, stockCenterActions } = this.props
         return (
             <Container>
                 { user && this.renderGreeting() }
@@ -44,7 +42,7 @@ export default class Home extends Component {
                     <Box w={ [1, '30%', '30%'] }>
                         <Flex column>
                             <Box>
-                                <About auth={ this.props.auth } />
+                                <About />
                             </Box>
                             <Box>
                                 <Links />
@@ -60,10 +58,7 @@ export default class Home extends Component {
                                 <Info />
                             </Box>
                             <Box>
-                                <Availability
-                                    stockCenter={ stockCenter }
-                                    stockCenterActions={ stockCenterActions }
-                                />
+                                <Availability />
                             </Box>
                             <Box>
                                 <Downloads />
@@ -85,3 +80,11 @@ export default class Home extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Home)

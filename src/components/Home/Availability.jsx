@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { fetchAvailability } from 'actions/stockCenter'
 import { PanelGray } from 'styles'
 
-export default class Availability extends Component {
+class Availability extends Component {
     displayName = 'stock center availability'
-    static propTypes = {
-        stockCenter: PropTypes.object.isRequired,
-        stockCenterActions: PropTypes.object.isRequired
-    }
+
     componentDidMount() {
-        const { stockCenterActions } = this.props
-        stockCenterActions.fetchAvailability()
+        this.props.fetchAvailability()
     }
     render() {
-        const { data } = this.props.stockCenter.availability
+        const { data } = this.props.availability
         return (
             <PanelGray>
                 <h4>Availability</h4>
@@ -29,3 +26,18 @@ export default class Availability extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        availability: state.stockCenter.availability
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchAvailability: () => {
+            dispatch(fetchAvailability())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Availability)

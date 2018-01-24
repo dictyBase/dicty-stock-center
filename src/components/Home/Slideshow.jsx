@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 export default class Slideshow extends Component {
-  displayName = 'front page carousel'
+  displayName = 'front page image slideshow'
 
   render() {
       return (
