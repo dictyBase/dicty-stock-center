@@ -2,7 +2,7 @@
 
 exports[`matching a snapshot of MyDsc 1`] = `
 <div
-  className="sc-eerKOB gRmrxR"
+  className="sc-eerKOB juxuCZ"
 >
   <div
     className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -13,7 +13,7 @@ exports[`matching a snapshot of MyDsc 1`] = `
       is={null}
     >
       <ol
-        className="sc-bMvGRv imgozS"
+        className="sc-bMvGRv fwrNxu"
       >
         <li>
           <a
@@ -33,7 +33,7 @@ exports[`matching a snapshot of MyDsc 1`] = `
       is={null}
     >
       <div
-        className="sc-fjmCvl lkwUBc"
+        className="sc-fjmCvl cwMkZL"
       >
         <h2>
           My DSC

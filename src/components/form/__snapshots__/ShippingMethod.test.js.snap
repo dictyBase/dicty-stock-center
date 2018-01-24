@@ -49,7 +49,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
       className="DRXhs"
     />
     <div
-      className="sc-ipXKqB eOLIpB"
+      className="sc-hmXxxW ggtKDs"
     >
       <div
         className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -60,10 +60,10 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
           is={null}
         >
           <label
-            className="sc-VJcYb mTwLq"
+            className="sc-ipXKqB hIQKmZ"
           >
             <span
-              className="sc-giadOv eAuPGE"
+              className="sc-fONwsr kDvBqR"
             >
               * 
             </span>
@@ -75,7 +75,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
           is={null}
         >
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={true}
@@ -86,7 +86,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
               FedEx
           </label>
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}
@@ -97,7 +97,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
               UPS
           </label>
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}
@@ -108,7 +108,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
               DHL
           </label>
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}
@@ -121,7 +121,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
         </div>
       </div>
       <div
-        className="sc-ipXKqB eOLIpB"
+        className="sc-hmXxxW ggtKDs"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -136,7 +136,7 @@ exports[`matching a snapshot of ShippingMethod 1`] = `
             is={null}
           >
             <input
-              className="sc-hmXxxW fzVRUF"
+              className="sc-cqCuEk jbXqms"
               placeholder="Shipping Account Number"
               value=""
             />

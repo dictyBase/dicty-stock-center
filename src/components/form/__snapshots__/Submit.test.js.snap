@@ -2,15 +2,15 @@
 
 exports[`matching a snapshot of Submit 1`] = `
 <div
-  className="sc-fMiknA bxZCMx sc-fBuWsC cutAiu sc-hzDkRC iQPcXg"
+  className="sc-dVhcbM fghLuF sc-fMiknA kEchzs sc-jhAzac bfDGZu"
   is={null}
 >
   <div
-    className="sc-dVhcbM fghLuF sc-hzDkRC knOIDi"
+    className="sc-eqIVtm kRufpp sc-jhAzac gfcBR"
     is={null}
   >
     <div
-      className="sc-jTzLTM OGnVg"
+      className="sc-jTzLTM hLEmUG"
     >
       <h2>
         Review Your Order
@@ -22,15 +22,15 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
   </div>
   <div
-    className="sc-dVhcbM fghLuF sc-hzDkRC bCIKQy"
+    className="sc-eqIVtm kRufpp sc-jhAzac kxcFsP"
     is={null}
   >
     <div
-      className="sc-fMiknA bxZCMx sc-fBuWsC cutAiu sc-hzDkRC iQPcXg"
+      className="sc-dVhcbM fghLuF sc-fMiknA kEchzs sc-jhAzac bfDGZu"
       is={null}
     >
       <div
-        className="sc-dVhcbM fghLuF sc-hzDkRC BgTgx"
+        className="sc-eqIVtm kRufpp sc-jhAzac lhYVuZ"
         is={null}
       >
         <div
@@ -71,7 +71,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  href="#"
+                  className="sc-kpOJdX gyRlno"
                   onClick={[Function]}
                 >
                   <span
@@ -89,7 +89,7 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-dVhcbM fghLuF sc-hzDkRC BgTgx"
+        className="sc-eqIVtm kRufpp sc-jhAzac lhYVuZ"
         is={null}
       >
         <div
@@ -130,7 +130,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  href="#"
+                  className="sc-kpOJdX gyRlno"
                   onClick={[Function]}
                 >
                   <span
@@ -150,11 +150,11 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
     <hr />
     <div
-      className="sc-fMiknA bxZCMx sc-fBuWsC cutAiu sc-hzDkRC iQPcXg"
+      className="sc-dVhcbM fghLuF sc-fMiknA kEchzs sc-jhAzac bfDGZu"
       is={null}
     >
       <div
-        className="sc-dVhcbM fghLuF sc-hzDkRC iEhjzw"
+        className="sc-eqIVtm kRufpp sc-jhAzac lkgPqa"
         is={null}
       >
         <div
@@ -182,11 +182,11 @@ exports[`matching a snapshot of Submit 1`] = `
             </h4>
             <div>
               <div
-                className="sc-fMiknA bxZCMx sc-fBuWsC kBxtiA sc-hzDkRC iQPcXg"
+                className="sc-dVhcbM fghLuF sc-fMiknA bVlhnh sc-jhAzac bfDGZu"
                 is={null}
               >
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 >
                   <h5>
@@ -194,7 +194,7 @@ exports[`matching a snapshot of Submit 1`] = `
                   </h5>
                 </div>
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 >
                   <h5>
@@ -203,28 +203,28 @@ exports[`matching a snapshot of Submit 1`] = `
                 </div>
               </div>
               <div
-                className="sc-fMiknA bxZCMx sc-fBuWsC kBxtiA sc-hzDkRC iQPcXg"
+                className="sc-dVhcbM fghLuF sc-fMiknA bVlhnh sc-jhAzac bfDGZu"
                 is={null}
               >
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 />
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 />
               </div>
               <div
-                className="sc-fMiknA bxZCMx sc-fBuWsC kBxtiA sc-hzDkRC iQPcXg"
+                className="sc-dVhcbM fghLuF sc-fMiknA bVlhnh sc-jhAzac bfDGZu"
                 is={null}
               >
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 />
                 <div
-                  className="sc-dVhcbM fghLuF sc-hzDkRC kFxYAA"
+                  className="sc-eqIVtm kRufpp sc-jhAzac gvqHnY"
                   is={null}
                 />
               </div>
@@ -236,12 +236,12 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-dVhcbM fghLuF sc-hzDkRC fyaJQU"
+        className="sc-eqIVtm kRufpp sc-jhAzac ccfZhL"
         is={null}
       >
         <hr />
         <button
-          className="large block sc-jDwBTQ ecLdKJ"
+          className="large block sc-gPEVay QPpEG"
           onClick={undefined}
           type="button"
         >

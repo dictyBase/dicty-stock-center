@@ -49,6 +49,7 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
+              alt=""
               src="https://i.imgur.com/SqHpamt.png"
             />
           </div>
@@ -59,6 +60,7 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
+              alt=""
               src="https://i.imgur.com/gP5FAAf.png"
             />
           </div>
@@ -69,6 +71,7 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
+              alt=""
               src="https://i.imgur.com/pgX6ZhN.png"
             />
           </div>
@@ -79,6 +82,7 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
+              alt=""
               src="https://i.imgur.com/6srEh3F.png"
             />
           </div>
@@ -89,6 +93,7 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
+              alt=""
               src="http://betatest.dictybase.org/images/dictyFront01.jpg"
             />
           </div>

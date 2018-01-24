@@ -49,7 +49,7 @@ exports[`matching a snapshot of ShippingAdditional 1`] = `
       className="DRXhs"
     />
     <div
-      className="sc-ipXKqB eOLIpB"
+      className="sc-hmXxxW ggtKDs"
     >
       <div
         className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -60,7 +60,7 @@ exports[`matching a snapshot of ShippingAdditional 1`] = `
           is={null}
         >
           <label
-            className="sc-VJcYb mTwLq"
+            className="sc-ipXKqB hIQKmZ"
           >
             Comments:
           </label>
@@ -70,7 +70,7 @@ exports[`matching a snapshot of ShippingAdditional 1`] = `
           is={null}
         >
           <textarea
-            className="sc-kLIISr ZWyIA"
+            className="sc-qrIAp kwjHFv"
             placeholder="Please enter any comments or special instructions here"
             rows="5"
             value={undefined}

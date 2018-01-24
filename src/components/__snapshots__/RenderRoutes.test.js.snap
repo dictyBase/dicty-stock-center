@@ -2,10 +2,10 @@
 
 exports[`matching a snapshot of RenderRoutes 1`] = `
 <div
-  className="sc-eerKOB gRmrxR"
+  className="sc-eerKOB juxuCZ"
 >
   <div
-    className="sc-gFaPwZ hPYVgC"
+    className="sc-gFaPwZ hoMIQS"
   >
     <h1>
       <span
@@ -18,7 +18,7 @@ exports[`matching a snapshot of RenderRoutes 1`] = `
       This page is not ready yet.
     </p>
     <button
-      className="sc-dEoRIm fXhViD"
+      className="sc-jtggT ktipCe"
     >
       <a
         href="/"

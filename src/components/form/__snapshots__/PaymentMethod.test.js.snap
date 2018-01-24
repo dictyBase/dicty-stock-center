@@ -50,7 +50,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
       className="DRXhs"
     />
     <div
-      className="sc-ipXKqB eOLIpB"
+      className="sc-hmXxxW ggtKDs"
     >
       <div
         className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -61,10 +61,10 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
           is={null}
         >
           <label
-            className="sc-VJcYb mTwLq"
+            className="sc-ipXKqB hIQKmZ"
           >
             <span
-              className="sc-giadOv eAuPGE"
+              className="sc-fONwsr kDvBqR"
               title="required field"
             >
               * 
@@ -77,7 +77,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
           is={null}
         >
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}
@@ -88,7 +88,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
               Credit Card
           </label>
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}
@@ -99,7 +99,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
               Wire Transfer
           </label>
           <label
-            className="sc-qrIAp hsouou"
+            className="sc-iqzUVk cOUSvy"
           >
             <input
               checked={false}

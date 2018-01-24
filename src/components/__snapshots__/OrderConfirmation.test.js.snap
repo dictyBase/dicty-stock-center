@@ -14,11 +14,11 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
       is={null}
     >
       <div
-        className="sc-chbbiW ePtbcQ sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        className="sc-kxynE hhtYgU sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
         is={null}
       >
         <div
-          className="sc-dymIpo dmPwKo"
+          className="sc-dymIpo daugCr"
         >
           <span
             aria-hidden={true}
@@ -55,7 +55,7 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
         is={null}
       >
         <button
-          className="large block sc-dEoRIm fXhViD"
+          className="large block sc-jtggT ktipCe"
         >
           <a
             href="/"
