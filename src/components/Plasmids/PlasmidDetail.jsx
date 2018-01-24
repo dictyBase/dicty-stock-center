@@ -1,10 +1,13 @@
 // @flow
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import StockDetailRow from 'components/StockDetailRow'
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
+import { fetchPlasmid } from 'actions/stockCenter'
+import { addToCart } from 'actions/cart'
 import {
   DictyHeader,
   StrainDetailsHeader,
@@ -12,17 +15,17 @@ import {
   SuccessButton
 } from 'styles'
 
-export default class PlasmidDetail extends Component {
+class PlasmidDetail extends Component {
   displayName = 'plasmid detail'
   componentDidMount() {
-      const fetchPlasmid: Function = this.props.stockCenterActions.fetchPlasmid
+      const fetchPlasmid: Function = this.props.fetchPlasmid
       const id: number = this.props.match.params.id
       fetchPlasmid(id)
   }
   render() {
-      const addToCart: Function = this.props.cartActions.addToCart
-      const plasmid: Object = this.props.stockCenter.plasmid
-      const isFetching: boolean = this.props.stockCenter.plasmid.isFetching
+      const addToCart: Function = this.props.addToCart
+      const plasmid: Object = this.props.plasmid
+      const isFetching: boolean = this.props.isFetching
       const cartItem: { type: string, id: number, systematicName: string } = {
           type: 'plasmid',
           id: plasmid.id,
@@ -38,7 +41,8 @@ export default class PlasmidDetail extends Component {
       const data2 = [
       { 'Plasmid ID': this.props.match.params.id },
       { 'Plasmid Keywords': 'No Information' },
-      { 'GenBank Accession': 'No Information' }
+      { 'GenBank Accession': 'No Information' },
+      { 'Test row': 'No Information' }
       ]
       return (
       <div>
@@ -61,11 +65,9 @@ export default class PlasmidDetail extends Component {
               <Box w={ '80%' }>
                 <h1>{ this.props.title || <Skeleton /> }</h1>
                 <Skeleton count={ 10 } />
-                <br />
-                <br />
+                <br /><br />
                 <Skeleton count={ 10 } />
-                <br />
-                <br />
+                <br /><br />
                 <Skeleton count={ 10 } />
               </Box>
             </Flex>
@@ -74,7 +76,7 @@ export default class PlasmidDetail extends Component {
               <StockDetailRow left={ data1[0] } right={ data2[0] } />
               <StockDetailRow left={ data1[1] } right={ data2[1] } />
               <StockDetailRow left={ data1[2] } right={ data2[2] } />
-              <StockDetailRow left={ data1[3] } />
+              <StockDetailRow left={ data1[3] } right={ data2[3] }/>
             </Box>
           ) }
         </Flex>
@@ -98,3 +100,23 @@ export default class PlasmidDetail extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      plasmid: state.stockCenter.plasmid,
+      isFetching: state.stockCenter.plasmid.isFetching
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchPlasmid: (id) => {
+          dispatch(fetchPlasmid(id))
+      },
+      addToCart: (id) => {
+        dispatch(addToCart(id))
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlasmidDetail)

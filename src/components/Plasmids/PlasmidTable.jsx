@@ -1,26 +1,23 @@
 // @flow
 import React, { Component } from 'react'
-import 'react-virtualized/styles.css'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table, Column, InfiniteLoader } from 'react-virtualized'
-import TableLoader from 'components/TableLoader'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
+import TableLoader from 'components/TableLoader'
+import { fetchPlasmids, searchPlasmids, clearPlasmidSearch } from 'actions/stockCenter'
+import { addToCart } from 'actions/cart'
 import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
+import 'react-virtualized/styles.css'
 
-// type Props = {
-//   cellWidth: number,
-//   cellHeight: number,
-//   height: number
-// }
-export default class PlasmidTable extends Component {
+class PlasmidTable extends Component {
   displayName = 'plasmid table'
   loadNextPage = () => {
-      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
-      const isFetching: boolean = this.props.stockCenter.plasmidCatalog.isFetching
-      const links: Object = this.props.stockCenter.plasmidCatalog.links
-      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination
-      .number
+      const fetchPlasmids: Function = this.props.fetchPlasmids
+      const isFetching: boolean = this.props.isFetching
+      const links: Object = this.props.links
+      const number: number = this.props.paginationNumber
       if (!isFetching && links.next && this.searchInput.value === '') {
           fetchPlasmids(number + 1, 10)
       }
@@ -31,8 +28,7 @@ export default class PlasmidTable extends Component {
       }
   }
   search = (text: string) => {
-      const { stockCenterActions } = this.props
-      stockCenterActions.searchPlasmids(1, 1, text)
+      this.props.searchPlasmids(1, 1, text)
       this.forceUpdate()
   }
   handleSearch = () => {
@@ -42,11 +38,9 @@ export default class PlasmidTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const fetchPlasmids: Function = this.props.stockCenterActions.fetchPlasmids
-      const clearPlasmidSearch: Function = this.props.stockCenterActions
-      .clearPlasmidSearch
-      const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination
-      .number
+      const fetchPlasmids: Function = this.props.fetchPlasmids
+      const clearPlasmidSearch: Function = this.props.clearPlasmidSearch
+      const number: number = this.props.paginationNumber
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
           clearPlasmidSearch()
@@ -54,7 +48,7 @@ export default class PlasmidTable extends Component {
       }
   }
   getRowHeight = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const data: Array<Object> = this.props.plasmidCatalogData
       const cellHeight: number = this.props.cellHeight
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
@@ -68,7 +62,7 @@ export default class PlasmidTable extends Component {
       return cellHeight
   }
   getRowStyle = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const data: Array<Object> = this.props.plasmidCatalogData
       if (index === -1) {
           return {
               margin: '0 auto',
@@ -88,7 +82,7 @@ export default class PlasmidTable extends Component {
       }
   }
   isRowLoaded = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const data: Array<Object> = this.props.plasmidCatalogData
       return !!data[index]
   }
   rowRenderer = ({
@@ -131,7 +125,7 @@ export default class PlasmidTable extends Component {
     )
   }
   rowGetter = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const data: Array<Object> = this.props.plasmidCatalogData
       if (data[index]) {
           return data[index]
       }
@@ -161,8 +155,8 @@ export default class PlasmidTable extends Component {
     rowIndex: number,
     rowData: Object
   }) => {
-      const addToCart: Function = this.props.cartActions.addToCart
-      const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+      const addToCart: Function = this.props.addToCart
+      const data: Array<Object> = this.props.plasmidCatalogData
       if (cellData) {
           return (
         <PrimaryButton onClick={ () => addToCart(data[rowIndex]) }>
@@ -178,7 +172,9 @@ export default class PlasmidTable extends Component {
   }
   render() {
       const { cellWidth, height } = this.props
-      const { data, links, isFetching } = this.props.stockCenter.plasmidCatalog
+      const data: Array<Object> = this.props.plasmidCatalogData
+      const isFetching: boolean = this.props.isFetching
+      const links: Object = this.props.links
       const loadMoreRows: Function = isFetching ? () => {} : this.loadNextPage
       const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
@@ -281,3 +277,32 @@ PlasmidTable.defaultProps = {
     cellHeight: 90,
     height: 630
 }
+
+const mapStateToProps = state => {
+    return {
+        isFetching: state.stockCenter.plasmidCatalog.isFetching,
+        links: state.stockCenter.plasmidCatalog.links,
+        paginationNumber: state.stockCenter.plasmidCatalog.meta.pagination.number,
+        plasmidCatalogData: state.stockCenter.plasmidCatalog.data
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        fetchPlasmids: (page, size) => {
+            dispatch(fetchPlasmids(page, size))
+        },
+        searchPlasmids: (page, size, search) => {
+            dispatch(searchPlasmids(page, size, search))
+        },
+        clearPlasmidSearch: () => {
+            dispatch(clearPlasmidSearch())
+        },
+        addToCart: (id) => {
+            dispatch(addToCart(id))
+        }
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(PlasmidTable)
+  

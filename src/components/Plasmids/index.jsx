@@ -1,19 +1,21 @@
 // @flow
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
-import PlasmidTable from 'components/Plasmids/PlasmidTable'
 import { Flex, Box } from 'rebass'
+import PlasmidTable from './PlasmidTable'
+import { fetchPlasmids } from 'actions/stockCenter'
 import { DictyHeader, Container } from 'styles'
 
-export default class Plasmids extends Component {
+class Plasmids extends Component {
     displayName = 'plasmids list'
     componentDidMount() {
-        const stockCenterActions: Object = this.props.stockCenterActions
-        const number: number = this.props.stockCenter.plasmidCatalog.meta.pagination.number
-        stockCenterActions.fetchPlasmids(number, 10)
+        const fetchPlasmids: Function = this.props.fetchPlasmids
+        const number: number = this.props.paginationNumber
+        fetchPlasmids(number, 10)
     }
     render() {
-        const data: Array<Object> = this.props.stockCenter.plasmidCatalog.data
+        const data: Array<Object> = this.props.plasmidCatalogData
         return (
           <Container>
             <Flex justify="center">
@@ -43,3 +45,20 @@ export default class Plasmids extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+  return {
+      plasmidCatalogData: state.stockCenter.plasmidCatalog.data,
+      paginationNumber: state.stockCenter.plasmidCatalog.meta.pagination.number
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchPlasmids: (page, size) => {
+          dispatch(fetchPlasmids(page, size))
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Plasmids)
