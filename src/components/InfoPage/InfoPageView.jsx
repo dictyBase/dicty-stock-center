@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Editor,
   EditorState,
@@ -8,6 +9,7 @@ import {
 import findLinkEntities from 'utils/findLinkEntities'
 import Link from 'components/Link'
 import timeSince from 'utils/timeSince'
+import { editPage } from 'actions/page'
 import FontAwesome from 'react-fontawesome'
 import { Flex, Box } from 'rebass'
 import { Container, ToolbarNav, TextInfo, Label, InlineLink } from 'styles'
@@ -20,7 +22,7 @@ const decorator = [
     }
 ]
 
-export default class InfoPageView extends Component {
+class InfoPageView extends Component {
   displayName = 'information page component'
   constructor(props) {
       super(props)
@@ -36,11 +38,11 @@ export default class InfoPageView extends Component {
   onClick = e => {
       e.preventDefault()
 
-      const { pageActions, match, page } = this.props
-      pageActions.editPage(page.content, match.params.name)
+      const { editPage, match, content } = this.props
+      editPage(content, match.params.name)
   }
   render() {
-      const { lastEdited } = this.props.page
+      const { lastEdited } = this.props
       return (
       <Container>
         <ToolbarNav>
@@ -78,3 +80,20 @@ export default class InfoPageView extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      content: state.page.content,
+      lastEdited: state.page.lastEdited
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      editPage: (content, name) => {
+          dispatch(editPage(content, name))
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoPageView)

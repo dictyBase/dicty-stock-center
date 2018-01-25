@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
@@ -17,6 +18,7 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
+import { saveEditing, cancelEditing } from 'actions/page'
 import { Flex, Box } from 'rebass'
 import {
   Container,
@@ -29,66 +31,67 @@ import {
 } from 'styles'
 import 'draft-js/dist/draft.css'
 
+// Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
-    inputPlaceholder: 'Insert URL here...'
+  inputPlaceholder: 'Insert URL here...'
 })
 const { LinkButton } = toolbarLinkPlugin
 const { UndoButton, RedoButton } = undoPlugin
 const toolbarPlugin = createToolbarPlugin({
-    structure: [
-        BoldButton,
-        ItalicButton,
-        UnderlineButton,
-        CodeButton,
-        Separator,
-        HeadlineOneButton,
-        HeadlineTwoButton,
-        HeadlineThreeButton,
-        Separator,
-        UnorderedListButton,
-        OrderedListButton,
-        BlockquoteButton,
-        CodeBlockButton,
-        LinkButton,
-        Separator,
-        UndoButton,
-        RedoButton
-    ]
+  structure: [
+    BoldButton,
+    ItalicButton,
+    UnderlineButton,
+    CodeButton,
+    Separator,
+    HeadlineOneButton,
+    HeadlineTwoButton,
+    HeadlineThreeButton,
+    Separator,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton,
+    CodeBlockButton,
+    LinkButton,
+    Separator,
+    UndoButton,
+    RedoButton
+  ]
 })
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-export default class EditInfoPage extends Component {
+class EditInfoPage extends Component {
   displayName = 'information page editor'
   constructor(props) {
-      super(props)
+    super(props)
 
-      if (props.page.content) {
-          this.state = {
-              editorState: EditorState.createWithContent(
+    if (props.page.content) {
+      this.state = {
+        editorState: EditorState.createWithContent(
           convertFromRaw(props.page.content)
         )
-          }
       }
+    }
   }
 
   onChange = editorState => this.setState({ editorState })
   focus = () => this.refs.editor.focus()
   onSave = () => {
-      const { editorState } = this.state
-      const { match, pageActions } = this.props
-      const rawData = convertToRaw(editorState.getCurrentContent())
-      pageActions.saveEditing(match.params.name, rawData)
+    const { editorState } = this.state
+    const { match, saveEditing } = this.props
+    const rawData = convertToRaw(editorState.getCurrentContent())
+    saveEditing(match.params.name, rawData)
   }
   onCancel = () => {
-      const { pageActions, match } = this.props
-      pageActions.cancelEditing(match.params.name)
+    const { cancelEditing, match } = this.props
+    cancelEditing(match.params.name)
   }
   render() {
-      const { editorState } = this.state
+    const { editorState } = this.state
 
-      return (
+    return (
       <Container>
         <EditPanel>
           <ToolbarNav>
@@ -98,28 +101,28 @@ export default class EditInfoPage extends Component {
           </ToolbarNav>
           <EditorStyle>
             <Editor
-              editorState={ editorState }
-              onChange={ this.onChange }
-              plugins={ plugins }
+              editorState={editorState}
+              onChange={this.onChange}
+              plugins={plugins}
               ref="{(element) => { this.editor = element }}"
             />
           </EditorStyle>
           <Flex justify="space-between">
             <Box width="25%" />
             <Box width="25%" />
-            <Box width="25%" mr={ 1 }>
+            <Box width="25%" mr={1}>
               <DefaultButton
                 type="button"
-                className={ `block` }
-                onClick={ this.onCancel }>
+                className={`block`}
+                onClick={this.onCancel}>
                 Cancel
               </DefaultButton>
             </Box>
             <Box width="25%">
               <SuccessButton
                 type="button"
-                className={ `block` }
-                onClick={ this.onSave }>
+                className={`block`}
+                onClick={this.onSave}>
                 Save
               </SuccessButton>
             </Box>
@@ -129,3 +132,23 @@ export default class EditInfoPage extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    content: state.page.content,
+    lastEdited: state.page.lastEdited
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveEditing: (page, data) => {
+      dispatch(saveEditing(page, data))
+    },
+    cancelEditing: page => {
+      dispatch(cancelEditing(page))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditInfoPage)
