@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Panel, PanelBody } from 'dicty-components-panel'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { Container, DictyHeader, Breadcrumb } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-export default class MyDsc extends Component {
+class MyDsc extends Component {
     displayName = 'user profile';
     render() {
-        const { user, provider } = this.props.auth
+        const { user, provider } = this.props
         return (
             <Container>
                 <Flex wrap justify="center">
@@ -42,3 +43,11 @@ export default class MyDsc extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user,
+        provider: state.auth.provider
+    }
+}
+
+export default connect(mapStateToProps)(MyDsc)

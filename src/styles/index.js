@@ -227,6 +227,10 @@ export const BorderBox = styled(Box)`
   border: 1px solid grey;
 `
 
+export const CenteredBox = styled(Box)`
+    text-align: center;
+`
+
 export const HomepageHeader = styled.div`
   h1 {
     font-size: 48px;

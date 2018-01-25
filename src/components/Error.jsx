@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Container, AlertBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-export default class Error extends Component {
+class Error extends Component {
     displayName = 'homepage component';
     render() {
-        const { auth, order } = this.props
-        const orderError = order.error
-        const authError = auth.error
+        const authError = this.props.authError
+        const orderError = this.props.orderError
         return (
             <Container>
                 <AlertBox>
@@ -19,3 +19,12 @@ export default class Error extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        authError: state.auth.error,
+        orderError: state.order.error
+    }
+}
+
+export default connect(mapStateToProps)(Error)

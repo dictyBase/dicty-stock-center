@@ -1,24 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { AlertSuccess, PrimaryButton } from 'styles'
+import { AlertSuccess, PrimaryButton, CenteredBox } from 'styles'
 
-const CenteredBox = styled(Box)`
-    text-align: center;
-`
-
-export default class OrderConfirmation extends Component {
+class OrderConfirmation extends Component {
     displayName = 'order confirmation'
 
-    static propTypes = {
-        order: PropTypes.object
-    }
-
     render() {
-        const { id } = this.props.order
         return (
             <Flex wrap justify="center">
                 <Box w={ '75%' }>
@@ -31,7 +21,7 @@ export default class OrderConfirmation extends Component {
                                     successfully!
                                 </h3>
                                 <p>
-                                    Order Number: <strong>{ id }</strong>
+                                    Order Number: <strong>{ this.props.id }</strong>
                                 </p>
                                 <p>We have sent you a confirmation email.</p>
                                 <p>
@@ -54,3 +44,11 @@ export default class OrderConfirmation extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        id: state.order.id
+    }
+}
+
+export default connect(mapStateToProps)(OrderConfirmation)
