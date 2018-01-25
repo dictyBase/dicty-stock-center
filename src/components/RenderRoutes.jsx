@@ -12,9 +12,9 @@ export default class RenderRoutes extends Component {
                         exact
                         key={ i }
                         path={ route.path }
-                        render={ ({ match }) =>
+                        render={ ({ match, location }) =>
                         <route.component {...this.props}
-                        match={ match } /> }
+                        match={ match } location={ location } /> }
                      />
                 )) }
             </Switch>

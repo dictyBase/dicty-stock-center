@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { EditorState, convertFromRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
@@ -21,6 +22,7 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { ToolbarNav, EditPanel, StaticToolbar, TextInfo, DefaultButton, SuccessButton, InlineLink } from 'styles'
 
+// Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
     inputPlaceholder: 'Insert URL here...'
@@ -51,7 +53,7 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-export default class InlineEditor extends Component {
+class InlineEditor extends Component {
   displayName = 'inline editor component'
   constructor(props) {
       super(props)
@@ -151,3 +153,11 @@ export default class InlineEditor extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(InlineEditor)
