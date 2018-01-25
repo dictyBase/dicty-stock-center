@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
-import { Container } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import { Container } from 'styles'
 
-export default class Cart extends Component {
+class Cart extends Component {
     displayName = 'Shopping cart icon'
-    static propTypes = {
-        cart: PropTypes.object.isRequired
-    }
+
     render() {
-        const { addedItems } = this.props.cart
+        const addedItems = this.props.addedItems
         return (
             <Container>
                 <Flex justify="flex-end">
@@ -26,3 +24,11 @@ export default class Cart extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        addedItems: state.cart.addedItems
+    }
+}
+
+export default connect(mapStateToProps)(Cart)

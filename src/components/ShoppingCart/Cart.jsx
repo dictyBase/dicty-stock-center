@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
+import { removeItem } from 'actions/cart'
 import { Container, TableResponsive, Table, DangerButton } from 'styles'
 
-export default class Cart extends Component {
+class Cart extends Component {
     displayName = 'Shopping cart'
-    static propTypes = {
-        cart: PropTypes.object.isRequired,
-        cartActions: PropTypes.object.isRequired
-    }
 
     render() {
-        const { cart, cartActions } = this.props
+        const addedItems = this.props.addedItems
         return (
             <Container>
                 <TableResponsive>
@@ -24,7 +21,7 @@ export default class Cart extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { cart.addedItems.map((item, index) => {
+                            { addedItems.map((item, index) => {
                                 return (
                                     <tr key={ index }>
                                         <td>{ item.id }</td>
@@ -34,7 +31,7 @@ export default class Cart extends Component {
                                             <DangerButton
                                                 type="button"
                                                 onClick={ () =>
-                                                    cartActions.removeItem(
+                                                    this.props.removeItem(
                                                         item.id
                                                     )
                                                 }>
@@ -51,3 +48,19 @@ export default class Cart extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        addedItems: state.cart.addedItems
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeItem: (id) => {
+            dispatch(removeItem(id))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

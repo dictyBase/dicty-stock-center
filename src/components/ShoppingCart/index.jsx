@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Cart from './Cart'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { DictyHeader, Container, AlertBox, PrimaryButton, SuccessButton } from 'styles'
+import Cart from './Cart'
+import {
+  DictyHeader,
+  Container,
+  AlertBox,
+  PrimaryButton,
+  SuccessButton
+} from 'styles'
 
-export default class ShoppingCart extends Component {
+class ShoppingCart extends Component {
   displayName = 'Shopping cart'
-  static propTypes = {
-      cart: PropTypes.object,
-      cartActions: PropTypes.object
-  }
+
   renderAlert = () => {
-      return (
+    return (
       <Flex wrap justify="center">
-        <Box w={ ['85%', 2 / 3] }>
+        <Box w={['85%', 2 / 3]}>
           <AlertBox>
             <strong>
               <FontAwesome name="exclamation-circle" />
-            </strong>{ ' ' }
+            </strong>{' '}
             There are no items in your cart.
           </AlertBox>
         </Box>
@@ -27,8 +30,7 @@ export default class ShoppingCart extends Component {
     )
   }
   render() {
-      const { cart, cartActions } = this.props
-      return (
+    return (
       <Container>
         <Flex justify="center">
           <Box>
@@ -37,23 +39,23 @@ export default class ShoppingCart extends Component {
             </DictyHeader>
           </Box>
         </Flex>
-        { cart.addedItems.length > 0 ? (
+        {this.props.addedItems.length > 0 ? (
           <div>
             <Flex justify="center" wrap>
-              <Box w={ 1 }>
-                <Cart cart={ cart } cartActions={ cartActions } />
+              <Box w={1}>
+                <Cart />
               </Box>
             </Flex>
             <Flex wrap justify="center">
-              <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
-                <PrimaryButton className={ `large block` }>
+              <Box w={[1, '40%']} mt={10} mr={1}>
+                <PrimaryButton className={`large block`}>
                   <Link to="/strains">
                     <FontAwesome name="share" /> Continue Shopping
                   </Link>
                 </PrimaryButton>
               </Box>
-              <Box w={ [1, '40%'] } mt={ 10 } mr={ 1 }>
-                <SuccessButton className={ `large block` }>
+              <Box w={[1, '40%']} mt={10} mr={1}>
+                <SuccessButton className={`large block`}>
                   <Link to="/order/shipping">
                     <FontAwesome name="shopping-cart" /> Checkout
                   </Link>
@@ -63,8 +65,16 @@ export default class ShoppingCart extends Component {
           </div>
         ) : (
           this.renderAlert()
-        ) }
+        )}
       </Container>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    addedItems: state.cart.addedItems
+  }
+}
+
+export default connect(mapStateToProps)(ShoppingCart)
