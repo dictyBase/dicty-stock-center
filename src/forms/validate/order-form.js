@@ -1,7 +1,7 @@
 import isEmail from 'validator/lib/isEmail'
 
 const requiredUserFields = [
-    'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip'
+    'firstName', 'lastName', 'org', 'group', 'address', 'city', 'zip', 'phone'
 ]
 
 
