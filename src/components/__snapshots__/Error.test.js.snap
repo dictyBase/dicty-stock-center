@@ -2,10 +2,10 @@
 
 exports[`matching a snapshot of Error 1`] = `
 <div
-  className="sc-bdVaJa eWsGjP"
+  className="sc-eerKOB juxuCZ"
 >
   <div
-    className="sc-htpNat bUBAQb"
+    className="sc-cpmLhU dkQvDP"
   >
     <h1>
       <span
@@ -14,12 +14,8 @@ exports[`matching a snapshot of Error 1`] = `
       />
        Error
     </h1>
-    <h2>
-      404
-    </h2>
-    <h2>
-      404
-    </h2>
+    <h2 />
+    <h2 />
   </div>
 </div>
 `;

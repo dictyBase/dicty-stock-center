@@ -50,7 +50,7 @@ exports[`matching a snapshot of Carousel 1`] = `
           <div>
             <img
               alt=""
-              src="https://i.imgur.com/SqHpamt.png"
+              src="https://i.imgur.com/iFrIK6E.png"
             />
           </div>
         </li>
@@ -61,7 +61,7 @@ exports[`matching a snapshot of Carousel 1`] = `
           <div>
             <img
               alt=""
-              src="https://i.imgur.com/gP5FAAf.png"
+              src="https://i.imgur.com/aQJoxgo.png"
             />
           </div>
         </li>
@@ -72,7 +72,7 @@ exports[`matching a snapshot of Carousel 1`] = `
           <div>
             <img
               alt=""
-              src="https://i.imgur.com/pgX6ZhN.png"
+              src="https://i.imgur.com/SYhCvdJ.png"
             />
           </div>
         </li>
@@ -83,18 +83,7 @@ exports[`matching a snapshot of Carousel 1`] = `
           <div>
             <img
               alt=""
-              src="https://i.imgur.com/6srEh3F.png"
-            />
-          </div>
-        </li>
-        <li
-          className="slide"
-          onClick={[Function]}
-        >
-          <div>
-            <img
-              alt=""
-              src="http://betatest.dictybase.org/images/dictyFront01.jpg"
+              src="https://i.imgur.com/28xvWRd.png"
             />
           </div>
         </li>

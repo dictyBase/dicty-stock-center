@@ -5,7 +5,7 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { AlertSuccess, PrimaryButton, CenteredBox } from 'styles'
 
-class OrderConfirmation extends Component {
+export class OrderConfirmation extends Component {
     displayName = 'order confirmation'
 
     render() {

@@ -14,7 +14,7 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
       is={null}
     >
       <div
-        className="sc-kxynE hhtYgU sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        className="sc-bHwgHz dGkcBd sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
         is={null}
       >
         <div
@@ -29,9 +29,7 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
           </h3>
           <p>
             Order Number: 
-            <strong>
-              test
-            </strong>
+            <strong />
           </p>
           <p>
             We have sent you a confirmation email.
@@ -55,7 +53,7 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
         is={null}
       >
         <button
-          className="large block sc-jtggT ktipCe"
+          className="large block sc-jKVCRD kXwmTf"
         >
           <a
             href="/"

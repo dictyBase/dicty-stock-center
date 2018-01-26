@@ -3,7 +3,7 @@
 exports[`matching a snapshot of PaymentAlert 1`] = `
 <div>
   <div
-    className="sc-ifAKCX iMBukv"
+    className="sc-bnXvFD fbdCb"
   >
     <p>
       <strong>
@@ -36,7 +36,7 @@ exports[`matching a snapshot of PaymentAlert 1`] = `
     </p>
   </div>
   <div
-    className="sc-ifAKCX iMBukv"
+    className="sc-bnXvFD fbdCb"
   >
     <p>
       For full payment information please click 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchAvailability } from 'actions/stockCenter'
 import { PanelGray } from 'styles'
 
-class Availability extends Component {
+export class Availability extends Component {
     displayName = 'stock center availability'
 
     componentDidMount() {

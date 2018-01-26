@@ -6,7 +6,7 @@ import { Flex, Box } from 'rebass'
 import { Container, DictyHeader, Breadcrumb } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-class MyDsc extends Component {
+export class MyDsc extends Component {
     displayName = 'user profile';
     render() {
         const { user, provider } = this.props

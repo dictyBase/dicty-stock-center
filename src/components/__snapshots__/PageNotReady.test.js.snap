@@ -2,10 +2,10 @@
 
 exports[`matching a snapshot of PageNotReady 1`] = `
 <div
-  className="sc-bdVaJa eWsGjP"
+  className="sc-eerKOB juxuCZ"
 >
   <div
-    className="sc-EHOje bKNSnW"
+    className="sc-gFaPwZ hoMIQS"
   >
     <h1>
       <span
@@ -18,7 +18,7 @@ exports[`matching a snapshot of PageNotReady 1`] = `
       This page is not ready yet.
     </p>
     <button
-      className="sc-gPEVay QPpEG"
+      className="sc-jKVCRD kXwmTf"
     >
       <a
         href="/"

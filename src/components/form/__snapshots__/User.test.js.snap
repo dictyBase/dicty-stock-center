@@ -50,7 +50,7 @@ exports[`matching a snapshot of User 1`] = `
     />
     <div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -61,10 +61,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -76,7 +76,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="John"
@@ -85,7 +85,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -96,10 +96,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -111,7 +111,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="Smith"
@@ -120,7 +120,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -131,10 +131,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -146,7 +146,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="john@gmail.com"
@@ -157,7 +157,7 @@ exports[`matching a snapshot of User 1`] = `
     </div>
     <div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -168,10 +168,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
                 title="required field"
               >
                 * 
@@ -184,7 +184,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="NU"
@@ -193,7 +193,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -204,10 +204,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
                 title="required field"
               >
                 * 
@@ -220,7 +220,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="Bio"
@@ -231,7 +231,7 @@ exports[`matching a snapshot of User 1`] = `
     </div>
     <div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -242,10 +242,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -257,7 +257,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="N Michigan Ave"
@@ -266,7 +266,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -277,7 +277,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               Address:
             </label>
@@ -287,7 +287,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value=""
@@ -296,7 +296,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -307,10 +307,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -322,7 +322,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="Chicago"
@@ -331,7 +331,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -342,7 +342,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               State/Province:
             </label>
@@ -352,7 +352,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="IL"
@@ -361,7 +361,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -372,10 +372,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -387,7 +387,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="60555"
@@ -396,7 +396,7 @@ exports[`matching a snapshot of User 1`] = `
         </div>
       </div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -407,10 +407,10 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               <span
-                className="sc-fONwsr kDvBqR"
+                className="sc-ipXKqB gMsssU"
               >
                 * 
               </span>
@@ -422,7 +422,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <select
-              className="sc-kLIISr jcKCa"
+              className="sc-iqzUVk cuWRCi"
               value="USA"
             >
               <option
@@ -1632,7 +1632,7 @@ exports[`matching a snapshot of User 1`] = `
     </div>
     <div>
       <div
-        className="sc-hmXxxW ggtKDs"
+        className="sc-dliRfk jpTzS"
       >
         <div
           className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -1643,7 +1643,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <label
-              className="sc-ipXKqB hIQKmZ"
+              className="sc-cqCuEk cDVGUT"
             >
               Phone:
             </label>
@@ -1653,7 +1653,7 @@ exports[`matching a snapshot of User 1`] = `
             is={null}
           >
             <input
-              className="sc-cqCuEk jbXqms"
+              className="sc-kLIISr jcKCa"
               placeholder={undefined}
               type="text"
               value="7778859988"

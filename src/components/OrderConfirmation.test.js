@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import renderer from 'react-test-renderer'
-import OrderConfirmation from './OrderConfirmation'
+import { OrderConfirmation } from './OrderConfirmation'
 
 test('matching a snapshot of OrderConfirmation', () => {
     const order = {

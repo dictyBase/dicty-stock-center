@@ -5,7 +5,7 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { Container } from 'styles'
 
-class Cart extends Component {
+export class Cart extends Component {
     displayName = 'Shopping cart icon'
 
     render() {

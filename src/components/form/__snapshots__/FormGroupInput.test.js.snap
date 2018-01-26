@@ -2,7 +2,7 @@
 
 exports[`matching a snapshot of FormGroupInput 1`] = `
 <div
-  className="sc-hmXxxW ggtKDs"
+  className="sc-dliRfk jpTzS"
 >
   <div
     className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
@@ -13,7 +13,7 @@ exports[`matching a snapshot of FormGroupInput 1`] = `
       is={null}
     >
       <label
-        className="sc-ipXKqB hIQKmZ"
+        className="sc-cqCuEk cDVGUT"
       />
     </div>
     <div
@@ -21,7 +21,7 @@ exports[`matching a snapshot of FormGroupInput 1`] = `
       is={null}
     >
       <input
-        className="sc-cqCuEk jbXqms"
+        className="sc-kLIISr jcKCa"
         placeholder={undefined}
         type="text"
       />

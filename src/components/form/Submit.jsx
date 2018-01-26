@@ -11,7 +11,7 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { DictyHeader, PrimaryButton } from 'styles'
 
-class Submit extends Component {
+export class Submit extends Component {
   displayName = 'submit order'
 
   static propTypes = {
