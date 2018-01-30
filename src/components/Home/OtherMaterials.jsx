@@ -6,7 +6,7 @@ import { PanelBlue } from 'styles'
 class OtherMaterials extends Component {
     displayName = 'other DSC materials'
     render() {
-        const intro = {
+        const materials = {
             "entityMap": {},
             "blocks": [
                 {
@@ -49,7 +49,7 @@ class OtherMaterials extends Component {
             <PanelBlue>
                 <InlineEditor3
                 auth={ this.props.auth }
-                rawContent={ intro }/>
+                rawContent={ materials }/>
             </PanelBlue>
         )
     }
