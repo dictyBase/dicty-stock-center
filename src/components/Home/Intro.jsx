@@ -11,7 +11,7 @@ class Intro extends Component {
                 {
                     "key": "8bu20",
                     "text":
-                        "The DSC is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies. The DSC is located at Northwestern University in Chicago, IL, USA.",
+                        "The DSC is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies.  The DSC opened at Columbia University in New York City in the fall of 2002. Since 2009 the DSC is located at Northwestern University in Chicago, IL, USA. The DSC is supported by NIH/NIGMS. Since 2015, DSC materials incur a small fee.",
                     "type": "unstyled"
                 }
             ]

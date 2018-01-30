@@ -48,9 +48,6 @@ class Home extends Component {
                             <Box>
                                 <Links />
                             </Box>
-                            <Box>
-                                <Downloads />
-                            </Box>
                         </Flex>
                     </Box>
                     <Box w={ [1, '30%', '30%'] }>
@@ -64,6 +61,9 @@ class Home extends Component {
                             <Box>
                                 <OtherMaterials />
                             </Box>
+                            <Box>
+                                <StandardOperatingProcedures />
+                            </Box>
                         </Flex>
                     </Box>
                     <Box w={ [1, '33%', '33%'] }>
@@ -75,7 +75,7 @@ class Home extends Component {
                                 <Materials />
                             </Box>
                             <Box>
-                                <StandardOperatingProcedures />
+                                <Downloads />
                             </Box>
                         </Flex>
                     </Box>
