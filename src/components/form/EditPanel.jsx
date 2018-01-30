@@ -6,14 +6,14 @@ import { InlineLink } from 'styles'
 export default class EditPanel extends Component {
     displayName = 'panel to edit order info';
 
-    // static propTypes = {
-    //     user: PropTypes.object.isRequired,
-    //     edit: PropTypes.func.isRequired,
-    //     title: PropTypes.string,
-    //     icon: PropTypes.string,
-    //     shipping: PropTypes.object,
-    //     payment: PropTypes.object
-    // }
+    static propTypes = {
+        user: PropTypes.object.isRequired,
+        edit: PropTypes.func.isRequired,
+        title: PropTypes.string,
+        icon: PropTypes.string,
+        shipping: PropTypes.object,
+        payment: PropTypes.object
+    }
     renderShippingMethod = () => {
         const { shipping } = this.props
         // display the shipping method with shipping account number(if available)
