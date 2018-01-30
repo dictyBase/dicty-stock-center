@@ -138,6 +138,10 @@ export const TextInfo = styled.span`
   }
 `
 
+export const SopLink = styled.a`
+  color: #961818;
+`
+
 export const Label = styled.span`
   display: inline;
   padding: 0.2em 0.6em 0.3em;

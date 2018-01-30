@@ -13,7 +13,7 @@ export class Availability extends Component {
         const { data } = this.props.availability
         return (
             <PanelGray>
-                <h4>Availability</h4>
+                <h4>Strain & Plasmid Availability</h4>
                 { data && data.map((item, index) => {
                     return (
                         <h5 key={ index }>

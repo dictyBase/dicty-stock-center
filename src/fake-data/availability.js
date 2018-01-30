@@ -5,7 +5,15 @@ const availability = {
         attributes: {
             availability: [
                 {name: 'Strains', amount: 1927},
-                {name: 'Plasmids', amount: 882},
+                {name: 'Plasmids', amount: 882}
+            ]
+        }
+    },
+    other: {
+        type: 'other',
+        id: '2',
+        attributes: {
+            availability: [
                 {name: 'Antibodies', amount: 12},
                 {name: 'cDNA library', amount: 1},
                 {name: 'Genomic library', amount: 1}

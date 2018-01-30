@@ -5,6 +5,7 @@ import { Flex, Box } from 'rebass'
 import Links from './Links'
 import Info from './Info'
 import Availability from './Availability'
+import OtherMaterials from './OtherMaterials'
 import Downloads from './Downloads'
 import Slideshow from './Slideshow'
 import Materials from './Materials'
@@ -61,7 +62,7 @@ class Home extends Component {
                                 <Availability />
                             </Box>
                             <Box>
-                                <Downloads />
+                                <OtherMaterials />
                             </Box>
                         </Flex>
                     </Box>
@@ -72,6 +73,9 @@ class Home extends Component {
                             </Box>
                             <Box>
                                 <Materials />
+                            </Box>
+                            <Box>
+                                <Downloads />
                             </Box>
                         </Flex>
                     </Box>
