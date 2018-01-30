@@ -49,7 +49,7 @@ class Home extends Component {
                                 <Links />
                             </Box>
                             <Box>
-                                <StandardOperatingProcedures />
+                                <Downloads />
                             </Box>
                         </Flex>
                     </Box>
@@ -75,7 +75,7 @@ class Home extends Component {
                                 <Materials />
                             </Box>
                             <Box>
-                                <Downloads />
+                                <StandardOperatingProcedures />
                             </Box>
                         </Flex>
                     </Box>
