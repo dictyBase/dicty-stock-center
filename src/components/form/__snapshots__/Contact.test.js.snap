@@ -16,6 +16,12 @@ exports[`matching a snapshot of Contact 1`] = `
         <label
           className="sc-cqCuEk cDVGUT"
         >
+          <span
+            className="sc-ipXKqB gMsssU"
+            title="required field"
+          >
+            * 
+          </span>
           Phone:
         </label>
       </div>
