@@ -9,7 +9,6 @@ export default class Links extends Component {
             {name: 'Contact the DSC', to: '/contact', routerAware: true},
             {name: 'DSC FAQ', to: '/faq', routerAware: true},
             {name: 'Nomenclature Guide', to: 'https://www.google.com', routerAware: false},
-            {name: 'DSC History', to: '/history', routerAware: true},
             {name: 'Other Stock Centers', to: '/other', routerAware: true}
         ]
         return (

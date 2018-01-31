@@ -53,7 +53,7 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-class InlineEditor2 extends Component {
+class OtherMaterialsInlineEditor extends Component {
   displayName = 'inline editor component'
   constructor(props) {
       super(props)
@@ -128,7 +128,7 @@ class InlineEditor2 extends Component {
                 </TextInfo>
               ) }
           </Box>
-          <Box width={ '25%' } mr={ 1 } mt={ 1 }>
+          <Box width={ '40%' } mr={ 1 } mt={ 1 }>
             { !readOnly && (
               <DefaultButton
                 className={ `block` }
@@ -138,7 +138,7 @@ class InlineEditor2 extends Component {
               </DefaultButton>
             ) }
           </Box>
-          <Box width={ '25%' } mt={ 1 }>
+          <Box width={ '40%' } mt={ 1 }>
             { !readOnly && (
               <SuccessButton
                 className={ `block` }
@@ -160,4 +160,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(InlineEditor2)
+export default connect(mapStateToProps)(OtherMaterialsInlineEditor)

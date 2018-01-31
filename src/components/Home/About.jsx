@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import InlineEditor from '../editor/InlineEditor'
+import AboutInlineEditor from 'components/editor/AboutInlineEditor'
 
 class About extends Component {
     displayName = 'front page about DSC'
@@ -27,7 +27,7 @@ class About extends Component {
         }        
         
         return (
-          <InlineEditor
+          <AboutInlineEditor
             auth={ this.props.auth }
             rawContent={ about }/>
         )

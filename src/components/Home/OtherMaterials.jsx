@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import InlineEditor3 from '../editor/InlineEditor3'
+import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
 import { PanelBlue } from 'styles'
 
 class OtherMaterials extends Component {
@@ -47,7 +47,7 @@ class OtherMaterials extends Component {
 
         return (
             <PanelBlue>
-                <InlineEditor3
+                <OtherMaterialsInlineEditor
                 auth={ this.props.auth }
                 rawContent={ materials }/>
             </PanelBlue>
