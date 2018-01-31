@@ -22,7 +22,7 @@ exports[`matching a snapshot of SearchBar 1`] = `
       type="search"
     />
     <button
-      className="sc-jKVCRD kXwmTf"
+      className="sc-kaNhvL jpxKph"
       onClick={[Function]}
       style={
         Object {
@@ -33,7 +33,7 @@ exports[`matching a snapshot of SearchBar 1`] = `
       SEARCH
     </button>
     <button
-      className="sc-jKVCRD kXwmTf"
+      className="sc-kaNhvL jpxKph"
       onClick={[Function]}
       style={
         Object {

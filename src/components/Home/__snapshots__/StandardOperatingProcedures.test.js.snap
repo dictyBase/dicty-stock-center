@@ -2,19 +2,15 @@
 
 exports[`matching a snapshot of StandardOperatingProcedures 1`] = `
 <div
-  className="sc-dTdPqK dImFKM"
+  className="sc-itybZL dYOfed"
 >
   <a
+    className="sc-rBLzX kmZoMh"
     href="https://northwestern.box.com/s/p0f8m70whgiuib2u0wt8gtn497ncmq8i"
     rel="noopener noreferrer"
     target="_blank"
   >
     Standard Operating Procedures
   </a>
-   
-  <span
-    aria-hidden={true}
-    className="fa fa-file-pdf-o"
-  />
 </div>
 `;

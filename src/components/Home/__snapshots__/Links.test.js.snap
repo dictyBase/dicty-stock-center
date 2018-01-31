@@ -2,10 +2,10 @@
 
 exports[`matching a snapshot of Links 1`] = `
 <div
-  className="sc-eMigcr lgvdGS"
+  className="sc-fzsDOv bjlbND"
 >
   <div
-    className="sc-fzsDOv jrLCrg"
+    className="sc-gPWkxV dfohwQ"
   >
     <ul>
       <li>
@@ -29,14 +29,6 @@ exports[`matching a snapshot of Links 1`] = `
           href="https://www.google.com"
         >
           Nomenclature Guide
-        </a>
-      </li>
-      <li>
-        <a
-          href="/history"
-          onClick={[Function]}
-        >
-          DSC History
         </a>
       </li>
       <li>

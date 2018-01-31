@@ -2,10 +2,10 @@
 
 exports[`matching a snapshot of Availability 1`] = `
 <div
-  className="sc-dTdPqK dImFKM"
+  className="sc-itybZL dYOfed"
 >
   <h4>
-    Availability
+    Strain & Plasmid Availability
   </h4>
 </div>
 `;

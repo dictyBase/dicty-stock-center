@@ -10,7 +10,7 @@ exports[`matching a snapshot of Submit 1`] = `
     is={null}
   >
     <div
-      className="sc-fjmCvl cwMkZL"
+      className="sc-TFwJa daqYjB"
     >
       <h2>
         Review Your Order
@@ -71,7 +71,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="sc-kUaPvJ hsqoua"
+                  className="sc-giadOv jjacdl"
                   onClick={[Function]}
                 >
                   <span
@@ -130,7 +130,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="sc-kUaPvJ hsqoua"
+                  className="sc-giadOv jjacdl"
                   onClick={[Function]}
                 >
                   <span
@@ -241,7 +241,7 @@ exports[`matching a snapshot of Submit 1`] = `
       >
         <hr />
         <button
-          className="large block sc-jKVCRD kXwmTf"
+          className="large block sc-kaNhvL jpxKph"
           onClick={undefined}
           type="button"
         >

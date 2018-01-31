@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`matching a snapshot of Intro 1`] = `
-<div>
-  <p>
-    The DSC is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies. The DSC is located at Northwestern University in Chicago, IL, USA.
-  </p>
-</div>
-`;
