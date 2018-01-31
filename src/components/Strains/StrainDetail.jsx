@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import StockDetailRow from 'components/StockDetailRow'
+import StockDetailRow from './StockDetailRow'
 import PhenotypeRow from './PhenotypeRow'
 import { fetchStrain } from 'actions/stockCenter'
 import { addToCart } from 'actions/cart'
@@ -74,23 +74,23 @@ class StrainDetail extends Component {
       const data1 = [
       { 'Strain Descriptor': 'No Information' },
       { 'Strain Names': 'No Information' },
-      { 'Systematic Name': strain && strain.name },
       { 'Strain Summary': strain && strain.description },
-      { Genotype: strain.genotypes && strain.genotypes[0] },
-      { 'Strain Characteristics': strain && strain.characteristics },
+      { 'Genetic Modification': 'No Information' },
+      { 'Mutagenesis Method': 'Homologous Recombination' },
+      { 'Parental Strain': 'DH1-10 (DBS0302388)' },
       { Plasmid: 'No Information' },
-      /* just display id, no link > eventually go to internal publication id*/
-      { 'Reference(s)': '22357942' }
+      /* multiple possible parental strains*/
+      { 'Associated Gene(s)': 'mcln' }
       ]
       const data2 = [
       { 'Strain ID': strain && strain.id },
+      { 'Systematic Name': strain && strain.name },
+      { 'Strain Characteristics': strain && strain.characteristics },
+      { Genotype: strain.genotypes && strain.genotypes[0] },
       { Species: 'Dictyostelium discoideum' },
-      { 'Genetic Modification': 'No Information' },
-      { 'Mutagenesis Method': 'Homologous Recombination' },
-      /* multiple possible parental strains*/
-      { 'Parental Strain': 'DH1-10 (DBS0302388)' },
-      { 'Associated Gene(s)': 'mcln' },
-      { Depositor: 'No Information' }
+      { Depositor: 'No Information' },
+      /* just display id, no link > eventually go to internal publication id*/
+      { 'Reference(s)': '22357942' }
       // {_blank: 'asdf '}
       ]
       return (

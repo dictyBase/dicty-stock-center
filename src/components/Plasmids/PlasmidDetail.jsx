@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import StockDetailRow from 'components/StockDetailRow'
+import StockDetailRow from 'components/Strains/StockDetailRow'
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import { Flex, Box } from 'rebass'
