@@ -1,20 +1,16 @@
 // @flow
 import React, { Component } from 'react'
 import { Flex, Box } from 'rebass'
-import styled from 'styled-components'
+import { BorderBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-// type Props = {
-//   phenotype: string,
-//   notes: string,
-//   reference: string
-// }
+type Props = {
+  phenotype: string,
+  notes: string,
+  reference: string
+}
 
-const BorderBox = styled(Box)`
-    border: 1px solid grey;
-`
-
-export default class PhenotypeRow extends Component {
+export default class PhenotypeRow extends Component<Props> {
     displayName = 'phenotype row'
     render() {
         return (

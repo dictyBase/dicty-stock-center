@@ -7,11 +7,19 @@ import { fetchStrains, clearStrainSearch } from 'actions/stockCenter'
 import StrainTable from 'components/Strains/StrainTable'
 import { DictyHeader, Container } from 'styles'
 
-class Strains extends Component {
+type Props = {
+  fetchStrains: Function,
+  paginationNumber: number,
+  strainCatalogData: Array<Object>,
+  clearStrainSearch: Function,
+  title: string
+}
+
+class Strains extends Component<Props> {
   displayName = 'strains list'
   componentDidMount() {
-      const fetchStrains: Function = this.props.fetchStrains
-      const number: number = this.props.paginationNumber
+      const fetchStrains = this.props.fetchStrains
+      const number = this.props.paginationNumber
       fetchStrains(number, 10)
   }
   search(text) {
@@ -23,7 +31,7 @@ class Strains extends Component {
       this.props.fetchStrains(1, 10)
   }
   render() {
-      const data: Array<Object> = this.props.strainCatalogData
+      const data = this.props.strainCatalogData
       return (
       <Container>
         <Flex justify="center">

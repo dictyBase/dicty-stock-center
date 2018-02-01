@@ -11,8 +11,29 @@ import { addToCart } from 'actions/cart'
 import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
 import 'react-virtualized/styles.css'
 
-class StrainTable extends Component {
+type Props = {
+    isFetching: boolean,
+    paginationNumber: number,
+    links: Object,
+    strainCatalogData: Array<Object>,
+    fetchStrains: Function,
+    searchStrains: Function,
+    clearStrainSearch: Function,
+    addToCart: Function,
+    cellHeight: number,
+    cellWidth: number
+}
+
+class StrainTable extends Component<Props> {
   displayName = 'strain table'
+
+  static defaultProps = {
+    cellWidth: 130,
+    cellHeight: 60
+  }
+
+  searchInput: ?HTMLInputElement
+
   loadNextPage = () => {
       const isFetching = this.props.isFetching
       const number = this.props.paginationNumber
@@ -37,8 +58,7 @@ class StrainTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const 
-      number = this.props.paginationNumber
+      const number = this.props.paginationNumber
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
           this.props.clearStrainSearch()
@@ -152,9 +172,9 @@ class StrainTable extends Component {
       }
   }
   render() {
-      const data: Array<Object> = this.props.strainCatalogData
-      const isFetching: boolean = this.props.isFetching
-      const links: Object = this.props.links
+      const data = this.props.strainCatalogData
+      const isFetching = this.props.isFetching
+      const links = this.props.links
       const loadMoreRows = isFetching ? () => {} : this.loadNextPage
       const rowCount = data.length + (links.next ? 1 : 0)
       const { cellWidth, cellHeight } = this.props
@@ -245,11 +265,6 @@ class StrainTable extends Component {
       </TableResponsive>
     )
   }
-}
-
-StrainTable.defaultProps = {
-    cellWidth: 130,
-    cellHeight: 60
 }
 
 const mapStateToProps = state => {

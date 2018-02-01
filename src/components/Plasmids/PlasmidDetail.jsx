@@ -15,18 +15,28 @@ import {
   SuccessButton
 } from 'styles'
 
-class PlasmidDetail extends Component {
+type Props = {
+  fetchPlasmid: Function,
+  addToCart: Function,
+  plasmid: Object,
+  isFetching: boolean,
+  cartItem: { type: string, id: number, systematicName: string},
+  match: Object,
+  title: string
+}
+
+class PlasmidDetail extends Component<Props> {
   displayName = 'plasmid detail'
   componentDidMount() {
-      const fetchPlasmid: Function = this.props.fetchPlasmid
-      const id: number = this.props.match.params.id
+      const fetchPlasmid = this.props.fetchPlasmid
+      const id = this.props.match.params.id
       fetchPlasmid(id)
   }
   render() {
-      const addToCart: Function = this.props.addToCart
-      const plasmid: Object = this.props.plasmid
-      const isFetching: boolean = this.props.isFetching
-      const cartItem: { type: string, id: number, systematicName: string } = {
+      const addToCart = this.props.addToCart
+      const plasmid = this.props.plasmid
+      const isFetching = this.props.isFetching
+      const cartItem = {
           type: 'plasmid',
           id: plasmid.id,
           systematicName: plasmid.name

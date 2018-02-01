@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
@@ -9,20 +8,17 @@ const CenteredBox = styled(Box)`
     text-align: center;
 `
 
-// type Props = {
-//     title: string,
-//     message: string
-// }
+type Props = {
+    title: string,
+    message: string
+}
 
-export default class TableLoader extends Component {
+export default class TableLoader extends Component<Props> {
     displayName = 'table loader'
-    // static propTypes = {
-    //     title: PropTypes.string,
-    //     message: PropTypes.string
-    // }
+
     render() {
-        const title: string = this.props.title
-        const message: string = this.props.message
+        const title = this.props.title
+        const message = this.props.message
         return (
             <div style={ { width: '100%' } }>
                 <Flex justify="space-between">

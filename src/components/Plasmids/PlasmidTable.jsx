@@ -11,13 +11,36 @@ import { addToCart } from 'actions/cart'
 import { ItemAvailable, ItemUnavailable, TableResponsive, PrimaryButton, DisabledButton } from 'styles'
 import 'react-virtualized/styles.css'
 
-class PlasmidTable extends Component {
+type Props = {
+    isFetching: boolean,
+    paginationNumber: number,
+    links: Object,
+    plasmidCatalogData: Array<Object>,
+    fetchPlasmids: Function,
+    searchPlasmids: Function,
+    clearPlasmidSearch: Function,
+    addToCart: Function,
+    cellHeight: number,
+    cellWidth: number,
+    height: number
+}
+
+class PlasmidTable extends Component<Props> {
   displayName = 'plasmid table'
+
+  static defaultProps = {
+      cellWidth: 130,
+      cellHeight: 90,
+      height: 630
+  }
+
+  searchInput: ?HTMLInputElement
+
   loadNextPage = () => {
-      const fetchPlasmids: Function = this.props.fetchPlasmids
-      const isFetching: boolean = this.props.isFetching
-      const links: Object = this.props.links
-      const number: number = this.props.paginationNumber
+      const fetchPlasmids = this.props.fetchPlasmids
+      const isFetching = this.props.isFetching
+      const links = this.props.links
+      const number = this.props.paginationNumber
       if (!isFetching && links.next && this.searchInput.value === '') {
           fetchPlasmids(number + 1, 10)
       }
@@ -38,9 +61,9 @@ class PlasmidTable extends Component {
       this.clearSearch()
   }
   clearSearch = () => {
-      const fetchPlasmids: Function = this.props.fetchPlasmids
-      const clearPlasmidSearch: Function = this.props.clearPlasmidSearch
-      const number: number = this.props.paginationNumber
+      const fetchPlasmids = this.props.fetchPlasmids
+      const clearPlasmidSearch = this.props.clearPlasmidSearch
+      const number = this.props.paginationNumber
       if (this.searchInput.value !== '') {
           this.searchInput.value = ''
           clearPlasmidSearch()
@@ -48,21 +71,21 @@ class PlasmidTable extends Component {
       }
   }
   getRowHeight = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.plasmidCatalogData
-      const cellHeight: number = this.props.cellHeight
+      const data = this.props.plasmidCatalogData
+      const cellHeight = this.props.cellHeight
       if (data[index]) {
           const remainder: number = data[index].attributes.description.length % 54
           let lines: number = data[index].attributes.description.length / 54
           if (remainder > 0) {
               lines += 1
           }
-          const height: number = lines * 30
+          const height = lines * 30
           return height >= cellHeight ? height : cellHeight
       }
       return cellHeight
   }
   getRowStyle = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.plasmidCatalogData
+      const data = this.props.plasmidCatalogData
       if (index === -1) {
           return {
               margin: '0 auto',
@@ -82,7 +105,7 @@ class PlasmidTable extends Component {
       }
   }
   isRowLoaded = ({ index }: { index: number }) => {
-      const data: Array<Object> = this.props.plasmidCatalogData
+      const data = this.props.plasmidCatalogData
       return !!data[index]
   }
   rowRenderer = ({
@@ -155,8 +178,8 @@ class PlasmidTable extends Component {
     rowIndex: number,
     rowData: Object
   }) => {
-      const addToCart: Function = this.props.addToCart
-      const data: Array<Object> = this.props.plasmidCatalogData
+      const addToCart = this.props.addToCart
+      const data = this.props.plasmidCatalogData
       if (cellData) {
           return (
         <PrimaryButton onClick={ () => addToCart(data[rowIndex]) }>
@@ -172,9 +195,9 @@ class PlasmidTable extends Component {
   }
   render() {
       const { cellWidth, height } = this.props
-      const data: Array<Object> = this.props.plasmidCatalogData
-      const isFetching: boolean = this.props.isFetching
-      const links: Object = this.props.links
+      const data = this.props.plasmidCatalogData
+      const isFetching = this.props.isFetching
+      const links = this.props.links
       const loadMoreRows: Function = isFetching ? () => {} : this.loadNextPage
       const rowCount: number = data.length + (links.next ? 1 : 0)
       return (
@@ -270,12 +293,6 @@ class PlasmidTable extends Component {
       </TableResponsive>
     )
   }
-}
-
-PlasmidTable.defaultProps = {
-    cellWidth: 130,
-    cellHeight: 90,
-    height: 630
 }
 
 const mapStateToProps = state => {

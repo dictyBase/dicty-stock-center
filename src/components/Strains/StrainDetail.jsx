@@ -18,15 +18,26 @@ import {
   BorderBox
 } from 'styles'
 
-class StrainDetail extends Component {
+type Props = {
+  fetchStrain: Function,
+  phenotypes: Array<Object>,
+  addToCart: Function,
+  strain: Object,
+  isFetching: boolean,
+  cartItem: { type: string, id: number, systematicName: string},
+  title: string,
+  match: Object
+}
+
+class StrainDetail extends Component<Props> {
   displayName = 'strain detail'
   componentDidMount() {
-      const fetchStrain: Function = this.props.fetchStrain
-      const id: string = this.props.match.params.id
+      const fetchStrain = this.props.fetchStrain
+      const id = this.props.match.params.id
       fetchStrain(id)
   }
   phenotypes() {
-      const phenotypes: Array<Object> = this.props.phenotypes
+      const phenotypes = this.props.phenotypes
     // const strain = {
     //     phenotypes: [{
     //         observation: 'placeholder',
@@ -34,7 +45,7 @@ class StrainDetail extends Component {
     //         reference: '000000001'
     //     }]
     // }
-      const rows: Array<PhenotypeRow> = phenotypes.map((phenotype, i) => {
+      const rows = phenotypes.map((phenotype, i) => {
           return (
             <PhenotypeRow
               phenotype={ phenotype.observation }
@@ -63,10 +74,10 @@ class StrainDetail extends Component {
       )
   }
   render() {
-      const addToCart: Function = this.props.addToCart
-      const strain: Object = this.props.strain
-      const isFetching: boolean = this.props.isFetching
-      const cartItem: { type: string, id: string, systematicName: string } = {
+      const addToCart = this.props.addToCart
+      const strain = this.props.strain
+      const isFetching = this.props.isFetching
+      const cartItem = {
           type: 'strain',
           id: strain.id,
           systematicName: strain.name

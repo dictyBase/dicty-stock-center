@@ -7,15 +7,22 @@ import PlasmidTable from './PlasmidTable'
 import { fetchPlasmids } from 'actions/stockCenter'
 import { DictyHeader, Container } from 'styles'
 
-class Plasmids extends Component {
+type Props = {
+    fetchPlasmids: Function,
+    paginationNumber: number,
+    plasmidCatalogData: Array<Object>,
+    title: string
+}
+
+class Plasmids extends Component<Props> {
     displayName = 'plasmids list'
     componentDidMount() {
-        const fetchPlasmids: Function = this.props.fetchPlasmids
-        const number: number = this.props.paginationNumber
+        const fetchPlasmids = this.props.fetchPlasmids
+        const number = this.props.paginationNumber
         fetchPlasmids(number, 10)
     }
     render() {
-        const data: Array<Object> = this.props.plasmidCatalogData
+        const data = this.props.plasmidCatalogData
         return (
           <Container>
             <Flex justify="center">
