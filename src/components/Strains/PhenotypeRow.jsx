@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { Flex, Box } from 'rebass'
+import { Flex } from 'rebass'
 import { BorderBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
 

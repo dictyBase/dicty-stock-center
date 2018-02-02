@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -5,7 +6,11 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { Container } from 'styles'
 
-export class Cart extends Component {
+type Props = {
+    addedItems: Array<Object>
+}
+
+export class Cart extends Component<Props> {
     displayName = 'Shopping cart icon'
 
     render() {

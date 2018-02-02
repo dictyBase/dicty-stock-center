@@ -45,7 +45,7 @@ class PlasmidTable extends Component<Props> {
           fetchPlasmids(number + 1, 10)
       }
   }
-  handleKeyDown = (e: Event) => {
+  handleKeyDown = e => {
       if (e.keyCode === 13) {
           this.search(e.target.value)
       }

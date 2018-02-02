@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -12,7 +13,11 @@ import {
   SuccessButton
 } from 'styles'
 
-class ShoppingCart extends Component {
+type Props = {
+  addedItems: Array<Object>
+}
+
+class ShoppingCart extends Component<Props> {
   displayName = 'Shopping cart'
 
   renderAlert = () => {

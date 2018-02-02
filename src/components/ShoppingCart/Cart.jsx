@@ -1,10 +1,16 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
 import { removeItem } from 'actions/cart'
 import { Container, TableResponsive, Table, DangerButton } from 'styles'
 
-class Cart extends Component {
+type Props = {
+    addedItems: Array<Object>,
+    removeItem: Function
+}
+
+class Cart extends Component<Props> {
     displayName = 'Shopping cart'
 
     render() {

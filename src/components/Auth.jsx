@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Flex, Box } from 'rebass'
-import styled from 'styled-components'
+import { Flex } from 'rebass'
 import FontAwesome from 'react-fontawesome'
-import { AlertSuccess, PrimaryButton } from 'styles'
-
-const CenteredBox = styled(Box)`
-    text-align: center;
-`
+import { AlertSuccess, PrimaryButton, CenteredBox } from 'styles'
 
 export class AuthLoader extends Component {
     displayName = 'loading component during authentication'
