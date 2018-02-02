@@ -24,6 +24,14 @@ declare module 'actions/order/submit' {
 }
 
 // components
+declare module 'containers/App' {
+    declare module.exports: any;
+}
+
+declare module 'containers/DevTools' {
+    declare module.exports: any;
+}
+
 declare module 'components/Strains/StockDetailRow' {
     declare module.exports: any;
 }
@@ -64,6 +72,10 @@ declare module 'components/OauthSignInButton' {
     declare module.exports: any;
 }
 
+declare module 'utils/oauthConfig' {
+    declare module.exports: any;
+}
+
 declare module 'utils/clientConfig' {
     declare module.exports: any;
 }
@@ -90,6 +102,14 @@ declare module 'redux-form' {
 }
 
 declare module 'react-virtualized' {
+    declare module.exports: any;
+}
+
+declare module 'react-router-redux' {
+    declare module.exports: any;
+}
+
+declare module 'react-ga' {
     declare module.exports: any;
 }
 

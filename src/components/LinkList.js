@@ -1,14 +1,16 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { LinkedList } from 'styles'
 
-export default class LinkList extends Component {
+type Props = {
+    list: Array<any>,
+    title: string
+}
+
+export default class LinkList extends Component<Props> {
     displayName = 'list of links';
-    static propTypes = {
-        list: PropTypes.array.isRequired,
-        title: PropTypes.string
-    }
+
     render() {
         const { title, list } = this.props
         return (

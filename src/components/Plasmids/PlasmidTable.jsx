@@ -34,8 +34,6 @@ class PlasmidTable extends Component<Props> {
       height: 630
   }
 
-  searchInput: ?HTMLInputElement
-
   loadNextPage = () => {
       const fetchPlasmids = this.props.fetchPlasmids
       const isFetching = this.props.isFetching

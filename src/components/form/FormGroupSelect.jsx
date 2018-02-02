@@ -7,7 +7,8 @@ type Props = {
   field: Object,
   list: Array<string>,
   defaultValue: string,
-  defaultTitle: string
+  defaultTitle: string,
+  children: Array<any>
 }
 
 export default class FormGroupSelect extends Component<Props> {

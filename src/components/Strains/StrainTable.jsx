@@ -32,8 +32,6 @@ class StrainTable extends Component<Props> {
     cellHeight: 60
   }
 
-  searchInput: ?HTMLInputElement
-
   loadNextPage = () => {
       const isFetching = this.props.isFetching
       const number = this.props.paginationNumber

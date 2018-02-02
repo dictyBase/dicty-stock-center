@@ -1,16 +1,18 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import DevTools from 'containers/DevTools'
 import App from 'containers/App'
 
-export default class Root extends Component {
+type Props = {
+    store: Object,
+    history: Object
+}
+
+export default class Root extends Component<Props> {
     displayName = 'root component';
-    static propTypes = {
-        store: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    }
+
     render() {
         const { store, history } = this.props
         return (

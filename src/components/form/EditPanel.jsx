@@ -1,17 +1,9 @@
-// @flow
+// needs to be updated with Flow
 import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome'
 import { InlineLink } from 'styles'
 
-type Props = {
-    user: Object,
-    edit: Function,
-    title: string,
-    shipping: Object,
-    payment: Object
-}
-
-export default class EditPanel extends Component<Props> {
+export default class EditPanel extends Component {
     displayName = 'panel to edit order info';
 
     renderShippingMethod = () => {

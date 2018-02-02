@@ -7,7 +7,8 @@ import { SocialButton } from 'styles'
 
 type Props = {
     provider: string,
-    redirectUrl: string
+    redirectUrl: string,
+    authActions: Object
 }
 
 export default class oauthSignInButton extends Component<Props> {
@@ -19,15 +20,15 @@ export default class oauthSignInButton extends Component<Props> {
     componentWillUnmount() {
         window.removeEventListener('message', this.onMessage)
     }
-    titleCase(name) {
+    titleCase(name: string) {
         return name.charAt(0).toUpperCase() + name.slice(1)
     }
-    onMessage = (event) => {
+    onMessage = (event: Event) => {
         event.preventDefault()
         event.stopImmediatePropagation()
         this.props.authActions.oAuthLogin(event.data)
     };
-    onClick = (event) => {
+    onClick = (event: Event) => {
         event.preventDefault()
         const { provider } = this.props
         const config = oauthConfig[provider]

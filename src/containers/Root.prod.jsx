@@ -1,20 +1,22 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import App from 'containers/App'
 import ReactGA from 'react-ga'
 
+type Props = {
+    store: Object,
+    history: Object
+}
+
 // initialize google analytics
 let trackingId = __GA_TRACKING_ID__
 ReactGA.initialize(trackingId)
 
-export default class Root extends Component {
+export default class Root extends Component<Props> {
     displayName = 'root component';
-    static propTypes = {
-        store: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    }
+
     render() {
         const { store, history } = this.props
         history.listen((location, action) => {
