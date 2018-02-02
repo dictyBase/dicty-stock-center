@@ -13,7 +13,15 @@ import { DictyHeader, PrimaryButton } from 'styles'
 
 type Props = {
   order: Object,
-  cart: Object
+  cart: Object,
+  editShipping: Function,
+  editPayment: Function,
+  submitOrder: Function,
+  addedItems: Array<Object>,
+  consumer: Object,
+  shipping: Object,
+  payer: Object,
+  payment: Object
 }
 
 export class Submit extends Component<Props> {

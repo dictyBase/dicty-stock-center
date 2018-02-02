@@ -42,7 +42,12 @@ export const fields = [
 type Props = {
   order: Object,
   fields: Object,
-  submitting: boolean
+  submitting: boolean,
+  handleSubmit: Function,
+  error: string,
+  editShipping: Function,
+  sameAsShipping: Function,
+  consumer: Object
 }
 
 class EditPayment extends Component<Props> {

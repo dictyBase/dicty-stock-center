@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import oauthConfig from 'utils/oauthConfig'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'

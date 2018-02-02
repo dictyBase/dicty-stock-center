@@ -7,7 +7,6 @@ type Props = {
     user: Object,
     edit: Function,
     title: string,
-    icon: string,
     shipping: Object,
     payment: Object
 }

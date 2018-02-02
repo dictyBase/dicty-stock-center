@@ -4,7 +4,7 @@ import { Flex, Box } from 'rebass'
 import { ControlLabel, FormGroup, FormControl, HelpBlock } from 'styles'
 
 type Props = {
-  field: Object,
+  ...field,
   inputType: string,
   placeholder: string
 }

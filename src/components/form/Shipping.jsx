@@ -32,7 +32,8 @@ export const fields = [
 type Props = {
     fields: Object,
     handleSubmit: Function,
-    submitting: boolean
+    submitting: boolean,
+    error: string
 }
 
 class Shipping extends Component<Props> {

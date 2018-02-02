@@ -6,7 +6,8 @@ import { ControlLabel, FormGroup, FormTextArea } from 'styles'
 type Props = {
   comments: Object,
   placeholder: string,
-  rows: string
+  rows: string,
+  children: string
 }
 
 export default class Comments extends Component<Props> {

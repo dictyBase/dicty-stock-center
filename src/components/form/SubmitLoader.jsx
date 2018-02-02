@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container } from 'styles'
-import { Flex, Box } from 'rebass'
+import { Flex } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { CenteredBox } from 'styles'
 
