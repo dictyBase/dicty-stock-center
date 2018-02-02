@@ -1,6 +1,6 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form'
 import { submitForm } from 'actions/order/payment'
 import EditPanel from './EditPanel'
@@ -39,14 +39,14 @@ export const fields = [
   'poNum'
 ]
 
-class Payment extends Component {
-  displayName = 'payment information'
+type Props = {
+  order: Object,
+  fields: Object,
+  submitting: boolean
+}
 
-  static propTypes = {
-    order: PropTypes.object,
-    fields: PropTypes.object.isRequired,
-    submitting: PropTypes.bool
-  }
+class Payment extends Component<Props> {
+  displayName = 'payment information'
 
   render() {
     const { consumer, editShipping, sameAsShipping } = this.props

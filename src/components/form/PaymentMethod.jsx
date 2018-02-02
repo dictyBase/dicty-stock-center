@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -8,14 +9,14 @@ import {
 } from 'dicty-components-panel'
 import PaymentInfo from './PaymentInfo'
 
-export default class PaymentMethod extends Component {
-    displayName = 'payment method'
+type Props = {
+    payMethod: Object,
+    poNum: Object,
+    title: string
+}
 
-    static propTypes = {
-        payMethod: PropTypes.object.isRequired,
-        poNum: PropTypes.object.isRequired,
-        title: PropTypes.string.isRequired
-    }
+export default class PaymentMethod extends Component<Props> {
+    displayName = 'payment method'
 
     render() {
         const { payMethod, poNum, title } = this.props

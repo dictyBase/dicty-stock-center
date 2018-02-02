@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import User from './User'
 import ShippingMethod from './ShippingMethod'
 import ShippingAdditional from './ShippingAdditional'
@@ -29,14 +29,14 @@ export const fields = [
   'comments'
 ]
 
-class EditShipping extends Component {
-  displayName = 'shipping information'
+type Props = {
+  fields: Object,
+  handleSubmit: Function,
+  submitting: boolean
+}
 
-  static propTypes = {
-    fields: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    submitting: PropTypes.bool
-  }
+class EditShipping extends Component<Props> {
+  displayName = 'shipping information'
 
   render() {
     const { handleSubmit, submitting, error } = this.props

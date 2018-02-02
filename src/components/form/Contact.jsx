@@ -1,14 +1,14 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
 import { RequiredText } from 'styles'
 
-export default class Contact extends Component {
-    displayName = 'form contact information';
+type Props = {
+    phone: Object
+}
 
-    static propTypes = {
-        phone: PropTypes.object.isRequired
-    }
+export default class Contact extends Component<Props> {
+    displayName = 'form contact information'
 
     render() {
         const { phone } = this.props

@@ -1,6 +1,6 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import EditPanel from './EditPanel'
 import Items from 'components/Items'
 import { editShipping } from 'actions/order/shipping'
@@ -11,13 +11,13 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { DictyHeader, PrimaryButton } from 'styles'
 
-export class Submit extends Component {
-  displayName = 'submit order'
+type Props = {
+  order: Object,
+  cart: Object
+}
 
-  static propTypes = {
-    order: PropTypes.object,
-    cart: PropTypes.object
-  }
+export class Submit extends Component<Props> {
+  displayName = 'submit order'
 
   render() {
     const {

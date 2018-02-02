@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { Container } from 'styles'
 import { Flex, Box } from 'rebass'
-import styled from 'styled-components'
 import FontAwesome from 'react-fontawesome'
-
-const CenteredBox = styled(Box)`
-    text-align: center;
-`
+import { CenteredBox } from 'styles'
 
 export default class SubmitLoader extends Component {
     displayName = 'loading component'

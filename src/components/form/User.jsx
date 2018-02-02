@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {
     Panel,
     PanelHeader,
@@ -11,24 +11,24 @@ import Organization from './Organization'
 import Address from './Address'
 import Contact from './Contact'
 
-export default class User extends Component {
-    displayName = 'user information'
+type Props = {
+    firstName: Object,
+    lastName: Object,
+    email: Object,
+    org: Object,
+    group: Object,
+    address: Object,
+    address2: Object,
+    city: Object,
+    state: Object,
+    zip: Object,
+    country: Object,
+    phone: Object,
+    title: string
+}
 
-    static propTypes = {
-        firstName: PropTypes.object.isRequired,
-        lastName: PropTypes.object.isRequired,
-        email: PropTypes.object.isRequired,
-        org: PropTypes.object.isRequired,
-        group: PropTypes.object.isRequired,
-        address: PropTypes.object.isRequired,
-        address2: PropTypes.object.isRequired,
-        city: PropTypes.object.isRequired,
-        state: PropTypes.object.isRequired,
-        zip: PropTypes.object.isRequired,
-        country: PropTypes.object.isRequired,
-        phone: PropTypes.object.isRequired,
-        title: PropTypes.string.isRequired
-    }
+export default class User extends Component<Props> {
+    displayName = 'user information'
 
     render() {
         const {

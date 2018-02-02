@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import oauthConfig from 'utils/oauthConfig'
@@ -5,12 +6,14 @@ import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { SocialButton } from 'styles'
 
-export default class oauthSignInButton extends Component {
+type Props = {
+    provider: string,
+    redirectUrl: string
+}
+
+export default class oauthSignInButton extends Component<Props> {
     displayName = 'oauth button component';
-    static propTypes = {
-        provider: PropTypes.string.isRequired,
-        redirectUrl: PropTypes.string
-    };
+
     componentDidMount() {
         window.addEventListener('message', this.onMessage, false)
     }

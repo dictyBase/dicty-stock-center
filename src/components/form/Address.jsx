@@ -1,21 +1,21 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
 import FormGroupSelect from './FormGroupSelect'
 import countryList from 'forms/utils/countryList'
 import { RequiredText } from 'styles'
 
-export default class Address extends Component {
-    displayName = 'form address information';
+type Props = {
+    address: Object,
+    address2: Object,
+    city: Object,
+    state: Object,
+    zip: Object,
+    country: Object
+}
 
-    static propTypes = {
-        address: PropTypes.object.isRequired,
-        address2: PropTypes.object.isRequired,
-        city: PropTypes.object.isRequired,
-        state: PropTypes.object.isRequired,
-        zip: PropTypes.object.isRequired,
-        country: PropTypes.object.isRequired
-    }
+export default class Address extends Component<Props> {
+    displayName = 'form address information';
 
     render() {
         const { address, address2, city, state, zip, country } = this.props

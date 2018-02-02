@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 import {
   RequiredText,
@@ -10,13 +10,13 @@ import {
   RadioInline
 } from 'styles'
 
-export default class PaymentInfo extends Component {
-  displayName = 'payment information'
+type Props = {
+  payMethod: Object,
+  poNum: Object
+}
 
-  static propTypes = {
-      payMethod: PropTypes.object.isRequired,
-      poNum: PropTypes.object.isRequired
-  }
+export default class PaymentInfo extends Component<Props> {
+  displayName = 'payment information'
 
   renderPoNumber = () => {
       const { poNum } = this.props

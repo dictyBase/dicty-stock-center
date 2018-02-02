@@ -1,16 +1,16 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 import { ControlLabel, FormGroup, FormTextArea } from 'styles'
 
-export default class Comments extends Component {
-  displayName = 'form contact information'
+type Props = {
+  comments: Object,
+  placeholder: string,
+  rows: string
+}
 
-  static propTypes = {
-      comments: PropTypes.object.isRequired,
-      placeholder: PropTypes.string,
-      rows: PropTypes.string
-  }
+export default class Comments extends Component<Props> {
+  displayName = 'form contact information'
 
   render() {
       const { comments, placeholder, rows, children } = this.props

@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 import {
   RequiredText,
@@ -10,13 +10,13 @@ import {
   RadioInline
 } from 'styles'
 
-export default class ShippingInfo extends Component {
-  displayName = 'form shipping information'
+type Props = {
+  shipAccount: Object,
+  shipAccountNum: Object
+}
 
-  static propTypes = {
-      shipAccount: PropTypes.object.isRequired,
-      shipAccountNum: PropTypes.object.isRequired
-  }
+export default class ShippingInfo extends Component<Props> {
+  displayName = 'form shipping information'
 
   renderShipAccountNum = () => {
       const { shipAccountNum } = this.props

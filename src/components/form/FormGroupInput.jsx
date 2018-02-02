@@ -1,16 +1,16 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 import { ControlLabel, FormGroup, FormControl, HelpBlock } from 'styles'
 
-export default class FormGroupInput extends Component {
-  displayName = 'form group with input'
+type Props = {
+  field: Object,
+  inputType: string,
+  placeholder: string
+}
 
-  static propTypes = {
-      field: PropTypes.object.isRequired,
-      inputType: PropTypes.string,
-      placeholder: PropTypes.string
-  }
+export default class FormGroupInput extends Component<Props> {
+  displayName = 'form group with input'
 
   static defaultProps = {
       inputType: 'text'

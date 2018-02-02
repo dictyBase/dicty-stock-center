@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {
     Panel,
     PanelHeader,
@@ -8,14 +8,14 @@ import {
 } from 'dicty-components-panel'
 import ShippingInfo from './ShippingInfo'
 
-export default class ShippingMethod extends Component {
-    displayName = 'shipping method'
+type Props = {
+    shipAccount: Object,
+    shipAccountNum: Object,
+    title: string
+}
 
-    static propTypes = {
-        shipAccount: PropTypes.object.isRequired,
-        shipAccountNum: PropTypes.object.isRequired,
-        title: PropTypes.string.isRequired
-    }
+export default class ShippingMethod extends Component<Props> {
+    displayName = 'shipping method'
 
     render() {
         const { title, shipAccount, shipAccountNum } = this.props

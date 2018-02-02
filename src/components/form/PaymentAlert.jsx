@@ -1,13 +1,13 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { AlertInfo } from 'styles'
 
-export default class PaymentAlert extends Component {
-    displayName = 'payment information'
+type Props = {
+    paymentInfoLink: string
+}
 
-    static propTypes = {
-        paymentInfoLink: PropTypes.string.isRequired
-    }
+export default class PaymentAlert extends Component<Props> {
+    displayName = 'payment information'
 
     static defaultProps = {
         paymentInfoLink: '/stockcenter/payments/information'

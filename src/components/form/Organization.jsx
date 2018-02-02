@@ -1,15 +1,15 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import FormGroupInput from './FormGroupInput'
 import { RequiredText } from 'styles'
 
-export default class Organization extends Component {
-    displayName = 'component for organization/lab/group info';
+type Props = {
+    org: Object,
+    group: Object
+}
 
-    static propTypes = {
-        org: PropTypes.object.isRequired,
-        group: PropTypes.object.isRequired
-    }
+export default class Organization extends Component<Props> {
+    displayName = 'component for organization/lab/group info';
 
     render() {
         const { org, group } = this.props

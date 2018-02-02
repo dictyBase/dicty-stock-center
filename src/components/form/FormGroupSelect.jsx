@@ -1,17 +1,17 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 import { ControlLabel, FormGroup, FormControlSelect, HelpBlock } from 'styles'
 
-export default class FormGroupSelect extends Component {
-  displayName = 'Select field component'
+type Props = {
+  field: Object,
+  list: Array<string>,
+  defaultValue: string,
+  defaultTitle: string
+}
 
-  static propTypes = {
-      field: PropTypes.object.isRequired,
-      list: PropTypes.array.isRequired,
-      defaultValue: PropTypes.string,
-      defaultTitle: PropTypes.string
-  }
+export default class FormGroupSelect extends Component<Props> {
+  displayName = 'Select field component'
 
   static defaultProps = {
       defaultValue: 'select',

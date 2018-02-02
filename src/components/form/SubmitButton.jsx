@@ -1,16 +1,16 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
 import { PrimaryButton } from 'styles'
 
-export default class SubmitButton extends Component {
-    displayName = 'form submit button';
+type Props = {
+    submitting: boolean,
+    name: string,
+    icon: string
+}
 
-    static propTypes = {
-        submitting: PropTypes.bool,
-        name: PropTypes.string,
-        icon: PropTypes.string
-    }
+export default class SubmitButton extends Component<Props> {
+    displayName = 'form submit button'
 
     render() {
         const { submitting, name, icon } = this.props
