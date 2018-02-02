@@ -6,7 +6,7 @@
 .*/__tests__/.*
 
 [options]
-module.name_mapper='^src\(.*\)$' -> '/src\1'
+module.name_mapper='^app/\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/\1'
 
 [libs]
 flow-typed
