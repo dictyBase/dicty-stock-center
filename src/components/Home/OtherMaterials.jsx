@@ -1,9 +1,15 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
 import { PanelBlue } from 'styles'
+import type { MapStateToProps } from 'react-redux'
 
-class OtherMaterials extends Component {
+type Props = {
+    auth: Object
+}
+
+class OtherMaterials extends Component<Props> {
     displayName = 'other DSC materials'
     render() {
         const materials = {
@@ -55,7 +61,7 @@ class OtherMaterials extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         auth: state.auth
     }

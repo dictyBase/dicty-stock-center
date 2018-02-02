@@ -1,9 +1,15 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAvailability } from 'actions/stockCenter'
 import { PanelGray } from 'styles'
 
-export class Availability extends Component {
+type Props = {
+    availability: Object,
+    fetchAvailability: Function
+}
+
+export class Availability extends Component<Props> {
     displayName = 'stock center availability'
 
     componentDidMount() {

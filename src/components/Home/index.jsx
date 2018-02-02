@@ -1,7 +1,7 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
-
 import Links from './Links'
 import Info from './Info'
 import Availability from './Availability'
@@ -12,10 +12,14 @@ import Materials from './Materials'
 import Intro from './Intro'
 import About from './About'
 import StandardOperatingProcedures from './StandardOperatingProcedures'
-
 import { HomepageHeader, Container } from 'styles'
+import type { MapStateToProps } from 'react-redux'
 
-class Home extends Component {
+type Props = {
+    auth: Object
+}
+
+class Home extends Component<Props> {
     displayName = 'homepage component'
 
     renderGreeting = () => {
@@ -85,7 +89,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         auth: state.auth
     }

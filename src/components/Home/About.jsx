@@ -1,8 +1,14 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AboutInlineEditor from 'components/editor/AboutInlineEditor'
+import type { MapStateToProps } from 'react-redux'
 
-class About extends Component {
+type Props = {
+    auth: Object
+}
+
+class About extends Component<Props> {
     displayName = 'front page about DSC'
 
     render() {
@@ -34,7 +40,7 @@ class About extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         auth: state.auth
     }

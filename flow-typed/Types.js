@@ -33,6 +33,9 @@ declare module 'components/Strains/StrainTable' {
 declare module 'components/Strains/PhenotypeRow' {
     declare module.exports: any;
 }
+declare module 'components/editor/AboutInlineEditor' {
+    declare module.exports: any;
+}
 declare module 'components/StockDetailRow' {
     declare module.exports: any;
 }

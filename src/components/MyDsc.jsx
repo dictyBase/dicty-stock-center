@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Panel, PanelBody } from 'dicty-components-panel'
@@ -5,8 +6,14 @@ import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import { Container, DictyHeader, Breadcrumb } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import type { MapStateToProps } from 'react-redux'
 
-export class MyDsc extends Component {
+type Props = {
+    user: Object,
+    provider: string
+}
+
+export class MyDsc extends Component<Props> {
     displayName = 'user profile';
     render() {
         const { user, provider } = this.props
@@ -43,7 +50,7 @@ export class MyDsc extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         user: state.auth.user,
         provider: state.auth.provider
