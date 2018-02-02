@@ -12,6 +12,7 @@ import {
   PrimaryButton,
   SuccessButton
 } from 'styles'
+import type { MapStateToProps } from 'react-redux'
 
 type Props = {
   addedItems: Array<Object>
@@ -76,7 +77,7 @@ class ShoppingCart extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {
     addedItems: state.cart.addedItems
   }

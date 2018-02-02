@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, AlertBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
+import type { MapStateToProps } from 'react-redux'
 
 type Props = {
   authError: string,
@@ -27,7 +28,7 @@ export class Error extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {
     authError: state.auth.error,
     orderError: state.order.error

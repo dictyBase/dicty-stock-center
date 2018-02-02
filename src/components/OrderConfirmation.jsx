@@ -1,11 +1,17 @@
+// @flow
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { AlertSuccess, PrimaryButton, CenteredBox } from 'styles'
+import type { MapStateToProps } from 'react-redux'
 
-export class OrderConfirmation extends Component {
+type Props = {
+    id: number
+}
+
+export class OrderConfirmation extends Component<Props> {
     displayName = 'order confirmation'
 
     render() {
@@ -45,7 +51,7 @@ export class OrderConfirmation extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         id: state.order.id
     }

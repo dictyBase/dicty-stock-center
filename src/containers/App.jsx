@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { Header, Footer } from 'dicty-components-header-footer'
 import { Navbar } from 'dicty-components-navbar'
@@ -7,8 +8,14 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FooterLinks } from 'constants/Footer'
 import { NavbarLinks } from 'constants/Navbar'
+import type { MapStateToProps } from 'react-redux'
 
-class App extends Component {
+type Props = {
+    cart: Object,
+    auth: Object
+}
+
+class App extends Component<Props> {
     displayName = 'the primary app component'
 
     render() {
@@ -40,7 +47,7 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps: MapStateToProps<*, *, *> = (state) => {
     const { auth, cart } = state
     return {
         auth: auth,

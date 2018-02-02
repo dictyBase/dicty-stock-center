@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import { Container } from 'styles'
+import type { MapStateToProps } from 'react-redux'
 
 type Props = {
     addedItems: Array<Object>
@@ -30,7 +31,7 @@ export class Cart extends Component<Props> {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
     return {
         addedItems: state.cart.addedItems
     }
