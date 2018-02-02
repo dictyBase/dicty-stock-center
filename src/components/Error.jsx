@@ -1,9 +1,15 @@
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, AlertBox } from 'styles'
 import FontAwesome from 'react-fontawesome'
 
-export class Error extends Component {
+type Props = {
+  authError: string,
+  orderError: string
+}
+
+export class Error extends Component<Props> {
   displayName = 'homepage component'
   render() {
     const { authError, orderError } = this.props

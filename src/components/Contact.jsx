@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {
     PanelGroup,
     Panel,
@@ -24,13 +24,16 @@ const theme = {
     headerTextColor: '#000000'
 }
 
-class Contact extends Component {
+type Props = {
+    fields: Object,
+    handleSubmit: Function,
+    submitting: boolean,
+    resetForm: Function
+}
+
+class Contact extends Component<Props> {
     displayName = 'contact page'
-    static propTypes = {
-        fields: PropTypes.object.isRequired,
-        handleSubmit: PropTypes.func.isRequired,
-        submitting: PropTypes.bool
-    }
+
     render() {
         const {
             fields: { name, email, subject, message },

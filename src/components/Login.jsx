@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import OauthSignInButton from 'components/OauthSignInButton'
 import clientConfig from 'utils/clientConfig'
 import { Flex, Box } from 'rebass'
@@ -13,11 +13,13 @@ const getDefaultProviders = () => {
     return providers
 }
 
-export default class Login extends Component {
+type Props = {
+    providers: Array<string>
+}
+
+export default class Login extends Component<Props> {
     displayName = 'login display'
-    static propTypes = {
-        providers: PropTypes.array
-    }
+
     static defaultProps = {
         providers: getDefaultProviders()
     }

@@ -1,13 +1,19 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Flex, Box } from 'rebass'
 
-export default class Items extends Component {
+type ItemArray = {
+    id: number,
+    name: string
+}
+
+type Props = {
+    items: Array<ItemArray>
+}
+
+export default class Items extends Component<Props> {
     displayName = 'Items in the cart'
 
-    static propTypes = {
-        items: PropTypes.array.isRequired
-    }
     render() {
         const { items } = this.props
         return (
