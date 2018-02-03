@@ -23,7 +23,7 @@ export default class oauthSignInButton extends Component<Props> {
     titleCase(name: string) {
         return name.charAt(0).toUpperCase() + name.slice(1)
     }
-    onMessage = (event: Event) => {
+    onMessage = (event: Object) => {
         event.preventDefault()
         event.stopImmediatePropagation()
         this.props.authActions.oAuthLogin(event.data)

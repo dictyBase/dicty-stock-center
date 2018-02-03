@@ -115,3 +115,6 @@ declare module 'styles' {
 declare module 'react-virtualized/styles.css' {
     declare module.exports: any;
 }
+
+// variables
+declare var __GA_TRACKING_ID__: any;

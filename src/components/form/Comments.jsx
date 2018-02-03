@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react'
+import * as React from 'react'
 import { Flex, Box } from 'rebass'
 import { ControlLabel, FormGroup, FormTextArea } from 'styles'
 
@@ -7,10 +7,10 @@ type Props = {
   comments: Object,
   placeholder: string,
   rows: string,
-  children: string
+  children: React.Node
 }
 
-export default class Comments extends Component<Props> {
+export default class Comments extends React.Component<Props> {
   displayName = 'form contact information'
 
   render() {
