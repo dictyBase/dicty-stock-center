@@ -67,10 +67,10 @@ class EditInfoPage extends Component {
   constructor(props) {
     super(props)
 
-    if (props.page.content) {
+    if (props.content) {
       this.state = {
         editorState: EditorState.createWithContent(
-          convertFromRaw(props.page.content)
+          convertFromRaw(props.content)
         )
       }
     }
