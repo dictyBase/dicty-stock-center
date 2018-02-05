@@ -34,6 +34,8 @@ class PlasmidTable extends Component<Props> {
       height: 630
   }
 
+  searchInput: HTMLInputElement
+
   loadNextPage = () => {
       const fetchPlasmids = this.props.fetchPlasmids
       const isFetching = this.props.isFetching
@@ -210,9 +212,7 @@ class PlasmidTable extends Component<Props> {
               } }
               type="search"
               placeholder="Search Plasmids"
-              ref={ el => {
-                  this.searchInput = el
-              } }
+              ref={ input => this.searchInput = input }
               onKeyDown={ this.handleKeyDown }
             />
             <PrimaryButton

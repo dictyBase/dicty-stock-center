@@ -32,6 +32,8 @@ class StrainTable extends Component<Props> {
     cellHeight: 60
   }
 
+  searchInput: HTMLInputElement
+
   loadNextPage = () => {
       const isFetching = this.props.isFetching
       const number = this.props.paginationNumber
@@ -188,9 +190,7 @@ class StrainTable extends Component<Props> {
               } }
               type="search"
               placeholder="Search Strains"
-              ref={ el => {
-                  this.searchInput = el
-              } }
+              ref={ input => this.searchInput = input }
               onKeyDown={ this.handleKeyDown }
             />
             <PrimaryButton
