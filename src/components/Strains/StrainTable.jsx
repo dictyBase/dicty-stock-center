@@ -32,13 +32,13 @@ class StrainTable extends Component<Props> {
     cellHeight: 60
   }
 
-  searchInput: HTMLInputElement
+  searchInput: ?HTMLInputElement
 
   loadNextPage = () => {
       const isFetching = this.props.isFetching
       const number = this.props.paginationNumber
       const links = this.props.links
-      if (!isFetching && links.next && this.searchInput.value === '') {
+      if (!isFetching && links.next && this.searchInput && this.searchInput.value === '') {
           this.props.fetchStrains(number + 1, 10)
       }
   }
@@ -52,6 +52,10 @@ class StrainTable extends Component<Props> {
       this.forceUpdate()
   }
   handleSearch = () => {
+    if (!this.searchInput) {
+        return
+      }
+  
       this.search(this.searchInput.value)
   }
   handleClear = () => {
@@ -59,7 +63,7 @@ class StrainTable extends Component<Props> {
   }
   clearSearch = () => {
       const number = this.props.paginationNumber
-      if (this.searchInput.value !== '') {
+      if (this.searchInput && this.searchInput.value !== '') {
           this.searchInput.value = ''
           this.props.clearStrainSearch()
           this.props.fetchStrains(number + 1, 10)

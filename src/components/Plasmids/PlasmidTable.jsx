@@ -34,14 +34,14 @@ class PlasmidTable extends Component<Props> {
       height: 630
   }
 
-  searchInput: HTMLInputElement
+  searchInput: ?HTMLInputElement
 
   loadNextPage = () => {
       const fetchPlasmids = this.props.fetchPlasmids
       const isFetching = this.props.isFetching
       const links = this.props.links
       const number = this.props.paginationNumber
-      if (!isFetching && links.next && this.searchInput.value === '') {
+      if (!isFetching && links.next && this.searchInput && this.searchInput.value === '') {
           fetchPlasmids(number + 1, 10)
       }
   }
@@ -55,6 +55,10 @@ class PlasmidTable extends Component<Props> {
       this.forceUpdate()
   }
   handleSearch = () => {
+      if (!this.searchInput) {
+        return
+      }
+  
       this.search(this.searchInput.value)
   }
   handleClear = () => {
@@ -64,7 +68,7 @@ class PlasmidTable extends Component<Props> {
       const fetchPlasmids = this.props.fetchPlasmids
       const clearPlasmidSearch = this.props.clearPlasmidSearch
       const number = this.props.paginationNumber
-      if (this.searchInput.value !== '') {
+      if (this.searchInput && this.searchInput.value !== '') {
           this.searchInput.value = ''
           clearPlasmidSearch()
           fetchPlasmids(number + 1, 10)
