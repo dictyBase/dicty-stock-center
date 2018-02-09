@@ -31,6 +31,8 @@ const {
 //         isFetching: true
 //     }
 // }
+//
+const server = process.env.REACT_APP_API_SERVER
 
 const receiveAvailability = (data) => {
     return {
@@ -169,7 +171,6 @@ export const fetchAvailability = () => {
 }
 
 export const fetchStrains = (page, size) => {
-    let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrains())
         getPage(server, page, size, 'strain')
@@ -191,7 +192,6 @@ export const clearStrainSearch = () => {
 }
 
 export const fetchPlasmids = (page, size) => {
-    let server = __API_SERVER__
     return dispatch => {
         dispatch(requestPlasmids())
         getPage(server, page, size, 'plasmid')
@@ -211,7 +211,6 @@ const transformPlasmid = (plasmid) => {
 }
 
 export const fetchPlasmid = (id) => {
-    let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
         getStock(server, id, 'plasmid')
@@ -229,7 +228,6 @@ export const fetchPlasmid = (id) => {
 }
 
 export const searchPlasmids = (page, size, search) => {
-    const server = __API_SERVER__
     return (dispatch) => {
         dispatch(plasmidsSearch())
         searchStocks(server, page, size, search, 'plasmid')
@@ -279,7 +277,6 @@ const transformStrain = (strain) => {
 }
 
 export const fetchStrain = (id) => {
-    let server = __API_SERVER__
     return (dispatch) => {
         dispatch(requestStrain())
         getStock(server, id, 'strain')
@@ -296,7 +293,6 @@ export const fetchStrain = (id) => {
     }
 }
 export const searchStrains = (page, size, search) => {
-    const server = __API_SERVER__
     return (dispatch) => {
         dispatch(strainSearch())
         searchStocks(server, page, size, search, 'strain')

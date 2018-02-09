@@ -11,7 +11,7 @@ type Props = {
 }
 
 // initialize google analytics
-let trackingId = __GA_TRACKING_ID__
+let trackingId = process.env.REACT_APP_GA_TRACKING_ID
 ReactGA.initialize(trackingId)
 
 export default class Root extends Component<Props> {

@@ -55,7 +55,7 @@ const json = response => {
 }
 
 // Getting the url of auth server
-let authserver = __AUTH_SERVER__
+let authserver = process.env.REACT_APP_AUTH_SERVER
 
 // Calls the API to get a token and
 // dispatch actions along the way

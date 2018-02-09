@@ -28,7 +28,7 @@ const submitFailure = error => {
     }
 }
 
-let server = __API_SERVER__
+let server = process.env.REACT_APP_API_SERVER
 // submit dsc order and redirect user to a confirmation page
 export const submitOrder = () => {
     return (dispatch, getState) => {

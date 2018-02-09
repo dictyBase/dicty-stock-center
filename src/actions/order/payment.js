@@ -39,7 +39,7 @@ export const addPayment = (user, payment) => {
     }
 }
 
-let server = __API_SERVER__
+let server = process.env.REACT_APP_API_SERVER
 
 export const submitForm = (values, dispatch) => {
     let payment = {

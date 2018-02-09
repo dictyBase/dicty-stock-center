@@ -117,4 +117,4 @@ declare module 'react-virtualized/styles.css' {
 }
 
 // variables
-declare var __GA_TRACKING_ID__: any;
+//declare var __GA_TRACKING_ID__: any;
