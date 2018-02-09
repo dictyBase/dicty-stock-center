@@ -49,8 +49,8 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
-              alt=""
-              src="https://i.imgur.com/iFrIK6E.png"
+              alt="ctr9-mutant-DG1071"
+              src="test-file-stub"
             />
           </div>
         </li>
@@ -60,8 +60,8 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
-              alt=""
-              src="https://i.imgur.com/aQJoxgo.png"
+              alt="gbqA-mutant-DG1120"
+              src="test-file-stub"
             />
           </div>
         </li>
@@ -71,8 +71,8 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
-              alt=""
-              src="https://i.imgur.com/SYhCvdJ.png"
+              alt="ggtA-mutant-DG1109"
+              src="test-file-stub"
             />
           </div>
         </li>
@@ -82,8 +82,8 @@ exports[`matching a snapshot of Carousel 1`] = `
         >
           <div>
             <img
-              alt=""
-              src="https://i.imgur.com/28xvWRd.png"
+              alt="tipB-mutant-DG1036"
+              src="test-file-stub"
             />
           </div>
         </li>
