@@ -29,7 +29,7 @@ import {
   DefaultButton,
   SuccessButton
 } from 'styles'
-import 'draft-js/dist/draft.css'
+import 'draft-js/dist/Draft.css'
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
