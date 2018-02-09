@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { Carousel } from 'react-responsive-carousel'
+import ctr9 from '../images/ctr9-mutant-DG1071.png'
+import gbqA from '../images/gbqA-mutant-DG1120.png'
+import ggtA from '../images/ggtA-mutant-DG1109.png'
+import tipB from '../images/tipB-mutant-DG1036.png'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 export default class Slideshow extends Component {
@@ -15,16 +19,16 @@ export default class Slideshow extends Component {
         interval={ 5000 }
         infiniteLoop>
         <div>
-          <img src="https://i.imgur.com/iFrIK6E.png" alt="" />
+          <img src={ctr9} alt="ctr9-mutant-DG1071" />
         </div>
         <div>
-          <img src="https://i.imgur.com/aQJoxgo.png" alt="" />
+          <img src={gbqA} alt="gbqA-mutant-DG1120" />
         </div>
         <div>
-          <img src="https://i.imgur.com/SYhCvdJ.png" alt="" />
+          <img src={ggtA} alt="ggtA-mutant-DG1109" />
         </div>
         <div>
-          <img src="https://i.imgur.com/28xvWRd.png" alt="" />
+          <img src={tipB} alt="tipB-mutant-DG1036" />
         </div>
       </Carousel>
     )
