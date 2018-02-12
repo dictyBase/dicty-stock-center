@@ -40,6 +40,12 @@ class InfoPage extends Component {
 }
 
 const mapStateToProps = state => {
+  //   const { match } = this.props
+  //   if(match.params.name) {
+  //     return {
+  //         name: state.pages.find(page => page.attributes.name === match.params.name)
+  //     }
+  //   }
   return {
     isFetching: state.page.isFetching,
     content: state.page.content,

@@ -1,6 +1,5 @@
 import types from 'constants'
 import { push } from 'react-router-redux'
-import simpleStorage from 'simplestorage.js'
 
 const {
   EDIT_PAGE,
@@ -45,6 +44,13 @@ const fetchPageSuccess = content => {
   }
 }
 
+const fetchPageFailure = (error) => {
+  return {
+    type: FETCH_PAGE_FAILURE,
+    payload: error
+  }
+}
+
 const savePageRequest = () => {
   return {
     type: SAVE_PAGE_REQUEST,
@@ -59,17 +65,29 @@ const savePageSuccess = () => {
   }
 }
 
+const savePageFailure = (error) => {
+  return {
+    type: SAVE_PAGE_FAILURE,
+    payload: error
+  }
+}
+
 export const fetchInfoPage = id => {
   return async dispatch => {
     try {
       const res = await fetch(`${server}/contents/${id}`)
-      const json = await res.json()
-      await dispatch(fetchPageRequest())
-      await setTimeout(() => {
-        dispatch(fetchPageSuccess(json.data))
-      }, 1000)
-    } catch (err) {
-      console.log(err) // improve error handling
+      if (res.ok) {
+        const json = await res.json()
+        await dispatch(fetchPageRequest())
+        await setTimeout(() => {
+          dispatch(fetchPageSuccess(json.data))
+        }, 1000)
+      } else {
+        console.log(res.json())
+      }
+    } catch (error) {
+      dispatch(fetchPageFailure(error))
+      console.log(error) // improve error handling
     }
   }
 }
@@ -91,13 +109,18 @@ export const saveEditing = (page, data) => {
           'Content-Type': 'application/json'
         }
       })
-      const json = await res.json()
-      await dispatch(savePageRequest())
-      await dispatch(savePageSuccess())
-      dispatch(push(`${json.data.attributes.page}/information`))
-      // dispatch(push(`/${page}/information`))
-    } catch (err) {
-      console.log(err) // improve error handling
+      if (res.ok) {
+        const json = await res.json()
+        await dispatch(savePageRequest())
+        await dispatch(savePageSuccess())
+        dispatch(push(`${json.data.attributes.page}/information`))
+        // dispatch(push(`/${page}/information`))
+      } else {
+        console.log(res.json())
+      }
+    } catch (error) {
+      dispatch(savePageFailure(error))
+      console.log(error) // improve error handling
     }
   }
 }

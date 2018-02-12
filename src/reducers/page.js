@@ -25,7 +25,8 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        page: action.page,
+        id: action.id,
+        name: action.name,
         content: action.content,
         created_by: action.created_by,
         updated_by: action.updated_by,
