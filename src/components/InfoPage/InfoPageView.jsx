@@ -42,7 +42,7 @@ class InfoPageView extends Component {
       editPage(content, match.params.name)
   }
   render() {
-      const { lastEdited } = this.props
+      const { updated_by, updated_at } = this.props
       return (
       <Container>
         <ToolbarNav>
@@ -50,14 +50,14 @@ class InfoPageView extends Component {
             <Box>
               <TextInfo>
                 <strong>
-                  <FontAwesome name="user" /> { lastEdited.author.name }
+                  <FontAwesome name="user" /> { updated_by }
                 </strong>{ ' ' }
-                edited { timeSince(lastEdited.time) } ago
+                edited { timeSince(updated_at) } ago
               </TextInfo>
             </Box>
             <Box ml="auto">
               <div>
-                <Label>{ lastEdited.author.role }</Label> &nbsp; &nbsp;
+                <Label>Curator</Label> &nbsp; &nbsp;
                 <InlineLink onClick={ this.onClick }>
                   <FontAwesome name="pencil" title="Edit page" />
                 </InlineLink>
@@ -84,7 +84,8 @@ class InfoPageView extends Component {
 const mapStateToProps = state => {
   return {
       content: state.page.content,
-      lastEdited: state.page.lastEdited
+      updated_by: state.page.updated_by,
+      updated_at: state.page.updated_at
   }
 }
 
