@@ -2,7 +2,7 @@ import { dsctypes } from "./../constants"
 import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
 import { push } from "react-router-redux"
-import jsr from "jsrsasign"
+//import jsr from "jsrsasign"
 import simpleStorage from "simplestorage.js"
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
@@ -77,8 +77,8 @@ export const oAuthLogin = ({ query, provider, url }) => {
       .then(json)
       .then(data => {
         simpleStorage.set("token", data.token)
-        const jwtStr = jsr.jws.JWS.parse(data.token)
-        dispatch(receiveLogin(jwtStr.payloadObj.user))
+        //const jwtStr = jsr.jws.JWS.parse(data.token)
+        dispatch(receiveLogin(data.user))
         dispatch(push("/my-dsc"))
       })
       .catch(error => {
@@ -93,6 +93,5 @@ export const logoutUser = () => {
   return dispatch => {
     simpleStorage.deleteKey("token")
     dispatch(receiveLogout())
-    dispatch(push("/logout"))
   }
 }
