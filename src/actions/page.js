@@ -75,6 +75,7 @@ const savePageFailure = (error) => {
 export const fetchInfoPage = id => {
   return async dispatch => {
     try {
+      // const id = getIdFromName(name)
       const res = await fetch(`${server}/contents/${id}`)
       if (res.ok) {
         const json = await res.json()
@@ -88,7 +89,7 @@ export const fetchInfoPage = id => {
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
-      console.log(error) // improve error handling
+      console.log('fetch failed', error)
     }
   }
 }
@@ -122,7 +123,7 @@ export const saveEditing = (page, data) => {
       }
     } catch (error) {
       dispatch(savePageFailure(error))
-      console.log(error) // improve error handling
+      console.log('fetch failed', error)
     }
   }
 }

@@ -16,49 +16,49 @@ import { Container, ToolbarNav, TextInfo, Label, InlineLink } from 'styles'
 import 'draft-js/dist/Draft.css'
 
 const decorator = [
-    {
-        strategy: findLinkEntities,
-        component: Link
-    }
+  {
+    strategy: findLinkEntities,
+    component: Link
+  }
 ]
 
 class InfoPageView extends Component {
   displayName = 'information page component'
   constructor(props) {
-      super(props)
+    super(props)
 
-      this.state = {
-          editorState: EditorState.createWithContent(
+    this.state = {
+      editorState: EditorState.createWithContent(
         convertFromRaw(props.page.content),
         new CompositeDecorator(decorator)
       )
-      }
+    }
   }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
-      e.preventDefault()
+    e.preventDefault()
 
-      const { editPage, match, content } = this.props
-      editPage(content, match.params.name)
+    const { editPage, match, content } = this.props
+    editPage(content, match.params.name)
   }
   render() {
-      const { updated_by, updated_at } = this.props
-      return (
+    const { updated_by, updated_at } = this.props
+    return (
       <Container>
         <ToolbarNav>
           <Flex>
             <Box>
               <TextInfo>
                 <strong>
-                  <FontAwesome name="user" /> { updated_by }
-                </strong>{ ' ' }
-                edited { timeSince(updated_at) } ago
+                  <FontAwesome name="user" /> {updated_by}
+                </strong>{' '}
+                edited {timeSince(updated_at)} ago
               </TextInfo>
             </Box>
             <Box ml="auto">
               <div>
                 <Label>Curator</Label> &nbsp; &nbsp;
-                <InlineLink onClick={ this.onClick }>
+                <InlineLink onClick={this.onClick}>
                   <FontAwesome name="pencil" title="Edit page" />
                 </InlineLink>
               </div>
@@ -68,11 +68,11 @@ class InfoPageView extends Component {
         <Flex>
           <Box>
             <Editor
-              editorState={ this.state.editorState }
+              editorState={this.state.editorState}
               ref="editor"
               readOnly
-              onChange={ this.onChange }
-              decorators={ decorator }
+              onChange={this.onChange}
+              decorators={decorator}
             />
           </Box>
         </Flex>
@@ -83,17 +83,17 @@ class InfoPageView extends Component {
 
 const mapStateToProps = state => {
   return {
-      content: state.page.content,
-      updated_by: state.page.updated_by,
-      updated_at: state.page.updated_at
+    content: state.page.content,
+    updated_by: state.page.updated_by,
+    updated_at: state.page.updated_at
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      editPage: (content, name) => {
-          dispatch(editPage(content, name))
-      }
+    editPage: (content, name) => {
+      dispatch(editPage(content, name))
+    }
   }
 }
 

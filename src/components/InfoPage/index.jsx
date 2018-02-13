@@ -9,14 +9,15 @@ class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
+    // currently fetches by ID, need to switch to name
     fetchInfoPage(match.params.name)
   }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.page.page !== nextProps.page.page) {
-      const { match, fetchInfoPage } = nextProps
-      fetchInfoPage(match.params.name)
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.page.page !== nextProps.page.page) {
+  //     const { match, fetchInfoPage } = nextProps
+  //     fetchInfoPage(match.params.name)
+  //   }
+  // }
   render() {
     const { isFetching, content } = this.props
     if (!isFetching && content) {
@@ -39,13 +40,13 @@ class InfoPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  //   const { match } = this.props
-  //   if(match.params.name) {
-  //     return {
-  //         name: state.pages.find(page => page.attributes.name === match.params.name)
-  //     }
-  //   }
+const mapStateToProps = (state, ownProps) => {
+    // const { match } = this.props
+    // if(match.params.name) {
+    //   return {
+    //       name: state.pages.find(page => page.attributes.name === match.params.name)
+    //   }
+    // }
   return {
     isFetching: state.page.isFetching,
     content: state.page.content,
