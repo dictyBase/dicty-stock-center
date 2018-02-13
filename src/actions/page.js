@@ -83,7 +83,8 @@ export const fetchInfoPage = id => {
           dispatch(fetchPageSuccess(json.data))
         }, 1000)
       } else {
-        console.log(res.json())
+        const json = await res.json()
+        console.log(res, json)
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
@@ -116,7 +117,8 @@ export const saveEditing = (page, data) => {
         dispatch(push(`${json.data.attributes.page}/information`))
         // dispatch(push(`/${page}/information`))
       } else {
-        console.log(res.json())
+        const json = await res.json()
+        console.log(res, json)
       }
     } catch (error) {
       dispatch(savePageFailure(error))
