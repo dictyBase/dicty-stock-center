@@ -28,7 +28,7 @@ export class MyDsc extends Component<Props> {
                     </Box>
                     <Box w={ 1 }>
                         <DictyHeader>
-                            <h2>My DSC</h2>
+                          <h2>My DSC</h2>
                         </DictyHeader>
                     </Box>
                     <Box w={ 3 / 4 }>
@@ -38,7 +38,6 @@ export class MyDsc extends Component<Props> {
                                     <FontAwesome name="user" /> Personal Information
                                 </h1>
                                 <hr />
-                                <h3>Name: { user.name }</h3>
                                 <h3>Email: { user.email }</h3>
                                 <h3>Provider: { provider }</h3>
                             </PanelBody>
@@ -51,6 +50,7 @@ export class MyDsc extends Component<Props> {
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
+  console.log(state)
     return {
         user: state.auth.user,
         provider: state.auth.provider

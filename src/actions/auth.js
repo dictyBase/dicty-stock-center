@@ -79,7 +79,7 @@ export const oAuthLogin = ({ query, provider, url }) => {
         simpleStorage.set("token", data.token)
         //const jwtStr = jsr.jws.JWS.parse(data.token)
         dispatch(receiveLogin(data.user))
-        dispatch(push("/my-dsc"))
+        dispatch(push("/mydsc"))
       })
       .catch(error => {
         dispatch(loginError(error))

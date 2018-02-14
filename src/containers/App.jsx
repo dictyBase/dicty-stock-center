@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Header, Footer } from 'dicty-components-header-footer'
 import { Navbar } from 'dicty-components-navbar'
+import {headerItems, loggedHeaderItems} from 'utils/headerItems'
 import Cart from 'components/Cart'
 import RenderRoutes from 'components/RenderRoutes'
 import { withRouter } from 'react-router-dom'
@@ -22,19 +23,9 @@ class App extends Component<Props> {
         return (
             <div>
                 { this.props.auth.isAuthenticated ? (
-                    <Header
-                        downloads="/downloads"
-                        info="/information"
-                        cite="/citation"
-                        logout="/logout"
-                    />
+                    <Header items={loggedHeaderItems} />
                 ) : (
-                    <Header
-                        downloads="/downloads"
-                        info="/information"
-                        cite="/citation"
-                        login="/login"
-                    />
+                  <Header items={headerItems} />
                 ) }
                 <br />
                 <Navbar items={ NavbarLinks } />
