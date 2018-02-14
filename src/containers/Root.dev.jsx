@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import DevTools from 'containers/DevTools'
 import App from 'containers/App'
 
 type Props = {
@@ -21,7 +20,6 @@ export default class Root extends Component<Props> {
                   <ConnectedRouter history= { history }>
                     <App />
                   </ConnectedRouter>
-                  <DevTools />
               </div>
           </Provider>
         )
