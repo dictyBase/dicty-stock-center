@@ -99,13 +99,13 @@ export const editPage = (content, name) => {
   }
 }
 
-export const saveEditing = (page, data) => {
+export const saveEditing = (id, body) => {
   return async dispatch => {
     try {
       dispatch(savePageRequest())
-      const res = await fetch(`${server}/contents/slug/${page}`, {
+      const res = await fetch(`${server}/contents/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify(data),
+        body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json'
         }

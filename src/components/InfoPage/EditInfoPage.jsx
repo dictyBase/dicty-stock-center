@@ -80,10 +80,20 @@ class EditInfoPage extends Component {
   focus = () => this.refs.editor.focus()
   onSave = () => {
     const { editorState } = this.state
-    const { match, saveEditing } = this.props
-    const rawData = convertToRaw(editorState.getCurrentContent())
-    const slugName = 'dsc-' + match.params.name
-    saveEditing(slugName, rawData)
+    const { id, updated_by, saveEditing } = this.props
+    const rawData = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+    const body = {
+      id: id,
+      data: {
+          id: id,
+          type: 'contents',
+          attributes: {
+              updated_by: updated_by,
+              content: rawData
+          }
+      }
+  }
+    saveEditing(id, body)
   }
   onCancel = () => {
     const { cancelEditing, match } = this.props
@@ -138,7 +148,8 @@ class EditInfoPage extends Component {
 const mapStateToProps = state => {
   return {
     content: state.page.content,
-    lastEdited: state.page.lastEdited
+    updated_by: state.page.updated_by,
+    id: state.page.id
   }
 }
 
