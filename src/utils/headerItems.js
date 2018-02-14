@@ -38,6 +38,11 @@ const loggedHeaderItems = [
     text: "About dictyBase",
   },
   {
+    url: "/mydsc",
+    icon: "user",
+    text: "MyDSC",
+  },
+  {
     url: "/logout",
     icon: "sign-out",
     text: "Logout",
