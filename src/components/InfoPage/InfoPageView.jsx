@@ -89,12 +89,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editPage: (content, name) => {
-      dispatch(editPage(content, name))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InfoPageView)
+export default connect(mapStateToProps, { editPage })(InfoPageView)

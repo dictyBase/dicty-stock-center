@@ -42,12 +42,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchInfoPage: slug => {
-      dispatch(fetchInfoPage(slug))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InfoPage)
+export default connect(mapStateToProps, { fetchInfoPage })(InfoPage)

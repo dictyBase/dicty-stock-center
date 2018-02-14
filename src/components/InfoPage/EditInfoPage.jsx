@@ -153,15 +153,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveEditing: (page, data) => {
-      dispatch(saveEditing(page, data))
-    },
-    cancelEditing: page => {
-      dispatch(cancelEditing(page))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditInfoPage)
+export default connect(mapStateToProps, {saveEditing, cancelEditing})(EditInfoPage)
