@@ -31,7 +31,8 @@ const pageReducer = (state = initialState, action) => {
         created_by: action.created_by,
         updated_by: action.updated_by,
         created_at: action.created_at,
-        updated_at: action.updated_at
+        updated_at: action.updated_at,
+        slug: action.slug
       }
     case FETCH_PAGE_FAILURE:
       return {

@@ -29,7 +29,7 @@ class InfoPageView extends Component {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(props.page.content),
+        convertFromRaw(JSON.parse(props.content)),
         new CompositeDecorator(decorator)
       )
     }
@@ -37,8 +37,9 @@ class InfoPageView extends Component {
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()
-
+    
     const { editPage, match, content } = this.props
+    // const slugName = 'dsc-' + match.params.name
     editPage(content, match.params.name)
   }
   render() {

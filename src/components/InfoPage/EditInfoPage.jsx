@@ -70,7 +70,7 @@ class EditInfoPage extends Component {
     if (props.content) {
       this.state = {
         editorState: EditorState.createWithContent(
-          convertFromRaw(props.content)
+          convertFromRaw(JSON.parse(props.content))
         )
       }
     }
@@ -82,11 +82,13 @@ class EditInfoPage extends Component {
     const { editorState } = this.state
     const { match, saveEditing } = this.props
     const rawData = convertToRaw(editorState.getCurrentContent())
-    saveEditing(match.params.name, rawData)
+    const slugName = 'dsc-' + match.params.name
+    saveEditing(slugName, rawData)
   }
   onCancel = () => {
     const { cancelEditing, match } = this.props
-    cancelEditing(match.params.name)
+    const slugName = 'dsc-' + match.params.name
+    cancelEditing(slugName)
   }
   render() {
     const { editorState } = this.state

@@ -9,8 +9,8 @@ class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
-    // currently fetches by ID, need to switch to name
-    fetchInfoPage(match.params.name)
+    const slugName = 'dsc-' + match.params.name
+    fetchInfoPage(slugName)
   }
   // componentWillReceiveProps(nextProps) {
   //   if (this.props.page.page !== nextProps.page.page) {
@@ -40,13 +40,7 @@ class InfoPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    // const { match } = this.props
-    // if(match.params.name) {
-    //   return {
-    //       name: state.pages.find(page => page.attributes.name === match.params.name)
-    //   }
-    // }
+const mapStateToProps = state => {
   return {
     isFetching: state.page.isFetching,
     content: state.page.content,

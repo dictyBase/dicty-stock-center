@@ -13,15 +13,6 @@ const {
 
 const server = __API_SERVER__
 
-const doEdit = content => {
-  return {
-    type: EDIT_PAGE,
-    payload: {
-      content: content
-    }
-  }
-}
-
 const fetchPageRequest = () => {
   return {
     type: FETCH_PAGE_REQUEST,
@@ -30,17 +21,18 @@ const fetchPageRequest = () => {
 }
 
 const fetchPageSuccess = content => {
-  const { id, attributes } = content
+  const { data } = content
   return {
     type: FETCH_PAGE_SUCCESS,
     isFetching: false,
-    id: id,
-    name: attributes.name,
-    content: attributes.content,
-    created_by: attributes.created_by,
-    updated_by: attributes.updated_by,
-    created_at: attributes.created_at,
-    updated_at: attributes.updated_at
+    id: data.id,
+    name: data.attributes.name,
+    content: data.attributes.content,
+    created_by: data.attributes.created_by,
+    updated_by: data.attributes.updated_by,
+    created_at: data.attributes.created_at,
+    updated_at: data.attributes.updated_at,
+    slug: data.attributes.slug
   }
 }
 
@@ -72,17 +64,14 @@ const savePageFailure = (error) => {
   }
 }
 
-export const fetchInfoPage = id => {
+export const fetchInfoPage = slug => {
   return async dispatch => {
     try {
-      // const id = getIdFromName(name)
-      const res = await fetch(`${server}/contents/${id}`)
+      dispatch(fetchPageRequest())
+      const res = await fetch(`${server}/contents/slug/${slug}`)
       if (res.ok) {
         const json = await res.json()
-        await dispatch(fetchPageRequest())
-        await setTimeout(() => {
-          dispatch(fetchPageSuccess(json.data))
-        }, 1000)
+        dispatch(fetchPageSuccess(json))
       } else {
         const json = await res.json()
         console.log(res, json)
@@ -90,6 +79,15 @@ export const fetchInfoPage = id => {
     } catch (error) {
       dispatch(fetchPageFailure(error))
       console.log('fetch failed', error)
+    }
+  }
+}
+
+const doEdit = content => {
+  return {
+    type: EDIT_PAGE,
+    payload: {
+      content: content
     }
   }
 }
@@ -104,7 +102,8 @@ export const editPage = (content, name) => {
 export const saveEditing = (page, data) => {
   return async dispatch => {
     try {
-      const res = await fetch(`${server}/contents/${data.id}`, {
+      dispatch(savePageRequest())
+      const res = await fetch(`${server}/contents/slug/${page}`, {
         method: 'PATCH',
         body: JSON.stringify(data),
         headers: {
@@ -113,10 +112,8 @@ export const saveEditing = (page, data) => {
       })
       if (res.ok) {
         const json = await res.json()
-        await dispatch(savePageRequest())
-        await dispatch(savePageSuccess())
-        dispatch(push(`${json.data.attributes.page}/information`))
-        // dispatch(push(`/${page}/information`))
+        dispatch(savePageSuccess())
+        dispatch(push(`/${json.data.attributes.name}/information`))
       } else {
         const json = await res.json()
         console.log(res, json)
