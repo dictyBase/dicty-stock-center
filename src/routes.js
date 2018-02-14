@@ -73,7 +73,7 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/my-dsc",
+    path: "/mydsc",
     component: MyDsc,
     protected: true,
   },
