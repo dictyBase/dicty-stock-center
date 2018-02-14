@@ -39,7 +39,6 @@ class InfoPageView extends Component {
     e.preventDefault()
     
     const { editPage, match, content } = this.props
-    // const slugName = 'dsc-' + match.params.name
     editPage(content, match.params.name)
   }
   render() {

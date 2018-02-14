@@ -12,12 +12,6 @@ class InfoPage extends Component {
     const slugName = 'dsc-' + match.params.name
     fetchInfoPage(slugName)
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.page.page !== nextProps.page.page) {
-  //     const { match, fetchInfoPage } = nextProps
-  //     fetchInfoPage(match.params.name)
-  //   }
-  // }
   render() {
     const { isFetching, content } = this.props
     if (!isFetching && content) {
@@ -50,8 +44,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchInfoPage: id => {
-      dispatch(fetchInfoPage(id))
+    fetchInfoPage: slug => {
+      dispatch(fetchInfoPage(slug))
     }
   }
 }

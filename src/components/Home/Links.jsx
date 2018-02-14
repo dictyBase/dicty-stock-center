@@ -7,9 +7,9 @@ export default class Links extends Component {
     render() {
         const content = [
             {name: 'Contact the DSC', to: '/contact', routerAware: true},
-            {name: 'DSC FAQ', to: '/faq', routerAware: true},
-            {name: 'Nomenclature Guide', to: 'https://www.google.com', routerAware: false},
-            {name: 'Other Stock Centers', to: '/other', routerAware: true}
+            {name: 'DSC FAQ', to: '/faq/information', routerAware: true},
+            {name: 'Nomenclature Guide', to: '/nomenclature/information', routerAware: false},
+            {name: 'Other Stock Centers', to: '/other-stock-centers/information', routerAware: true}
         ]
         return (
             <PanelBlue>
