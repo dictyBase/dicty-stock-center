@@ -46,12 +46,9 @@ class App extends Component<Props> {
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  const { auth, cart } = state
-  return {
-    auth: auth,
-    cart: cart,
-  }
-}
+const mapStateToProps: MapStateToProps<*, *, *> = ({ auth, cart }) => ({
+  auth,
+  cart,
+})
 
 export default withRouter(connect(mapStateToProps)(App))
