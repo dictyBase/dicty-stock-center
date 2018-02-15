@@ -25,7 +25,7 @@ const oauthConfig = {
   facebook: {
     name: "Facebook",
     url: "/auth/facebook",
-    authorizationEndpoint: "https://www.facebook.com/v2.5/dialog/oauth",
+    authorizationEndpoint: "https://www.facebook.com/dialog/oauth",
     clientId: clientConfig.facebook.clientId,
     redirectUrl: `${window.location.origin}/facebook/callback`,
     scopes: ["email"],
