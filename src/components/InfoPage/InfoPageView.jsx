@@ -13,7 +13,6 @@ import { editPage } from 'actions/page'
 import FontAwesome from 'react-fontawesome'
 import { Flex, Box } from 'rebass'
 import { Container, ToolbarNav, TextInfo, Label, InlineLink } from 'styles'
-import 'draft-js/dist/Draft.css'
 
 const decorator = [
   {

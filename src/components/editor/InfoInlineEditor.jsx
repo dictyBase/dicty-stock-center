@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { EditorState, convertFromRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
-import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
+import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
 import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
 import {
   ItalicButton,
@@ -35,17 +35,14 @@ const toolbarPlugin = createToolbarPlugin({
         ItalicButton,
         UnderlineButton,
         CodeButton,
-        Separator,
         HeadlineOneButton,
         HeadlineTwoButton,
         HeadlineThreeButton,
-        Separator,
         UnorderedListButton,
         OrderedListButton,
         BlockquoteButton,
         CodeBlockButton,
         LinkButton,
-        Separator,
         UndoButton,
         RedoButton
     ]

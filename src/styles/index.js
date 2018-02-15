@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { injectGlobal } from 'styled-components'
 import { Box } from 'rebass'
 
-injectGlobal([`
+injectGlobal([
+  `
 *, :after, :before {
     box-sizing: border-box;
 }
@@ -232,7 +233,7 @@ export const BorderBox = styled(Box)`
 `
 
 export const CenteredBox = styled(Box)`
-    text-align: center;
+  text-align: center;
 `
 
 export const HomepageHeader = styled.div`
@@ -292,7 +293,7 @@ export const ItemUnavailable = styled.div`
 `
 
 export const InlineLink = styled.a`
-  cursor: pointer
+  cursor: pointer;
 `
 
 export const DetailContainer = styled.div`
@@ -701,7 +702,7 @@ export const StaticToolbar = styled.div`
   }
 
   .draftJsToolbar__button__qi1gf {
-    background: #fbfbfb;
+    background: #fff;
     color: #888;
     font-size: 18px;
     border: 0;
@@ -734,10 +735,11 @@ export const StaticToolbar = styled.div`
     border-right: 1px solid #ddd;
     height: 24px;
     margin: 0 0.5em;
+    background: #fff;
   }
   .draftJsToolbar__toolbar__dNtBH {
     border: 1px solid #ddd;
-    background: #fff;
+    background: #fafafa;
     border-radius: 2px;
     box-shadow: 0px 1px 3px 0px rgba(220, 220, 220, 1);
     z-index: 2;
@@ -746,13 +748,13 @@ export const StaticToolbar = styled.div`
 
   .draftJsToolbar__toolbar__dNtBH:after {
     border-color: rgba(255, 255, 255, 0);
-    border-top-color: #fff;
+    border-top-color: #fafafa;
     border-width: 4px;
     margin-left: -4px;
   }
   .draftJsToolbar__toolbar__dNtBH:before {
     border-color: rgba(221, 221, 221, 0);
-    border-top-color: #ddd;
+    border-top-color: #fafafa;
     border-width: 6px;
     margin-left: -6px;
   }
@@ -767,5 +769,30 @@ export const StaticToolbar = styled.div`
     vertical-align: bottom;
     height: 34px;
     width: 36px;
+  }
+  .draftJsUndoPlugin__button__3Vugn {
+    background: #fff;
+    color: #888;
+    font-size: 18px;
+    border: 0;
+    padding-top: 5px;
+    vertical-align: bottom;
+    height: 34px;
+    width: 36px;
+  }
+
+  .draftJsUndoPlugin__button__3Vugn:focus {
+    background: #f3f3f3;
+    outline: 0; /* reset for :focus */
+  }
+
+  .draftJsUndoPlugin__button__3Vugn:hover {
+    background: #f3f3f3;
+    outline: 0; /* reset for :focus */
+  }
+
+  .draftJsUndoPlugin__button__3Vugn:active {
+    background-color: #fff;
+    color: #777;
   }
 `
