@@ -16,7 +16,7 @@ type Props = {
 export class MyDsc extends Component<Props> {
     displayName = 'user profile';
     render() {
-        const { user, provider } = this.props
+        const { auth } = this.props
         return (
             <Container>
                 <Flex wrap justify="center">
@@ -38,8 +38,9 @@ export class MyDsc extends Component<Props> {
                                     <FontAwesome name="user" /> Personal Information
                                 </h1>
                                 <hr />
-                                <h3>Email: { user.email }</h3>
-                                <h3>Provider: { provider }</h3>
+                                { auth.user.id && <h3>Id: {auth.user.id}</h3> }
+                                { auth.user.email && <h3>Email: {auth.user.email}</h3> }
+                                <h3>Provider: { auth.provider }</h3>
                             </PanelBody>
                         </Panel>
                     </Box>
@@ -50,10 +51,11 @@ export class MyDsc extends Component<Props> {
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  console.log(state)
+  console.log(state.auth)
     return {
-        user: state.auth.user,
-        provider: state.auth.provider
+        auth: state.auth
+        //user: state.auth.user,
+        //provider: state.auth.provider
     }
 }
 
