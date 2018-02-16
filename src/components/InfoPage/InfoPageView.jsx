@@ -56,6 +56,7 @@ class InfoPageView extends Component {
             </Box>
             <Box ml="auto">
               <div>
+                {/* need to implement custom label */}
                 <Label>Curator</Label> &nbsp; &nbsp;
                 <InlineLink onClick={this.onClick}>
                   <FontAwesome name="pencil" title="Edit page" />

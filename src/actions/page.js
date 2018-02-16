@@ -24,6 +24,7 @@ const fetchPageSuccess = content => {
   const { data } = content
   return {
     type: FETCH_PAGE_SUCCESS,
+    // payload: data,
     isFetching: false,
     id: data.id,
     name: data.attributes.name,

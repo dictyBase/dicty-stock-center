@@ -45,6 +45,8 @@ const types = {
     CLEAR_PLASMIDS: 'CLEAR_PLASMIDS'
 }
 
+export const NAMESPACE = 'dsc'
+
 export const fees = {
     STRAIN_FEE: '$30.00',
     PLASMID_FEE: '$15.00',

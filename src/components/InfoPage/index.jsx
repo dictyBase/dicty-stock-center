@@ -4,12 +4,13 @@ import Skeleton from 'react-loading-skeleton'
 import InfoPageView from './InfoPageView'
 import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
+import { NAMESPACE } from 'constants'
 
 class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
-    const slugName = 'dsc-' + match.params.name
+    const slugName = NAMESPACE + '-' + match.params.name
     fetchInfoPage(slugName)
   }
   render() {
