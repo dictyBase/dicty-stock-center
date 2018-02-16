@@ -42,6 +42,7 @@ export class MyDsc extends Component<Props> {
                 <hr />
                 {auth.user.id && <h3>Id: {auth.user.id}</h3>}
                 {auth.user.email && <h3>Email: {auth.user.email}</h3>}
+                {auth.user.name && <h3>Name: {auth.user.name}</h3>}
                 <h3>Provider: {auth.provider}</h3>
               </PanelBody>
             </Panel>
