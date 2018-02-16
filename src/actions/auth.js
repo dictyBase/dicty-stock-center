@@ -6,6 +6,22 @@ import { push } from "react-router-redux"
 import simpleStorage from "simplestorage.js"
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
+// Getting the url of auth server
+const authserver = process.env.REACT_APP_AUTH_SERVER
+
+const makeOauthConfig = ({ query, provider, url }) => {
+  const parsed = querystring.parse(query.replace("?", ""))
+  let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
+  body += `&state=${parsed.state}&code=${parsed.code}`
+  body += `&scopes=${oauthConfig[provider].scopes[0]}`
+  let config = {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body,
+  }
+  const endpoint = `${authserver}/tokens/${provider}`
+  return { config, endpoint }
+}
 
 const requestLogin = provider => {
   return {
@@ -54,25 +70,14 @@ const json = response => {
   return response.json()
 }
 
-// Getting the url of auth server
-let authserver = process.env.REACT_APP_AUTH_SERVER
-
 // Calls the API to get a token and
 // dispatch actions along the way
 export const oAuthLogin = ({ query, provider, url }) => {
   return dispatch => {
-    const parsed = querystring.parse(query.replace("?", ""))
-    let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
-    body += `&state=${parsed.state}&code=${parsed.code}`
-    body += `&scopes=${oauthConfig[provider].scopes[0]}`
-    let config = {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: body,
-    }
+    const { config, endpoint } = makeOauthConfig({ query, provider, url })
     dispatch(requestLogin(provider))
     dispatch(push("/load/auth"))
-    fetch(`${authserver}/tokens/${provider}`, config)
+    fetch(endpoint, config)
       .then(status)
       .then(json)
       .then(data => {
