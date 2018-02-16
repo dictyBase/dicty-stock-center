@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
+import { fetchInfoPage } from 'actions/page'
 import { PanelBlue } from 'styles'
 import type { MapStateToProps } from 'react-redux'
 
@@ -11,6 +12,9 @@ type Props = {
 
 class OtherMaterials extends Component<Props> {
     displayName = 'other DSC materials'
+    componentDidMount() {
+        fetchInfoPage('dsc-other-materials')
+      }
     render() {
         const materials = {
             "entityMap": {},
@@ -67,4 +71,4 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
     }
 }
 
-export default connect(mapStateToProps)(OtherMaterials)
+export default connect(mapStateToProps, { fetchInfoPage })(OtherMaterials)

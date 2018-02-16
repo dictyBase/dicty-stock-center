@@ -10,12 +10,13 @@ class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
-    const slugName = NAMESPACE + '-' + match.params.name
+    const slugName = `${NAMESPACE}-${match.params.name}`
     fetchInfoPage(slugName)
   }
   render() {
-    const { isFetching, content } = this.props
-    if (!isFetching && content) {
+    const { isFetching, page } = this.props
+
+    if (!isFetching && page.data.attributes.content) {
       return <InfoPageView page={this.props.page} match={this.props.match} />
     }
     return (
@@ -23,11 +24,9 @@ class InfoPage extends Component {
         <Box w={'80%'}>
           <h1>{this.props.title || <Skeleton />}</h1>
           <Skeleton count={10} />
-          <br />
-          <br />
+          <br /><br />
           <Skeleton count={10} />
-          <br />
-          <br />
+          <br /><br />
           <Skeleton count={10} />
         </Box>
       </Flex>
@@ -35,11 +34,11 @@ class InfoPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const slugName = `${NAMESPACE}-${ownProps.match.params.name}`
   return {
     isFetching: state.page.isFetching,
-    content: state.page.content,
-    page: state.page
+    page: state.page[slugName]
   }
 }
 

@@ -28,7 +28,7 @@ class InfoPageView extends Component {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.content)),
+        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
         new CompositeDecorator(decorator)
       )
     }
@@ -37,11 +37,11 @@ class InfoPageView extends Component {
   onClick = e => {
     e.preventDefault()
     
-    const { editPage, match, content } = this.props
-    editPage(content, match.params.name)
+    const { editPage, match, page } = this.props
+    editPage(page.data.attributes.content, match.params.name)
   }
   render() {
-    const { updated_by, updated_at } = this.props
+    const { updated_by, updated_at } = this.props.page.data.attributes
     return (
       <Container>
         <ToolbarNav>
@@ -81,12 +81,4 @@ class InfoPageView extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    content: state.page.content,
-    updated_by: state.page.updated_by,
-    updated_at: state.page.updated_at
-  }
-}
-
-export default connect(mapStateToProps, { editPage })(InfoPageView)
+export default connect(null, { editPage })(InfoPageView)

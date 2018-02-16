@@ -22,24 +22,19 @@ const pageReducer = (state = initialState, action) => {
         isFetching: true
       }
     case FETCH_PAGE_SUCCESS:
-      const slugName = state[action.slug]
+      const slugName = action.payload.data.attributes.slug
       return {
         ...state,
         isFetching: false,
-        slug: action.slug,
-        // data: action.payload
-        [action.slug]: {
-          ...slugName,
-          id: action.id,
-          name: action.name,
-          content: action.content,
-          created_by: action.created_by,
-          updated_by: action.updated_by,
-          created_at: action.created_at,
-          updated_at: action.updated_at,
-          slug: action.slug
-        }
+        [slugName]: action.payload
       }
+      // const value = {
+      //   ...state,
+      //   isFetching: false,
+      //   [slugName]: action.payload
+      // }
+      // console.log(value)
+      // return value
     case FETCH_PAGE_FAILURE:
       return {
         ...state,

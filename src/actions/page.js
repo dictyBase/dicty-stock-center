@@ -20,20 +20,11 @@ const fetchPageRequest = () => {
   }
 }
 
-const fetchPageSuccess = content => {
-  const { data } = content
+const fetchPageSuccess = json => {
   return {
     type: FETCH_PAGE_SUCCESS,
-    // payload: data,
     isFetching: false,
-    id: data.id,
-    name: data.attributes.name,
-    content: data.attributes.content,
-    created_by: data.attributes.created_by,
-    updated_by: data.attributes.updated_by,
-    created_at: data.attributes.created_at,
-    updated_at: data.attributes.updated_at,
-    slug: data.attributes.slug
+    payload: json
   }
 }
 

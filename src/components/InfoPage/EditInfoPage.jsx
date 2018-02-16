@@ -29,6 +29,7 @@ import {
   DefaultButton,
   SuccessButton
 } from 'styles'
+import { NAMESPACE } from 'constants'
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
@@ -93,7 +94,7 @@ class EditInfoPage extends Component {
   }
   onCancel = () => {
     const { cancelEditing, match } = this.props
-    const slugName = 'dsc-' + match.params.name
+    const slugName = `${NAMESPACE}-${match.params.name}`
     cancelEditing(slugName)
   }
   render() {
@@ -141,11 +142,12 @@ class EditInfoPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const slugName = `${NAMESPACE}-${ownProps.match.params.name}`
   return {
-    content: state.page.content,
-    updated_by: state.page.updated_by,
-    id: state.page.id
+    content: state.page[slugName].data.attributes.content,
+    updated_by: state.page[slugName].data.attributes.updated_by,
+    id: state.page[slugName].data.id
   }
 }
 
