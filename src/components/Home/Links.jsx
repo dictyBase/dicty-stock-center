@@ -4,15 +4,15 @@ import { PanelBlue } from 'styles'
 
 const content = [
   { name: 'Contact the DSC', to: '/contact', routerAware: true },
-  { name: 'DSC FAQ', to: '/faq/information', routerAware: true },
+  { name: 'DSC FAQ', to: '/information/faq', routerAware: true },
   {
     name: 'Nomenclature Guide',
-    to: '/nomenclature/information',
+    to: '/information/nomenclature',
     routerAware: false
   },
   {
     name: 'Other Stock Centers',
-    to: '/other-stock-centers/information',
+    to: '/information/other-stock-centers',
     routerAware: true
   }
 ]

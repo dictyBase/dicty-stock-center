@@ -27,11 +27,11 @@ const routes = [
         component: Home
     },
     {
-        path: '/:name/information',
+        path: '/information/:name',
         component: InfoPage
     },
     {
-        path: '/:name/information/edit',
+        path: '/information/:name/edit',
         component: EditInfoPage
     },
     {

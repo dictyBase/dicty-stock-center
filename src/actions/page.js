@@ -87,7 +87,7 @@ const doEdit = content => {
 export const editPage = (content, name) => {
   return dispatch => {
     dispatch(doEdit(content))
-    dispatch(push(`/${name}/information/edit`))
+    dispatch(push(`/information/${name}/edit`))
   }
 }
 
@@ -105,7 +105,7 @@ export const saveEditing = (id, body) => {
       if (res.ok) {
         const json = await res.json()
         dispatch(savePageSuccess())
-        dispatch(push(`/${json.data.attributes.name}/information`))
+        dispatch(push(`/information/${json.data.attributes.name}`))
       } else {
         const json = await res.json()
         console.log(res, json)
@@ -119,6 +119,6 @@ export const saveEditing = (id, body) => {
 
 export const cancelEditing = page => {
   return dispatch => {
-    dispatch(push(`/${page}/information`))
+    dispatch(push(`/information/${page}`))
   }
 }
