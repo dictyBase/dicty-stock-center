@@ -8,6 +8,13 @@ import { NAMESPACE } from 'constants'
 
 class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
+  static defaultProps = {
+    page: {
+      data: {
+        attributes: {}
+      }
+    }
+  }
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
     const slugName = `${NAMESPACE}-${match.params.name}`
@@ -17,16 +24,20 @@ class InfoPage extends Component {
     const { isFetching, page } = this.props
 
     if (!isFetching && page.data.attributes.content) {
-      return <InfoPageView page={this.props.page} match={this.props.match} />
+      return <InfoPageView page={page} match={this.props.match} />
     }
     return (
       <Flex justify="center">
         <Box w={'80%'}>
-          <h1>{this.props.title || <Skeleton />}</h1>
+          <h1>
+            <Skeleton />
+          </h1>
           <Skeleton count={10} />
-          <br /><br />
+          <br />
+          <br />
           <Skeleton count={10} />
-          <br /><br />
+          <br />
+          <br />
           <Skeleton count={10} />
         </Box>
       </Flex>
