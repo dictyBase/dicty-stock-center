@@ -12,7 +12,7 @@ type Props = {
 class Intro extends Component<Props> {
   displayName = 'homepage introduction'
   componentDidMount() {
-    fetchInfoPage('dsc-intro')
+    this.props.fetchInfoPage('dsc-intro')
   }
   render() {
     const intro = {

@@ -12,7 +12,7 @@ type Props = {
 class About extends Component<Props> {
   displayName = 'front page about DSC'
   componentDidMount() {
-    fetchInfoPage('dsc-about')
+    this.props.fetchInfoPage('dsc-about')
   }
 
   render() {
