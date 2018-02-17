@@ -3,7 +3,6 @@ import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
 import { push } from "react-router-redux"
 //import jsr from "jsrsasign"
-import simpleStorage from "simplestorage.js"
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
 // Getting the url of auth server
@@ -27,16 +26,15 @@ const requestLogin = provider => {
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
-    isAuthenticated: false,
     provider: provider,
   }
 }
 
-const receiveLogin = user => {
+const receiveLogin = ({ user, token }) => {
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
-    isAuthenticated: true,
+    token: token,
     user: user,
   }
 }
@@ -45,7 +43,6 @@ const loginError = error => {
   return {
     type: LOGIN_FAILURE,
     isFetching: false,
-    isAuthenticated: false,
     error: error,
   }
 }
@@ -54,7 +51,6 @@ const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
     isFetching: false,
-    isAuthenticated: false,
   }
 }
 
@@ -81,9 +77,7 @@ export const oAuthLogin = ({ query, provider, url }) => {
       .then(status)
       .then(json)
       .then(data => {
-        simpleStorage.set("token", data.token)
-        //const jwtStr = jsr.jws.JWS.parse(data.token)
-        dispatch(receiveLogin(data.user))
+        dispatch(receiveLogin(data))
         dispatch(push("/mydsc"))
       })
       .catch(error => {
@@ -96,7 +90,6 @@ export const oAuthLogin = ({ query, provider, url }) => {
 // Logs the user out
 export const logoutUser = () => {
   return dispatch => {
-    simpleStorage.deleteKey("token")
     dispatch(receiveLogout())
   }
 }
