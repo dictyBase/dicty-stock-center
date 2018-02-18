@@ -1,17 +1,28 @@
-import storage from "constants/auth"
+// @flow
+type middlewareArg = {
+  save_action: string,
+  remove_action: string,
+  key: string,
+  namespace: string,
+}
 
-const { USER_STORAGE, TOKEN_STORAGE } = storage
-
-const tokenStorageMiddleware = ({ save, remove }) => {
+const manageStateStorage = ({
+  save_action,
+  remove_action,
+  key,
+  namespace,
+}: middlewareArg) => {
   return store => {
     return next => {
       return action => {
+        next(action)
+        const state = store.getState()
         switch (action.type) {
-          case save:
-            window.localStorage.setItem(TOKEN_STORAGE, action.token)
+          case save_action:
+            window.localStorage.setItem(namespace, state[key])
             break
           case remove:
-            window.localStorage.removeItem(TOKEN_STORAGE)
+            window.localStorage.removeItem(namespace)
             break
           default:
             break
@@ -22,27 +33,4 @@ const tokenStorageMiddleware = ({ save, remove }) => {
   }
 }
 
-const userStorageMiddleware = ({ save, remove }) => {
-  return store => {
-    return next => {
-      return action => {
-        switch (action.type) {
-          case save:
-            window.localStorage.setItem(
-              USER_STORAGE,
-              JSON.stringify(action.user),
-            )
-            break
-          case remove:
-            window.localStorage.removeItem(USER_STORAGE)
-            break
-          default:
-            break
-        }
-        return next(action)
-      }
-    }
-  }
-}
-
-export { userStorageMiddleware, tokenStorageMiddleware }
+export default manageStateStorage
