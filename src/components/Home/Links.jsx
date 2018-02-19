@@ -7,7 +7,7 @@ const content = [
   { name: 'DSC FAQ', to: '/information/faq', routerAware: true },
   {
     name: 'Nomenclature Guide',
-    to: '/information/nomenclature',
+    to: '/information/nomenclature-guide',
     routerAware: false
   },
   {
