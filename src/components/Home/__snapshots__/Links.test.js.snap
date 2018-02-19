@@ -18,7 +18,7 @@ exports[`matching a snapshot of Links 1`] = `
       </li>
       <li>
         <a
-          href="/faq"
+          href="/information/faq"
           onClick={[Function]}
         >
           DSC FAQ
@@ -26,14 +26,14 @@ exports[`matching a snapshot of Links 1`] = `
       </li>
       <li>
         <a
-          href="https://www.google.com"
+          href="/information/nomenclature"
         >
           Nomenclature Guide
         </a>
       </li>
       <li>
         <a
-          href="/other"
+          href="/information/other-stock-centers"
           onClick={[Function]}
         >
           Other Stock Centers
