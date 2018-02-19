@@ -11,7 +11,7 @@ const {
   FETCH_PAGE_FAILURE
 } = dsctypes
 
-const server = process.env.REACT_APP_AUTH_SERVER
+const server = process.env.REACT_APP_API_SERVER
 
 const fetchPageRequest = () => {
   return {
@@ -61,18 +61,31 @@ export const fetchInfoPage = slug => {
     try {
       dispatch(fetchPageRequest())
       const res = await fetch(`${server}/contents/slug/${slug}`)
-      if (res.ok) {
+      const contentType = res.headers.get('content-type')
+      if (contentType && contentType.includes('application/vnd.api+json')) {
         const json = await res.json()
-        dispatch(fetchPageSuccess(json))
+        if (res.ok) {
+          dispatch(fetchPageSuccess(json))
+        } else {
+          printError(res, json)
+        }
       } else {
-        const json = await res.json()
-        console.log(res, json)
+        console.log('Not valid JSON')
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
-      console.log('fetch failed', error)
+      console.log(`Network error: ${error.message}`)
     }
   }
+}
+
+const printError = (res, json) => {
+  console.log('HTTP Error')
+  console.log(
+    `HTTP Response: ${res.status}
+    Title: ${json.errors[0].title}
+    Detail: ${json.errors[0].detail}`
+  )
 }
 
 const doEdit = content => {
@@ -108,17 +121,21 @@ export const saveEditing = (id, body) => {
           'Content-Type': 'application/json'
         }
       })
-      if (res.ok) {
+      const contentType = res.headers.get('content-type')
+      if (contentType && contentType.includes('application/vnd.api+json')) {
         const json = await res.json()
-        dispatch(savePageSuccess())
-        dispatch(push(`/information/${json.data.attributes.name}`))
+        if (res.ok) {
+          dispatch(savePageSuccess())
+          dispatch(push(`/information/${json.data.attributes.name}`))
+        } else {
+          printError(res, json)
+        }
       } else {
-        const json = await res.json()
-        console.log(res, json)
+        console.log('Not valid JSON')
       }
     } catch (error) {
       dispatch(savePageFailure(error))
-      console.log('fetch failed', error)
+      console.log(`Network error: ${error.message}`)
     }
   }
 }
@@ -134,15 +151,20 @@ export const saveInlineEditing = (id, body) => {
           'Content-Type': 'application/json'
         }
       })
-      if (res.ok) {
-        dispatch(savePageSuccess())
-      } else {
+      const contentType = res.headers.get('content-type')
+      if (contentType && contentType.includes('application/vnd.api+json')) {
         const json = await res.json()
-        console.log(res, json)
+        if (res.ok) {
+          dispatch(savePageSuccess())
+        } else {
+          printError(res, json)
+        }
+      } else {
+        console.log('Not valid JSON')
       }
     } catch (error) {
       dispatch(savePageFailure(error))
-      console.log('fetch failed', error)
+      console.log(`Network error: ${error.message}`)
     }
   }
 }
