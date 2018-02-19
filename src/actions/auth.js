@@ -54,36 +54,27 @@ const receiveLogout = () => {
   }
 }
 
-const status = response => {
-  // HTTP response codes 2xx indicate that the request was processed successfully
-  if (response.status >= 200 && response.status < 300) {
-    return Promise.resolve(response)
-  }
-  return Promise.reject(new Error(response.statusText))
-}
-
-const json = response => {
-  return response.json()
-}
-
 // Calls the API to get a token and
 // dispatch actions along the way
 export const oAuthLogin = ({ query, provider, url }) => {
-  return dispatch => {
+  return async dispatch => {
     const { config, endpoint } = makeOauthConfig({ query, provider, url })
-    dispatch(requestLogin(provider))
-    dispatch(push("/load/auth"))
-    fetch(endpoint, config)
-      .then(status)
-      .then(json)
-      .then(data => {
+    try {
+      dispatch(requestLogin(provider))
+      dispatch(push("/load/auth"))
+      const res = await fetch(endpoint, config)
+      if (res.ok) {
+        const data = await res.json()
         dispatch(receiveLogin(data))
         dispatch(push("/mydsc"))
-      })
-      .catch(error => {
-        dispatch(loginError(error))
+      } else {
+        dispatch(loginError(res.body))
         dispatch(push("/error"))
-      })
+      }
+    } catch (error) {
+      dispatch(loginError(error))
+      dispatch(push("/error"))
+    }
   }
 }
 
