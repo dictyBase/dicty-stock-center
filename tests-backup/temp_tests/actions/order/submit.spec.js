@@ -4,7 +4,7 @@ import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-let server = __API_SERVER__
+let server = process.env.REACT_APP_API_SERVER
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)

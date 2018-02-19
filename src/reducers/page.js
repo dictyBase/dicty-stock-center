@@ -1,4 +1,4 @@
-import types from 'constants'
+import { dsctypes } from "../constants"
 
 const {
   EDIT_PAGE,
@@ -7,11 +7,11 @@ const {
   SAVE_PAGE_FAILURE,
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
-  FETCH_PAGE_FAILURE
-} = types
+  FETCH_PAGE_FAILURE,
+} = dsctypes
 
 const initialState = {
-  content: null
+  content: null,
 }
 
 const pageReducer = (state = initialState, action) => {

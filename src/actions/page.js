@@ -1,4 +1,4 @@
-import types from 'constants'
+import { dsctypes } from './../constants'
 import { push } from 'react-router-redux'
 
 const {
@@ -9,9 +9,9 @@ const {
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
   FETCH_PAGE_FAILURE
-} = types
+} = dsctypes
 
-const server = __API_SERVER__
+const server = process.env.REACT_APP_AUTH_SERVER
 
 const fetchPageRequest = () => {
   return {

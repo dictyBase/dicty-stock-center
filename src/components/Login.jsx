@@ -4,6 +4,7 @@ import OauthSignInButton from 'components/OauthSignInButton'
 import clientConfig from 'utils/clientConfig'
 import { Flex, Box } from 'rebass'
 import { DictyHeader } from 'styles'
+import OauthSignHandler from 'components/OauthSignHandler'
 
 const getDefaultProviders = () => {
     let providers = []
@@ -25,10 +26,10 @@ export default class Login extends Component<Props> {
     }
     renderOauthButtons = () => {
         const { providers } = this.props
-        return providers.map((provider, index) => {
+        return providers.map((p, index) => {
             return (
                 <OauthSignInButton
-                    provider={ provider }
+                    provider={ p }
                     key={ index }
                     {...this.props}
                 />
@@ -43,6 +44,7 @@ export default class Login extends Component<Props> {
                         <h1>Log in</h1>
                     </DictyHeader>
                     { this.renderOauthButtons() }
+                    <OauthSignHandler />
                 </Box>
             </Flex>
         )

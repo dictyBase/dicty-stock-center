@@ -1,7 +1,7 @@
 import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory({
-    basename: __BASENAME__
+    basename: process.env.REACT_APP_BASENAME
 })
 
 export default history
