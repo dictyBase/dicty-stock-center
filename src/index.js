@@ -12,7 +12,6 @@ const initialState = hydrateAll(
   hydrateStore({ key: "cart", namespace: "shoppingCart" }),
 )
 const store = configureStore(initialState)
-
 // Render the React application to the DOM
 render(
   <Root store={store} history={history} />,

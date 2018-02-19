@@ -19,7 +19,7 @@ let hydrateStore = ({ key, namespace }: hydrateArg) => {
     if (window.localStorage.getItem(namespace) !== null) {
       data = JSON.parse(window.localStorage.getItem(namespace))
     }
-    let loadedState
+    let loadedState = {}
     if (key) {
       loadedState[key] = data
     } else {
