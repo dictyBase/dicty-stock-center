@@ -1,12 +1,20 @@
 // @flow
 type middlewareArg = {
+  /** Action type for saving the state */
   save_action: string,
+  /** Action type for removing the state */
   remove_action: string,
-  key: string,
+  /** Key that will be used to save part of store's state*/
+  /** leaving it blank will let entire state to be saved */
+  key?: string,
+  /** Key that will be used to save to localStorage */
   namespace: string,
 }
 
-const manageStateStorage = ({
+/**
+ * Save or remove part or entire redux state tree from localStorage by matching to a particular dispatched action
+ */
+let manageStateStorage = ({
   save_action,
   remove_action,
   key,
@@ -17,17 +25,28 @@ const manageStateStorage = ({
       return action => {
         next(action)
         const state = store.getState()
-        switch (action.type) {
-          case save_action:
-            window.localStorage.setItem(namespace, state[key])
-            break
-          case remove:
-            window.localStorage.removeItem(namespace)
-            break
-          default:
-            break
+        try {
+          switch (action.type) {
+            case save_action:
+              if (state[key]) {
+                window.localStorage.setItem(
+                  namespace,
+                  JSON.stringify(state[key]),
+                )
+              } else {
+                window.localStorage.setItem(namespace, JSON.stringify(state))
+              }
+              break
+            case remove_action:
+              window.localStorage.removeItem(namespace)
+              break
+            default:
+              break
+          }
+          return next(action)
+        } catch (e) {
+          console.error("error in saving to localStorage %s", JSON.stringify(e))
         }
-        return next(action)
       }
     }
   }
