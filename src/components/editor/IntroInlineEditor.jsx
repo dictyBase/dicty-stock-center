@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  EditorState,
-  convertFromRaw,
-  convertToRaw,
-  CompositeDecorator
-} from 'draft-js'
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
@@ -23,8 +18,6 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
-import findLinkEntities from 'utils/findLinkEntities'
-import Link from 'components/Link'
 import { editInline, saveInlineEditing } from 'actions/page'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
@@ -66,13 +59,6 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-const decorator = [
-  {
-    strategy: findLinkEntities,
-    component: Link
-  }
-]
-
 class IntroInlineEditor extends Component {
   displayName = 'inline editor for Intro component'
   constructor(props) {
@@ -80,8 +66,7 @@ class IntroInlineEditor extends Component {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
-        new CompositeDecorator(decorator)
+        convertFromRaw(JSON.parse(props.page.data.attributes.content))
       ),
       readOnly: true
     }
