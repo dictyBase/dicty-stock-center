@@ -28,13 +28,6 @@ const pageReducer = (state = initialState, action) => {
         isFetching: false,
         [slugName]: action.payload
       }
-      // const value = {
-      //   ...state,
-      //   isFetching: false,
-      //   [slugName]: action.payload
-      // }
-      // console.log(value)
-      // return value
     case FETCH_PAGE_FAILURE:
       return {
         ...state,

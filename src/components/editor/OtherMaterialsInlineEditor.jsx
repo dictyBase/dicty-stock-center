@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { EditorState, convertFromRaw } from 'draft-js'
+import {
+  EditorState,
+  convertFromRaw,
+  convertToRaw,
+  CompositeDecorator
+} from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
 import createUndoPlugin from 'draft-js-undo-plugin'
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
@@ -18,6 +23,9 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from 'draft-js-buttons'
+import findLinkEntities from 'utils/findLinkEntities'
+import Link from 'components/Link'
+import { editInline, saveInlineEditing } from 'actions/page'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import {
@@ -58,14 +66,22 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
+const decorator = [
+  {
+    strategy: findLinkEntities,
+    component: Link
+  }
+]
+
 class OtherMaterialsInlineEditor extends Component {
-  displayName = 'inline editor component'
+  displayName = 'inline editor for OtherMaterials component'
   constructor(props) {
     super(props)
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.data.attributes.content))
+        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
+        new CompositeDecorator(decorator)
       ),
       showURLInput: false,
       urlValue: '',
@@ -79,9 +95,27 @@ class OtherMaterialsInlineEditor extends Component {
     this.setState({
       readOnly: false
     })
+    const { editInline, page } = this.props
+    editInline(page.data.attributes.content)
   }
   onSave = () => {
-    // save new content
+    const { editorState } = this.state
+    const { id, updated_by, saveInlineEditing } = this.props
+    const rawData = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    )
+    const body = {
+      id: id,
+      data: {
+        id: id,
+        type: 'contents',
+        attributes: {
+          updated_by: updated_by,
+          content: rawData
+        }
+      }
+    }
+    saveInlineEditing(id, body)
     this.setState({
       showURLInput: false,
       urlValue: '',
@@ -89,7 +123,6 @@ class OtherMaterialsInlineEditor extends Component {
     })
   }
   onCancel = () => {
-    // cancel editing
     this.setState({
       editorState: EditorState.createWithContent(
         convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
@@ -116,7 +149,7 @@ class OtherMaterialsInlineEditor extends Component {
       <EditPanel>
         <Flex wrap>
           <Box w={'90%'}>{!readOnly && this.renderToolbar()}</Box>
-          <Box mt={1} w={1}>
+          <Box mt={1}>
             <Editor
               editorState={editorState}
               onChange={this.onChange}
@@ -160,9 +193,15 @@ class OtherMaterialsInlineEditor extends Component {
 }
 
 const mapStateToProps = state => {
+  const slugName = 'dsc-other-materials'
   return {
-    auth: state.auth
+    auth: state.auth,
+    content: state.page[slugName].data.attributes.content,
+    id: state.page[slugName].data.id,
+    updated_by: state.page[slugName].data.attributes.updated_by
   }
 }
 
-export default connect(mapStateToProps)(OtherMaterialsInlineEditor)
+export default connect(mapStateToProps, { editInline, saveInlineEditing })(
+  OtherMaterialsInlineEditor
+)

@@ -28,7 +28,7 @@ const fetchPageSuccess = json => {
   }
 }
 
-const fetchPageFailure = (error) => {
+const fetchPageFailure = error => {
   return {
     type: FETCH_PAGE_FAILURE,
     payload: error
@@ -49,7 +49,7 @@ const savePageSuccess = () => {
   }
 }
 
-const savePageFailure = (error) => {
+const savePageFailure = error => {
   return {
     type: SAVE_PAGE_FAILURE,
     payload: error
@@ -91,6 +91,12 @@ export const editPage = (content, name) => {
   }
 }
 
+export const editInline = content => {
+  return dispatch => {
+    dispatch(doEdit(content))
+  }
+}
+
 export const saveEditing = (id, body) => {
   return async dispatch => {
     try {
@@ -106,6 +112,30 @@ export const saveEditing = (id, body) => {
         const json = await res.json()
         dispatch(savePageSuccess())
         dispatch(push(`/information/${json.data.attributes.name}`))
+      } else {
+        const json = await res.json()
+        console.log(res, json)
+      }
+    } catch (error) {
+      dispatch(savePageFailure(error))
+      console.log('fetch failed', error)
+    }
+  }
+}
+
+export const saveInlineEditing = (id, body) => {
+  return async dispatch => {
+    try {
+      dispatch(savePageRequest())
+      const res = await fetch(`${server}/contents/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (res.ok) {
+        dispatch(savePageSuccess())
       } else {
         const json = await res.json()
         console.log(res, json)
