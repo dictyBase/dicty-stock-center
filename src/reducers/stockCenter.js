@@ -1,4 +1,4 @@
-import { dsctypes } from "../constants"
+import { dsctypes } from "constants/index"
 
 const {
   AVAILABILITY_FETCH_SUCCESS,

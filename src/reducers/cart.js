@@ -1,4 +1,4 @@
-import { dsctypes } from "../constants"
+import { dsctypes } from "constants/index"
 // import simpleStorage from 'simplestorage.js'
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes

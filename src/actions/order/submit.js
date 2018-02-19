@@ -1,7 +1,7 @@
 import { createOrder } from "utils/api"
 import { status, json } from "utils/fetch"
 import { push } from "react-router-redux"
-import { dsctypes } from "./../../constants"
+import { dsctypes } from "constants/index"
 
 const { SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE } = dsctypes
 

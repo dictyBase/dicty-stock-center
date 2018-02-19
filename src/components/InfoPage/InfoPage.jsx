@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton'
 import InfoPageView from './InfoPageView'
 import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
-import { NAMESPACE } from 'constants'
+import { NAMESPACE } from 'constants/index'
 
 class InfoPage extends Component {
   displayName = 'toolbar with entity controls'

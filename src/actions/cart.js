@@ -1,4 +1,4 @@
-import { dsctypes, fees } from "./../constants"
+import { dsctypes, fees } from "constants/index"
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees

@@ -1,4 +1,4 @@
-import { dsctypes } from "./../constants"
+import { dsctypes } from "constants/index"
 import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
 import { push } from "react-router-redux"

@@ -1,4 +1,4 @@
-import { dsctypes } from "./../constants"
+import { dsctypes } from "constants/index"
 import availability from "fake-data/availability"
 // import strainList from 'fake-data/strains'
 import { status, json } from "utils/fetch"

@@ -1,7 +1,7 @@
 import { push } from "react-router-redux"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
-import { dsctypes } from "./../../constants"
+import { dsctypes } from "constants/index"
 
 const { ADD_PAYMENT, SAME_AS_SHIPPING } = dsctypes
 
