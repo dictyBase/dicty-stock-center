@@ -1,39 +1,46 @@
-// @flow
+// add flow back in
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import InfoInlineEditor from '../editor/InfoInlineEditor'
+import Skeleton from 'react-loading-skeleton'
+import IntroInlineEditor from '../editor/IntroInlineEditor'
 import { fetchInfoPage } from 'actions/page'
-import type { MapStateToProps } from 'react-redux'
+import { Flex, Box } from 'rebass'
 
-type Props = {
-  auth: Object
-}
-
-class Intro extends Component<Props> {
+class Intro extends Component {
   displayName = 'homepage introduction'
+  // set defaultprops to prevent console warnings
+  static defaultProps = {
+    page: {
+      data: {
+        attributes: {}
+      }
+    }
+  }
   componentDidMount() {
     this.props.fetchInfoPage('dsc-intro')
   }
   render() {
-    const intro = {
-      entityMap: {},
-      blocks: [
-        {
-          key: '8bu20',
-          text:
-            'The DSC is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies.  The DSC opened at Columbia University in New York City in the fall of 2002. In 2009 the DSC moved to its current location at Northwestern University in Chicago, IL, USA. The DSC is supported by NIH/NIGMS. Since 2015, DSC materials incur a small fee.',
-          type: 'unstyled'
-        }
-      ]
-    }
+    const { isFetching, page } = this.props
 
-    return <InfoInlineEditor auth={this.props.auth} rawContent={intro} />
+    if (!isFetching && page.data.attributes.content) {
+      return <IntroInlineEditor auth={this.props.auth} page={this.props.page} />
+    }
+    return (
+      <Flex justify="center">
+        <Box w={'95%'}>
+          <Skeleton count={5} />
+        </Box>
+      </Flex>
+    )
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
+const mapStateToProps = state => {
+  const slugName = 'dsc-intro'
   return {
-    auth: state.auth
+    auth: state.auth,
+    isFetching: state.page.isFetching,
+    page: state.page[slugName]
   }
 }
 

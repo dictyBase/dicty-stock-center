@@ -8,6 +8,7 @@ import { NAMESPACE } from 'constants'
 
 class InfoPage extends Component {
   displayName = 'toolbar with entity controls'
+  // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
       data: {

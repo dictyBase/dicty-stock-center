@@ -65,7 +65,7 @@ class AboutInlineEditor extends Component {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(this.props.rawContent)
+        convertFromRaw(JSON.parse(props.page.data.attributes.content))
       ),
       showURLInput: false,
       urlValue: '',
@@ -92,7 +92,7 @@ class AboutInlineEditor extends Component {
     // cancel editing
     this.setState({
       editorState: EditorState.createWithContent(
-        convertFromRaw(this.props.rawContent),
+        convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
         this.decorator
       ),
       showURLInput: false,

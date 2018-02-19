@@ -1,68 +1,54 @@
-// @flow
+// add flow back in
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Skeleton from 'react-loading-skeleton'
 import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
 import { fetchInfoPage } from 'actions/page'
+import { Flex, Box } from 'rebass'
 import { PanelBlue } from 'styles'
-import type { MapStateToProps } from 'react-redux'
 
-type Props = {
-  auth: Object
-}
-
-class OtherMaterials extends Component<Props> {
+class OtherMaterials extends Component {
   displayName = 'other DSC materials'
+  // set defaultprops to prevent console warnings
+  static defaultProps = {
+    page: {
+      data: {
+        attributes: {}
+      }
+    }
+  }
   componentDidMount() {
     this.props.fetchInfoPage('dsc-other-materials')
   }
   render() {
-    const materials = {
-      entityMap: {},
-      blocks: [
-        {
-          key: '6g2ah',
-          text: 'Other DSC Materials',
-          type: 'header-four',
-          depth: 0
-        },
-        {
-          key: 'dbdai',
-          text: '12 Antibodies',
-          type: 'header-five',
-          depth: 0,
-          inlineStyleRanges: [{ offset: 0, length: 2, style: 'BOLD' }]
-        },
-        {
-          key: 'apqi8',
-          text: '1 cDNA library',
-          type: 'header-five',
-          depth: 0,
-          inlineStyleRanges: [{ offset: 0, length: 1, style: 'BOLD' }]
-        },
-        {
-          key: '22v9v',
-          text: '1 Genomic library',
-          type: 'header-five',
-          depth: 0,
-          inlineStyleRanges: [{ offset: 0, length: 1, style: 'BOLD' }]
-        }
-      ]
-    }
+    const { isFetching, page } = this.props
 
+    if (!isFetching && page.data.attributes.content) {
+      return (
+        <PanelBlue>
+          <OtherMaterialsInlineEditor
+            auth={this.props.auth}
+            page={this.props.page}
+          />
+        </PanelBlue>
+      )
+    }
     return (
-      <PanelBlue>
-        <OtherMaterialsInlineEditor
-          auth={this.props.auth}
-          rawContent={materials}
-        />
-      </PanelBlue>
+      <Flex justify="center">
+        <Box w={'95%'}>
+          <Skeleton count={5} />
+        </Box>
+      </Flex>
     )
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
+const mapStateToProps = state => {
+  const slugName = 'dsc-other-materials'
   return {
-    auth: state.auth
+    auth: state.auth,
+    isFetching: state.page.isFetching,
+    page: state.page[slugName]
   }
 }
 

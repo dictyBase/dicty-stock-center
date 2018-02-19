@@ -1,45 +1,49 @@
-// @flow
+// add flow back in
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import AboutInlineEditor from 'components/editor/AboutInlineEditor'
+import Skeleton from 'react-loading-skeleton'
+import AboutInlineEditor from '../editor/AboutInlineEditor'
 import { fetchInfoPage } from 'actions/page'
-import type { MapStateToProps } from 'react-redux'
+import { Flex, Box } from 'rebass'
 
-type Props = {
-  auth: Object
-}
-
-class About extends Component<Props> {
-  displayName = 'front page about DSC'
+class About extends Component {
+  displayName = 'homepage about us component'
+  // set defaultprops to prevent console warnings
+  static defaultProps = {
+    page: {
+      data: {
+        attributes: {}
+      }
+    }
+  }
   componentDidMount() {
     this.props.fetchInfoPage('dsc-about')
   }
-
   render() {
-    const about = {
-      entityMap: {},
-      blocks: [
-        {
-          key: '2fmbl',
-          text:
-            'Strains are stored frozen in liquid nitrogen as axenic cultures, cells grown on bacterial lawn, or spores recovered from development on bacterial lawn. Storage is in three separate identical tanks, one of which is located in a different building. Plasmids are stored frozen at -80°C in duplicate freezers as transformed bacteria and often as DNA, stored at -20°C.\n',
-          type: 'unstyled',
-          depth: 0
-        },
-        {
-          key: '728fp',
-          text:
-            'The collection is being built by requesting published strains and plasmids. We encourage and also periodically remind investigators to send new mutants, natural isolates, and plasmids, once they have been published. We do regular quality checks, however, a large component of the quality control program consists of feedback from the recipients of materials. DSC orders are placed through a shopping cart system and are filled in the order they are received.',
-          type: 'unstyled',
-          depth: 0
-        }
-      ]
-    }
+    const { isFetching, page } = this.props
 
-    return <AboutInlineEditor auth={this.props.auth} rawContent={about} />
+    if (!isFetching && page.data.attributes.content) {
+      return <AboutInlineEditor auth={this.props.auth} page={this.props.page} />
+    }
+    return (
+      <Flex justify="center">
+        <Box w={'95%'}>
+          <Skeleton count={5} />
+          <br /><br />
+          <Skeleton count={5} />
+        </Box>
+      </Flex>
+    )
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
+const mapStateToProps = state => {
+  const slugName = 'dsc-about'
+  return {
+    auth: state.auth,
+    isFetching: state.page.isFetching,
+    page: state.page[slugName]
+  }
+}
 
 export default connect(mapStateToProps, { fetchInfoPage })(About)
