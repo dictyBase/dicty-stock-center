@@ -1,4 +1,4 @@
-// add flow back in
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
@@ -6,7 +6,14 @@ import IntroInlineEditor from '../editor/IntroInlineEditor'
 import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
 
-class Intro extends Component {
+type Props = {
+  auth: Object,
+  fetchInfoPage: Function,
+  page: Object,
+  isFetching: boolean
+}
+
+class Intro extends Component<Props> {
   displayName = 'homepage introduction'
   // set defaultprops to prevent console warnings
   static defaultProps = {

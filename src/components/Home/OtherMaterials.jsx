@@ -1,4 +1,4 @@
-// add flow back in
+// @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
@@ -7,7 +7,14 @@ import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
 import { PanelBlue } from 'styles'
 
-class OtherMaterials extends Component {
+type Props = {
+  auth: Object,
+  fetchInfoPage: Function,
+  page: Object,
+  isFetching: boolean
+}
+
+class OtherMaterials extends Component<Props> {
   displayName = 'other DSC materials'
   // set defaultprops to prevent console warnings
   static defaultProps = {

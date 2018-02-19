@@ -17,6 +17,9 @@ declare module 'actions/order/payment' {
 declare module 'actions/order/submit' {
     declare module.exports: any;
 }
+declare module 'actions/page' {
+    declare module.exports: any;
+}
 // components
 declare module 'containers/App' {
     declare module.exports: any;
