@@ -15,11 +15,15 @@ type hydrateLoadArg = Array<hydrateStoreFunc>
  */
 let hydrateStore = ({ key, namespace }: hydrateArg) => {
   try {
-    let loadedState = {}
+    let data = {}
+    if (window.localStorage.getItem(namespace) !== null) {
+      data = JSON.parse(window.localStorage.getItem(namespace))
+    }
+    let loadedState
     if (key) {
-      loadedState[key] = JSON.parse(window.localStorage.getItem(namespace))
+      loadedState[key] = data
     } else {
-      loadedState = JSON.parse(window.localStorage.getItem(namespace))
+      loadedState = data
     }
     return loadedState
   } catch (e) {
