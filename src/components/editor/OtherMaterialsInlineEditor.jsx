@@ -83,8 +83,6 @@ class OtherMaterialsInlineEditor extends Component {
         convertFromRaw(JSON.parse(props.page.data.attributes.content)),
         new CompositeDecorator(decorator)
       ),
-      showURLInput: false,
-      urlValue: '',
       readOnly: true
     }
   }
@@ -117,8 +115,6 @@ class OtherMaterialsInlineEditor extends Component {
     }
     saveInlineEditing(id, body)
     this.setState({
-      showURLInput: false,
-      urlValue: '',
       readOnly: true
     })
   }
@@ -128,8 +124,6 @@ class OtherMaterialsInlineEditor extends Component {
         convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
         this.decorator
       ),
-      showURLInput: false,
-      urlValue: '',
       readOnly: true
     })
   }
