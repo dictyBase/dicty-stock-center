@@ -19,6 +19,7 @@ import {
   CodeBlockButton
 } from 'draft-js-buttons'
 import { saveEditing, cancelEditing } from 'actions/page'
+import Error from 'components/Error'
 import { Flex, Box } from 'rebass'
 import {
   Container,
@@ -78,18 +79,20 @@ class EditInfoPage extends Component {
   onSave = () => {
     const { editorState } = this.state
     const { id, updated_by, saveEditing } = this.props
-    const rawData = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+    const rawData = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    )
     const body = {
       id: id,
       data: {
-          id: id,
-          type: 'contents',
-          attributes: {
-              updated_by: updated_by,
-              content: rawData
-          }
+        id: id,
+        type: 'contents',
+        attributes: {
+          updated_by: updated_by,
+          content: rawData
+        }
       }
-  }
+    }
     saveEditing(id, body)
   }
   onCancel = () => {
@@ -98,7 +101,11 @@ class EditInfoPage extends Component {
     cancelEditing(slugName)
   }
   render() {
-    const { editorState } = this.state
+    const { editorState, error } = this.state
+
+    if (error) {
+      return <Error fetchError={error} />
+    }
 
     return (
       <Container>
@@ -147,8 +154,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     content: state.page[slugName].data.attributes.content,
     updated_by: state.page[slugName].data.attributes.updated_by,
-    id: state.page[slugName].data.id
+    id: state.page[slugName].data.id,
+    error: state.page.error
   }
 }
 
-export default connect(mapStateToProps, {saveEditing, cancelEditing})(EditInfoPage)
+export default connect(mapStateToProps, { saveEditing, cancelEditing })(
+  EditInfoPage
+)

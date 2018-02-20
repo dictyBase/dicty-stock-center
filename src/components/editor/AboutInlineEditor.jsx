@@ -19,6 +19,7 @@ import {
   CodeBlockButton
 } from 'draft-js-buttons'
 import { editInline, saveInlineEditing } from 'actions/page'
+import Error from 'components/Error'
 import { Flex, Box } from 'rebass'
 import FontAwesome from 'react-fontawesome'
 import {
@@ -123,7 +124,12 @@ class AboutInlineEditor extends Component {
   }
   render() {
     const { editorState, readOnly } = this.state
-    const { auth } = this.props
+    const { auth, error } = this.props
+
+    if (error) {
+      return <Error fetchError={error} />
+    }
+
     return (
       <EditPanel>
         <Flex wrap>
@@ -177,7 +183,8 @@ const mapStateToProps = state => {
     auth: state.auth,
     content: state.page[slugName].data.attributes.content,
     id: state.page[slugName].data.id,
-    updated_by: state.page[slugName].data.attributes.updated_by
+    updated_by: state.page[slugName].data.attributes.updated_by,
+    error: state.page.error
   }
 }
 

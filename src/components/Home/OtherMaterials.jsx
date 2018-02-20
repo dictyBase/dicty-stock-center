@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
+import Error from 'components/Error'
 import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
 import { PanelBlue } from 'styles'
@@ -11,7 +12,8 @@ type Props = {
   auth: Object,
   fetchInfoPage: Function,
   page: Object,
-  isFetching: boolean
+  isFetching: boolean,
+  error: string
 }
 
 class OtherMaterials extends Component<Props> {
@@ -28,7 +30,7 @@ class OtherMaterials extends Component<Props> {
     this.props.fetchInfoPage('dsc-other-materials')
   }
   render() {
-    const { isFetching, page } = this.props
+    const { isFetching, page, error } = this.props
 
     if (!isFetching && page.data.attributes.content) {
       return (
@@ -39,6 +41,8 @@ class OtherMaterials extends Component<Props> {
           />
         </PanelBlue>
       )
+    } else if (error) {
+      return <Error fetchError={error} />
     }
     return (
       <Flex justify="center">
@@ -55,7 +59,8 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     isFetching: state.page.isFetching,
-    page: state.page[slugName]
+    page: state.page[slugName],
+    error: state.page.error
   }
 }
 
