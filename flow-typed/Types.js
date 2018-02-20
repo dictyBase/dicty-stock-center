@@ -24,9 +24,6 @@ declare module 'actions/page' {
 declare module 'containers/App' {
     declare module.exports: any;
 }
-declare module 'containers/DevTools' {
-    declare module.exports: any;
-}
 declare module 'components/Strains/StockDetailRow' {
     declare module.exports: any;
 }
@@ -60,6 +57,9 @@ declare module 'components/TableLoader' {
 declare module 'components/Items' {
     declare module.exports: any;
 }
+declare module 'components/Error' {
+    declare module.exports: any;
+}
 declare module 'forms/validate/order-form' {
     declare module.exports: any;
 }
@@ -76,6 +76,9 @@ declare module 'utils/oauthConfig' {
     declare module.exports: any;
 }
 declare module 'utils/clientConfig' {
+    declare module.exports: any;
+}
+declare module 'utils/headerItems' {
     declare module.exports: any;
 }
 
