@@ -1,5 +1,4 @@
-import { dsctypes } from "constants/index"
-import simpleStorage from "simplestorage.js"
+import { dsctypes } from "../constants"
 
 const {
   LOGIN_REQUEST,
@@ -9,48 +8,39 @@ const {
   LOGOUT_SUCCESS,
 } = dsctypes
 
-const authenticated = () => {
-  return simpleStorage.hasKey("token")
-}
-
-const initialState = {
-  isFetching: false,
-  isAuthenticated: authenticated(),
-}
-
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        isFetching: action.isFetching,
         isAuthenticated: false,
         provider: action.provider,
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        isAuthenticated: true,
+        isFetching: action.isFetching,
+        isAuthenticated: action.token ? true : false,
         user: action.user,
       }
     case LOGIN_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        isFetching: action.isFetching,
         isAuthenticated: false,
         error: action.error,
+        provider: null,
       }
     case LOGOUT_REQUEST:
       return {
         ...state,
-        isFetching: true,
-        isAuthenticated: true,
+        isFetching: action.isFetching,
       }
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isFetching: action.isFetching,
         isAuthenticated: false,
         provider: null,
         user: null,

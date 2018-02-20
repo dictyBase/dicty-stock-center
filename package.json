@@ -60,7 +60,6 @@
     "fs": "0.0.2",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
-    "jsrsasign": "^8.0.4",
     "lodash": "^4.15.0",
     "react": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
@@ -84,22 +83,18 @@
     "validator": "^9.2.0"
   },
   "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^4.0.4",
-    "prettier": "^1.6.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.3.0",
     "file-loader": "^0.11.2",
     "flow-bin": "^0.64.0",
     "fs-extra": "^4.0.3",
-    "isparta-loader": "^2.0.0",
+    "husky": "^0.14.3",
     "jest-enzyme": "^4.0.1",
     "jest-styled-components": "^4.9.0",
+    "lint-staged": "^4.0.4",
+    "prettier": "^1.6.1",
     "react-addons-test-utils": "^15.1.0",
-    "react-test-renderer": "^15.6.2",
-    "redux-devtools": "^3.1.0",
-    "redux-devtools-dock-monitor": "^1.0.1",
-    "redux-devtools-log-monitor": "^1.0.4"
+    "react-test-renderer": "^15.6.2"
   }
 }
