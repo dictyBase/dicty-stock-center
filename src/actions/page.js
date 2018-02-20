@@ -68,17 +68,24 @@ export const fetchInfoPage = slug => {
           dispatch(fetchPageSuccess(json))
         } else {
           printError(res, json)
+          dispatch(fetchPageFailure(res.body))
+          dispatch(push('/error'))
         }
       } else {
         console.log('Not valid JSON')
+        dispatch(fetchPageFailure(res.body))
+        dispatch(push('/error'))
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
+      dispatch(push('/error'))
       console.log(`Network error: ${error.message}`)
     }
   }
 }
 
+// helper function to print HTTP errors to console
+// responses are structured in JSONAPI format
 const printError = (res, json) => {
   console.log('HTTP Error')
   console.log(
@@ -129,12 +136,17 @@ export const saveEditing = (id, body) => {
           dispatch(push(`/information/${json.data.attributes.name}`))
         } else {
           printError(res, json)
+          dispatch(savePageFailure(res.body))
+          dispatch(push('/error'))
         }
       } else {
         console.log('Not valid JSON')
+        dispatch(savePageFailure(res.body))
+        dispatch(push('/error'))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
+      dispatch(push('/error'))
       console.log(`Network error: ${error.message}`)
     }
   }
@@ -158,12 +170,17 @@ export const saveInlineEditing = (id, body) => {
           dispatch(savePageSuccess())
         } else {
           printError(res, json)
+          dispatch(savePageFailure(res.body))
+          dispatch(push('/error'))
         }
       } else {
         console.log('Not valid JSON')
+        dispatch(savePageFailure(res.body))
+        dispatch(push('/error'))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
+      dispatch(push('/error'))
       console.log(`Network error: ${error.message}`)
     }
   }

@@ -19,7 +19,6 @@ import {
   CodeBlockButton
 } from 'draft-js-buttons'
 import { saveEditing, cancelEditing } from 'actions/page'
-import Error from 'components/Error'
 import { Flex, Box } from 'rebass'
 import {
   Container,
@@ -101,11 +100,7 @@ class EditInfoPage extends Component {
     cancelEditing(slugName)
   }
   render() {
-    const { editorState, error } = this.state
-
-    if (error) {
-      return <Error fetchError={error} />
-    }
+    const { editorState } = this.state
 
     return (
       <Container>
@@ -154,8 +149,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     content: state.page[slugName].data.attributes.content,
     updated_by: state.page[slugName].data.attributes.updated_by,
-    id: state.page[slugName].data.id,
-    error: state.page.error
+    id: state.page[slugName].data.id
   }
 }
 

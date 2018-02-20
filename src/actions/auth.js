@@ -1,22 +1,21 @@
-import { dsctypes } from "constants/index"
-import querystring from "querystring"
-import oauthConfig from "utils/oauthConfig"
-import { push } from "react-router-redux"
-//import jsr from "jsrsasign"
+import { dsctypes } from 'constants/index'
+import querystring from 'querystring'
+import oauthConfig from 'utils/oauthConfig'
+import { push } from 'react-router-redux'
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
 // Getting the url of auth server
 const authserver = process.env.REACT_APP_AUTH_SERVER
 
 const makeOauthConfig = ({ query, provider, url }) => {
-  const parsed = querystring.parse(query.replace("?", ""))
+  const parsed = querystring.parse(query.replace('?', ''))
   let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
   body += `&state=${parsed.state}&code=${parsed.code}`
   body += `&scopes=${oauthConfig[provider].scopes[0]}`
   let config = {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
   }
   const endpoint = `${authserver}/tokens/${provider}`
   return { config, endpoint }
@@ -26,7 +25,7 @@ const requestLogin = provider => {
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
-    provider: provider,
+    provider: provider
   }
 }
 
@@ -35,7 +34,7 @@ const receiveLogin = ({ user, token }) => {
     type: LOGIN_SUCCESS,
     isFetching: false,
     token: token,
-    user: user,
+    user: user
   }
 }
 
@@ -43,14 +42,14 @@ const loginError = error => {
   return {
     type: LOGIN_FAILURE,
     isFetching: false,
-    error: error,
+    error: error
   }
 }
 
 const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
-    isFetching: false,
+    isFetching: false
   }
 }
 
@@ -61,19 +60,22 @@ export const oAuthLogin = ({ query, provider, url }) => {
     const { config, endpoint } = makeOauthConfig({ query, provider, url })
     try {
       dispatch(requestLogin(provider))
-      dispatch(push("/load/auth"))
+      dispatch(push('/load/auth'))
       const res = await fetch(endpoint, config)
-      if (res.ok) {
-        const data = await res.json()
-        dispatch(receiveLogin(data))
-        dispatch(push("/mydsc"))
-      } else {
-        dispatch(loginError(res.body))
-        dispatch(push("/error"))
+      const contentType = res.headers.get('content-type')
+      if (contentType && contentType.includes('application/vnd.api+json')) {
+        if (res.ok) {
+          const data = await res.json()
+          dispatch(receiveLogin(data))
+          dispatch(push('/mydsc'))
+        } else {
+          dispatch(loginError(res.body))
+          dispatch(push('/error'))
+        }
       }
     } catch (error) {
       dispatch(loginError(error))
-      dispatch(push("/error"))
+      dispatch(push('/error'))
     }
   }
 }

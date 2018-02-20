@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import AboutInlineEditor from '../editor/AboutInlineEditor'
-import Error from 'components/Error'
 import { fetchInfoPage } from 'actions/page'
 import { Flex, Box } from 'rebass'
 
@@ -11,8 +10,7 @@ type Props = {
   auth: Object,
   fetchInfoPage: Function,
   page: Object,
-  isFetching: boolean,
-  error: string
+  isFetching: boolean
 }
 
 class About extends Component<Props> {
@@ -29,12 +27,10 @@ class About extends Component<Props> {
     this.props.fetchInfoPage('dsc-about')
   }
   render() {
-    const { isFetching, page, error } = this.props
+    const { isFetching, page } = this.props
 
     if (!isFetching && page.data.attributes.content) {
       return <AboutInlineEditor auth={this.props.auth} page={this.props.page} />
-    } else if (error) {
-      return <Error fetchError={error} />
     }
     return (
       <Flex justify="center">
@@ -54,8 +50,7 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     isFetching: state.page.isFetching,
-    page: state.page[slugName],
-    error: state.page.error
+    page: state.page[slugName]
   }
 }
 
