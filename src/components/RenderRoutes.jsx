@@ -23,6 +23,7 @@ import EditPayment from "components/form/EditPayment"
 import Submit from "components/form/Submit"
 import SubmitLoader from "components/form/SubmitLoader"
 import OrderConfirmation from "components/OrderConfirmation"
+import PrivateRoute from "components/PrivateRoute"
 
 export default class RenderRoutes extends Component {
   displayName = "list of routes"
@@ -33,7 +34,7 @@ export default class RenderRoutes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/:provider/callback" component={OauthCallback} />
         <Route exact path="/information/:name" component={InfoPage} />
-        <Route exact path="/information/:name/edit" component={EditInfoPage} />
+        <PrivateRoute exact path="/information/:name/edit" component={EditInfoPage} />
         <Route exact path="/load/auth" component={AuthLoader} />
         <Route exact path="/strains" component={Strains} />
         <Route exact path="/strains/:id" component={StrainDetail} />
@@ -41,7 +42,7 @@ export default class RenderRoutes extends Component {
         <Route exact path="/plasmids/:id" component={PlasmidDetail} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/mydsc" component={MyDsc} />
+        <PrivateRoute exact path="/mydsc" component={MyDsc} />
         <Route exact path="/error" component={Error} />
         <Route exact path="/cart" component={ShoppingCart} />
         <Route exact path="/order/shipping" component={Shipping} />

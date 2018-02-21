@@ -1,6 +1,7 @@
 import Login from 'components/Login'
 import OauthCallback from 'components/OauthCallback'
-import { AuthLoader, Logout } from 'components/Auth'
+import AuthLoader from 'components/Auth'
+import Logout from 'components/Logout'
 import Home from 'components/Home'
 import MyDsc from 'components/MyDsc'
 import Error from 'components/Error'

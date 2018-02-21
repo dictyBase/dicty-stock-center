@@ -25,8 +25,10 @@ const enhancer = applyMiddleware(
   manageStateStorage(cartArg),
 )
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, enhancer)
+  const store = createStore(rootReducer, initialState, composeEnhancers(enhancer))
   if (process.env.NODE_ENV === "development") {
     if (module.hot) {
       module.hot.accept("../reducers", () =>
