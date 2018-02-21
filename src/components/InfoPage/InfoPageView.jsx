@@ -36,35 +36,39 @@ class InfoPageView extends Component {
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()
-    
+
     const { editPage, match, page } = this.props
     editPage(page.data.attributes.content, match.params.name)
   }
   render() {
     const { updated_by, updated_at } = this.props.page.data.attributes
+    const { isAuthenticated } = this.props
     return (
       <Container>
-        <ToolbarNav>
-          <Flex>
-            <Box>
-              <TextInfo>
-                <strong>
-                  <FontAwesome name="user" /> {updated_by}
-                </strong>{' '}
-                edited {timeSince(updated_at)} ago
-              </TextInfo>
-            </Box>
-            <Box ml="auto">
-              <div>
-                {/* need to implement custom label */}
-                <Label>Curator</Label> &nbsp; &nbsp;
-                <InlineLink onClick={this.onClick}>
-                  <FontAwesome name="pencil" title="Edit page" />
-                </InlineLink>
-              </div>
-            </Box>
-          </Flex>
-        </ToolbarNav>
+        {isAuthenticated && (
+          <ToolbarNav>
+            <Flex>
+              <Box>
+                <TextInfo>
+                  <strong>
+                    <FontAwesome name="user" /> {updated_by}
+                  </strong>{' '}
+                  edited {timeSince(updated_at)} ago
+                </TextInfo>
+              </Box>
+              <Box ml="auto">
+                <div>
+                  {/* need to implement custom label */}
+                  <Label>Curator</Label> &nbsp; &nbsp;
+                  <InlineLink onClick={this.onClick}>
+                    <FontAwesome name="pencil" title="Edit page" />
+                  </InlineLink>
+                </div>
+              </Box>
+            </Flex>
+          </ToolbarNav>
+        )}
+
         <Flex>
           <Box>
             <Editor
@@ -81,4 +85,10 @@ class InfoPageView extends Component {
   }
 }
 
-export default connect(null, { editPage })(InfoPageView)
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps, { editPage })(InfoPageView)

@@ -123,7 +123,7 @@ class OtherMaterialsInlineEditor extends Component {
   }
   render() {
     const { editorState, readOnly } = this.state
-    const { auth } = this.props
+    const { isAuthenticated } = this.props
 
     return (
       <EditPanel>
@@ -137,7 +137,7 @@ class OtherMaterialsInlineEditor extends Component {
               ref="{(element) => { this.editor = element }}"
               readOnly={readOnly}
             />
-            {auth.isAuthenticated &&
+            {isAuthenticated &&
               readOnly && (
                 <TextInfo>
                   <InlineLink onClick={this.onEdit} title="Edit">
@@ -175,7 +175,7 @@ class OtherMaterialsInlineEditor extends Component {
 const mapStateToProps = state => {
   const slugName = 'dsc-other-materials'
   return {
-    auth: state.auth,
+    isAuthenticated: state.auth.isAuthenticated,
     content: state.page[slugName].data.attributes.content,
     id: state.page[slugName].data.id,
     updated_by: state.page[slugName].data.attributes.updated_by
