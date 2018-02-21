@@ -31,7 +31,7 @@ const fetchPageSuccess = json => {
 const fetchPageFailure = error => {
   return {
     type: FETCH_PAGE_FAILURE,
-    payload: error
+    error: error
   }
 }
 
@@ -52,10 +52,12 @@ const savePageSuccess = () => {
 const savePageFailure = error => {
   return {
     type: SAVE_PAGE_FAILURE,
-    payload: error
+    error: error
   }
 }
 
+// fetch page function that fetches data using async/await
+// checks if header is correct, then either grabs data or displays error
 export const fetchInfoPage = slug => {
   return async dispatch => {
     try {

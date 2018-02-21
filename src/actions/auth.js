@@ -72,6 +72,10 @@ export const oAuthLogin = ({ query, provider, url }) => {
           dispatch(loginError(res.body))
           dispatch(push('/error'))
         }
+      } else {
+        console.log('Not valid JSON')
+        dispatch(loginError(res.body))
+        dispatch(push('/error'))
       }
     } catch (error) {
       dispatch(loginError(error))
