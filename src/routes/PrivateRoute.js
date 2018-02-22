@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={props =>
       // checks for authentication, then redirects if not logged in
-      rest.isAuthenticated ? (
+      rest.auth.isAuthenticated ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -18,10 +18,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 )
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated
-  }
-}
+const mapStateToProps = ({auth}) => ({auth})
 
 export default connect(mapStateToProps)(PrivateRoute)
