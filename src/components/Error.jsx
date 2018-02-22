@@ -33,6 +33,7 @@ export class Error extends Component<Props> {
                 Please <Link to="/contact">contact us</Link> if this problem
                 persists.
               </p>
+              <p><Link to="/">Return Home</Link></p>
             </AlertBox>
           </Box>
         </Flex>
