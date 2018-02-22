@@ -8,6 +8,7 @@ export default [
   },
   {
     path: '/information/:name/edit',
+    auth: true,
     component: EditInfoPage
   }
 ]
