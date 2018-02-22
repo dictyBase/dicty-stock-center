@@ -8,9 +8,9 @@ import FontAwesome from 'react-fontawesome'
 import type { MapStateToProps } from 'react-redux'
 
 type Props = {
-  authError: string,
-  orderError: string,
-  pageError: string
+  auth: Object,
+  order: Object,
+  page: Object
 }
 
 export class Error extends Component<Props> {

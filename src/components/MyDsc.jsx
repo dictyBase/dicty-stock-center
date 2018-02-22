@@ -9,8 +9,7 @@ import FontAwesome from "react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
-  user: Object,
-  provider: string,
+  auth: Object
 }
 
 export class MyDsc extends Component<Props> {

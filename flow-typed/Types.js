@@ -57,7 +57,7 @@ declare module 'components/TableLoader' {
 declare module 'components/Items' {
     declare module.exports: any;
 }
-declare module 'components/Error' {
+declare module 'components/OauthSignHandler' {
     declare module.exports: any;
 }
 declare module 'forms/validate/order-form' {
