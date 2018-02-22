@@ -10,6 +10,8 @@ import StrainRoutes from './StrainRoutes'
 import Home from 'components/Home'
 import PageNotReady from 'components/PageNotReady'
 
+const SimilarRoutes = [...OrderRoutes, ...StrainRoutes, ...PlasmidRoutes, ...GeneralRoutes]
+
 const RenderRoutes = () => {
   RenderRoutes.displayName = 'list of routes'
   return (
@@ -41,9 +43,6 @@ const RenderRoutes = () => {
           />
         )
       })}
-      {GeneralRoutes.map((route, i) => (
-        <Route exact key={i} path={route.path} component={route.component} />
-      ))}
       {InfoPageRoutes.map((route, i) => {
         if (route.auth) {
           return (
@@ -59,13 +58,7 @@ const RenderRoutes = () => {
           <Route exact key={i} path={route.path} component={route.component} />
         )
       })}
-      {OrderRoutes.map((route, i) => (
-        <Route exact key={i} path={route.path} component={route.component} />
-      ))}
-      {PlasmidRoutes.map((route, i) => (
-        <Route exact key={i} path={route.path} component={route.component} />
-      ))}
-      {StrainRoutes.map((route, i) => (
+      {SimilarRoutes.map((route, i) => (
         <Route exact key={i} path={route.path} component={route.component} />
       ))}
       <Route exact path="*" component={PageNotReady} />
