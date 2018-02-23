@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { injectGlobal } from 'styled-components'
-import { Box } from 'rebass'
+import styled from "styled-components"
+import { injectGlobal } from "styled-components"
+import { Box } from "rebass"
 
 injectGlobal([
   `
@@ -177,7 +177,7 @@ export const Breadcrumb = styled.ol`
   li + li:before {
     padding: 0 5px;
     color: #ccc;
-    content: '/\00a0';
+    content: "/";
   }
 
   &:active {
@@ -206,7 +206,7 @@ export const EditorStyle = styled.div`
 export const EditPanel = styled.div`
   /* border: 1px solid #ddd; */
   /* padding: 10px; */
-  [contenteditable='true']:focus {
+  [contenteditable="true"]:focus {
     outline: none;
   }
 `
@@ -374,9 +374,9 @@ export const FormControl = styled.input`
   }
 `
 
-export const FormControlTextArea = FormControl.withComponent('textarea')
+export const FormControlTextArea = FormControl.withComponent("textarea")
 
-export const FormControlSelect = FormControl.withComponent('select')
+export const FormControlSelect = FormControl.withComponent("select")
 
 export const FormTextArea = FormControlTextArea.extend`
   height: auto;
@@ -441,7 +441,7 @@ export const Table = styled.table`
   & > thead > tr > td,
   & > tbody > tr > td,
   & > tfoot > tr > td {
-    padding: ${props => (props.condensed ? '5px' : '8px')};
+    padding: ${props => (props.condensed ? "5px" : "8px")};
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
@@ -629,7 +629,7 @@ export const DisabledButton = Button.extend`
   border-color: #fff;
 `
 
-export const LinkButton = Button.withComponent('a')
+export const LinkButton = Button.withComponent("a")
 
 export const SocialButton = LinkButton.extend`
   position: relative;
