@@ -35,6 +35,7 @@
     "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
     "draft-js-toolbar-link-plugin": "^1.0.1",
     "draft-js-undo-plugin": "^2.0.0-rc8",
+    "file-loader": "^1.1.9",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "promise-polyfill": "7.1.0",
