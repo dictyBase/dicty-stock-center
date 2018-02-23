@@ -1,16 +1,17 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
-import { Submit } from './Submit'
+import React from "react"
+import renderer from "react-test-renderer"
+import "jest-styled-components"
+import { Submit } from "./Submit"
 
-test('matching a snapshot of Submit', () => {
+test("matching a snapshot of Submit", () => {
   const editShipping = () => {}
   const editPayment = () => {}
-  const addedItems = ['1', '2']
+  const addedItems = ["1", "2"]
   const consumer = {
-    firstName: 'Jane'
+    firstName: "Jane"
   }
   const payer = {
-    firstName: 'John'
+    firstName: "John"
   }
   const component = renderer.create(
     <Submit

@@ -1,10 +1,10 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
-import SubmitLoader from './SubmitLoader'
+import React from "react"
+import renderer from "react-test-renderer"
+import "jest-styled-components"
+import SubmitLoader from "./SubmitLoader"
 
-test('matching a snapshot of SubmitLoader', () => {
-    const component = renderer.create(
-    <SubmitLoader />)
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+test("matching a snapshot of SubmitLoader", () => {
+  const component = renderer.create(<SubmitLoader />)
+  let tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
 })

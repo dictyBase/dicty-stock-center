@@ -1,15 +1,17 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import renderer from 'react-test-renderer'
-import { Cart } from './Cart'
+import React from "react"
+import { BrowserRouter } from "react-router-dom"
+import renderer from "react-test-renderer"
+import "jest-styled-components"
+import { Cart } from "./Cart"
 
-test('matching a snapshot of Cart', () => {
-    const addedItems = []
+test("matching a snapshot of Cart", () => {
+  const addedItems = []
 
-    const component = renderer.create(
-        <BrowserRouter>
-            <Cart addedItems={ addedItems } />
-        </BrowserRouter>)
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+  const component = renderer.create(
+    <BrowserRouter>
+      <Cart addedItems={addedItems} />
+    </BrowserRouter>
+  )
+  let tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
 })

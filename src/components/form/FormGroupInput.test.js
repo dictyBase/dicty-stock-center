@@ -1,14 +1,14 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
-import FormGroupInput from './FormGroupInput'
+import React from "react"
+import renderer from "react-test-renderer"
+import "jest-styled-components"
+import FormGroupInput from "./FormGroupInput"
 
-test('matching a snapshot of FormGroupInput', () => {
-    const field = {
-        touched: true
-    }
+test("matching a snapshot of FormGroupInput", () => {
+  const field = {
+    touched: true
+  }
 
-    const component = renderer.create(
-    <FormGroupInput field={ field } />)
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+  const component = renderer.create(<FormGroupInput field={field} />)
+  let tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
 })
