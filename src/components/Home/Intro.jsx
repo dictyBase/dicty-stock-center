@@ -1,10 +1,10 @@
 // @flow
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Skeleton from 'react-loading-skeleton'
-import IntroInlineEditor from '../editor/IntroInlineEditor'
-import { fetchInfoPage } from 'actions/page'
-import { Flex, Box } from 'rebass'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import Skeleton from "react-loading-skeleton"
+import IntroInlineEditor from "../editor/IntroInlineEditor"
+import { fetchInfoPage } from "actions/page"
+import { Flex, Box } from "rebass"
 
 type Props = {
   auth: Object,
@@ -14,7 +14,7 @@ type Props = {
 }
 
 class Intro extends Component<Props> {
-  displayName = 'homepage introduction'
+  displayName = "homepage introduction"
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
@@ -24,7 +24,7 @@ class Intro extends Component<Props> {
     }
   }
   componentDidMount() {
-    this.props.fetchInfoPage('dsc-intro')
+    this.props.fetchInfoPage("dsc-intro")
   }
   render() {
     const { isFetching, page } = this.props
@@ -34,8 +34,10 @@ class Intro extends Component<Props> {
     }
     return (
       <Flex justify="center">
-        <Box w={'95%'}>
+        <Box w={"98%"}>
           <Skeleton count={5} />
+          <br />
+          <br />
         </Box>
       </Flex>
     )
@@ -43,7 +45,7 @@ class Intro extends Component<Props> {
 }
 
 const mapStateToProps = state => {
-  const slugName = 'dsc-intro'
+  const slugName = "dsc-intro"
   return {
     auth: state.auth,
     isFetching: state.page.isFetching,

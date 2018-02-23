@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
-import Editor from 'draft-js-plugins-editor'
-import createUndoPlugin from 'draft-js-undo-plugin'
-import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
-import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
+import Editor from "draft-js-plugins-editor"
+import createUndoPlugin from "draft-js-undo-plugin"
+import createToolbarPlugin from "draft-js-static-toolbar-plugin"
+import createToolbarLinkPlugin from "draft-js-toolbar-link-plugin"
 import {
   ItalicButton,
   BoldButton,
@@ -17,10 +17,10 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton
-} from 'draft-js-buttons'
-import { editInline, saveInlineEditing } from 'actions/page'
-import { Flex, Box } from 'rebass'
-import FontAwesome from 'react-fontawesome'
+} from "draft-js-buttons"
+import { editInline, saveInlineEditing } from "actions/page"
+import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
 import {
   ToolbarNav,
   EditPanel,
@@ -29,12 +29,12 @@ import {
   DefaultButton,
   SuccessButton,
   InlineLink
-} from 'styles'
+} from "styles"
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
-  inputPlaceholder: 'Insert URL here...'
+  inputPlaceholder: "Insert URL here..."
 })
 const { LinkButton } = toolbarLinkPlugin
 const { UndoButton, RedoButton } = undoPlugin
@@ -60,7 +60,7 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 class IntroInlineEditor extends Component {
-  displayName = 'inline editor for Intro component'
+  displayName = "inline editor for Intro component"
   constructor(props) {
     super(props)
 
@@ -91,7 +91,7 @@ class IntroInlineEditor extends Component {
       id: id,
       data: {
         id: id,
-        type: 'contents',
+        type: "contents",
         attributes: {
           updated_by: updated_by,
           content: rawData
@@ -128,7 +128,7 @@ class IntroInlineEditor extends Component {
     return (
       <EditPanel>
         <Flex wrap>
-          <Box w={'90%'}>{!readOnly && this.renderToolbar()}</Box>
+          <Box w={"90%"}>{!readOnly && this.renderToolbar()}</Box>
           <Box mt={1}>
             <Editor
               editorState={editorState}
@@ -146,7 +146,7 @@ class IntroInlineEditor extends Component {
                 </TextInfo>
               )}
           </Box>
-          <Box width={'40%'} mr={1} mt={1}>
+          <Box width={"40%"} mr={1} mt={1}>
             {!readOnly && (
               <DefaultButton
                 className={`block`}
@@ -156,14 +156,17 @@ class IntroInlineEditor extends Component {
               </DefaultButton>
             )}
           </Box>
-          <Box width={'40%'} mt={1}>
+          <Box width={"40%"} mt={1}>
             {!readOnly && (
-              <SuccessButton
-                className={`block`}
-                type="button"
-                onClick={this.onSave}>
-                Save
-              </SuccessButton>
+              <div>
+                <SuccessButton
+                  className={`block`}
+                  type="button"
+                  onClick={this.onSave}>
+                  Save
+                </SuccessButton>
+                <br />
+              </div>
             )}
           </Box>
         </Flex>
@@ -173,7 +176,7 @@ class IntroInlineEditor extends Component {
 }
 
 const mapStateToProps = state => {
-  const slugName = 'dsc-intro'
+  const slugName = "dsc-intro"
   return {
     isAuthenticated: state.auth.isAuthenticated,
     content: state.page[slugName].data.attributes.content,

@@ -1,23 +1,21 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import PrivateRoute from './PrivateRoute'
-import AuthRoutes from './AuthRoutes'
-import GeneralRoutes from './GeneralRoutes'
-import InfoPageRoutes from './InfoPageRoutes'
-import OrderRoutes from './OrderRoutes'
-import PlasmidRoutes from './PlasmidRoutes'
-import StrainRoutes from './StrainRoutes'
-import Home from 'components/Home'
-import PageNotReady from 'components/PageNotReady'
-
-const SimilarRoutes = [...OrderRoutes, ...StrainRoutes, ...PlasmidRoutes, ...GeneralRoutes]
+import React from "react"
+import { Route, Switch } from "react-router-dom"
+import PrivateRoute from "./PrivateRoute"
+import AuthRoutes from "./AuthRoutes"
+import GeneralRoutes from "./GeneralRoutes"
+import InfoPageRoutes from "./InfoPageRoutes"
+import OrderRoutes from "./OrderRoutes"
+import PlasmidRoutes from "./PlasmidRoutes"
+import StrainRoutes from "./StrainRoutes"
+import Home from "components/Home"
+import PageNotReady from "components/PageNotReady"
 
 const RenderRoutes = () => {
-  RenderRoutes.displayName = 'list of routes'
+  RenderRoutes.displayName = "list of routes"
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      {AuthRoutes.map((route, i) => {
+      {[...AuthRoutes, ...InfoPageRoutes].map((route, i) => {
         if (route.auth) {
           return (
             <PrivateRoute
@@ -43,22 +41,12 @@ const RenderRoutes = () => {
           />
         )
       })}
-      {InfoPageRoutes.map((route, i) => {
-        if (route.auth) {
-          return (
-            <PrivateRoute
-              exact
-              key={i}
-              path={route.path}
-              component={route.component}
-            />
-          )
-        }
-        return (
-          <Route exact key={i} path={route.path} component={route.component} />
-        )
-      })}
-      {SimilarRoutes.map((route, i) => (
+      {[
+        ...OrderRoutes,
+        ...StrainRoutes,
+        ...PlasmidRoutes,
+        ...GeneralRoutes
+      ].map((route, i) => (
         <Route exact key={i} path={route.path} component={route.component} />
       ))}
       <Route exact path="*" component={PageNotReady} />

@@ -89,10 +89,6 @@ class Home extends Component<Props> {
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  return {
-    auth: state.auth
-  }
-}
+const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
 
 export default connect(mapStateToProps)(Home)
