@@ -1,32 +1,35 @@
-import React from "react"
-import { render } from "react-dom"
-import history from "utils/routerHistory"
-import configureStore from "store"
-import { hydrateAll, hydrateStore } from "utils/hydrateStore"
-import App from "containers/App"
-import { Provider } from "react-redux"
-import { ConnectedRouter } from "react-router-redux"
+import 'utils/polyfills'
+import React from 'react'
+import { render } from 'react-dom'
+import history from 'utils/routerHistory'
+import configureStore from 'store'
+import { hydrateAll, hydrateStore } from 'utils/hydrateStore'
+import App from 'containers/App'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
+
+
 
 // load state from localStorage(if any) to set the
 // initial state for the store
 const initialState = hydrateAll(
-  hydrateStore({ key: "auth", namespace: "auth" }),
-  hydrateStore({ key: "cart", namespace: "shoppingCart" }),
+  hydrateStore({ key: 'auth', namespace: 'auth' }),
+  hydrateStore({ key: 'cart', namespace: 'shoppingCart' })
 )
 const store = configureStore(initialState)
 
 const setGoogleAnalytics = async (location, action) => {
   try {
-    const module = await import("react-ga")
+    const module = await import('react-ga')
     let ReactGA = module.default
     ReactGA.set({ page: window.location.pathname })
     ReactGA.pageview(window.location.pathname)
   } catch (e) {
-    console.error("could not load react-ga module", JSON.stringify(e))
+    console.error('could not load react-ga module', JSON.stringify(e))
   }
 }
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   history.listen((location, action) => {
     setGoogleAnalytics(location, action)
   })
@@ -42,7 +45,7 @@ const renderApp = Component => {
         </ConnectedRouter>
       </div>
     </Provider>,
-    document.getElementById("root"),
+    document.getElementById('root')
   )
 }
 
@@ -51,7 +54,7 @@ renderApp(App)
 
 // Webpack HMR
 if (module.hot) {
-  module.hot.accept("containers/App", () => {
+  module.hot.accept('containers/App', () => {
     renderApp(App)
   })
 }
