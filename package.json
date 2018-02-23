@@ -8,26 +8,10 @@
     "npm": "^3.0.0"
   },
   "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ],
     "collectCoverageFrom": [
       "src/components/*.js",
       "!<rootDir>/node_modules/"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "styles": "<rootDir>/src/styles/index.js"
-    },
-    "roots": [
-      "<rootDir>/src/"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js"
+    ]
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -60,8 +44,8 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.2",
     "history": "^4.7.2",
-    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.15.0",
+    "promise-polyfill": "7.1.0",
     "react": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dom": "^15.6.2",
@@ -81,7 +65,8 @@
     "simplestorage.js": "^0.2.1",
     "styled-components": "^2.2.3",
     "url": "^0.11.0",
-    "validator": "^9.2.0"
+    "validator": "^9.2.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "enzyme": "^3.2.0",

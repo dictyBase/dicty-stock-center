@@ -1,4 +1,4 @@
-import "utils/polyfills"
+import "utils/polyfills" // necessary for IE11
 import React from "react"
 import { render } from "react-dom"
 import history from "utils/routerHistory"
