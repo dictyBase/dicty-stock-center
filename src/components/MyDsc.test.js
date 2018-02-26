@@ -5,15 +5,18 @@ import "jest-styled-components"
 import { MyDsc } from "./MyDsc"
 
 test("matching a snapshot of MyDsc", () => {
-  const user = {
-    name: "Jane Doe",
-    email: "janedoe@gmail.com"
+  const auth = {
+    user: {
+      id: 999999,
+      name: "Jane Doe",
+      email: "janedoe@gmail.com"
+    },
+    provider: "google"
   }
-  const provider = "google"
 
   const component = renderer.create(
     <BrowserRouter>
-      <MyDsc user={user} provider={provider} />
+      <MyDsc auth={auth} />
     </BrowserRouter>
   )
   let tree = component.toJSON()

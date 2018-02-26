@@ -1,16 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Submit 1`] = `
+.c0 h1 {
+  font-size: 62px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.c0 h2 {
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.c1 {
+  cursor: pointer;
+}
+
+.c2 {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.c2.block {
+  display: block;
+  width: 100%;
+}
+
+.c2.large {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.c2.xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  width: 20%;
+}
+
+.c2 a {
+  color: #fff;
+}
+
+.c2 a:hover {
+  color: #fff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c2:focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+
+.c2:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.c2:active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
 <div
-  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
   is={null}
 >
   <div
-    className="sc-ifAKCX cFlEyZ sc-bdVaJa dEKHPo"
+    className="dEKHPo"
     is={null}
   >
     <div
-      className="sc-TFwJa daqYjB"
+      className="c0"
     >
       <h2>
         Review Your Order
@@ -22,15 +118,15 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
   </div>
   <div
-    className="sc-ifAKCX cFlEyZ sc-bdVaJa foxScs"
+    className="foxScs"
     is={null}
   >
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa vDLMO"
+        className="vDLMO"
         is={null}
       >
         <div
@@ -71,7 +167,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="sc-giadOv kWtcoa"
+                  className="c1"
                   onClick={[Function]}
                 >
                   <span
@@ -89,7 +185,7 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa vDLMO"
+        className="vDLMO"
         is={null}
       >
         <div
@@ -130,7 +226,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="sc-giadOv kWtcoa"
+                  className="c1"
                   onClick={[Function]}
                 >
                   <span
@@ -150,11 +246,11 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
     <hr />
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa fiWxJc"
+        className="fiWxJc"
         is={null}
       >
         <div
@@ -182,11 +278,11 @@ exports[`matching a snapshot of Submit 1`] = `
             </h4>
             <div>
               <div
-                className="sc-bxivhb bUZGRr sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
                 is={null}
               >
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 >
                   <h5>
@@ -194,7 +290,7 @@ exports[`matching a snapshot of Submit 1`] = `
                   </h5>
                 </div>
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 >
                   <h5>
@@ -203,28 +299,28 @@ exports[`matching a snapshot of Submit 1`] = `
                 </div>
               </div>
               <div
-                className="sc-bxivhb bUZGRr sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
                 is={null}
               >
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 />
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 />
               </div>
               <div
-                className="sc-bxivhb bUZGRr sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
                 is={null}
               >
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 />
                 <div
-                  className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+                  className="goNVXm"
                   is={null}
                 />
               </div>
@@ -236,12 +332,12 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa kIMTZA"
+        className="kIMTZA"
         is={null}
       >
         <hr />
         <button
-          className="large block sc-kaNhvL jpxKph"
+          className="large block c2"
           onClick={undefined}
           type="button"
         >

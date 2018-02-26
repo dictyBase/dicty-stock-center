@@ -1,12 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of AuthLoader 1`] = `
+.c0 {
+  text-align: center;
+}
+
 <div
-  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
   is={null}
 >
   <div
-    className="sc-krDsej itMemN sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+    className="c0 iHZvIS"
     is={null}
   >
     <h1>
@@ -17,43 +21,6 @@ exports[`matching a snapshot of AuthLoader 1`] = `
       aria-hidden={true}
       className="fa fa-spinner fa-5x fa-pulse fa-fw"
     />
-  </div>
-</div>
-`;
-
-exports[`matching a snapshot of Logout 1`] = `
-<div
-  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
-  is={null}
->
-  <div
-    className="sc-krDsej itMemN sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
-    is={null}
-  >
-    <div
-      className="sc-dymIpo daugCr"
-    >
-      <span
-        aria-hidden={true}
-        className="fa fa-check-circle-o fa-5x"
-      />
-      <h1>
-        Logout successful!
-      </h1>
-      <p>
-        You have successfully logged out of Dicty Stock Center
-      </p>
-      <button
-        className="large sc-kaNhvL jpxKph"
-      >
-        <a
-          href="/"
-          onClick={[Function]}
-        >
-          Stock Center Home
-        </a>
-      </button>
-    </div>
   </div>
 </div>
 `;
