@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { LinkedList } from "styles"
 
 type Props = {
-  list: Array<any>,
+  list: Array<Object>,
   title: string
 }
 

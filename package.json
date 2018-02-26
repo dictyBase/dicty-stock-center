@@ -18,7 +18,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "repository": {
     "type": "git",
@@ -70,11 +72,12 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.3.0",
-    "flow-bin": "^0.64.0",
+    "flow-bin": "^0.66.0",
     "jest-enzyme": "^4.0.1",
     "jest-styled-components": "^4.9.0",
     "lint-staged": "^4.0.4",
     "prettier": "^1.6.1",
+    "react-styleguidist": "^6.2.5",
     "react-test-renderer": "^15.6.2"
   }
 }
