@@ -2,6 +2,9 @@
 declare module "actions/order/shipping" {
   declare module.exports: any
 }
+declare module "actions/auth" {
+  declare module.exports: any
+}
 declare module "actions/cart" {
   declare module.exports: any
 }
@@ -99,6 +102,24 @@ declare module "dicty-components-header-footer" {
   declare module.exports: any
 }
 declare module "dicty-components-navbar" {
+  declare module.exports: any
+}
+declare module "draft-js" {
+  declare module.exports: any
+}
+declare module "draft-js-plugins-editor" {
+  declare module.exports: any
+}
+declare module "draft-js-undo-plugin" {
+  declare module.exports: any
+}
+declare module "draft-js-static-toolbar-plugin" {
+  declare module.exports: any
+}
+declare module "draft-js-toolbar-link-plugin" {
+  declare module.exports: any
+}
+declare module "draft-js-buttons" {
   declare module.exports: any
 }
 declare module "react-responsive-carousel" {

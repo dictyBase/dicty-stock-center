@@ -1,7 +1,6 @@
 // @flow
-import React, { Component } from "react"
-import styled from "styled-components"
-import { Flex, Box } from "rebass"
+import React from "react"
+import { Flex } from "rebass"
 import { CenteredBox } from "../styles"
 import FontAwesome from "react-fontawesome"
 
@@ -10,20 +9,18 @@ type Props = {
   message: string
 }
 
-export default class TableLoader extends Component<Props> {
-  render() {
-    const title = this.props.title
-    const message = this.props.message
-    return (
-      <div style={{ width: "100%" }}>
-        <Flex justify="space-between">
-          <CenteredBox>
-            <h1>{title && title}</h1>
-            <FontAwesome name="spinner" size="2x" pulse fixedWidth />
-            {message && message}
-          </CenteredBox>
-        </Flex>
-      </div>
-    )
-  }
+const TableLoader = (props: Props) => {
+  return (
+    <div style={{ width: "100%" }}>
+      <Flex justify="space-between">
+        <CenteredBox>
+          <h1>{props.title && props.title}</h1>
+          <FontAwesome name="spinner" size="2x" pulse fixedWidth />
+          {props.message && props.message}
+        </CenteredBox>
+      </Flex>
+    </div>
+  )
 }
+
+export default TableLoader

@@ -1,3 +1,4 @@
+// add flow
 import { Component } from "react"
 import { oAuthLogin } from "actions/auth"
 import { connect } from "react-redux"

@@ -1,3 +1,4 @@
+// needs flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
@@ -59,7 +60,19 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-class AboutInlineEditor extends Component {
+type Props = {
+  page: {
+    data: {
+      attributes: {
+        content: Object,
+        id: string,
+        updated_by: string
+      }
+    }
+  }
+}
+
+class AboutInlineEditor extends Component<Props> {
   constructor(props) {
     super(props)
 

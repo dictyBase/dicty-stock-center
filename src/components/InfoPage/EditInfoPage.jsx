@@ -1,3 +1,4 @@
+// needs flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js"

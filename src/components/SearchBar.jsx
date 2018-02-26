@@ -1,19 +1,34 @@
+// @flow
 import React, { Component } from "react"
 import { Flex, Box } from "rebass"
 import { PrimaryButton } from "styles"
 
-export default class SearchBar extends Component {
-  handleKeyDown(e) {
+type Props = {
+  clearSearch: Function,
+  search: Function,
+  placeholder: string,
+  value: string
+}
+
+export default class SearchBar extends Component<Props> {
+  searchInput: ?HTMLInputElement
+
+  handleKeyDown(e: SyntheticKeyboardEvent<HTMLInputElement>) {
     if (e.keyCode === 13) {
       this.props.search(e.target.value)
     }
   }
   handleSearch() {
+    if (!this.searchInput) {
+      return
+    }
     this.props.search(this.searchInput.value)
   }
   handleClear() {
     this.props.clearSearch()
-    this.searchInput.value = ""
+    if (this.searchInput && this.searchInput.value !== "") {
+      this.searchInput.value = ""
+    }
   }
   render() {
     return (
