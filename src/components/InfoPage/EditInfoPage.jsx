@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
-import Editor from 'draft-js-plugins-editor'
-import createUndoPlugin from 'draft-js-undo-plugin'
-import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
-import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js"
+import Editor from "draft-js-plugins-editor"
+import createUndoPlugin from "draft-js-undo-plugin"
+import createToolbarPlugin from "draft-js-static-toolbar-plugin"
+import createToolbarLinkPlugin from "draft-js-toolbar-link-plugin"
 import {
   ItalicButton,
   BoldButton,
@@ -17,9 +17,9 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton
-} from 'draft-js-buttons'
-import { saveEditing, cancelEditing } from 'actions/page'
-import { Flex, Box } from 'rebass'
+} from "draft-js-buttons"
+import { saveEditing, cancelEditing } from "actions/page"
+import { Flex, Box } from "rebass"
 import {
   Container,
   ToolbarNav,
@@ -28,13 +28,13 @@ import {
   StaticToolbar,
   DefaultButton,
   SuccessButton
-} from 'styles'
-import { NAMESPACE } from 'constants/index'
+} from "styles"
+import { NAMESPACE } from "constants/index"
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
-  inputPlaceholder: 'Insert URL here...'
+  inputPlaceholder: "Insert URL here..."
 })
 const { LinkButton } = toolbarLinkPlugin
 const { UndoButton, RedoButton } = undoPlugin
@@ -60,7 +60,6 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 class EditInfoPage extends Component {
-  displayName = 'information page editor'
   constructor(props) {
     super(props)
 
@@ -85,7 +84,7 @@ class EditInfoPage extends Component {
       id: id,
       data: {
         id: id,
-        type: 'contents',
+        type: "contents",
         attributes: {
           updated_by: updated_by,
           content: rawData

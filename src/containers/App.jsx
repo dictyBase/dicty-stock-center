@@ -5,7 +5,7 @@ import { Navbar } from "dicty-components-navbar"
 import {
   headerItems,
   loggedHeaderItems,
-  generateLinks,
+  generateLinks
 } from "utils/headerItems"
 import Cart from "components/Cart"
 import RenderRoutes from "routes/RenderRoutes"
@@ -17,12 +17,10 @@ import type { MapStateToProps } from "react-redux"
 
 type Props = {
   cart: Object,
-  auth: Object,
+  auth: Object
 }
 
 class App extends Component<Props> {
-  displayName = "the primary app component"
-
   render() {
     return (
       <div>
@@ -48,7 +46,7 @@ class App extends Component<Props> {
 
 const mapStateToProps: MapStateToProps<*, *, *> = ({ auth, cart }) => ({
   auth,
-  cart,
+  cart
 })
 
 export default withRouter(connect(mapStateToProps)(App))

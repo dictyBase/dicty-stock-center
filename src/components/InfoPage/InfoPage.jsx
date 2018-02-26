@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Skeleton from 'react-loading-skeleton'
-import InfoPageView from './InfoPageView'
-import { fetchInfoPage } from 'actions/page'
-import { Flex, Box } from 'rebass'
-import { NAMESPACE } from 'constants/index'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import Skeleton from "react-loading-skeleton"
+import InfoPageView from "./InfoPageView"
+import { fetchInfoPage } from "actions/page"
+import { Flex, Box } from "rebass"
+import { NAMESPACE } from "constants/index"
 
 class InfoPage extends Component {
-  displayName = 'toolbar with entity controls'
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
@@ -29,7 +28,7 @@ class InfoPage extends Component {
     }
     return (
       <Flex justify="center">
-        <Box w={'80%'}>
+        <Box w={"80%"}>
           <h1>
             <Skeleton />
           </h1>

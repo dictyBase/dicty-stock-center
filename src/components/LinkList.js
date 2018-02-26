@@ -9,8 +9,6 @@ type Props = {
 }
 
 export default class LinkList extends Component<Props> {
-  displayName = "list of links"
-
   render() {
     const { title, list } = this.props
     return (

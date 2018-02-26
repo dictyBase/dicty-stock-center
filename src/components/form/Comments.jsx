@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react'
-import { Flex, Box } from 'rebass'
-import { ControlLabel, FormGroup, FormTextArea } from 'styles'
+import * as React from "react"
+import { Flex, Box } from "rebass"
+import { ControlLabel, FormGroup, FormTextArea } from "styles"
 
 type Props = {
   comments: Object,
@@ -11,22 +11,20 @@ type Props = {
 }
 
 export default class Comments extends React.Component<Props> {
-  displayName = 'form contact information'
-
   render() {
-      const { comments, placeholder, rows, children } = this.props
-      return (
+    const { comments, placeholder, rows, children } = this.props
+    return (
       <FormGroup>
         <Flex wrap justify="center">
-          <Box w={ [1, 1 / 4, 1 / 4] } ml={ 1 } mb={ 2 } mr={ 1 }>
-            <ControlLabel>{ children }</ControlLabel>
+          <Box w={[1, 1 / 4, 1 / 4]} ml={1} mb={2} mr={1}>
+            <ControlLabel>{children}</ControlLabel>
           </Box>
-          <Box w={ [1, '60%', '60%'] } mr={ 1 } ml={ 1 }>
+          <Box w={[1, "60%", "60%"]} mr={1} ml={1}>
             <FormTextArea
-              rows={ rows }
+              rows={rows}
               {...comments}
-              value={ comments.value }
-              placeholder={ placeholder }
+              value={comments.value}
+              placeholder={placeholder}
             />
           </Box>
         </Flex>

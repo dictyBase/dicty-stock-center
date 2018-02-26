@@ -1,15 +1,15 @@
 // @flow
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import EditPanel from './EditPanel'
-import Items from 'components/Items'
-import { editShipping } from 'actions/order/shipping'
-import { editPayment } from 'actions/order/payment'
-import { submitOrder } from 'actions/order/submit'
-import { Panel, PanelBody } from 'dicty-components-panel'
-import { Flex, Box } from 'rebass'
-import FontAwesome from 'react-fontawesome'
-import { DictyHeader, PrimaryButton } from 'styles'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import EditPanel from "./EditPanel"
+import Items from "components/Items"
+import { editShipping } from "actions/order/shipping"
+import { editPayment } from "actions/order/payment"
+import { submitOrder } from "actions/order/submit"
+import { Panel, PanelBody } from "dicty-components-panel"
+import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
+import { DictyHeader, PrimaryButton } from "styles"
 
 type Props = {
   order: Object,
@@ -25,8 +25,6 @@ type Props = {
 }
 
 export class Submit extends Component<Props> {
-  displayName = 'submit order'
-
   render() {
     const {
       addedItems,
@@ -40,39 +38,39 @@ export class Submit extends Component<Props> {
     } = this.props
     return (
       <Flex wrap justify="center">
-        <Box w={['85%', '60%']}>
+        <Box w={["85%", "60%"]}>
           <DictyHeader>
             <h2>Review Your Order</h2>
             <p>
-              {' '}
+              {" "}
               Please review your order and click "Complete Your Order" button to
               place your order
             </p>
           </DictyHeader>
         </Box>
-        <Box w={['85%', 3 / 4]}>
+        <Box w={["85%", 3 / 4]}>
           <Flex wrap justify="center">
-            <Box w={[1, 1, 1, '45%']} mr={1}>
+            <Box w={[1, 1, 1, "45%"]} mr={1}>
               <Panel collapse>
                 <PanelBody>
                   <EditPanel
                     user={consumer}
                     edit={editShipping}
-                    title={' Ship to:'}
-                    icon={'truck'}
+                    title={" Ship to:"}
+                    icon={"truck"}
                     shipping={shipping}
                   />
                 </PanelBody>
               </Panel>
             </Box>
-            <Box w={[1, 1, 1, '45%']} mr={1}>
+            <Box w={[1, 1, 1, "45%"]} mr={1}>
               <Panel collapse>
                 <PanelBody>
                   <EditPanel
                     user={payer}
                     edit={editPayment}
-                    title={' Payer:'}
-                    icon={'credit-card-alt'}
+                    title={" Payer:"}
+                    icon={"credit-card-alt"}
                     payment={payment}
                   />
                 </PanelBody>

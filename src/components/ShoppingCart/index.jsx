@@ -1,34 +1,32 @@
 // @flow
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Flex, Box } from 'rebass'
-import FontAwesome from 'react-fontawesome'
-import Cart from './Cart'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
+import Cart from "./Cart"
 import {
   DictyHeader,
   Container,
   AlertBox,
   PrimaryButton,
   SuccessButton
-} from 'styles'
-import type { MapStateToProps } from 'react-redux'
+} from "styles"
+import type { MapStateToProps } from "react-redux"
 
 type Props = {
   addedItems: Array<Object>
 }
 
 class ShoppingCart extends Component<Props> {
-  displayName = 'Shopping cart'
-
   renderAlert = () => {
     return (
       <Flex wrap justify="center">
-        <Box w={['85%', 2 / 3]}>
+        <Box w={["85%", 2 / 3]}>
           <AlertBox>
             <strong>
               <FontAwesome name="exclamation-circle" />
-            </strong>{' '}
+            </strong>{" "}
             There are no items in your cart.
           </AlertBox>
         </Box>
@@ -53,14 +51,14 @@ class ShoppingCart extends Component<Props> {
               </Box>
             </Flex>
             <Flex wrap justify="center">
-              <Box w={[1, '40%']} mt={10} mr={1}>
+              <Box w={[1, "40%"]} mt={10} mr={1}>
                 <PrimaryButton className={`large block`}>
                   <Link to="/strains">
                     <FontAwesome name="share" /> Continue Shopping
                   </Link>
                 </PrimaryButton>
               </Box>
-              <Box w={[1, '40%']} mt={10} mr={1}>
+              <Box w={[1, "40%"]} mt={10} mr={1}>
                 <SuccessButton className={`large block`}>
                   <Link to="/order/shipping">
                     <FontAwesome name="shopping-cart" /> Checkout

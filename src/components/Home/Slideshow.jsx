@@ -8,8 +8,6 @@ import tipB from "../images/tipB-mutant-DG1036.png"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 const Slideshow = () => {
-  Slideshow.displayName = "front page image slideshow"
-
   return (
     <Carousel
       showStatus={false}

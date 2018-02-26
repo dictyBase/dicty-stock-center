@@ -11,8 +11,6 @@ const materials = [
 ]
 
 const Materials = () => {
-  Materials.displayName = "links to stock catalogs"
-
   return (
     <PanelGray>
       <LinkList list={materials} />

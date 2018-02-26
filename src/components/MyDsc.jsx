@@ -13,7 +13,6 @@ type Props = {
 }
 
 export class MyDsc extends Component<Props> {
-  displayName = "user profile"
   render() {
     const { auth } = this.props
     return (

@@ -1,11 +1,11 @@
 // @flow
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Skeleton from 'react-loading-skeleton'
-import OtherMaterialsInlineEditor from '../editor/OtherMaterialsInlineEditor'
-import { fetchInfoPage } from 'actions/page'
-import { Flex, Box } from 'rebass'
-import { PanelBlue } from 'styles'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import Skeleton from "react-loading-skeleton"
+import OtherMaterialsInlineEditor from "../editor/OtherMaterialsInlineEditor"
+import { fetchInfoPage } from "actions/page"
+import { Flex, Box } from "rebass"
+import { PanelBlue } from "styles"
 
 type Props = {
   auth: Object,
@@ -15,7 +15,6 @@ type Props = {
 }
 
 class OtherMaterials extends Component<Props> {
-  displayName = 'other DSC materials'
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
@@ -25,7 +24,7 @@ class OtherMaterials extends Component<Props> {
     }
   }
   componentDidMount() {
-    this.props.fetchInfoPage('dsc-other-materials')
+    this.props.fetchInfoPage("dsc-other-materials")
   }
   render() {
     const { isFetching, page } = this.props
@@ -42,7 +41,7 @@ class OtherMaterials extends Component<Props> {
     }
     return (
       <Flex justify="center">
-        <Box w={'95%'}>
+        <Box w={"95%"}>
           <Skeleton count={5} />
         </Box>
       </Flex>
@@ -51,7 +50,7 @@ class OtherMaterials extends Component<Props> {
 }
 
 const mapStateToProps = state => {
-  const slugName = 'dsc-other-materials'
+  const slugName = "dsc-other-materials"
   return {
     auth: state.auth,
     isFetching: state.page.isFetching,

@@ -60,7 +60,6 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 class IntroInlineEditor extends Component {
-  displayName = "inline editor for Intro component"
   constructor(props) {
     super(props)
 

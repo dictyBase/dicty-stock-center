@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
-import Editor from 'draft-js-plugins-editor'
-import createUndoPlugin from 'draft-js-undo-plugin'
-import createToolbarPlugin from 'draft-js-static-toolbar-plugin'
-import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
+import Editor from "draft-js-plugins-editor"
+import createUndoPlugin from "draft-js-undo-plugin"
+import createToolbarPlugin from "draft-js-static-toolbar-plugin"
+import createToolbarLinkPlugin from "draft-js-toolbar-link-plugin"
 import {
   ItalicButton,
   BoldButton,
@@ -17,10 +17,10 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton
-} from 'draft-js-buttons'
-import { editInline, saveInlineEditing } from 'actions/page'
-import { Flex, Box } from 'rebass'
-import FontAwesome from 'react-fontawesome'
+} from "draft-js-buttons"
+import { editInline, saveInlineEditing } from "actions/page"
+import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
 import {
   ToolbarNav,
   EditPanel,
@@ -29,12 +29,12 @@ import {
   DefaultButton,
   SuccessButton,
   InlineLink
-} from 'styles'
+} from "styles"
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
-  inputPlaceholder: 'Insert URL here...'
+  inputPlaceholder: "Insert URL here..."
 })
 const { LinkButton } = toolbarLinkPlugin
 const { UndoButton, RedoButton } = undoPlugin
@@ -60,7 +60,6 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 class OtherMaterialsInlineEditor extends Component {
-  displayName = 'inline editor for OtherMaterials component'
   constructor(props) {
     super(props)
 
@@ -91,7 +90,7 @@ class OtherMaterialsInlineEditor extends Component {
       id: id,
       data: {
         id: id,
-        type: 'contents',
+        type: "contents",
         attributes: {
           updated_by: updated_by,
           content: rawData
@@ -128,7 +127,7 @@ class OtherMaterialsInlineEditor extends Component {
     return (
       <EditPanel>
         <Flex wrap>
-          <Box w={'90%'}>{!readOnly && this.renderToolbar()}</Box>
+          <Box w={"90%"}>{!readOnly && this.renderToolbar()}</Box>
           <Box mt={1}>
             <Editor
               editorState={editorState}
@@ -146,7 +145,7 @@ class OtherMaterialsInlineEditor extends Component {
                 </TextInfo>
               )}
           </Box>
-          <Box width={'40%'} mr={1} mt={1}>
+          <Box width={"40%"} mr={1} mt={1}>
             {!readOnly && (
               <DefaultButton
                 className={`block`}
@@ -156,7 +155,7 @@ class OtherMaterialsInlineEditor extends Component {
               </DefaultButton>
             )}
           </Box>
-          <Box width={'40%'} mt={1}>
+          <Box width={"40%"} mt={1}>
             {!readOnly && (
               <SuccessButton
                 className={`block`}
@@ -173,7 +172,7 @@ class OtherMaterialsInlineEditor extends Component {
 }
 
 const mapStateToProps = state => {
-  const slugName = 'dsc-other-materials'
+  const slugName = "dsc-other-materials"
   return {
     isAuthenticated: state.auth.isAuthenticated,
     content: state.page[slugName].data.attributes.content,

@@ -3,8 +3,6 @@ import { oAuthLogin } from "actions/auth"
 import { connect } from "react-redux"
 
 class OauthSignHandler extends Component {
-  displayName = "oauth handling component"
-
   onMessage = event => {
     event.preventDefault()
     event.stopPropagation()

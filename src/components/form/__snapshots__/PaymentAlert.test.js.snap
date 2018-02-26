@@ -19,7 +19,8 @@ exports[`matching a snapshot of PaymentAlert 1`] = `
       <strong>
         Credit Card: 
       </strong>
-      Secure payment when billed. Incurs a 
+      Secure payment when billed. Incurs a
+       
       <strong>
         3.5% service fee.
       </strong>

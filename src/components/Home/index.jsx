@@ -20,8 +20,6 @@ type Props = {
 }
 
 class Home extends Component<Props> {
-  displayName = "homepage component"
-
   renderGreeting = () => {
     const { user } = this.props.auth
     return (

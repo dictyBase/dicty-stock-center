@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react"
+import { connect } from "react-redux"
 import {
   Editor,
   EditorState,
   convertFromRaw,
   CompositeDecorator
-} from 'draft-js'
-import findLinkEntities from 'utils/findLinkEntities'
-import Link from 'components/Link'
-import timeSince from 'utils/timeSince'
-import { editPage } from 'actions/page'
-import FontAwesome from 'react-fontawesome'
-import { Flex, Box } from 'rebass'
-import { Container, ToolbarNav, TextInfo, Label, InlineLink } from 'styles'
+} from "draft-js"
+import findLinkEntities from "utils/findLinkEntities"
+import Link from "components/Link"
+import timeSince from "utils/timeSince"
+import { editPage } from "actions/page"
+import FontAwesome from "react-fontawesome"
+import { Flex, Box } from "rebass"
+import { Container, ToolbarNav, TextInfo, Label, InlineLink } from "styles"
 
 const decorator = [
   {
@@ -22,7 +22,6 @@ const decorator = [
 ]
 
 class InfoPageView extends Component {
-  displayName = 'information page component'
   constructor(props) {
     super(props)
 
@@ -52,7 +51,7 @@ class InfoPageView extends Component {
                 <TextInfo>
                   <strong>
                     <FontAwesome name="user" /> {updated_by}
-                  </strong>{' '}
+                  </strong>{" "}
                   edited {timeSince(updated_at)} ago
                 </TextInfo>
               </Box>

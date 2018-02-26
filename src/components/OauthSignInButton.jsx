@@ -8,12 +8,10 @@ import { SocialButton } from "styles"
 type Props = {
   provider: string,
   redirectUrl: string,
-  oAuthLogin: Object,
+  oAuthLogin: Object
 }
 
 export default class OauthSignInButton extends Component<Props> {
-  displayName = "oauth button component"
-
   titleCase(name: string) {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
@@ -38,7 +36,7 @@ export default class OauthSignInButton extends Component<Props> {
       url,
       provider,
       `width=${config.popupOptions.width},
-                    height=${config.popupOptions.height}`,
+                    height=${config.popupOptions.height}`
     )
   }
   render() {

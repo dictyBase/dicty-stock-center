@@ -3,8 +3,6 @@ import React from "react"
 import { PanelGray, SopLink } from "styles"
 
 const Materials = () => {
-  Materials.displayName = "link to SOPs"
-
   return (
     <PanelGray>
       <SopLink

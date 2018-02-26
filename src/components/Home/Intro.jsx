@@ -14,7 +14,6 @@ type Props = {
 }
 
 class Intro extends Component<Props> {
-  displayName = "homepage introduction"
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {

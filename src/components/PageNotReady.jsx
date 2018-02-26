@@ -1,21 +1,22 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import FontAwesome from 'react-fontawesome'
-import { Container, Jumbotron, PrimaryButton } from 'styles'
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import FontAwesome from "react-fontawesome"
+import { Container, Jumbotron, PrimaryButton } from "styles"
 
 export default class PageNotReady extends Component {
-    displayName = 'homepage component';
-    render() {
-        return (
-            <Container>
-                <Jumbotron>
-                    <h1><FontAwesome name="wrench" /> Under Construction</h1>
-                    <p>This page is not ready yet.</p>
-                    <PrimaryButton>
-                        <Link to="/">Stock Center Home</Link>
-                    </PrimaryButton>
-                </Jumbotron>
-            </Container>
-        )
-    }
+  render() {
+    return (
+      <Container>
+        <Jumbotron>
+          <h1>
+            <FontAwesome name="wrench" /> Under Construction
+          </h1>
+          <p>This page is not ready yet.</p>
+          <PrimaryButton>
+            <Link to="/">Stock Center Home</Link>
+          </PrimaryButton>
+        </Jumbotron>
+      </Container>
+    )
+  }
 }

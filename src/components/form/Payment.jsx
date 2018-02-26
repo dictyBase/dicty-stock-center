@@ -1,18 +1,18 @@
 // @flow
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
-import { submitForm } from 'actions/order/payment'
-import EditPanel from './EditPanel'
-import User from './User'
-import PaymentMethod from './PaymentMethod'
-import SubmitButton from './SubmitButton'
-import PaymentAlert from './PaymentAlert'
-import { syncValidatePayment } from 'forms/validate/order-form'
-import { editShipping } from 'actions/order/shipping'
-import { sameAsShipping } from 'actions/order/payment'
-import { Flex, Box } from 'rebass'
-import FontAwesome from 'react-fontawesome'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { reduxForm } from "redux-form"
+import { submitForm } from "actions/order/payment"
+import EditPanel from "./EditPanel"
+import User from "./User"
+import PaymentMethod from "./PaymentMethod"
+import SubmitButton from "./SubmitButton"
+import PaymentAlert from "./PaymentAlert"
+import { syncValidatePayment } from "forms/validate/order-form"
+import { editShipping } from "actions/order/shipping"
+import { sameAsShipping } from "actions/order/payment"
+import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
 import {
   PanelGreen,
   DictyHeader,
@@ -20,23 +20,23 @@ import {
   TextInfo,
   HorizontalForm,
   SuccessButton
-} from 'styles'
+} from "styles"
 
 export const fields = [
-  'firstName',
-  'lastName',
-  'email',
-  'org',
-  'group',
-  'address',
-  'address2',
-  'city',
-  'state',
-  'zip',
-  'country',
-  'phone',
-  'payMethod',
-  'poNum'
+  "firstName",
+  "lastName",
+  "email",
+  "org",
+  "group",
+  "address",
+  "address2",
+  "city",
+  "state",
+  "zip",
+  "country",
+  "phone",
+  "payMethod",
+  "poNum"
 ]
 
 type Props = {
@@ -51,8 +51,6 @@ type Props = {
 }
 
 class Payment extends Component<Props> {
-  displayName = 'payment information'
-
   render() {
     const { consumer, editShipping, sameAsShipping } = this.props
     const {
@@ -83,14 +81,14 @@ class Payment extends Component<Props> {
             <h2>Please enter payment information</h2>
           </DictyHeader>
         </Box>
-        <Box w={['95%', '95%', '95%']}>
+        <Box w={["95%", "95%", "95%"]}>
           <Flex wrap justify="center">
-            <Box w={'95%'}>
+            <Box w={"95%"}>
               <PanelGreen>
                 <EditPanel
                   user={consumer}
                   edit={editShipping}
-                  title={'Ship to:'}
+                  title={"Ship to:"}
                 />
               </PanelGreen>
               <hr />
@@ -99,7 +97,7 @@ class Payment extends Component<Props> {
                 className={`xs`}
                 onClick={sameAsShipping}>
                 Same as shipping
-              </SuccessButton>{' '}
+              </SuccessButton>{" "}
               Click here if payer address is the same as shipping address<br />
               <br />
             </Box>
@@ -108,7 +106,7 @@ class Payment extends Component<Props> {
             <Flex wrap justify="center">
               <Box w={[1, 1, 1, 1 / 2]} mr={1}>
                 <User
-                  title={'Payer Address'}
+                  title={"Payer Address"}
                   firstName={firstName}
                   lastName={lastName}
                   email={email}
@@ -123,11 +121,11 @@ class Payment extends Component<Props> {
                   phone={phone}
                 />
               </Box>
-              <Box w={[1, 1, 1, '45%']} mr={1}>
+              <Box w={[1, 1, 1, "45%"]} mr={1}>
                 <Flex>
                   <Box w={1}>
                     <PaymentMethod
-                      title={'Payment Method'}
+                      title={"Payment Method"}
                       payMethod={payMethod}
                       poNum={poNum}
                     />
@@ -153,9 +151,9 @@ class Payment extends Component<Props> {
                 <Flex justify="flex-end">
                   <Box w={[1, 1, 1, 1 / 2]}>
                     <SubmitButton
-                      name={'Continue '}
+                      name={"Continue "}
                       submitting={submitting}
-                      icon={'arrow-circle-right'}
+                      icon={"arrow-circle-right"}
                     />
                     <TextInfo>
                       <small>
@@ -232,7 +230,7 @@ const mapDispatchToProps = dispatch => {
 Payment = connect(mapStateToProps, mapDispatchToProps)(Payment)
 
 export default reduxForm({
-  form: 'payment',
+  form: "payment",
   fields,
   onSubmit: submitForm,
   validate: syncValidatePayment

@@ -18,8 +18,6 @@ const info = [
 ]
 
 const Info = () => {
-  Info.displayName = "links to info pages"
-
   return (
     <PanelBlue>
       <LinkList list={info} />

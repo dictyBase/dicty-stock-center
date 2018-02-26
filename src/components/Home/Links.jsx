@@ -19,7 +19,6 @@ const content = [
 ]
 
 const Links = () => {
-  Links.displayName = "front page links"
   return (
     <PanelBlue>
       <LinkList list={content} />

@@ -11,8 +11,6 @@ const downloadLinks = [
 ]
 
 const Downloads = () => {
-  Downloads.displayName = "downloads links"
-
   return (
     <PanelBlue>
       <LinkList list={downloadLinks} title="Download / View" />

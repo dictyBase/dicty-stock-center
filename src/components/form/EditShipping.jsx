@@ -1,32 +1,32 @@
 // @flow
-import React, { Component } from 'react'
-import User from './User'
-import ShippingMethod from './ShippingMethod'
-import ShippingAdditional from './ShippingAdditional'
-import SubmitButton from './SubmitButton'
-import { reduxForm } from 'redux-form'
-import { submitForm } from 'actions/order/shipping'
-import { syncValidateShipping } from 'forms/validate/order-form'
-import { Flex, Box } from 'rebass'
-import { DictyHeader, AlertBox, HorizontalForm } from 'styles'
-import FontAwesome from 'react-fontawesome'
+import React, { Component } from "react"
+import User from "./User"
+import ShippingMethod from "./ShippingMethod"
+import ShippingAdditional from "./ShippingAdditional"
+import SubmitButton from "./SubmitButton"
+import { reduxForm } from "redux-form"
+import { submitForm } from "actions/order/shipping"
+import { syncValidateShipping } from "forms/validate/order-form"
+import { Flex, Box } from "rebass"
+import { DictyHeader, AlertBox, HorizontalForm } from "styles"
+import FontAwesome from "react-fontawesome"
 
 export const fields = [
-  'firstName',
-  'lastName',
-  'email',
-  'org',
-  'group',
-  'address',
-  'address2',
-  'city',
-  'state',
-  'zip',
-  'country',
-  'phone',
-  'shipAccount',
-  'shipAccountNum',
-  'comments'
+  "firstName",
+  "lastName",
+  "email",
+  "org",
+  "group",
+  "address",
+  "address2",
+  "city",
+  "state",
+  "zip",
+  "country",
+  "phone",
+  "shipAccount",
+  "shipAccountNum",
+  "comments"
 ]
 
 type Props = {
@@ -39,8 +39,6 @@ type Props = {
 }
 
 class EditShipping extends Component<Props> {
-  displayName = 'shipping information'
-
   render() {
     const { handleSubmit, submitting, error } = this.props
     const {
@@ -69,12 +67,12 @@ class EditShipping extends Component<Props> {
             <h2>Edit Shipping Information</h2>
           </DictyHeader>
         </Box>
-        <Box w={'85%'}>
+        <Box w={"85%"}>
           <HorizontalForm onSubmit={handleSubmit}>
             <Flex wrap justify="center">
               <Box w={[1, 1, 1, 1 / 2]} mr={1}>
                 <User
-                  title={'Shipping Address'}
+                  title={"Shipping Address"}
                   firstName={firstName}
                   lastName={lastName}
                   email={email}
@@ -89,11 +87,11 @@ class EditShipping extends Component<Props> {
                   phone={phone}
                 />
               </Box>
-              <Box w={[1, 1, 1, '45%']} mr={1}>
+              <Box w={[1, 1, 1, "45%"]} mr={1}>
                 <Flex>
                   <Box w={1}>
                     <ShippingMethod
-                      title={'Shipping Method'}
+                      title={"Shipping Method"}
                       shipAccount={shipAccount}
                       shipAccountNum={shipAccountNum}
                     />
@@ -102,7 +100,7 @@ class EditShipping extends Component<Props> {
                 <Flex>
                   <Box w={1}>
                     <ShippingAdditional
-                      title={'Additional Information'}
+                      title={"Additional Information"}
                       comments={comments}
                     />
                   </Box>
@@ -120,9 +118,9 @@ class EditShipping extends Component<Props> {
                 <Flex justify="flex-end">
                   <Box w={[1, 1, 1, 1 / 2]}>
                     <SubmitButton
-                      name={'Continue '}
+                      name={"Continue "}
                       submitting={submitting}
-                      icon={'arrow-circle-right'}
+                      icon={"arrow-circle-right"}
                     />
                   </Box>
                 </Flex>
@@ -176,7 +174,7 @@ const mapStateToProps = state => {
 
 export default reduxForm(
   {
-    form: 'editShipping',
+    form: "editShipping",
     fields,
     onSubmit: submitForm,
     validate: syncValidateShipping
