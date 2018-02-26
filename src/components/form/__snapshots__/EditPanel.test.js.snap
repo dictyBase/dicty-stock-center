@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of EditPanel 1`] = `
+.c0 {
+  cursor: pointer;
+}
+
 <div>
   <h4 />
   <div>
@@ -18,7 +22,7 @@ exports[`matching a snapshot of EditPanel 1`] = `
   <br />
   <div>
     <a
-      className="sc-giadOv kWtcoa"
+      className="c0"
       onClick={[Function]}
     >
       <span

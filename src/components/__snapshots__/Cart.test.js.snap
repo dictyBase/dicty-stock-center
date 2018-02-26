@@ -1,15 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Cart 1`] = `
+.c0 {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    width: 750px;
+  }
+}
+
+@media (min-width:992px) {
+  .c0 {
+    width: 970px;
+  }
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    width: 1170px;
+  }
+}
+
 <div
-  className="sc-eerKOB juxuCZ"
+  className="c0"
 >
   <div
-    className="sc-bxivhb bUZGRr sc-htpNat cPcSwG sc-bdVaJa iHZvIS"
+    className="sc-htpNat cPcSwG sc-bdVaJa iHZvIS"
     is={null}
   >
     <div
-      className="sc-ifAKCX cFlEyZ sc-bdVaJa iHZvIS"
+      className="iHZvIS"
       is={null}
     >
       <a

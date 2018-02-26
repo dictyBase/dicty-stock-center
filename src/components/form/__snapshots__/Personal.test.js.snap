@@ -1,23 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Personal 1`] = `
+.c2 {
+  color: #dc3545;
+}
+
+.c1 {
+  display: inline-block;
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+.c0 {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.c3 {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+
+.c3:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+}
+
 <div>
   <div
-    className="sc-kLIISr itrVsn"
+    className="c0"
   >
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        className="iplmxF"
         is={null}
       >
         <label
-          className="sc-dliRfk eLcvEu"
+          className="c1"
         >
           <span
-            className="sc-hmXxxW fwNEuV"
+            className="c2"
           >
             * 
           </span>
@@ -25,11 +69,11 @@ exports[`matching a snapshot of Personal 1`] = `
         </label>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        className="cvzxNy"
         is={null}
       >
         <input
-          className="sc-qrIAp hbjCtO"
+          className="c3"
           placeholder={undefined}
           type="text"
           value="Jane"
@@ -38,21 +82,21 @@ exports[`matching a snapshot of Personal 1`] = `
     </div>
   </div>
   <div
-    className="sc-kLIISr itrVsn"
+    className="c0"
   >
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        className="iplmxF"
         is={null}
       >
         <label
-          className="sc-dliRfk eLcvEu"
+          className="c1"
         >
           <span
-            className="sc-hmXxxW fwNEuV"
+            className="c2"
           >
             * 
           </span>
@@ -60,11 +104,11 @@ exports[`matching a snapshot of Personal 1`] = `
         </label>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        className="cvzxNy"
         is={null}
       >
         <input
-          className="sc-qrIAp hbjCtO"
+          className="c3"
           placeholder={undefined}
           type="text"
           value="Doe"
@@ -73,21 +117,21 @@ exports[`matching a snapshot of Personal 1`] = `
     </div>
   </div>
   <div
-    className="sc-kLIISr itrVsn"
+    className="c0"
   >
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa iplmxF"
+        className="iplmxF"
         is={null}
       >
         <label
-          className="sc-dliRfk eLcvEu"
+          className="c1"
         >
           <span
-            className="sc-hmXxxW fwNEuV"
+            className="c2"
           >
             * 
           </span>
@@ -95,11 +139,11 @@ exports[`matching a snapshot of Personal 1`] = `
         </label>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa cvzxNy"
+        className="cvzxNy"
         is={null}
       >
         <input
-          className="sc-qrIAp hbjCtO"
+          className="c3"
           placeholder={undefined}
           type="text"
           value="janedoe@gmail.com"

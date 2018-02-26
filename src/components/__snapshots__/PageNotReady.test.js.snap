@@ -1,11 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of PageNotReady 1`] = `
+.c0 {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.c1 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+  text-align: center;
+}
+
+.c1 h1 {
+  color: inherit;
+}
+
+.c1 p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+
+.c2 {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.c2.block {
+  display: block;
+  width: 100%;
+}
+
+.c2.large {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.c2.xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  width: 20%;
+}
+
+.c2 a {
+  color: #fff;
+}
+
+.c2 a:hover {
+  color: #fff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c2:focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+
+.c2:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.c2:active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    width: 750px;
+  }
+}
+
+@media (min-width:992px) {
+  .c0 {
+    width: 970px;
+  }
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    width: 1170px;
+  }
+}
+
 <div
-  className="sc-eerKOB juxuCZ"
+  className="c0"
 >
   <div
-    className="sc-gFaPwZ hoMIQS"
+    className="c1"
   >
     <h1>
       <span
@@ -18,7 +138,7 @@ exports[`matching a snapshot of PageNotReady 1`] = `
       This page is not ready yet.
     </p>
     <button
-      className="sc-kaNhvL jpxKph"
+      className="c2"
     >
       <a
         href="/"

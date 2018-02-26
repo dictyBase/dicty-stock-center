@@ -1,24 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of OrderConfirmation 1`] = `
+.c1 {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  text-align: center;
+}
+
+.c0 {
+  text-align: center;
+}
+
+.c2 {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.c2.block {
+  display: block;
+  width: 100%;
+}
+
+.c2.large {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.c2.xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  width: 20%;
+}
+
+.c2 a {
+  color: #fff;
+}
+
+.c2 a:hover {
+  color: #fff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c2:focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+
+.c2:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.c2:active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
 <div
-  className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
   is={null}
 >
   <div
-    className="sc-ifAKCX cFlEyZ sc-bdVaJa csVOHI"
+    className="csVOHI"
     is={null}
   >
     <div
-      className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
       is={null}
     >
       <div
-        className="sc-krDsej itMemN sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        className="c0 gRrvFh"
         is={null}
       >
         <div
-          className="sc-dymIpo daugCr"
+          className="c1"
         >
           <span
             aria-hidden={true}
@@ -49,11 +140,11 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
         </div>
       </div>
       <div
-        className="sc-ifAKCX cFlEyZ sc-bdVaJa gRrvFh"
+        className="gRrvFh"
         is={null}
       >
         <button
-          className="large block sc-kaNhvL jpxKph"
+          className="large block c2"
         >
           <a
             href="/"

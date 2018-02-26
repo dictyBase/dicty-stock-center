@@ -1,9 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of PaymentAlert 1`] = `
+.c0 {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
 <div>
   <div
-    className="sc-bnXvFD fbdCb"
+    className="c0"
   >
     <p>
       <strong>
@@ -36,7 +46,7 @@ exports[`matching a snapshot of PaymentAlert 1`] = `
     </p>
   </div>
   <div
-    className="sc-bnXvFD fbdCb"
+    className="c0"
   >
     <p>
       For full payment information please click 

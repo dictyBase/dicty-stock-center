@@ -1,22 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of PaymentInfo 1`] = `
+.c2 {
+  color: #dc3545;
+}
+
+.c1 {
+  display: inline-block;
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+.c0 {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.c3 {
+  position: relative;
+  display: inline-block;
+  padding-right: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 <div
-  className="sc-kLIISr itrVsn"
+  className="c0"
 >
   <div
-    className="sc-bxivhb bUZGRr sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
     is={null}
   >
     <div
-      className="sc-ifAKCX cFlEyZ sc-bdVaJa cyncUw"
+      className="cyncUw"
       is={null}
     >
       <label
-        className="sc-dliRfk eLcvEu"
+        className="c1"
       >
         <span
-          className="sc-hmXxxW fwNEuV"
+          className="c2"
           title="required field"
         >
           * 
@@ -25,11 +52,11 @@ exports[`matching a snapshot of PaymentInfo 1`] = `
       </label>
     </div>
     <div
-      className="sc-ifAKCX cFlEyZ sc-bdVaJa XupaC"
+      className="XupaC"
       is={null}
     >
       <label
-        className="sc-bmyXtO ddZAYX"
+        className="c3"
       >
         <input
           checked={false}
@@ -40,7 +67,7 @@ exports[`matching a snapshot of PaymentInfo 1`] = `
           Credit Card
       </label>
       <label
-        className="sc-bmyXtO ddZAYX"
+        className="c3"
       >
         <input
           checked={false}
@@ -51,7 +78,7 @@ exports[`matching a snapshot of PaymentInfo 1`] = `
           Wire Transfer
       </label>
       <label
-        className="sc-bmyXtO ddZAYX"
+        className="c3"
       >
         <input
           checked={false}

@@ -1,11 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Downloads 1`] = `
+.c0 {
+  background-color: #eff8fb;
+  border: 1px solid #eff8fb;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.c1 ul,
+.c1 li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c1 a {
+  font-size: 18px;
+}
+
 <div
-  className="sc-fzsDOv bjlbND"
+  className="c0"
 >
   <div
-    className="sc-gPWkxV dfohwQ"
+    className="c1"
   >
     <h3>
       Download / View

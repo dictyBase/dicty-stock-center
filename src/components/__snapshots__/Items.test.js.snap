@@ -3,11 +3,11 @@
 exports[`matching a snapshot of Items 1`] = `
 <div>
   <div
-    className="sc-bxivhb bUZGRr sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+    className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
     is={null}
   >
     <div
-      className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+      className="goNVXm"
       is={null}
     >
       <h5>
@@ -15,7 +15,7 @@ exports[`matching a snapshot of Items 1`] = `
       </h5>
     </div>
     <div
-      className="sc-ifAKCX cFlEyZ sc-bdVaJa goNVXm"
+      className="goNVXm"
       is={null}
     >
       <h5>
