@@ -1,4 +1,4 @@
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 
 const {
   ADD_SHIPPING,
@@ -6,7 +6,7 @@ const {
   SAME_AS_SHIPPING,
   SUBMIT_REQUEST,
   SUBMIT_SUCCESS,
-  SUBMIT_FAILURE,
+  SUBMIT_FAILURE
 } = dsctypes
 
 // Reducer for payment and editPayment forms
@@ -27,7 +27,7 @@ const paymentFormReducer = (state, action) => {
         state: { value: consumer.state, visited: true, touched: true },
         zip: { value: consumer.zip, visited: true, touched: true },
         country: { value: consumer.country, visited: true, touched: true },
-        phone: { value: consumer.phone, visited: true, touched: true },
+        phone: { value: consumer.phone, visited: true, touched: true }
       }
     default:
       return state
@@ -37,11 +37,11 @@ const paymentFormReducer = (state, action) => {
 // redux-form reducer plugin
 export const formReducerPlugin = {
   payment: paymentFormReducer,
-  editPayment: paymentFormReducer,
+  editPayment: paymentFormReducer
 }
 
 const initialState = {
-  initialized: false,
+  initialized: false
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -54,8 +54,8 @@ const orderReducer = (state = initialState, action) => {
         shipping: {
           account: action.details.shipAccount,
           accountNum: action.details.shipAccountNum,
-          comments: action.details.comments,
-        },
+          comments: action.details.comments
+        }
       }
     case ADD_PAYMENT:
       return {
@@ -64,25 +64,25 @@ const orderReducer = (state = initialState, action) => {
         payer: action.payer,
         payment: {
           method: action.payment.method,
-          poNum: action.payment.poNum,
-        },
+          poNum: action.payment.poNum
+        }
       }
     case SUBMIT_REQUEST:
       return {
         ...state,
-        submitting: true,
+        submitting: true
       }
     case SUBMIT_SUCCESS:
       return {
         ...state,
         submitting: false,
-        id: action.order.id,
+        id: action.order.id
       }
     case SUBMIT_FAILURE:
       return {
         ...state,
         submitting: false,
-        error: action.error.message,
+        error: action.error.message
       }
     default:
       return state

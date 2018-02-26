@@ -1,4 +1,4 @@
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 
 const {
   AVAILABILITY_FETCH_SUCCESS,
@@ -21,12 +21,12 @@ const {
   PLASMIDS_SEARCH_REQUEST,
   PLASMIDS_SEARCH_SUCCESS,
   PLASMIDS_SEARCH_FAILURE,
-  CLEAR_PLASMIDS,
+  CLEAR_PLASMIDS
 } = dsctypes
 
 const initialState = {
   availability: {
-    isFetching: false,
+    isFetching: false
   },
   strainCatalog: {
     isFetching: false,
@@ -34,12 +34,12 @@ const initialState = {
     links: {},
     meta: {
       pagination: {
-        number: 1,
-      },
-    },
+        number: 1
+      }
+    }
   },
   strain: {
-    isFetching: false,
+    isFetching: false
   },
   plasmidCatalog: {
     isFetching: false,
@@ -47,13 +47,13 @@ const initialState = {
     links: {},
     meta: {
       pagination: {
-        number: 1,
-      },
-    },
+        number: 1
+      }
+    }
   },
   plasmid: {
-    isFetching: false,
-  },
+    isFetching: false
+  }
 }
 
 const stockCenterReducer = (state = initialState, action) => {
@@ -62,32 +62,32 @@ const stockCenterReducer = (state = initialState, action) => {
       return {
         ...state,
         availability: {
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case AVAILABILITY_FETCH_SUCCESS:
       return {
         ...state,
         availability: {
           isFetching: false,
-          data: action.availability,
-        },
+          data: action.availability
+        }
       }
     case AVAILABILITY_FETCH_FAILURE:
       return {
         ...state,
         availability: {
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case STRAINS_FETCH_REQUEST:
       return {
         ...state,
         strainCatalog: {
           ...state.strainCatalog,
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case STRAINS_FETCH_SUCCESS:
       return {
@@ -97,8 +97,8 @@ const stockCenterReducer = (state = initialState, action) => {
           isFetching: false,
           links: action.links,
           meta: action.meta,
-          data: state.strainCatalog.data.concat(action.data),
-        },
+          data: state.strainCatalog.data.concat(action.data)
+        }
       }
     case STRAINS_FETCH_FAILURE:
       return {
@@ -106,8 +106,8 @@ const stockCenterReducer = (state = initialState, action) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case SEARCH_STRAINS_REQUEST:
       return {
@@ -115,16 +115,16 @@ const stockCenterReducer = (state = initialState, action) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case STRAINS_SEARCH_REQUEST:
       return {
         ...state,
         strainCatalog: {
           ...state.strainCatalog,
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case STRAINS_SEARCH_SUCCESS:
       return {
@@ -134,8 +134,8 @@ const stockCenterReducer = (state = initialState, action) => {
           isFetching: false,
           data: action.data,
           links: action.links,
-          meta: action.meta,
-        },
+          meta: action.meta
+        }
       }
     case STRAINS_SEARCH_FAILURE:
       return {
@@ -143,8 +143,8 @@ const stockCenterReducer = (state = initialState, action) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case CLEAR_STRAINS:
       return {
@@ -154,27 +154,27 @@ const stockCenterReducer = (state = initialState, action) => {
           data: [],
           meta: {
             pagination: {
-              number: 1,
-            },
+              number: 1
+            }
           },
-          links: {},
-        },
+          links: {}
+        }
       }
     case STRAIN_FETCH_REQUEST:
       return {
         ...state,
         strain: {
           ...state.strain,
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case STRAIN_FETCH_SUCCESS:
       return {
         ...state,
         strain: {
           isFetching: false,
-          ...action.data,
-        },
+          ...action.data
+        }
       }
     case STRAIN_FETCH_FAILURE:
       return {
@@ -182,16 +182,16 @@ const stockCenterReducer = (state = initialState, action) => {
         strain: {
           ...state.strain,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case PLASMIDS_FETCH_REQUEST:
       return {
         ...state,
         plasmidCatalog: {
           ...state.plasmidCatalog,
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case PLASMIDS_FETCH_SUCCESS:
       return {
@@ -201,8 +201,8 @@ const stockCenterReducer = (state = initialState, action) => {
           isFetching: false,
           links: action.links,
           meta: action.meta,
-          data: state.plasmidCatalog.data.concat(action.data),
-        },
+          data: state.plasmidCatalog.data.concat(action.data)
+        }
       }
     case PLASMIDS_FETCH_FAILURE:
       return {
@@ -210,16 +210,16 @@ const stockCenterReducer = (state = initialState, action) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case PLASMIDS_SEARCH_REQUEST:
       return {
         ...state,
         plasmidCatalog: {
           ...state.plasmidCatalog,
-          isFetching: true,
-        },
+          isFetching: true
+        }
       }
     case PLASMIDS_SEARCH_SUCCESS:
       return {
@@ -229,8 +229,8 @@ const stockCenterReducer = (state = initialState, action) => {
           isFetching: false,
           data: action.data,
           links: action.links,
-          meta: action.meta,
-        },
+          meta: action.meta
+        }
       }
     case PLASMIDS_SEARCH_FAILURE:
       return {
@@ -238,8 +238,8 @@ const stockCenterReducer = (state = initialState, action) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          error: action.error,
-        },
+          error: action.error
+        }
       }
     case CLEAR_PLASMIDS:
       return {
@@ -250,10 +250,10 @@ const stockCenterReducer = (state = initialState, action) => {
           links: {},
           meta: {
             pagination: {
-              number: 1,
-            },
-          },
-        },
+              number: 1
+            }
+          }
+        }
       }
     default:
       return state

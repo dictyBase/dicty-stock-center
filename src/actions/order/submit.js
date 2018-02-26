@@ -1,14 +1,14 @@
 import { createOrder } from "utils/api"
 import { status, json } from "utils/fetch"
 import { push } from "react-router-redux"
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 
 const { SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE } = dsctypes
 
 const submitRequest = () => {
   return {
     type: SUBMIT_REQUEST,
-    submitting: true,
+    submitting: true
   }
 }
 
@@ -16,7 +16,7 @@ const submitSuccess = order => {
   return {
     type: SUBMIT_SUCCESS,
     submitting: false,
-    order,
+    order
   }
 }
 
@@ -24,7 +24,7 @@ const submitFailure = error => {
   return {
     type: SUBMIT_FAILURE,
     submitting: false,
-    error,
+    error
   }
 }
 

@@ -1,11 +1,11 @@
-import { dsctypes } from "../constants"
+import { dsctypes } from "constants/dsctypes"
 
 const {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
+  LOGOUT_SUCCESS
 } = dsctypes
 
 const authReducer = (state = {}, action) => {
@@ -15,14 +15,14 @@ const authReducer = (state = {}, action) => {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: false,
-        provider: action.provider,
+        provider: action.provider
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.token ? true : false,
-        user: action.user,
+        user: action.user
       }
     case LOGIN_FAILURE:
       return {
@@ -30,12 +30,12 @@ const authReducer = (state = {}, action) => {
         isFetching: action.isFetching,
         isAuthenticated: false,
         error: action.error,
-        provider: null,
+        provider: null
       }
     case LOGOUT_REQUEST:
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       }
     case LOGOUT_SUCCESS:
       return {
@@ -43,7 +43,7 @@ const authReducer = (state = {}, action) => {
         isFetching: action.isFetching,
         isAuthenticated: false,
         provider: null,
-        user: null,
+        user: null
       }
     default:
       return state

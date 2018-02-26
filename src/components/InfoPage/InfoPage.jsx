@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton"
 import InfoPageView from "./InfoPageView"
 import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
-import { NAMESPACE } from "constants/index"
+import { NAMESPACE } from "constants/dsctypes"
 
 class InfoPage extends Component {
   // set defaultprops to prevent console warnings

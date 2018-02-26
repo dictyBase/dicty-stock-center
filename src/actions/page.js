@@ -1,5 +1,5 @@
-import { dsctypes } from 'constants/index'
-import { push } from 'react-router-redux'
+import { dsctypes } from "constants/dsctypes"
+import { push } from "react-router-redux"
 
 const {
   EDIT_PAGE,
@@ -63,24 +63,24 @@ export const fetchInfoPage = slug => {
     try {
       dispatch(fetchPageRequest())
       const res = await fetch(`${server}/contents/slug/${slug}`)
-      const contentType = res.headers.get('content-type')
-      if (contentType && contentType.includes('application/vnd.api+json')) {
+      const contentType = res.headers.get("content-type")
+      if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
           dispatch(fetchPageSuccess(json))
         } else {
           printError(res, json)
           dispatch(fetchPageFailure(res.body))
-          dispatch(push('/error'))
+          dispatch(push("/error"))
         }
       } else {
-        console.log('Not valid JSON')
+        console.log("Not valid JSON")
         dispatch(fetchPageFailure(res.body))
-        dispatch(push('/error'))
+        dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
-      dispatch(push('/error'))
+      dispatch(push("/error"))
       console.log(`Network error: ${error.message}`)
     }
   }
@@ -89,7 +89,7 @@ export const fetchInfoPage = slug => {
 // helper function to print HTTP errors to console
 // responses are structured in JSONAPI format
 const printError = (res, json) => {
-  console.log('HTTP Error')
+  console.log("HTTP Error")
   console.log(
     `HTTP Response: ${res.status}
     Title: ${json.errors[0].title}
@@ -124,14 +124,14 @@ export const saveEditing = (id, body) => {
     try {
       dispatch(savePageRequest())
       const res = await fetch(`${server}/contents/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         }
       })
-      const contentType = res.headers.get('content-type')
-      if (contentType && contentType.includes('application/vnd.api+json')) {
+      const contentType = res.headers.get("content-type")
+      if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
           dispatch(savePageSuccess())
@@ -139,16 +139,16 @@ export const saveEditing = (id, body) => {
         } else {
           printError(res, json)
           dispatch(savePageFailure(res.body))
-          dispatch(push('/error'))
+          dispatch(push("/error"))
         }
       } else {
-        console.log('Not valid JSON')
+        console.log("Not valid JSON")
         dispatch(savePageFailure(res.body))
-        dispatch(push('/error'))
+        dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
-      dispatch(push('/error'))
+      dispatch(push("/error"))
       console.log(`Network error: ${error.message}`)
     }
   }
@@ -159,30 +159,30 @@ export const saveInlineEditing = (id, body) => {
     try {
       dispatch(savePageRequest())
       const res = await fetch(`${server}/contents/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         }
       })
-      const contentType = res.headers.get('content-type')
-      if (contentType && contentType.includes('application/vnd.api+json')) {
+      const contentType = res.headers.get("content-type")
+      if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
           dispatch(savePageSuccess())
         } else {
           printError(res, json)
           dispatch(savePageFailure(res.body))
-          dispatch(push('/error'))
+          dispatch(push("/error"))
         }
       } else {
-        console.log('Not valid JSON')
+        console.log("Not valid JSON")
         dispatch(savePageFailure(res.body))
-        dispatch(push('/error'))
+        dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
-      dispatch(push('/error'))
+      dispatch(push("/error"))
       console.log(`Network error: ${error.message}`)
     }
   }

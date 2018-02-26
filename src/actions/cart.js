@@ -1,4 +1,5 @@
-import { dsctypes, fees } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
+import { fees } from "constants/fees"
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
@@ -15,7 +16,7 @@ const addItem = item => {
   return {
     type: ADD_TO_CART,
     fee: fee,
-    item,
+    item
   }
 }
 
@@ -35,7 +36,7 @@ export const removeItem = id => {
       .indexOf(id)
     dispatch({
       type: REMOVE_FROM_CART,
-      removeIndex,
+      removeIndex
     })
   }
 }

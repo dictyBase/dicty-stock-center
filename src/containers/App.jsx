@@ -11,8 +11,8 @@ import Cart from "components/Cart"
 import RenderRoutes from "routes/RenderRoutes"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
-import { FooterLinks } from "constants/Footer"
-import { NavbarLinks } from "constants/Navbar"
+import { FooterLinks } from "constants/footer"
+import { NavbarLinks } from "constants/navbar"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {

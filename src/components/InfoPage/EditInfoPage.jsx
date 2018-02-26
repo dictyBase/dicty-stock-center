@@ -30,7 +30,7 @@ import {
   DefaultButton,
   SuccessButton
 } from "styles"
-import { NAMESPACE } from "constants/index"
+import { NAMESPACE } from "constants/dsctypes"
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()

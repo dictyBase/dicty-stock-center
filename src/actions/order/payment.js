@@ -1,7 +1,7 @@
 import { push } from "react-router-redux"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 
 const { ADD_PAYMENT, SAME_AS_SHIPPING } = dsctypes
 
@@ -22,8 +22,8 @@ export const addPayment = (user, payment) => {
       state,
       zip,
       country,
-      phone,
-    },
+      phone
+    }
   } = user.data
 
   const payer = {
@@ -40,13 +40,13 @@ export const addPayment = (user, payment) => {
     state,
     zip,
     country,
-    phone,
+    phone
   }
   return {
     type: ADD_PAYMENT,
     initialized: true,
     payer,
-    payment,
+    payment
   }
 }
 
@@ -55,7 +55,7 @@ let server = process.env.REACT_APP_API_SERVER
 export const submitForm = (values, dispatch) => {
   let payment = {
     method: values.payMethod,
-    poNum: values.poNum,
+    poNum: values.poNum
   }
   return new Promise((resolve, reject) => {
     getUser(server, values.email)
@@ -107,7 +107,7 @@ export const sameAsShipping = () => {
     const { consumer } = getState().order
     dispatch({
       type: SAME_AS_SHIPPING,
-      consumer,
+      consumer
     })
   }
 }

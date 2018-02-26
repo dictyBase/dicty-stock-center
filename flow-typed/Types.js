@@ -48,10 +48,10 @@ declare module "components/Cart" {
 declare module "routes/RenderRoutes" {
   declare module.exports: any
 }
-declare module "constants/Footer" {
+declare module "constants/footer" {
   declare module.exports: any
 }
-declare module "constants/Navbar" {
+declare module "constants/navbar" {
   declare module.exports: any
 }
 declare module "components/TableLoader" {

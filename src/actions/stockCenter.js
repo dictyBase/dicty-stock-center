@@ -1,4 +1,4 @@
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 import availability from "fake-data/availability"
 // import strainList from 'fake-data/strains'
 import { status, json } from "utils/fetch"
@@ -22,7 +22,7 @@ const {
   PLASMIDS_SEARCH_REQUEST,
   PLASMIDS_SEARCH_SUCCESS,
   PLASMIDS_SEARCH_FAILURE,
-  CLEAR_PLASMIDS,
+  CLEAR_PLASMIDS
 } = dsctypes
 
 // const requestAvailability = () => {
@@ -38,13 +38,13 @@ const receiveAvailability = data => {
   return {
     type: AVAILABILITY_FETCH_SUCCESS,
     isFetching: false,
-    availability: data.attributes.availability,
+    availability: data.attributes.availability
   }
 }
 
 const requestStrains = () => {
   return {
-    type: STRAINS_FETCH_REQUEST,
+    type: STRAINS_FETCH_REQUEST
   }
 }
 
@@ -53,40 +53,40 @@ const receiveStrains = data => {
     type: STRAINS_FETCH_SUCCESS,
     data: data.data,
     links: data.links,
-    meta: data.meta,
+    meta: data.meta
   }
 }
 
 const strainsFetchFailure = error => {
   return {
     type: STRAINS_FETCH_FAILURE,
-    error,
+    error
   }
 }
 
 const requestStrain = () => {
   return {
-    type: STRAIN_FETCH_REQUEST,
+    type: STRAIN_FETCH_REQUEST
   }
 }
 
 const receiveStrain = data => {
   return {
     type: STRAIN_FETCH_SUCCESS,
-    data,
+    data
   }
 }
 
 const strainFetchFailure = error => {
   return {
     type: STRAIN_FETCH_FAILURE,
-    error,
+    error
   }
 }
 
 const strainSearch = search => {
   return {
-    type: STRAINS_SEARCH_REQUEST,
+    type: STRAINS_SEARCH_REQUEST
   }
 }
 
@@ -96,26 +96,26 @@ const receiveStrainSearch = data => {
     isFetching: false,
     data: data.data,
     links: data.links,
-    meta: data.meta,
+    meta: data.meta
   }
 }
 
 const strainSearchFailure = error => {
   return {
     type: STRAINS_SEARCH_FAILURE,
-    error,
+    error
   }
 }
 
 const clearStrains = () => {
   return {
-    type: CLEAR_STRAINS,
+    type: CLEAR_STRAINS
   }
 }
 
 const requestPlasmids = () => {
   return {
-    type: PLASMIDS_FETCH_REQUEST,
+    type: PLASMIDS_FETCH_REQUEST
   }
 }
 
@@ -124,20 +124,20 @@ const receivePlasmids = data => {
     type: PLASMIDS_FETCH_SUCCESS,
     data: data.data,
     links: data.links,
-    meta: data.meta,
+    meta: data.meta
   }
 }
 
 const plasmidsFetchFailure = error => {
   return {
     type: PLASMIDS_FETCH_FAILURE,
-    error,
+    error
   }
 }
 
 const plasmidsSearch = search => {
   return {
-    type: PLASMIDS_SEARCH_REQUEST,
+    type: PLASMIDS_SEARCH_REQUEST
   }
 }
 
@@ -147,20 +147,20 @@ const receivePlasmidsSearch = data => {
     isFetching: false,
     data: data.data,
     links: data.links,
-    meta: data.meta,
+    meta: data.meta
   }
 }
 
 const plasmidsSearchFailure = error => {
   return {
     type: PLASMIDS_SEARCH_FAILURE,
-    error,
+    error
   }
 }
 
 const clearPlasmids = () => {
   return {
-    type: CLEAR_PLASMIDS,
+    type: CLEAR_PLASMIDS
   }
 }
 
@@ -257,7 +257,7 @@ const transformStrain = strain => {
       attribute: phenotype.attributes.phen_attribute,
       notes: phenotype.attributes.value,
       evidence: phenotype.attributes.evidence,
-      reference: "placeholder",
+      reference: "placeholder"
     }
   })
   const genotypes = strain.included[2].data.map(genotype => {
@@ -270,7 +270,7 @@ const transformStrain = strain => {
     description: strain.data.attributes.description,
     characteristics: characteristics.join(", "),
     phenotypes,
-    genotypes,
+    genotypes
   }
 }
 

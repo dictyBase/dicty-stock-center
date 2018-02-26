@@ -1,10 +1,9 @@
-import { dsctypes } from "constants/index"
-// import simpleStorage from 'simplestorage.js'
+import { dsctypes } from "constants/dsctypes"
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
 
 const initialState = {
-  addedItems: [],
+  addedItems: []
 }
 
 const addedItems = (state = initialState.addedItems, action) => {
@@ -25,13 +24,13 @@ const addedItems = (state = initialState.addedItems, action) => {
         {
           id: action.item.id,
           name: action.item.systematicName,
-          fee: action.fee,
-        },
+          fee: action.fee
+        }
       ]
     case REMOVE_FROM_CART:
       return [
         ...state.slice(0, action.removeIndex),
-        ...state.slice(action.removeIndex + 1),
+        ...state.slice(action.removeIndex + 1)
       ]
     default:
       return state
@@ -40,7 +39,7 @@ const addedItems = (state = initialState.addedItems, action) => {
 
 const cartReducer = (state = initialState, action) => {
   return {
-    addedItems: addedItems(state.addedItems, action),
+    addedItems: addedItems(state.addedItems, action)
   }
 }
 

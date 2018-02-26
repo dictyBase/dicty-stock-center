@@ -1,7 +1,7 @@
 import { push } from "react-router-redux"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
-import { dsctypes } from "constants/index"
+import { dsctypes } from "constants/dsctypes"
 
 const { ADD_SHIPPING } = dsctypes
 
@@ -22,8 +22,8 @@ export const addShipping = (user, details) => {
       state,
       zip,
       country,
-      phone,
-    },
+      phone
+    }
   } = user.data
 
   const consumer = {
@@ -40,13 +40,13 @@ export const addShipping = (user, details) => {
     state,
     zip,
     country,
-    phone,
+    phone
   }
   return {
     type: ADD_SHIPPING,
     initialized: true,
     consumer,
-    details,
+    details
   }
 }
 
@@ -55,7 +55,7 @@ export const submitForm = (values, dispatch) => {
   let details = {
     shipAccount: values.shipAccount,
     shipAccountNum: values.shipAccountNum,
-    comments: values.comments,
+    comments: values.comments
   }
   return new Promise((resolve, reject) => {
     getUser(server, values.email)
