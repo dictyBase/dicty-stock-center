@@ -1,35 +1,44 @@
-import 'isomorphic-fetch'
-import { polyfill } from 'es6-promise'
-polyfill()
+//@flow
 
-export const getStock = (url, id, type) => {
+export const getStock = (url: string, id: string, type: string) => {
   let config = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
   }
-  if (type === 'strain') {
+  if (type === "strain") {
     return fetch(
       `${url}/stocks/${id}?include=characteristics,phenotypes,genotypes,publications`,
       config
     )
-  } else if (type === 'plasmid') {
+  } else if (type === "plasmid") {
     return fetch(`${url}/stocks/${id}?include=`)
   }
 }
-export const getPage = (url, page, size, type) => {
+export const getPage = (
+  url: string,
+  page: string,
+  size: string,
+  type: string
+) => {
   let config = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
   }
   return fetch(
     `${url}/stocks?filter[type]=${type}&page[number]=${page}&page[size]=${size}`,
     config
   )
 }
-export const searchStocks = (url, page, size, search, type) => {
+export const searchStocks = (
+  url: string,
+  page: string,
+  size: string,
+  search: string,
+  type: string
+) => {
   let config = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
   }
   return fetch(
     `${url}/stocks?filter[type]=${type}&filter[id]=${search}
@@ -37,13 +46,13 @@ export const searchStocks = (url, page, size, search, type) => {
     config
   )
 }
-export const createUser = (url, values) => {
+export const createUser = (url: string, values: Object) => {
   let config = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       data: {
-        type: 'user',
+        type: "user",
         attributes: {
           first_name: values.firstName,
           last_name: values.lastName,
@@ -62,21 +71,21 @@ export const createUser = (url, values) => {
   }
   return fetch(`${url}/users`, config)
 }
-export const getUser = (url, id) => {
+export const getUser = (url: string, id: string) => {
   let config = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
   }
   return fetch(`${url}/users/${id}`, config)
 }
 
-export const updateUser = (url, values) => {
+export const updateUser = (url: string, values: Object) => {
   let config = {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       data: {
-        type: 'user',
+        type: "user",
         id: values.email,
         attributes: {
           first_name: values.firstName,
@@ -98,16 +107,16 @@ export const updateUser = (url, values) => {
 }
 
 // todo: dsc stocks and purchaser info
-export const createOrder = (url, order) => {
+export const createOrder = (url: string, order: Object) => {
   const { shipping, payment, consumer, payer } = order
   let config = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       data: {
-        type: 'order',
+        type: "order",
         attributes: {
-          created: '',
+          created: "",
           shipping: {
             account: shipping.account,
             account_num: shipping.accountNum,
@@ -117,11 +126,11 @@ export const createOrder = (url, order) => {
             method: payment.method,
             purchase_order: payment.poNum
           },
-          status: 'Processing'
+          status: "Processing"
         },
         relationships: {
           stocks: {
-            data: [{ type: '', id: '' }]
+            data: [{ type: "", id: "" }]
           },
           consumer: {
             data: {
@@ -137,8 +146,8 @@ export const createOrder = (url, order) => {
           },
           purchaser: {
             data: {
-              type: '',
-              id: ''
+              type: "",
+              id: ""
             }
           }
         }

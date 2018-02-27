@@ -99,6 +99,9 @@ declare module "middlewares/storage" {
 declare module "validator/lib/isEmail" {
   declare module.exports: any
 }
+declare module "history/createBrowserHistory" {
+  declare module.exports: any
+}
 
 // node_modules
 declare module "react-loading-skeleton" {

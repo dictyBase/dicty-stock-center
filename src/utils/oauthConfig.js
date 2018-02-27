@@ -1,3 +1,4 @@
+// @flow
 import clientConfig from "utils/clientConfig"
 
 // const getRandomString = (length) => {
@@ -20,7 +21,7 @@ const oauthConfig = {
     scopes: ["email"],
     scopeDelimiter: " ",
     optionalUrlParams: [["state", "google"]],
-    popupOptions: { width: 1020, height: 633 },
+    popupOptions: { width: 1020, height: 633 }
   },
   facebook: {
     name: "Facebook",
@@ -31,7 +32,7 @@ const oauthConfig = {
     scopes: ["email"],
     scopeDelimiter: ",",
     optionalUrlParams: [["state", "facebook"], ["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 },
+    popupOptions: { width: 1028, height: 640 }
   },
   linkedin: {
     name: "LinkedIn",
@@ -42,7 +43,7 @@ const oauthConfig = {
     scopes: ["r_emailaddress"],
     scopeDelimiter: " ",
     requiredUrlParams: [["state", "linkedin"], ["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 },
+    popupOptions: { width: 1028, height: 640 }
   },
   orcid: {
     name: "ORCID",
@@ -53,8 +54,8 @@ const oauthConfig = {
     scopes: ["/authenticate"],
     scopeDelimiter: " ",
     requiredUrlParams: [["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 },
-  },
+    popupOptions: { width: 1028, height: 640 }
+  }
 }
 
 export default oauthConfig
