@@ -173,7 +173,22 @@ declare module "redux-thunk" {
 declare module "simplestorage.js" {
   declare module.exports: any
 }
-
+// reducers
+declare module "reducers/cart" {
+  declare module.exports: any
+}
+declare module "reducers/stockCenter" {
+  declare module.exports: any
+}
+declare module "reducers/page" {
+  declare module.exports: any
+}
+declare module "reducers/order" {
+  declare module.exports: any
+}
+declare module "reducers/auth" {
+  declare module.exports: any
+}
 // styles
 declare module "styles" {
   declare module.exports: any

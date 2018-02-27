@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 
 const {
@@ -56,7 +57,7 @@ const initialState = {
   }
 }
 
-const stockCenterReducer = (state = initialState, action) => {
+const stockCenterReducer = (state: Object = initialState, action: Object) => {
   switch (action.type) {
     case AVAILABILITY_FETCH_REQUEST:
       return {

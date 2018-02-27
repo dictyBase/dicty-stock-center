@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 
 const {
@@ -8,7 +9,7 @@ const {
   LOGOUT_SUCCESS
 } = dsctypes
 
-const authReducer = (state = {}, action) => {
+const authReducer = (state: Object = {}, action: Object) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {

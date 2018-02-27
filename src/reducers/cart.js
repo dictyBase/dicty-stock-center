@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
@@ -6,7 +7,7 @@ const initialState = {
   addedItems: []
 }
 
-const addedItems = (state = initialState.addedItems, action) => {
+const addedItems = (state = initialState.addedItems, action: Object) => {
   switch (action.type) {
     case ADD_TO_CART:
       if (
@@ -37,7 +38,7 @@ const addedItems = (state = initialState.addedItems, action) => {
   }
 }
 
-const cartReducer = (state = initialState, action) => {
+const cartReducer = (state: Object = initialState, action: Object) => {
   return {
     addedItems: addedItems(state.addedItems, action)
   }

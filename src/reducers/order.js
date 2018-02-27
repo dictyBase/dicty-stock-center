@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 
 const {
@@ -10,7 +11,7 @@ const {
 } = dsctypes
 
 // Reducer for payment and editPayment forms
-const paymentFormReducer = (state, action) => {
+const paymentFormReducer = (state: Object, action: Object) => {
   switch (action.type) {
     case SAME_AS_SHIPPING:
       const { consumer } = action
@@ -44,7 +45,7 @@ const initialState = {
   initialized: false
 }
 
-const orderReducer = (state = initialState, action) => {
+const orderReducer = (state: Object = initialState, action: Object) => {
   switch (action.type) {
     case ADD_SHIPPING:
       return {

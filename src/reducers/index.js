@@ -1,3 +1,4 @@
+// @flow
 import { combineReducers } from "redux"
 import auth from "reducers/auth"
 import { routerReducer } from "react-router-redux"
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   order: orderReducer,
   page: pageReducer,
   stockCenter: stockCenterReducer,
-  cart: cartReducer,
+  cart: cartReducer
 })
 
 export default rootReducer

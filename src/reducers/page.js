@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 
 const {
@@ -14,7 +15,7 @@ const initialState = {
   content: null
 }
 
-const pageReducer = (state = initialState, action) => {
+const pageReducer = (state: Object = initialState, action: Object) => {
   switch (action.type) {
     case FETCH_PAGE_REQUEST:
       return {
