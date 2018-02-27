@@ -1,3 +1,4 @@
+// @flow
 import { push } from "react-router-redux"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
@@ -5,7 +6,7 @@ import { dsctypes } from "constants/dsctypes"
 
 const { ADD_SHIPPING } = dsctypes
 
-export const addShipping = (user, details) => {
+export const addShipping = (user: Object, details: Object) => {
   // retrieve user info from json api structure and
   // store in the state of the app
   const {
@@ -51,7 +52,7 @@ export const addShipping = (user, details) => {
 }
 
 let server = process.env.REACT_APP_API_SERVER
-export const submitForm = (values, dispatch) => {
+export const submitForm = (values: Object, dispatch: Function) => {
   let details = {
     shipAccount: values.shipAccount,
     shipAccountNum: values.shipAccountNum,
@@ -102,7 +103,7 @@ export const submitForm = (values, dispatch) => {
 
 // direct user to edit shipping information
 export const editShipping = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(push("/order/shipping/edit"))
   }
 }

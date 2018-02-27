@@ -93,6 +93,15 @@ declare module "utils/headerItems" {
 declare module "utils/routerHistory" {
   declare module.exports: any
 }
+declare module "utils/fetch" {
+  declare module.exports: any
+}
+declare module "utils/api" {
+  declare module.exports: any
+}
+declare module "fake-data/availability" {
+  declare module.exports: any
+}
 declare module "middlewares/storage" {
   declare module.exports: any
 }
@@ -159,6 +168,9 @@ declare module "redux" {
   declare module.exports: any
 }
 declare module "redux-thunk" {
+  declare module.exports: any
+}
+declare module "simplestorage.js" {
   declare module.exports: any
 }
 

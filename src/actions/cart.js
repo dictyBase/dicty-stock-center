@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 import { fees } from "constants/fees"
 
@@ -20,14 +21,14 @@ const addItem = item => {
   }
 }
 
-export const addToCart = item => {
-  return dispatch => {
+export const addToCart = (item: string) => {
+  return (dispatch: Function) => {
     dispatch(addItem(item))
   }
 }
 
-export const removeItem = id => {
-  return (dispatch, getState) => {
+export const removeItem = (id: string) => {
+  return (dispatch: Function, getState: Function) => {
     const { addedItems } = getState().cart
     const removeIndex = addedItems
       .map(itm => {

@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 import availability from "fake-data/availability"
 // import strainList from 'fake-data/strains'
@@ -34,7 +35,7 @@ const {
 //
 const server = process.env.REACT_APP_API_SERVER
 
-const receiveAvailability = data => {
+const receiveAvailability = (data: Object) => {
   return {
     type: AVAILABILITY_FETCH_SUCCESS,
     isFetching: false,
@@ -48,7 +49,7 @@ const requestStrains = () => {
   }
 }
 
-const receiveStrains = data => {
+const receiveStrains = (data: Object) => {
   return {
     type: STRAINS_FETCH_SUCCESS,
     data: data.data,
@@ -57,7 +58,7 @@ const receiveStrains = data => {
   }
 }
 
-const strainsFetchFailure = error => {
+const strainsFetchFailure = (error: string) => {
   return {
     type: STRAINS_FETCH_FAILURE,
     error
@@ -70,14 +71,14 @@ const requestStrain = () => {
   }
 }
 
-const receiveStrain = data => {
+const receiveStrain = (data: Object) => {
   return {
     type: STRAIN_FETCH_SUCCESS,
     data
   }
 }
 
-const strainFetchFailure = error => {
+const strainFetchFailure = (error: string) => {
   return {
     type: STRAIN_FETCH_FAILURE,
     error
@@ -90,7 +91,7 @@ const strainSearch = search => {
   }
 }
 
-const receiveStrainSearch = data => {
+const receiveStrainSearch = (data: Object) => {
   return {
     type: STRAINS_SEARCH_SUCCESS,
     isFetching: false,
@@ -100,7 +101,7 @@ const receiveStrainSearch = data => {
   }
 }
 
-const strainSearchFailure = error => {
+const strainSearchFailure = (error: string) => {
   return {
     type: STRAINS_SEARCH_FAILURE,
     error
@@ -119,7 +120,7 @@ const requestPlasmids = () => {
   }
 }
 
-const receivePlasmids = data => {
+const receivePlasmids = (data: Object) => {
   return {
     type: PLASMIDS_FETCH_SUCCESS,
     data: data.data,
@@ -128,7 +129,7 @@ const receivePlasmids = data => {
   }
 }
 
-const plasmidsFetchFailure = error => {
+const plasmidsFetchFailure = (error: string) => {
   return {
     type: PLASMIDS_FETCH_FAILURE,
     error
@@ -141,7 +142,7 @@ const plasmidsSearch = search => {
   }
 }
 
-const receivePlasmidsSearch = data => {
+const receivePlasmidsSearch = (data: Object) => {
   return {
     type: PLASMIDS_SEARCH_SUCCESS,
     isFetching: false,
@@ -151,7 +152,7 @@ const receivePlasmidsSearch = data => {
   }
 }
 
-const plasmidsSearchFailure = error => {
+const plasmidsSearchFailure = (error: string) => {
   return {
     type: PLASMIDS_SEARCH_FAILURE,
     error
@@ -165,13 +166,13 @@ const clearPlasmids = () => {
 }
 
 export const fetchAvailability = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(receiveAvailability(availability.data))
   }
 }
 
-export const fetchStrains = (page, size) => {
-  return dispatch => {
+export const fetchStrains = (page: string, size: string) => {
+  return (dispatch: Function) => {
     dispatch(requestStrains())
     getPage(server, page, size, "strain")
       .then(status)
@@ -186,13 +187,13 @@ export const fetchStrains = (page, size) => {
 }
 
 export const clearStrainSearch = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(clearStrains())
   }
 }
 
-export const fetchPlasmids = (page, size) => {
-  return dispatch => {
+export const fetchPlasmids = (page: string, size: string) => {
+  return (dispatch: Function) => {
     dispatch(requestPlasmids())
     getPage(server, page, size, "plasmid")
       .then(status)
@@ -208,8 +209,8 @@ export const fetchPlasmids = (page, size) => {
 
 const transformPlasmid = plasmid => {}
 
-export const fetchPlasmid = id => {
-  return dispatch => {
+export const fetchPlasmid = (id: string) => {
+  return (dispatch: Function) => {
     dispatch(requestStrain())
     getStock(server, id, "plasmid")
       .then(status)
@@ -225,8 +226,8 @@ export const fetchPlasmid = id => {
   }
 }
 
-export const searchPlasmids = (page, size, search) => {
-  return dispatch => {
+export const searchPlasmids = (page: string, size: string, search: string) => {
+  return (dispatch: Function) => {
     dispatch(plasmidsSearch())
     searchStocks(server, page, size, search, "plasmid")
       .then(status)
@@ -241,12 +242,12 @@ export const searchPlasmids = (page, size, search) => {
 }
 
 export const clearPlasmidSearch = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(clearPlasmids())
   }
 }
 
-const transformStrain = strain => {
+const transformStrain = (strain: Object) => {
   const characteristics = strain.included[0].data.map(characteristic => {
     return characteristic.attributes.value
   })
@@ -274,8 +275,8 @@ const transformStrain = strain => {
   }
 }
 
-export const fetchStrain = id => {
-  return dispatch => {
+export const fetchStrain = (id: string) => {
+  return (dispatch: Function) => {
     dispatch(requestStrain())
     getStock(server, id, "strain")
       .then(status)
@@ -290,8 +291,8 @@ export const fetchStrain = id => {
       })
   }
 }
-export const searchStrains = (page, size, search) => {
-  return dispatch => {
+export const searchStrains = (page: string, size: string, search: string) => {
+  return (dispatch: Function) => {
     dispatch(strainSearch())
     searchStocks(server, page, size, search, "strain")
       .then(status)

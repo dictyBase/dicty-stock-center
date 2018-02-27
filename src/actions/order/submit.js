@@ -1,3 +1,4 @@
+// @flow
 import { createOrder } from "utils/api"
 import { status, json } from "utils/fetch"
 import { push } from "react-router-redux"
@@ -12,7 +13,7 @@ const submitRequest = () => {
   }
 }
 
-const submitSuccess = order => {
+const submitSuccess = (order: Object) => {
   return {
     type: SUBMIT_SUCCESS,
     submitting: false,
@@ -20,7 +21,7 @@ const submitSuccess = order => {
   }
 }
 
-const submitFailure = error => {
+const submitFailure = (error: string) => {
   return {
     type: SUBMIT_FAILURE,
     submitting: false,
@@ -31,7 +32,7 @@ const submitFailure = error => {
 let server = process.env.REACT_APP_API_SERVER
 // submit dsc order and redirect user to a confirmation page
 export const submitOrder = () => {
-  return (dispatch, getState) => {
+  return (dispatch: Function, getState: Function) => {
     const { order } = getState()
     dispatch(submitRequest())
     dispatch(push("/order/submitting"))

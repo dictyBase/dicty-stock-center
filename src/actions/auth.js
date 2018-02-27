@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
@@ -7,7 +8,9 @@ const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
 // Getting the url of auth server
 const authserver = process.env.REACT_APP_AUTH_SERVER
 
-const makeOauthConfig = ({ query, provider, url }) => {
+type oauthArg = { query: string, provider: string, url: string }
+
+const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   const parsed = querystring.parse(query.replace("?", ""))
   let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
   body += `&state=${parsed.state}&code=${parsed.code}`
@@ -16,6 +19,9 @@ const makeOauthConfig = ({ query, provider, url }) => {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: body
+  }
+  if (typeof authserver !== "string") {
+    throw new TypeError()
   }
   const endpoint = `${authserver}/tokens/${provider}`
   return { config, endpoint }
@@ -55,8 +61,8 @@ const receiveLogout = () => {
 
 // Calls the API to get a token and
 // dispatch actions along the way
-export const oAuthLogin = ({ query, provider, url }) => {
-  return async dispatch => {
+export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
+  return async (dispatch: Function) => {
     const { config, endpoint } = makeOauthConfig({ query, provider, url })
     try {
       dispatch(requestLogin(provider))
@@ -86,7 +92,7 @@ export const oAuthLogin = ({ query, provider, url }) => {
 
 // Logs the user out
 export const logoutUser = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(receiveLogout())
   }
 }

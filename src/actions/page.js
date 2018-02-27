@@ -1,3 +1,4 @@
+// @flow
 import { dsctypes } from "constants/dsctypes"
 import { push } from "react-router-redux"
 
@@ -20,7 +21,7 @@ const fetchPageRequest = () => {
   }
 }
 
-const fetchPageSuccess = json => {
+const fetchPageSuccess = (json: Object) => {
   return {
     type: FETCH_PAGE_SUCCESS,
     isFetching: false,
@@ -58,10 +59,13 @@ const savePageFailure = error => {
 
 // fetch page function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
-export const fetchInfoPage = slug => {
-  return async dispatch => {
+export const fetchInfoPage = (slug: string) => {
+  return async (dispatch: Function) => {
     try {
       dispatch(fetchPageRequest())
+      if (typeof server !== "string") {
+        throw new TypeError()
+      }
       const res = await fetch(`${server}/contents/slug/${slug}`)
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
@@ -97,7 +101,7 @@ const printError = (res, json) => {
   )
 }
 
-const doEdit = content => {
+const doEdit = (content: Object) => {
   return {
     type: EDIT_PAGE,
     payload: {
@@ -106,23 +110,26 @@ const doEdit = content => {
   }
 }
 
-export const editPage = (content, name) => {
-  return dispatch => {
+export const editPage = (content: Object, name: string) => {
+  return (dispatch: Function) => {
     dispatch(doEdit(content))
     dispatch(push(`/information/${name}/edit`))
   }
 }
 
-export const editInline = content => {
-  return dispatch => {
+export const editInline = (content: Object) => {
+  return (dispatch: Function) => {
     dispatch(doEdit(content))
   }
 }
 
-export const saveEditing = (id, body) => {
-  return async dispatch => {
+export const saveEditing = (id: string, body: Object) => {
+  return async (dispatch: Function) => {
     try {
       dispatch(savePageRequest())
+      if (typeof server !== "string") {
+        throw new TypeError()
+      }
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
@@ -154,10 +161,13 @@ export const saveEditing = (id, body) => {
   }
 }
 
-export const saveInlineEditing = (id, body) => {
-  return async dispatch => {
+export const saveInlineEditing = (id: string, body: Object) => {
+  return async (dispatch: Function) => {
     try {
       dispatch(savePageRequest())
+      if (typeof server !== "string") {
+        throw new TypeError()
+      }
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
@@ -188,8 +198,8 @@ export const saveInlineEditing = (id, body) => {
   }
 }
 
-export const cancelEditing = page => {
-  return dispatch => {
+export const cancelEditing = (page: string) => {
+  return (dispatch: Function) => {
     dispatch(push(`/information/${page}`))
   }
 }

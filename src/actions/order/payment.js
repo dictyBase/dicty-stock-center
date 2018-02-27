@@ -1,3 +1,4 @@
+// @flow
 import { push } from "react-router-redux"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
@@ -5,7 +6,7 @@ import { dsctypes } from "constants/dsctypes"
 
 const { ADD_PAYMENT, SAME_AS_SHIPPING } = dsctypes
 
-export const addPayment = (user, payment) => {
+export const addPayment = (user: Object, payment: Object) => {
   // retrieve user info from json api structure and
   // store in the state of the app
   const {
@@ -52,7 +53,7 @@ export const addPayment = (user, payment) => {
 
 let server = process.env.REACT_APP_API_SERVER
 
-export const submitForm = (values, dispatch) => {
+export const submitForm = (values: Object, dispatch: Function) => {
   let payment = {
     method: values.payMethod,
     poNum: values.poNum
@@ -103,7 +104,7 @@ export const submitForm = (values, dispatch) => {
 // payer address is the same as shipping address
 // pull consumer from state into payer fields
 export const sameAsShipping = () => {
-  return (dispatch, getState) => {
+  return (dispatch: Function, getState: Function) => {
     const { consumer } = getState().order
     dispatch({
       type: SAME_AS_SHIPPING,
@@ -114,7 +115,7 @@ export const sameAsShipping = () => {
 
 // direct user to edit payment information
 export const editPayment = () => {
-  return dispatch => {
+  return (dispatch: Function) => {
     dispatch(push("/order/payment/edit"))
   }
 }
