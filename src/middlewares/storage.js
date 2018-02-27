@@ -8,7 +8,7 @@ type middlewareArg = {
   /** leaving it blank will let entire state to be saved */
   key?: string,
   /** Key that will be used to save to localStorage */
-  namespace: string,
+  namespace: string
 }
 
 /**
@@ -18,11 +18,11 @@ let manageStateStorage = ({
   save_action,
   remove_action,
   key,
-  namespace,
+  namespace
 }: middlewareArg) => {
-  return store => {
-    return next => {
-      return action => {
+  return (store: Function) => {
+    return (next: Function) => {
+      return (action: Function) => {
         next(action)
         const state = store.getState()
         try {
@@ -31,7 +31,7 @@ let manageStateStorage = ({
               if (state[key]) {
                 window.localStorage.setItem(
                   namespace,
-                  JSON.stringify(state[key]),
+                  JSON.stringify(state[key])
                 )
               } else {
                 window.localStorage.setItem(namespace, JSON.stringify(state))
