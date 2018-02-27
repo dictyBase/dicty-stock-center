@@ -4,18 +4,15 @@ import { Link } from "react-router-dom"
 import { LinkedList } from "styles"
 
 type Props = {
-  list: Array<Object>,
-  title: string
+  list: Array<Object>
 }
 
 export default class LinkList extends Component<Props> {
   render() {
-    const { title, list } = this.props
     return (
       <LinkedList>
-        {title && <h3>{title}</h3>}
         <ul>
-          {list.map((link, index) => {
+          {this.props.list.map((link, index) => {
             return (
               <li key={index}>
                 {link.routerAware ? (

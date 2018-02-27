@@ -1,9 +1,13 @@
-// add flow
+// @flow
 import { Component } from "react"
 import { oAuthLogin } from "actions/auth"
 import { connect } from "react-redux"
 
-class OauthSignHandler extends Component {
+type Props = {
+  oAuthLogin: Function
+}
+
+class OauthSignHandler extends Component<Props> {
   onMessage = event => {
     event.preventDefault()
     event.stopPropagation()

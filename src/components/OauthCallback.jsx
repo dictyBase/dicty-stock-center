@@ -1,8 +1,13 @@
-// add flow
+// @flow
 import React, { Component } from "react"
 import { Flex, Box } from "rebass"
 
-export default class OauthCallback extends Component {
+type Props = {
+  location: Object,
+  match: Object
+}
+
+export default class OauthCallback extends Component<Props> {
   componentDidMount() {
     window.opener.postMessage(
       {

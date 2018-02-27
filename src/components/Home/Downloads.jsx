@@ -13,7 +13,8 @@ const downloadLinks = [
 const Downloads = () => {
   return (
     <PanelBlue>
-      <LinkList list={downloadLinks} title="Download / View" />
+      <h3>Download / View</h3>
+      <LinkList list={downloadLinks} />
     </PanelBlue>
   )
 }

@@ -144,7 +144,7 @@ class StrainDetail extends Component<Props> {
                 <StockDetailRow left={data1[4]} right={data2[4]} />
                 <StockDetailRow left={data1[5]} right={data2[5]} />
                 <StockDetailRow left={data1[6]} right={data2[6]} />
-                <StockDetailRow left={data1[7]} />
+                <StockDetailRow left={data1[7]} right={{}} />
               </div>
             )}
           </Box>

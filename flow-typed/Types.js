@@ -54,6 +54,12 @@ declare module "constants/footer" {
 declare module "constants/navbar" {
   declare module.exports: any
 }
+declare module "constants/dsctypes" {
+  declare module.exports: any
+}
+declare module "constants/fees" {
+  declare module.exports: any
+}
 declare module "components/TableLoader" {
   declare module.exports: any
 }
@@ -82,6 +88,15 @@ declare module "utils/clientConfig" {
   declare module.exports: any
 }
 declare module "utils/headerItems" {
+  declare module.exports: any
+}
+declare module "utils/routerHistory" {
+  declare module.exports: any
+}
+declare module "middlewares/storage" {
+  declare module.exports: any
+}
+declare module "validator/lib/isEmail" {
   declare module.exports: any
 }
 
@@ -137,6 +152,12 @@ declare module "react-ga" {
 declare module "redux-form" {
   declare module.exports: any
 }
+declare module "redux" {
+  declare module.exports: any
+}
+declare module "redux-thunk" {
+  declare module.exports: any
+}
 
 // styles
 declare module "styles" {
@@ -147,6 +168,13 @@ declare module "react-virtualized/styles.css" {
 }
 declare module "react-responsive-carousel/lib/styles/carousel.min.css" {
   declare module.exports: any
+}
+
+// declaration for hot reloading
+declare var module: {
+  hot: {
+    accept(path: string, callback: () => void): void
+  }
 }
 
 // variables
