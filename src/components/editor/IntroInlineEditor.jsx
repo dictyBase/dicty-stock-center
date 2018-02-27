@@ -1,4 +1,4 @@
-// needs flow
+// @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
@@ -60,7 +60,21 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-class IntroInlineEditor extends Component {
+type Props = {
+  page: Object,
+  isAuthenticated: boolean,
+  id: string,
+  updated_by: string,
+  saveInlineEditing: Function,
+  editInline: Function
+}
+
+type State = {
+  editorState: EditorState,
+  readOnly: boolean
+}
+
+class IntroInlineEditor extends Component<Props, State> {
   constructor(props) {
     super(props)
 
@@ -106,8 +120,7 @@ class IntroInlineEditor extends Component {
   onCancel = () => {
     this.setState({
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
-        this.decorator
+        convertFromRaw(JSON.parse(this.props.page.data.attributes.content))
       ),
       readOnly: true
     })
