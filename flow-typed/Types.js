@@ -66,6 +66,9 @@ declare module "components/TableLoader" {
 declare module "components/Items" {
   declare module.exports: any
 }
+declare module "components/Link" {
+  declare module.exports: any
+}
 declare module "components/OauthSignHandler" {
   declare module.exports: any
 }
@@ -97,6 +100,12 @@ declare module "utils/fetch" {
   declare module.exports: any
 }
 declare module "utils/api" {
+  declare module.exports: any
+}
+declare module "utils/timeSince" {
+  declare module.exports: any
+}
+declare module "utils/findLinkEntities" {
   declare module.exports: any
 }
 declare module "fake-data/availability" {

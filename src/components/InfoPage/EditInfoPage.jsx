@@ -1,4 +1,4 @@
-// needs flow
+// @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js"
@@ -60,7 +60,19 @@ const toolbarPlugin = createToolbarPlugin({
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
-class EditInfoPage extends Component {
+type Props = {
+  match: Object,
+  cancelEditing: Function,
+  id: string,
+  updated_by: string,
+  saveEditing: Function
+}
+
+type State = {
+  editorState: EditorState
+}
+
+class EditInfoPage extends Component<Props, State> {
   constructor(props) {
     super(props)
 

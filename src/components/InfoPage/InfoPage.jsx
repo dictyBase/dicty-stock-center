@@ -1,4 +1,4 @@
-// needs flow
+// @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import Skeleton from "react-loading-skeleton"
@@ -7,7 +7,14 @@ import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
 import { NAMESPACE } from "constants/dsctypes"
 
-class InfoPage extends Component {
+type Props = {
+  isFetching: boolean,
+  page: Object,
+  match: Object,
+  fetchInfoPage: Function
+}
+
+class InfoPage extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {

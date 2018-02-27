@@ -1,4 +1,4 @@
-// needs flow
+// @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import {
@@ -22,7 +22,20 @@ const decorator = [
   }
 ]
 
-class InfoPageView extends Component {
+type Props = {
+  match: Object,
+  updated_by: string,
+  updated_at: string,
+  editPage: Function,
+  isAuthenticated: boolean,
+  page: Object
+}
+
+type State = {
+  editorState: EditorState
+}
+
+class InfoPageView extends Component<Props, State> {
   constructor(props) {
     super(props)
 
