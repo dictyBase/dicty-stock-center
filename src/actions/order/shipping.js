@@ -52,7 +52,10 @@ export const addShipping = (user: Object, details: Object) => {
 }
 
 let server = process.env.REACT_APP_API_SERVER
-export const submitForm = (values: Object, dispatch: Function) => {
+export const submitForm = (
+  values: Object,
+  dispatch: Function
+): Promise<any> => {
   let details = {
     shipAccount: values.shipAccount,
     shipAccountNum: values.shipAccountNum,

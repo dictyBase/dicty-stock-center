@@ -71,7 +71,7 @@ const requestStrain = () => {
   }
 }
 
-const receiveStrain = (data: Object) => {
+const receiveStrain = data => {
   return {
     type: STRAIN_FETCH_SUCCESS,
     data

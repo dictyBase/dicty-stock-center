@@ -53,7 +53,10 @@ export const addPayment = (user: Object, payment: Object) => {
 
 let server = process.env.REACT_APP_API_SERVER
 
-export const submitForm = (values: Object, dispatch: Function) => {
+export const submitForm = (
+  values: Object,
+  dispatch: Function
+): Promise<any> => {
   let payment = {
     method: values.payMethod,
     poNum: values.poNum
