@@ -79,7 +79,9 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(push("/error"))
         }
       } else {
-        console.log("Cannot convert to JSON")
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Cannot convert to JSON")
+        }
         dispatch(loginError(res.body))
         dispatch(push("/error"))
       }

@@ -73,19 +73,25 @@ export const fetchInfoPage = (slug: string) => {
         if (res.ok) {
           dispatch(fetchPageSuccess(json))
         } else {
-          printError(res, json)
+          if (process.env.NODE_ENV !== "production") {
+            printError(res, json)
+          }
           dispatch(fetchPageFailure(res.body))
           dispatch(push("/error"))
         }
       } else {
-        console.log("Cannot convert to JSON")
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Cannot convert to JSON")
+        }
         dispatch(fetchPageFailure(res.body))
         dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(fetchPageFailure(error))
       dispatch(push("/error"))
-      console.log(`Network error: ${error.message}`)
+      if (process.env.NODE_ENV !== "production") {
+        console.error(`Network error: ${error.message}`)
+      }
     }
   }
 }
@@ -93,8 +99,8 @@ export const fetchInfoPage = (slug: string) => {
 // helper function to print HTTP errors to console
 // responses are structured in JSONAPI format
 const printError = (res, json) => {
-  console.log("HTTP Error")
-  console.log(
+  console.error("HTTP Error")
+  console.error(
     `HTTP Response: ${res.status}
     Title: ${json.errors[0].title}
     Detail: ${json.errors[0].detail}`
@@ -142,19 +148,25 @@ export const saveEditing = (id: string, body: Object) => {
           dispatch(savePageSuccess())
           dispatch(push(`/information/${json.data.attributes.name}`))
         } else {
-          printError(res, json)
+          if (process.env.NODE_ENV !== "production") {
+            printError(res, json)
+          }
           dispatch(savePageFailure(res.body))
           dispatch(push("/error"))
         }
       } else {
-        console.log("Cannot convert to JSON")
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Cannot convert to JSON")
+        }
         dispatch(savePageFailure(res.body))
         dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
       dispatch(push("/error"))
-      console.log(`Network error: ${error.message}`)
+      if (process.env.NODE_ENV !== "production") {
+        console.error(`Network error: ${error.message}`)
+      }
     }
   }
 }
@@ -177,19 +189,25 @@ export const saveInlineEditing = (id: string, body: Object) => {
         if (res.ok) {
           dispatch(savePageSuccess())
         } else {
-          printError(res, json)
+          if (process.env.NODE_ENV !== "production") {
+            printError(res, json)
+          }
           dispatch(savePageFailure(res.body))
           dispatch(push("/error"))
         }
       } else {
-        console.log("Cannot convert to JSON")
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Cannot convert to JSON")
+        }
         dispatch(savePageFailure(res.body))
         dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(savePageFailure(error))
       dispatch(push("/error"))
-      console.log(`Network error: ${error.message}`)
+      if (process.env.NODE_ENV !== "production") {
+        console.error(`Network error: ${error.message}`)
+      }
     }
   }
 }
