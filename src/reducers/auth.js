@@ -23,6 +23,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.token ? true : false,
+        token: action.token,
         user: action.user
       }
     case LOGIN_FAILURE:
@@ -44,7 +45,8 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: action.isFetching,
         isAuthenticated: false,
         provider: null,
-        user: null
+        user: null,
+        token: null
       }
     default:
       return state

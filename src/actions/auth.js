@@ -79,7 +79,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(push("/error"))
         }
       } else {
-        console.log("Not valid JSON")
+        console.log("Cannot convert to JSON")
         dispatch(loginError(res.body))
         dispatch(push("/error"))
       }

@@ -13,6 +13,9 @@ const {
 } = dsctypes
 
 const server = process.env.REACT_APP_API_SERVER
+if (typeof server !== "string") {
+  throw new TypeError()
+}
 
 const fetchPageRequest = () => {
   return {
@@ -63,9 +66,6 @@ export const fetchInfoPage = (slug: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchPageRequest())
-      if (typeof server !== "string") {
-        throw new TypeError()
-      }
       const res = await fetch(`${server}/contents/slug/${slug}`)
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
@@ -78,7 +78,7 @@ export const fetchInfoPage = (slug: string) => {
           dispatch(push("/error"))
         }
       } else {
-        console.log("Not valid JSON")
+        console.log("Cannot convert to JSON")
         dispatch(fetchPageFailure(res.body))
         dispatch(push("/error"))
       }
@@ -124,19 +124,15 @@ export const editInline = (content: Object) => {
 }
 
 export const saveEditing = (id: string, body: Object) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function, getState: Function) => {
     try {
       dispatch(savePageRequest())
-      if (typeof server !== "string") {
-        throw new TypeError()
-      }
-      const localData = JSON.parse(localStorage.getItem("auth"))
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          Application: `Bearer: ${localData.token}`
+          Application: `Bearer: ${getState().auth.token}`
         }
       })
       const contentType = res.headers.get("content-type")
@@ -151,7 +147,7 @@ export const saveEditing = (id: string, body: Object) => {
           dispatch(push("/error"))
         }
       } else {
-        console.log("Not valid JSON")
+        console.log("Cannot convert to JSON")
         dispatch(savePageFailure(res.body))
         dispatch(push("/error"))
       }
@@ -164,19 +160,15 @@ export const saveEditing = (id: string, body: Object) => {
 }
 
 export const saveInlineEditing = (id: string, body: Object) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function, getState: Function) => {
     try {
       dispatch(savePageRequest())
-      if (typeof server !== "string") {
-        throw new TypeError()
-      }
-      const localData = JSON.parse(localStorage.getItem("auth"))
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          Application: `Bearer: ${localData.token}`
+          Application: `Bearer: ${getState().auth.token}`
         }
       })
       const contentType = res.headers.get("content-type")
@@ -190,7 +182,7 @@ export const saveInlineEditing = (id: string, body: Object) => {
           dispatch(push("/error"))
         }
       } else {
-        console.log("Not valid JSON")
+        console.log("Cannot convert to JSON")
         dispatch(savePageFailure(res.body))
         dispatch(push("/error"))
       }
