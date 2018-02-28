@@ -2,11 +2,10 @@
 import { dsctypes } from "constants/dsctypes"
 import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
+import { oauthEndpointResource } from "utils/fetchResources"
 import { push } from "react-router-redux"
 
 const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } = dsctypes
-// Getting the url of auth server
-const authserver = process.env.REACT_APP_AUTH_SERVER
 
 type oauthArg = { query: string, provider: string, url: string }
 
@@ -20,10 +19,7 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: body
   }
-  if (typeof authserver !== "string") {
-    throw new TypeError()
-  }
-  const endpoint = `${authserver}/tokens/${provider}`
+  const endpoint = `${oauthEndpointResource}/${provider}`
   return { config, endpoint }
 }
 

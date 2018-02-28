@@ -1,5 +1,6 @@
 // @flow
 import { dsctypes } from "constants/dsctypes"
+import { fetchBySlugResource, fetchByIdResource } from "utils/fetchResources"
 import { push } from "react-router-redux"
 
 const {
@@ -11,11 +12,6 @@ const {
   FETCH_PAGE_SUCCESS,
   FETCH_PAGE_FAILURE
 } = dsctypes
-
-const server = process.env.REACT_APP_API_SERVER
-if (typeof server !== "string") {
-  throw new TypeError()
-}
 
 const fetchPageRequest = () => {
   return {
@@ -66,7 +62,7 @@ export const fetchInfoPage = (slug: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchPageRequest())
-      const res = await fetch(`${server}/contents/slug/${slug}`)
+      const res = await fetch(`${fetchBySlugResource}/${slug}`)
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
@@ -133,7 +129,7 @@ export const saveEditing = (id: string, body: Object) => {
   return async (dispatch: Function, getState: Function) => {
     try {
       dispatch(savePageRequest())
-      const res = await fetch(`${server}/contents/${id}`, {
+      const res = await fetch(`${fetchByIdResource}/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
@@ -175,7 +171,7 @@ export const saveInlineEditing = (id: string, body: Object) => {
   return async (dispatch: Function, getState: Function) => {
     try {
       dispatch(savePageRequest())
-      const res = await fetch(`${server}/contents/${id}`, {
+      const res = await fetch(`${fetchByIdResource}/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
