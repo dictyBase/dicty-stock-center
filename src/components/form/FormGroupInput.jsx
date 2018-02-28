@@ -4,9 +4,10 @@ import { Flex, Box } from "rebass"
 import { ControlLabel, FormGroup, FormControl, HelpBlock } from "styles"
 
 type Props = {
-  ...field,
   inputType: string,
-  placeholder: string
+  placeholder?: string,
+  field: Object,
+  children: any
 }
 
 export default class FormGroupInput extends Component<Props> {

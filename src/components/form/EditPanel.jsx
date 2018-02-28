@@ -1,42 +1,50 @@
-// add flow
+// @flow
 import React, { Component } from "react"
 import FontAwesome from "react-fontawesome"
 import { InlineLink } from "styles"
 
-// type Props = {
-//   payment: Object,
-//   shipping: Object,
-//   title: string,
-//   icon: string,
-//   user: Object,
-//   edit: Function
-// }
+type Props = {
+  payment?: Object,
+  shipping?: Object,
+  title: string,
+  icon?: string,
+  user: Object,
+  edit: Function
+}
 
-export default class EditPanel extends Component {
+export default class EditPanel extends Component<Props> {
   renderShippingMethod = () => {
     const { shipping } = this.props
     // display the shipping method with shipping account number(if available)
-    return (
-      <div>
-        <strong>Shipping method: </strong>
-        {shipping.account}
-        {shipping.accountNum && <span> (#{shipping.accountNum})</span>}
-      </div>
-    )
+    if (shipping === null || shipping === undefined) {
+      return
+    } else {
+      return (
+        <div>
+          <strong>Shipping method: </strong>
+          {shipping.account}
+          {shipping.accountNum && <span> (#{shipping.accountNum})</span>}
+        </div>
+      )
+    }
   }
 
   renderPaymentMethod = () => {
     const { payment } = this.props
     // if pay method is PO and PO# is available, display that.
-    // else, just display the pay method, Credit card, Wire transfer etc.
-    return (
-      <div>
-        <strong>Payment method: </strong>
-        {payment.method}
-        {payment.method === "PO" &&
-          payment.poNum && <span> (#{payment.poNum})</span>}
-      </div>
-    )
+    // else, just display the pay method, credit card, wire transfer etc.
+    if (payment === null || payment === undefined) {
+      return
+    } else {
+      return (
+        <div>
+          <strong>Payment method: </strong>
+          {payment.method}
+          {payment.method === "PO" &&
+            payment.poNum && <span> (#{payment.poNum})</span>}
+        </div>
+      )
+    }
   }
 
   render() {
