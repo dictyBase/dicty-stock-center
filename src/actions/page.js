@@ -130,11 +130,13 @@ export const saveEditing = (id: string, body: Object) => {
       if (typeof server !== "string") {
         throw new TypeError()
       }
+      const localData = JSON.parse(localStorage.getItem("auth"))
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Application: `Bearer: ${localData.token}`
         }
       })
       const contentType = res.headers.get("content-type")
@@ -168,11 +170,13 @@ export const saveInlineEditing = (id: string, body: Object) => {
       if (typeof server !== "string") {
         throw new TypeError()
       }
+      const localData = JSON.parse(localStorage.getItem("auth"))
       const res = await fetch(`${server}/contents/${id}`, {
         method: "PATCH",
         body: JSON.stringify(body),
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Application: `Bearer: ${localData.token}`
         }
       })
       const contentType = res.headers.get("content-type")
