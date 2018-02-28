@@ -24,12 +24,12 @@ exports[`matching a snapshot of Downloads 1`] = `
 <div
   className="c0"
 >
+  <h3>
+    Download / View
+  </h3>
   <div
     className="c1"
   >
-    <h3>
-      Download / View
-    </h3>
     <ul>
       <li>
         <a
