@@ -108,8 +108,7 @@ class EditInfoPage extends Component<Props, State> {
   }
   onCancel = () => {
     const { cancelEditing, match } = this.props
-    const slugName = `${NAMESPACE}-${match.params.name}`
-    cancelEditing(slugName)
+    cancelEditing(`${match.params.name}`)
   }
   render() {
     const { editorState } = this.state
