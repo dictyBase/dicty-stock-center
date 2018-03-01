@@ -738,6 +738,8 @@ export const SuccessLargeButton = Button.extend`
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
+  display: block;
+  width: 100%;
 
   a {
     color: #fff;
@@ -900,34 +902,6 @@ export const SocialButton = LinkButton.extend`
       background-color: #88aa2a;
       border-color: rgba(0, 0, 0, 0.2);
     }
-  }
-`
-
-export const GoogleButton = LinkButton.extend`
-  position: relative;
-  padding-left: 21px;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-top: 5px;
-  color: #fff;
-  border-color: rgba(0, 0, 0, 0.2);
-  display: block;
-  width: 100%;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  background-color: #dd4b39;
-
-  &:focus,
-  &:hover,
-  &:active {
-    color: #fff;
-    background-color: #c23321;
-    border-color: rgba(0, 0, 0, 0.2);
-    text-decoration: none;
   }
 `
 
