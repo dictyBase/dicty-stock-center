@@ -3,7 +3,7 @@ type hydrateArg = {
   /** Part of the state tree to be loaded */
   key?: string,
   /** Key to retrieve from localStorage */
-  namespace: string,
+  namespace: string
 }
 
 type hydrateStoreFunc = hydrateArg
@@ -27,7 +27,12 @@ let hydrateStore = ({ key, namespace }: hydrateArg) => {
     }
     return loadedState
   } catch (e) {
-    console.error("unable to load state from localStoage %s", JSON.stringify(e))
+    if (process.env.NODE_ENV !== "production") {
+      console.error(
+        "unable to load state from localStoage %s",
+        JSON.stringify(e)
+      )
+    }
   }
 }
 

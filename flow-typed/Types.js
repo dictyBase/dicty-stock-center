@@ -90,6 +90,9 @@ declare module "utils/oauthConfig" {
 declare module "utils/clientConfig" {
   declare module.exports: any
 }
+declare module "utils/fetchResources" {
+  declare module.exports: any
+}
 declare module "utils/headerItems" {
   declare module.exports: any
 }

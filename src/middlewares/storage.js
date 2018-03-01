@@ -45,7 +45,12 @@ let manageStateStorage = ({
           }
           return next(action)
         } catch (e) {
-          console.error("error in saving to localStorage %s", JSON.stringify(e))
+          if (process.env.NODE_ENV !== "production") {
+            console.error(
+              "error in saving to localStorage %s",
+              JSON.stringify(e)
+            )
+          }
         }
       }
     }
