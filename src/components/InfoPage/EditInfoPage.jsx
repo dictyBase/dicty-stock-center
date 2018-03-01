@@ -27,8 +27,8 @@ import {
   EditorStyle,
   EditPanel,
   StaticToolbar,
-  DefaultButton,
-  SuccessButton
+  CancelButton,
+  SuccessBlockButton
 } from "styles"
 import { NAMESPACE } from "constants/dsctypes"
 
@@ -133,20 +133,14 @@ class EditInfoPage extends Component<Props, State> {
             <Box width="25%" />
             <Box width="25%" />
             <Box width="25%" mr={1}>
-              <DefaultButton
-                type="button"
-                className={`block`}
-                onClick={this.onCancel}>
+              <CancelButton type="button" onClick={this.onCancel}>
                 Cancel
-              </DefaultButton>
+              </CancelButton>
             </Box>
             <Box width="25%">
-              <SuccessButton
-                type="button"
-                className={`block`}
-                onClick={this.onSave}>
+              <SuccessBlockButton type="button" onClick={this.onSave}>
                 Save
-              </SuccessButton>
+              </SuccessBlockButton>
             </Box>
           </Flex>
         </EditPanel>

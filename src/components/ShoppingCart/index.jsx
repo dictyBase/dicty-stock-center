@@ -9,8 +9,8 @@ import {
   DictyHeader,
   Container,
   AlertBox,
-  PrimaryButton,
-  SuccessButton
+  PrimaryLargeButton,
+  SuccessLargeButton
 } from "styles"
 import type { MapStateToProps } from "react-redux"
 
@@ -52,18 +52,18 @@ class ShoppingCart extends Component<Props> {
             </Flex>
             <Flex wrap justify="center">
               <Box w={[1, "40%"]} mt={10} mr={1}>
-                <PrimaryButton className={`large block`}>
+                <PrimaryLargeButton>
                   <Link to="/strains">
                     <FontAwesome name="share" /> Continue Shopping
                   </Link>
-                </PrimaryButton>
+                </PrimaryLargeButton>
               </Box>
               <Box w={[1, "40%"]} mt={10} mr={1}>
-                <SuccessButton className={`large block`}>
+                <SuccessLargeButton>
                   <Link to="/order/shipping">
                     <FontAwesome name="shopping-cart" /> Checkout
                   </Link>
-                </SuccessButton>
+                </SuccessLargeButton>
               </Box>
             </Flex>
           </div>

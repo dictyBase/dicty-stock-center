@@ -543,6 +543,80 @@ export const PrimaryButton = Button.extend`
   }
 `
 
+export const PrimaryBlockButton = Button.extend`
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  display: block;
+  width: 100%;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: #fff;
+    background-color: #286090;
+    border-color: #122b40;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+  }
+
+  &:active {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+  }
+`
+
+export const PrimaryLargeButton = Button.extend`
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: #fff;
+    background-color: #286090;
+    border-color: #122b40;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+  }
+
+  &:active {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+  }
+`
+
 export const DefaultButton = Button.extend`
   color: #333;
   background-color: #fff;
@@ -567,10 +641,138 @@ export const DefaultButton = Button.extend`
   }
 `
 
+export const ResetButton = Button.extend`
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  display: block;
+  width: 100%;
+
+  &:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+  }
+
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+`
+
+export const CancelButton = Button.extend`
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  display: block;
+  width: 100%;
+
+  &:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+  }
+
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+`
+
 export const SuccessButton = Button.extend`
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #255625;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+`
+
+export const SuccessLargeButton = Button.extend`
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #255625;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+`
+
+export const SuccessBlockButton = Button.extend`
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  display: block;
+  width: 100%;
 
   a {
     color: #fff;
@@ -641,6 +843,12 @@ export const SocialButton = LinkButton.extend`
   margin-top: 5px;
   color: #fff;
   border-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
 
   &:hover {
     text-decoration: none;
@@ -692,6 +900,34 @@ export const SocialButton = LinkButton.extend`
       background-color: #88aa2a;
       border-color: rgba(0, 0, 0, 0.2);
     }
+  }
+`
+
+export const GoogleButton = LinkButton.extend`
+  position: relative;
+  padding-left: 21px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  background-color: #dd4b39;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: #fff;
+    background-color: #c23321;
+    border-color: rgba(0, 0, 0, 0.2);
+    text-decoration: none;
   }
 `
 

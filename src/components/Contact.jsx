@@ -20,7 +20,7 @@ import {
   RequiredText,
   Container,
   HorizontalForm,
-  DefaultButton
+  ResetButton
 } from "styles"
 
 export const fields = ["name", "email", "subject", "message"]
@@ -91,13 +91,12 @@ class Contact extends Component<Props> {
                     </Comments>
                     <Flex>
                       <Box w={1 / 2} mr={2} mt={1}>
-                        <DefaultButton
+                        <ResetButton
                           type="button"
-                          className={`large block`}
                           disabled={submitting}
                           onClick={resetForm}>
                           Reset
-                        </DefaultButton>
+                        </ResetButton>
                       </Box>
                       <Box w={1 / 2} mt={1}>
                         <SubmitButton

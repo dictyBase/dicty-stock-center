@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
-import { AlertSuccess, PrimaryButton, CenteredBox } from "styles"
+import { AlertSuccess, PrimaryLargeButton, CenteredBox } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
@@ -32,11 +32,11 @@ export class OrderConfirmation extends Component<Props> {
               </AlertSuccess>
             </CenteredBox>
             <Box w={1}>
-              <PrimaryButton className={`large block`}>
+              <PrimaryLargeButton>
                 <Link to="/">
                   <FontAwesome name="home" /> Stock Center Home
                 </Link>
-              </PrimaryButton>
+              </PrimaryLargeButton>
             </Box>
           </Flex>
         </Box>

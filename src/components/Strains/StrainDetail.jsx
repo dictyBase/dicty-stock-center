@@ -13,8 +13,8 @@ import {
   PhenotypeData,
   DictyHeader,
   StrainDetailsHeader,
-  PrimaryButton,
-  SuccessButton,
+  PrimaryBlockButton,
+  SuccessBlockButton,
   BorderBox
 } from "styles"
 
@@ -152,18 +152,16 @@ class StrainDetail extends Component<Props> {
 
         <Flex wrap justify="center">
           <Box w={["80%", "35%"]} mt={10} mr={1}>
-            <PrimaryButton
-              className={`block`}
-              onClick={() => addToCart(cartItem)}>
+            <PrimaryBlockButton onClick={() => addToCart(cartItem)}>
               <FontAwesome name="share" /> Add to Cart
-            </PrimaryButton>
+            </PrimaryBlockButton>
           </Box>
           <Box w={["80%", "35%"]} mt={10} mr={1}>
-            <SuccessButton className={`block`}>
+            <SuccessBlockButton>
               <Link to="/order/shipping">
                 <FontAwesome name="shopping-cart" /> Checkout
               </Link>
-            </SuccessButton>
+            </SuccessBlockButton>
           </Box>
         </Flex>
       </div>

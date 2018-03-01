@@ -225,7 +225,8 @@ class PlasmidTable extends Component<Props> {
               style={{
                 textAlign: "center",
                 height: "100%",
-                WebkitAppearance: "textfield"
+                WebkitAppearance: "textfield",
+                width: "400"
               }}
               type="search"
               placeholder="Search Plasmids"
