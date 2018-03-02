@@ -61,16 +61,25 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 type Props = {
+  /** React Router's match object */
   match: Object,
+  /** action creator to cancel editing */
   cancelEditing: Function,
+  /** the user's ID number */
   id: string,
+  /** value for who last updated the page */
   updated_by: string,
+  /** action creator to save page content */
   saveEditing: Function
 }
 
 type State = {
   editorState: EditorState
 }
+
+/**
+ * Allows editing of the info page components (i.e. Deposit, Payment, Order)
+ */
 
 class EditInfoPage extends Component<Props, State> {
   constructor(props) {

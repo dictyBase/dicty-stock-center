@@ -23,17 +23,25 @@ const decorator = [
 ]
 
 type Props = {
+  /** React Router's match object */
   match: Object,
+  /** user who last updated the page */
   updated_by: string,
+  /** time the page was last updated */
   updated_at: string,
+  /** action creator for editing the current page content */
   editPage: Function,
+  /** checks if user is authenticated */
   isAuthenticated: boolean,
+  /** the object that contains page data from current state */
   page: Object
 }
 
 type State = {
   editorState: EditorState
 }
+
+/** Displays the info page data that was fetched from the InfoPage component */
 
 class InfoPageView extends Component<Props, State> {
   constructor(props) {

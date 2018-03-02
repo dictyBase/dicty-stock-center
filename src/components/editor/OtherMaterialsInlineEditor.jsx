@@ -61,11 +61,17 @@ const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
 
 type Props = {
+  /** the object that contains page data from current state */
   page: Object,
+  /** checks if user is authenticated */
   isAuthenticated: boolean,
+  /** the current user's ID number */
   id: string,
+  /** value for who last updated the page */
   updated_by: string,
+  /** action creator that saves the inline content */
   saveInlineEditing: Function,
+  /** action creator to edit the inline content */
   editInline: Function
 }
 
@@ -73,6 +79,10 @@ type State = {
   editorState: EditorState,
   readOnly: boolean
 }
+
+/**
+ * Inline editor for the Other Materials page content
+ */
 
 class OtherMaterialsInlineEditor extends Component<Props, State> {
   constructor(props) {

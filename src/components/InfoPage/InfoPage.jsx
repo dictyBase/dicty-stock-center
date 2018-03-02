@@ -8,11 +8,19 @@ import { Flex, Box } from "rebass"
 import { NAMESPACE } from "constants/dsctypes"
 
 type Props = {
+  /** Checks if data is currently being fetched */
   isFetching: boolean,
+  /** the Page object taken from the current state  */
   page: Object,
+  /** React Router's match object */
   match: Object,
+  /** Action creator that fetches data from API */
   fetchInfoPage: Function
 }
+
+/**
+ * Fetches the data for the desired info page
+ */
 
 class InfoPage extends Component<Props> {
   // set defaultprops to prevent console warnings
