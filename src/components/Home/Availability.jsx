@@ -5,9 +5,15 @@ import { fetchAvailability } from "actions/stockCenter"
 import { PanelGray } from "styles"
 
 type Props = {
+  /** the Object that contains availability data */
   availability: Object,
+  /** Action creator that fetches the current availability */
   fetchAvailability: Function
 }
+
+/**
+ * Fetches and displays the current availability of strains and plasmids
+ */
 
 export class Availability extends Component<Props> {
   componentDidMount() {

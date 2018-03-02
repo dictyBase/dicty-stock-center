@@ -10,6 +10,10 @@ const materials = [
   { name: "Other Materials", to: "", routerAware: true }
 ]
 
+/**
+ * Displays links to catalogs/materials
+ */
+
 const Materials = () => {
   return (
     <PanelGray>

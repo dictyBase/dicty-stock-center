@@ -7,6 +7,10 @@ import ggtA from "../images/ggtA-mutant-DG1109.png"
 import tipB from "../images/tipB-mutant-DG1036.png"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
+/**
+ * Image slideshow carousel with curated dicty photos
+ */
+
 const Slideshow = () => {
   return (
     <Carousel

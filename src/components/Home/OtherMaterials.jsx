@@ -8,11 +8,19 @@ import { Flex, Box } from "rebass"
 import { PanelBlue } from "styles"
 
 type Props = {
+  /** the Auth object taken from the current state */
   auth: Object,
+  /** Action creator that fetches data from API */
   fetchInfoPage: Function,
+  /** the Page object taken from the current state */
   page: Object,
+  /** Checks if data is currently being fetched */
   isFetching: boolean
 }
+
+/**
+ * Fetches and displays the Other Materials page content
+ */
 
 class OtherMaterials extends Component<Props> {
   // set defaultprops to prevent console warnings

@@ -2,6 +2,10 @@
 import React from "react"
 import { PanelGray, SopLink } from "styles"
 
+/**
+ * Displays the SOP link (Box PDF)
+ */
+
 const Materials = () => {
   return (
     <PanelGray>

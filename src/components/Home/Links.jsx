@@ -18,6 +18,10 @@ const content = [
   }
 ]
 
+/**
+ * Displays misc links
+ */
+
 const Links = () => {
   return (
     <PanelBlue>

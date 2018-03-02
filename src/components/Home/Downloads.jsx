@@ -10,6 +10,10 @@ const downloadLinks = [
   { name: "Plasmid Keywords", to: "", routerAware: true }
 ]
 
+/**
+ * Displays download links
+ */
+
 const Downloads = () => {
   return (
     <PanelBlue>

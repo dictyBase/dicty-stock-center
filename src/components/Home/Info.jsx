@@ -17,6 +17,10 @@ const info = [
   }
 ]
 
+/**
+ * Displays all of the info page links
+ */
+
 const Info = () => {
   return (
     <PanelBlue>

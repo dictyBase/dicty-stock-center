@@ -16,8 +16,13 @@ import { HomepageHeader, Container } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
+  /** the Auth object from the current state */
   auth: Object
 }
+
+/**
+ * This is the main homepage component for DSC
+ */
 
 class Home extends Component<Props> {
   renderGreeting = () => {

@@ -7,11 +7,19 @@ import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
 
 type Props = {
+  /** the Auth object taken from the current state */
   auth: Object,
+  /** Action creator that fetches data from API */
   fetchInfoPage: Function,
+  /** the Page object taken from the current state */
   page: Object,
+  /** Checks if data is currently being fetched */
   isFetching: boolean
 }
+
+/**
+ * Fetches and displays the About page content
+ */
 
 class About extends Component<Props> {
   // set defaultprops to prevent console warnings
