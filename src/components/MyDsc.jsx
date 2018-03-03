@@ -9,8 +9,13 @@ import FontAwesome from "react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
+  /** the object that contains auth data from current state */
   auth: Object
 }
+
+/**
+ * Personalized component that displays the user's login information (ID, email, name, provider)
+ */
 
 export class MyDsc extends Component<Props> {
   render() {

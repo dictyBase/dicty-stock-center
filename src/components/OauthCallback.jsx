@@ -7,6 +7,10 @@ type Props = {
   match: Object
 }
 
+/**
+ * Callback that transfers the user to the login system
+ */
+
 export default class OauthCallback extends Component<Props> {
   componentDidMount() {
     window.opener.postMessage(

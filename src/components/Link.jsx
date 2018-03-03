@@ -7,6 +7,10 @@ type Props = {
   contentState: Function
 }
 
+/**
+ * This is used in conjunction with the utils/findLinkEntities component to create link decorators for Draft.js content.
+ */
+
 export default class Link extends Component<Props> {
   render() {
     const { entityKey, children, contentState } = this.props

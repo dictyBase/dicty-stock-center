@@ -8,8 +8,13 @@ import { Container } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
+  /** Array for currently added items in the cart */
   addedItems: Array<Object>
 }
+
+/**
+ * This is the cart component that displays between the Navbar and body content on every page. It has a cart icon with the current number of added items next to it.
+ */
 
 export class Cart extends Component<Props> {
   render() {

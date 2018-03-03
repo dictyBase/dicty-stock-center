@@ -8,8 +8,13 @@ import { AlertSuccess, PrimaryLargeButton, CenteredBox } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
+  /** the current order ID number */
   id: number
 }
+
+/**
+ * Displays notification that the user's order was submitted successfully.
+ */
 
 export class OrderConfirmation extends Component<Props> {
   render() {

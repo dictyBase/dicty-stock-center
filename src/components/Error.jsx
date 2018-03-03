@@ -8,10 +8,17 @@ import FontAwesome from "react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
+  /** the object that contains auth data from current state */
   auth: Object,
+  /** the object that contains order data from current state */
   order: Object,
+  /** the object that contains page data from current state */
   page: Object
 }
+
+/**
+ * General error page component. Can accept error messages from multiple pieces of the state.
+ */
 
 export class Error extends Component<Props> {
   render() {

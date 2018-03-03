@@ -4,6 +4,10 @@ import { Flex } from "rebass"
 import FontAwesome from "react-fontawesome"
 import { CenteredBox } from "styles"
 
+/**
+ * Loading screen during the login process
+ */
+
 const AuthLoader = () => {
   return (
     <Flex wrap justify="center">

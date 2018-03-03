@@ -11,6 +11,10 @@ type Props = {
   oAuthLogin: Object
 }
 
+/**
+ * Component that handles clicks for each social login button
+ */
+
 export default class OauthSignInButton extends Component<Props> {
   titleCase(name: string) {
     return name.charAt(0).toUpperCase() + name.slice(1)

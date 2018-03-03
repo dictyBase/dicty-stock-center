@@ -31,11 +31,19 @@ const theme = {
 }
 
 type Props = {
+  /** the fields of the contact form */
   fields: Object,
+  /** function to handle submit */
   handleSubmit: Function,
+  /** checks if form is submitting */
   submitting: boolean,
+  /** erases the current form content */
   resetForm: Function
 }
+
+/**
+ * DSC contact form
+ */
 
 class Contact extends Component<Props> {
   render() {

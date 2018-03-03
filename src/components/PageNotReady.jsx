@@ -4,6 +4,10 @@ import { Link } from "react-router-dom"
 import FontAwesome from "react-fontawesome"
 import { Container, Jumbotron, PrimaryButton } from "styles"
 
+/**
+ * General 404 error page, currently designated as "Page Not Ready"/"Under Construction"
+ */
+
 const PageNotReady = () => {
   return (
     <Container>

@@ -5,8 +5,13 @@ import React, { Component } from "react"
 import { logoutUser } from "actions/auth"
 
 type Props = {
+  /** Logs the user out */
   logoutUser: Function
 }
+
+/**
+ * Allows the user to logout
+ */
 
 class Logout extends Component<Props> {
   componentWillMount() {

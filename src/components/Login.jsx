@@ -15,8 +15,13 @@ const getDefaultProviders = () => {
 }
 
 type Props = {
+  /** List of the providers that the user can log into */
   providers: Array<string>
 }
+
+/**
+ * Component that displays all of the social login buttons
+ */
 
 export default class Login extends Component<Props> {
   static defaultProps = {
