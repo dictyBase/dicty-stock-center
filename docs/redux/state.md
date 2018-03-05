@@ -1,10 +1,13 @@
 # Shape of the state
 
-```javscript
+```JavaScript
 {
     auth: {
         isFetching: false,
-        isAuthenticated: false
+        isAuthenticated: false,
+        provider: null,
+        token: null,
+        user: null
     },
     routing: {
         location: {
@@ -70,6 +73,32 @@
         shipping: {account: "Fedex" accountNum: "123", comments: ""},
         payer: {type: "user", id: "sara@gmail.com", firstName: "Sara", ...},
         payment: {method: "Credit card", poNum: ""}
+    },
+    page: {
+        content: null,
+        isFetching: false,
+        [slugName]: {
+            data: {
+                type: "contents",
+                id: "9",
+                attributes: {
+                    name: "intro",
+                    slug: "dsc-intro",
+                    created_by: "999999",
+                    updated_by: "999999",
+                    created_at: "2018-02-12T19:32:42.184656Z",
+                    updated_at: "2018-02-12T19:32:42.184656Z",
+                    content: "draftjs block contents",
+                    namespace: "dsc"
+                },
+                links: {
+                    self: "http://"
+                }
+            },
+            links: {
+                self: "http://"
+            }
+        }
     },
     stockCenter: {
         availability: {
