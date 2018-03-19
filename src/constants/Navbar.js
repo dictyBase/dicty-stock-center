@@ -92,14 +92,8 @@ export const NavbarLinks = [
     ]
   },
   {
-    dropdown: false,
     title: "Dicty Stock Center",
-    items: [
-      {
-        name: "Stock Center Home",
-        href: "/stockcenter"
-      }
-    ]
+    href: "/stockcenter"
   },
   {
     dropdown: true,
