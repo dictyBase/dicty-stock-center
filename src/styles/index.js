@@ -641,6 +641,32 @@ export const DefaultButton = Button.extend`
   }
 `
 
+export const DefaultBlockButton = DefaultButton.extend`
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  display: block;
+  width: 100%;
+
+  &:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+  }
+
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+`
+
 export const ResetButton = Button.extend`
   color: #333;
   background-color: #fff;

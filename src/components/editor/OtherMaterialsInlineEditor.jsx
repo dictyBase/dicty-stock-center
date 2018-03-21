@@ -27,8 +27,8 @@ import {
   EditPanel,
   StaticToolbar,
   TextInfo,
-  DefaultButton,
-  SuccessButton,
+  DefaultBlockButton,
+  SuccessBlockButton,
   InlineLink
 } from "styles"
 
@@ -152,7 +152,7 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
       <EditPanel>
         <Flex wrap>
           <Box w={"90%"}>{!readOnly && this.renderToolbar()}</Box>
-          <Box mt={1}>
+          <Box w={1} mt={1}>
             <Editor
               editorState={editorState}
               onChange={this.onChange}
@@ -171,22 +171,16 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
           </Box>
           <Box width={"40%"} mr={1} mt={1}>
             {!readOnly && (
-              <DefaultButton
-                className={`block`}
-                type="button"
-                onClick={this.onCancel}>
+              <DefaultBlockButton type="button" onClick={this.onCancel}>
                 Cancel
-              </DefaultButton>
+              </DefaultBlockButton>
             )}
           </Box>
           <Box width={"40%"} mt={1}>
             {!readOnly && (
-              <SuccessButton
-                className={`block`}
-                type="button"
-                onClick={this.onSave}>
+              <SuccessBlockButton type="button" onClick={this.onSave}>
                 Save
-              </SuccessButton>
+              </SuccessBlockButton>
             )}
           </Box>
         </Flex>
