@@ -204,7 +204,7 @@ class StrainTable extends Component<Props> {
                 textAlign: "center",
                 height: "100%",
                 WebkitAppearance: "textfield",
-                width: "400"
+                width: "400px"
               }}
               type="search"
               placeholder="Search Strains"
