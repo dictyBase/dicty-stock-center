@@ -1,7 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
-import AuthLoader from "./Auth"
+import AuthLoader from "./AuthLoader"
 
 test("matching a snapshot of AuthLoader", () => {
   const component = renderer.create(<AuthLoader />)

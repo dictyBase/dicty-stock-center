@@ -1,7 +1,7 @@
-import Login from "components/Login"
-import OauthCallback from "components/OauthCallback"
-import AuthLoader from "components/Auth"
-import Logout from "components/Logout"
+import Login from "components/authentication/Login"
+import OauthCallback from "components/authentication/OauthCallback"
+import AuthLoader from "components/authentication/AuthLoader"
+import Logout from "components/authentication/Logout"
 import MyDsc from "components/MyDsc"
 
 export default [

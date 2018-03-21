@@ -60,7 +60,11 @@ export {
   DangerButton,
   DisabledButton,
   LinkButton,
-  SocialButton
+  SocialButton,
+  GoogleButton,
+  FacebookButton,
+  LinkedInButton,
+  OrcidButton
 } from "styles/Buttons"
 export {
   HorizontalForm,

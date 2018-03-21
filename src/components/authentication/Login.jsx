@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from "react"
-import OauthSignInButton from "components/OauthSignInButton"
+import OauthSignInButton from "components/authentication/OauthSignInButton"
 import clientConfig from "utils/clientConfig"
 import { Flex, Box } from "rebass"
 import { DictyHeader } from "styles"
-import OauthSignHandler from "components/OauthSignHandler"
+import OauthSignHandler from "components/authentication/OauthSignHandler"
 
 const getDefaultProviders = () => {
   let providers = []
