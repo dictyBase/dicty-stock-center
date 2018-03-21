@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react"
 import FontAwesome from "react-fontawesome"
-import { PrimaryButton } from "styles"
+import { PrimaryLargeButton } from "styles"
 
 type Props = {
   submitting: boolean,
@@ -13,7 +13,7 @@ export default class SubmitButton extends Component<Props> {
   render() {
     const { submitting, name, icon } = this.props
     return (
-      <PrimaryButton
+      <PrimaryLargeButton
         type="submit"
         className={`large block`}
         disabled={submitting}>
@@ -24,7 +24,7 @@ export default class SubmitButton extends Component<Props> {
         ) : (
           <FontAwesome name={icon && icon} aria-hidden="true" />
         )}
-      </PrimaryButton>
+      </PrimaryLargeButton>
     )
   }
 }

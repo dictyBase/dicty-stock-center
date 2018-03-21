@@ -756,6 +756,44 @@ export const SuccessButton = Button.extend`
   }
 `
 
+export const SuccessSmallButton = Button.extend`
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  width: 20%;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #255625;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+
+  &:active {
+    color: #333;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+`
+
 export const SuccessLargeButton = Button.extend`
   color: #fff;
   background-color: #5cb85c;

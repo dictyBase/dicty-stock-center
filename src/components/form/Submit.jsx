@@ -9,7 +9,7 @@ import { submitOrder } from "actions/order/submit"
 import { Panel, PanelBody } from "dicty-components-panel"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
-import { DictyHeader, PrimaryButton } from "styles"
+import { DictyHeader, PrimaryLargeButton } from "styles"
 
 type Props = {
   order: Object,
@@ -91,12 +91,9 @@ export class Submit extends Component<Props> {
             </Box>
             <Box w={1} mb={1} mr={1}>
               <hr />
-              <PrimaryButton
-                type="button"
-                className={`large block`}
-                onClick={submitOrder}>
+              <PrimaryLargeButton type="button" onClick={submitOrder}>
                 Complete Your Order <FontAwesome name="check-circle" />
-              </PrimaryButton>
+              </PrimaryLargeButton>
             </Box>
           </Flex>
         </Box>

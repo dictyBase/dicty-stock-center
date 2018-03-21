@@ -19,7 +19,7 @@ import {
   AlertBox,
   TextInfo,
   HorizontalForm,
-  SuccessButton
+  SuccessSmallButton
 } from "styles"
 
 export const fields = [
@@ -92,12 +92,9 @@ class Payment extends Component<Props> {
                 />
               </PanelGreen>
               <hr />
-              <SuccessButton
-                type="button"
-                className={`xs`}
-                onClick={sameAsShipping}>
+              <SuccessSmallButton type="button" onClick={sameAsShipping}>
                 Same as shipping
-              </SuccessButton>{" "}
+              </SuccessSmallButton>{" "}
               Click here if payer address is the same as shipping address<br />
               <br />
             </Box>
