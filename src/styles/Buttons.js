@@ -278,54 +278,6 @@ export const SocialButton = LinkButton.extend`
   &:hover {
     text-decoration: none;
   }
-
-  &.google {
-    background-color: #dd4b39;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #fff;
-      background-color: #c23321;
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-
-  &.facebook {
-    background-color: #3b5998;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #fff;
-      background-color: #2d4373;
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-
-  &.linkedin {
-    background-color: #007bb6;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #fff;
-      background-color: #005983;
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-
-  &.orcid {
-    background-color: #a6ce39;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #fff;
-      background-color: #88aa2a;
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-  }
 `
 
 export const GoogleButton = SocialButton.extend`
