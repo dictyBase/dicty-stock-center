@@ -3,12 +3,14 @@ import React from "react"
 import OauthSignInButton from "components/authentication/OauthSignInButton"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import { Flex, Box } from "rebass"
+import FontAwesome from "react-fontawesome"
 import {
   DictyHeader,
   GoogleButton,
   FacebookButton,
   LinkedInButton,
-  OrcidButton
+  OrcidButton,
+  FontAwesomeIconContainer
 } from "styles"
 
 /**
@@ -23,15 +25,25 @@ const Login = () => {
           <h1>Log in</h1>
         </DictyHeader>
         <GoogleButton>
+          <FontAwesomeIconContainer>
+            <FontAwesome name="google" />
+          </FontAwesomeIconContainer>
           <OauthSignInButton provider="google" />
         </GoogleButton>
         <FacebookButton>
+          <FontAwesomeIconContainer>
+            <FontAwesome name="facebook" />
+          </FontAwesomeIconContainer>
           <OauthSignInButton provider="facebook" />
         </FacebookButton>
         <LinkedInButton>
+          <FontAwesomeIconContainer>
+            <FontAwesome name="linkedin" />
+          </FontAwesomeIconContainer>
           <OauthSignInButton provider="linkedin" />
         </LinkedInButton>
         <OrcidButton>
+          <FontAwesomeIconContainer>&nbsp;</FontAwesomeIconContainer>
           <OauthSignInButton provider="orcid" />
         </OrcidButton>
         <OauthSignHandler />

@@ -268,7 +268,8 @@ export const SocialButton = LinkButton.extend`
   margin-top: 5px;
   color: #fff;
   border-color: rgba(0, 0, 0, 0.2);
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 10px 16px;
   font-size: 18px;
@@ -278,6 +279,13 @@ export const SocialButton = LinkButton.extend`
   &:hover {
     text-decoration: none;
   }
+`
+
+export const FontAwesomeIconContainer = styled.i`
+  border-right: 1px solid black;
+  line-height: 45px;
+  width: 45px;
+  font-size: 1.8em;
 `
 
 export const GoogleButton = SocialButton.extend`

@@ -2,7 +2,6 @@
 import React, { Component } from "react"
 import oauthConfig from "utils/oauthConfig"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
 
 type Props = {
   provider: string,
@@ -50,9 +49,7 @@ export default class OauthSignInButton extends Component<Props> {
     return (
       <Flex justify="center">
         <Box w={"90%"} mb={"5px"}>
-          <div onClick={this.onClick}>
-            <FontAwesome name={`${provider}`} />&nbsp; Sign in with {name}
-          </div>
+          <div onClick={this.onClick}>&nbsp; Sign in with {name}</div>
         </Box>
       </Flex>
     )

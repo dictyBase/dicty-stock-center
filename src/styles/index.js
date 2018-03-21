@@ -64,7 +64,8 @@ export {
   GoogleButton,
   FacebookButton,
   LinkedInButton,
-  OrcidButton
+  OrcidButton,
+  FontAwesomeIconContainer
 } from "styles/Buttons"
 export {
   HorizontalForm,
