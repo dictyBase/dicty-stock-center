@@ -123,68 +123,6 @@ declare module "validator/lib/isEmail" {
 declare module "history/createBrowserHistory" {
   declare module.exports: any
 }
-
-// node_modules
-declare module "react-loading-skeleton" {
-  declare module.exports: any
-}
-declare module "rebass" {
-  declare module.exports: any
-}
-declare module "react-fontawesome" {
-  declare module.exports: any
-}
-declare module "dicty-components-panel" {
-  declare module.exports: any
-}
-declare module "dicty-components-header-footer" {
-  declare module.exports: any
-}
-declare module "dicty-components-navbar" {
-  declare module.exports: any
-}
-declare module "draft-js" {
-  declare module.exports: any
-}
-declare module "draft-js-plugins-editor" {
-  declare module.exports: any
-}
-declare module "draft-js-undo-plugin" {
-  declare module.exports: any
-}
-declare module "draft-js-static-toolbar-plugin" {
-  declare module.exports: any
-}
-declare module "draft-js-toolbar-link-plugin" {
-  declare module.exports: any
-}
-declare module "draft-js-buttons" {
-  declare module.exports: any
-}
-declare module "react-responsive-carousel" {
-  declare module.exports: any
-}
-declare module "react-router-redux" {
-  declare module.exports: any
-}
-declare module "react-virtualized" {
-  declare module.exports: any
-}
-declare module "react-ga" {
-  declare module.exports: any
-}
-declare module "redux-form" {
-  declare module.exports: any
-}
-declare module "redux" {
-  declare module.exports: any
-}
-declare module "redux-thunk" {
-  declare module.exports: any
-}
-declare module "simplestorage.js" {
-  declare module.exports: any
-}
 // reducers
 declare module "reducers/cart" {
   declare module.exports: any
