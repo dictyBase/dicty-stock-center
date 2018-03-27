@@ -1,21 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of OrderConfirmation 1`] = `
-.c1 {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  text-align: center;
-}
-
-.c0 {
-  text-align: center;
-}
-
 .c2 {
   display: inline-block;
   padding: 6px 12px;
@@ -96,6 +81,21 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
+}
+
+.c1 {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  text-align: center;
+}
+
+.c0 {
+  text-align: center;
 }
 
 <div

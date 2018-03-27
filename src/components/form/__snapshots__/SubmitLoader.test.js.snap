@@ -8,7 +8,25 @@ exports[`matching a snapshot of SubmitLoader 1`] = `
   margin-left: auto;
 }
 
+.c2 {
+  box-sizing: border-box;
+}
+
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c3 {
   text-align: center;
 }
 
@@ -34,11 +52,11 @@ exports[`matching a snapshot of SubmitLoader 1`] = `
   className="c0"
 >
   <div
-    className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+    className="c1 c2"
     is={null}
   >
     <div
-      className="c1 iHZvIS"
+      className="c3 c2"
       is={null}
     >
       <h1>

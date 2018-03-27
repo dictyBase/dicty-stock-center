@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of StandardOperatingProcedures 1`] = `
-.c1 {
-  color: #961818;
-}
-
 .c0 {
   background-color: #f2f2f2;
   border: 1px solid #f2f2f2;
@@ -12,6 +8,10 @@ exports[`matching a snapshot of StandardOperatingProcedures 1`] = `
   padding: 15px;
   border-radius: 10px;
   width: 100%;
+}
+
+.c1 {
+  color: #961818;
 }
 
 <div

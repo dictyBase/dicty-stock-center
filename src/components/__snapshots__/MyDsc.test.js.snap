@@ -1,6 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of MyDsc 1`] = `
+.c2 h1 {
+  font-size: 62px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.c2 h2 {
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
 .c0 {
   padding-right: 15px;
   padding-left: 15px;
@@ -28,22 +44,6 @@ exports[`matching a snapshot of MyDsc 1`] = `
 
 .c1:active {
   color: #777;
-}
-
-.c2 h1 {
-  font-size: 62px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
-}
-
-.c2 h2 {
-  font-size: 32px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
 }
 
 @media (min-width:768px) {

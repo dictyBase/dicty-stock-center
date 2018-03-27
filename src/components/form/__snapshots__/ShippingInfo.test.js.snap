@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of ShippingInfo 1`] = `
-.c2 {
-  color: #dc3545;
-}
-
 .c1 {
   display: inline-block;
   padding-top: 7px;
@@ -53,6 +49,10 @@ exports[`matching a snapshot of ShippingInfo 1`] = `
   font-weight: normal;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.c2 {
+  color: #dc3545;
 }
 
 <div
