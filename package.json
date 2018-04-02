@@ -74,8 +74,10 @@
     "jest-enzyme": "^4.0.1",
     "jest-styled-components": "^5.0.0",
     "lint-staged": "^4.0.4",
+    "nock": "^9.2.3",
     "prettier": "^1.6.1",
     "react-styleguidist": "^6.2.5",
-    "react-test-renderer": "^15.6.2"
+    "react-test-renderer": "^15.6.2",
+    "redux-mock-store": "^1.5.1"
   }
 }
