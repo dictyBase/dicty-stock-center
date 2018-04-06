@@ -3,7 +3,7 @@ import { dsctypes } from "constants/dsctypes"
 
 const { ADD_SHIPPING } = dsctypes
 
-describe("actions", () => {
+describe("shipping actions", () => {
   describe("order", () => {
     it("should create an action to add shipping information", () => {
       const user = {

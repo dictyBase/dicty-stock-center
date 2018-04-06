@@ -3,7 +3,7 @@ import { dsctypes } from "constants/dsctypes"
 
 const { ADD_PAYMENT } = dsctypes
 
-describe("actions", () => {
+describe("payment actions", () => {
   describe("order", () => {
     it("should create an action to add payment information", () => {
       const user = {

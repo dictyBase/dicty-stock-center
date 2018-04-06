@@ -1,10 +1,12 @@
 // currently broken, needs to be fixed
 
 import * as actions from "actions/order/submit"
-import { SUBMIT_REQUEST, SUBMIT_SUCCESS } from "constants/dsctypes"
+import { dsctypes } from "constants/dsctypes"
 import nock from "nock"
 import configureMockStore from "redux-mock-store"
 import thunk from "redux-thunk"
+
+const { SUBMIT_REQUEST, SUBMIT_SUCCESS } = dsctypes
 
 let server = "http://localhost:8080" // API_SERVER
 
