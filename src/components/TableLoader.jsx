@@ -5,8 +5,8 @@ import { CenteredBox } from "../styles"
 import FontAwesome from "react-fontawesome"
 
 type Props = {
-  title: string,
-  message: string
+  title?: string,
+  message?: string
 }
 
 const TableLoader = (props: Props) => {

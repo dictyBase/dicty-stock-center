@@ -4,8 +4,19 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/.*
 
+# These are added so Flow can recognize absolute import paths
 [options]
-module.name_mapper='^app/\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^actions\(\/?.*\)$' -> '<PROJECT_ROOT>/src/actions/\1'
+module.name_mapper='^components\(\/?.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
+module.name_mapper='^constants\(\/?.*\)$' -> '<PROJECT_ROOT>/src/constants/\1'
+module.name_mapper='^containers\(\/?.*\)$' -> '<PROJECT_ROOT>/src/containers/\1'
+module.name_mapper='^fake-data\(\/?.*\)$' -> '<PROJECT_ROOT>/src/fake-data/\1'
+module.name_mapper='^forms\(\/?.*\)$' -> '<PROJECT_ROOT>/src/forms/\1'
+module.name_mapper='^reducers\(\/?.*\)$' -> '<PROJECT_ROOT>/src/reducers/\1'
+module.name_mapper='^routes\(\/?.*\)$' -> '<PROJECT_ROOT>/src/routes/\1'
+module.name_mapper='^static\(\/?.*\)$' -> '<PROJECT_ROOT>/src/static/\1'
+module.name_mapper='^store\(\/?.*\)$' -> '<PROJECT_ROOT>/src/store/\1'
+module.name_mapper='^styles\(\/?.*\)$' -> '<PROJECT_ROOT>/src/styles/\1'
 
 [libs]
 flow-typed

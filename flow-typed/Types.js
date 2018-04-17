@@ -1,89 +1,4 @@
-// actions
-declare module "actions/order/shipping" {
-  declare module.exports: any
-}
-declare module "actions/auth" {
-  declare module.exports: any
-}
-declare module "actions/cart" {
-  declare module.exports: any
-}
-declare module "actions/stockCenter" {
-  declare module.exports: any
-}
-declare module "actions/contact" {
-  declare module.exports: any
-}
-declare module "actions/order/payment" {
-  declare module.exports: any
-}
-declare module "actions/order/submit" {
-  declare module.exports: any
-}
-declare module "actions/page" {
-  declare module.exports: any
-}
 // components
-declare module "containers/App" {
-  declare module.exports: any
-}
-declare module "components/Strains/StockDetailRow" {
-  declare module.exports: any
-}
-declare module "components/Strains/StrainTable" {
-  declare module.exports: any
-}
-declare module "components/Strains/PhenotypeRow" {
-  declare module.exports: any
-}
-declare module "components/editor/AboutInlineEditor" {
-  declare module.exports: any
-}
-declare module "components/StockDetailRow" {
-  declare module.exports: any
-}
-declare module "components/Cart" {
-  declare module.exports: any
-}
-declare module "routes/RenderRoutes" {
-  declare module.exports: any
-}
-declare module "constants/footer" {
-  declare module.exports: any
-}
-declare module "constants/navbar" {
-  declare module.exports: any
-}
-declare module "constants/dsctypes" {
-  declare module.exports: any
-}
-declare module "constants/fees" {
-  declare module.exports: any
-}
-declare module "components/TableLoader" {
-  declare module.exports: any
-}
-declare module "components/Items" {
-  declare module.exports: any
-}
-declare module "components/Link" {
-  declare module.exports: any
-}
-declare module "components/OauthSignHandler" {
-  declare module.exports: any
-}
-declare module "forms/validate/order-form" {
-  declare module.exports: any
-}
-declare module "forms/validate/contact-form" {
-  declare module.exports: any
-}
-declare module "forms/utils/countryList" {
-  declare module.exports: any
-}
-declare module "components/OauthSignInButton" {
-  declare module.exports: any
-}
 declare module "utils/oauthConfig" {
   declare module.exports: any
 }
@@ -111,9 +26,6 @@ declare module "utils/timeSince" {
 declare module "utils/findLinkEntities" {
   declare module.exports: any
 }
-declare module "fake-data/availability" {
-  declare module.exports: any
-}
 declare module "middlewares/storage" {
   declare module.exports: any
 }
@@ -123,26 +35,8 @@ declare module "validator/lib/isEmail" {
 declare module "history/createBrowserHistory" {
   declare module.exports: any
 }
-// reducers
-declare module "reducers/cart" {
-  declare module.exports: any
-}
-declare module "reducers/stockCenter" {
-  declare module.exports: any
-}
-declare module "reducers/page" {
-  declare module.exports: any
-}
-declare module "reducers/order" {
-  declare module.exports: any
-}
-declare module "reducers/auth" {
-  declare module.exports: any
-}
+
 // styles
-declare module "styles" {
-  declare module.exports: any
-}
 declare module "react-virtualized/styles.css" {
   declare module.exports: any
 }

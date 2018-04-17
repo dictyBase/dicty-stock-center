@@ -4,9 +4,7 @@ import oauthConfig from "utils/oauthConfig"
 import { Flex, Box } from "rebass"
 
 type Props = {
-  provider: string,
-  redirectUrl: string,
-  oAuthLogin: Object
+  provider: string
 }
 
 /**
