@@ -71,7 +71,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         ...state,
         availability: {
           isFetching: false,
-          data: action.availability
+          data: action.payload.availability
         }
       }
     case AVAILABILITY_FETCH_FAILURE:
@@ -79,7 +79,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         ...state,
         availability: {
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case STRAINS_FETCH_REQUEST:
@@ -96,9 +96,9 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          links: action.links,
-          meta: action.meta,
-          data: state.strainCatalog.data.concat(action.data)
+          links: action.payload.links,
+          meta: action.payload.meta,
+          data: state.strainCatalog.data.concat(action.payload.data)
         }
       }
     case STRAINS_FETCH_FAILURE:
@@ -107,7 +107,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case SEARCH_STRAINS_REQUEST:
@@ -116,7 +116,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case STRAINS_SEARCH_REQUEST:
@@ -133,9 +133,9 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          data: action.data,
-          links: action.links,
-          meta: action.meta
+          data: action.payload.data,
+          links: action.payload.links,
+          meta: action.payload.meta
         }
       }
     case STRAINS_SEARCH_FAILURE:
@@ -144,7 +144,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strainCatalog: {
           ...state.strainCatalog,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case CLEAR_STRAINS:
@@ -174,7 +174,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         ...state,
         strain: {
           isFetching: false,
-          ...action.data
+          ...action.payload.data
         }
       }
     case STRAIN_FETCH_FAILURE:
@@ -183,7 +183,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         strain: {
           ...state.strain,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case PLASMIDS_FETCH_REQUEST:
@@ -200,9 +200,9 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          links: action.links,
-          meta: action.meta,
-          data: state.plasmidCatalog.data.concat(action.data)
+          links: action.payload.links,
+          meta: action.payload.meta,
+          data: state.plasmidCatalog.data.concat(action.payload.data)
         }
       }
     case PLASMIDS_FETCH_FAILURE:
@@ -211,7 +211,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case PLASMIDS_SEARCH_REQUEST:
@@ -228,9 +228,9 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          data: action.data,
-          links: action.links,
-          meta: action.meta
+          data: action.payload.data,
+          links: action.payload.links,
+          meta: action.payload.meta
         }
       }
     case PLASMIDS_SEARCH_FAILURE:
@@ -239,7 +239,7 @@ const stockCenterReducer = (state: Object = initialState, action: Object) => {
         plasmidCatalog: {
           ...state.plasmidCatalog,
           isFetching: false,
-          error: action.error
+          error: action.payload.error
         }
       }
     case CLEAR_PLASMIDS:

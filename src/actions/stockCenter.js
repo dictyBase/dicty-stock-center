@@ -38,8 +38,10 @@ const server = process.env.REACT_APP_API_SERVER
 const receiveAvailability = (data: Object) => {
   return {
     type: AVAILABILITY_FETCH_SUCCESS,
-    isFetching: false,
-    availability: data.attributes.availability
+    payload: {
+      isFetching: false,
+      availability: data.attributes.availability
+    }
   }
 }
 
@@ -52,16 +54,20 @@ const requestStrains = () => {
 const receiveStrains = (data: Object) => {
   return {
     type: STRAINS_FETCH_SUCCESS,
-    data: data.data,
-    links: data.links,
-    meta: data.meta
+    payload: {
+      data: data.data,
+      links: data.links,
+      meta: data.meta
+    }
   }
 }
 
 const strainsFetchFailure = (error: string) => {
   return {
     type: STRAINS_FETCH_FAILURE,
-    error
+    payload: {
+      error
+    }
   }
 }
 
@@ -74,14 +80,18 @@ const requestStrain = () => {
 const receiveStrain = data => {
   return {
     type: STRAIN_FETCH_SUCCESS,
-    data
+    payload: {
+      data
+    }
   }
 }
 
 const strainFetchFailure = (error: string) => {
   return {
     type: STRAIN_FETCH_FAILURE,
-    error
+    payload: {
+      error
+    }
   }
 }
 
@@ -94,17 +104,21 @@ const strainSearch = search => {
 const receiveStrainSearch = (data: Object) => {
   return {
     type: STRAINS_SEARCH_SUCCESS,
-    isFetching: false,
-    data: data.data,
-    links: data.links,
-    meta: data.meta
+    payload: {
+      isFetching: false,
+      data: data.data,
+      links: data.links,
+      meta: data.meta
+    }
   }
 }
 
 const strainSearchFailure = (error: string) => {
   return {
     type: STRAINS_SEARCH_FAILURE,
-    error
+    payload: {
+      error
+    }
   }
 }
 
@@ -123,16 +137,20 @@ const requestPlasmids = () => {
 const receivePlasmids = (data: Object) => {
   return {
     type: PLASMIDS_FETCH_SUCCESS,
-    data: data.data,
-    links: data.links,
-    meta: data.meta
+    payload: {
+      data: data.data,
+      links: data.links,
+      meta: data.meta
+    }
   }
 }
 
 const plasmidsFetchFailure = (error: string) => {
   return {
     type: PLASMIDS_FETCH_FAILURE,
-    error
+    payload: {
+      error
+    }
   }
 }
 
@@ -145,17 +163,21 @@ const plasmidsSearch = search => {
 const receivePlasmidsSearch = (data: Object) => {
   return {
     type: PLASMIDS_SEARCH_SUCCESS,
-    isFetching: false,
-    data: data.data,
-    links: data.links,
-    meta: data.meta
+    payload: {
+      isFetching: false,
+      data: data.data,
+      links: data.links,
+      meta: data.meta
+    }
   }
 }
 
 const plasmidsSearchFailure = (error: string) => {
   return {
     type: PLASMIDS_SEARCH_FAILURE,
-    error
+    payload: {
+      error
+    }
   }
 }
 

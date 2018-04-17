@@ -15,7 +15,7 @@ const addedItems = (state = initialState.addedItems, action: Object) => {
           .map(item => {
             return item.id
           })
-          .indexOf(action.item.id) !== -1
+          .indexOf(action.payload.item.id) !== -1
       ) {
         // item is already added to the cart
         return state
@@ -23,15 +23,15 @@ const addedItems = (state = initialState.addedItems, action: Object) => {
       return [
         ...state,
         {
-          id: action.item.id,
-          name: action.item.systematicName,
-          fee: action.fee
+          id: action.payload.item.id,
+          name: action.payload.item.systematicName,
+          fee: action.payload.fee
         }
       ]
     case REMOVE_FROM_CART:
       return [
-        ...state.slice(0, action.removeIndex),
-        ...state.slice(action.removeIndex + 1)
+        ...state.slice(0, action.payload.removeIndex),
+        ...state.slice(action.payload.removeIndex + 1)
       ]
     default:
       return state

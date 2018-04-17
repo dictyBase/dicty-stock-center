@@ -26,32 +26,40 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
 const requestLogin = provider => {
   return {
     type: LOGIN_REQUEST,
-    isFetching: true,
-    provider: provider
+    payload: {
+      isFetching: true,
+      provider: provider
+    }
   }
 }
 
 const receiveLogin = ({ user, token }) => {
   return {
     type: LOGIN_SUCCESS,
-    isFetching: false,
-    token: token,
-    user: user
+    payload: {
+      isFetching: false,
+      token: token,
+      user: user
+    }
   }
 }
 
 const loginError = error => {
   return {
     type: LOGIN_FAILURE,
-    isFetching: false,
-    error: error
+    payload: {
+      isFetching: false,
+      error: error
+    }
   }
 }
 
 const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
-    isFetching: false
+    payload: {
+      isFetching: false
+    }
   }
 }
 

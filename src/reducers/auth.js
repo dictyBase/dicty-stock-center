@@ -14,35 +14,35 @@ const authReducer = (state: Object = {}, action: Object) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: action.payload.isFetching,
         isAuthenticated: false,
-        provider: action.provider
+        provider: action.payload.provider
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isFetching: action.isFetching,
-        isAuthenticated: action.token ? true : false,
-        token: action.token,
-        user: action.user
+        isFetching: action.payload.isFetching,
+        isAuthenticated: action.payload.token ? true : false,
+        token: action.payload.token,
+        user: action.payload.user
       }
     case LOGIN_FAILURE:
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: action.payload.isFetching,
         isAuthenticated: false,
-        error: action.error,
+        error: action.payload.error,
         provider: null
       }
     case LOGOUT_REQUEST:
       return {
         ...state,
-        isFetching: action.isFetching
+        isFetching: action.payload.isFetching
       }
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: action.payload.isFetching,
         isAuthenticated: false,
         provider: null,
         user: null,

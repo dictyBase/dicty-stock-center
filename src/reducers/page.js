@@ -23,17 +23,17 @@ const pageReducer = (state: Object = initialState, action: Object) => {
         isFetching: true
       }
     case FETCH_PAGE_SUCCESS:
-      const slugName = action.payload.data.attributes.slug
+      const slugName = action.payload.json.data.attributes.slug
       return {
         ...state,
         isFetching: false,
-        [slugName]: action.payload
+        [slugName]: action.payload.json
       }
     case FETCH_PAGE_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.error
+        error: action.payload.error
       }
     case EDIT_PAGE:
       return {
@@ -54,7 +54,7 @@ const pageReducer = (state: Object = initialState, action: Object) => {
       return {
         ...state,
         isFetching: false,
-        error: action.error
+        error: action.payload.error
       }
     default:
       return state

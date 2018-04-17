@@ -16,8 +16,10 @@ const addItem = item => {
   }
   return {
     type: ADD_TO_CART,
-    fee: fee,
-    item
+    payload: {
+      fee: fee,
+      item
+    }
   }
 }
 
@@ -37,7 +39,9 @@ export const removeItem = (id: string) => {
       .indexOf(id)
     dispatch({
       type: REMOVE_FROM_CART,
-      removeIndex
+      payload: {
+        removeIndex
+      }
     })
   }
 }
