@@ -16,8 +16,10 @@ describe("cart reducer", () => {
     expect(
       reducer(initialState, {
         type: ADD_TO_CART,
-        item: {
-          id: "999"
+        payload: {
+          item: {
+            id: "999"
+          }
         }
       })
     ).toEqual({
@@ -39,7 +41,9 @@ describe("cart reducer", () => {
     expect(
       reducer(state, {
         type: REMOVE_FROM_CART,
-        removeIndex: 2
+        payload: {
+          removeIndex: 2
+        }
       })
     ).toEqual(expected)
   })

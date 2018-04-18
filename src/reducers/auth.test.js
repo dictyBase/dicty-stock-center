@@ -21,9 +21,11 @@ describe("reducers", () => {
           {},
           {
             type: LOGIN_REQUEST,
-            isFetching: true,
-            isAuthenticated: false,
-            provider: "google"
+            payload: {
+              isFetching: true,
+              isAuthenticated: false,
+              provider: "google"
+            }
           }
         )
       ).toEqual({
@@ -39,10 +41,12 @@ describe("reducers", () => {
           {},
           {
             type: LOGIN_SUCCESS,
-            isFetching: false,
-            isAuthenticated: true,
-            token: "adsfgjkngdfa",
-            user: { name: "John" }
+            payload: {
+              isFetching: false,
+              isAuthenticated: true,
+              token: "adsfgjkngdfa",
+              user: { name: "John" }
+            }
           }
         )
       ).toEqual({
@@ -59,10 +63,12 @@ describe("reducers", () => {
           {},
           {
             type: LOGIN_FAILURE,
-            isFetching: false,
-            isAuthenticated: false,
-            error: "danger",
-            provider: null
+            payload: {
+              isFetching: false,
+              isAuthenticated: false,
+              error: "danger",
+              provider: null
+            }
           }
         )
       ).toEqual({
@@ -79,7 +85,9 @@ describe("reducers", () => {
           {},
           {
             type: LOGOUT_REQUEST,
-            isFetching: true
+            payload: {
+              isFetching: true
+            }
           }
         )
       ).toEqual({
@@ -93,8 +101,10 @@ describe("reducers", () => {
           {},
           {
             type: LOGOUT_SUCCESS,
-            isFetching: false,
-            isAuthenticated: false
+            payload: {
+              isFetching: false,
+              isAuthenticated: false
+            }
           }
         )
       ).toEqual({

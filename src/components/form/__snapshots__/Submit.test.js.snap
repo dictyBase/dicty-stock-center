@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Submit 1`] = `
-.c2 {
+.c11 {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -35,19 +35,19 @@ exports[`matching a snapshot of Submit 1`] = `
   border-radius: 6px;
 }
 
-.c2.block {
+.c11.block {
   display: block;
   width: 100%;
 }
 
-.c2.large {
+.c11.large {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
 
-.c2.xs {
+.c11.xs {
   padding: 1px 5px;
   font-size: 12px;
   line-height: 1.5;
@@ -55,35 +55,35 @@ exports[`matching a snapshot of Submit 1`] = `
   width: 20%;
 }
 
-.c2 a {
+.c11 a {
   color: #fff;
 }
 
-.c2 a:hover {
+.c11 a:hover {
   color: #fff;
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c2:focus {
+.c11:focus {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
 
-.c2:hover {
+.c11:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 
-.c2:active {
+.c11:active {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 
-.c0 h1 {
+.c3 h1 {
   font-size: 62px;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -91,7 +91,7 @@ exports[`matching a snapshot of Submit 1`] = `
   text-align: center;
 }
 
-.c0 h2 {
+.c3 h2 {
   font-size: 32px;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -100,19 +100,111 @@ exports[`matching a snapshot of Submit 1`] = `
 }
 
 .c1 {
+  box-sizing: border-box;
+}
+
+.c2 {
+  box-sizing: border-box;
+  width: 85%;
+}
+
+.c4 {
+  box-sizing: border-box;
+  width: 85%;
+}
+
+.c5 {
+  box-sizing: border-box;
+  width: 100%;
+  margin-right: 8px;
+}
+
+.c7 {
+  box-sizing: border-box;
+  width: 100%;
+  margin-right: 8px;
+}
+
+.c9 {
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.c10 {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c6 {
   cursor: pointer;
 }
 
+@media screen and (min-width:40em) {
+  .c2 {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c4 {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c5 {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c5 {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c5 {
+    width: 45%;
+  }
+}
+
 <div
-  className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+  className="c0 c1"
   is={null}
 >
   <div
-    className="sc-bdVaJa dEKHPo"
+    className="c2"
     is={null}
   >
     <div
-      className="c0"
+      className="c3"
     >
       <h2>
         Review Your Order
@@ -124,15 +216,15 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
   </div>
   <div
-    className="sc-bdVaJa foxScs"
+    className="c4"
     is={null}
   >
     <div
-      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="c0 c1"
       is={null}
     >
       <div
-        className="sc-bdVaJa vDLMO"
+        className="c5"
         is={null}
       >
         <div
@@ -173,7 +265,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="c1"
+                  className="c6"
                   onClick={[Function]}
                 >
                   <span
@@ -191,7 +283,7 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa vDLMO"
+        className="c5"
         is={null}
       >
         <div
@@ -232,7 +324,7 @@ exports[`matching a snapshot of Submit 1`] = `
               <br />
               <div>
                 <a
-                  className="c1"
+                  className="c6"
                   onClick={[Function]}
                 >
                   <span
@@ -252,11 +344,11 @@ exports[`matching a snapshot of Submit 1`] = `
     </div>
     <hr />
     <div
-      className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+      className="c0 c1"
       is={null}
     >
       <div
-        className="sc-bdVaJa fiWxJc"
+        className="c7"
         is={null}
       >
         <div
@@ -284,11 +376,11 @@ exports[`matching a snapshot of Submit 1`] = `
             </h4>
             <div>
               <div
-                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="c8 c1"
                 is={null}
               >
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 >
                   <h5>
@@ -296,7 +388,7 @@ exports[`matching a snapshot of Submit 1`] = `
                   </h5>
                 </div>
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 >
                   <h5>
@@ -305,28 +397,28 @@ exports[`matching a snapshot of Submit 1`] = `
                 </div>
               </div>
               <div
-                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="c8 c1"
                 is={null}
               >
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 />
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 />
               </div>
               <div
-                className="sc-htpNat jtWIOA sc-bdVaJa iHZvIS"
+                className="c8 c1"
                 is={null}
               >
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 />
                 <div
-                  className="sc-bdVaJa goNVXm"
+                  className="c9"
                   is={null}
                 />
               </div>
@@ -338,12 +430,12 @@ exports[`matching a snapshot of Submit 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa kIMTZA"
+        className="c10"
         is={null}
       >
         <hr />
         <button
-          className="c2"
+          className="c11"
           onClick={undefined}
           type="button"
         >

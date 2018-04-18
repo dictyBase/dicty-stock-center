@@ -42,7 +42,9 @@ describe("page reducer", () => {
         {},
         {
           type: SAVE_PAGE_REQUEST,
-          isFetching: true
+          payload: {
+            isFetching: true
+          }
         }
       )
     ).toEqual({
@@ -70,8 +72,10 @@ describe("page reducer", () => {
         {},
         {
           type: SAVE_PAGE_FAILURE,
-          isFetching: false,
-          error: "404"
+          payload: {
+            isFetching: false,
+            error: "404"
+          }
         }
       )
     ).toEqual({
@@ -110,9 +114,11 @@ describe("page reducer", () => {
           isFetching: false,
           slugName: slugName,
           payload: {
-            data: {
-              attributes: {
-                slug: "slug"
+            json: {
+              data: {
+                attributes: {
+                  slug: "slug"
+                }
               }
             }
           }
@@ -130,8 +136,10 @@ describe("page reducer", () => {
         {},
         {
           type: FETCH_PAGE_FAILURE,
-          isFetching: false,
-          error: "404"
+          payload: {
+            isFetching: false,
+            error: "404"
+          }
         }
       )
     ).toEqual({
