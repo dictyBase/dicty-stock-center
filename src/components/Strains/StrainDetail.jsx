@@ -29,7 +29,7 @@ type Props = {
   match: Object
 }
 
-class StrainDetail extends Component<Props> {
+export class StrainDetail extends Component<Props> {
   componentDidMount() {
     const fetchStrain = this.props.fetchStrain
     const id = this.props.match.params.id

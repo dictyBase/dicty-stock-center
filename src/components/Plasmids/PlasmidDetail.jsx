@@ -25,7 +25,7 @@ type Props = {
   title: string
 }
 
-class PlasmidDetail extends Component<Props> {
+export class PlasmidDetail extends Component<Props> {
   componentDidMount() {
     const fetchPlasmid = this.props.fetchPlasmid
     const id = this.props.match.params.id
