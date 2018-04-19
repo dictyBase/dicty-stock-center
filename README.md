@@ -19,7 +19,7 @@ Dicty Stock Center application rebuilt with React and Redux!
     * [Providers](#providers)
     * [Auth server](#auth-server)
     * [API server](#api-server)
-  * [Running the application(dev version)](#running-the-applicationdev-version)
+  * [Running the application(dev version)](#running-the-application-dev-version)
   * [Application Structure](#application-structure)
 * [Deployment](#deployment)
 
