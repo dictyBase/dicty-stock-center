@@ -59,13 +59,7 @@ export {
   SuccessLargeButton,
   DangerButton,
   DisabledButton,
-  LinkButton,
-  SocialButton,
-  GoogleButton,
-  FacebookButton,
-  LinkedInButton,
-  OrcidButton,
-  FontAwesomeIconContainer
+  LinkButton
 } from "styles/Buttons"
 export {
   HorizontalForm,

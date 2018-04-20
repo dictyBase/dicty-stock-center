@@ -1,55 +1,81 @@
 // @flow
-import React from "react"
-import OauthSignInButton from "components/authentication/OauthSignInButton"
+import React, { Component } from "react"
+import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
+import oauthConfig from "utils/oauthConfig"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
-import {
-  DictyHeader,
-  GoogleButton,
-  FacebookButton,
-  LinkedInButton,
-  OrcidButton,
-  FontAwesomeIconContainer
-} from "styles"
+import { DictyHeader } from "styles"
+
+// list of buttons to display
+const buttons = ["orcid", "google", "linkedin"]
+
+// custom theme for styling the buttons
+const theme = {
+  overrides: {
+    MuiButton: {
+      // name of the stylesheet
+      root: {
+        // name of the rule
+        borderRadius: 3,
+        color: "white",
+        width: "80%",
+        justifyContent: "start",
+        minHeight: "55px",
+        marginBottom: "5px"
+      }
+    }
+  }
+}
 
 /**
- * Component that displays all of the social login buttons
+ * Component that displays all of the social login buttons with click handlers for each one
  */
 
-const Login = () => {
-  return (
-    <Flex justify="center">
-      <Box w={[1, 1 / 2, 1 / 3]}>
-        <DictyHeader>
-          <h1>Log in</h1>
-        </DictyHeader>
-        <GoogleButton>
-          <FontAwesomeIconContainer>
-            <FontAwesome name="google" />
-          </FontAwesomeIconContainer>
-          <OauthSignInButton provider="google" />
-        </GoogleButton>
-        <FacebookButton>
-          <FontAwesomeIconContainer>
-            <FontAwesome name="facebook" />
-          </FontAwesomeIconContainer>
-          <OauthSignInButton provider="facebook" />
-        </FacebookButton>
-        <LinkedInButton>
-          <FontAwesomeIconContainer>
-            <FontAwesome name="linkedin" />
-          </FontAwesomeIconContainer>
-          <OauthSignInButton provider="linkedin" />
-        </LinkedInButton>
-        <OrcidButton>
-          <FontAwesomeIconContainer>&nbsp;</FontAwesomeIconContainer>
-          <OauthSignInButton provider="orcid" />
-        </OrcidButton>
-        <OauthSignHandler />
-      </Box>
-    </Flex>
-  )
+class Login extends Component {
+  handleClick = name => {
+    const config = oauthConfig[name]
+    let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
+    url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
+    if (config.requiredUrlParams) {
+      config.requiredUrlParams.forEach(element => {
+        url += `&${element[0]}=${element[1]}`
+      })
+    }
+    if (config.optionalUrlParams) {
+      config.optionalUrlParams.forEach(element => {
+        url += `&${element[0]}=${element[1]}`
+      })
+    }
+    url += `&redirect_uri=${config.redirectUrl}`
+    window.open(
+      url,
+      name,
+      `width=${config.popupOptions.width},
+                    height=${config.popupOptions.height}`
+    )
+  }
+  render() {
+    return (
+      <Flex justify="center">
+        <Box w={[1, 1 / 2, 1 / 3]}>
+          <DictyHeader>
+            <h1>Log in</h1>
+          </DictyHeader>
+          <Flex justify="center">
+            <Box w={"15%"} />
+            <Box w={"85%"}>
+              <LoginContainer
+                buttons={buttons}
+                theme={theme}
+                onClick={this.handleClick}
+              />
+              <OauthSignHandler />
+            </Box>
+          </Flex>
+        </Box>
+      </Flex>
+    )
+  }
 }
 
 export default Login
