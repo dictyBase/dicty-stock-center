@@ -59,7 +59,7 @@ class Login extends Component<Props> {
   render() {
     return (
       <Flex justify="center">
-        <Box w={[1, 1 / 2, 1 / 3]}>
+        <Box w={[1, "60%", "40%"]}>
           <DictyHeader>
             <h1>Log in</h1>
           </DictyHeader>
