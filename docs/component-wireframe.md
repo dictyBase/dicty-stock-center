@@ -4,7 +4,7 @@
 
 ### component structure
 
-![homepage components 1](https://user-images.githubusercontent.com/13489381/35462970-fe03dbaa-02b3-11e8-944e-89474e9d78a6.png)
+![homepage components 1](/docs/DSC-homepage-wireframe.png)
 
 ### wireframe
 
