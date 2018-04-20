@@ -27,12 +27,14 @@ const theme = {
   }
 }
 
+type Props = {}
+
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-class Login extends Component {
-  handleClick = name => {
+class Login extends Component<Props> {
+  handleClick = (name: string) => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
     url += `&scope=${config.scopes.join(config.scopeDelimiter)}`

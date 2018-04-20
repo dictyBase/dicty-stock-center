@@ -58,8 +58,7 @@ export {
   SuccessSmallButton,
   SuccessLargeButton,
   DangerButton,
-  DisabledButton,
-  LinkButton
+  DisabledButton
 } from "styles/Buttons"
 export {
   HorizontalForm,
