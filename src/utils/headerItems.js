@@ -7,13 +7,13 @@ import FontAwesome from "react-fontawesome"
 const generateLinks = (link: Object, i: string) => {
   return link.isRouter ? (
     <Link key={i} to={link.url}>
-      <FontAwesome name={link.icon} />
-      {link.text}
+      <FontAwesome name={link.icon} />&nbsp;
+      {link.text}&nbsp;
     </Link>
   ) : (
     <HeaderLink key={i} href={link.url}>
-      <FontAwesome name={link.icon} />
-      {link.text}
+      <FontAwesome name={link.icon} />&nbsp;
+      {link.text}&nbsp;
     </HeaderLink>
   )
 }
