@@ -28,6 +28,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bowser": "^1.9.3",
     "core-js": "^2.5.3",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v4.2.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login",
@@ -41,6 +42,7 @@
     "file-loader": "^1.1.9",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "material-ui-next": "^1.0.0-beta.42",
     "promise-polyfill": "7.1.0",
     "react": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",

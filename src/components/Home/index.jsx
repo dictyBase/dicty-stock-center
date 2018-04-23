@@ -2,6 +2,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Flex, Box } from "rebass"
+import bowser from "bowser"
 import Links from "./Links"
 import Info from "./Info"
 import Availability from "./Availability"
@@ -11,6 +12,7 @@ import Slideshow from "./Slideshow"
 import Materials from "./Materials"
 import Intro from "./Intro"
 import About from "./About"
+import BrowserWarning from "./BrowserWarning"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { HomepageHeader, Container } from "styles"
 import type { MapStateToProps } from "react-redux"
@@ -38,6 +40,7 @@ class Home extends Component<Props> {
     return (
       <Container>
         {user && this.renderGreeting()}
+        {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
         <Flex wrap justify="space-between">
           <Box>
             <HomepageHeader>
