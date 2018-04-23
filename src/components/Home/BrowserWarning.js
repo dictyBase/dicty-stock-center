@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react"
 import Button from "material-ui/Button"
 import Dialog, {
@@ -8,11 +9,22 @@ import Dialog, {
 } from "material-ui/Dialog"
 import Slide from "material-ui/transitions/Slide"
 
+type Props = {}
+
+type State = {
+  /** Tells if the dialog box is open or not */
+  open: boolean
+}
+
 const Transition = props => {
   return <Slide direction="up" {...props} />
 }
 
-export default class BrowserWarning extends Component {
+/**
+ * This is a browser warning component that tells the user to upgrade if they are using an outdated version (i.e. IE10 or below). It uses Material-UI's Dialog component and Slide animation.
+ */
+
+export default class BrowserWarning extends Component<Props, State> {
   state = {
     open: true
   }
