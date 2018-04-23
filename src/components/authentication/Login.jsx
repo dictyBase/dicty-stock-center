@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
+import ProtectedRouteNotification from "components/authentication/ProtectedRouteNotification"
 import { Flex, Box } from "rebass"
 import { DictyHeader } from "styles"
 
@@ -27,7 +28,10 @@ const theme = {
   }
 }
 
-type Props = {}
+type Props = {
+  // Object passed by React-Router
+  location: Object
+}
 
 /**
  * Component that displays all of the social login buttons with click handlers for each one
@@ -57,12 +61,15 @@ class Login extends Component<Props> {
     )
   }
   render() {
+    const { state = {} } = this.props.location
+    const { error } = state
     return (
       <Flex justify="center">
         <Box w={[1, "60%", "40%"]}>
           <DictyHeader>
             <h1>Log in</h1>
           </DictyHeader>
+          {error && <ProtectedRouteNotification error={error} />}
           <Flex justify="center">
             <Box w={"15%"} />
             <Box w={"85%"}>
