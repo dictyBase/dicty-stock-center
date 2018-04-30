@@ -79,7 +79,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(receiveLogin(data))
           dispatch(push("/mydsc"))
         } else {
-          dispatch(loginError(res.body))
+          dispatch(loginError(res.statusText))
           dispatch(push("/error"))
         }
       } else {

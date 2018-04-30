@@ -32,9 +32,9 @@ export class Error extends Component<Props> {
                 <FontAwesome name="exclamation-triangle" /> Error{" "}
                 <FontAwesome name="exclamation-triangle" />
               </h1>
-              <h3>{auth.error ? auth.error.message : ""}</h3>
-              <h3>{order.error ? order.error.message : ""}</h3>
-              <h3>{page.error ? page.error.message : ""}</h3>
+              <h3>{auth.error ? auth.error : ""}</h3>
+              <h3>{order.error ? order.error : ""}</h3>
+              <h3>{page.error ? page.error : ""}</h3>
               <p>
                 Please <Link to="/contact">contact us</Link> if this problem
                 persists.
