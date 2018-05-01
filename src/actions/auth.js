@@ -78,6 +78,11 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           const data = await res.json()
           dispatch(receiveLogin(data))
           dispatch(push("/mydsc"))
+        } else if (res.status === 401) {
+          // user has invalid credentials, redirect
+          // needs to be updated to correct route
+          dispatch(loginError(res.statusText))
+          dispatch(push("/error"))
         } else {
           dispatch(loginError(res.statusText))
           dispatch(push("/error"))
