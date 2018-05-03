@@ -7,11 +7,15 @@ import { MyDsc } from "./MyDsc"
 test("matching a snapshot of MyDsc", () => {
   const auth = {
     user: {
-      id: 999999,
-      name: "Jane Doe",
-      email: "janedoe@gmail.com"
-    },
-    provider: "google"
+      data: {
+        id: 999999,
+        attributes: {
+          name: "Jane Doe",
+          email: "janedoe@gmail.com"
+        }
+      },
+      provider: "google"
+    }
   }
 
   const component = renderer.create(

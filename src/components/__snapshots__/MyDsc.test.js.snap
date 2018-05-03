@@ -145,7 +145,6 @@ exports[`matching a snapshot of MyDsc 1`] = `
           </h3>
           <h3>
             Provider: 
-            google
           </h3>
           <div
             className="DRXhs"

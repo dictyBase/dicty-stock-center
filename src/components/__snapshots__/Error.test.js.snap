@@ -63,9 +63,15 @@ exports[`matching a snapshot of Error 1`] = `
             className="fa fa-exclamation-triangle"
           />
         </h1>
-        <h3 />
-        <h3 />
-        <h3 />
+        <h3>
+          404
+        </h3>
+        <h3>
+          404
+        </h3>
+        <h3>
+          404
+        </h3>
         <p>
           Please 
           <a
