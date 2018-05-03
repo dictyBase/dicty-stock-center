@@ -84,8 +84,9 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(loginError(res.statusText))
           dispatch(push("/error"))
         } else {
-          dispatch(loginError(res.statusText))
+          dispatch(loginError(res.statusText)) // <-- where the login request currently hits
           dispatch(push("/error"))
+          console.error(res.json())
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
