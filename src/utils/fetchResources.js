@@ -1,4 +1,8 @@
-let fetchBySlugResource, fetchByIdResource, oauthEndpointResource
+let fetchBySlugResource,
+  fetchByIdResource,
+  fetchUserByIdResource,
+  fetchUserByEmailResource,
+  oauthEndpointResource
 
 if (process.env.REACT_APP_API_SERVER) {
   // set URL base for fetching by slug
@@ -7,9 +11,21 @@ if (process.env.REACT_APP_API_SERVER) {
   // set URL base for fetching by ID
   const fetchByIdBase = "/contents"
   fetchByIdResource = `${process.env.REACT_APP_API_SERVER}${fetchByIdBase}`
+  // set URL base for fetching user by ID
+  const fetchUserByIdBase = "/users"
+  fetchUserByIdResource = `${
+    process.env.REACT_APP_API_SERVER
+  }${fetchUserByIdBase}`
+  // set URL base for fetching user by email
+  const fetchUserByEmailBase = "/users/email"
+  fetchUserByEmailResource = `${
+    process.env.REACT_APP_API_SERVER
+  }${fetchUserByEmailBase}`
 } else {
   fetchBySlugResource = "http://localhost:8080/contents/slug"
   fetchByIdResource = "http://localhost:8080/contents"
+  fetchUserByIdResource = "http://localhost:8080/users"
+  fetchUserByEmailResource = "http://localhost:8000/users/email"
 }
 
 if (process.env.REACT_APP_AUTH_SERVER) {
@@ -21,4 +37,10 @@ if (process.env.REACT_APP_AUTH_SERVER) {
   oauthEndpointResource = "http://localhost:9999/tokens"
 }
 
-export { fetchBySlugResource, fetchByIdResource, oauthEndpointResource }
+export {
+  fetchBySlugResource,
+  fetchByIdResource,
+  fetchUserByIdResource,
+  fetchUserByEmailResource,
+  oauthEndpointResource
+}
