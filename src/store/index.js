@@ -4,6 +4,7 @@ import thunk from "redux-thunk"
 import rootReducer from "../reducers"
 import { routerMiddleware } from "react-router-redux"
 import manageStateStorage from "middlewares/storage"
+import apiResponse from "middlewares/apiResponse"
 import { dsctypes } from "constants/dsctypes"
 import history from "utils/routerHistory"
 
@@ -23,7 +24,8 @@ const enhancer = applyMiddleware(
   routerMiddleware(history),
   thunk,
   manageStateStorage(authArg),
-  manageStateStorage(cartArg)
+  manageStateStorage(cartArg),
+  apiResponse
 )
 
 export default function configureStore(initialState: Object) {

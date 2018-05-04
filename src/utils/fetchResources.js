@@ -2,6 +2,8 @@ let fetchBySlugResource,
   fetchByIdResource,
   fetchUserByIdResource,
   fetchUserByEmailResource,
+  fetchRoleByIdResource,
+  fetchPermissionByIdResource,
   oauthEndpointResource
 
 if (process.env.REACT_APP_API_SERVER) {
@@ -21,11 +23,23 @@ if (process.env.REACT_APP_API_SERVER) {
   fetchUserByEmailResource = `${
     process.env.REACT_APP_API_SERVER
   }${fetchUserByEmailBase}`
+  // set URL base for fetching role by ID
+  const fetchRoleByIdBase = "/roles"
+  fetchRoleByIdResource = `${
+    process.env.REACT_APP_API_SERVER
+  }${fetchRoleByIdBase}`
+  // set URL base for fetching permission by ID
+  const fetchPermissionByIdBase = "/permissions"
+  fetchPermissionByIdResource = `${
+    process.env.REACT_APP_API_SERVER
+  }${fetchPermissionByIdBase}`
 } else {
   fetchBySlugResource = "http://localhost:8080/contents/slug"
   fetchByIdResource = "http://localhost:8080/contents"
   fetchUserByIdResource = "http://localhost:8080/users"
   fetchUserByEmailResource = "http://localhost:8000/users/email"
+  fetchRoleByIdResource = "http://localhost:8000/roles"
+  fetchPermissionByIdResource = "http://localhost:8000/permissions"
 }
 
 if (process.env.REACT_APP_AUTH_SERVER) {
@@ -42,5 +56,7 @@ export {
   fetchByIdResource,
   fetchUserByIdResource,
   fetchUserByEmailResource,
+  fetchRoleByIdResource,
+  fetchPermissionByIdResource,
   oauthEndpointResource
 }
