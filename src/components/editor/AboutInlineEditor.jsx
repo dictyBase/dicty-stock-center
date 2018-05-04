@@ -90,7 +90,7 @@ class AboutInlineEditor extends Component<Props, State> {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.data.attributes.content))
+        convertFromRaw(JSON.parse(props.page.content))
       ),
       readOnly: true
     }
@@ -103,7 +103,7 @@ class AboutInlineEditor extends Component<Props, State> {
       readOnly: false
     })
     const { editInline, page } = this.props
-    editInline(page.data.attributes.content)
+    editInline(page.content)
   }
   onSave = () => {
     const { editorState } = this.state
@@ -130,7 +130,7 @@ class AboutInlineEditor extends Component<Props, State> {
   onCancel = () => {
     this.setState({
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(this.props.page.data.attributes.content))
+        convertFromRaw(JSON.parse(this.props.page.content))
       ),
       readOnly: true
     })
@@ -193,9 +193,9 @@ const mapStateToProps = state => {
   const slugName = "dsc-about"
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    content: state.page[slugName].data.attributes.content,
-    id: state.page[slugName].data.id,
-    updated_by: state.page[slugName].data.attributes.updated_by
+    content: state.page[slugName].content,
+    id: state.page[slugName].id,
+    updated_by: state.page[slugName].updated_by
   }
 }
 

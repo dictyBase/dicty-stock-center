@@ -55,8 +55,7 @@ const apiResponse = store => next => action => {
           updated_at: action.payload.json.data.attributes.updated_at,
           updated_by: action.payload.json.data.attributes.updated_by
         }
-        // console.log(action.payload.json)
-        console.log(pageData)
+        next({ type: "FETCH_PAGE_SUCCESS", payload: { ...pageData } })
         break
       default:
         break
@@ -64,7 +63,7 @@ const apiResponse = store => next => action => {
     return next(action)
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
-      console.error("error in fetching data", JSON.stringify(err))
+      console.error("error in fetching data", err)
     }
   }
 }

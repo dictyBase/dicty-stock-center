@@ -36,7 +36,7 @@ class Intro extends Component<Props> {
   render() {
     const { isFetching, page } = this.props
 
-    if (!isFetching && page.data.attributes.content) {
+    if (!isFetching && page.content) {
       return <IntroInlineEditor auth={this.props.auth} page={this.props.page} />
     }
     return (

@@ -49,7 +49,7 @@ class InfoPageView extends Component<Props, State> {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
+        convertFromRaw(JSON.parse(props.page.content)),
         new CompositeDecorator(decorator)
       )
     }
@@ -59,10 +59,10 @@ class InfoPageView extends Component<Props, State> {
     e.preventDefault()
 
     const { editPage, match, page } = this.props
-    editPage(page.data.attributes.content, match.params.name)
+    editPage(page.content, match.params.name)
   }
   render() {
-    const { updated_by, updated_at } = this.props.page.data.attributes
+    const { updated_by, updated_at } = this.props.page
     const { isAuthenticated } = this.props
     return (
       <Container>
