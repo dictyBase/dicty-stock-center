@@ -179,6 +179,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
         if (res.ok) {
           const data = await res.json()
           dispatch(receiveLogin(data))
+          dispatch(fetchRoleInfo(data.user.id))
           dispatch(push("/mydsc"))
         } else if (res.status === 401) {
           // user has invalid credentials, redirect
@@ -247,7 +248,7 @@ export const fetchUserInfo = (userId: string) => {
   }
 }
 
-// fetch user function that fetches data using async/await
+// fetch roles function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
 export const fetchRoleInfo = (userId: string) => {
   return async (dispatch: Function) => {
@@ -259,6 +260,7 @@ export const fetchRoleInfo = (userId: string) => {
         const json = await res.json()
         if (res.ok) {
           dispatch(fetchRoleSuccess(json))
+          dispatch(fetchPermissionInfo(json.data[0].id))
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
@@ -283,7 +285,7 @@ export const fetchRoleInfo = (userId: string) => {
   }
 }
 
-// fetch user function that fetches data using async/await
+// fetch permissions function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
 export const fetchPermissionInfo = (roleId: string) => {
   return async (dispatch: Function) => {
