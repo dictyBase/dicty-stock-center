@@ -49,7 +49,10 @@ const apiResponse = store => next => action => {
             }
           ]
         }
-        next({ type: "FETCH_ROLE_SUCCESS", payload: { ...permissionData } })
+        next({
+          type: "FETCH_PERMISSION_SUCCESS",
+          payload: { ...permissionData }
+        })
         break
       case "FETCH_PAGE_SUCCESS":
         const pageData = {

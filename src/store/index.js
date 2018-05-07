@@ -1,5 +1,5 @@
 // @flow
-import { createStore, applyMiddleware } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import rootReducer from "../reducers"
 import { routerMiddleware } from "react-router-redux"
@@ -20,12 +20,17 @@ const cartArg = {
   key: "cart",
   namespace: "shoppingCart"
 }
-const enhancer = applyMiddleware(
-  routerMiddleware(history),
-  thunk,
-  manageStateStorage(authArg),
-  manageStateStorage(cartArg),
-  apiResponse
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const enhancer = composeEnhancers(
+  applyMiddleware(
+    routerMiddleware(history),
+    thunk,
+    manageStateStorage(authArg),
+    manageStateStorage(cartArg),
+    apiResponse
+  )
 )
 
 export default function configureStore(initialState: Object) {

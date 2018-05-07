@@ -84,7 +84,10 @@ const authReducer = (state: Object = {}, action: Object) => {
       return {
         ...state,
         isFetching: false,
-        roleData: action.payload
+        user: {
+          ...state.user,
+          role: action.payload
+        }
       }
     case FETCH_ROLE_FAILURE:
       return {
@@ -101,7 +104,10 @@ const authReducer = (state: Object = {}, action: Object) => {
       return {
         ...state,
         isFetching: false,
-        permissionData: action.payload
+        user: {
+          ...state.user,
+          permissions: action.payload
+        }
       }
     case FETCH_PERMISSION_FAILURE:
       return {

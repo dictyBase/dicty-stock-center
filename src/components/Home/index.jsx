@@ -31,7 +31,7 @@ class Home extends Component<Props> {
     const { user } = this.props.auth
     return (
       <span>
-        <h3>Hello, {user.name}</h3>
+        <h3>Hello, {`${user.first_name} ${user.last_name}`}</h3>
       </span>
     )
   }
