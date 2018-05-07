@@ -1,11 +1,13 @@
 // @flow
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
 import ProtectedRouteNotification from "components/authentication/ProtectedRouteNotification"
 import { Flex, Box } from "rebass"
 import { DictyHeader } from "styles"
+import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
@@ -70,6 +72,9 @@ class Login extends Component<Props> {
             <h1>Log in</h1>
           </DictyHeader>
           {error && <ProtectedRouteNotification error={error} />}
+          {this.props.auth.error && (
+            <ProtectedRouteNotification error={this.props.auth.error} />
+          )}
           <Flex justify="center">
             <Box w={"15%"} />
             <Box w={"85%"}>
@@ -87,4 +92,6 @@ class Login extends Component<Props> {
   }
 }
 
-export default Login
+const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
+
+export default connect(mapStateToProps)(Login)

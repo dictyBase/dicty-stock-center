@@ -182,10 +182,9 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(fetchRoleInfo(data.user.id))
           dispatch(push("/mydsc"))
         } else if (res.status === 401) {
-          // user has invalid credentials, redirect
-          // needs to be updated to correct route
+          // user has invalid credentials, redirect with notification
           dispatch(loginError(res.statusText))
-          dispatch(push("/error"))
+          dispatch(push("/login"))
         } else {
           dispatch(loginError(res.statusText)) // <-- where the login request currently hits
           dispatch(push("/error"))
