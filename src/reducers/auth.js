@@ -86,7 +86,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         user: {
           ...state.user,
-          role: action.payload
+          roles: action.payload
         }
       }
     case FETCH_ROLE_FAILURE:

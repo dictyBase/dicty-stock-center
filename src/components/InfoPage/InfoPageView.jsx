@@ -63,7 +63,7 @@ class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_by, updated_at } = this.props.page
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, roles, permissions } = this.props
     return (
       <Container>
         {isAuthenticated && (
@@ -108,7 +108,9 @@ class InfoPageView extends Component<Props, State> {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    roles: state.auth.user.roles,
+    permissions: state.auth.user.permissions
   }
 }
 

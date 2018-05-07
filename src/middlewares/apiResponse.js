@@ -25,30 +25,29 @@ const apiResponse = store => next => action => {
         break
       case "FETCH_ROLE_SUCCESS":
         const roleData = {
-          type: action.payload.role.data.type,
-          id: action.payload.role.data.id,
-          role: action.payload.role.data.attributes.role,
-          description: action.payload.role.data.attributes.description,
-          created_at: action.payload.role.data.attributes.created_at,
-          updated_at: action.payload.role.data.attributes.updated_at
+          type: action.payload.roles.data.type,
+          id: action.payload.roles.data.id,
+          role: action.payload.roles.data.attributes.role,
+          description: action.payload.roles.data.attributes.description,
+          created_at: action.payload.roles.data.attributes.created_at,
+          updated_at: action.payload.roles.data.attributes.updated_at
         }
         next({ type: "FETCH_ROLE_SUCCESS", payload: { ...roleData } })
         break
       case "FETCH_PERMISSION_SUCCESS":
-        const permissionData = {
-          data: [
-            {
-              type: action.payload.permissions.data.type,
-              id: action.payload.permissions.data.id,
-              permission: action.payload.permissions.data.attributes.id,
-              description:
-                action.payload.permissions.data.attributes.description,
-              created_at: action.payload.permissions.data.attributes.created_at,
-              updated_at: action.payload.permissions.data.attributes.updated_at,
-              resource: action.payload.permissions.data.attributes.resource
-            }
-          ]
-        }
+        const permissionData = []
+        action.payload.permissions.data.forEach(item => {
+          console.log(item)
+          permissionData.push({
+            type: item.type,
+            id: item.id,
+            permission: item.attributes.id,
+            description: item.attributes.description,
+            created_at: item.attributes.created_at,
+            updated_at: item.attributes.updated_at,
+            resource: item.attributes.resource
+          })
+        })
         next({
           type: "FETCH_PERMISSION_SUCCESS",
           payload: { ...permissionData }

@@ -123,7 +123,7 @@ const fetchRoleSuccess = (json: Object) => {
     type: FETCH_ROLE_SUCCESS,
     payload: {
       isFetching: false,
-      role: json
+      roles: json
     }
   }
 }
