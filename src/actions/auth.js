@@ -123,7 +123,7 @@ const fetchRoleSuccess = (json: Object) => {
     type: FETCH_ROLE_SUCCESS,
     payload: {
       isFetching: false,
-      json
+      role: json
     }
   }
 }
@@ -151,7 +151,7 @@ const fetchPermissionSuccess = (json: Object) => {
     type: FETCH_PERMISSION_SUCCESS,
     payload: {
       isFetching: false,
-      json
+      permissions: json
     }
   }
 }
