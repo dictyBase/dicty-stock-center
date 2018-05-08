@@ -144,9 +144,15 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
       </ToolbarNav>
     )
   }
+  checkPermissions(type) {
+    if (this.props.user && this.props.user.permissions) {
+      return this.props.user.permissions.find(item => {
+        return item.permission === type
+      })
+    }
+  }
   render() {
     const { editorState, readOnly } = this.state
-    const { isAuthenticated } = this.props
 
     return (
       <EditPanel>
@@ -160,7 +166,7 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
               ref="{(element) => { this.editor = element }}"
               readOnly={readOnly}
             />
-            {isAuthenticated &&
+            {this.checkPermissions("write") &&
               readOnly && (
                 <TextInfo>
                   <InlineLink onClick={this.onEdit} title="Edit">
@@ -193,6 +199,7 @@ const mapStateToProps = state => {
   const slugName = "dsc-other-materials"
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
     content: state.page[slugName].content,
     id: state.page[slugName].id,
     updated_by: state.page[slugName].updated_by
