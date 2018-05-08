@@ -29,6 +29,9 @@ declare module "utils/findLinkEntities" {
 declare module "middlewares/storage" {
   declare module.exports: any
 }
+declare module "middlewares/apiResponse" {
+  declare module.exports: any
+}
 declare module "validator/lib/isEmail" {
   declare module.exports: any
 }
