@@ -217,7 +217,9 @@ export const fetchUserInfo = (userId: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchUserRequest())
-      const res = await fetch(`${fetchUserByIdResource}/${userId}`)
+      const res = await fetch(`${fetchUserByIdResource}/${userId}`, {
+        mode: "no-cors"
+      })
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()

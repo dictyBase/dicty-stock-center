@@ -12,6 +12,7 @@ import Link from "components/Link"
 import Authorization from "components/authentication/Authorization"
 import timeSince from "utils/timeSince"
 import { editPage } from "actions/page"
+import { fetchUserInfo } from "actions/auth"
 import FontAwesome from "react-fontawesome"
 import { Flex, Box } from "rebass"
 import { Container, ToolbarNav, TextInfo, Label, InlineLink } from "styles"
@@ -55,6 +56,9 @@ class InfoPageView extends Component<Props, State> {
       )
     }
   }
+  // componentDidMount() {
+  //   this.props.fetchUserInfo(this.props.page.updated_by)
+  // }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()
@@ -122,4 +126,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { editPage })(InfoPageView)
+export default connect(mapStateToProps, { editPage, fetchUserInfo })(
+  InfoPageView
+)
