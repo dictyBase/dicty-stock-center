@@ -41,7 +41,7 @@ const apiResponse = store => next => action => {
           permissionData.push({
             type: item.type,
             id: item.id,
-            permission: item.attributes.id,
+            permission: item.attributes.permission,
             description: item.attributes.description,
             created_at: item.attributes.created_at,
             updated_at: item.attributes.updated_at,
@@ -50,7 +50,7 @@ const apiResponse = store => next => action => {
         })
         next({
           type: "FETCH_PERMISSION_SUCCESS",
-          payload: { ...permissionData }
+          payload: [...permissionData]
         })
         break
       case "FETCH_PAGE_SUCCESS":

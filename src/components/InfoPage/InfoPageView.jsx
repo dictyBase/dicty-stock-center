@@ -61,13 +61,17 @@ class InfoPageView extends Component<Props, State> {
     const { editPage, match, page } = this.props
     editPage(page.content, match.params.name)
   }
+  checkPermissions(type) {
+    return this.props.user.permissions.find(item => {
+      return item.permission === type
+    })
+  }
   render() {
     const { updated_by, updated_at } = this.props.page
     const { isAuthenticated, user } = this.props
-    console.log(this.props)
     return (
       <Container>
-        {isAuthenticated && (
+        {/* {this.checkPermissions("write") && (
           <ToolbarNav>
             <Flex>
               <Box>
@@ -80,7 +84,7 @@ class InfoPageView extends Component<Props, State> {
               </Box>
               <Box ml="auto">
                 <div>
-                  {/* need to implement custom label */}
+                  need to implement custom label
                   <Label>Curator</Label> &nbsp; &nbsp;
                   <InlineLink onClick={this.onClick}>
                     <FontAwesome name="pencil" title="Edit page" />
@@ -89,7 +93,7 @@ class InfoPageView extends Component<Props, State> {
               </Box>
             </Flex>
           </ToolbarNav>
-        )}
+        )} */}
 
         <Flex>
           <Box>
