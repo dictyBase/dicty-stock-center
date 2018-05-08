@@ -19,6 +19,7 @@ import {
   BlockquoteButton,
   CodeBlockButton
 } from "draft-js-buttons"
+import Authorization from "components/authentication/Authorization"
 import { editInline, saveInlineEditing } from "actions/page"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
@@ -144,13 +145,6 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
       </ToolbarNav>
     )
   }
-  checkPermissions(type) {
-    if (this.props.user && this.props.user.permissions) {
-      return this.props.user.permissions.find(item => {
-        return item.permission === type
-      })
-    }
-  }
   render() {
     const { editorState, readOnly } = this.state
 
@@ -166,14 +160,22 @@ class OtherMaterialsInlineEditor extends Component<Props, State> {
               ref="{(element) => { this.editor = element }}"
               readOnly={readOnly}
             />
-            {this.checkPermissions("write") &&
-              readOnly && (
-                <TextInfo>
-                  <InlineLink onClick={this.onEdit} title="Edit">
-                    <FontAwesome name="pencil" /> Edit
-                  </InlineLink>
-                </TextInfo>
-              )}
+            <Authorization
+              render={({ canWrite }) => {
+                return (
+                  <div>
+                    {canWrite &&
+                      readOnly && (
+                        <TextInfo>
+                          <InlineLink onClick={this.onEdit} title="Edit">
+                            <FontAwesome name="pencil" /> Edit
+                          </InlineLink>
+                        </TextInfo>
+                      )}
+                  </div>
+                )
+              }}
+            />
           </Box>
           <Box width={"40%"} mr={1} mt={1}>
             {!readOnly && (

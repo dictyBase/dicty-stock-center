@@ -9,6 +9,7 @@ import {
 } from "draft-js"
 import findLinkEntities from "utils/findLinkEntities"
 import Link from "components/Link"
+import Authorization from "components/authentication/Authorization"
 import timeSince from "utils/timeSince"
 import { editPage } from "actions/page"
 import FontAwesome from "react-fontawesome"
@@ -61,44 +62,42 @@ class InfoPageView extends Component<Props, State> {
     const { editPage, match, page } = this.props
     editPage(page.content, match.params.name)
   }
-  checkPermissions(type) {
-    const { user } = this.props
-    if (user && user.permissions) {
-      return user.permissions.find(item => {
-        return item.permission === type
-      })
-    } else {
-      return null
-    }
-  }
   render() {
     const { updated_by, updated_at } = this.props.page
 
     return (
       <Container>
-        {this.checkPermissions("write") && (
-          <ToolbarNav>
-            <Flex>
-              <Box>
-                <TextInfo>
-                  <strong>
-                    <FontAwesome name="user" /> {updated_by}
-                  </strong>{" "}
-                  edited {timeSince(updated_at)} ago
-                </TextInfo>
-              </Box>
-              <Box ml="auto">
-                <div>
-                  {/* need to implement custom label */}
-                  <Label>Curator</Label> &nbsp; &nbsp;
-                  <InlineLink onClick={this.onClick}>
-                    <FontAwesome name="pencil" title="Edit page" />
-                  </InlineLink>
-                </div>
-              </Box>
-            </Flex>
-          </ToolbarNav>
-        )}
+        <Authorization
+          render={({ canWrite }) => {
+            return (
+              <div>
+                {canWrite && (
+                  <ToolbarNav>
+                    <Flex>
+                      <Box>
+                        <TextInfo>
+                          <strong>
+                            <FontAwesome name="user" /> {updated_by}
+                          </strong>{" "}
+                          edited {timeSince(updated_at)} ago
+                        </TextInfo>
+                      </Box>
+                      <Box ml="auto">
+                        <div>
+                          {/* need to implement custom label */}
+                          <Label>Curator</Label> &nbsp; &nbsp;
+                          <InlineLink onClick={this.onClick}>
+                            <FontAwesome name="pencil" title="Edit page" />
+                          </InlineLink>
+                        </div>
+                      </Box>
+                    </Flex>
+                  </ToolbarNav>
+                )}
+              </div>
+            )
+          }}
+        />
 
         <Flex>
           <Box>
