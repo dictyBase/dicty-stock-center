@@ -1,5 +1,8 @@
+// @flow
 export class Response {
-  constructor(res, json) {
+  res: Object
+  json: Object
+  constructor(res: Object, json: Object) {
     this.res = res
     this.json = json
   }
@@ -21,7 +24,9 @@ export class Response {
 }
 
 export class ErrorAPI extends Response {
-  constructor(res, json) {
+  res: Object
+  json: Object
+  constructor(res: Object, json: Object) {
     super(res, json)
   }
   notFound() {
@@ -39,9 +44,12 @@ export class ErrorAPI extends Response {
 }
 
 export class JsonAPI extends Response {
-  constructor(res, json) {
-    this.res = res
-    this.json = json.data
+  res: Object
+  json: Object
+  links: Object
+  relationships: Object
+  constructor(res: Object, json: Object) {
+    super(res, json)
   }
   getAttributes() {
     this.json.attributes
@@ -61,9 +69,10 @@ export class JsonAPI extends Response {
 }
 
 export class authApi extends Response {
-  constructor(res, json) {
-    this.res = res
-    this.json = json
+  res: Object
+  json: Object
+  constructor(res: Object, json: Object) {
+    super(res, json)
   }
 
   isAuthenticated() {
