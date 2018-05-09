@@ -17,7 +17,7 @@ const apiResponse = store => next => action => {
           zipcode: action.payload.user.data.attributes.zipcode,
           country: action.payload.user.data.attributes.country,
           phone: action.payload.user.data.attributes.phone,
-          is_active: true,
+          is_active: action.payload.user.data.attributes.is_active,
           created_at: action.payload.user.data.attributes.created_at,
           updated_at: action.payload.user.data.attributes.updated_at
         }

@@ -191,7 +191,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
-          console.error("Cannot convert to JSON")
+          console.error(res.statusText)
         }
         dispatch(loginError(res.body))
         dispatch(push("/error"))
@@ -231,7 +231,7 @@ export const fetchUserInfo = (userId: string) => {
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
-          console.error("res.statusText: ", res.statusText)
+          console.error(res.statusText)
         }
         dispatch(fetchUserFailure(res.statusText))
         dispatch(push("/error"))
@@ -268,7 +268,7 @@ export const fetchRoleInfo = (userId: string) => {
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
-          console.error("Cannot convert to JSON")
+          console.error(res.statusText)
         }
         dispatch(fetchRoleFailure(res.body))
         dispatch(push("/error"))
@@ -304,7 +304,7 @@ export const fetchPermissionInfo = (roleId: string) => {
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
-          console.error("Cannot convert to JSON")
+          console.error(res.statusText)
         }
         dispatch(fetchPermissionFailure(res.body))
         dispatch(push("/error"))
