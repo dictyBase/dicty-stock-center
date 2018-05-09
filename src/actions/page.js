@@ -95,7 +95,7 @@ export const fetchInfoPage = (slug: string) => {
         dispatch(push("/error"))
       }
     } catch (error) {
-      dispatch(fetchPageFailure(error))
+      dispatch(fetchPageFailure(error.toString()))
       dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
