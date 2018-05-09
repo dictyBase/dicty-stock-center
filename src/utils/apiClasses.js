@@ -59,3 +59,29 @@ export class JsonAPI extends Response {
     this.relationships
   }
 }
+
+export class authApi extends Response {
+  constructor(res, json) {
+    this.res = res
+    this.json = json
+  }
+
+  isAuthenticated() {
+    if (this.json.isAuthenticated === true) {
+      return true
+    }
+    return false
+  }
+
+  getToken() {
+    this.json.token
+  }
+
+  getProvider() {
+    this.json.provider
+  }
+
+  getUser() {
+    this.json.user
+  }
+}
