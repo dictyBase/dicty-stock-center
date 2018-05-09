@@ -1,3 +1,5 @@
 export const resources = {
-  dscedit: "dscedit"
+  dscpage: "dscpage",
+  dscstrain: "dscstrain",
+  dscplasmid: "dscplasmid"
 }
