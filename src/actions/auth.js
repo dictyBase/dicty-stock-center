@@ -193,12 +193,11 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
         if (process.env.NODE_ENV !== "production") {
           console.error("Cannot convert to JSON")
         }
-        console.log(res)
         dispatch(loginError(res.body))
         dispatch(push("/error"))
       }
     } catch (error) {
-      dispatch(loginError(error))
+      dispatch(loginError(error.toString()))
       dispatch(push("/error"))
     }
   }
@@ -217,9 +216,7 @@ export const fetchUserInfo = (userId: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchUserRequest())
-      const res = await fetch(`${fetchUserByIdResource}/${userId}`, {
-        mode: "no-cors"
-      })
+      const res = await fetch(`${fetchUserByIdResource}/${userId}`)
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
@@ -234,13 +231,13 @@ export const fetchUserInfo = (userId: string) => {
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
-          console.error("Cannot convert to JSON")
+          console.error("res.statusText: ", res.statusText)
         }
-        dispatch(fetchUserFailure(res.body))
+        dispatch(fetchUserFailure(res.statusText))
         dispatch(push("/error"))
       }
     } catch (error) {
-      dispatch(fetchUserFailure(error))
+      dispatch(fetchUserFailure(error.toString()))
       dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
@@ -277,7 +274,7 @@ export const fetchRoleInfo = (userId: string) => {
         dispatch(push("/error"))
       }
     } catch (error) {
-      dispatch(fetchRoleFailure(error))
+      dispatch(fetchUserFailure(error.toString()))
       dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
@@ -313,7 +310,7 @@ export const fetchPermissionInfo = (roleId: string) => {
         dispatch(push("/error"))
       }
     } catch (error) {
-      dispatch(fetchPermissionFailure(error))
+      dispatch(fetchUserFailure(error.toString()))
       dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
