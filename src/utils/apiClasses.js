@@ -1,79 +1,30 @@
 // @flow
-export class Response {
-  res: Object
-  json: Object
-  constructor(res: Object, json: Object) {
-    this.res = res
-    this.json = json
-  }
-  isError() {
-    if (this.res.ok) {
-      return false
-    }
-    return true
-  }
-  isSuccess() {
-    return this.res.ok
-  }
-  getResponse() {
-    return this.res
-  }
-  getStatus() {
-    return this.res.status
-  }
-}
-
-export class ErrorAPI extends Response {
-  res: Object
-  json: Object
-  constructor(res: Object, json: Object) {
-    super(res, json)
-  }
-  notFound() {
-    if (this.res.status == 404) {
-      return true
-    }
-    return false
-  }
-  message() {
-    return this.json.errors[0].title
-  }
-  description() {
-    return this.json.errors[0].detail
-  }
-}
-
-export class JsonAPI extends Response {
-  res: Object
+export class JsonAPI {
   json: Object
   links: Object
   relationships: Object
-  constructor(res: Object, json: Object) {
-    super(res, json)
+  constructor(json: Object) {
+    this.json = json
   }
   getAttributes() {
-    this.json.attributes
+    return this.json.attributes
   }
   getType() {
-    this.json.type
+    return this.json.type
   }
   getId() {
-    this.json.id
+    return this.json.id
   }
   getFetchURL() {
-    this.links.self
+    return this.links.self
   }
   getRelationships() {
-    this.relationships
+    return this.relationships
   }
 }
 
-export class authApi extends Response {
-  res: Object
+export class authAPI extends JsonAPI {
   json: Object
-  constructor(res: Object, json: Object) {
-    super(res, json)
-  }
 
   isAuthenticated() {
     if (this.json.isAuthenticated === true) {
@@ -83,14 +34,34 @@ export class authApi extends Response {
   }
 
   getToken() {
-    this.json.token
+    return this.json.token
   }
 
   getProvider() {
-    this.json.provider
+    return this.json.provider
   }
 
   getUser() {
-    this.json.user
+    return this.json.user
+  }
+}
+
+export class permissionAPI extends JsonAPI {
+  json: Object
+
+  getResource() {
+    return this.json.attributes.resource
+  }
+
+  getPermission() {
+    return this.json.attributes.permission
+  }
+}
+
+export class roleAPI extends JsonAPI {
+  json: Object
+
+  getRole() {
+    return this.json.attributes.role
   }
 }

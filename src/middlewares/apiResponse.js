@@ -1,43 +1,19 @@
+import { JsonAPI } from "utils/apiClasses"
+
 const apiResponse = store => next => action => {
   try {
     switch (action.type) {
       case "LOGIN_SUCCESS":
-        const userData = {
-          type: action.payload.user.data.type,
-          id: action.payload.user.data.id,
-          first_name: action.payload.user.data.attributes.first_name,
-          last_name: action.payload.user.data.attributes.last_name,
-          email: action.payload.user.data.attributes.email,
-          organization: action.payload.user.data.attributes.organization,
-          group_name: action.payload.user.data.attributes.group_name,
-          first_address: action.payload.user.data.attributes.first_address,
-          second_address: action.payload.user.data.attributes.second_address,
-          city: action.payload.user.data.attributes.city,
-          state: action.payload.user.data.attributes.state,
-          zipcode: action.payload.user.data.attributes.zipcode,
-          country: action.payload.user.data.attributes.country,
-          phone: action.payload.user.data.attributes.phone,
-          is_active: action.payload.user.data.attributes.is_active,
-          created_at: action.payload.user.data.attributes.created_at,
-          updated_at: action.payload.user.data.attributes.updated_at
-        }
+        const userData = new JsonAPI(action.payload.json)
         next({ type: "LOGIN_SUCCESS", payload: { ...userData } })
         break
       case "FETCH_ROLE_SUCCESS":
-        const roleData = {
-          type: action.payload.roles.data.type,
-          id: action.payload.roles.data.id,
-          role: action.payload.roles.data.attributes.role,
-          description: action.payload.roles.data.attributes.description,
-          created_at: action.payload.roles.data.attributes.created_at,
-          updated_at: action.payload.roles.data.attributes.updated_at
-        }
+        const roleData = new JsonAPI(action.payload.json)
         next({ type: "FETCH_ROLE_SUCCESS", payload: { ...roleData } })
         break
       case "FETCH_PERMISSION_SUCCESS":
         const permissionData = []
         action.payload.permissions.data.forEach(item => {
-          console.log(item)
           permissionData.push({
             type: item.type,
             id: item.id,
@@ -53,18 +29,12 @@ const apiResponse = store => next => action => {
           payload: [...permissionData]
         })
         break
-      case "FETCH_PAGE_SUCCESS":
-        const pageData = {
-          id: action.payload.json.data.id,
-          slug: action.payload.json.data.attributes.slug,
-          content: action.payload.json.data.attributes.content,
-          created_at: action.payload.json.data.attributes.created_at,
-          created_by: action.payload.json.data.attributes.created_by,
-          updated_at: action.payload.json.data.attributes.updated_at,
-          updated_by: action.payload.json.data.attributes.updated_by
-        }
-        next({ type: "FETCH_PAGE_SUCCESS", payload: { ...pageData } })
-        break
+      // case "FETCH_PAGE_SUCCESS":
+      //   const pageData = new JsonAPI(action.payload.json)
+      //   const newPagePayload = pageData.json.data
+      //   // console.log(newPagePayload)
+      //   next({ type: "FETCH_PAGE_SUCCESS", payload: { ...newPagePayload } })
+      //   break
       default:
         break
     }
