@@ -56,10 +56,10 @@ class InfoPageView extends Component<Props, State> {
       )
     }
   }
-  componentDidMount() {
-    const userId = this.props.page.data.attributes.updated_by
-    this.props.fetchUserInfo(userId)
-  }
+  // componentDidMount() {
+  //   const userId = this.props.page.data.attributes.updated_by
+  //   this.props.fetchUserInfo(userId)
+  // }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()

@@ -66,7 +66,7 @@ const authReducer = (state: Object = {}, action: Object) => {
       return {
         ...state,
         isFetching: false,
-        userData: action.payload.json
+        fetchedUserData: action.payload.json
       }
     case FETCH_USER_FAILURE:
       return {
