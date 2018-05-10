@@ -51,6 +51,12 @@ if (process.env.REACT_APP_AUTH_SERVER) {
   oauthEndpointResource = "http://localhost:9999/tokens"
 }
 
+const fetchHeaderConfig = {
+  headers: {
+    "content-type": "application/vnd.api+json"
+  }
+}
+
 export {
   fetchBySlugResource,
   fetchByIdResource,
@@ -58,5 +64,6 @@ export {
   fetchUserByEmailResource,
   fetchRoleByIdResource,
   fetchPermissionByIdResource,
-  oauthEndpointResource
+  oauthEndpointResource,
+  fetchHeaderConfig
 }

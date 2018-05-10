@@ -5,7 +5,8 @@ import oauthConfig from "utils/oauthConfig"
 import {
   oauthEndpointResource,
   fetchUserByIdResource,
-  fetchRoleByIdResource
+  fetchRoleByIdResource,
+  fetchHeaderConfig
 } from "utils/fetchResources"
 import { push } from "react-router-redux"
 
@@ -216,7 +217,10 @@ export const fetchUserInfo = (userId: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchUserRequest())
-      const res = await fetch(`${fetchUserByIdResource}/${userId}`)
+      const res = await fetch(
+        `${fetchUserByIdResource}/${userId}`,
+        fetchHeaderConfig
+      )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
@@ -252,7 +256,10 @@ export const fetchRoleInfo = (userId: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchRoleRequest())
-      const res = await fetch(`${fetchUserByIdResource}/${userId}/roles`)
+      const res = await fetch(
+        `${fetchUserByIdResource}/${userId}/roles`,
+        fetchHeaderConfig
+      )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
@@ -291,7 +298,10 @@ export const fetchPermissionInfo = (roleId: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchPermissionRequest())
-      const res = await fetch(`${fetchRoleByIdResource}/${roleId}/permissions`)
+      const res = await fetch(
+        `${fetchRoleByIdResource}/${roleId}/permissions`,
+        fetchHeaderConfig
+      )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()

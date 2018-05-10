@@ -1,6 +1,10 @@
 // @flow
 import { dsctypes } from "constants/dsctypes"
-import { fetchBySlugResource, fetchByIdResource } from "utils/fetchResources"
+import {
+  fetchBySlugResource,
+  fetchByIdResource,
+  fetchHeaderConfig
+} from "utils/fetchResources"
 import { push } from "react-router-redux"
 
 const {
@@ -74,7 +78,10 @@ export const fetchInfoPage = (slug: string) => {
   return async (dispatch: Function) => {
     try {
       dispatch(fetchPageRequest())
-      const res = await fetch(`${fetchBySlugResource}/${slug}`)
+      const res = await fetch(
+        `${fetchBySlugResource}/${slug}`,
+        fetchHeaderConfig
+      )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()

@@ -51,23 +51,24 @@ class InfoPageView extends Component<Props, State> {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.content)),
+        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
         new CompositeDecorator(decorator)
       )
     }
   }
-  // componentDidMount() {
-  //   this.props.fetchUserInfo(this.props.page.updated_by)
-  // }
+  componentDidMount() {
+    const userId = this.props.page.data.attributes.updated_by
+    this.props.fetchUserInfo(userId)
+  }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()
 
     const { editPage, match, page } = this.props
-    editPage(page.content, match.params.name)
+    editPage(page.data.attributes.content, match.params.name)
   }
   render() {
-    const { updated_by, updated_at } = this.props.page
+    const { updated_by, updated_at } = this.props.page.data.attributes
 
     return (
       <Container>

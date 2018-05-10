@@ -39,7 +39,7 @@ class InfoPage extends Component<Props> {
   render() {
     const { isFetching, page } = this.props
 
-    if (!isFetching && page.content) {
+    if (!isFetching && page.data.attributes.content) {
       return <InfoPageView page={page} match={this.props.match} />
     }
     return (

@@ -161,9 +161,9 @@ class EditInfoPage extends Component<Props, State> {
 const mapStateToProps = (state, ownProps) => {
   const slugName = `${NAMESPACE}-${ownProps.match.params.name}`
   return {
-    content: state.page[slugName].content,
-    updated_by: state.page[slugName].updated_by,
-    id: state.page[slugName].id
+    content: state.page[slugName].data.attributes.content,
+    updated_by: state.page[slugName].data.attributes.updated_by,
+    id: state.page[slugName].data.id
   }
 }
 

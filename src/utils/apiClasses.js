@@ -23,7 +23,7 @@ export class JsonAPI {
   }
 }
 
-export class authAPI extends JsonAPI {
+export class AuthAPI extends JsonAPI {
   json: Object
 
   isAuthenticated() {
@@ -46,19 +46,28 @@ export class authAPI extends JsonAPI {
   }
 }
 
-export class permissionAPI extends JsonAPI {
+export class AuthenticatedUser extends JsonAPI {
+  json: Object
+
+  getFullName() {
+    return this.json.attributes.first_name + this.json.attributes.last_name
+  }
+}
+
+export class PermissionAPI extends JsonAPI {
   json: Object
 
   getResource() {
     return this.json.attributes.resource
   }
 
-  getPermission() {
+  // needs to go through array
+  getPermissions() {
     return this.json.attributes.permission
   }
 }
 
-export class roleAPI extends JsonAPI {
+export class RoleAPI extends JsonAPI {
   json: Object
 
   getRole() {

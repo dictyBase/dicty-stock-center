@@ -5,8 +5,8 @@ class Authorization extends Component {
   checkPermissions(type) {
     const { user } = this.props.auth
     if (user && user.permissions) {
-      return user.permissions.find(item => {
-        return item.permission === type
+      return user.permissions.permissions.data.find(item => {
+        return item.attributes.permission === type
       })
     } else {
       return null
