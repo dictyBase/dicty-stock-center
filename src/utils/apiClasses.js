@@ -76,3 +76,11 @@ export class RoleAPI extends JsonAPI {
     return this.json.data.attributes.role
   }
 }
+
+export class ContentAPI extends JsonAPI {
+  json: Object
+
+  getUser() {
+    return this.json.data.attributes.updated_by
+  }
+}
