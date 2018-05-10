@@ -180,7 +180,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
         if (res.ok) {
           const data = await res.json()
           dispatch(receiveLogin(data))
-          const roleData = await dispatch(fetchRoleInfo(data.user.id))
+          await dispatch(fetchRoleInfo(data.user.id))
           dispatch(push("/mydsc"))
         } else if (res.status === 401) {
           // user has invalid credentials, redirect with notification
@@ -265,9 +265,7 @@ export const fetchRoleInfo = (userId: string) => {
         const json = await res.json()
         if (res.ok) {
           dispatch(fetchRoleSuccess(json))
-          const permissionData = await dispatch(
-            fetchPermissionInfo(json.data[0].id)
-          )
+          await dispatch(fetchPermissionInfo(json.data[0].id))
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)

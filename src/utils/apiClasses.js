@@ -7,19 +7,19 @@ export class JsonAPI {
     this.json = json
   }
   getAttributes() {
-    return this.json.attributes
+    return this.json.data.attributes
   }
   getType() {
-    return this.json.type
+    return this.json.data.type
   }
   getId() {
-    return this.json.id
+    return this.json.data.id
   }
   getFetchURL() {
-    return this.links.self
+    return this.json.links.self
   }
   getRelationships() {
-    return this.relationships
+    return this.json.data.relationships
   }
 }
 
@@ -50,7 +50,9 @@ export class AuthenticatedUser extends JsonAPI {
   json: Object
 
   getFullName() {
-    return this.json.attributes.first_name + this.json.attributes.last_name
+    return (
+      this.json.data.attributes.first_name + this.json.data.attributes.last_name
+    )
   }
 }
 
@@ -58,12 +60,12 @@ export class PermissionAPI extends JsonAPI {
   json: Object
 
   getResource() {
-    return this.json.attributes.resource
+    return this.json.data.attributes.resource
   }
 
   // needs to go through array
   getPermissions() {
-    return this.json.attributes.permission
+    return this.json.data.attributes.permission
   }
 }
 
@@ -71,6 +73,6 @@ export class RoleAPI extends JsonAPI {
   json: Object
 
   getRole() {
-    return this.json.attributes.role
+    return this.json.data.attributes.role
   }
 }
