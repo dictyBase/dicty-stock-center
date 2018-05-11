@@ -108,22 +108,22 @@ class AboutInlineEditor extends Component<Props, State> {
   }
   onSave = () => {
     const { editorState } = this.state
-    const { id, updated_by, saveInlineEditing } = this.props
+    const { page, saveInlineEditing } = this.props
     const rawData = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     )
     const body = {
-      id: id,
+      id: page.data.id,
       data: {
-        id: id,
+        id: page.data.id,
         type: "contents",
         attributes: {
-          updated_by: updated_by,
+          updated_by: page.data.attributes.updated_by,
           content: rawData
         }
       }
     }
-    saveInlineEditing(id, body)
+    saveInlineEditing(page.data.id, body)
     this.setState({
       readOnly: true
     })
@@ -197,17 +197,6 @@ class AboutInlineEditor extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
-  const slugName = "dsc-about"
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
-    content: state.page[slugName].data.attributes.content,
-    id: state.page[slugName].data.id,
-    updated_by: state.page[slugName].data.attributes.updated_by
-  }
-}
-
-export default connect(mapStateToProps, { editInline, saveInlineEditing })(
+export default connect(null, { editInline, saveInlineEditing })(
   AboutInlineEditor
 )
