@@ -97,11 +97,14 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  const userData = new AuthenticatedUser(state.auth.user)
-  return {
-    user: state.auth.user,
-    fullName: userData.getFullName()
+  if (state.auth.user) {
+    const userData = new AuthenticatedUser(state.auth.user)
+    return {
+      user: state.auth.user,
+      fullName: userData.getFullName()
+    }
   }
+  return {}
 }
 
 export default connect(mapStateToProps)(Home)
