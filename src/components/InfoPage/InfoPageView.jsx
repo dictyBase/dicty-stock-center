@@ -70,7 +70,8 @@ class InfoPageView extends Component<Props, State> {
     editPage(page.data.attributes.content, match.params.name)
   }
   render() {
-    const { updated_by, updated_at } = this.props.page.data.attributes
+    const { updated_at } = this.props.page.data.attributes
+    const { fetchedUserData } = this.props
     return (
       <Container>
         <Authorization
@@ -84,15 +85,15 @@ class InfoPageView extends Component<Props, State> {
                         <TextInfo>
                           <strong>
                             <FontAwesome name="user" />{" "}
-                            {this.props.fetchedUserData.getFullName()}
+                            {fetchedUserData.getFullName()}
                           </strong>{" "}
                           edited {timeSince(updated_at)} ago
                         </TextInfo>
                       </Box>
                       <Box ml="auto">
                         <div>
-                          {/* need to implement custom label */}
-                          <Label>Curator</Label> &nbsp; &nbsp;
+                          <Label>Curator{fetchedUserData.getFullName()}</Label>{" "}
+                          &nbsp; &nbsp;
                           <InlineLink onClick={this.onClick}>
                             <FontAwesome name="pencil" title="Edit page" />
                           </InlineLink>
@@ -124,6 +125,7 @@ class InfoPageView extends Component<Props, State> {
 
 const mapStateToProps = state => {
   const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
+  // console.log(fetchedUserData.getRoles())
   return {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,

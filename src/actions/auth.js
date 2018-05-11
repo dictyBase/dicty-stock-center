@@ -226,6 +226,7 @@ export const fetchUserInfo = (userId: string) => {
         const json = await res.json()
         if (res.ok) {
           dispatch(fetchUserSuccess(json))
+          await dispatch(fetchRoleInfo(json.data.id))
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
