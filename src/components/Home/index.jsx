@@ -14,12 +14,15 @@ import Intro from "./Intro"
 import About from "./About"
 import BrowserWarning from "./BrowserWarning"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
+import { AuthenticatedUser } from "utils/apiClasses"
 import { HomepageHeader, Container } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
-  /** the Auth object from the current state */
-  auth: Object
+  /** the User object from the current state */
+  user: Object,
+  /** the user's first and last names, taken from the AuthenticatedUser class */
+  fullName: string
 }
 
 /**
@@ -28,18 +31,16 @@ type Props = {
 
 class Home extends Component<Props> {
   renderGreeting = () => {
-    const { user } = this.props.auth
     return (
       <span>
-        <h3>Hello, {`${user.first_name} ${user.last_name}`}</h3>
+        <h3>Hello, {`${this.props.fullName}!`}</h3>
       </span>
     )
   }
   render() {
-    const { user } = this.props.auth
     return (
       <Container>
-        {user && this.renderGreeting()}
+        {this.props.user && this.renderGreeting()}
         {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
         <Flex wrap justify="space-between">
           <Box>
@@ -95,6 +96,12 @@ class Home extends Component<Props> {
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
+const mapStateToProps: MapStateToProps<*, *, *> = state => {
+  const userData = new AuthenticatedUser(state.auth.user)
+  return {
+    user: state.auth.user,
+    fullName: userData.getFullName()
+  }
+}
 
 export default connect(mapStateToProps)(Home)

@@ -50,9 +50,9 @@ export class AuthenticatedUser extends JsonAPI {
   json: Object
 
   getFullName() {
-    return (
-      this.json.data.attributes.first_name + this.json.data.attributes.last_name
-    )
+    return `${this.json.data.attributes.first_name} ${
+      this.json.data.attributes.last_name
+    }`
   }
 }
 
