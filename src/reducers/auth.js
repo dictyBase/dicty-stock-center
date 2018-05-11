@@ -13,6 +13,9 @@ const {
   FETCH_ROLE_REQUEST,
   FETCH_ROLE_SUCCESS,
   FETCH_ROLE_FAILURE,
+  FETCH_NON_AUTH_ROLE_REQUEST,
+  FETCH_NON_AUTH_ROLE_SUCCESS,
+  FETCH_NON_AUTH_ROLE_FAILURE,
   FETCH_PERMISSION_REQUEST,
   FETCH_PERMISSION_SUCCESS,
   FETCH_PERMISSION_FAILURE
@@ -89,6 +92,26 @@ const authReducer = (state: Object = {}, action: Object) => {
         }
       }
     case FETCH_ROLE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload.error
+      }
+    case FETCH_NON_AUTH_ROLE_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case FETCH_NON_AUTH_ROLE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        fetchedUserData: {
+          ...state.fetchedUserData,
+          roles: action.payload.roles.data
+        }
+      }
+    case FETCH_NON_AUTH_ROLE_FAILURE:
       return {
         ...state,
         isFetching: false,

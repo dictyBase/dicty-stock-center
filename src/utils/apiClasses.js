@@ -54,6 +54,16 @@ export class AuthenticatedUser extends JsonAPI {
       this.json.data.attributes.last_name
     }`
   }
+
+  getRole() {
+    if (this.json.roles) {
+      // return the role and capitalize the first letter
+      const role = this.json.roles[0].attributes.role
+      return role.charAt(0).toUpperCase() + role.substr(1)
+    } else {
+      return "..."
+    }
+  }
 }
 
 export class PermissionAPI extends JsonAPI {

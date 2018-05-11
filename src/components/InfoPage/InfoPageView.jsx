@@ -91,13 +91,10 @@ class InfoPageView extends Component<Props, State> {
                         </TextInfo>
                       </Box>
                       <Box ml="auto">
-                        <div>
-                          <Label>Curator{fetchedUserData.getFullName()}</Label>{" "}
-                          &nbsp; &nbsp;
-                          <InlineLink onClick={this.onClick}>
-                            <FontAwesome name="pencil" title="Edit page" />
-                          </InlineLink>
-                        </div>
+                        <Label>{fetchedUserData.getRole()}</Label> &nbsp;
+                        <InlineLink onClick={this.onClick}>
+                          <FontAwesome name="pencil" title="Edit page" />
+                        </InlineLink>
                       </Box>
                     </Flex>
                   </ToolbarNav>
@@ -125,7 +122,6 @@ class InfoPageView extends Component<Props, State> {
 
 const mapStateToProps = state => {
   const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
-  // console.log(fetchedUserData.getRoles())
   return {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,

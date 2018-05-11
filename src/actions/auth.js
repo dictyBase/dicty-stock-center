@@ -21,6 +21,9 @@ const {
   FETCH_ROLE_REQUEST,
   FETCH_ROLE_SUCCESS,
   FETCH_ROLE_FAILURE,
+  FETCH_NON_AUTH_ROLE_REQUEST,
+  FETCH_NON_AUTH_ROLE_SUCCESS,
+  FETCH_NON_AUTH_ROLE_FAILURE,
   FETCH_PERMISSION_REQUEST,
   FETCH_PERMISSION_SUCCESS,
   FETCH_PERMISSION_FAILURE
@@ -138,6 +141,34 @@ const fetchRoleFailure = error => {
   }
 }
 
+const fetchNonAuthRoleRequest = () => {
+  return {
+    type: FETCH_NON_AUTH_ROLE_REQUEST,
+    payload: {
+      isFetching: true
+    }
+  }
+}
+
+const fetchNonAuthRoleSuccess = (json: Object) => {
+  return {
+    type: FETCH_NON_AUTH_ROLE_SUCCESS,
+    payload: {
+      isFetching: false,
+      roles: json
+    }
+  }
+}
+
+const fetchNonAuthRoleFailure = error => {
+  return {
+    type: FETCH_NON_AUTH_ROLE_FAILURE,
+    payload: {
+      error: error
+    }
+  }
+}
+
 const fetchPermissionRequest = () => {
   return {
     type: FETCH_PERMISSION_REQUEST,
@@ -187,7 +218,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(loginError(res.statusText))
           dispatch(push("/login"))
         } else {
-          dispatch(loginError(res.statusText)) // <-- where the login request currently hits
+          dispatch(loginError(res.statusText))
           dispatch(push("/error"))
         }
       } else {
@@ -226,7 +257,7 @@ export const fetchUserInfo = (userId: string) => {
         const json = await res.json()
         if (res.ok) {
           dispatch(fetchUserSuccess(json))
-          await dispatch(fetchRoleInfo(json.data.id))
+          await dispatch(fetchNonAuthRoleInfo(json.data.id))
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
@@ -283,6 +314,45 @@ export const fetchRoleInfo = (userId: string) => {
       }
     } catch (error) {
       dispatch(fetchUserFailure(error.toString()))
+      dispatch(push("/error"))
+      if (process.env.NODE_ENV !== "production") {
+        console.error(`Network error: ${error.message}`)
+      }
+    }
+  }
+}
+
+// fetch roles function that fetches data for non-authenticated users using async/await
+// checks if header is correct, then either grabs data or displays error
+export const fetchNonAuthRoleInfo = (userId: string) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch(fetchNonAuthRoleRequest())
+      const res = await fetch(
+        `${fetchUserByIdResource}/${userId}/roles`,
+        fetchHeaderConfig
+      )
+      const contentType = res.headers.get("content-type")
+      if (contentType && contentType.includes("application/vnd.api+json")) {
+        const json = await res.json()
+        if (res.ok) {
+          dispatch(fetchNonAuthRoleSuccess(json))
+        } else {
+          if (process.env.NODE_ENV !== "production") {
+            printError(res, json)
+          }
+          dispatch(fetchNonAuthRoleFailure(json.errors[0].title))
+          dispatch(push("/error"))
+        }
+      } else {
+        if (process.env.NODE_ENV !== "production") {
+          console.error(res.statusText)
+        }
+        dispatch(fetchNonAuthRoleFailure(res.body))
+        dispatch(push("/error"))
+      }
+    } catch (error) {
+      dispatch(fetchNonAuthRoleFailure(error.toString()))
       dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
