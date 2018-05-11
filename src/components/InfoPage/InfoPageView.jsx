@@ -8,6 +8,7 @@ import {
   CompositeDecorator
 } from "draft-js"
 import findLinkEntities from "utils/findLinkEntities"
+import { ContentAPI } from "utils/apiClasses"
 import Link from "components/Link"
 import Authorization from "components/authentication/Authorization"
 import timeSince from "utils/timeSince"
@@ -69,6 +70,8 @@ class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_by, updated_at } = this.props.page.data.attributes
+    // const fetchedUser = new ContentAPI(this.props.page)
+    // console.log(fetchedUser)
 
     return (
       <Container>

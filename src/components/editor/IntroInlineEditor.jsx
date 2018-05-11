@@ -91,7 +91,7 @@ class IntroInlineEditor extends Component<Props, State> {
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.content))
+        convertFromRaw(JSON.parse(props.page.data.attributes.content))
       ),
       readOnly: true
     }
@@ -104,7 +104,7 @@ class IntroInlineEditor extends Component<Props, State> {
       readOnly: false
     })
     const { editInline, page } = this.props
-    editInline(page.content)
+    editInline(page.data.attributes.content)
   }
   onSave = () => {
     const { editorState } = this.state
@@ -131,7 +131,7 @@ class IntroInlineEditor extends Component<Props, State> {
   onCancel = () => {
     this.setState({
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(this.props.page.content))
+        convertFromRaw(JSON.parse(this.props.page.data.attributes.content))
       ),
       readOnly: true
     })
@@ -205,9 +205,9 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
-    content: state.page[slugName].content,
-    id: state.page[slugName].id,
-    updated_by: state.page[slugName].updated_by
+    content: state.page[slugName].data.attributes.content,
+    id: state.page[slugName].data.id,
+    updated_by: state.page[slugName].data.attributes.updated_by
   }
 }
 

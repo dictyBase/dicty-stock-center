@@ -37,7 +37,7 @@ class OtherMaterials extends Component<Props> {
   render() {
     const { isFetching, page } = this.props
 
-    if (!isFetching && page.content) {
+    if (!isFetching && page.data.attributes.content) {
       return (
         <PanelBlue>
           <OtherMaterialsInlineEditor

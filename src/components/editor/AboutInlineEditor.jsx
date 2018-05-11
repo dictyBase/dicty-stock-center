@@ -203,7 +203,7 @@ const mapStateToProps = state => {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
     content: state.page[slugName].data.attributes.content,
-    id: state.page[slugName].data.attributes.id,
+    id: state.page[slugName].data.id,
     updated_by: state.page[slugName].data.attributes.updated_by
   }
 }
