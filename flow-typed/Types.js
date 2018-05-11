@@ -20,6 +20,9 @@ declare module "utils/fetch" {
 declare module "utils/api" {
   declare module.exports: any
 }
+declare module "utils/apiClasses" {
+  declare module.exports: any
+}
 declare module "utils/timeSince" {
   declare module.exports: any
 }
@@ -29,7 +32,7 @@ declare module "utils/findLinkEntities" {
 declare module "middlewares/storage" {
   declare module.exports: any
 }
-declare module "middlewares/apiResponse" {
+declare module "middlewares/callAPI" {
   declare module.exports: any
 }
 declare module "validator/lib/isEmail" {

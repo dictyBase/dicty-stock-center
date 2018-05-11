@@ -29,16 +29,16 @@ const decorator = [
 type Props = {
   /** React Router's match object */
   match: Object,
-  /** user who last updated the page */
-  updated_by: string,
-  /** time the page was last updated */
-  updated_at: string,
   /** action creator for editing the current page content */
   editPage: Function,
+  /** action creator to fetch a non-authenticated user's information */
+  fetchUserInfo: Function,
   /** checks if user is authenticated */
   isAuthenticated: boolean,
   /** the object that contains page data from current state */
-  page: Object
+  page: Object,
+  /** contains the object representing the fetched user's data */
+  fetchedUserData: Object
 }
 
 type State = {
