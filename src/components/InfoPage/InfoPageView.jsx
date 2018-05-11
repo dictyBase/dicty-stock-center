@@ -12,6 +12,7 @@ import { ContentAPI } from "utils/apiClasses"
 import Link from "components/Link"
 import Authorization from "components/authentication/Authorization"
 import timeSince from "utils/timeSince"
+import { AuthenticatedUser } from "utils/apiClasses"
 import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
 import FontAwesome from "react-fontawesome"
@@ -57,10 +58,10 @@ class InfoPageView extends Component<Props, State> {
       )
     }
   }
-  // componentDidMount() {
-  //   const userId = this.props.page.data.attributes.updated_by
-  //   this.props.fetchUserInfo(userId)
-  // }
+  componentDidMount() {
+    const fetchedUser = new ContentAPI(this.props.page).getUser()
+    this.props.fetchUserInfo(fetchedUser)
+  }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
     e.preventDefault()
@@ -70,9 +71,6 @@ class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_by, updated_at } = this.props.page.data.attributes
-    // const fetchedUser = new ContentAPI(this.props.page)
-    // console.log(fetchedUser)
-
     return (
       <Container>
         <Authorization
@@ -85,7 +83,8 @@ class InfoPageView extends Component<Props, State> {
                       <Box>
                         <TextInfo>
                           <strong>
-                            <FontAwesome name="user" /> {updated_by}
+                            <FontAwesome name="user" />{" "}
+                            {this.props.fetchedUserData.getFullName()}
                           </strong>{" "}
                           edited {timeSince(updated_at)} ago
                         </TextInfo>
@@ -124,9 +123,11 @@ class InfoPageView extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
+  const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
+    user: state.auth.user,
+    fetchedUserData: fetchedUserData
   }
 }
 

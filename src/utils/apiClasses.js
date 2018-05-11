@@ -77,7 +77,7 @@ export class RoleAPI extends JsonAPI {
   }
 }
 
-export class ContentAPI extends JsonAPI {
+export class ContentAPI extends AuthenticatedUser {
   json: Object
 
   getUser() {
