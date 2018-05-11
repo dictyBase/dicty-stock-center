@@ -44,7 +44,7 @@ class InfoPage extends Component<Props> {
     }
     return (
       <Flex justify="center">
-        <Box w={"80%"}>
+        <Box w={"70%"}>
           <h1>
             <Skeleton />
           </h1>
