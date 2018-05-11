@@ -111,6 +111,18 @@ export const fetchInfoPage = (slug: string) => {
   }
 }
 
+// export const fetchInfoPage = (slug: string) => {
+//   return {
+//     types: [FETCH_PAGE_REQUEST, FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE],
+//     shouldCallAPI: state => state.page.length === 0,
+//     url: `${fetchBySlugResource}/${slug}`,
+//     config: fetchHeaderConfig,
+//     onFail: () => {
+//       push("/error")
+//     }
+//   }
+// }
+
 // helper function to print HTTP errors to console
 // responses are structured in JSONAPI format
 const printError = (res, json) => {

@@ -4,6 +4,7 @@ import thunk from "redux-thunk"
 import rootReducer from "../reducers"
 import { routerMiddleware } from "react-router-redux"
 import manageStateStorage from "middlewares/storage"
+import callAPI from "middlewares/callAPI"
 import { dsctypes } from "constants/dsctypes"
 import history from "utils/routerHistory"
 
@@ -27,7 +28,8 @@ const enhancer = composeEnhancers(
     routerMiddleware(history),
     thunk,
     manageStateStorage(authArg),
-    manageStateStorage(cartArg)
+    manageStateStorage(cartArg),
+    callAPI
   )
 )
 
