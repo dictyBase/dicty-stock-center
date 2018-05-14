@@ -75,10 +75,10 @@ class InfoPageView extends Component<Props, State> {
     return (
       <Container>
         <Authorization
-          render={({ canWrite }) => {
+          render={({ canEditPages }) => {
             return (
               <div>
-                {canWrite && (
+                {canEditPages && (
                   <ToolbarNav>
                     <Flex>
                       <Box>

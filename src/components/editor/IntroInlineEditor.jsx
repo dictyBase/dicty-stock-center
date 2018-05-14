@@ -161,10 +161,10 @@ class IntroInlineEditor extends Component<Props, State> {
               readOnly={readOnly}
             />
             <Authorization
-              render={({ canWrite }) => {
+              render={({ canEditPages }) => {
                 return (
                   <div>
-                    {canWrite &&
+                    {canEditPages &&
                       readOnly && (
                         <TextInfo>
                           <InlineLink onClick={this.onEdit} title="Edit">

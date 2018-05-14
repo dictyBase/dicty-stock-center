@@ -93,8 +93,14 @@ export class PermissionAPI extends JsonAPI {
 export class RoleAPI extends JsonAPI {
   json: Object
 
-  getRole() {
-    return this.json.data.attributes.role
+  getRoles() {
+    if (this.json.roles) {
+      this.json.roles.forEach(item => {
+        return item.attributes.role
+      })
+    } else {
+      return
+    }
   }
 }
 
