@@ -88,7 +88,8 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         user: {
           ...state.user,
-          roles: action.payload.roles.data
+          // merge roles into one array, regardless if they are one or many
+          roles: [].concat(action.payload.roles.data)
         }
       }
     case FETCH_ROLE_FAILURE:
@@ -108,7 +109,8 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         fetchedUserData: {
           ...state.fetchedUserData,
-          roles: action.payload.roles.data
+          // merge roles into one array, regardless if they are one or many
+          roles: [].concat(action.payload.roles.data)
         }
       }
     case FETCH_NON_AUTH_ROLE_FAILURE:
@@ -128,7 +130,8 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         user: {
           ...state.user,
-          permissions: action.payload.permissions.data
+          // merge permissions into one array, regardless if they are one or many
+          permissions: [].concat(action.payload.permissions.data)
         }
       }
     case FETCH_PERMISSION_FAILURE:
