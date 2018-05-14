@@ -69,9 +69,21 @@ class InfoPageView extends Component<Props, State> {
     const { editPage, match, page } = this.props
     editPage(page.data.attributes.content, match.params.name)
   }
+  canOverwrite = id => {
+    const { loggedInUser } = this.props
+    if (
+      id === loggedInUser.getId() ||
+      loggedInUser.getRoles() === "Superuser"
+    ) {
+      return true
+    } else {
+      return null
+    }
+  }
   render() {
     const { updated_at } = this.props.page.data.attributes
     const { fetchedUserData } = this.props
+
     return (
       <Container>
         <Authorization
@@ -92,9 +104,11 @@ class InfoPageView extends Component<Props, State> {
                       </Box>
                       <Box ml="auto">
                         <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                        <InlineLink onClick={this.onClick}>
-                          <FontAwesome name="pencil" title="Edit page" />
-                        </InlineLink>
+                        {this.canOverwrite(fetchedUserData.getId()) && (
+                          <InlineLink onClick={this.onClick}>
+                            <FontAwesome name="pencil" title="Edit page" />
+                          </InlineLink>
+                        )}
                       </Box>
                     </Flex>
                   </ToolbarNav>
@@ -122,9 +136,10 @@ class InfoPageView extends Component<Props, State> {
 
 const mapStateToProps = state => {
   const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
+  const loggedInUser = new AuthenticatedUser(state.auth.user)
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
+    loggedInUser: loggedInUser,
     fetchedUserData: fetchedUserData
   }
 }
