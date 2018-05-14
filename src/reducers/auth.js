@@ -131,7 +131,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         user: {
           ...state.user,
           // merge permissions into one array, regardless if they are one or many
-          permissions: [].concat(action.payload.permissions.data)
+          permissions: [].concat(action.payload.json.data)
         }
       }
     case FETCH_PERMISSION_FAILURE:
