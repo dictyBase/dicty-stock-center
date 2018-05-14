@@ -55,7 +55,7 @@ export class AuthenticatedUser extends JsonAPI {
     }`
   }
 
-  getRole() {
+  getRoles() {
     if (this.json.roles) {
       // return the role and capitalize the first letter
       const role = this.json.roles[0].attributes.role
@@ -70,24 +70,20 @@ export class PermissionAPI extends JsonAPI {
   json: Object
 
   getResources() {
-    if (this.json.permissions && this.json.permissions.length > 1) {
+    if (this.json.permissions) {
       this.json.permissions.forEach(item => {
         return item.attributes.resource
       })
-    } else if (this.json.permissions) {
-      return this.json.permissions.item.attributes.resource
     } else {
       return
     }
   }
 
   getPermissions() {
-    if (this.json.permissions && this.json.permissions.length > 1) {
+    if (this.json.permissions) {
       this.json.permissions.forEach(item => {
         return item.attributes.permission
       })
-    } else if (this.json.permissions) {
-      return this.json.permissions.item.attributes.permission
     } else {
       return
     }

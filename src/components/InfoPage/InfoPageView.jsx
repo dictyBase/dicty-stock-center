@@ -91,7 +91,7 @@ class InfoPageView extends Component<Props, State> {
                         </TextInfo>
                       </Box>
                       <Box ml="auto">
-                        <Label>{fetchedUserData.getRole()}</Label> &nbsp;
+                        <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
                         <InlineLink onClick={this.onClick}>
                           <FontAwesome name="pencil" title="Edit page" />
                         </InlineLink>
