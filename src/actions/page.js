@@ -17,34 +17,6 @@ const {
   FETCH_PAGE_FAILURE
 } = dsctypes
 
-const fetchPageRequest = () => {
-  return {
-    type: FETCH_PAGE_REQUEST,
-    payload: {
-      isFetching: true
-    }
-  }
-}
-
-const fetchPageSuccess = (json: Object) => {
-  return {
-    type: FETCH_PAGE_SUCCESS,
-    payload: {
-      isFetching: false,
-      json
-    }
-  }
-}
-
-const fetchPageFailure = error => {
-  return {
-    type: FETCH_PAGE_FAILURE,
-    payload: {
-      error: error
-    }
-  }
-}
-
 const savePageRequest = () => {
   return {
     type: SAVE_PAGE_REQUEST,
@@ -72,56 +44,13 @@ const savePageFailure = error => {
   }
 }
 
-// fetch page function that fetches data using async/await
-// checks if header is correct, then either grabs data or displays error
 export const fetchInfoPage = (slug: string) => {
-  return async (dispatch: Function) => {
-    try {
-      dispatch(fetchPageRequest())
-      const res = await fetch(
-        `${fetchBySlugResource}/${slug}`,
-        fetchHeaderConfig
-      )
-      const contentType = res.headers.get("content-type")
-      if (contentType && contentType.includes("application/vnd.api+json")) {
-        const json = await res.json()
-        if (res.ok) {
-          dispatch(fetchPageSuccess(json))
-        } else {
-          if (process.env.NODE_ENV !== "production") {
-            printError(res, json)
-          }
-          dispatch(fetchPageFailure(json.errors[0].title))
-          dispatch(push("/error"))
-        }
-      } else {
-        if (process.env.NODE_ENV !== "production") {
-          console.error("Cannot convert to JSON")
-        }
-        dispatch(fetchPageFailure(res.body))
-        dispatch(push("/error"))
-      }
-    } catch (error) {
-      dispatch(fetchPageFailure(error.toString()))
-      dispatch(push("/error"))
-      if (process.env.NODE_ENV !== "production") {
-        console.error(`Network error: ${error.message}`)
-      }
-    }
+  return {
+    types: [FETCH_PAGE_REQUEST, FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE],
+    url: `${fetchBySlugResource}/${slug}`,
+    config: fetchHeaderConfig
   }
 }
-
-// export const fetchInfoPage = (slug: string) => {
-//   return {
-//     types: [FETCH_PAGE_REQUEST, FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE],
-//     shouldCallAPI: state => state.page.length === 0,
-//     url: `${fetchBySlugResource}/${slug}`,
-//     config: fetchHeaderConfig,
-//     onFail: () => {
-//       push("/error")
-//     }
-//   }
-// }
 
 // helper function to print HTTP errors to console
 // responses are structured in JSONAPI format

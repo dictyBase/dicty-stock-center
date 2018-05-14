@@ -1,14 +1,10 @@
+import { push } from "react-router-redux"
+
 const callAPI = ({ dispatch, getState }) => {
   return next => async action => {
-    const {
-      types,
-      url,
-      config,
-      onFail = () => {},
-      shouldCallAPI = () => true
-    } = action
+    const { types, url, config } = action
 
-    if (!types) {
+    if (!types || !url) {
       // normal action: pass it on
       return next(action)
     }
@@ -20,11 +16,6 @@ const callAPI = ({ dispatch, getState }) => {
       !types.every(type => typeof type === "string")
     ) {
       throw new Error("Expected an array of three string types.")
-    }
-
-    // if no API call is necessary, return
-    if (!shouldCallAPI(getState())) {
-      return
     }
 
     // helper function to print HTTP errors to console
@@ -64,7 +55,7 @@ const callAPI = ({ dispatch, getState }) => {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
           }
-          onFail(dispatch)
+          dispatch(push("/error"))
           return next({
             type: failureType,
             payload: {
@@ -73,7 +64,7 @@ const callAPI = ({ dispatch, getState }) => {
           })
         }
       } else {
-        onFail(dispatch)
+        dispatch(push("/error"))
         return next({
           type: failureType,
           payload: {
@@ -85,7 +76,7 @@ const callAPI = ({ dispatch, getState }) => {
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
       }
-      onFail(dispatch)
+      dispatch(push("/error"))
       return next({
         type: failureType,
         payload: {

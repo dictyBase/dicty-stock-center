@@ -110,7 +110,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         fetchedUserData: {
           ...state.fetchedUserData,
           // merge roles into one array, regardless if they are one or many
-          roles: [].concat(action.payload.roles.data)
+          roles: [].concat(action.payload.json.data)
         }
       }
     case FETCH_NON_AUTH_ROLE_FAILURE:
