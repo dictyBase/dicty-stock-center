@@ -69,13 +69,28 @@ export class AuthenticatedUser extends JsonAPI {
 export class PermissionAPI extends JsonAPI {
   json: Object
 
-  getResource() {
-    return this.json.data.attributes.resource
+  getResources() {
+    if (this.json.permissions && this.json.permissions.length > 1) {
+      this.json.permissions.forEach(item => {
+        return item.attributes.resource
+      })
+    } else if (this.json.permissions) {
+      return this.json.permissions.item.attributes.resource
+    } else {
+      return
+    }
   }
 
-  // needs to go through array
   getPermissions() {
-    return this.json.data.attributes.permission
+    if (this.json.permissions && this.json.permissions.length > 1) {
+      this.json.permissions.forEach(item => {
+        return item.attributes.permission
+      })
+    } else if (this.json.permissions) {
+      return this.json.permissions.item.attributes.permission
+    } else {
+      return
+    }
   }
 }
 
