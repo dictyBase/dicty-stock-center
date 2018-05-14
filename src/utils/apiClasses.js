@@ -96,6 +96,19 @@ export class PermissionAPI extends JsonAPI {
       return
     }
   }
+
+  verifyPermissions = (perm, resource) => {
+    if (this.json.data.id && this.json.permissions) {
+      return this.json.permissions.filter(
+        item =>
+          item.attributes.permission === "admin" ||
+          (item.attributes.permission === perm &&
+            item.attributes.resource === resource)
+      )
+    } else {
+      return null
+    }
+  }
 }
 
 export class RoleAPI extends JsonAPI {
@@ -108,6 +121,14 @@ export class RoleAPI extends JsonAPI {
       })
     } else {
       return
+    }
+  }
+
+  checkRoles = role => {
+    if (this.json.data.id && this.json.roles) {
+      return this.json.roles.filter(item => item.attributes.role === role)
+    } else {
+      return null
     }
   }
 }
