@@ -69,20 +69,9 @@ class InfoPageView extends Component<Props, State> {
     const { editPage, match, page } = this.props
     editPage(page.data.attributes.content, match.params.name)
   }
-  canOverwrite = id => {
-    const { loggedInUser } = this.props
-    if (
-      id === loggedInUser.getId() ||
-      loggedInUser.getRoles() === "Superuser"
-    ) {
-      return true
-    } else {
-      return null
-    }
-  }
   render() {
     const { updated_at } = this.props.page.data.attributes
-    const { fetchedUserData } = this.props
+    const { fetchedUserData, loggedInUser } = this.props
 
     return (
       <Container>
@@ -104,7 +93,7 @@ class InfoPageView extends Component<Props, State> {
                       </Box>
                       <Box ml="auto">
                         <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                        {this.canOverwrite(fetchedUserData.getId()) && (
+                        {loggedInUser.canOverwrite(fetchedUserData.getId()) && (
                           <InlineLink onClick={this.onClick}>
                             <FontAwesome name="pencil" title="Edit page" />
                           </InlineLink>

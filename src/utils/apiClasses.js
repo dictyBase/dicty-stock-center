@@ -64,6 +64,14 @@ export class AuthenticatedUser extends JsonAPI {
       return "..."
     }
   }
+
+  canOverwrite = id => {
+    if (id === this.json.data.id || this.getRoles() === "Superuser") {
+      return true
+    } else {
+      return null
+    }
+  }
 }
 
 export class PermissionAPI extends JsonAPI {
