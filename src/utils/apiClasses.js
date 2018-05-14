@@ -9,14 +9,8 @@ export class JsonAPI {
   getAttributes() {
     return this.json.data.attributes
   }
-  getType() {
-    return this.json.data.type
-  }
   getId() {
     return this.json.data.id
-  }
-  getFetchURL() {
-    return this.json.links.self
   }
   getRelationships() {
     return this.json.data.relationships
@@ -26,6 +20,7 @@ export class JsonAPI {
 export class AuthAPI extends JsonAPI {
   json: Object
 
+  // checks if user is currently authenticated
   isAuthenticated() {
     if (this.json.isAuthenticated === true) {
       return true
@@ -33,14 +28,17 @@ export class AuthAPI extends JsonAPI {
     return false
   }
 
+  // gets JWT from currently logged in user
   getToken() {
     return this.json.token
   }
 
+  // gets provider (i.e. google) from logged in user
   getProvider() {
     return this.json.provider
   }
 
+  // gets user data
   getUser() {
     return this.json.user
   }
@@ -49,12 +47,14 @@ export class AuthAPI extends JsonAPI {
 export class AuthenticatedUser extends JsonAPI {
   json: Object
 
+  // gets the first and last name of logged in user
   getFullName() {
     return `${this.json.data.attributes.first_name} ${
       this.json.data.attributes.last_name
     }`
   }
 
+  // gets capitalized version of user's role
   getRoles() {
     if (this.json.roles) {
       // return the role and capitalize the first letter
@@ -65,6 +65,7 @@ export class AuthenticatedUser extends JsonAPI {
     }
   }
 
+  // checks if user can overwrite current content
   canOverwrite = id => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
@@ -77,6 +78,7 @@ export class AuthenticatedUser extends JsonAPI {
 export class PermissionAPI extends JsonAPI {
   json: Object
 
+  // gets lists of all resources from user's permissions
   getResources() {
     if (this.json.permissions) {
       this.json.permissions.forEach(item => {
@@ -87,6 +89,7 @@ export class PermissionAPI extends JsonAPI {
     }
   }
 
+  // gets full list of user's permissions
   getPermissions() {
     if (this.json.permissions) {
       this.json.permissions.forEach(item => {
@@ -97,6 +100,8 @@ export class PermissionAPI extends JsonAPI {
     }
   }
 
+  // this verifies that the user has the right resource
+  // and permission to edit content
   verifyPermissions = (perm, resource) => {
     if (this.json.data.id && this.json.permissions) {
       return this.json.permissions.filter(
@@ -114,6 +119,7 @@ export class PermissionAPI extends JsonAPI {
 export class RoleAPI extends JsonAPI {
   json: Object
 
+  // get full list of user's roles
   getRoles() {
     if (this.json.roles) {
       this.json.roles.forEach(item => {
@@ -124,6 +130,7 @@ export class RoleAPI extends JsonAPI {
     }
   }
 
+  // checks if user has specified role
   checkRoles = role => {
     if (this.json.data.id && this.json.roles) {
       return this.json.roles.filter(item => item.attributes.role === role)
@@ -136,6 +143,7 @@ export class RoleAPI extends JsonAPI {
 export class ContentAPI extends AuthenticatedUser {
   json: Object
 
+  // gets the user ID for person who last updated this content
   getUser() {
     return this.json.data.attributes.updated_by
   }
