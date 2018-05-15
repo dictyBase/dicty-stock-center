@@ -19,7 +19,8 @@ export default [
   },
   {
     path: "/logout",
-    component: Logout
+    component: Logout,
+    auth: true
   },
   {
     path: "/mydsc",

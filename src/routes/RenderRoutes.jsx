@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
+import LoginRoute from "./LoginRoute"
 import AuthRoutes from "./AuthRoutes"
 import GeneralRoutes from "./GeneralRoutes"
 import InfoPageRoutes from "./InfoPageRoutes"
@@ -9,9 +10,9 @@ import PlasmidRoutes from "./PlasmidRoutes"
 import StrainRoutes from "./StrainRoutes"
 import Home from "components/Home"
 import PageNotReady from "components/PageNotReady"
+import Login from "components/authentication/Login"
 
 const RenderRoutes = () => {
-  RenderRoutes.displayName = "list of routes"
   return (
     <Switch>
       <Route exact path="/" component={Home} />
@@ -19,6 +20,15 @@ const RenderRoutes = () => {
         if (route.auth) {
           return (
             <PrivateRoute
+              exact
+              key={i}
+              path={route.path}
+              component={route.component}
+            />
+          )
+        } else if (route.component === Login) {
+          return (
+            <LoginRoute
               exact
               key={i}
               path={route.path}
