@@ -14,11 +14,18 @@ class Authorization extends Component {
 }
 
 const mapStateToProps = state => {
-  const loggedInUser = new PermissionAPI(state.auth.user)
-  const roles = new RoleAPI(state.auth.user)
-  return {
-    loggedInUser: loggedInUser,
-    roles: roles
+  if (state.auth.user) {
+    const loggedInUser = new PermissionAPI(state.auth.user)
+    const roles = new RoleAPI(state.auth.user)
+    return {
+      loggedInUser: loggedInUser,
+      roles: roles
+    }
+  } else {
+    return {
+      loggedInUser: { verifyPermissions: () => {} },
+      roles: { checkRoles: () => {} }
+    }
   }
 }
 
