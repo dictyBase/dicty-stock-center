@@ -8,6 +8,7 @@ import {
   fetchRoleByIdResource,
   fetchHeaderConfig
 } from "utils/fetchResources"
+import history from "utils/routerHistory"
 import { push } from "react-router-redux"
 
 const {
@@ -157,6 +158,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(receiveLogin(data))
           await dispatch(fetchRoleInfo(data.user.id))
           dispatch(push("/mydsc"))
+          // history.go(-3)
         } else if (res.status === 401) {
           // user has invalid credentials, redirect with notification
           dispatch(loginError(res.statusText))
