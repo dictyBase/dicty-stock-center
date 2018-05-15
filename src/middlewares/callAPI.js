@@ -39,11 +39,22 @@ const callAPI = ({ dispatch, getState }) => {
     })
 
     try {
+      if (config.method === "PATCH" || config.method === "POST") {
+        config.headers = {
+          "Content-Type": "application/json",
+          Application: `Bearer: ${getState().auth.token}`
+        }
+      }
       const res = await fetch(url, config)
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
+          if (successType === "SAVE_PAGE_SUCCESS") {
+            setTimeout(() => {
+              dispatch(push(`/information/${json.data.attributes.name}`))
+            }, 500)
+          }
           return next({
             type: successType,
             payload: {

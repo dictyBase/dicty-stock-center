@@ -6,6 +6,7 @@ const {
   SAVE_PAGE_REQUEST,
   SAVE_PAGE_SUCCESS,
   SAVE_PAGE_FAILURE,
+  SAVE_INLINE_PAGE_SUCCESS,
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
   FETCH_PAGE_FAILURE
@@ -55,6 +56,11 @@ const pageReducer = (state: Object = initialState, action: Object) => {
         ...state,
         isFetching: false,
         error: action.payload.error
+      }
+    case SAVE_INLINE_PAGE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
       }
     default:
       return state
