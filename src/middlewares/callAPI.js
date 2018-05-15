@@ -1,7 +1,14 @@
+// @flow
 import { push } from "react-router-redux"
 
-const callAPI = ({ dispatch, getState }) => {
-  return next => async action => {
+type param = { dispatch: Function, getState: Function }
+
+/** Middleware to simplify code and reduce the need for boilerplate in Redux actions.
+ * This follows the REQUEST, SUCCESS, FAILURE terminology for action names.
+ */
+
+const callAPI = ({ dispatch, getState }: param) => {
+  return (next: Function) => async (action: Object) => {
     const { types, url, config } = action
 
     if (!types || !url) {
@@ -52,6 +59,7 @@ const callAPI = ({ dispatch, getState }) => {
         if (res.ok) {
           switch (successType) {
             case "SAVE_PAGE_SUCCESS":
+              // timeout is needed to show changes after action is passed through
               setTimeout(() => {
                 dispatch(push(`/information/${json.data.attributes.name}`))
               }, 500)

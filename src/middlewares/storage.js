@@ -22,7 +22,7 @@ let manageStateStorage = ({
 }: middlewareArg) => {
   return (store: Function) => {
     return (next: Function) => {
-      return (action: Function) => {
+      return (action: Object) => {
         next(action)
         const state = store.getState()
         try {

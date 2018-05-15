@@ -38,7 +38,9 @@ type Props = {
   /** the object that contains page data from current state */
   page: Object,
   /** contains the object representing the fetched user's data */
-  fetchedUserData: Object
+  fetchedUserData: Object,
+  /** contains the object representing the logged in user's data */
+  loggedInUser: Object
 }
 
 type State = {

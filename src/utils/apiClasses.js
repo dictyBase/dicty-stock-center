@@ -66,7 +66,7 @@ export class AuthenticatedUser extends JsonAPI {
   }
 
   // checks if user can overwrite current content
-  canOverwrite = id => {
+  canOverwrite = (id: string) => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
     } else {
@@ -102,7 +102,7 @@ export class PermissionAPI extends JsonAPI {
 
   // this verifies that the user has the right resource
   // and permission to edit content
-  verifyPermissions = (perm, resource) => {
+  verifyPermissions = (perm: string, resource: string) => {
     if (this.json.data.id && this.json.permissions) {
       return this.json.permissions.filter(
         item =>
@@ -131,7 +131,7 @@ export class RoleAPI extends JsonAPI {
   }
 
   // checks if user has specified role
-  checkRoles = role => {
+  checkRoles = (role: string) => {
     if (this.json.data.id && this.json.roles) {
       return this.json.roles.filter(item => item.attributes.role === role)
     } else {
