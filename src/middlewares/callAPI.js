@@ -50,18 +50,26 @@ const callAPI = ({ dispatch, getState }) => {
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
-          if (successType === "SAVE_PAGE_SUCCESS") {
-            setTimeout(() => {
-              dispatch(push(`/information/${json.data.attributes.name}`))
-            }, 500)
+          switch (successType) {
+            case "SAVE_PAGE_SUCCESS":
+              setTimeout(() => {
+                dispatch(push(`/information/${json.data.attributes.name}`))
+              }, 500)
+              break
+            // case "SAVE_INLINE_PAGE_SUCCESS":
+            //   setTimeout(() => {
+            //     window.location.reload()
+            //   }, 500)
+            //   break
+            default:
+              return next({
+                type: successType,
+                payload: {
+                  isFetching: false,
+                  json
+                }
+              })
           }
-          return next({
-            type: successType,
-            payload: {
-              isFetching: false,
-              json
-            }
-          })
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)

@@ -125,7 +125,6 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: true
       }
     case FETCH_PERMISSION_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         isFetching: false,
