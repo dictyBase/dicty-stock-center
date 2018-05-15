@@ -33,7 +33,7 @@ const Cart = (props: Props) => {
                   <td>
                     <DangerButton
                       type="button"
-                      onClick={() => this.props.removeItem(item.id)}>
+                      onClick={() => props.removeItem(item.id)}>
                       <FontAwesome name="trash-o" />
                     </DangerButton>
                   </td>

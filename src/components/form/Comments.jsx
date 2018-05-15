@@ -7,7 +7,7 @@ type Props = {
   comments: Object,
   placeholder: string,
   rows: string,
-  children: React.Node
+  children: any
 }
 
 const Comments = (props: Props) => {
