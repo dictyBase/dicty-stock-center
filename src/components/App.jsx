@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import {
@@ -20,28 +20,24 @@ type Props = {
   auth: Object
 }
 
-class App extends Component<Props> {
-  render() {
-    return (
-      <div>
-        {this.props.auth.isAuthenticated ? (
-          <Header items={loggedHeaderItems}>
-            {items => items.map(generateLinks)}
-          </Header>
-        ) : (
-          <Header items={headerItems}>
-            {items => items.map(generateLinks)}
-          </Header>
-        )}
-        <br />
-        <Navbar items={NavbarLinks} />
-        <br />
-        <Cart cart={this.props.cart} />
-        <RenderRoutes {...this.props} />
-        <Footer items={FooterLinks} />
-      </div>
-    )
-  }
+const App = (props: Props) => {
+  return (
+    <div>
+      {props.auth.isAuthenticated ? (
+        <Header items={loggedHeaderItems}>
+          {items => items.map(generateLinks)}
+        </Header>
+      ) : (
+        <Header items={headerItems}>{items => items.map(generateLinks)}</Header>
+      )}
+      <br />
+      <Navbar items={NavbarLinks} />
+      <br />
+      <Cart cart={props.cart} />
+      <RenderRoutes {...props} />
+      <Footer items={FooterLinks} />
+    </div>
+  )
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = ({ auth, cart }) => ({

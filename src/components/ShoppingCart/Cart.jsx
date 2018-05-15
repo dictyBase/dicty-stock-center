@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import FontAwesome from "react-fontawesome"
 import { removeItem } from "actions/cart"
@@ -10,43 +10,41 @@ type Props = {
   removeItem: Function
 }
 
-class Cart extends Component<Props> {
-  render() {
-    const addedItems = this.props.addedItems
-    return (
-      <Container>
-        <TableResponsive>
-          <Table condensed>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Strain/Plasmid Name</th>
-                <th>Fee</th>
-              </tr>
-            </thead>
-            <tbody>
-              {addedItems.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.fee}</td>
-                    <td>
-                      <DangerButton
-                        type="button"
-                        onClick={() => this.props.removeItem(item.id)}>
-                        <FontAwesome name="trash-o" />
-                      </DangerButton>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </Table>
-        </TableResponsive>
-      </Container>
-    )
-  }
+const Cart = (props: Props) => {
+  const addedItems = props.addedItems
+  return (
+    <Container>
+      <TableResponsive>
+        <Table condensed>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Strain/Plasmid Name</th>
+              <th>Fee</th>
+            </tr>
+          </thead>
+          <tbody>
+            {addedItems.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.fee}</td>
+                  <td>
+                    <DangerButton
+                      type="button"
+                      onClick={() => this.props.removeItem(item.id)}>
+                      <FontAwesome name="trash-o" />
+                    </DangerButton>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+      </TableResponsive>
+    </Container>
+  )
 }
 
 const mapStateToProps = state => {

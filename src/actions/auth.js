@@ -8,7 +8,7 @@ import {
   fetchRoleByIdResource,
   fetchHeaderConfig
 } from "utils/fetchResources"
-import history from "utils/routerHistory"
+// import history from "utils/routerHistory"
 import { push } from "react-router-redux"
 
 const {

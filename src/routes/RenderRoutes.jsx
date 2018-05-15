@@ -8,14 +8,14 @@ import InfoPageRoutes from "./InfoPageRoutes"
 import OrderRoutes from "./OrderRoutes"
 import PlasmidRoutes from "./PlasmidRoutes"
 import StrainRoutes from "./StrainRoutes"
-import Home from "components/Home"
+import Homepage from "components/Home/Homepage"
 import PageNotReady from "components/PageNotReady"
 import Login from "components/authentication/Login"
 
 const RenderRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Homepage} />
       {[...AuthRoutes, ...InfoPageRoutes].map((route, i) => {
         if (route.auth) {
           return (

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 
 type Props = {
   entityKey: string,
@@ -11,10 +11,10 @@ type Props = {
  * This is used in conjunction with the utils/findLinkEntities component to create link decorators for Draft.js content.
  */
 
-export default class Link extends Component<Props> {
-  render() {
-    const { entityKey, children, contentState } = this.props
-    const { url } = contentState.getEntity(entityKey).getData()
-    return <a href={url}>{children}</a>
-  }
+const Link = (props: Props) => {
+  const { entityKey, children, contentState } = props
+  const { url } = contentState.getEntity(entityKey).getData()
+  return <a href={url}>{children}</a>
 }
+
+export default Link

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import { LinkedList } from "styles"
 
@@ -12,24 +12,24 @@ type Props = {
  * Generates a list of links based on a passed in array
  */
 
-export default class LinkList extends Component<Props> {
-  render() {
-    return (
-      <LinkedList>
-        <ul>
-          {this.props.list.map((link, index) => {
-            return (
-              <li key={index}>
-                {link.routerAware ? (
-                  <Link to={link.to}>{link.name}</Link>
-                ) : (
-                  <a href={link.to}>{link.name}</a>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      </LinkedList>
-    )
-  }
+const LinkList = (props: Props) => {
+  return (
+    <LinkedList>
+      <ul>
+        {props.list.map((link, index) => {
+          return (
+            <li key={index}>
+              {link.routerAware ? (
+                <Link to={link.to}>{link.name}</Link>
+              ) : (
+                <a href={link.to}>{link.name}</a>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </LinkedList>
+  )
 }
+
+export default LinkList

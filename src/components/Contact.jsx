@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import {
   PanelGroup,
   Panel,
@@ -45,84 +45,82 @@ type Props = {
  * DSC contact form
  */
 
-class Contact extends Component<Props> {
-  render() {
-    const {
-      fields: { name, email, subject, message },
-      handleSubmit,
-      resetForm,
-      submitting
-    } = this.props
-    return (
-      <Container>
-        <Flex wrap justify="center">
-          <Box>
-            <DictyHeader>
-              <h1>Contact Us</h1>
-            </DictyHeader>
-          </Box>
-          <Box w={["90%", 3 / 4]}>
-            <p>
-              For questions, comments, or suggestions, please fill out the form
-              below to send us an email&nbsp;
-              <a
-                href="mailto:dictybase@northwestern.edu?Subject=Question"
-                target="_top">
-                (dictybase@northwestern.edu)
-              </a>
-            </p>
-          </Box>
-          <Box w={["90%", 3 / 4]}>
-            <PanelGroup theme={theme}>
-              <Panel collapse>
-                <PanelHeader style={{ padding: "20px" }}>
-                  <PanelTitle>
-                    <FontAwesome name="envelope-o" /> Email dictyBase
-                  </PanelTitle>
-                </PanelHeader>
-                <PanelBody style={{ height: "auto" }}>
-                  <HorizontalForm onSubmit={handleSubmit}>
-                    <FormGroupInput field={name}>
-                      <RequiredText title="required field">* </RequiredText>
-                      Name:
-                    </FormGroupInput>
-                    <FormGroupInput field={email}>
-                      <RequiredText title="required field">* </RequiredText>
-                      Email:
-                    </FormGroupInput>
-                    <FormGroupInput field={subject}>Subject:</FormGroupInput>
-                    <Comments
-                      comments={message}
-                      rows={"5"}
-                      placeholder={"Please enter your message here"}>
-                      Message:
-                    </Comments>
-                    <Flex>
-                      <Box w={1 / 2} mr={2} mt={1}>
-                        <ResetButton
-                          type="button"
-                          disabled={submitting}
-                          onClick={resetForm}>
-                          Reset
-                        </ResetButton>
-                      </Box>
-                      <Box w={1 / 2} mt={1}>
-                        <SubmitButton
-                          name={"Submit "}
-                          submitting={submitting}
-                          icon={"paper-plane-o"}
-                        />
-                      </Box>
-                    </Flex>
-                  </HorizontalForm>
-                </PanelBody>
-              </Panel>
-            </PanelGroup>
-          </Box>
-        </Flex>
-      </Container>
-    )
-  }
+const Contact = (props: Props) => {
+  const {
+    fields: { name, email, subject, message },
+    handleSubmit,
+    resetForm,
+    submitting
+  } = props
+  return (
+    <Container>
+      <Flex wrap justify="center">
+        <Box>
+          <DictyHeader>
+            <h1>Contact Us</h1>
+          </DictyHeader>
+        </Box>
+        <Box w={["90%", 3 / 4]}>
+          <p>
+            For questions, comments, or suggestions, please fill out the form
+            below to send us an email&nbsp;
+            <a
+              href="mailto:dictybase@northwestern.edu?Subject=Question"
+              target="_top">
+              (dictybase@northwestern.edu)
+            </a>
+          </p>
+        </Box>
+        <Box w={["90%", 3 / 4]}>
+          <PanelGroup theme={theme}>
+            <Panel collapse>
+              <PanelHeader style={{ padding: "20px" }}>
+                <PanelTitle>
+                  <FontAwesome name="envelope-o" /> Email dictyBase
+                </PanelTitle>
+              </PanelHeader>
+              <PanelBody style={{ height: "auto" }}>
+                <HorizontalForm onSubmit={handleSubmit}>
+                  <FormGroupInput field={name}>
+                    <RequiredText title="required field">* </RequiredText>
+                    Name:
+                  </FormGroupInput>
+                  <FormGroupInput field={email}>
+                    <RequiredText title="required field">* </RequiredText>
+                    Email:
+                  </FormGroupInput>
+                  <FormGroupInput field={subject}>Subject:</FormGroupInput>
+                  <Comments
+                    comments={message}
+                    rows={"5"}
+                    placeholder={"Please enter your message here"}>
+                    Message:
+                  </Comments>
+                  <Flex>
+                    <Box w={1 / 2} mr={2} mt={1}>
+                      <ResetButton
+                        type="button"
+                        disabled={submitting}
+                        onClick={resetForm}>
+                        Reset
+                      </ResetButton>
+                    </Box>
+                    <Box w={1 / 2} mt={1}>
+                      <SubmitButton
+                        name={"Submit "}
+                        submitting={submitting}
+                        icon={"paper-plane-o"}
+                      />
+                    </Box>
+                  </Flex>
+                </HorizontalForm>
+              </PanelBody>
+            </Panel>
+          </PanelGroup>
+        </Box>
+      </Flex>
+    </Container>
+  )
 }
 
 const mapStateToProps = state => {

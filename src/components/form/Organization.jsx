@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import FormGroupInput from "./FormGroupInput"
 import { RequiredText } from "styles"
 
@@ -8,20 +8,20 @@ type Props = {
   group: Object
 }
 
-export default class Organization extends Component<Props> {
-  render() {
-    const { org, group } = this.props
-    return (
-      <div>
-        <FormGroupInput field={org}>
-          <RequiredText title="required field">* </RequiredText>
-          Organization:
-        </FormGroupInput>
-        <FormGroupInput field={group}>
-          <RequiredText title="required field">* </RequiredText>
-          Lab/Group:
-        </FormGroupInput>
-      </div>
-    )
-  }
+const Organization = (props: Props) => {
+  const { org, group } = props
+  return (
+    <div>
+      <FormGroupInput field={org}>
+        <RequiredText title="required field">* </RequiredText>
+        Organization:
+      </FormGroupInput>
+      <FormGroupInput field={group}>
+        <RequiredText title="required field">* </RequiredText>
+        Lab/Group:
+      </FormGroupInput>
+    </div>
+  )
 }
+
+export default Organization

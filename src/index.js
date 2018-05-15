@@ -4,7 +4,7 @@ import { render } from "react-dom"
 import history from "utils/routerHistory"
 import configureStore from "store"
 import { hydrateAll, hydrateStore } from "utils/hydrateStore"
-import App from "containers/App"
+import App from "components/App"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "react-router-redux"
 
@@ -52,7 +52,7 @@ renderApp(App)
 
 // Webpack HMR
 if (module.hot) {
-  module.hot.accept("containers/App", () => {
+  module.hot.accept("components/App", () => {
     renderApp(App)
   })
 }

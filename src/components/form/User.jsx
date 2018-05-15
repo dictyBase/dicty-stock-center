@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import {
   Panel,
   PanelHeader,
@@ -27,53 +27,53 @@ type Props = {
   title: string
 }
 
-export default class User extends Component<Props> {
-  render() {
-    const {
-      firstName,
-      lastName,
-      email,
-      org,
-      group,
-      address,
-      address2,
-      city,
-      state,
-      zip,
-      country,
-      phone,
-      title
-    } = this.props
-    const panelStyle = { border: "1px solid #D2D7D3" }
-    const headerStyle = {
-      backgroundColor: "#337ab7",
-      padding: "20px",
-      borderColor: "#2e6da4"
-    }
-    const titleStyle = {
-      color: "#ffffff",
-      fontWeight: "200",
-      fontSize: "20px"
-    }
-    return (
-      <Panel collapse style={panelStyle}>
-        <PanelHeader style={headerStyle}>
-          <PanelTitle style={titleStyle}>{title}</PanelTitle>
-        </PanelHeader>
-        <PanelBody>
-          <Personal firstName={firstName} lastName={lastName} email={email} />
-          <Organization org={org} group={group} />
-          <Address
-            address={address}
-            address2={address2}
-            city={city}
-            state={state}
-            zip={zip}
-            country={country}
-          />
-          <Contact phone={phone} />
-        </PanelBody>
-      </Panel>
-    )
+const User = (props: Props) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    org,
+    group,
+    address,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    phone,
+    title
+  } = props
+  const panelStyle = { border: "1px solid #D2D7D3" }
+  const headerStyle = {
+    backgroundColor: "#337ab7",
+    padding: "20px",
+    borderColor: "#2e6da4"
   }
+  const titleStyle = {
+    color: "#ffffff",
+    fontWeight: "200",
+    fontSize: "20px"
+  }
+  return (
+    <Panel collapse style={panelStyle}>
+      <PanelHeader style={headerStyle}>
+        <PanelTitle style={titleStyle}>{title}</PanelTitle>
+      </PanelHeader>
+      <PanelBody>
+        <Personal firstName={firstName} lastName={lastName} email={email} />
+        <Organization org={org} group={group} />
+        <Address
+          address={address}
+          address2={address2}
+          city={city}
+          state={state}
+          zip={zip}
+          country={country}
+        />
+        <Contact phone={phone} />
+      </PanelBody>
+    </Panel>
+  )
 }
+
+export default User

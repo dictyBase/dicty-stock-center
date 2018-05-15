@@ -29,7 +29,7 @@ type Props = {
  * This is the main homepage component for DSC
  */
 
-class Home extends Component<Props> {
+class Homepage extends Component<Props> {
   renderGreeting = () => {
     return (
       <span>
@@ -107,4 +107,4 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {}
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Homepage)

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
@@ -20,34 +20,32 @@ type Props = {
  * General error page component. Can accept error messages from multiple pieces of the state.
  */
 
-export class Error extends Component<Props> {
-  render() {
-    const { auth, order, page } = this.props
-    return (
-      <Container>
-        <Flex justify="center">
-          <Box w={3 / 4}>
-            <AlertBox>
-              <h1>
-                <FontAwesome name="exclamation-triangle" /> Error{" "}
-                <FontAwesome name="exclamation-triangle" />
-              </h1>
-              <h3>{auth.error ? auth.error : ""}</h3>
-              <h3>{order.error ? order.error : ""}</h3>
-              <h3>{page.error ? page.error : ""}</h3>
-              <p>
-                Please <Link to="/contact">contact us</Link> if this problem
-                persists.
-              </p>
-              <p>
-                <Link to="/">Return Home</Link>
-              </p>
-            </AlertBox>
-          </Box>
-        </Flex>
-      </Container>
-    )
-  }
+const Error = (props: Props) => {
+  const { auth, order, page } = props
+  return (
+    <Container>
+      <Flex justify="center">
+        <Box w={3 / 4}>
+          <AlertBox>
+            <h1>
+              <FontAwesome name="exclamation-triangle" /> Error{" "}
+              <FontAwesome name="exclamation-triangle" />
+            </h1>
+            <h3>{auth.error ? auth.error : ""}</h3>
+            <h3>{order.error ? order.error : ""}</h3>
+            <h3>{page.error ? page.error : ""}</h3>
+            <p>
+              Please <Link to="/contact">contact us</Link> if this problem
+              persists.
+            </p>
+            <p>
+              <Link to="/">Return Home</Link>
+            </p>
+          </AlertBox>
+        </Box>
+      </Flex>
+    </Container>
+  )
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
