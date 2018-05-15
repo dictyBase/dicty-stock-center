@@ -33,34 +33,6 @@ import {
   InlineLink
 } from "styles"
 
-// Set up Draft.js toolbar and plugins
-const undoPlugin = createUndoPlugin()
-const toolbarLinkPlugin = createToolbarLinkPlugin({
-  inputPlaceholder: "Insert URL here..."
-})
-const { LinkButton } = toolbarLinkPlugin
-const { UndoButton, RedoButton } = undoPlugin
-const toolbarPlugin = createToolbarPlugin({
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    CodeButton,
-    HeadlineOneButton,
-    HeadlineTwoButton,
-    HeadlineThreeButton,
-    UnorderedListButton,
-    OrderedListButton,
-    BlockquoteButton,
-    CodeBlockButton,
-    LinkButton,
-    UndoButton,
-    RedoButton
-  ]
-})
-const { Toolbar } = toolbarPlugin
-const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
-
 type Props = {
   /** the object that contains page data from current state */
   page: Object,
@@ -85,9 +57,36 @@ type State = {
  * Inline editor for the About page content
  */
 
-class AboutInlineEditor extends Component<Props, State> {
+class InlineEditor extends Component<Props, State> {
   constructor(props) {
     super(props)
+
+    // Set up Draft.js toolbar and plugins
+    // These have to be added in the constructor in order for multiple
+    // editors to be used on the same page.
+    this.undoPlugin = createUndoPlugin()
+    this.toolbarLinkPlugin = createToolbarLinkPlugin({
+      inputPlaceholder: "Insert URL here..."
+    })
+
+    this.toolbarPlugin = createToolbarPlugin({
+      structure: [
+        BoldButton,
+        ItalicButton,
+        UnderlineButton,
+        CodeButton,
+        HeadlineOneButton,
+        HeadlineTwoButton,
+        HeadlineThreeButton,
+        UnorderedListButton,
+        OrderedListButton,
+        BlockquoteButton,
+        CodeBlockButton,
+        this.toolbarLinkPlugin.LinkButton,
+        this.undoPlugin.UndoButton,
+        this.undoPlugin.RedoButton
+      ]
+    })
 
     this.state = {
       editorState: EditorState.createWithContent(
@@ -137,6 +136,7 @@ class AboutInlineEditor extends Component<Props, State> {
     })
   }
   renderToolbar = () => {
+    const { Toolbar } = this.toolbarPlugin
     return (
       <ToolbarNav>
         <StaticToolbar>
@@ -146,6 +146,11 @@ class AboutInlineEditor extends Component<Props, State> {
     )
   }
   render() {
+    const plugins = [
+      this.toolbarPlugin,
+      this.toolbarLinkPlugin,
+      this.undoPlugin
+    ]
     const { editorState, readOnly } = this.state
 
     return (
@@ -197,6 +202,4 @@ class AboutInlineEditor extends Component<Props, State> {
   }
 }
 
-export default connect(null, { editInline, saveInlineEditing })(
-  AboutInlineEditor
-)
+export default connect(null, { editInline, saveInlineEditing })(InlineEditor)

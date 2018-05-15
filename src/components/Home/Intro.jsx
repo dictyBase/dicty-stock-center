@@ -2,7 +2,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import Skeleton from "react-loading-skeleton"
-import IntroInlineEditor from "../editor/IntroInlineEditor"
+import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
 
@@ -37,7 +37,7 @@ class Intro extends Component<Props> {
     const { isFetching, page } = this.props
 
     if (!isFetching && page.data.attributes.content) {
-      return <IntroInlineEditor auth={this.props.auth} page={this.props.page} />
+      return <InlineEditor auth={this.props.auth} page={this.props.page} />
     }
     return (
       <Flex justify="center">

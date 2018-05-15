@@ -2,7 +2,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import Skeleton from "react-loading-skeleton"
-import OtherMaterialsInlineEditor from "../editor/OtherMaterialsInlineEditor"
+import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
 import { PanelBlue } from "styles"
@@ -40,10 +40,7 @@ class OtherMaterials extends Component<Props> {
     if (!isFetching && page.data.attributes.content) {
       return (
         <PanelBlue>
-          <OtherMaterialsInlineEditor
-            auth={this.props.auth}
-            page={this.props.page}
-          />
+          <InlineEditor auth={this.props.auth} page={this.props.page} />
         </PanelBlue>
       )
     }
