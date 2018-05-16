@@ -1,5 +1,8 @@
 import * as actions from "actions/auth"
 import { dsctypes } from "constants/dsctypes"
+import nock from "nock"
+import configureMockStore from "redux-mock-store"
+import thunk from "redux-thunk"
 
 const {
   LOGIN_REQUEST,
@@ -19,6 +22,9 @@ const {
   FETCH_PERMISSION_SUCCESS,
   FETCH_PERMISSION_FAILURE
 } = dsctypes
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 describe("auth actions", () => {
   describe("login request", () => {
@@ -153,6 +159,21 @@ describe("auth actions", () => {
         }
       }
       expect(actions.fetchRoleFailure(error)).toEqual(expectedAction)
+    })
+  })
+})
+
+describe("auth async actions", () => {
+  afterEach(() => {
+    nock.cleanAll()
+  })
+  describe("logout request", () => {
+    it("should log the user out", () => {
+      const expectedActions = [{ type: LOGOUT_SUCCESS, isFetching: false }]
+      const store = mockStore({ auth: {} })
+
+      return store.dispatch(actions.logoutUser())
+      expect(store.getActions()).toEqual(expectedActions)
     })
   })
 })

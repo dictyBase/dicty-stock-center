@@ -36,8 +36,7 @@ describe("async actions/order", () => {
     ]
     const store = mockStore({ order: order })
 
-    // return store.dispatch(actions.submitOrder()).then(() => {
-    //   expect(store.getActions()).toEqual(expectedActions)
-    // })
+    return store.dispatch(actions.submitOrder())
+    expect(store.getActions()).toEqual(expectedActions)
   })
 })
