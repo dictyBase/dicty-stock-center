@@ -5,7 +5,7 @@ import { fees } from "constants/fees"
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
-const addItem = item => {
+export const addItem = item => {
   let fee
   if (item.type === "strain") {
     fee = STRAIN_FEE
