@@ -26,7 +26,7 @@ export const fetchInfoPage = (slug: string) => {
   }
 }
 
-const doEdit = (content: Object) => {
+export const doEdit = (content: Object) => {
   return {
     type: EDIT_PAGE,
     payload: {

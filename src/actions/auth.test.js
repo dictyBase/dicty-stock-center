@@ -172,13 +172,13 @@ describe("auth async actions", () => {
   })
 
   describe("logout request", () => {
-    it("should log the user out", () => {
+    it("should log the user out", async () => {
       const expectedActions = [
         { type: LOGOUT_SUCCESS, payload: { isFetching: false } }
       ]
       const store = mockStore({})
 
-      return store.dispatch(actions.logoutUser())
+      await store.dispatch(actions.logoutUser())
       expect(store.getActions()).toEqual(expectedActions)
     })
   })
