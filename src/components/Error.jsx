@@ -20,7 +20,7 @@ type Props = {
  * General error page component. Can accept error messages from multiple pieces of the state.
  */
 
-const Error = (props: Props) => {
+export const Error = (props: Props) => {
   const { auth, order, page } = props
   return (
     <Container>

@@ -17,7 +17,7 @@ type Props = {
  * Personalized component that displays the user's login information (ID, email, name, provider)
  */
 
-const MyDsc = (props: Props) => {
+export const MyDsc = (props: Props) => {
   const { auth } = props
   return (
     <Container>

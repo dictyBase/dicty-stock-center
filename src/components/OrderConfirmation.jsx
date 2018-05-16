@@ -16,7 +16,7 @@ type Props = {
  * Displays notification that the user's order was submitted successfully.
  */
 
-const OrderConfirmation = (props: Props) => {
+export const OrderConfirmation = (props: Props) => {
   return (
     <Flex wrap justify="center">
       <Box w={"75%"}>

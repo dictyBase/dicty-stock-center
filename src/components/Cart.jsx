@@ -16,7 +16,7 @@ type Props = {
  * This is the cart component that displays between the Navbar and body content on every page. It has a cart icon with the current number of added items next to it.
  */
 
-const Cart = (props: Props) => {
+export const Cart = (props: Props) => {
   const addedItems = props.addedItems
   return (
     <Container>

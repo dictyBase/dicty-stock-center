@@ -136,7 +136,8 @@ exports[`matching a snapshot of OrderConfirmation 1`] = `
             <strong>
               Payer
             </strong>
-             will soon receive emails through the 
+             will soon receive emails through the
+             
             <strong>
               NU Core
             </strong>
