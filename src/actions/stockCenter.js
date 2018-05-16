@@ -35,7 +35,7 @@ const {
 //
 const server = process.env.REACT_APP_API_SERVER
 
-const receiveAvailability = (data: Object) => {
+export const receiveAvailability = (data: Object) => {
   return {
     type: AVAILABILITY_FETCH_SUCCESS,
     payload: {
@@ -45,13 +45,13 @@ const receiveAvailability = (data: Object) => {
   }
 }
 
-const requestStrains = () => {
+export const requestStrains = () => {
   return {
     type: STRAINS_FETCH_REQUEST
   }
 }
 
-const receiveStrains = (data: Object) => {
+export const receiveStrains = (data: Object) => {
   return {
     type: STRAINS_FETCH_SUCCESS,
     payload: {
@@ -62,7 +62,7 @@ const receiveStrains = (data: Object) => {
   }
 }
 
-const strainsFetchFailure = (error: string) => {
+export const strainsFetchFailure = (error: string) => {
   return {
     type: STRAINS_FETCH_FAILURE,
     payload: {
