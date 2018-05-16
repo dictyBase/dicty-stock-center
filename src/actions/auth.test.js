@@ -26,6 +26,31 @@ const {
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
+const server = process.env.REACT_APP_API_SERVER || "http://localhost:8080"
+
+const user = {
+  data: {
+    type: "user",
+    id: "25",
+    attributes: {
+      first_name: "John",
+      last_name: "Smith",
+      email: "john@gmail.com",
+      organization: "Northwestern",
+      group: "Bio",
+      address: {
+        first: "N Lake Shore",
+        second: ""
+      },
+      city: "Chicago",
+      state: "IL",
+      zip: "60601",
+      country: "USA",
+      phone: ""
+    }
+  }
+}
+
 describe("auth actions", () => {
   describe("login request", () => {
     it("should create an action to request user login", () => {
@@ -43,28 +68,6 @@ describe("auth actions", () => {
   describe("login success", () => {
     it("should create an action for a successful login", () => {
       const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
-      const user = {
-        data: {
-          type: "user",
-          id: "25",
-          attributes: {
-            first_name: "John",
-            last_name: "Smith",
-            email: "john@gmail.com",
-            organization: "Northwestern",
-            group: "Bio",
-            address: {
-              first: "N Lake Shore",
-              second: ""
-            },
-            city: "Chicago",
-            state: "IL",
-            zip: "60601",
-            country: "USA",
-            phone: ""
-          }
-        }
-      }
       const expectedAction = {
         type: LOGIN_SUCCESS,
         payload: {
@@ -167,13 +170,43 @@ describe("auth async actions", () => {
   afterEach(() => {
     nock.cleanAll()
   })
+
   describe("logout request", () => {
     it("should log the user out", () => {
-      const expectedActions = [{ type: LOGOUT_SUCCESS, isFetching: false }]
-      const store = mockStore({ auth: {} })
+      const expectedActions = [
+        { type: LOGOUT_SUCCESS, payload: { isFetching: false } }
+      ]
+      const store = mockStore({})
 
       return store.dispatch(actions.logoutUser())
       expect(store.getActions()).toEqual(expectedActions)
     })
   })
+  //   describe("fetch user info", () => {
+  //     it("should fetch user data", async () => {
+  //       const json = {}
+  //       const id = 13
+  //       nock(server)
+  //         .get(`/users/${id}`)
+  //         .reply(200, user, {
+  //           "Access-Control-Allow-Origin": "*",
+  //           "Content-type": "application/vnd.api+json"
+  //         })
+
+  //       const expectedActions = [
+  //         {
+  //           type: FETCH_USER_REQUEST,
+  //           payload: { isFetching: true },
+  //           type: FETCH_USER_SUCCESS,
+  //           payload: { isFetching: false, json: json },
+  //           type: FETCH_NON_AUTH_ROLE_SUCCESS,
+  //           payload: { isFetching: false, json: json }
+  //         }
+  //       ]
+  //       const store = mockStore({})
+
+  //       await store.dispatch(actions.fetchUserInfo(id))
+  //       expect(store.getActions()).toEqual(expectedActions)
+  //     })
+  //   })
 })
