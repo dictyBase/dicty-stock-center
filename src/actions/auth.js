@@ -31,6 +31,7 @@ const {
 } = dsctypes
 
 type oauthArg = { query: string, provider: string, url: string }
+type receiveLoginArg = { user: Object, token: string }
 
 const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   const parsed = querystring.parse(query.replace("?", ""))
@@ -46,7 +47,7 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   return { config, endpoint }
 }
 
-export const requestLogin = provider => {
+export const requestLogin = (provider: string) => {
   return {
     type: LOGIN_REQUEST,
     payload: {
@@ -56,7 +57,7 @@ export const requestLogin = provider => {
   }
 }
 
-export const receiveLogin = ({ user, token }) => {
+export const receiveLogin = ({ user, token }: receiveLoginArg) => {
   return {
     type: LOGIN_SUCCESS,
     payload: {
@@ -67,7 +68,7 @@ export const receiveLogin = ({ user, token }) => {
   }
 }
 
-export const loginError = error => {
+export const loginError = (error: string) => {
   return {
     type: LOGIN_FAILURE,
     payload: {
@@ -105,7 +106,7 @@ export const fetchUserSuccess = (json: Object) => {
   }
 }
 
-export const fetchUserFailure = error => {
+export const fetchUserFailure = (error: string) => {
   return {
     type: FETCH_USER_FAILURE,
     payload: {
@@ -133,7 +134,7 @@ export const fetchRoleSuccess = (json: Object) => {
   }
 }
 
-export const fetchRoleFailure = error => {
+export const fetchRoleFailure = (error: string) => {
   return {
     type: FETCH_ROLE_FAILURE,
     payload: {
@@ -171,7 +172,7 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
         if (process.env.NODE_ENV !== "production") {
           console.error(res.statusText)
         }
-        dispatch(loginError(res.body))
+        dispatch(loginError(res.statusText))
         dispatch(push("/error"))
       }
     } catch (error) {
@@ -255,7 +256,7 @@ export const fetchRoleInfo = (userId: string) => {
         if (process.env.NODE_ENV !== "production") {
           console.error(res.statusText)
         }
-        dispatch(fetchRoleFailure(res.body))
+        dispatch(fetchRoleFailure(res.statusText))
         dispatch(push("/error"))
       }
     } catch (error) {

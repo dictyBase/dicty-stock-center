@@ -58,6 +58,10 @@ type State = {
  */
 
 class InlineEditor extends Component<Props, State> {
+  undoPlugin: Object
+  toolbarLinkPlugin: Object
+  toolbarPlugin: Object
+
   constructor(props) {
     super(props)
 
