@@ -46,7 +46,7 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   return { config, endpoint }
 }
 
-const requestLogin = provider => {
+export const requestLogin = provider => {
   return {
     type: LOGIN_REQUEST,
     payload: {
@@ -56,7 +56,7 @@ const requestLogin = provider => {
   }
 }
 
-const receiveLogin = ({ user, token }) => {
+export const receiveLogin = ({ user, token }) => {
   return {
     type: LOGIN_SUCCESS,
     payload: {
@@ -67,7 +67,7 @@ const receiveLogin = ({ user, token }) => {
   }
 }
 
-const loginError = error => {
+export const loginError = error => {
   return {
     type: LOGIN_FAILURE,
     payload: {
@@ -86,7 +86,7 @@ const receiveLogout = () => {
   }
 }
 
-const fetchUserRequest = () => {
+export const fetchUserRequest = () => {
   return {
     type: FETCH_USER_REQUEST,
     payload: {
@@ -95,7 +95,7 @@ const fetchUserRequest = () => {
   }
 }
 
-const fetchUserSuccess = (json: Object) => {
+export const fetchUserSuccess = (json: Object) => {
   return {
     type: FETCH_USER_SUCCESS,
     payload: {
@@ -105,7 +105,7 @@ const fetchUserSuccess = (json: Object) => {
   }
 }
 
-const fetchUserFailure = error => {
+export const fetchUserFailure = error => {
   return {
     type: FETCH_USER_FAILURE,
     payload: {
@@ -114,7 +114,7 @@ const fetchUserFailure = error => {
   }
 }
 
-const fetchRoleRequest = () => {
+export const fetchRoleRequest = () => {
   return {
     type: FETCH_ROLE_REQUEST,
     payload: {
@@ -123,7 +123,7 @@ const fetchRoleRequest = () => {
   }
 }
 
-const fetchRoleSuccess = (json: Object) => {
+export const fetchRoleSuccess = (json: Object) => {
   return {
     type: FETCH_ROLE_SUCCESS,
     payload: {
@@ -133,7 +133,7 @@ const fetchRoleSuccess = (json: Object) => {
   }
 }
 
-const fetchRoleFailure = error => {
+export const fetchRoleFailure = error => {
   return {
     type: FETCH_ROLE_FAILURE,
     payload: {
