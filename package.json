@@ -34,6 +34,7 @@
     "dicty-components-login": "github:dictyBase/dicty-components-login",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.1.1",
     "dicty-components-panel": "github:dictyBase/dicty-components-panel",
+    "dicty-components-redux": "github:dictybase-playground/dicty-components-redux",
     "draft-js": "^0.10.1",
     "draft-js-plugins-editor": "^2.0.4",
     "draft-js-static-toolbar-plugin": "^2.0.1",
