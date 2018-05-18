@@ -155,9 +155,9 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
         if (res.ok) {
-          const data = await res.json()
-          dispatch(receiveLogin(data))
-          await dispatch(fetchRoleInfo(data.user.id))
+          const json = await res.json()
+          dispatch(receiveLogin(json))
+          await dispatch(fetchRoleInfo(json.user.data.id))
           dispatch(push("/mydsc"))
           // history.go(-3)
         } else if (res.status === 401) {
@@ -255,18 +255,15 @@ export const fetchRoleInfo = (userId: string) => {
             printError(res, json)
           }
           dispatch(fetchRoleFailure(json.errors[0].title))
-          dispatch(push("/error"))
         }
       } else {
         if (process.env.NODE_ENV !== "production") {
           console.error(res.statusText)
         }
         dispatch(fetchRoleFailure(res.statusText))
-        dispatch(push("/error"))
       }
     } catch (error) {
       dispatch(fetchUserFailure(error.toString()))
-      dispatch(push("/error"))
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
       }
