@@ -14,6 +14,18 @@ const authArg = {
   key: "auth",
   namespace: "auth"
 }
+const roleArg = {
+  save_action: dsctypes.FETCH_ROLE_SUCCESS,
+  remove_action: dsctypes.LOGOUT_SUCCESS,
+  key: "auth",
+  namespace: "auth"
+}
+const permArg = {
+  save_action: dsctypes.FETCH_PERMISSION_SUCCESS,
+  remove_action: dsctypes.LOGOUT_SUCCESS,
+  key: "auth",
+  namespace: "auth"
+}
 const cartArg = {
   save_action: dsctypes.ADD_TO_CART,
   remove_action: dsctypes.REMOVE_FROM_CART,
@@ -27,9 +39,11 @@ const enhancer = composeEnhancers(
   applyMiddleware(
     routerMiddleware(history),
     thunk,
+    callAPI,
     manageStateStorage(authArg),
-    manageStateStorage(cartArg),
-    callAPI
+    manageStateStorage(roleArg),
+    manageStateStorage(permArg),
+    manageStateStorage(cartArg)
   )
 )
 
