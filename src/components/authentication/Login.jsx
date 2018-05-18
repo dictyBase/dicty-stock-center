@@ -78,8 +78,8 @@ class Login extends Component<Props> {
             <ProtectedRouteNotification error={this.props.auth.error} />
           )}
           <Flex justify="center">
-            <Box w={"15%"} />
-            <Box w={"85%"}>
+            <Box w={"17%"} />
+            <Box w={"83%"}>
               <LoginContainer
                 buttons={buttons}
                 theme={theme}

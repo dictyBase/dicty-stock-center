@@ -162,7 +162,12 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           // history.go(-3)
         } else if (res.status === 401) {
           // user has invalid credentials, redirect with notification
-          dispatch(loginError(res.statusText))
+          dispatch(
+            loginError(
+              `You are not an authorized user of dictyBase.
+              Please sign in with proper credentials or sign up with our user registration form when it is available.`
+            )
+          )
           dispatch(push("/login"))
         } else {
           dispatch(loginError(res.statusText))

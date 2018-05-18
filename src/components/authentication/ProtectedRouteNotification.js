@@ -6,7 +6,7 @@ import styled from "styled-components"
 // change background color of snackbar
 const SnackbarStyle = styled(SnackbarContent)`
   && {
-    background: #a94442;
+    background: #cc0000;
   }
 `
 
@@ -19,6 +19,7 @@ const ProtectedRouteNotification = (props: Props) => {
   return (
     <center>
       <SnackbarStyle message={props.error} />
+      <br />
       <br />
     </center>
   )
