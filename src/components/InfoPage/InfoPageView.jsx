@@ -71,12 +71,12 @@ class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_at } = this.props.page.data.attributes
-    const { fetchedUserData, loggedInUser } = this.props
+    const { loggedInUser } = this.props
 
     return (
       <Container>
         <Authorization
-          render={({ canEditPages }) => {
+          render={({ canEditPages, fetchedUserData }) => {
             return (
               <div>
                 {canEditPages && (
@@ -124,11 +124,9 @@ class InfoPageView extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-  const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
   const loggedInUser = new AuthenticatedUser(state.auth.user)
   return {
-    loggedInUser: loggedInUser,
-    fetchedUserData: fetchedUserData
+    loggedInUser: loggedInUser
   }
 }
 
