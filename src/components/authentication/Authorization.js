@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux"
 import { PermissionAPI, RoleAPI } from "utils/apiClasses"
-import { dscedit } from "constants/resources"
+import { dsccontent } from "constants/resources"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 const Authorization = (props: Props) => {
   const { loggedInUser, roles } = props
   return props.render({
-    canEditPages: loggedInUser.verifyPermissions("write", dscedit),
+    canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
     isSuperUser: roles.checkRoles("superuser")
   })
 }

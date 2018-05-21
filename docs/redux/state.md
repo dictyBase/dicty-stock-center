@@ -233,7 +233,7 @@
                             description: "read only",
                             created_at: "2018-04-30T21:11:53.259Z",
                             updated_at: "2018-04-30T21:11:53.259Z",
-                            resource: "dscedit"
+                            resource: "dsccontent"
                         }
                     },
                     {
@@ -244,7 +244,7 @@
                             description: "write only",
                             created_at: "2018-04-30T21:11:53.259Z",
                             updated_at: "2018-04-30T21:11:53.259Z",
-                            resource: "dscedit"
+                            resource: "dsccontent"
                         }
                     },
                     {
@@ -255,7 +255,7 @@
                             description: "total admin privileges",
                             created_at: "2018-04-30T21:11:53.259Z",
                             updated_at: "2018-04-30T21:11:53.259Z",
-                            resource: "dscedit"
+                            resource: "dsccontent"
                         }
                     },
                 ]

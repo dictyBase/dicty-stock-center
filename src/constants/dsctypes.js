@@ -60,6 +60,4 @@ const dsctypes = {
 
 const NAMESPACE = "dsc"
 
-const MAIN_RESOURCE = "dictybase"
-
-export { dsctypes, NAMESPACE, MAIN_RESOURCE }
+export { dsctypes, NAMESPACE }
