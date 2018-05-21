@@ -104,7 +104,7 @@ export class PermissionAPI extends JsonAPI {
   // this verifies that the user has the right resource
   // and permission to edit content
   verifyPermissions = (perm: string, resource: string) => {
-    if (this.json.permissions) {
+    if (this.json.permissions > 0) {
       return this.json.permissions.filter(
         item =>
           item.attributes.permission === "admin" ||
