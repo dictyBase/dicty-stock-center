@@ -1,4 +1,6 @@
 // @flow
+import { MAIN_RESOURCE } from "constants/resources"
+
 export class JsonAPI {
   json: Object
   links: Object
@@ -104,13 +106,14 @@ export class PermissionAPI extends JsonAPI {
   // this verifies that the user has the right resource
   // and permission to edit content
   verifyPermissions = (perm: string, resource: string) => {
-    if (this.json.permissions > 0) {
-      return this.json.permissions.filter(
-        item =>
-          item.attributes.permission === "admin" ||
+    if (this.json.permissions.length > 0) {
+      return this.json.permissions.filter(item => {
+        item.attributes.permission === "admin" ||
           (item.attributes.permission === perm &&
-            item.attributes.resource === resource)
-      )
+            item.attributes.resource === resource) ||
+          (item.attributes.permission === perm &&
+            item.attributes.resource === MAIN_RESOURCE)
+      })
     } else {
       return null
     }
