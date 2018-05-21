@@ -33,8 +33,6 @@ type Props = {
   editPage: Function,
   /** action creator to fetch a non-authenticated user's information */
   fetchUserInfo: Function,
-  /** checks if user is authenticated */
-  isAuthenticated: boolean,
   /** the object that contains page data from current state */
   page: Object,
   /** contains the object representing the fetched user's data */
@@ -129,7 +127,6 @@ const mapStateToProps = state => {
   const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
   const loggedInUser = new AuthenticatedUser(state.auth.user)
   return {
-    isAuthenticated: state.auth.isAuthenticated,
     loggedInUser: loggedInUser,
     fetchedUserData: fetchedUserData
   }

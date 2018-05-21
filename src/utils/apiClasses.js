@@ -132,10 +132,10 @@ export class RoleAPI extends JsonAPI {
 
   // checks if user has specified role
   checkRoles = (role: string) => {
-    if (this.json.data.id && this.json.roles) {
+    if (this.json.roles > 0) {
       return this.json.roles.filter(item => item.attributes.role === role)
     } else {
-      return null
+      return
     }
   }
 }
@@ -145,6 +145,10 @@ export class ContentAPI extends AuthenticatedUser {
 
   // gets the user ID for person who last updated this content
   getUser() {
-    return this.json.data.attributes.updated_by
+    if (this.json.data) {
+      return this.json.data.attributes.updated_by
+    } else {
+      return
+    }
   }
 }

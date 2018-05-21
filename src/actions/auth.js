@@ -196,6 +196,7 @@ export const logoutUser = () => {
 
 // fetch user function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
+// this is used to get a non-authenticated user's information
 export const fetchUserInfo = (userId: string) => {
   return async (dispatch: Function) => {
     try {

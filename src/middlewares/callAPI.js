@@ -46,6 +46,7 @@ const callAPI = ({ dispatch, getState }: param) => {
     })
 
     try {
+      // make sure POST/PATCH requests have appropriate header with JWT
       if (config.method === "PATCH" || config.method === "POST") {
         config.headers = {
           "Content-Type": "application/json",
@@ -79,10 +80,11 @@ const callAPI = ({ dispatch, getState }: param) => {
               })
           }
         } else {
+          // print console errors if in development mode
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
           }
-          dispatch(push("/error"))
+          // dispatch(push("/error"))
           return next({
             type: failureType,
             payload: {
@@ -91,7 +93,7 @@ const callAPI = ({ dispatch, getState }: param) => {
           })
         }
       } else {
-        dispatch(push("/error"))
+        // dispatch(push("/error"))
         return next({
           type: failureType,
           payload: {
@@ -103,7 +105,7 @@ const callAPI = ({ dispatch, getState }: param) => {
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
       }
-      dispatch(push("/error"))
+      // dispatch(push("/error"))
       return next({
         type: failureType,
         payload: {

@@ -23,7 +23,7 @@ type Props = {
  */
 
 class InfoPage extends Component<Props> {
-  // set defaultprops to prevent console warnings
+  // set defaultProps to prevent console warnings
   static defaultProps = {
     page: {
       data: {
