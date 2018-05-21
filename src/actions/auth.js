@@ -249,8 +249,10 @@ export const fetchRoleInfo = (userId: string) => {
       if (contentType && contentType.includes("application/vnd.api+json")) {
         const json = await res.json()
         if (res.ok) {
-          dispatch(fetchRoleSuccess(json))
-          await dispatch(fetchPermissionInfo(json.data[0].id))
+          if (json.data) {
+            dispatch(fetchRoleSuccess(json))
+            await dispatch(fetchPermissionInfo(json.data[0].id))
+          }
         } else {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)

@@ -132,7 +132,7 @@ export class RoleAPI extends JsonAPI {
 
   // checks if user has specified role
   checkRoles = (role: string) => {
-    if (this.json.roles > 0) {
+    if (this.json.roles) {
       return this.json.roles.filter(item => item.attributes.role === role)
     } else {
       return
