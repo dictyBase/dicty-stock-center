@@ -2,7 +2,7 @@
 
 exports[`matching a snapshot of ProtectedRouteNotification 1`] = `
 .c0.c0 {
-  background: #a94442;
+  background: #cc0000;
 }
 
 <center>
@@ -14,6 +14,7 @@ exports[`matching a snapshot of ProtectedRouteNotification 1`] = `
       className="MuiSnackbarContent-message-2"
     />
   </div>
+  <br />
   <br />
 </center>
 `;
