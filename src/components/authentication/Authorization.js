@@ -9,6 +9,8 @@ type Props = {
   loggedInUser: Object,
   /** contains the object representing the logged in user's roles information */
   roles: Object,
+  /** contains the object representing the fetched (non-authenticated) user's data */
+  fetchedUserData: Object,
   /** render props; function passed in by another component */
   render: Function
 }
