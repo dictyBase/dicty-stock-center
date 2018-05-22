@@ -13,7 +13,7 @@ type Props = {
  * Allows the user to logout
  */
 
-class Logout extends Component<Props> {
+export class Logout extends Component<Props> {
   componentWillMount() {
     this.props.logoutUser()
   }

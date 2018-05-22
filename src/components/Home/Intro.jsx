@@ -21,7 +21,7 @@ type Props = {
  * Fetches and displays the Intro page content
  */
 
-class Intro extends Component<Props> {
+export class Intro extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {

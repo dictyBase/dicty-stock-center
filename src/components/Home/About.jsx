@@ -21,7 +21,7 @@ type Props = {
  * Fetches and displays the About page content
  */
 
-class About extends Component<Props> {
+export class About extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {

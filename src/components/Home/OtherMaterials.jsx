@@ -22,7 +22,7 @@ type Props = {
  * Fetches and displays the Other Materials page content
  */
 
-class OtherMaterials extends Component<Props> {
+export class OtherMaterials extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
