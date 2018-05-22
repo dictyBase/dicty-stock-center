@@ -59,7 +59,6 @@ export default class EditPanel extends Component<Props> {
       zip,
       country
     } = this.props.user
-    console.log(this.props)
     return (
       <div>
         <h4>
