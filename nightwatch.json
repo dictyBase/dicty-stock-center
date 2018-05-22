@@ -1,0 +1,65 @@
+{
+  "src_folders": ["nightwatch"],
+  "output_folder": "nightwatch/reports",
+
+  "selenium": {
+    "start_process": false,
+    "server_path": "",
+    "log_path": "",
+    "host": "127.0.0.1",
+    "port": 4444,
+    "cli_args": {
+      "webdriver.chrome.driver": "",
+      "webdriver.gecko.driver": "",
+      "webdriver.edge.driver": "",
+      "webdriver.ie.driver": ""
+    }
+  },
+  "test_workers": {
+    "enabled": true,
+    "workers": "auto"
+  },
+  "test_settings": {
+    "default": {
+      "launch_url": "http://localhost:3000",
+      "selenium_port": 4444,
+      "selenium_host": "localhost",
+      "silent": true,
+      "screenshots": {
+        "enabled": false,
+        "path": ""
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "nativeEvents": true
+      }
+    },
+
+    "chrome": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "nativeEvents": true
+      }
+    },
+    "firefox": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "nativeEvents": true
+      }
+    },
+    "safari": {
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "nativeEvents": true
+      }
+    }
+  }
+}
