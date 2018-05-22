@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="3">
+            tests="2">
 
   <testsuite name="auth-flow"
     errors="0" failures="0" hostname="" id="" package="auth-flow" skipped="0"
-    tests="3" time="10.54" timestamp="Tue, 22 May 2018 21:20:37 GMT">
+    tests="2" time="15.77" timestamp="Tue, 22 May 2018 21:52:06 GMT">
   
-    <testcase name="get to login page" classname="auth-flow" time="10.54" assertions="7">
+    <testcase name="get to login page" classname="auth-flow" time="15.77" assertions="7">
 
     
 
@@ -22,9 +22,6 @@
     
 
     
-    </testcase>
-  
-    <testcase name="logging in" classname="auth-flow" time="0.001000" assertions="0">
     </testcase>
   
     <testcase name="close" classname="auth-flow" time="0.001000" assertions="0">

@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "nightwatch": "nightwatch -e chrome,firefox,safari"
   },
   "repository": {
     "type": "git",

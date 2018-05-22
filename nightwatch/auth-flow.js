@@ -24,7 +24,7 @@ module.exports = {
     browser.assert.urlContains("login")
   },
 
-  "logging in": browser => {},
+  //   "logging in": browser => {},
   //   "logging out": browser => {
   //     browser
   //       // Find and click on the logout link
