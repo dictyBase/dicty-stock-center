@@ -5,9 +5,9 @@
 
   <testsuite name="visit-contact-page"
     errors="0" failures="0" hostname="" id="" package="visit-contact-page" skipped="0"
-    tests="2" time="16.50" timestamp="Tue, 22 May 2018 21:52:22 GMT">
+    tests="2" time="21.05" timestamp="Tue, 29 May 2018 22:24:37 GMT">
   
-    <testcase name="get to contact page" classname="visit-contact-page" time="16.49" assertions="4">
+    <testcase name="get to contact page" classname="visit-contact-page" time="21.05" assertions="4">
 
     
 

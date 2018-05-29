@@ -1,5 +1,3 @@
-// need to update with form submission
-
 module.exports = {
   "get to contact page": browser => {
     browser
@@ -12,5 +10,5 @@ module.exports = {
       })
     browser.assert.urlContains("contact")
   },
-  close: browser => {}
+  close: browser => {},
 }

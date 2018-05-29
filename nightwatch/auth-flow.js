@@ -24,25 +24,25 @@ module.exports = {
     browser.assert.urlContains("login")
   },
 
-  "logging in": browser => {
-    browser
-      // click ORCID button
-      .click("button[type=button]")
-    browser
-      // switch to new window
-      .window_handles(function(result) {
-        var handle = result.value[1]
-        browser.switchWindow(handle)
-      })
-      // wait for new window to load
-      .waitForElementVisible("p", 2000)
-      .getText("p", function(res) {
-        this.assert.equal(res.value, "Sign into ORCID or Register now")
-      })
-      .setValue("input[id=userId]", "test@test.com")
-      .setValue("input[id=password]", "testtest")
-      .click("button[type=submit]")
-  },
+  // "logging in": browser => {
+  //   browser
+  //     // click ORCID button
+  //     .click("button[type=button]")
+  //   browser
+  //     // switch to new window
+  //     .window_handles(function(result) {
+  //       var handle = result.value[1]
+  //       browser.switchWindow(handle)
+  //     })
+  //     // wait for new window to load
+  //     .waitForElementVisible("p", 2000)
+  //     .getText("p", function(res) {
+  //       this.assert.equal(res.value, "Sign into ORCID or Register now")
+  //     })
+  //     .setValue("input[id=userId]", "test@test.com")
+  //     .setValue("input[id=password]", "testtest")
+  //     .click("button[type=submit]")
+  // },
   //   "logging out": browser => {
   //     browser
   //       // Find and click on the logout link
@@ -56,5 +56,5 @@ module.exports = {
   //       // Make sure the Login button shows now
   //       .waitForElementVisible('a[href="/login"]', 1000)
   //   },
-  close: browser => {}
+  close: browser => {},
 }
