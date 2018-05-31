@@ -21,7 +21,7 @@ const oauthConfig = {
     scopes: ["email"],
     scopeDelimiter: " ",
     optionalUrlParams: [["state", "google"]],
-    popupOptions: { width: 1020, height: 633 }
+    popupOptions: { width: 1020, height: 633 },
   },
   linkedin: {
     name: "LinkedIn",
@@ -32,7 +32,7 @@ const oauthConfig = {
     scopes: ["r_emailaddress"],
     scopeDelimiter: " ",
     requiredUrlParams: [["state", "linkedin"], ["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 }
+    popupOptions: { width: 1028, height: 640 },
   },
   orcid: {
     name: "ORCID",
@@ -43,8 +43,19 @@ const oauthConfig = {
     scopes: ["/authenticate"],
     scopeDelimiter: " ",
     requiredUrlParams: [["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 }
-  }
+    popupOptions: { width: 1028, height: 640 },
+  },
+  facebook: {
+    name: "Facebook",
+    url: "/auth/facebook",
+    authorizationEndpoint: "https://www.facebook.com/dialog/oauth",
+    clientId: clientConfig.facebook.clientId,
+    redirectUrl: `${window.location.origin}/facebook/callback`,
+    scopes: ["email"],
+    scopeDelimiter: ",",
+    optionalUrlParams: [["state", "facebook"], ["response_type", "code"]],
+    popupOptions: { width: 1028, height: 640 },
+  },
 }
 
 export default oauthConfig

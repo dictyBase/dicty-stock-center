@@ -10,7 +10,7 @@ import { DictyHeader } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
-const buttons = ["orcid", "google", "linkedin"]
+const buttons = ["orcid", "google", "linkedin", "facebook"]
 
 // custom theme for styling the buttons
 const theme = {
@@ -24,17 +24,17 @@ const theme = {
         width: "80%",
         justifyContent: "start",
         minHeight: "55px",
-        marginBottom: "5px"
-      }
-    }
-  }
+        marginBottom: "5px",
+      },
+    },
+  },
 }
 
 type Props = {
   // Object passed by React-Router
   location: Object,
   // Auth part of state
-  auth: Object
+  auth: Object,
 }
 
 /**
@@ -61,7 +61,7 @@ class Login extends Component<Props> {
       url,
       name,
       `width=${config.popupOptions.width},
-                    height=${config.popupOptions.height}`
+                    height=${config.popupOptions.height}`,
     )
   }
   render() {
