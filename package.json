@@ -21,7 +21,8 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "nightwatch": "nightwatch -e chrome,firefox,safari"
+    "nightwatch": "nightwatch -e chrome,firefox,safari",
+    "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -32,11 +33,14 @@
     "@material-ui/core": "^1.1.0",
     "bowser": "^1.9.3",
     "core-js": "^2.5.3",
-    "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v4.2.0",
+    "dicty-components-header-footer":
+      "github:dictyBase/dicty-components-header-footer#v4.2.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login",
-    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.1.1",
+    "dicty-components-navbar":
+      "github:dictyBase/dicty-components-navbar#v0.1.1",
     "dicty-components-panel": "github:dictyBase/dicty-components-panel",
-    "dicty-components-redux": "github:dictybase-playground/dicty-components-redux",
+    "dicty-components-redux":
+      "github:dictybase-playground/dicty-components-redux",
     "draft-js": "^0.10.1",
     "draft-js-plugins-editor": "^2.0.4",
     "draft-js-static-toolbar-plugin": "^2.0.1",
