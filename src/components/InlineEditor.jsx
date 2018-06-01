@@ -17,7 +17,7 @@ import {
   UnorderedListButton,
   OrderedListButton,
   BlockquoteButton,
-  CodeBlockButton
+  CodeBlockButton,
 } from "draft-js-buttons"
 import Authorization from "components/authentication/Authorization"
 import { editInline, saveInlineEditing } from "actions/page"
@@ -30,7 +30,7 @@ import {
   TextInfo,
   DefaultBlockButton,
   SuccessBlockButton,
-  InlineLink
+  InlineLink,
 } from "styles"
 
 type Props = {
@@ -45,12 +45,12 @@ type Props = {
   /** action creator that saves the inline content */
   saveInlineEditing: Function,
   /** action creator to edit the inline content */
-  editInline: Function
+  editInline: Function,
 }
 
 type State = {
   editorState: EditorState,
-  readOnly: boolean
+  readOnly: boolean,
 }
 
 /**
@@ -70,7 +70,7 @@ class InlineEditor extends Component<Props, State> {
     // editors to be used on the same page.
     this.undoPlugin = createUndoPlugin()
     this.toolbarLinkPlugin = createToolbarLinkPlugin({
-      inputPlaceholder: "Insert URL here..."
+      inputPlaceholder: "Insert URL here...",
     })
 
     this.toolbarPlugin = createToolbarPlugin({
@@ -88,15 +88,15 @@ class InlineEditor extends Component<Props, State> {
         CodeBlockButton,
         this.toolbarLinkPlugin.LinkButton,
         this.undoPlugin.UndoButton,
-        this.undoPlugin.RedoButton
-      ]
+        this.undoPlugin.RedoButton,
+      ],
     })
 
     this.state = {
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.page.data.attributes.content))
+        convertFromRaw(JSON.parse(props.page.data.attributes.content)),
       ),
-      readOnly: true
+      readOnly: true,
     }
   }
   onChange = editorState => this.setState({ editorState })
@@ -104,7 +104,7 @@ class InlineEditor extends Component<Props, State> {
   onEdit = e => {
     e.preventDefault()
     this.setState({
-      readOnly: false
+      readOnly: false,
     })
     const { editInline, page } = this.props
     editInline(page.data.attributes.content)
@@ -113,7 +113,7 @@ class InlineEditor extends Component<Props, State> {
     const { editorState } = this.state
     const { page, saveInlineEditing } = this.props
     const rawData = JSON.stringify(
-      convertToRaw(editorState.getCurrentContent())
+      convertToRaw(editorState.getCurrentContent()),
     )
     const body = {
       id: page.data.id,
@@ -122,21 +122,21 @@ class InlineEditor extends Component<Props, State> {
         type: "contents",
         attributes: {
           updated_by: page.data.attributes.updated_by,
-          content: rawData
-        }
-      }
+          content: rawData,
+        },
+      },
     }
     saveInlineEditing(page.data.id, body)
     this.setState({
-      readOnly: true
+      readOnly: true,
     })
   }
   onCancel = () => {
     this.setState({
       editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(this.props.page.data.attributes.content))
+        convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
       ),
-      readOnly: true
+      readOnly: true,
     })
   }
   renderToolbar = () => {
@@ -153,7 +153,7 @@ class InlineEditor extends Component<Props, State> {
     const plugins = [
       this.toolbarPlugin,
       this.toolbarLinkPlugin,
-      this.undoPlugin
+      this.undoPlugin,
     ]
     const { editorState, readOnly } = this.state
 
@@ -170,10 +170,11 @@ class InlineEditor extends Component<Props, State> {
               readOnly={readOnly}
             />
             <Authorization
-              render={({ canEditPages }) => {
+              render={({ canEditPages, verifiedToken }) => {
                 return (
                   <div>
                     {canEditPages &&
+                      verifiedToken &&
                       readOnly && (
                         <TextInfo>
                           <InlineLink onClick={this.onEdit} title="Edit">
