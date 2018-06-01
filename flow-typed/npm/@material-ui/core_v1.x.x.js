@@ -1,5 +1,5 @@
-// flow-typed signature: c30f67b0b88c8cea0ad8d876abb8d42e
-// flow-typed version: f6dc3bf38d/material-ui_v1.x.x/flow_>=v0.58.x
+// flow-typed signature: 03cf7c175358936fca986447e901a2fe
+// flow-typed version: 81ddf4ba12/@material-ui/core_v1.x.x/flow_>=v0.58.x
 
 declare module "material-ui/AppBar/AppBar" {
   declare type Color = "inherit" | "primary" | "secondary" | "default";
@@ -989,16 +989,13 @@ declare module "material-ui/internal/transition" {
 }
 
 declare module "material-ui/List" {
-  declare module.exports: {
-    ListItem: $Exports<"material-ui/List/ListItem">,
-    ListItemAvatar: $Exports<"material-ui/List/ListItemAvatar">,
-    ListItemText: $Exports<"material-ui/List/ListItemText">,
-    ListItemIcon: $Exports<"material-ui/List/ListItemIcon">,
-    ListItemSecondaryAction: $Exports<
-      "material-ui/List/ListItemSecondaryAction"
-    >,
-    ListSubheader: $Exports<"material-ui/List/ListSubheader">
-  };
+  declare export default $Exports<"material-ui/List/List">;
+  declare export var ListItem: $Exports<"material-ui/List/ListItem">;
+  declare export var ListItemAvatar: $Exports<"material-ui/List/ListItemAvatar">;
+  declare export var ListItemText: $Exports<"material-ui/List/ListItemText">;
+  declare export var ListItemIcon: $Exports<"material-ui/List/ListItemIcon">;
+  declare export var ListItemSecondaryAction: $Exports<"material-ui/List/ListItemSecondaryAction">;
+  declare export var ListSubheader: $Exports<"material-ui/List/ListSubheader">;
 }
 
 declare module "material-ui/List/List" {
@@ -1203,7 +1200,7 @@ declare module "material-ui/Modal/Modal" {
     onExiting?: TransitionCallback,
     onExited?: TransitionCallback,
     onClose?: Function,
-    show: boolean
+    open: boolean
   }>;
 }
 
@@ -1363,7 +1360,7 @@ declare module "material-ui/Select/Select" {
     inputProps?: Object,
     native?: boolean,
     multiple?: boolean,
-    onChange?: (event: SyntheticUIEvent<*>, child: Object) => void,
+    onChange?: (event: SyntheticInputEvent<*>, child: Object) => void,
     onClose?: (event: SyntheticUIEvent<*>) => void,
     onOpen?: (event: SyntheticUIEvent<*>) => void,
     open?: boolean,
@@ -1492,7 +1489,7 @@ declare module "material-ui/Stepper/StepButton" {
     icon?: Icon,
     last?: boolean,
     optional?: boolean,
-    orientation: Orientation
+    orientation?: Orientation
   }>;
 }
 
@@ -2244,7 +2241,7 @@ declare module "material-ui/Typography/Typography" {
     headlineMapping?: { [key: Type]: string },
     noWrap?: boolean,
     paragraph?: boolean,
-    type?: Type
+    variant?: Type
   }>;
 }
 
