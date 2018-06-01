@@ -18,7 +18,7 @@ const {
   FETCH_NON_AUTH_ROLE_FAILURE,
   FETCH_PERMISSION_REQUEST,
   FETCH_PERMISSION_SUCCESS,
-  FETCH_PERMISSION_FAILURE
+  FETCH_PERMISSION_FAILURE,
 } = dsctypes
 
 const authReducer = (state: Object = {}, action: Object) => {
@@ -28,7 +28,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         ...state,
         isFetching: true,
         isAuthenticated: false,
-        provider: action.payload.provider
+        provider: action.payload.provider,
       }
     case LOGIN_SUCCESS:
       return {
@@ -36,8 +36,7 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         isAuthenticated: action.payload.token ? true : false,
         token: action.payload.token,
-        user: action.payload.user
-        // provider: action.payload.identity.data.provider
+        user: action.payload.user,
       }
     case LOGIN_FAILURE:
       return {
@@ -45,12 +44,12 @@ const authReducer = (state: Object = {}, action: Object) => {
         isFetching: false,
         isAuthenticated: false,
         error: action.payload.error,
-        provider: null
+        provider: null,
       }
     case LOGOUT_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case LOGOUT_SUCCESS:
       return {
@@ -59,29 +58,29 @@ const authReducer = (state: Object = {}, action: Object) => {
         isAuthenticated: false,
         provider: null,
         user: null,
-        token: null
+        token: null,
       }
     case FETCH_USER_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case FETCH_USER_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        fetchedUserData: action.payload.json
+        fetchedUserData: action.payload.json,
       }
     case FETCH_USER_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     case FETCH_ROLE_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case FETCH_ROLE_SUCCESS:
       return {
@@ -90,19 +89,19 @@ const authReducer = (state: Object = {}, action: Object) => {
         user: {
           ...state.user,
           // merge roles into one array, regardless if they are one or many
-          roles: [].concat(action.payload.json.data)
-        }
+          roles: [].concat(action.payload.json.data),
+        },
       }
     case FETCH_ROLE_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     case FETCH_NON_AUTH_ROLE_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case FETCH_NON_AUTH_ROLE_SUCCESS:
       return {
@@ -111,19 +110,19 @@ const authReducer = (state: Object = {}, action: Object) => {
         fetchedUserData: {
           ...state.fetchedUserData,
           // merge roles into one array, regardless if they are one or many
-          roles: [].concat(action.payload.json.data)
-        }
+          roles: [].concat(action.payload.json.data),
+        },
       }
     case FETCH_NON_AUTH_ROLE_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     case FETCH_PERMISSION_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case FETCH_PERMISSION_SUCCESS:
       return {
@@ -132,14 +131,14 @@ const authReducer = (state: Object = {}, action: Object) => {
         user: {
           ...state.user,
           // merge permissions into one array, regardless if they are one or many
-          permissions: [].concat(action.payload.json.data)
-        }
+          permissions: [].concat(action.payload.json.data),
+        },
       }
     case FETCH_PERMISSION_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     default:
       return state

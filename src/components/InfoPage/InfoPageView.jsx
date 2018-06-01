@@ -5,7 +5,7 @@ import {
   Editor,
   EditorState,
   convertFromRaw,
-  CompositeDecorator
+  CompositeDecorator,
 } from "draft-js"
 import findLinkEntities from "utils/findLinkEntities"
 import { ContentAPI } from "utils/apiClasses"
@@ -22,8 +22,8 @@ import { Container, ToolbarNav, TextInfo, Label, InlineLink } from "styles"
 const decorator = [
   {
     strategy: findLinkEntities,
-    component: Link
-  }
+    component: Link,
+  },
 ]
 
 type Props = {
@@ -38,11 +38,11 @@ type Props = {
   /** contains the object representing the fetched user's data */
   fetchedUserData: Object,
   /** contains the object representing the logged in user's data */
-  loggedInUser: Object
+  loggedInUser: Object,
 }
 
 type State = {
-  editorState: EditorState
+  editorState: EditorState,
 }
 
 /** Displays the info page data that was fetched from the InfoPage component */
@@ -54,8 +54,8 @@ class InfoPageView extends Component<Props, State> {
     this.state = {
       editorState: EditorState.createWithContent(
         convertFromRaw(JSON.parse(props.page.data.attributes.content)),
-        new CompositeDecorator(decorator)
-      )
+        new CompositeDecorator(decorator),
+      ),
     }
   }
   componentDidMount() {
@@ -76,7 +76,7 @@ class InfoPageView extends Component<Props, State> {
     return (
       <Container>
         <Authorization
-          render={({ canEditPages, fetchedUserData }) => {
+          render={({ canEditPages, fetchedUserData, verifiedToken }) => {
             return (
               <div>
                 {canEditPages && (
@@ -93,11 +93,12 @@ class InfoPageView extends Component<Props, State> {
                       </Box>
                       <Box ml="auto">
                         <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                        {loggedInUser.canOverwrite(fetchedUserData.getId()) && (
-                          <InlineLink onClick={this.onClick}>
-                            <FontAwesome name="pencil" title="Edit page" />
-                          </InlineLink>
-                        )}
+                        {loggedInUser.canOverwrite(fetchedUserData.getId()) &&
+                          verifiedToken && (
+                            <InlineLink onClick={this.onClick}>
+                              <FontAwesome name="pencil" title="Edit page" />
+                            </InlineLink>
+                          )}
                       </Box>
                     </Flex>
                   </ToolbarNav>
@@ -126,10 +127,10 @@ class InfoPageView extends Component<Props, State> {
 const mapStateToProps = state => {
   const loggedInUser = new AuthenticatedUser(state.auth.user)
   return {
-    loggedInUser: loggedInUser
+    loggedInUser: loggedInUser,
   }
 }
 
 export default connect(mapStateToProps, { editPage, fetchUserInfo })(
-  InfoPageView
+  InfoPageView,
 )

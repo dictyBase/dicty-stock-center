@@ -31,14 +31,11 @@
   "dependencies": {
     "bowser": "^1.9.3",
     "core-js": "^2.5.3",
-    "dicty-components-header-footer":
-      "github:dictyBase/dicty-components-header-footer#v4.2.0",
+    "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v4.2.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login",
-    "dicty-components-navbar":
-      "github:dictyBase/dicty-components-navbar#v0.1.1",
+    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.1.1",
     "dicty-components-panel": "github:dictyBase/dicty-components-panel",
-    "dicty-components-redux":
-      "github:dictybase-playground/dicty-components-redux",
+    "dicty-components-redux": "github:dictybase-playground/dicty-components-redux",
     "draft-js": "^0.10.1",
     "draft-js-plugins-editor": "^2.0.4",
     "draft-js-static-toolbar-plugin": "^2.0.1",
@@ -47,6 +44,7 @@
     "file-loader": "^1.1.9",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "jwt-decode": "^2.2.0",
     "material-ui-next": "^1.0.0-beta.42",
     "promise-polyfill": "^7.1.2",
     "react": "^15.6.2",
