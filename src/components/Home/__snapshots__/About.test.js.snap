@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of About 1`] = `
+<div
+  className="sc-htpNat iZBBQa sc-bdVaJa iHZvIS"
+  is={null}
+>
+  <div
+    className="sc-bdVaJa FHiEA"
+    is={null}
+  >
+    <span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+    <br />
+    <br />
+    <span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton"
+        style={
+          Object {
+            "animation": "progress 1.2s ease-in-out infinite",
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+  </div>
+</div>
+`;

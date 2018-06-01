@@ -14,21 +14,21 @@ type Props = {
   /** the Page object taken from the current state */
   page: Object,
   /** Checks if data is currently being fetched */
-  isFetching: boolean
+  isFetching: boolean,
 }
 
 /**
  * Fetches and displays the About page content
  */
 
-class About extends Component<Props> {
+export class About extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
       data: {
-        attributes: {}
-      }
-    }
+        attributes: {},
+      },
+    },
   }
   componentDidMount() {
     this.props.fetchInfoPage("dsc-about")
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     isFetching: state.page.isFetching,
-    page: state.page[slugName]
+    page: state.page[slugName],
   }
 }
 

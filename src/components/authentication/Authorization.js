@@ -1,6 +1,11 @@
 // @flow
 import { connect } from "react-redux"
-import { PermissionAPI, RoleAPI, AuthenticatedUser } from "utils/apiClasses"
+import {
+  PermissionAPI,
+  RoleAPI,
+  AuthenticatedUser,
+  AuthAPI,
+} from "utils/apiClasses"
 import { dsccontent } from "constants/resources"
 import type { MapStateToProps } from "react-redux"
 
@@ -11,18 +16,21 @@ type Props = {
   roles: Object,
   /** contains the object representing the fetched (non-authenticated) user's data */
   fetchedUserData: Object,
+  /** contains the object representing the AuthAPI */
+  verifiedToken: Object,
   /** render props; function passed in by another component */
-  render: Function
+  render: Function,
 }
 
 /** This uses render props to provide access to different areas of DSC based on user permissions. */
 
 const Authorization = (props: Props) => {
-  const { loggedInUser, roles, fetchedUserData } = props
+  const { loggedInUser, roles, fetchedUserData, verifiedToken } = props
   return props.render({
     canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
     isSuperUser: roles.checkRoles("superuser"),
-    fetchedUserData: fetchedUserData
+    fetchedUserData: fetchedUserData,
+    verifiedToken: verifiedToken.verifyToken(),
   })
 }
 
@@ -31,16 +39,19 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
     const loggedInUser = new PermissionAPI(state.auth.user)
     const roles = new RoleAPI(state.auth.user)
     const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
+    const verifiedToken = new AuthAPI(state.auth)
     return {
       loggedInUser: loggedInUser,
       roles: roles,
-      fetchedUserData: fetchedUserData
+      fetchedUserData: fetchedUserData,
+      verifiedToken: verifiedToken,
     }
   } else {
     return {
       loggedInUser: { verifyPermissions: () => {} },
       roles: { checkRoles: () => {} },
-      fetchedUserData: {}
+      fetchedUserData: {},
+      verifiedToken: { verifyToken: () => {} },
     }
   }
 }

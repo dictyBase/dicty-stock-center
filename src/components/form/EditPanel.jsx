@@ -9,7 +9,7 @@ type Props = {
   title: string,
   icon?: string,
   user: Object,
-  edit: Function
+  edit: Function,
 }
 
 export default class EditPanel extends Component<Props> {
@@ -57,9 +57,8 @@ export default class EditPanel extends Component<Props> {
       city,
       state,
       zip,
-      country
+      country,
     } = this.props.user
-    console.log(this.props)
     return (
       <div>
         <h4>

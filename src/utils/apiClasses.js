@@ -1,5 +1,6 @@
 // @flow
 import { MAIN_RESOURCE } from "constants/resources"
+import jwtDecode from "jwt-decode"
 
 export class JsonAPI {
   json: Object
@@ -33,6 +34,22 @@ export class AuthAPI extends JsonAPI {
   // gets JWT from currently logged in user
   getToken() {
     return this.json.token
+  }
+
+  // verifies token is not expired
+  verifyToken() {
+    // get stored token
+    const token = this.json.token
+    // decode token
+    const decodedToken = jwtDecode(token)
+    // get current time in plain UTC
+    const currentTime = Date.now().valueOf() / 1000
+    // check if current time is less than token expiration date
+    if (currentTime < decodedToken.exp) {
+      return true
+    } else {
+      return false
+    }
   }
 
   // gets provider (i.e. google) from logged in user

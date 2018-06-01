@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matching a snapshot of ProtectedRouteNotification 1`] = `
+exports[`matching a snapshot of ErrorNotification 1`] = `
 .c0.c0 {
   background: #cc0000;
 }

@@ -4,13 +4,13 @@ import { connect } from "react-redux"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
-import ProtectedRouteNotification from "components/authentication/ProtectedRouteNotification"
+import ErrorNotification from "components/authentication/ErrorNotification"
 import { Flex, Box } from "rebass"
 import { DictyHeader } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
-const buttons = ["orcid", "google", "linkedin"]
+const buttons = ["orcid", "google", "linkedin", "facebook"]
 
 // custom theme for styling the buttons
 const theme = {
@@ -24,17 +24,17 @@ const theme = {
         width: "80%",
         justifyContent: "start",
         minHeight: "55px",
-        marginBottom: "5px"
-      }
-    }
-  }
+        marginBottom: "5px",
+      },
+    },
+  },
 }
 
 type Props = {
   // Object passed by React-Router
   location: Object,
   // Auth part of state
-  auth: Object
+  auth: Object,
 }
 
 /**
@@ -61,22 +61,21 @@ class Login extends Component<Props> {
       url,
       name,
       `width=${config.popupOptions.width},
-                    height=${config.popupOptions.height}`
+                    height=${config.popupOptions.height}`,
     )
   }
   render() {
+    const { auth } = this.props
     const { state = {} } = this.props.location
     const { error } = state
     return (
       <Flex justify="center">
-        <Box w={[1, "60%", "40%"]}>
+        <Box w={["100%", "60%", "40%"]}>
           <DictyHeader>
             <h1>Log in</h1>
           </DictyHeader>
-          {error && <ProtectedRouteNotification error={error} />}
-          {this.props.auth.error && (
-            <ProtectedRouteNotification error={this.props.auth.error} />
-          )}
+          {error && <ErrorNotification error={error} />}
+          {auth.error && <ErrorNotification error={auth.error} />}
           <Flex justify="center">
             <Box w={"17%"} />
             <Box w={"83%"}>

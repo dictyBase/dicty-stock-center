@@ -1,21 +1,21 @@
-// flow-typed signature: c30f67b0b88c8cea0ad8d876abb8d42e
-// flow-typed version: f6dc3bf38d/material-ui_v1.x.x/flow_>=v0.58.x
+// flow-typed signature: 03cf7c175358936fca986447e901a2fe
+// flow-typed version: 81ddf4ba12/@material-ui/core_v1.x.x/flow_>=v0.58.x
 
 declare module "material-ui/AppBar/AppBar" {
-  declare type Color = "inherit" | "primary" | "secondary" | "default";
-  declare type Position = "fixed" | "absolute" | "sticky" | "static";
+  declare type Color = "inherit" | "primary" | "secondary" | "default"
+  declare type Position = "fixed" | "absolute" | "sticky" | "static"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
     classes?: Object,
     color?: Color,
-    position?: Position
-  }>;
+    position?: Position,
+  }>
 }
 
 declare module "material-ui/AppBar" {
-  declare module.exports: $Exports<"material-ui/AppBar/AppBar">;
+  declare module.exports: $Exports<"material-ui/AppBar/AppBar">
 }
 
 declare module "material-ui/Avatar/Avatar" {
@@ -29,28 +29,28 @@ declare module "material-ui/Avatar/Avatar" {
     imgProps?: Object,
     sizes?: string,
     src?: string,
-    srcSet?: string
-  }>;
+    srcSet?: string,
+  }>
 }
 
 declare module "material-ui/Avatar" {
-  declare module.exports: $Exports<"material-ui/Avatar/Avatar">;
+  declare module.exports: $Exports<"material-ui/Avatar/Avatar">
 }
 
 declare module "material-ui/Badge/Badge" {
-  declare type Color = "default" | "primary" | "accent";
+  declare type Color = "default" | "primary" | "accent"
 
   declare module.exports: React$ComponentType<{
     badgeContent: React$Node,
     children: React$Node,
     className?: string,
     classes?: Object,
-    color?: Color
-  }>;
+    color?: Color,
+  }>
 }
 
 declare module "material-ui/Badge" {
-  declare module.exports: $Exports<"material-ui/Badge/Badge">;
+  declare module.exports: $Exports<"material-ui/Badge/Badge">
 }
 
 declare module "material-ui/BottomNavigation/BottomNavigation" {
@@ -60,8 +60,8 @@ declare module "material-ui/BottomNavigation/BottomNavigation" {
     classes?: Object,
     onChange?: Function,
     showLabels?: boolean,
-    value: any
-  }>;
+    value: any,
+  }>
 }
 
 declare module "material-ui/BottomNavigation/BottomNavigationAction" {
@@ -74,21 +74,21 @@ declare module "material-ui/BottomNavigation/BottomNavigationAction" {
     onClick?: Function,
     selected?: boolean,
     showLabel?: boolean,
-    value?: any
-  }>;
+    value?: any,
+  }>
 }
 
 declare module "material-ui/BottomNavigation" {
   declare export var BottomNavigationAction: $Exports<
-    "material-ui/BottomNavigation/BottomNavigationAction"
-  >;
+    "material-ui/BottomNavigation/BottomNavigationAction",
+  >
   declare export default $Exports<
-    "material-ui/BottomNavigation/BottomNavigation"
-  >;
+    "material-ui/BottomNavigation/BottomNavigation",
+  >
 }
 
 declare module "material-ui/Button/Button" {
-  declare type Color = "default" | "inherit" | "primary" | "secondary";
+  declare type Color = "default" | "inherit" | "primary" | "secondary"
 
   declare module.exports: React$ComponentType<{
     children: React$Node,
@@ -103,12 +103,12 @@ declare module "material-ui/Button/Button" {
     fab?: boolean,
     href?: string,
     raised?: boolean,
-    type?: string
-  }>;
+    type?: string,
+  }>
 }
 
 declare module "material-ui/Button" {
-  declare module.exports: $Exports<"material-ui/Button/Button">;
+  declare module.exports: $Exports<"material-ui/Button/Button">
 }
 
 declare module "material-ui/ButtonBase/ButtonBase" {
@@ -137,22 +137,22 @@ declare module "material-ui/ButtonBase/ButtonBase" {
     role?: string,
     rootRef?: Function,
     tabIndex?: number | string,
-    type?: string
-  }>;
+    type?: string,
+  }>
 }
 
 declare module "material-ui/ButtonBase/createRippleHandler" {
-  declare function handleEvent(event: SyntheticUIEvent<>): void;
+  declare function handleEvent(event: SyntheticUIEvent<>): void
   declare module.exports: (
     instance: Object,
     eventName: string,
     action: string,
-    cb: ?Function
-  ) => handleEvent;
+    cb: ?Function,
+  ) => handleEvent
 }
 
 declare module "material-ui/ButtonBase" {
-  declare module.exports: $Exports<"material-ui/ButtonBase/ButtonBase">;
+  declare module.exports: $Exports<"material-ui/ButtonBase/ButtonBase">
 }
 
 declare module "material-ui/ButtonBase/Ripple" {
@@ -162,23 +162,23 @@ declare module "material-ui/ButtonBase/Ripple" {
     pulsate?: boolean,
     rippleSize: number,
     rippleX: number,
-    rippleY: number
-  }>;
+    rippleY: number,
+  }>
 }
 
 declare module "material-ui/ButtonBase/TouchRipple" {
   declare module.exports: React$ComponentType<{
     center?: boolean,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/Card/Card" {
   declare module.exports: React$ComponentType<{
     className?: string,
-    raised?: boolean
-  }>;
+    raised?: boolean,
+  }>
 }
 
 declare module "material-ui/Card/CardActions" {
@@ -186,15 +186,15 @@ declare module "material-ui/Card/CardActions" {
     children?: React$Node,
     className?: string,
     classes?: Object,
-    disableActionSpacing?: boolean
-  }>;
+    disableActionSpacing?: boolean,
+  }>
 }
 
 declare module "material-ui/Card/CardContent" {
   declare module.exports: React$ComponentType<{
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/Card/CardHeader" {
@@ -204,8 +204,8 @@ declare module "material-ui/Card/CardHeader" {
     className?: string,
     classes?: Object,
     subheader?: React$Node,
-    title?: React$Node
-  }>;
+    title?: React$Node,
+  }>
 }
 
 declare module "material-ui/Card/CardMedia" {
@@ -215,16 +215,16 @@ declare module "material-ui/Card/CardMedia" {
     component?: React$ElementType,
     image?: string,
     src?: string,
-    style?: Object
-  }>;
+    style?: Object,
+  }>
 }
 
 declare module "material-ui/Card" {
-  declare export var CardActions: $Exports<"material-ui/Card/CardActions">;
-  declare export var CardContent: $Exports<"material-ui/Card/CardContent">;
-  declare export var CardHeader: $Exports<"material-ui/Card/CardHeader">;
-  declare export var CardMedia: $Exports<"material-ui/Card/CardMedia">;
-  declare export default $Exports<"material-ui/Card/Card">;
+  declare export var CardActions: $Exports<"material-ui/Card/CardActions">
+  declare export var CardContent: $Exports<"material-ui/Card/CardContent">
+  declare export var CardHeader: $Exports<"material-ui/Card/CardHeader">
+  declare export var CardMedia: $Exports<"material-ui/Card/CardMedia">
+  declare export default $Exports<"material-ui/Card/Card">
 }
 
 declare module "material-ui/Checkbox/Checkbox" {
@@ -244,16 +244,16 @@ declare module "material-ui/Checkbox/Checkbox" {
     name?: string,
     onChange?: Function,
     tabIndex?: number | string,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/Checkbox" {
-  declare module.exports: $Exports<"material-ui/Checkbox/Checkbox">;
+  declare module.exports: $Exports<"material-ui/Checkbox/Checkbox">
 }
 
 declare module "material-ui/Chip/Chip" {
-  import typeof Avatar from "material-ui/Avatar/Avatar";
+  import typeof Avatar from "material-ui/Avatar/Avatar"
 
   declare module.exports: React$ComponentType<{
     avatar?: React$Element<Avatar>,
@@ -264,112 +264,112 @@ declare module "material-ui/Chip/Chip" {
     onClick?: Function,
     onDelete?: (event: SyntheticEvent<>) => void,
     onKeyDown?: Function,
-    tabIndex?: number | string
-  }>;
+    tabIndex?: number | string,
+  }>
 }
 
 declare module "material-ui/Chip" {
-  declare module.exports: $Exports<"material-ui/Chip/Chip">;
+  declare module.exports: $Exports<"material-ui/Chip/Chip">
 }
 
 declare module "material-ui/CssBaseline/CssBaseline" {
-  declare module.exports: React$ComponentType<{ children?: React$Node }>;
+  declare module.exports: React$ComponentType<{ children?: React$Node }>
 }
 
 declare module "material-ui/CssBaseline" {
-  declare module.exports: $Exports<"material-ui/CssBaseline/CssBaseline">;
+  declare module.exports: $Exports<"material-ui/CssBaseline/CssBaseline">
 }
 
 declare module "material-ui/colors/amber" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/blue" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/blueGrey" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/brown" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/common" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/cyan" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/deepOrange" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/deepPurple" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/green" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/grey" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/indigo" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/lightBlue" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/lightGreen" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/lime" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/orange" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/pink" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/purple" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/red" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/teal" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/colors/yellow" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/Dialog/Dialog" {
   import type {
     TransitionCallback,
-    TransitionDuration
-  } from "material-ui/internal/transition";
-  declare type MaxWidth = "xs" | "sm" | "md" | false;
+    TransitionDuration,
+  } from "material-ui/internal/transition"
+  declare type MaxWidth = "xs" | "sm" | "md" | false
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
@@ -391,32 +391,32 @@ declare module "material-ui/Dialog/Dialog" {
     onExiting?: TransitionCallback,
     open?: boolean,
     transition?: React$ComponentType<*>,
-    transitionDuration?: TransitionDuration
-  }>;
+    transitionDuration?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/Dialog/DialogActions" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/Dialog/DialogContent" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/Dialog/DialogContentText" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/Dialog/DialogTitle" {
@@ -424,29 +424,25 @@ declare module "material-ui/Dialog/DialogTitle" {
     children?: React$Node,
     className?: string,
     classes?: Object,
-    disableTypography?: boolean
-  }>;
+    disableTypography?: boolean,
+  }>
 }
 
 declare module "material-ui/Dialog" {
-  declare export var DialogActions: $Exports<
-    "material-ui/Dialog/DialogActions"
-  >;
-  declare export var DialogContent: $Exports<
-    "material-ui/Dialog/DialogContent"
-  >;
+  declare export var DialogActions: $Exports<"material-ui/Dialog/DialogActions">
+  declare export var DialogContent: $Exports<"material-ui/Dialog/DialogContent">
   declare export var DialogContentText: $Exports<
-    "material-ui/Dialog/DialogContentText"
-  >;
-  declare export var DialogTitle: $Exports<"material-ui/Dialog/DialogTitle">;
+    "material-ui/Dialog/DialogContentText",
+  >
+  declare export var DialogTitle: $Exports<"material-ui/Dialog/DialogTitle">
   declare export var withMobileDialog: $Exports<
-    "material-ui/Dialog/withMobileDialog"
-  >;
-  declare export default $Exports<"material-ui/Dialog/Dialog">;
+    "material-ui/Dialog/withMobileDialog",
+  >
+  declare export default $Exports<"material-ui/Dialog/Dialog">
 }
 
 declare module "material-ui/Dialog/withMobileDialog" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/Divider/Divider" {
@@ -455,19 +451,19 @@ declare module "material-ui/Divider/Divider" {
     className?: string,
     classes?: Object,
     inset?: boolean,
-    light?: boolean
-  }>;
+    light?: boolean,
+  }>
 }
 
 declare module "material-ui/Divider" {
-  declare module.exports: $Exports<"material-ui/Divider/Divider">;
+  declare module.exports: $Exports<"material-ui/Divider/Divider">
 }
 
 declare module "material-ui/Drawer/Drawer" {
-  import type { TransitionDuration } from "material-ui/internal/transition";
+  import type { TransitionDuration } from "material-ui/internal/transition"
 
-  declare type Anchor = "left" | "top" | "right" | "bottom";
-  declare type Type = "permanent" | "persistent" | "temporary";
+  declare type Anchor = "left" | "top" | "right" | "bottom"
+  declare type Type = "permanent" | "persistent" | "temporary"
 
   declare module.exports: React$ComponentType<{
     ModalProps?: Object,
@@ -480,18 +476,18 @@ declare module "material-ui/Drawer/Drawer" {
     onClose?: Function,
     open?: boolean,
     transitionDuration?: TransitionDuration,
-    type?: Type
-  }>;
+    type?: Type,
+  }>
 }
 declare module "material-ui/Drawer" {
-  declare module.exports: $Exports<"material-ui/Drawer/Drawer">;
+  declare module.exports: $Exports<"material-ui/Drawer/Drawer">
 }
 
 declare module "material-ui/SwipeableDrawer/SwipeableDrawer" {
-  import type { TransitionDuration } from "material-ui/internal/transition";
+  import type { TransitionDuration } from "material-ui/internal/transition"
 
-  declare type Anchor = "left" | "top" | "right" | "bottom";
-  declare type Type = "permanent" | "persistent" | "temporary";
+  declare type Anchor = "left" | "top" | "right" | "bottom"
+  declare type Type = "permanent" | "persistent" | "temporary"
 
   declare module.exports: React$ComponentType<{
     ModalProps?: Object,
@@ -504,14 +500,14 @@ declare module "material-ui/SwipeableDrawer/SwipeableDrawer" {
     onClose?: Function,
     open?: boolean,
     transitionDuration?: TransitionDuration,
-    type?: Type
-  }>;
+    type?: Type,
+  }>
 }
 
 declare module "material-ui/SwipeableDrawer" {
   declare module.exports: $Exports<
-    "material-ui/SwipeableDrawer/SwipeableDrawer"
-  >;
+    "material-ui/SwipeableDrawer/SwipeableDrawer",
+  >
 }
 
 declare module "material-ui/ExpansionPanel/ExpansionPanel" {
@@ -523,24 +519,24 @@ declare module "material-ui/ExpansionPanel/ExpansionPanel" {
     defaultExpanded?: boolean,
     disabled?: boolean,
     expanded?: boolean,
-    onChange?: Function
-  }>;
+    onChange?: Function,
+  }>
 }
 
 declare module "material-ui/ExpansionPanel/ExpansionPanelActions" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/ExpansionPanel/ExpansionPanelDetails" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
-    classes?: Object
-  }>;
+    classes?: Object,
+  }>
 }
 
 declare module "material-ui/ExpansionPanel/ExpansionPanelSummary" {
@@ -552,25 +548,25 @@ declare module "material-ui/ExpansionPanel/ExpansionPanelSummary" {
     expanded?: boolean,
     expandIcon?: React$Node,
     onChange?: Function,
-    onClick?: Function
-  }>;
+    onClick?: Function,
+  }>
 }
 
 declare module "material-ui/ExpansionPanel" {
-  declare export default $Exports<"material-ui/ExpansionPanel/ExpansionPanel">;
+  declare export default $Exports<"material-ui/ExpansionPanel/ExpansionPanel">
   declare export var ExpansionPanelActions: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelActions"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelActions",
+  >
   declare export var ExpansionPanelDetails: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelDetails"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelDetails",
+  >
   declare export var ExpansionPanelSummary: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelSummary"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelSummary",
+  >
 }
 
 declare module "material-ui/Form/FormControl" {
-  declare type Margin = "none" | "dense" | "normal";
+  declare type Margin = "none" | "dense" | "normal"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
@@ -583,8 +579,8 @@ declare module "material-ui/Form/FormControl" {
     margin?: Margin,
     onBlur?: Function,
     onFocus?: Function,
-    required?: boolean
-  }>;
+    required?: boolean,
+  }>
 }
 
 declare module "material-ui/Form/FormControlLabel" {
@@ -598,8 +594,8 @@ declare module "material-ui/Form/FormControlLabel" {
     label: React$Node,
     name?: string,
     onChange?: Function,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/Form/FormGroup" {
@@ -607,8 +603,8 @@ declare module "material-ui/Form/FormGroup" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    row?: boolean
-  }>;
+    row?: boolean,
+  }>
 }
 
 declare module "material-ui/Form/FormHelperText" {
@@ -618,8 +614,8 @@ declare module "material-ui/Form/FormHelperText" {
     className?: string,
     disabled?: boolean,
     error?: boolean,
-    margin?: "dense"
-  }>;
+    margin?: "dense",
+  }>
 }
 
 declare module "material-ui/Form/FormLabel" {
@@ -631,8 +627,8 @@ declare module "material-ui/Form/FormLabel" {
     disabled?: boolean,
     error?: boolean,
     focused?: boolean,
-    required?: boolean
-  }>;
+    required?: boolean,
+  }>
 }
 
 declare module "material-ui/Form" {
@@ -641,8 +637,8 @@ declare module "material-ui/Form" {
     FormLabel: $Exports<"material-ui/Form/FormLabel">,
     FormControl: $Exports<"material-ui/Form/FormControl">,
     FormHelperText: $Exports<"material-ui/Form/FormHelperText">,
-    FormControlLabel: $Exports<"material-ui/Form/FormControlLabel">
-  };
+    FormControlLabel: $Exports<"material-ui/Form/FormControlLabel">,
+  }
 }
 
 declare module "material-ui/Grid/Grid" {
@@ -659,29 +655,29 @@ declare module "material-ui/Grid/Grid" {
     | 9
     | 10
     | 11
-    | 12;
+    | 12
   declare type AlignContent =
     | "stretch"
     | "center"
     | "flex-start"
     | "flex-end"
     | "space-between"
-    | "space-around";
+    | "space-around"
   declare type AlignItems =
     | "flex-start"
     | "center"
     | "flex-end"
     | "stretch"
-    | "baseline";
-  declare type Direction = "row" | "row-reverse" | "column" | "column-reverse";
+    | "baseline"
+  declare type Direction = "row" | "row-reverse" | "column" | "column-reverse"
   declare type Justify =
     | "flex-start"
     | "center"
     | "flex-end"
     | "space-between"
-    | "space-around";
-  declare type Spacing = 0 | 8 | 16 | 24 | 40;
-  declare type Wrap = "nowrap" | "wrap" | "wrap-reverse";
+    | "space-around"
+  declare type Spacing = 0 | 8 | 16 | 24 | 40
+  declare type Wrap = "nowrap" | "wrap" | "wrap-reverse"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
@@ -701,16 +697,16 @@ declare module "material-ui/Grid/Grid" {
     sm?: GridSizes,
     md?: GridSizes,
     lg?: GridSizes,
-    xl?: GridSizes
-  }>;
+    xl?: GridSizes,
+  }>
 }
 
 declare module "material-ui/Grid" {
-  declare module.exports: $Exports<"material-ui/Grid/Grid">;
+  declare module.exports: $Exports<"material-ui/Grid/Grid">
 }
 
 declare module "material-ui/GridList/GridList" {
-  declare type CellHeight = number | "auto";
+  declare type CellHeight = number | "auto"
 
   declare module.exports: React$ComponentType<{
     cellHeight?: CellHeight,
@@ -720,8 +716,8 @@ declare module "material-ui/GridList/GridList" {
     cols?: number,
     component?: React$ElementType,
     spacing?: number,
-    style?: Object
-  }>;
+    style?: Object,
+  }>
 }
 
 declare module "material-ui/GridList/GridListTile" {
@@ -731,13 +727,13 @@ declare module "material-ui/GridList/GridListTile" {
     className?: string,
     cols?: number,
     component?: React$ElementType,
-    rows?: number
-  }>;
+    rows?: number,
+  }>
 }
 
 declare module "material-ui/GridList/GridListTileBar" {
-  declare type TitlePosition = "top" | "bottom";
-  declare type ActionPosition = "left" | "right";
+  declare type TitlePosition = "top" | "bottom"
+  declare type ActionPosition = "left" | "right"
 
   declare module.exports: React$ComponentType<{
     actionIcon?: React$Node,
@@ -746,23 +742,21 @@ declare module "material-ui/GridList/GridListTileBar" {
     className?: string,
     subtitle?: React$Node,
     title: React$Node,
-    titlePosition?: TitlePosition
-  }>;
+    titlePosition?: TitlePosition,
+  }>
 }
 
 declare module "material-ui/GridList" {
-  declare export default $Exports<"material-ui/GridList/GridList">;
-  declare export var GridList: $Exports<"material-ui/GridList/GridList">;
-  declare export var GridListTile: $Exports<
-    "material-ui/GridList/GridListTile"
-  >;
+  declare export default $Exports<"material-ui/GridList/GridList">
+  declare export var GridList: $Exports<"material-ui/GridList/GridList">
+  declare export var GridListTile: $Exports<"material-ui/GridList/GridListTile">
   declare export var GridListTileBar: $Exports<
-    "material-ui/GridList/GridListTileBar"
-  >;
+    "material-ui/GridList/GridListTileBar",
+  >
 }
 
 declare module "material-ui/Hidden/Hidden" {
-  import type { Breakpoint } from "material-ui/styles/createBreakpoints";
+  import type { Breakpoint } from "material-ui/styles/createBreakpoints"
 
   declare module.exports: React$ComponentType<{
     children: React$Node,
@@ -779,29 +773,29 @@ declare module "material-ui/Hidden/Hidden" {
     lgDown?: boolean,
     xlDown?: boolean,
     implementation?: "js" | "css",
-    initialWidth?: number
-  }>;
+    initialWidth?: number,
+  }>
 }
 
 declare module "material-ui/Hidden/HiddenCss" {
-  import typeof Hidden from "material-ui/Hidden/Hidden";
+  import typeof Hidden from "material-ui/Hidden/Hidden"
 
-  declare module.exports: React$ComponentType<React$ElementProps<Hidden>>;
+  declare module.exports: React$ComponentType<React$ElementProps<Hidden>>
 }
 
 declare module "material-ui/Hidden/HiddenJs" {
-  import typeof Hidden from "material-ui/Hidden/Hidden";
+  import typeof Hidden from "material-ui/Hidden/Hidden"
 
-  declare module.exports: React$ComponentType<React$ElementProps<Hidden>>;
+  declare module.exports: React$ComponentType<React$ElementProps<Hidden>>
 }
 
 declare module "material-ui/Hidden" {
-  declare export default $Exports<"material-ui/Hidden/Hidden">;
-  declare export var HiddenJs: $Exports<"material-ui/Hidden/HiddenJs">;
+  declare export default $Exports<"material-ui/Hidden/Hidden">
+  declare export var HiddenJs: $Exports<"material-ui/Hidden/HiddenJs">
 }
 
 declare module "material-ui/Hidden/types" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/Icon/Icon" {
@@ -812,27 +806,22 @@ declare module "material-ui/Icon/Icon" {
     | "contrast"
     | "disabled"
     | "error"
-    | "primary";
+    | "primary"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     className?: string,
     classes?: Object,
-    color?: Color
-  }>;
+    color?: Color,
+  }>
 }
 
 declare module "material-ui/Icon" {
-  declare module.exports: $Exports<"material-ui/Icon/Icon">;
+  declare module.exports: $Exports<"material-ui/Icon/Icon">
 }
 
 declare module "material-ui/IconButton/IconButton" {
-  declare type Color =
-    | "default"
-    | "inherit"
-    | "primary"
-    | "contrast"
-    | "accent";
+  declare type Color = "default" | "inherit" | "primary" | "contrast" | "accent"
 
   declare module.exports: React$ComponentType<{
     buttonRef?: Function,
@@ -842,20 +831,20 @@ declare module "material-ui/IconButton/IconButton" {
     color?: Color,
     disabled?: boolean,
     disableRipple?: boolean,
-    rootRef?: Function
-  }>;
+    rootRef?: Function,
+  }>
 }
 
 declare module "material-ui/IconButton" {
-  declare module.exports: $Exports<"material-ui/IconButton/IconButton">;
+  declare module.exports: $Exports<"material-ui/IconButton/IconButton">
 }
 
 declare module "material-ui/Input" {
-  declare export default $Exports<"material-ui/Input/Input">;
+  declare export default $Exports<"material-ui/Input/Input">
   declare export var InputAdornment: $Exports<
-    "material-ui/Input/InputAdornment"
-  >;
-  declare export var InputLabel: $Exports<"material-ui/Input/InputLabel">;
+    "material-ui/Input/InputAdornment",
+  >
+  declare export var InputLabel: $Exports<"material-ui/Input/InputLabel">
 }
 
 declare module "material-ui/Input/Input" {
@@ -890,8 +879,8 @@ declare module "material-ui/Input/Input" {
     rowsMax?: string | number,
     startAdornment?: React$Node,
     type?: string,
-    value?: string | number | Array<string | number>
-  }>;
+    value?: string | number | Array<string | number>,
+  }>
 }
 
 declare module "material-ui/Input/InputAdornment" {
@@ -901,8 +890,8 @@ declare module "material-ui/Input/InputAdornment" {
     className?: string,
     component?: React$ElementType,
     disableTypography?: boolean,
-    position: "start" | "end"
-  }>;
+    position: "start" | "end",
+  }>
 }
 
 declare module "material-ui/Input/InputLabel" {
@@ -917,12 +906,12 @@ declare module "material-ui/Input/InputLabel" {
     focused?: boolean,
     margin?: "dense",
     required?: boolean,
-    shrink?: boolean
-  }>;
+    shrink?: boolean,
+  }>
 }
 
 declare module "material-ui/Input/Textarea" {
-  declare type Rows = string | number;
+  declare type Rows = string | number
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
@@ -933,23 +922,23 @@ declare module "material-ui/Input/Textarea" {
     rows: Rows,
     rowsMax?: string | number,
     textareaRef?: Function,
-    value?: string | number
-  }>;
+    value?: string | number,
+  }>
 }
 
 declare module "material-ui/internal/dom" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/Portal/Portal" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
-    open?: boolean
-  }>;
+    open?: boolean,
+  }>
 }
 
 declare module "material-ui/Portal" {
-  declare module.exports: $Exports<"material-ui/Portal/Portal">;
+  declare module.exports: $Exports<"material-ui/Portal/Portal">
 }
 
 declare module "material-ui/internal/SwitchBase" {
@@ -971,34 +960,33 @@ declare module "material-ui/internal/SwitchBase" {
     name?: string,
     onChange?: Function,
     tabIndex?: number | string,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/internal/transition" {
-  declare type TransitionDuration = number | { enter: number, exit: number };
-  declare type TransitionCallback = (element: HTMLElement) => void;
+  declare type TransitionDuration = number | { enter: number, exit: number }
+  declare type TransitionCallback = (element: HTMLElement) => void
   declare type TransitionClasses = {
     appear?: string,
     appearActive?: string,
     enter?: string,
     enterActive?: string,
     exit?: string,
-    exitActive?: string
-  };
+    exitActive?: string,
+  }
 }
 
 declare module "material-ui/List" {
-  declare module.exports: {
-    ListItem: $Exports<"material-ui/List/ListItem">,
-    ListItemAvatar: $Exports<"material-ui/List/ListItemAvatar">,
-    ListItemText: $Exports<"material-ui/List/ListItemText">,
-    ListItemIcon: $Exports<"material-ui/List/ListItemIcon">,
-    ListItemSecondaryAction: $Exports<
-      "material-ui/List/ListItemSecondaryAction"
-    >,
-    ListSubheader: $Exports<"material-ui/List/ListSubheader">
-  };
+  declare export default $Exports<"material-ui/List/List">
+  declare export var ListItem: $Exports<"material-ui/List/ListItem">
+  declare export var ListItemAvatar: $Exports<"material-ui/List/ListItemAvatar">
+  declare export var ListItemText: $Exports<"material-ui/List/ListItemText">
+  declare export var ListItemIcon: $Exports<"material-ui/List/ListItemIcon">
+  declare export var ListItemSecondaryAction: $Exports<
+    "material-ui/List/ListItemSecondaryAction",
+  >
+  declare export var ListSubheader: $Exports<"material-ui/List/ListSubheader">
 }
 
 declare module "material-ui/List/List" {
@@ -1010,8 +998,8 @@ declare module "material-ui/List/List" {
     dense?: boolean,
     disablePadding?: boolean,
     rootRef?: Function,
-    subheader?: React$Node
-  }>;
+    subheader?: React$Node,
+  }>
 }
 
 declare module "material-ui/List/ListItem" {
@@ -1024,32 +1012,32 @@ declare module "material-ui/List/ListItem" {
     dense?: boolean,
     disabled?: boolean,
     disableGutters?: boolean,
-    divider?: boolean
-  }>;
+    divider?: boolean,
+  }>
 }
 
 declare module "material-ui/List/ListItemAvatar" {
   declare module.exports: React$ComponentType<{
     children: React$Element<any>,
     classes?: Object,
-    className?: string
-  }>;
+    className?: string,
+  }>
 }
 
 declare module "material-ui/List/ListItemIcon" {
   declare module.exports: React$ComponentType<{
     children: React$Element<any>,
     classes?: Object,
-    className?: string
-  }>;
+    className?: string,
+  }>
 }
 
 declare module "material-ui/List/ListItemSecondaryAction" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     classes?: Object,
-    className?: string
-  }>;
+    className?: string,
+  }>
 }
 
 declare module "material-ui/List/ListItemText" {
@@ -1059,12 +1047,12 @@ declare module "material-ui/List/ListItemText" {
     disableTypography?: boolean,
     inset?: boolean,
     primary?: React$Node,
-    secondary?: React$Node
-  }>;
+    secondary?: React$Node,
+  }>
 }
 
 declare module "material-ui/List/ListSubheader" {
-  declare type Color = "default" | "primary" | "inherit";
+  declare type Color = "default" | "primary" | "inherit"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
@@ -1073,23 +1061,23 @@ declare module "material-ui/List/ListSubheader" {
     component?: React$ElementType,
     color?: Color,
     disableSticky?: boolean,
-    inset?: boolean
-  }>;
+    inset?: boolean,
+  }>
 }
 
 declare module "material-ui/Menu" {
-  declare export default $Exports<"material-ui/Menu/Menu">;
-  declare export var MenuList: $Exports<"material-ui/Menu/MenuList">;
-  declare export var MenuItem: $Exports<"material-ui/Menu/MenuItem">;
+  declare export default $Exports<"material-ui/Menu/Menu">
+  declare export var MenuList: $Exports<"material-ui/Menu/MenuList">
+  declare export var MenuItem: $Exports<"material-ui/Menu/MenuItem">
 }
 
 declare module "material-ui/Menu/Menu" {
-  import type { TransitionCallback } from "material-ui/internal/transition";
+  import type { TransitionCallback } from "material-ui/internal/transition"
 
   declare type TransitionDuration =
     | number
     | { enter?: number, exit?: number }
-    | "auto";
+    | "auto"
 
   declare module.exports: React$ComponentType<{
     anchorEl?: ?HTMLElement,
@@ -1106,8 +1094,8 @@ declare module "material-ui/Menu/Menu" {
     open?: boolean,
     PaperProps?: Object,
     PopoverClasses?: Object,
-    transitionDuration?: TransitionDuration
-  }>;
+    transitionDuration?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/Menu/MenuItem" {
@@ -1117,8 +1105,8 @@ declare module "material-ui/Menu/MenuItem" {
     className?: string,
     component?: React$ElementType,
     role?: string,
-    selected?: boolean
-  }>;
+    selected?: boolean,
+  }>
 }
 
 declare module "material-ui/Menu/MenuList" {
@@ -1126,17 +1114,17 @@ declare module "material-ui/Menu/MenuList" {
     children?: React$Node,
     className?: string,
     onBlur?: Function,
-    onKeyDown?: (event: SyntheticUIEvent<>, key: string) => void
-  }>;
+    onKeyDown?: (event: SyntheticUIEvent<>, key: string) => void,
+  }>
 }
 
 declare module "material-ui/MobileStepper" {
-  declare module.exports: $Exports<"material-ui/MobileStepper/MobileStepper">;
+  declare module.exports: $Exports<"material-ui/MobileStepper/MobileStepper">
 }
 
 declare module "material-ui/MobileStepper/MobileStepper" {
-  declare type Position = "bottom" | "top" | "static";
-  declare type Type = "text" | "dots" | "progress";
+  declare type Position = "bottom" | "top" | "static"
+  declare type Type = "text" | "dots" | "progress"
 
   declare module.exports: React$ComponentType<{
     activeStep?: number,
@@ -1146,8 +1134,8 @@ declare module "material-ui/MobileStepper/MobileStepper" {
     nextButton: React$Element<any>,
     position?: Position,
     steps: number,
-    type?: Type
-  }>;
+    type?: Type,
+  }>
 }
 
 declare module "material-ui/Modal/Backdrop" {
@@ -1155,8 +1143,8 @@ declare module "material-ui/Modal/Backdrop" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    invisible?: boolean
-  }>;
+    invisible?: boolean,
+  }>
 }
 
 declare module "material-ui/Modal/ModalManager" {
@@ -1166,20 +1154,20 @@ declare module "material-ui/Modal/ModalManager" {
     remove(any): number;
     isTopModal(modal: any): boolean;
   }
-  declare export default typeof ModalManager;
+  declare export default typeof ModalManager
 }
 
 declare module "material-ui/Modal" {
-  declare export var Backdrop: $Exports<"material-ui/Modal/Backdrop">;
-  declare export var ModalManager: $Exports<"material-ui/Modal/ModalManager">;
-  declare export default $Exports<"material-ui/Modal/Modal">;
+  declare export var Backdrop: $Exports<"material-ui/Modal/Backdrop">
+  declare export var ModalManager: $Exports<"material-ui/Modal/ModalManager">
+  declare export default $Exports<"material-ui/Modal/Modal">
 }
 
 declare module "material-ui/Modal/Modal" {
   import type {
     TransitionDuration,
-    TransitionCallback
-  } from "material-ui/internal/transition";
+    TransitionCallback,
+  } from "material-ui/internal/transition"
 
   declare module.exports: React$ComponentType<{
     BackdropClassName?: string,
@@ -1203,16 +1191,16 @@ declare module "material-ui/Modal/Modal" {
     onExiting?: TransitionCallback,
     onExited?: TransitionCallback,
     onClose?: Function,
-    show: boolean
-  }>;
+    open: boolean,
+  }>
 }
 
 declare module "material-ui/Modal/modalManager" {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module "material-ui/Paper" {
-  declare module.exports: $Exports<"material-ui/Paper/Paper">;
+  declare module.exports: $Exports<"material-ui/Paper/Paper">
 }
 
 declare module "material-ui/Paper/Paper" {
@@ -1222,29 +1210,29 @@ declare module "material-ui/Paper/Paper" {
     children?: React$Node,
     component?: React$ElementType,
     elevation?: number,
-    square?: boolean
-  }>;
+    square?: boolean,
+  }>
 }
 
 declare module "material-ui/Popover" {
-  declare module.exports: $Exports<"material-ui/Popover/Popover">;
+  declare module.exports: $Exports<"material-ui/Popover/Popover">
 }
 
 declare module "material-ui/Popover/Popover" {
   import type {
     TransitionCallback,
-    TransitionClasses
-  } from "material-ui/internal/transition";
+    TransitionClasses,
+  } from "material-ui/internal/transition"
 
   declare type Position = {
     top: number,
-    left: number
-  };
+    left: number,
+  }
 
   declare type Origin = {
     horizontal: "left" | "center" | "right" | number,
-    vertical: "top" | "center" | "bottom" | number
-  };
+    vertical: "top" | "center" | "bottom" | number,
+  }
 
   declare module.exports: React$ComponentType<{
     anchorEl?: ?HTMLElement,
@@ -1268,13 +1256,13 @@ declare module "material-ui/Popover/Popover" {
     role?: string,
     transformOrigin?: Origin,
     transitionClasses?: TransitionClasses,
-    transitionDuration?: number | { enter?: number, exit?: number } | "auto"
-  }>;
+    transitionDuration?: number | { enter?: number, exit?: number } | "auto",
+  }>
 }
 
 declare module "material-ui/Progress/CircularProgress" {
-  declare type Color = "primary" | "accent" | "inherit";
-  declare type Mode = "determinate" | "indeterminate";
+  declare type Color = "primary" | "accent" | "inherit"
+  declare type Mode = "determinate" | "indeterminate"
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
@@ -1286,20 +1274,20 @@ declare module "material-ui/Progress/CircularProgress" {
     size?: number,
     style?: Object,
     thickness?: number,
-    value?: number
-  }>;
+    value?: number,
+  }>
 }
 
 declare module "material-ui/Progress" {
   declare module.exports: {
     CircularProgress: $Exports<"material-ui/Progress/CircularProgress">,
-    LinearProgress: $Exports<"material-ui/Progress/LinearProgress">
-  };
+    LinearProgress: $Exports<"material-ui/Progress/LinearProgress">,
+  }
 }
 
 declare module "material-ui/Progress/LinearProgress" {
-  declare type Color = "primary" | "accent";
-  declare type Mode = "determinate" | "indeterminate" | "buffer" | "query";
+  declare type Color = "primary" | "accent"
+  declare type Mode = "determinate" | "indeterminate" | "buffer" | "query"
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
@@ -1307,13 +1295,13 @@ declare module "material-ui/Progress/LinearProgress" {
     color?: Color,
     mode?: Mode,
     value?: number,
-    valueBuffer?: number
-  }>;
+    valueBuffer?: number,
+  }>
 }
 
 declare module "material-ui/Radio" {
-  declare export default $Exports<"material-ui/Radio/Radio">;
-  declare export var RadioGroup: $Exports<"material-ui/Radio/RadioGroup">;
+  declare export default $Exports<"material-ui/Radio/Radio">
+  declare export var RadioGroup: $Exports<"material-ui/Radio/RadioGroup">
 }
 
 declare module "material-ui/Radio/Radio" {
@@ -1332,8 +1320,8 @@ declare module "material-ui/Radio/Radio" {
     name?: string,
     onChange?: Function,
     tabIndex?: number | string,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/Radio/RadioGroup" {
@@ -1343,16 +1331,16 @@ declare module "material-ui/Radio/RadioGroup" {
     onBlur?: Function,
     onChange?: Function,
     onKeyDown?: Function,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/Select" {
-  declare module.exports: $Exports<"material-ui/Select/Select">;
+  declare module.exports: $Exports<"material-ui/Select/Select">
 }
 
 declare module "material-ui/Select/Select" {
-  import type { ChildrenArray } from "react";
+  import type { ChildrenArray } from "react"
 
   declare module.exports: React$ComponentType<{
     autoWidth?: boolean,
@@ -1363,14 +1351,14 @@ declare module "material-ui/Select/Select" {
     inputProps?: Object,
     native?: boolean,
     multiple?: boolean,
-    onChange?: (event: SyntheticUIEvent<*>, child: Object) => void,
+    onChange?: (event: SyntheticInputEvent<*>, child: Object) => void,
     onClose?: (event: SyntheticUIEvent<*>) => void,
     onOpen?: (event: SyntheticUIEvent<*>) => void,
     open?: boolean,
     MenuProps?: Object,
     renderValue?: Function,
-    value?: $ReadOnlyArray<string | number> | string | number
-  }>;
+    value?: $ReadOnlyArray<string | number> | string | number,
+  }>
 }
 
 declare module "material-ui/Select/SelectInput" {
@@ -1391,27 +1379,27 @@ declare module "material-ui/Select/SelectInput" {
     readOnly?: boolean,
     renderValue?: Function,
     selectRef?: Function,
-    value?: string | number | $ReadOnlyArray<string | number>
-  }>;
+    value?: string | number | $ReadOnlyArray<string | number>,
+  }>
 }
 
 declare module "material-ui/Snackbar" {
-  declare export default $Exports<"material-ui/Snackbar/Snackbar">;
+  declare export default $Exports<"material-ui/Snackbar/Snackbar">
   declare export var SnackbarContent: $Exports<
-    "material-ui/Snackbar/SnackbarContent"
-  >;
+    "material-ui/Snackbar/SnackbarContent",
+  >
 }
 
 declare module "material-ui/Snackbar/Snackbar" {
   import type {
     TransitionDuration,
-    TransitionCallback
-  } from "material-ui/internal/transition";
+    TransitionCallback,
+  } from "material-ui/internal/transition"
 
   declare type Origin = {
     horizontal?: "left" | "center" | "right" | number,
-    vertical?: "top" | "center" | "bottom" | number
-  };
+    vertical?: "top" | "center" | "bottom" | number,
+  }
 
   declare module.exports: React$ComponentType<{
     action?: React$Node,
@@ -1435,8 +1423,8 @@ declare module "material-ui/Snackbar/Snackbar" {
     open: boolean,
     SnackbarContentProps?: Object,
     transition?: React$ComponentType<*>,
-    transitionDuration?: TransitionDuration
-  }>;
+    transitionDuration?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/Snackbar/SnackbarContent" {
@@ -1444,21 +1432,21 @@ declare module "material-ui/Snackbar/SnackbarContent" {
     action?: React$Node,
     classes?: Object,
     className?: string,
-    message: React$Node
-  }>;
+    message: React$Node,
+  }>
 }
 
 declare module "material-ui/Stepper" {
-  declare export default $Exports<"material-ui/Stepper/Stepper">;
-  declare export var Step: $Exports<"material-ui/Stepper/Step">;
-  declare export var StepButton: $Exports<"material-ui/Stepper/StepButton">;
-  declare export var StepContent: $Exports<"material-ui/Stepper/StepContent">;
-  declare export var StepIcon: $Exports<"material-ui/Stepper/StepIcon">;
-  declare export var StepLabel: $Exports<"material-ui/Stepper/StepLabel">;
+  declare export default $Exports<"material-ui/Stepper/Stepper">
+  declare export var Step: $Exports<"material-ui/Stepper/Step">
+  declare export var StepButton: $Exports<"material-ui/Stepper/StepButton">
+  declare export var StepContent: $Exports<"material-ui/Stepper/StepContent">
+  declare export var StepIcon: $Exports<"material-ui/Stepper/StepIcon">
+  declare export var StepLabel: $Exports<"material-ui/Stepper/StepLabel">
 }
 
 declare module "material-ui/Stepper/Step" {
-  import type { Orientation } from "material-ui/Stepper/Stepper";
+  import type { Orientation } from "material-ui/Stepper/Stepper"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
@@ -1472,14 +1460,14 @@ declare module "material-ui/Stepper/Step" {
     index?: number,
     last?: boolean,
     optional?: boolean,
-    orientation?: Orientation
-  }>;
+    orientation?: Orientation,
+  }>
 }
 
 declare module "material-ui/Stepper/StepButton" {
-  import type { Orientation } from "material-ui/Stepper/Stepper";
+  import type { Orientation } from "material-ui/Stepper/Stepper"
 
-  declare type Icon = React$Element<any> | string | number;
+  declare type Icon = React$Element<any> | string | number
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
@@ -1492,24 +1480,24 @@ declare module "material-ui/Stepper/StepButton" {
     icon?: Icon,
     last?: boolean,
     optional?: boolean,
-    orientation: Orientation
-  }>;
+    orientation?: Orientation,
+  }>
 }
 
 declare module "material-ui/Stepper/StepConnector" {
-  import type { Orientation } from "material-ui/Stepper/Stepper";
+  import type { Orientation } from "material-ui/Stepper/Stepper"
 
   declare module.exports: React$ComponentType<{
     alternativeLabel?: boolean,
     classes?: Object,
     className?: string,
-    orientation?: Orientation
-  }>;
+    orientation?: Orientation,
+  }>
 }
 
 declare module "material-ui/Stepper/StepContent" {
-  import type { TransitionDuration } from "material-ui/transitions/Collapse";
-  import type { Orientation } from "material-ui/Stepper/Stepper";
+  import type { TransitionDuration } from "material-ui/transitions/Collapse"
+  import type { Orientation } from "material-ui/Stepper/Stepper"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
@@ -1522,24 +1510,24 @@ declare module "material-ui/Stepper/StepContent" {
     optional?: boolean,
     orientation?: Orientation,
     transition?: Function,
-    transitionDuration?: TransitionDuration
-  }>;
+    transitionDuration?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/Stepper/StepIcon" {
-  import type { Icon } from "material-ui/Stepper/StepButton";
+  import type { Icon } from "material-ui/Stepper/StepButton"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
     classes?: Object,
     completed?: boolean,
-    icon?: Icon
-  }>;
+    icon?: Icon,
+  }>
 }
 
 declare module "material-ui/Stepper/StepLabel" {
-  import type { Orientation } from "material-ui/Stepper/Stepper";
-  import type { Icon } from "material-ui/Stepper/StepButton";
+  import type { Orientation } from "material-ui/Stepper/Stepper"
+  import type { Icon } from "material-ui/Stepper/StepButton"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
@@ -1552,16 +1540,16 @@ declare module "material-ui/Stepper/StepLabel" {
     icon?: Icon,
     last?: boolean,
     optional?: boolean,
-    orientation?: Orientation
-  }>;
+    orientation?: Orientation,
+  }>
 }
 
 declare module "material-ui/Stepper/Stepper" {
-  import type { ChildrenArray } from "react";
-  import typeof Step from "material-ui/Stepper/Step";
-  import typeof StepConnector from "material-ui/Stepper/StepConnector";
+  import type { ChildrenArray } from "react"
+  import typeof Step from "material-ui/Stepper/Step"
+  import typeof StepConnector from "material-ui/Stepper/StepConnector"
 
-  declare type Orientation = "horizontal" | "vertical";
+  declare type Orientation = "horizontal" | "vertical"
 
   declare module.exports: React$ComponentType<{
     activeStep?: number,
@@ -1571,19 +1559,19 @@ declare module "material-ui/Stepper/Stepper" {
     className?: string,
     connector?: React$Element<StepConnector> | Node,
     nonLinear?: boolean,
-    orientation?: Orientation
-  }>;
+    orientation?: Orientation,
+  }>
 }
 
 declare module "material-ui/Stepper/StepPositionIcon" {
-  import type { Icon } from "material-ui/Stepper/StepButton";
+  import type { Icon } from "material-ui/Stepper/StepButton"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
     classes?: Object,
     className?: string,
-    position?: Icon
-  }>;
+    position?: Icon,
+  }>
 }
 
 declare module "material-ui/styles/colorManipulator" {
@@ -1596,54 +1584,54 @@ declare module "material-ui/styles/colorManipulator" {
     emphasize: (color: string, coefficient: number) => any,
     fade: (color: string, value: number) => any,
     darken: (color: string, coefficient: number) => any,
-    ligthen: (color: string, coefficient: number) => any
-  };
+    ligthen: (color: string, coefficient: number) => any,
+  }
 }
 
 declare module "material-ui/styles/createBreakpoints" {
-  declare type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl";
+  declare type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl"
 
   declare module.exports: {
     keys: Array<Breakpoint>,
-    default: (breakpoints: Object) => any
-  };
+    default: (breakpoints: Object) => any,
+  }
 }
 
 declare module "material-ui/styles/createGenerateClassName" {
-  declare module.exports: () => any;
+  declare module.exports: () => any
 }
 
 declare module "material-ui/styles/createMixins" {
   declare module.exports: (
     breakpoints: Object,
     spacing: Object,
-    mixins: Object
-  ) => any;
+    mixins: Object,
+  ) => any
 }
 
 declare module "material-ui/styles/createMuiTheme" {
-  declare module.exports: (options: Object) => any;
+  declare module.exports: (options: Object) => any
 }
 
 declare module "material-ui/styles/createPalette" {
-  declare export var light: Object;
-  declare export var dark: Object;
-  declare export default (palette: Object) => any;
+  declare export var light: Object
+  declare export var dark: Object
+  declare export default (palette: Object) => any
 }
 
 declare module "material-ui/styles/createTypography" {
   declare module.exports: (
     palette: Object,
-    typography: Object | Function
-  ) => any;
+    typography: Object | Function,
+  ) => any
 }
 
 declare module "material-ui/styles/jssPreset" {
-  declare module.exports: () => any;
+  declare module.exports: () => any
 }
 
 declare module "material-ui/styles/getStylesCreator" {
-  declare module.exports: (stylesOrCreator: Object | (Object => Object)) => any;
+  declare module.exports: (stylesOrCreator: Object | (Object => Object)) => any
 }
 
 declare module "material-ui/styles" {
@@ -1652,34 +1640,34 @@ declare module "material-ui/styles" {
     withStyles: $Exports<"material-ui/styles/withStyles">,
     withTheme: $Exports<"material-ui/styles/withTheme">,
     createMuiTheme: $Exports<"material-ui/styles/createMuiTheme">,
-    jssPreset: $Exports<"material-ui/styles/jssPreset">
-  };
+    jssPreset: $Exports<"material-ui/styles/jssPreset">,
+  }
 }
 
 declare module "material-ui/styles/MuiThemeProvider" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/styles/shadows" {
-  declare module.exports: Array<any>;
+  declare module.exports: Array<any>
 }
 
 declare module "material-ui/styles/spacing" {
-  declare module.exports: Object;
+  declare module.exports: Object
 }
 
 declare module "material-ui/styles/themeListener" {
-  declare export var CHANNEL: string;
-  declare export default Object;
+  declare export var CHANNEL: string
+  declare export default Object
 }
 
 declare module "material-ui/styles/transitions" {
-  declare export var easing: Object;
-  declare export var duration: Object;
-  declare export var formatMs: (milliseconds: number) => string;
-  declare export var isString: (value: any) => boolean;
-  declare export var isNumber: (value: any) => boolean;
-  declare export default Object;
+  declare export var easing: Object
+  declare export var duration: Object
+  declare export var formatMs: (milliseconds: number) => string
+  declare export var isString: (value: any) => boolean
+  declare export var isNumber: (value: any) => boolean
+  declare export default Object
 }
 
 declare module "material-ui/styles/withStyles" {
@@ -1692,81 +1680,81 @@ declare module "material-ui/styles/withStyles" {
     index?: number,
     link?: boolean,
     element?: HTMLStyleElement,
-    generateClassName?: Function
-  };
+    generateClassName?: Function,
+  }
 
   declare module.exports: (
     stylesOrCreator: Object,
-    options?: Options
+    options?: Options,
   ) => <
     OwnProps: {},
     Props: $Supertype<
       OwnProps & {
         classes: { +[string]: string },
-        innerRef: React$Ref<React$ElementType>
-      }
-    >
+        innerRef: React$Ref<React$ElementType>,
+      },
+    >,
   >(
-    Component: React$ComponentType<Props>
-  ) => React$ComponentType<OwnProps>;
+    Component: React$ComponentType<Props>,
+  ) => React$ComponentType<OwnProps>
 }
 
 declare module "material-ui/styles/withTheme" {
   declare module.exports: () => <Props: {}>(
-    Component: React$ComponentType<Props>
-  ) => React$ComponentType<Props>;
+    Component: React$ComponentType<Props>,
+  ) => React$ComponentType<Props>
 }
 
 declare module "material-ui/styles/zIndex" {
-  declare module.exports: Object;
+  declare module.exports: Object
 }
 
 declare module "material-ui/svg-icons/ArrowDownward" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/ArrowDropDown" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/Cancel" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/CheckBox" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/CheckBoxOutlineBlank" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/CheckCircle" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/IndeterminateCheckBox" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/KeyboardArrowLeft" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/KeyboardArrowRight" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/RadioButtonChecked" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/svg-icons/RadioButtonUnchecked" {
-  declare module.exports: React$ComponentType<Object>;
+  declare module.exports: React$ComponentType<Object>
 }
 
 declare module "material-ui/SvgIcon" {
-  declare module.exports: $Exports<"material-ui/SvgIcon/SvgIcon">;
+  declare module.exports: $Exports<"material-ui/SvgIcon/SvgIcon">
 }
 
 declare module "material-ui/SvgIcon/SvgIcon" {
@@ -1775,12 +1763,12 @@ declare module "material-ui/SvgIcon/SvgIcon" {
     classes?: Object,
     className?: string,
     titleAccess?: string,
-    viewBox?: string
-  }>;
+    viewBox?: string,
+  }>
 }
 
 declare module "material-ui/Switch" {
-  declare module.exports: $Exports<"material-ui/Switch/Switch">;
+  declare module.exports: $Exports<"material-ui/Switch/Switch">
 }
 
 declare module "material-ui/Switch/Switch" {
@@ -1798,23 +1786,23 @@ declare module "material-ui/Switch/Switch" {
     name?: string,
     onChange?: Function,
     tabIndex?: number | string,
-    value?: string
-  }>;
+    value?: string,
+  }>
 }
 
 declare module "material-ui/Table" {
-  declare export default $Exports<"material-ui/Table/Table">;
-  declare export var TableBody: $Exports<"material-ui/Table/TableBody">;
-  declare export var TableCell: $Exports<"material-ui/Table/TableCell">;
-  declare export var TableFooter: $Exports<"material-ui/Table/TableFooter">;
-  declare export var TableHead: $Exports<"material-ui/Table/TableHead">;
+  declare export default $Exports<"material-ui/Table/Table">
+  declare export var TableBody: $Exports<"material-ui/Table/TableBody">
+  declare export var TableCell: $Exports<"material-ui/Table/TableCell">
+  declare export var TableFooter: $Exports<"material-ui/Table/TableFooter">
+  declare export var TableHead: $Exports<"material-ui/Table/TableHead">
   declare export var TablePagination: $Exports<
-    "material-ui/Table/TablePagination"
-  >;
-  declare export var TableRow: $Exports<"material-ui/Table/TableRow">;
+    "material-ui/Table/TablePagination",
+  >
+  declare export var TableRow: $Exports<"material-ui/Table/TableRow">
   declare export var TableSortLabel: $Exports<
-    "material-ui/Table/TableSortLabel"
-  >;
+    "material-ui/Table/TableSortLabel",
+  >
 }
 
 declare module "material-ui/Table/Table" {
@@ -1822,8 +1810,8 @@ declare module "material-ui/Table/Table" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    component?: React$ElementType
-  }>;
+    component?: React$ElementType,
+  }>
 }
 
 declare module "material-ui/Table/TableBody" {
@@ -1831,12 +1819,12 @@ declare module "material-ui/Table/TableBody" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    component?: React$ElementType
-  }>;
+    component?: React$ElementType,
+  }>
 }
 
 declare module "material-ui/Table/TableCell" {
-  declare type Padding = "default" | "checkbox" | "dense" | "none";
+  declare type Padding = "default" | "checkbox" | "dense" | "none"
 
   declare module.exports: React$ComponentType<{
     children?: React$Node,
@@ -1844,8 +1832,8 @@ declare module "material-ui/Table/TableCell" {
     className?: string,
     component?: React$ElementType,
     numeric?: boolean,
-    padding?: Padding
-  }>;
+    padding?: Padding,
+  }>
 }
 
 declare module "material-ui/Table/TableFooter" {
@@ -1853,8 +1841,8 @@ declare module "material-ui/Table/TableFooter" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    component?: React$ElementType
-  }>;
+    component?: React$ElementType,
+  }>
 }
 
 declare module "material-ui/Table/TableHead" {
@@ -1862,8 +1850,8 @@ declare module "material-ui/Table/TableHead" {
     children?: React$Node,
     classes?: Object,
     className?: string,
-    component?: React$ElementType
-  }>;
+    component?: React$ElementType,
+  }>
 }
 
 declare module "material-ui/Table/TablePagination" {
@@ -1871,11 +1859,11 @@ declare module "material-ui/Table/TablePagination" {
     from: number,
     to: number,
     count: number,
-    page: number
-  };
+    page: number,
+  }
   declare type LabelDisplayedRows = (
-    paginationInfo: LabelDisplayedRowsArgs
-  ) => Node;
+    paginationInfo: LabelDisplayedRowsArgs,
+  ) => Node
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
@@ -1888,8 +1876,8 @@ declare module "material-ui/Table/TablePagination" {
     onChangeRowsPerPage: (event: SyntheticInputEvent<>) => void,
     page: number,
     rowsPerPage: number,
-    rowsPerPageOptions?: Array<number>
-  }>;
+    rowsPerPageOptions?: Array<number>,
+  }>
 }
 
 declare module "material-ui/Table/TableRow" {
@@ -1899,25 +1887,25 @@ declare module "material-ui/Table/TableRow" {
     className?: string,
     component?: React$ElementType,
     hover?: boolean,
-    selected?: boolean
-  }>;
+    selected?: boolean,
+  }>
 }
 
 declare module "material-ui/Table/TableSortLabel" {
-  declare type Direction = "asc" | "desc";
+  declare type Direction = "asc" | "desc"
 
   declare module.exports: React$ComponentType<{
     active?: boolean,
     children?: React$Node,
     classes?: Object,
     className?: string,
-    direction?: Direction
-  }>;
+    direction?: Direction,
+  }>
 }
 
 declare module "material-ui/Tabs" {
-  declare export default $Exports<"material-ui/Tabs/Tabs">;
-  declare export var Tab: $Exports<"material-ui/Tabs/Tab">;
+  declare export default $Exports<"material-ui/Tabs/Tabs">
+  declare export var Tab: $Exports<"material-ui/Tabs/Tab">
 }
 
 declare module "material-ui/Tabs/Tab" {
@@ -1934,30 +1922,30 @@ declare module "material-ui/Tabs/Tab" {
     selected?: boolean,
     style?: Object,
     textColor?: "accent" | "primary" | "inherit" | string,
-    value?: any
-  }>;
+    value?: any,
+  }>
 }
 
 declare module "material-ui/Tabs/TabIndicator" {
   declare type IndicatorStyle = {
     left: number,
-    width: number
-  };
+    width: number,
+  }
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
     className?: string,
     color: "accent" | "primary" | string,
-    style: IndicatorStyle
-  }>;
+    style: IndicatorStyle,
+  }>
 }
 
 declare module "material-ui/Tabs/Tabs" {
-  import type { IndicatorStyle } from "material-ui/Tabs/TabIndicator";
+  import type { IndicatorStyle } from "material-ui/Tabs/TabIndicator"
 
-  declare type IndicatorColor = "accent" | "primary" | string;
-  declare type ScrollButtons = "auto" | "on" | "off";
-  declare type TextColor = "accent" | "primary" | "inherit";
+  declare type IndicatorColor = "accent" | "primary" | string
+  declare type ScrollButtons = "auto" | "on" | "off"
+  declare type TextColor = "accent" | "primary" | "inherit"
 
   declare module.exports: React$ComponentType<{
     buttonClassName?: string,
@@ -1973,8 +1961,8 @@ declare module "material-ui/Tabs/Tabs" {
     scrollButtons?: ScrollButtons,
     TabScrollButton?: React$ComponentType<*>,
     textColor?: TextColor,
-    value: any
-  }>;
+    value: any,
+  }>
 }
 
 declare module "material-ui/Tabs/TabScrollButton" {
@@ -1983,16 +1971,16 @@ declare module "material-ui/Tabs/TabScrollButton" {
     className?: string,
     direction: "left" | "right",
     onClick?: Function,
-    visible?: boolean
-  }>;
+    visible?: boolean,
+  }>
 }
 
 declare module "material-ui/TextField" {
-  declare module.exports: $Exports<"material-ui/TextField/TextField">;
+  declare module.exports: $Exports<"material-ui/TextField/TextField">
 }
 
 declare module "material-ui/TextField/TextField" {
-  import type { ChildrenArray } from "react";
+  import type { ChildrenArray } from "react"
 
   declare module.exports: React$ComponentType<{
     autoComplete?: string,
@@ -2024,12 +2012,12 @@ declare module "material-ui/TextField/TextField" {
     SelectProps?: Object,
     type?: string,
     value?: string | number,
-    margin?: "none" | "dense" | "normal"
-  }>;
+    margin?: "none" | "dense" | "normal",
+  }>
 }
 
 declare module "material-ui/Toolbar" {
-  declare module.exports: $Exports<"material-ui/Toolbar/Toolbar">;
+  declare module.exports: $Exports<"material-ui/Toolbar/Toolbar">
 }
 
 declare module "material-ui/Toolbar/Toolbar" {
@@ -2037,12 +2025,12 @@ declare module "material-ui/Toolbar/Toolbar" {
     classes?: Object,
     children?: React$Node,
     className?: string,
-    disableGutters?: boolean
-  }>;
+    disableGutters?: boolean,
+  }>
 }
 
 declare module "material-ui/Tooltip" {
-  declare module.exports: $Exports<"material-ui/Tooltip/Tooltip">;
+  declare module.exports: $Exports<"material-ui/Tooltip/Tooltip">
 }
 
 declare module "material-ui/Tooltip/Tooltip" {
@@ -2058,7 +2046,7 @@ declare module "material-ui/Tooltip/Tooltip" {
     | "right"
     | "top-end"
     | "top-start"
-    | "top";
+    | "top"
 
   declare module.exports: React$ComponentType<{
     children: React$Element<any>,
@@ -2075,17 +2063,17 @@ declare module "material-ui/Tooltip/Tooltip" {
     enterDelay?: number,
     leaveDelay?: number,
     placement?: Placement,
-    PopperProps?: Object
-  }>;
+    PopperProps?: Object,
+  }>
 }
 
 declare module "material-ui/transitions/Collapse" {
-  import type { TransitionCallback } from "material-ui/internal/transition";
+  import type { TransitionCallback } from "material-ui/internal/transition"
 
   declare type TransitionDuration =
     | number
     | { enter?: number, exit?: number }
-    | "auto";
+    | "auto"
 
   declare module.exports: React$ComponentType<{
     appear?: boolean,
@@ -2103,15 +2091,15 @@ declare module "material-ui/transitions/Collapse" {
     onExiting?: TransitionCallback,
     style?: Object,
     timeout?: TransitionDuration,
-    unmountOnExit?: boolean
-  }>;
+    unmountOnExit?: boolean,
+  }>
 }
 
 declare module "material-ui/transitions/Fade" {
   import type {
     TransitionDuration,
-    TransitionCallback
-  } from "material-ui/internal/transition";
+    TransitionCallback,
+  } from "material-ui/internal/transition"
 
   declare module.exports: React$ComponentType<{
     appear?: boolean,
@@ -2121,15 +2109,15 @@ declare module "material-ui/transitions/Fade" {
     onEntering?: TransitionCallback,
     onExit?: TransitionCallback,
     style?: Object,
-    timeout?: TransitionDuration
-  }>;
+    timeout?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/transitions/Zoom" {
   import type {
     TransitionDuration,
-    TransitionCallback
-  } from "material-ui/internal/transition";
+    TransitionCallback,
+  } from "material-ui/internal/transition"
 
   declare module.exports: React$ComponentType<{
     children: React$Element<any>,
@@ -2137,20 +2125,20 @@ declare module "material-ui/transitions/Zoom" {
     onEnter?: TransitionCallback,
     onExit?: TransitionCallback,
     style?: Object,
-    timeout?: TransitionDuration
-  }>;
+    timeout?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/transitions/Grow" {
   import type {
     TransitionCallback,
-    TransitionClasses
-  } from "material-ui/internal/transition";
+    TransitionClasses,
+  } from "material-ui/internal/transition"
 
   declare type TransitionDuration =
     | number
     | { enter?: number, exit?: number }
-    | "auto";
+    | "auto"
 
   declare module.exports: React$ComponentType<{
     appear?: boolean,
@@ -2165,8 +2153,8 @@ declare module "material-ui/transitions/Grow" {
     rootRef?: Function,
     style?: Object,
     transitionClasses?: TransitionClasses,
-    timeout?: TransitionDuration
-  }>;
+    timeout?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/transitions" {
@@ -2175,22 +2163,22 @@ declare module "material-ui/transitions" {
     Grow: $Exports<"material-ui/transitions/Grow">,
     Fade: $Exports<"material-ui/transitions/Fade">,
     Collapse: $Exports<"material-ui/transitions/Collapse">,
-    Zoom: $Exports<"material-ui/transitions/Zoom">
-  };
+    Zoom: $Exports<"material-ui/transitions/Zoom">,
+  }
 }
 
 declare module "material-ui/transitions/Slide" {
   import type {
     TransitionDuration,
-    TransitionCallback
-  } from "material-ui/internal/transition";
+    TransitionCallback,
+  } from "material-ui/internal/transition"
 
-  declare type Direction = "left" | "right" | "up" | "down";
+  declare type Direction = "left" | "right" | "up" | "down"
 
   declare function setTranslateValue(
     props: Object,
-    node: HTMLElement | Object
-  ): void;
+    node: HTMLElement | Object,
+  ): void
 
   declare module.exports: React$ComponentType<{
     children: React$Element<any>,
@@ -2203,23 +2191,23 @@ declare module "material-ui/transitions/Slide" {
     onExiting?: TransitionCallback,
     onExited?: TransitionCallback,
     style?: Object,
-    timeout?: TransitionDuration
-  }>;
+    timeout?: TransitionDuration,
+  }>
 }
 
 declare module "material-ui/Typography" {
-  declare module.exports: $Exports<"material-ui/Typography/Typography">;
+  declare module.exports: $Exports<"material-ui/Typography/Typography">
 }
 
 declare module "material-ui/Typography/Typography" {
-  declare type Align = "inherit" | "left" | "center" | "right" | "justify";
+  declare type Align = "inherit" | "left" | "center" | "right" | "justify"
   declare type Color =
     | "inherit"
     | "primary"
     | "secondary"
     | "accent"
     | "error"
-    | "default";
+    | "default"
   declare type Type =
     | "display4"
     | "display3"
@@ -2231,7 +2219,7 @@ declare module "material-ui/Typography/Typography" {
     | "body2"
     | "body1"
     | "caption"
-    | "button";
+    | "button"
 
   declare module.exports: React$ComponentType<{
     align?: Align,
@@ -2244,8 +2232,8 @@ declare module "material-ui/Typography/Typography" {
     headlineMapping?: { [key: Type]: string },
     noWrap?: boolean,
     paragraph?: boolean,
-    type?: Type
-  }>;
+    variant?: Type,
+  }>
 }
 
 declare module "material-ui/utils/addEventListener" {
@@ -2253,22 +2241,22 @@ declare module "material-ui/utils/addEventListener" {
     node: React$Node,
     event: string,
     handler: EventHandler,
-    capture?: boolean
-  ) => any;
+    capture?: boolean,
+  ) => any
 }
 
 declare module "material-ui/utils/ClickAwayListener" {
   declare module.exports: React$ComponentType<{
     children: React$Node,
-    onClickAway: (event: Event) => void
-  }>;
+    onClickAway: (event: Event) => void,
+  }>
 }
 
 declare module "material-ui/utils/exactProp" {
   declare module.exports: (
     propTypes: Object,
-    componentNameInError: string
-  ) => any;
+    componentNameInError: string,
+  ) => any
 }
 
 declare module "material-ui/utils/helpers" {
@@ -2277,885 +2265,867 @@ declare module "material-ui/utils/helpers" {
     contains: (obj: Object, pred: Object) => any,
     findIndex: (arr: Array<any>, pred: any) => any,
     find: (arr: Array<any>, pred: any) => any,
-    createChainedFunction: (...funcs: Array<any>) => any
-  };
+    createChainedFunction: (...funcs: Array<any>) => any,
+  }
 }
 
 declare module "material-ui/utils/keyboardFocus" {
   declare module.exports: {
     focusKeyPressed: Function,
     detectKeyboardFocus: Function,
-    listenForFocusKeys: Function
-  };
+    listenForFocusKeys: Function,
+  }
 }
 
 declare module "material-ui/utils/manageAriaHidden" {
   declare module.exports: {
     ariaHidden: Function,
     hideSiblings: Function,
-    showSiblings: Function
-  };
+    showSiblings: Function,
+  }
 }
 
 declare module "material-ui/utils/reactHelpers" {
   declare module.exports: {
     cloneChildrenWithClassName: (
       children?: React$Node,
-      className: string
+      className: string,
     ) => any,
     isMuiElement: (element: any, muiNames: Array<string>) => any,
-    isMuiComponent: (element: any, muiNames: Array<string>) => any
-  };
+    isMuiComponent: (element: any, muiNames: Array<string>) => any,
+  }
 }
 
 declare module "material-ui/utils/requirePropFactory" {
-  declare module.exports: (componentNameInError: string) => any;
+  declare module.exports: (componentNameInError: string) => any
 }
 
 declare module "material-ui/utils/withWidth" {
   declare module.exports: (
-    options: Object
+    options: Object,
   ) => <Props: {}>(
-    Component: React$ComponentType<Props>
-  ) => React$ComponentType<Props>;
+    Component: React$ComponentType<Props>,
+  ) => React$ComponentType<Props>
 }
 
 declare module "material-ui/colors" {
-  declare export var withWidth: $Exports<"material-ui/utils/withWidth">;
-  declare export var common: $Exports<"material-ui/colors/common">;
-  declare export var red: $Exports<"material-ui/colors/red">;
-  declare export var pink: $Exports<"material-ui/colors/pink">;
-  declare export var purple: $Exports<"material-ui/colors/purple">;
-  declare export var deepPurple: $Exports<"material-ui/colors/deepPurple">;
-  declare export var indigo: $Exports<"material-ui/colors/indigo">;
-  declare export var blue: $Exports<"material-ui/colors/blue">;
-  declare export var lightBlue: $Exports<"material-ui/colors/lightBlue">;
-  declare export var cyan: $Exports<"material-ui/colors/cyan">;
-  declare export var teal: $Exports<"material-ui/colors/teal">;
-  declare export var green: $Exports<"material-ui/colors/green">;
-  declare export var lightGreen: $Exports<"material-ui/colors/lightGreen">;
-  declare export var lime: $Exports<"material-ui/colors/lime">;
-  declare export var yellow: $Exports<"material-ui/colors/yellow">;
-  declare export var amber: $Exports<"material-ui/colors/amber">;
-  declare export var orange: $Exports<"material-ui/colors/orange">;
-  declare export var deepOrange: $Exports<"material-ui/colors/deepOrange">;
-  declare export var brown: $Exports<"material-ui/colors/brown">;
-  declare export var grey: $Exports<"material-ui/colors/grey">;
-  declare export var blueGrey: $Exports<"material-ui/colors/blueGrey">;
+  declare export var withWidth: $Exports<"material-ui/utils/withWidth">
+  declare export var common: $Exports<"material-ui/colors/common">
+  declare export var red: $Exports<"material-ui/colors/red">
+  declare export var pink: $Exports<"material-ui/colors/pink">
+  declare export var purple: $Exports<"material-ui/colors/purple">
+  declare export var deepPurple: $Exports<"material-ui/colors/deepPurple">
+  declare export var indigo: $Exports<"material-ui/colors/indigo">
+  declare export var blue: $Exports<"material-ui/colors/blue">
+  declare export var lightBlue: $Exports<"material-ui/colors/lightBlue">
+  declare export var cyan: $Exports<"material-ui/colors/cyan">
+  declare export var teal: $Exports<"material-ui/colors/teal">
+  declare export var green: $Exports<"material-ui/colors/green">
+  declare export var lightGreen: $Exports<"material-ui/colors/lightGreen">
+  declare export var lime: $Exports<"material-ui/colors/lime">
+  declare export var yellow: $Exports<"material-ui/colors/yellow">
+  declare export var amber: $Exports<"material-ui/colors/amber">
+  declare export var orange: $Exports<"material-ui/colors/orange">
+  declare export var deepOrange: $Exports<"material-ui/colors/deepOrange">
+  declare export var brown: $Exports<"material-ui/colors/brown">
+  declare export var grey: $Exports<"material-ui/colors/grey">
+  declare export var blueGrey: $Exports<"material-ui/colors/blueGrey">
 }
 
 // Filename aliases
 declare module "material-ui/AppBar/AppBar.js" {
-  declare module.exports: $Exports<"material-ui/AppBar/AppBar">;
+  declare module.exports: $Exports<"material-ui/AppBar/AppBar">
 }
 declare module "material-ui/AppBar/index.js" {
-  declare module.exports: $Exports<"material-ui/AppBar">;
+  declare module.exports: $Exports<"material-ui/AppBar">
 }
 declare module "material-ui/Avatar/Avatar.js" {
-  declare module.exports: $Exports<"material-ui/Avatar/Avatar">;
+  declare module.exports: $Exports<"material-ui/Avatar/Avatar">
 }
 declare module "material-ui/Avatar/index.js" {
-  declare module.exports: $Exports<"material-ui/Avatar">;
+  declare module.exports: $Exports<"material-ui/Avatar">
 }
 declare module "material-ui/Badge/Badge.js" {
-  declare module.exports: $Exports<"material-ui/Badge/Badge">;
+  declare module.exports: $Exports<"material-ui/Badge/Badge">
 }
 declare module "material-ui/Badge/index.js" {
-  declare module.exports: $Exports<"material-ui/Badge">;
+  declare module.exports: $Exports<"material-ui/Badge">
 }
 declare module "material-ui/BottomNavigation/BottomNavigation.js" {
   declare module.exports: $Exports<
-    "material-ui/BottomNavigation/BottomNavigation"
-  >;
+    "material-ui/BottomNavigation/BottomNavigation",
+  >
 }
 declare module "material-ui/BottomNavigation/BottomNavigationAction.js" {
   declare module.exports: $Exports<
-    "material-ui/BottomNavigation/BottomNavigationAction"
-  >;
+    "material-ui/BottomNavigation/BottomNavigationAction",
+  >
 }
 declare module "material-ui/BottomNavigation/index.js" {
-  declare module.exports: $Exports<"material-ui/BottomNavigation">;
+  declare module.exports: $Exports<"material-ui/BottomNavigation">
 }
 declare module "material-ui/Button/Button.js" {
-  declare module.exports: $Exports<"material-ui/Button/Button">;
+  declare module.exports: $Exports<"material-ui/Button/Button">
 }
 declare module "material-ui/Button/index.js" {
-  declare module.exports: $Exports<"material-ui/Button">;
+  declare module.exports: $Exports<"material-ui/Button">
 }
 declare module "material-ui/ButtonBase/ButtonBase.js" {
-  declare module.exports: $Exports<"material-ui/ButtonBase/ButtonBase">;
+  declare module.exports: $Exports<"material-ui/ButtonBase/ButtonBase">
 }
 declare module "material-ui/ButtonBase/createRippleHandler.js" {
-  declare module.exports: $Exports<
-    "material-ui/ButtonBase/createRippleHandler"
-  >;
+  declare module.exports: $Exports<"material-ui/ButtonBase/createRippleHandler">
 }
 declare module "material-ui/ButtonBase/index.js" {
-  declare module.exports: $Exports<"material-ui/ButtonBase">;
+  declare module.exports: $Exports<"material-ui/ButtonBase">
 }
 declare module "material-ui/ButtonBase/Ripple.js" {
-  declare module.exports: $Exports<"material-ui/ButtonBase/Ripple">;
+  declare module.exports: $Exports<"material-ui/ButtonBase/Ripple">
 }
 declare module "material-ui/ButtonBase/TouchRipple.js" {
-  declare module.exports: $Exports<"material-ui/ButtonBase/TouchRipple">;
+  declare module.exports: $Exports<"material-ui/ButtonBase/TouchRipple">
 }
 declare module "material-ui/Card/Card.js" {
-  declare module.exports: $Exports<"material-ui/Card/Card">;
+  declare module.exports: $Exports<"material-ui/Card/Card">
 }
 declare module "material-ui/Card/CardActions.js" {
-  declare module.exports: $Exports<"material-ui/Card/CardActions">;
+  declare module.exports: $Exports<"material-ui/Card/CardActions">
 }
 declare module "material-ui/Card/CardContent.js" {
-  declare module.exports: $Exports<"material-ui/Card/CardContent">;
+  declare module.exports: $Exports<"material-ui/Card/CardContent">
 }
 declare module "material-ui/Card/CardHeader.js" {
-  declare module.exports: $Exports<"material-ui/Card/CardHeader">;
+  declare module.exports: $Exports<"material-ui/Card/CardHeader">
 }
 declare module "material-ui/Card/CardMedia.js" {
-  declare module.exports: $Exports<"material-ui/Card/CardMedia">;
+  declare module.exports: $Exports<"material-ui/Card/CardMedia">
 }
 declare module "material-ui/Card/index.js" {
-  declare module.exports: $Exports<"material-ui/Card">;
+  declare module.exports: $Exports<"material-ui/Card">
 }
 declare module "material-ui/Checkbox/Checkbox.js" {
-  declare module.exports: $Exports<"material-ui/Checkbox/Checkbox">;
+  declare module.exports: $Exports<"material-ui/Checkbox/Checkbox">
 }
 declare module "material-ui/Checkbox/index.js" {
-  declare module.exports: $Exports<"material-ui/Checkbox">;
+  declare module.exports: $Exports<"material-ui/Checkbox">
 }
 declare module "material-ui/Chip/Chip.js" {
-  declare module.exports: $Exports<"material-ui/Chip/Chip">;
+  declare module.exports: $Exports<"material-ui/Chip/Chip">
 }
 declare module "material-ui/Chip/index.js" {
-  declare module.exports: $Exports<"material-ui/Chip">;
+  declare module.exports: $Exports<"material-ui/Chip">
 }
 declare module "material-ui/colors/amber.js" {
-  declare module.exports: $Exports<"material-ui/colors/amber">;
+  declare module.exports: $Exports<"material-ui/colors/amber">
 }
 declare module "material-ui/colors/blue.js" {
-  declare module.exports: $Exports<"material-ui/colors/blue">;
+  declare module.exports: $Exports<"material-ui/colors/blue">
 }
 declare module "material-ui/colors/blueGrey.js" {
-  declare module.exports: $Exports<"material-ui/colors/blueGrey">;
+  declare module.exports: $Exports<"material-ui/colors/blueGrey">
 }
 declare module "material-ui/colors/brown.js" {
-  declare module.exports: $Exports<"material-ui/colors/brown">;
+  declare module.exports: $Exports<"material-ui/colors/brown">
 }
 declare module "material-ui/colors/common.js" {
-  declare module.exports: $Exports<"material-ui/colors/common">;
+  declare module.exports: $Exports<"material-ui/colors/common">
 }
 declare module "material-ui/colors/cyan.js" {
-  declare module.exports: $Exports<"material-ui/colors/cyan">;
+  declare module.exports: $Exports<"material-ui/colors/cyan">
 }
 declare module "material-ui/colors/deepOrange.js" {
-  declare module.exports: $Exports<"material-ui/colors/deepOrange">;
+  declare module.exports: $Exports<"material-ui/colors/deepOrange">
 }
 declare module "material-ui/colors/deepPurple.js" {
-  declare module.exports: $Exports<"material-ui/colors/deepPurple">;
+  declare module.exports: $Exports<"material-ui/colors/deepPurple">
 }
 declare module "material-ui/colors/green.js" {
-  declare module.exports: $Exports<"material-ui/colors/green">;
+  declare module.exports: $Exports<"material-ui/colors/green">
 }
 declare module "material-ui/colors/grey.js" {
-  declare module.exports: $Exports<"material-ui/colors/grey">;
+  declare module.exports: $Exports<"material-ui/colors/grey">
 }
 declare module "material-ui/colors/index.js" {
-  declare module.exports: $Exports<"material-ui/colors">;
+  declare module.exports: $Exports<"material-ui/colors">
 }
 declare module "material-ui/colors/indigo.js" {
-  declare module.exports: $Exports<"material-ui/colors/indigo">;
+  declare module.exports: $Exports<"material-ui/colors/indigo">
 }
 declare module "material-ui/colors/lightBlue.js" {
-  declare module.exports: $Exports<"material-ui/colors/lightBlue">;
+  declare module.exports: $Exports<"material-ui/colors/lightBlue">
 }
 declare module "material-ui/colors/lightGreen.js" {
-  declare module.exports: $Exports<"material-ui/colors/lightGreen">;
+  declare module.exports: $Exports<"material-ui/colors/lightGreen">
 }
 declare module "material-ui/colors/lime.js" {
-  declare module.exports: $Exports<"material-ui/colors/lime">;
+  declare module.exports: $Exports<"material-ui/colors/lime">
 }
 declare module "material-ui/colors/orange.js" {
-  declare module.exports: $Exports<"material-ui/colors/orange">;
+  declare module.exports: $Exports<"material-ui/colors/orange">
 }
 declare module "material-ui/colors/pink.js" {
-  declare module.exports: $Exports<"material-ui/colors/pink">;
+  declare module.exports: $Exports<"material-ui/colors/pink">
 }
 declare module "material-ui/colors/purple.js" {
-  declare module.exports: $Exports<"material-ui/colors/purple">;
+  declare module.exports: $Exports<"material-ui/colors/purple">
 }
 declare module "material-ui/colors/red.js" {
-  declare module.exports: $Exports<"material-ui/colors/red">;
+  declare module.exports: $Exports<"material-ui/colors/red">
 }
 declare module "material-ui/colors/teal.js" {
-  declare module.exports: $Exports<"material-ui/colors/teal">;
+  declare module.exports: $Exports<"material-ui/colors/teal">
 }
 declare module "material-ui/colors/yellow.js" {
-  declare module.exports: $Exports<"material-ui/colors/yellow">;
+  declare module.exports: $Exports<"material-ui/colors/yellow">
 }
 declare module "material-ui/Dialog/Dialog.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/Dialog">;
+  declare module.exports: $Exports<"material-ui/Dialog/Dialog">
 }
 declare module "material-ui/Dialog/DialogActions.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/DialogActions">;
+  declare module.exports: $Exports<"material-ui/Dialog/DialogActions">
 }
 declare module "material-ui/Dialog/DialogContent.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/DialogContent">;
+  declare module.exports: $Exports<"material-ui/Dialog/DialogContent">
 }
 declare module "material-ui/Dialog/DialogContentText.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/DialogContentText">;
+  declare module.exports: $Exports<"material-ui/Dialog/DialogContentText">
 }
 declare module "material-ui/Dialog/DialogTitle.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/DialogTitle">;
+  declare module.exports: $Exports<"material-ui/Dialog/DialogTitle">
 }
 declare module "material-ui/Dialog/index.js" {
-  declare module.exports: $Exports<"material-ui/Dialog">;
+  declare module.exports: $Exports<"material-ui/Dialog">
 }
 declare module "material-ui/Dialog/withMobileDialog.js" {
-  declare module.exports: $Exports<"material-ui/Dialog/withMobileDialog">;
+  declare module.exports: $Exports<"material-ui/Dialog/withMobileDialog">
 }
 declare module "material-ui/Divider/Divider.js" {
-  declare module.exports: $Exports<"material-ui/Divider/Divider">;
+  declare module.exports: $Exports<"material-ui/Divider/Divider">
 }
 declare module "material-ui/Divider/index.js" {
-  declare module.exports: $Exports<"material-ui/Divider">;
+  declare module.exports: $Exports<"material-ui/Divider">
 }
 declare module "material-ui/Drawer/Drawer.js" {
-  declare module.exports: $Exports<"material-ui/Drawer/Drawer">;
+  declare module.exports: $Exports<"material-ui/Drawer/Drawer">
 }
 declare module "material-ui/Drawer/index.js" {
-  declare module.exports: $Exports<"material-ui/Drawer">;
+  declare module.exports: $Exports<"material-ui/Drawer">
 }
 declare module "material-ui/ExpansionPanel/ExpansionPanel.js" {
-  declare module.exports: $Exports<"material-ui/ExpansionPanel/ExpansionPanel">;
+  declare module.exports: $Exports<"material-ui/ExpansionPanel/ExpansionPanel">
 }
 declare module "material-ui/ExpansionPanel/ExpansionPanelActions.js" {
   declare module.exports: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelActions"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelActions",
+  >
 }
 declare module "material-ui/ExpansionPanel/ExpansionPanelDetails.js" {
   declare module.exports: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelDetails"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelDetails",
+  >
 }
 declare module "material-ui/ExpansionPanel/ExpansionPanelSummary.js" {
   declare module.exports: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelSummary"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelSummary",
+  >
 }
 declare module "material-ui/ExpansionPanel/index.js" {
-  declare module.exports: $Exports<"material-ui/ExpansionPanel">;
+  declare module.exports: $Exports<"material-ui/ExpansionPanel">
 }
 declare module "material-ui/Form/FormControl.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormControl">;
+  declare module.exports: $Exports<"material-ui/Form/FormControl">
 }
 declare module "material-ui/Form/FormControlLabel.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormControlLabel">;
+  declare module.exports: $Exports<"material-ui/Form/FormControlLabel">
 }
 declare module "material-ui/Form/FormGroup.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormGroup">;
+  declare module.exports: $Exports<"material-ui/Form/FormGroup">
 }
 declare module "material-ui/Form/FormHelperText.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormHelperText">;
+  declare module.exports: $Exports<"material-ui/Form/FormHelperText">
 }
 declare module "material-ui/Form/FormLabel.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormLabel">;
+  declare module.exports: $Exports<"material-ui/Form/FormLabel">
 }
 declare module "material-ui/Form/index.js" {
-  declare module.exports: $Exports<"material-ui/Form">;
+  declare module.exports: $Exports<"material-ui/Form">
 }
 declare module "material-ui/Grid/Grid.js" {
-  declare module.exports: $Exports<"material-ui/Grid/Grid">;
+  declare module.exports: $Exports<"material-ui/Grid/Grid">
 }
 declare module "material-ui/Grid/index.js" {
-  declare module.exports: $Exports<"material-ui/Grid">;
+  declare module.exports: $Exports<"material-ui/Grid">
 }
 declare module "material-ui/GridList/GridList.js" {
-  declare module.exports: $Exports<"material-ui/GridList/GridList">;
+  declare module.exports: $Exports<"material-ui/GridList/GridList">
 }
 declare module "material-ui/GridList/GridListTile.js" {
-  declare module.exports: $Exports<"material-ui/GridList/GridListTile">;
+  declare module.exports: $Exports<"material-ui/GridList/GridListTile">
 }
 declare module "material-ui/GridList/GridListTileBar.js" {
-  declare module.exports: $Exports<"material-ui/GridList/GridListTileBar">;
+  declare module.exports: $Exports<"material-ui/GridList/GridListTileBar">
 }
 declare module "material-ui/GridList/index.js" {
-  declare module.exports: $Exports<"material-ui/GridList">;
+  declare module.exports: $Exports<"material-ui/GridList">
 }
 declare module "material-ui/Hidden/Hidden.js" {
-  declare module.exports: $Exports<"material-ui/Hidden/Hidden">;
+  declare module.exports: $Exports<"material-ui/Hidden/Hidden">
 }
 declare module "material-ui/Hidden/HiddenCss.js" {
-  declare module.exports: $Exports<"material-ui/Hidden/HiddenCss">;
+  declare module.exports: $Exports<"material-ui/Hidden/HiddenCss">
 }
 declare module "material-ui/Hidden/HiddenJs.js" {
-  declare module.exports: $Exports<"material-ui/Hidden/HiddenJs">;
+  declare module.exports: $Exports<"material-ui/Hidden/HiddenJs">
 }
 declare module "material-ui/Hidden/index.js" {
-  declare module.exports: $Exports<"material-ui/Hidden">;
+  declare module.exports: $Exports<"material-ui/Hidden">
 }
 declare module "material-ui/Hidden/types.js" {
-  declare module.exports: $Exports<"material-ui/Hidden/types">;
+  declare module.exports: $Exports<"material-ui/Hidden/types">
 }
 declare module "material-ui/Icon/Icon.js" {
-  declare module.exports: $Exports<"material-ui/Icon/Icon">;
+  declare module.exports: $Exports<"material-ui/Icon/Icon">
 }
 declare module "material-ui/Icon/index.js" {
-  declare module.exports: $Exports<"material-ui/Icon">;
+  declare module.exports: $Exports<"material-ui/Icon">
 }
 declare module "material-ui/IconButton/IconButton.js" {
-  declare module.exports: $Exports<"material-ui/IconButton/IconButton">;
+  declare module.exports: $Exports<"material-ui/IconButton/IconButton">
 }
 declare module "material-ui/IconButton/index.js" {
-  declare module.exports: $Exports<"material-ui/IconButton">;
+  declare module.exports: $Exports<"material-ui/IconButton">
 }
 declare module "material-ui/Input/index.js" {
-  declare module.exports: $Exports<"material-ui/Input">;
+  declare module.exports: $Exports<"material-ui/Input">
 }
 declare module "material-ui/Input/Input.js" {
-  declare module.exports: $Exports<"material-ui/Input/Input">;
+  declare module.exports: $Exports<"material-ui/Input/Input">
 }
 declare module "material-ui/Input/InputAdornment.js" {
-  declare module.exports: $Exports<"material-ui/Input/InputAdornment">;
+  declare module.exports: $Exports<"material-ui/Input/InputAdornment">
 }
 declare module "material-ui/Input/InputLabel.js" {
-  declare module.exports: $Exports<"material-ui/Input/InputLabel">;
+  declare module.exports: $Exports<"material-ui/Input/InputLabel">
 }
 declare module "material-ui/Input/Textarea.js" {
-  declare module.exports: $Exports<"material-ui/Input/Textarea">;
+  declare module.exports: $Exports<"material-ui/Input/Textarea">
 }
 declare module "material-ui/internal/dom.js" {
-  declare module.exports: $Exports<"material-ui/internal/dom">;
+  declare module.exports: $Exports<"material-ui/internal/dom">
 }
 declare module "material-ui/Portal/Portal.js" {
-  declare module.exports: $Exports<"material-ui/Portal">;
+  declare module.exports: $Exports<"material-ui/Portal">
 }
 declare module "material-ui/internal/SwitchBase.js" {
-  declare module.exports: $Exports<"material-ui/internal/SwitchBase">;
+  declare module.exports: $Exports<"material-ui/internal/SwitchBase">
 }
 declare module "material-ui/internal/transition.js" {
-  declare module.exports: $Exports<"material-ui/internal/transition">;
+  declare module.exports: $Exports<"material-ui/internal/transition">
 }
 declare module "material-ui/List/index.js" {
-  declare module.exports: $Exports<"material-ui/List">;
+  declare module.exports: $Exports<"material-ui/List">
 }
 declare module "material-ui/List/List.js" {
-  declare module.exports: $Exports<"material-ui/List/List">;
+  declare module.exports: $Exports<"material-ui/List/List">
 }
 declare module "material-ui/List/ListItem.js" {
-  declare module.exports: $Exports<"material-ui/List/ListItem">;
+  declare module.exports: $Exports<"material-ui/List/ListItem">
 }
 declare module "material-ui/List/ListItemAvatar.js" {
-  declare module.exports: $Exports<"material-ui/List/ListItemAvatar">;
+  declare module.exports: $Exports<"material-ui/List/ListItemAvatar">
 }
 declare module "material-ui/List/ListItemIcon.js" {
-  declare module.exports: $Exports<"material-ui/List/ListItemIcon">;
+  declare module.exports: $Exports<"material-ui/List/ListItemIcon">
 }
 declare module "material-ui/List/ListItemSecondaryAction.js" {
-  declare module.exports: $Exports<"material-ui/List/ListItemSecondaryAction">;
+  declare module.exports: $Exports<"material-ui/List/ListItemSecondaryAction">
 }
 declare module "material-ui/List/ListItemText.js" {
-  declare module.exports: $Exports<"material-ui/List/ListItemText">;
+  declare module.exports: $Exports<"material-ui/List/ListItemText">
 }
 declare module "material-ui/List/ListSubheader.js" {
-  declare module.exports: $Exports<"material-ui/List/ListSubheader">;
+  declare module.exports: $Exports<"material-ui/List/ListSubheader">
 }
 declare module "material-ui/Menu/index.js" {
-  declare module.exports: $Exports<"material-ui/Menu">;
+  declare module.exports: $Exports<"material-ui/Menu">
 }
 declare module "material-ui/Menu/Menu.js" {
-  declare module.exports: $Exports<"material-ui/Menu/Menu">;
+  declare module.exports: $Exports<"material-ui/Menu/Menu">
 }
 declare module "material-ui/Menu/MenuItem.js" {
-  declare module.exports: $Exports<"material-ui/Menu/MenuItem">;
+  declare module.exports: $Exports<"material-ui/Menu/MenuItem">
 }
 declare module "material-ui/Menu/MenuList.js" {
-  declare module.exports: $Exports<"material-ui/Menu/MenuList">;
+  declare module.exports: $Exports<"material-ui/Menu/MenuList">
 }
 declare module "material-ui/MobileStepper/index.js" {
-  declare module.exports: $Exports<"material-ui/MobileStepper">;
+  declare module.exports: $Exports<"material-ui/MobileStepper">
 }
 declare module "material-ui/MobileStepper/MobileStepper.js" {
-  declare module.exports: $Exports<"material-ui/MobileStepper/MobileStepper">;
+  declare module.exports: $Exports<"material-ui/MobileStepper/MobileStepper">
 }
 declare module "material-ui/Modal/Backdrop.js" {
-  declare module.exports: $Exports<"material-ui/Modal/Backdrop">;
+  declare module.exports: $Exports<"material-ui/Modal/Backdrop">
 }
 declare module "material-ui/Modal/index.js" {
-  declare module.exports: $Exports<"material-ui/Modal">;
+  declare module.exports: $Exports<"material-ui/Modal">
 }
 declare module "material-ui/Modal/Modal.js" {
-  declare module.exports: $Exports<"material-ui/Modal/Modal">;
+  declare module.exports: $Exports<"material-ui/Modal/Modal">
 }
 declare module "material-ui/Modal/modalManager.js" {
-  declare module.exports: $Exports<"material-ui/Modal/modalManager">;
+  declare module.exports: $Exports<"material-ui/Modal/modalManager">
 }
 declare module "material-ui/Paper/index.js" {
-  declare module.exports: $Exports<"material-ui/Paper">;
+  declare module.exports: $Exports<"material-ui/Paper">
 }
 declare module "material-ui/Paper/Paper.js" {
-  declare module.exports: $Exports<"material-ui/Paper/Paper">;
+  declare module.exports: $Exports<"material-ui/Paper/Paper">
 }
 declare module "material-ui/Popover/index.js" {
-  declare module.exports: $Exports<"material-ui/Popover">;
+  declare module.exports: $Exports<"material-ui/Popover">
 }
 declare module "material-ui/Popover/Popover.js" {
-  declare module.exports: $Exports<"material-ui/Popover/Popover">;
+  declare module.exports: $Exports<"material-ui/Popover/Popover">
 }
 declare module "material-ui/Progress/CircularProgress.js" {
-  declare module.exports: $Exports<"material-ui/Progress/CircularProgress">;
+  declare module.exports: $Exports<"material-ui/Progress/CircularProgress">
 }
 declare module "material-ui/Progress/index.js" {
-  declare module.exports: $Exports<"material-ui/Progress">;
+  declare module.exports: $Exports<"material-ui/Progress">
 }
 declare module "material-ui/Progress/LinearProgress.js" {
-  declare module.exports: $Exports<"material-ui/Progress/LinearProgress">;
+  declare module.exports: $Exports<"material-ui/Progress/LinearProgress">
 }
 declare module "material-ui/Radio/index.js" {
-  declare module.exports: $Exports<"material-ui/Radio">;
+  declare module.exports: $Exports<"material-ui/Radio">
 }
 declare module "material-ui/Radio/Radio.js" {
-  declare module.exports: $Exports<"material-ui/Radio/Radio">;
+  declare module.exports: $Exports<"material-ui/Radio/Radio">
 }
 declare module "material-ui/Radio/RadioGroup.js" {
-  declare module.exports: $Exports<"material-ui/Radio/RadioGroup">;
+  declare module.exports: $Exports<"material-ui/Radio/RadioGroup">
 }
 declare module "material-ui/Select/index.js" {
-  declare module.exports: $Exports<"material-ui/Select">;
+  declare module.exports: $Exports<"material-ui/Select">
 }
 declare module "material-ui/Select/Select.js" {
-  declare module.exports: $Exports<"material-ui/Select/Select">;
+  declare module.exports: $Exports<"material-ui/Select/Select">
 }
 declare module "material-ui/Select/SelectInput.js" {
-  declare module.exports: $Exports<"material-ui/Select/SelectInput">;
+  declare module.exports: $Exports<"material-ui/Select/SelectInput">
 }
 declare module "material-ui/Snackbar/index.js" {
-  declare module.exports: $Exports<"material-ui/Snackbar">;
+  declare module.exports: $Exports<"material-ui/Snackbar">
 }
 declare module "material-ui/Snackbar/Snackbar.js" {
-  declare module.exports: $Exports<"material-ui/Snackbar/Snackbar">;
+  declare module.exports: $Exports<"material-ui/Snackbar/Snackbar">
 }
 declare module "material-ui/Snackbar/SnackbarContent.js" {
-  declare module.exports: $Exports<"material-ui/Snackbar/SnackbarContent">;
+  declare module.exports: $Exports<"material-ui/Snackbar/SnackbarContent">
 }
 declare module "material-ui/Stepper/index.js" {
-  declare module.exports: $Exports<"material-ui/Stepper">;
+  declare module.exports: $Exports<"material-ui/Stepper">
 }
 declare module "material-ui/Stepper/Step.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/Step">;
+  declare module.exports: $Exports<"material-ui/Stepper/Step">
 }
 declare module "material-ui/Stepper/StepButton.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepButton">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepButton">
 }
 declare module "material-ui/Stepper/StepConnector.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepConnector">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepConnector">
 }
 declare module "material-ui/Stepper/StepContent.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepContent">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepContent">
 }
 declare module "material-ui/Stepper/StepIcon.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepIcon">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepIcon">
 }
 declare module "material-ui/Stepper/StepLabel.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepLabel">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepLabel">
 }
 declare module "material-ui/Stepper/Stepper.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/Stepper">;
+  declare module.exports: $Exports<"material-ui/Stepper/Stepper">
 }
 declare module "material-ui/Stepper/StepPositionIcon.js" {
-  declare module.exports: $Exports<"material-ui/Stepper/StepPositionIcon">;
+  declare module.exports: $Exports<"material-ui/Stepper/StepPositionIcon">
 }
 declare module "material-ui/styles/colorManipulator.js" {
-  declare module.exports: $Exports<"material-ui/styles/colorManipulator">;
+  declare module.exports: $Exports<"material-ui/styles/colorManipulator">
 }
 declare module "material-ui/styles/createBreakpoints.js" {
-  declare module.exports: $Exports<"material-ui/styles/createBreakpoints">;
+  declare module.exports: $Exports<"material-ui/styles/createBreakpoints">
 }
 declare module "material-ui/styles/createGenerateClassName.js" {
-  declare module.exports: $Exports<
-    "material-ui/styles/createGenerateClassName"
-  >;
+  declare module.exports: $Exports<"material-ui/styles/createGenerateClassName">
 }
 declare module "material-ui/styles/createMixins.js" {
-  declare module.exports: $Exports<"material-ui/styles/createMixins">;
+  declare module.exports: $Exports<"material-ui/styles/createMixins">
 }
 declare module "material-ui/styles/createMuiTheme.js" {
-  declare module.exports: $Exports<"material-ui/styles/createMuiTheme">;
+  declare module.exports: $Exports<"material-ui/styles/createMuiTheme">
 }
 declare module "material-ui/styles/createPalette.js" {
-  declare module.exports: $Exports<"material-ui/styles/createPalette">;
+  declare module.exports: $Exports<"material-ui/styles/createPalette">
 }
 declare module "material-ui/styles/createTypography.js" {
-  declare module.exports: $Exports<"material-ui/styles/createTypography">;
+  declare module.exports: $Exports<"material-ui/styles/createTypography">
 }
 declare module "material-ui/styles/getStylesCreator.js" {
-  declare module.exports: $Exports<"material-ui/styles/getStylesCreator">;
+  declare module.exports: $Exports<"material-ui/styles/getStylesCreator">
 }
 declare module "material-ui/styles/index.js" {
-  declare module.exports: $Exports<"material-ui/styles">;
+  declare module.exports: $Exports<"material-ui/styles">
 }
 declare module "material-ui/styles/MuiThemeProvider.js" {
-  declare module.exports: $Exports<"material-ui/styles/MuiThemeProvider">;
+  declare module.exports: $Exports<"material-ui/styles/MuiThemeProvider">
 }
 declare module "material-ui/styles/shadows.js" {
-  declare module.exports: $Exports<"material-ui/styles/shadows">;
+  declare module.exports: $Exports<"material-ui/styles/shadows">
 }
 declare module "material-ui/styles/spacing.js" {
-  declare module.exports: $Exports<"material-ui/styles/spacing">;
+  declare module.exports: $Exports<"material-ui/styles/spacing">
 }
 declare module "material-ui/styles/themeListener.js" {
-  declare module.exports: $Exports<"material-ui/styles/themeListener">;
+  declare module.exports: $Exports<"material-ui/styles/themeListener">
 }
 declare module "material-ui/styles/transitions.js" {
-  declare module.exports: $Exports<"material-ui/styles/transitions">;
+  declare module.exports: $Exports<"material-ui/styles/transitions">
 }
 declare module "material-ui/styles/withStyles.js" {
-  declare module.exports: $Exports<"material-ui/styles/withStyles">;
+  declare module.exports: $Exports<"material-ui/styles/withStyles">
 }
 declare module "material-ui/styles/withTheme.js" {
-  declare module.exports: $Exports<"material-ui/styles/withTheme">;
+  declare module.exports: $Exports<"material-ui/styles/withTheme">
 }
 declare module "material-ui/styles/zIndex.js" {
-  declare module.exports: $Exports<"material-ui/styles/zIndex">;
+  declare module.exports: $Exports<"material-ui/styles/zIndex">
 }
 declare module "material-ui/svg-icons/ArrowDownward.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/ArrowDownward">;
+  declare module.exports: $Exports<"material-ui/svg-icons/ArrowDownward">
 }
 declare module "material-ui/svg-icons/ArrowDropDown.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/ArrowDropDown">;
+  declare module.exports: $Exports<"material-ui/svg-icons/ArrowDropDown">
 }
 declare module "material-ui/svg-icons/Cancel.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/Cancel">;
+  declare module.exports: $Exports<"material-ui/svg-icons/Cancel">
 }
 declare module "material-ui/svg-icons/CheckBox.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/CheckBox">;
+  declare module.exports: $Exports<"material-ui/svg-icons/CheckBox">
 }
 declare module "material-ui/svg-icons/CheckBoxOutlineBlank.js" {
-  declare module.exports: $Exports<
-    "material-ui/svg-icons/CheckBoxOutlineBlank"
-  >;
+  declare module.exports: $Exports<"material-ui/svg-icons/CheckBoxOutlineBlank">
 }
 declare module "material-ui/svg-icons/CheckCircle.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/CheckCircle">;
+  declare module.exports: $Exports<"material-ui/svg-icons/CheckCircle">
 }
 declare module "material-ui/svg-icons/IndeterminateCheckBox.js" {
   declare module.exports: $Exports<
-    "material-ui/svg-icons/IndeterminateCheckBox"
-  >;
+    "material-ui/svg-icons/IndeterminateCheckBox",
+  >
 }
 declare module "material-ui/svg-icons/KeyboardArrowLeft.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/KeyboardArrowLeft">;
+  declare module.exports: $Exports<"material-ui/svg-icons/KeyboardArrowLeft">
 }
 declare module "material-ui/svg-icons/KeyboardArrowRight.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/KeyboardArrowRight">;
+  declare module.exports: $Exports<"material-ui/svg-icons/KeyboardArrowRight">
 }
 declare module "material-ui/svg-icons/RadioButtonChecked.js" {
-  declare module.exports: $Exports<"material-ui/svg-icons/RadioButtonChecked">;
+  declare module.exports: $Exports<"material-ui/svg-icons/RadioButtonChecked">
 }
 declare module "material-ui/svg-icons/RadioButtonUnchecked.js" {
-  declare module.exports: $Exports<
-    "material-ui/svg-icons/RadioButtonUnchecked"
-  >;
+  declare module.exports: $Exports<"material-ui/svg-icons/RadioButtonUnchecked">
 }
 declare module "material-ui/SvgIcon/index.js" {
-  declare module.exports: $Exports<"material-ui/SvgIcon">;
+  declare module.exports: $Exports<"material-ui/SvgIcon">
 }
 declare module "material-ui/SvgIcon/SvgIcon.js" {
-  declare module.exports: $Exports<"material-ui/SvgIcon/SvgIcon">;
+  declare module.exports: $Exports<"material-ui/SvgIcon/SvgIcon">
 }
 declare module "material-ui/Switch/index.js" {
-  declare module.exports: $Exports<"material-ui/Switch">;
+  declare module.exports: $Exports<"material-ui/Switch">
 }
 declare module "material-ui/Switch/Switch.js" {
-  declare module.exports: $Exports<"material-ui/Switch/Switch">;
+  declare module.exports: $Exports<"material-ui/Switch/Switch">
 }
 declare module "material-ui/Table/index.js" {
-  declare module.exports: $Exports<"material-ui/Table">;
+  declare module.exports: $Exports<"material-ui/Table">
 }
 declare module "material-ui/Table/Table.js" {
-  declare module.exports: $Exports<"material-ui/Table/Table">;
+  declare module.exports: $Exports<"material-ui/Table/Table">
 }
 declare module "material-ui/Table/TableBody.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableBody">;
+  declare module.exports: $Exports<"material-ui/Table/TableBody">
 }
 declare module "material-ui/Table/TableCell.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableCell">;
+  declare module.exports: $Exports<"material-ui/Table/TableCell">
 }
 declare module "material-ui/Table/TableFooter.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableFooter">;
+  declare module.exports: $Exports<"material-ui/Table/TableFooter">
 }
 declare module "material-ui/Table/TableHead.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableHead">;
+  declare module.exports: $Exports<"material-ui/Table/TableHead">
 }
 declare module "material-ui/Table/TablePagination.js" {
-  declare module.exports: $Exports<"material-ui/Table/TablePagination">;
+  declare module.exports: $Exports<"material-ui/Table/TablePagination">
 }
 declare module "material-ui/Table/TableRow.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableRow">;
+  declare module.exports: $Exports<"material-ui/Table/TableRow">
 }
 declare module "material-ui/Table/TableSortLabel.js" {
-  declare module.exports: $Exports<"material-ui/Table/TableSortLabel">;
+  declare module.exports: $Exports<"material-ui/Table/TableSortLabel">
 }
 declare module "material-ui/Tabs/index.js" {
-  declare module.exports: $Exports<"material-ui/Tabs">;
+  declare module.exports: $Exports<"material-ui/Tabs">
 }
 declare module "material-ui/Tabs/Tab.js" {
-  declare module.exports: $Exports<"material-ui/Tabs/Tab">;
+  declare module.exports: $Exports<"material-ui/Tabs/Tab">
 }
 declare module "material-ui/Tabs/TabIndicator.js" {
-  declare module.exports: $Exports<"material-ui/Tabs/TabIndicator">;
+  declare module.exports: $Exports<"material-ui/Tabs/TabIndicator">
 }
 declare module "material-ui/Tabs/Tabs.js" {
-  declare module.exports: $Exports<"material-ui/Tabs/Tabs">;
+  declare module.exports: $Exports<"material-ui/Tabs/Tabs">
 }
 declare module "material-ui/Tabs/TabScrollButton.js" {
-  declare module.exports: $Exports<"material-ui/Tabs/TabScrollButton">;
+  declare module.exports: $Exports<"material-ui/Tabs/TabScrollButton">
 }
 declare module "material-ui/TextField/index.js" {
-  declare module.exports: $Exports<"material-ui/TextField">;
+  declare module.exports: $Exports<"material-ui/TextField">
 }
 declare module "material-ui/TextField/TextField.js" {
-  declare module.exports: $Exports<"material-ui/TextField/TextField">;
+  declare module.exports: $Exports<"material-ui/TextField/TextField">
 }
 declare module "material-ui/Toolbar/index.js" {
-  declare module.exports: $Exports<"material-ui/Toolbar">;
+  declare module.exports: $Exports<"material-ui/Toolbar">
 }
 declare module "material-ui/Toolbar/Toolbar.js" {
-  declare module.exports: $Exports<"material-ui/Toolbar/Toolbar">;
+  declare module.exports: $Exports<"material-ui/Toolbar/Toolbar">
 }
 declare module "material-ui/Tooltip/index.js" {
-  declare module.exports: $Exports<"material-ui/Tooltip">;
+  declare module.exports: $Exports<"material-ui/Tooltip">
 }
 declare module "material-ui/Tooltip/Tooltip.js" {
-  declare module.exports: $Exports<"material-ui/Tooltip/Tooltip">;
+  declare module.exports: $Exports<"material-ui/Tooltip/Tooltip">
 }
 declare module "material-ui/transitions/Collapse.js" {
-  declare module.exports: $Exports<"material-ui/transitions/Collapse">;
+  declare module.exports: $Exports<"material-ui/transitions/Collapse">
 }
 declare module "material-ui/transitions/Fade.js" {
-  declare module.exports: $Exports<"material-ui/transitions/Fade">;
+  declare module.exports: $Exports<"material-ui/transitions/Fade">
 }
 declare module "material-ui/transitions/Grow.js" {
-  declare module.exports: $Exports<"material-ui/transitions/Grow">;
+  declare module.exports: $Exports<"material-ui/transitions/Grow">
 }
 declare module "material-ui/transitions/index.js" {
-  declare module.exports: $Exports<"material-ui/transitions">;
+  declare module.exports: $Exports<"material-ui/transitions">
 }
 declare module "material-ui/transitions/Slide.js" {
-  declare module.exports: $Exports<"material-ui/transitions/Slide">;
+  declare module.exports: $Exports<"material-ui/transitions/Slide">
 }
 declare module "material-ui/Typography/index.js" {
-  declare module.exports: $Exports<"material-ui/Typography">;
+  declare module.exports: $Exports<"material-ui/Typography">
 }
 declare module "material-ui/Typography/Typography.js" {
-  declare module.exports: $Exports<"material-ui/Typography/Typography">;
+  declare module.exports: $Exports<"material-ui/Typography/Typography">
 }
 declare module "material-ui/utils/addEventListener.js" {
-  declare module.exports: $Exports<"material-ui/utils/addEventListener">;
+  declare module.exports: $Exports<"material-ui/utils/addEventListener">
 }
 declare module "material-ui/utils/ClickAwayListener.js" {
-  declare module.exports: $Exports<"material-ui/utils/ClickAwayListener">;
+  declare module.exports: $Exports<"material-ui/utils/ClickAwayListener">
 }
 declare module "material-ui/utils/exactProp.js" {
-  declare module.exports: $Exports<"material-ui/utils/exactProp">;
+  declare module.exports: $Exports<"material-ui/utils/exactProp">
 }
 declare module "material-ui/utils/helpers.js" {
-  declare module.exports: $Exports<"material-ui/utils/helpers">;
+  declare module.exports: $Exports<"material-ui/utils/helpers">
 }
 declare module "material-ui/utils/keyboardFocus.js" {
-  declare module.exports: $Exports<"material-ui/utils/keyboardFocus">;
+  declare module.exports: $Exports<"material-ui/utils/keyboardFocus">
 }
 declare module "material-ui/utils/manageAriaHidden.js" {
-  declare module.exports: $Exports<"material-ui/utils/manageAriaHidden">;
+  declare module.exports: $Exports<"material-ui/utils/manageAriaHidden">
 }
 declare module "material-ui/utils/reactHelpers.js" {
-  declare module.exports: $Exports<"material-ui/utils/reactHelpers">;
+  declare module.exports: $Exports<"material-ui/utils/reactHelpers">
 }
 declare module "material-ui/utils/requirePropFactory.js" {
-  declare module.exports: $Exports<"material-ui/utils/requirePropFactory">;
+  declare module.exports: $Exports<"material-ui/utils/requirePropFactory">
 }
 declare module "material-ui/utils/withWidth.js" {
-  declare module.exports: $Exports<"material-ui/utils/withWidth">;
+  declare module.exports: $Exports<"material-ui/utils/withWidth">
 }
 
 declare module "material-ui" {
-  declare export var AppBar: $Exports<"material-ui/AppBar/AppBar">;
-  declare export var Avatar: $Exports<"material-ui/Avatar/Avatar">;
-  declare export var Badge: $Exports<"material-ui/Badge/Badge">;
+  declare export var AppBar: $Exports<"material-ui/AppBar/AppBar">
+  declare export var Avatar: $Exports<"material-ui/Avatar/Avatar">
+  declare export var Badge: $Exports<"material-ui/Badge/Badge">
   declare export var BottomNavigationAction: $Exports<
-    "material-ui/BottomNavigation/BottomNavigationAction"
-  >;
+    "material-ui/BottomNavigation/BottomNavigationAction",
+  >
 
   declare export var BottomNavigation: $Exports<
-    "material-ui/BottomNavigation/BottomNavigation"
-  >;
-  declare export var Button: $Exports<"material-ui/Button/Button">;
-  declare export var ButtonBase: $Exports<"material-ui/ButtonBase/ButtonBase">;
-  declare export var Card: $Exports<"material-ui/Card/Card">;
-  declare export var CardActions: $Exports<"material-ui/Card/CardActions">;
-  declare export var CardContent: $Exports<"material-ui/Card/CardContent">;
-  declare export var CardHeader: $Exports<"material-ui/Card/CardHeader">;
-  declare export var CardMedia: $Exports<"material-ui/Card/CardMedia">;
-  declare export var Checkbox: $Exports<"material-ui/Checkbox/Checkbox">;
-  declare export var Chip: $Exports<"material-ui/Chip/Chip">;
+    "material-ui/BottomNavigation/BottomNavigation",
+  >
+  declare export var Button: $Exports<"material-ui/Button/Button">
+  declare export var ButtonBase: $Exports<"material-ui/ButtonBase/ButtonBase">
+  declare export var Card: $Exports<"material-ui/Card/Card">
+  declare export var CardActions: $Exports<"material-ui/Card/CardActions">
+  declare export var CardContent: $Exports<"material-ui/Card/CardContent">
+  declare export var CardHeader: $Exports<"material-ui/Card/CardHeader">
+  declare export var CardMedia: $Exports<"material-ui/Card/CardMedia">
+  declare export var Checkbox: $Exports<"material-ui/Checkbox/Checkbox">
+  declare export var Chip: $Exports<"material-ui/Chip/Chip">
   declare export var ClickAwayListener: $Exports<
-    "material-ui/utils/ClickAwayListener"
-  >;
+    "material-ui/utils/ClickAwayListener",
+  >
   declare export var CssBaseline: $Exports<
-    "material-ui/CssBaseline/CssBaseline"
-  >;
+    "material-ui/CssBaseline/CssBaseline",
+  >
 
-  declare export var Dialog: $Exports<"material-ui/Dialog/Dialog">;
-  declare export var DialogActions: $Exports<
-    "material-ui/Dialog/DialogActions"
-  >;
-  declare export var DialogContent: $Exports<
-    "material-ui/Dialog/DialogContent"
-  >;
+  declare export var Dialog: $Exports<"material-ui/Dialog/Dialog">
+  declare export var DialogActions: $Exports<"material-ui/Dialog/DialogActions">
+  declare export var DialogContent: $Exports<"material-ui/Dialog/DialogContent">
   declare export var DialogContentText: $Exports<
-    "material-ui/Dialog/DialogContentText"
-  >;
-  declare export var DialogTitle: $Exports<"material-ui/Dialog/DialogTitle">;
+    "material-ui/Dialog/DialogContentText",
+  >
+  declare export var DialogTitle: $Exports<"material-ui/Dialog/DialogTitle">
   declare export var withMobileDialog: $Exports<
-    "material-ui/Dialog/withMobileDialog"
-  >;
-  declare export var Divider: $Exports<"material-ui/Divider/Divider">;
-  declare export var Drawer: $Exports<"material-ui/Drawer/Drawer">;
+    "material-ui/Dialog/withMobileDialog",
+  >
+  declare export var Divider: $Exports<"material-ui/Divider/Divider">
+  declare export var Drawer: $Exports<"material-ui/Drawer/Drawer">
   declare export var ExpansionPanel: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanel"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanel",
+  >
   declare export var ExpansionPanelActions: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelActions"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelActions",
+  >
   declare export var ExpansionPanelDetails: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelDetails"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelDetails",
+  >
   declare export var ExpansionPanelSummary: $Exports<
-    "material-ui/ExpansionPanel/ExpansionPanelSummary"
-  >;
+    "material-ui/ExpansionPanel/ExpansionPanelSummary",
+  >
 
-  declare export var FormControl: $Exports<"material-ui/Form/FormControl">;
-  declare export var FormGroup: $Exports<"material-ui/Form/FormGroup">;
-  declare export var FormLabel: $Exports<"material-ui/Form/FormLabel">;
-  declare export var FormHelperText: $Exports<
-    "material-ui/Form/FormHelperText"
-  >;
+  declare export var FormControl: $Exports<"material-ui/Form/FormControl">
+  declare export var FormGroup: $Exports<"material-ui/Form/FormGroup">
+  declare export var FormLabel: $Exports<"material-ui/Form/FormLabel">
+  declare export var FormHelperText: $Exports<"material-ui/Form/FormHelperText">
   declare export var FormControlLabel: $Exports<
-    "material-ui/Form/FormControlLabel"
-  >;
-  declare export var Hidden: $Exports<"material-ui/Hidden/Hidden">;
-  declare export var Icon: $Exports<"material-ui/Icon/Icon">;
-  declare export var IconButton: $Exports<"material-ui/IconButton/IconButton">;
-  declare export var Input: $Exports<"material-ui/Input/Input">;
-  declare export var InputLabel: $Exports<"material-ui/Input/InputLabel">;
+    "material-ui/Form/FormControlLabel",
+  >
+  declare export var Hidden: $Exports<"material-ui/Hidden/Hidden">
+  declare export var Icon: $Exports<"material-ui/Icon/Icon">
+  declare export var IconButton: $Exports<"material-ui/IconButton/IconButton">
+  declare export var Input: $Exports<"material-ui/Input/Input">
+  declare export var InputLabel: $Exports<"material-ui/Input/InputLabel">
   declare export var InputAdornment: $Exports<
-    "material-ui/Input/InputAdornment"
-  >;
-  declare export var Grid: $Exports<"material-ui/Grid/Grid">;
-  declare export var GridList: $Exports<"material-ui/GridList/GridList">;
-  declare export var GridListTile: $Exports<
-    "material-ui/GridList/GridListTile"
-  >;
+    "material-ui/Input/InputAdornment",
+  >
+  declare export var Grid: $Exports<"material-ui/Grid/Grid">
+  declare export var GridList: $Exports<"material-ui/GridList/GridList">
+  declare export var GridListTile: $Exports<"material-ui/GridList/GridListTile">
   declare export var GridListTileBar: $Exports<
-    "material-ui/GridList/GridListTileBar"
-  >;
-  declare export var List: $Exports<"material-ui/List/List">;
-  declare export var ListItem: $Exports<"material-ui/List/ListItem">;
-  declare export var ListItemAvatar: $Exports<
-    "material-ui/List/ListItemAvatar"
-  >;
-  declare export var ListItemIcon: $Exports<"material-ui/List/ListItemIcon">;
+    "material-ui/GridList/GridListTileBar",
+  >
+  declare export var List: $Exports<"material-ui/List/List">
+  declare export var ListItem: $Exports<"material-ui/List/ListItem">
+  declare export var ListItemAvatar: $Exports<"material-ui/List/ListItemAvatar">
+  declare export var ListItemIcon: $Exports<"material-ui/List/ListItemIcon">
   declare export var ListItemSecondaryAction: $Exports<
-    "material-ui/List/ListItemSecondaryAction"
-  >;
-  declare export var ListItemText: $Exports<"material-ui/List/ListItemText">;
-  declare export var ListSubheader: $Exports<"material-ui/List/ListSubheader">;
-  declare export var Menu: $Exports<"material-ui/Menu/Menu">;
-  declare export var MenuItem: $Exports<"material-ui/Menu/MenuItem">;
-  declare export var MenuList: $Exports<"material-ui/Menu/MenuList">;
+    "material-ui/List/ListItemSecondaryAction",
+  >
+  declare export var ListItemText: $Exports<"material-ui/List/ListItemText">
+  declare export var ListSubheader: $Exports<"material-ui/List/ListSubheader">
+  declare export var Menu: $Exports<"material-ui/Menu/Menu">
+  declare export var MenuItem: $Exports<"material-ui/Menu/MenuItem">
+  declare export var MenuList: $Exports<"material-ui/Menu/MenuList">
   declare export var MobileStepper: $Exports<
-    "material-ui/MobileStepper/MobileStepper"
-  >;
-  declare export var Modal: $Exports<"material-ui/Modal/Modal">;
-  declare export var Backdrop: $Exports<"material-ui/Modal/Backdrop">;
-  declare export var ModalManager: $Exports<"material-ui/Modal/ModalManager">;
-  declare export var Paper: $Exports<"material-ui/Paper/Paper">;
-  declare export var Popover: $Exports<"material-ui/Popover/Popover">;
-  declare export var Portal: $Exports<"material-ui/Portal/Portal">;
+    "material-ui/MobileStepper/MobileStepper",
+  >
+  declare export var Modal: $Exports<"material-ui/Modal/Modal">
+  declare export var Backdrop: $Exports<"material-ui/Modal/Backdrop">
+  declare export var ModalManager: $Exports<"material-ui/Modal/ModalManager">
+  declare export var Paper: $Exports<"material-ui/Paper/Paper">
+  declare export var Popover: $Exports<"material-ui/Popover/Popover">
+  declare export var Portal: $Exports<"material-ui/Portal/Portal">
   declare export var CircularProgress: $Exports<
-    "material-ui/Progress/CircularProgress"
-  >;
+    "material-ui/Progress/CircularProgress",
+  >
   declare export var LinearProgress: $Exports<
-    "material-ui/Progress/LinearProgress"
-  >;
-  declare export var Radio: $Exports<"material-ui/Radio/Radio">;
-  declare export var RadioGroup: $Exports<"material-ui/Radio/RadioGroup">;
-  declare export var Select: $Exports<"material-ui/Select/Select">;
-  declare export var Snackbar: $Exports<"material-ui/Snackbar/Snackbar">;
+    "material-ui/Progress/LinearProgress",
+  >
+  declare export var Radio: $Exports<"material-ui/Radio/Radio">
+  declare export var RadioGroup: $Exports<"material-ui/Radio/RadioGroup">
+  declare export var Select: $Exports<"material-ui/Select/Select">
+  declare export var Snackbar: $Exports<"material-ui/Snackbar/Snackbar">
   declare export var SnackbarContent: $Exports<
-    "material-ui/Snackbar/SnackbarContent"
-  >;
-  declare export var Stepper: $Exports<"material-ui/Stepper/Stepper">;
-  declare export var Step: $Exports<"material-ui/Stepper/Step">;
-  declare export var StepButton: $Exports<"material-ui/Stepper/StepButton">;
-  declare export var StepIcon: $Exports<"material-ui/Stepper/StepIcon">;
-  declare export var StepContent: $Exports<"material-ui/Stepper/StepContent">;
-  declare export var StepLabel: $Exports<"material-ui/Stepper/StepLabel">;
+    "material-ui/Snackbar/SnackbarContent",
+  >
+  declare export var Stepper: $Exports<"material-ui/Stepper/Stepper">
+  declare export var Step: $Exports<"material-ui/Stepper/Step">
+  declare export var StepButton: $Exports<"material-ui/Stepper/StepButton">
+  declare export var StepIcon: $Exports<"material-ui/Stepper/StepIcon">
+  declare export var StepContent: $Exports<"material-ui/Stepper/StepContent">
+  declare export var StepLabel: $Exports<"material-ui/Stepper/StepLabel">
   declare export var MuiThemeProvider: $Exports<
-    "material-ui/styles/MuiThemeProvider"
-  >;
-  declare export var withStyles: $Exports<"material-ui/styles/withStyles">;
-  declare export var withTheme: $Exports<"material-ui/styles/withTheme">;
+    "material-ui/styles/MuiThemeProvider",
+  >
+  declare export var withStyles: $Exports<"material-ui/styles/withStyles">
+  declare export var withTheme: $Exports<"material-ui/styles/withTheme">
   declare export var createMuiTheme: $Exports<
-    "material-ui/styles/createMuiTheme"
-  >;
-  declare export var jssPreset: $Exports<"material-ui/styles/jssPreset">;
-  declare export var SvgIcon: $Exports<"material-ui/SvgIcon/SvgIcon">;
-  declare export var SwipeableDrawer: $Exports<"material-ui/SwipeableDrawer">;
-  declare export var Switch: $Exports<"material-ui/Switch/Switch">;
-  declare export var Table: $Exports<"material-ui/Table/Table">;
-  declare export var TableBody: $Exports<"material-ui/Table/TableBody">;
-  declare export var TableCell: $Exports<"material-ui/Table/TableCell">;
-  declare export var TableFooter: $Exports<"material-ui/Table/TableFooter">;
-  declare export var TableHead: $Exports<"material-ui/Table/TableHead">;
+    "material-ui/styles/createMuiTheme",
+  >
+  declare export var jssPreset: $Exports<"material-ui/styles/jssPreset">
+  declare export var SvgIcon: $Exports<"material-ui/SvgIcon/SvgIcon">
+  declare export var SwipeableDrawer: $Exports<"material-ui/SwipeableDrawer">
+  declare export var Switch: $Exports<"material-ui/Switch/Switch">
+  declare export var Table: $Exports<"material-ui/Table/Table">
+  declare export var TableBody: $Exports<"material-ui/Table/TableBody">
+  declare export var TableCell: $Exports<"material-ui/Table/TableCell">
+  declare export var TableFooter: $Exports<"material-ui/Table/TableFooter">
+  declare export var TableHead: $Exports<"material-ui/Table/TableHead">
   declare export var TablePagination: $Exports<
-    "material-ui/Table/TablePagination"
-  >;
-  declare export var TableRow: $Exports<"material-ui/Table/TableRow">;
+    "material-ui/Table/TablePagination",
+  >
+  declare export var TableRow: $Exports<"material-ui/Table/TableRow">
   declare export var TableSortLabel: $Exports<
-    "material-ui/Table/TableSortLabel"
-  >;
-  declare export var Tabs: $Exports<"material-ui/Tabs/Tab">;
-  declare export var Tab: $Exports<"material-ui/Tabs/Tab">;
-  declare export var Typography: $Exports<"material-ui/Typography/Typography">;
-  declare export var TextField: $Exports<"material-ui/TextField/TextField">;
-  declare export var Toolbar: $Exports<"material-ui/Toolbar/Toolbar">;
-  declare export var Tooltip: $Exports<"material-ui/Tooltip/Tooltip">;
-  declare export var Slide: $Exports<"material-ui/transitions/Slide">;
-  declare export var Grow: $Exports<"material-ui/transitions/Grow">;
-  declare export var Fade: $Exports<"material-ui/transitions/Fade">;
-  declare export var Collapse: $Exports<"material-ui/transitions/Collapse">;
-  declare export var Zoom: $Exports<"material-ui/transitions/Zoom">;
+    "material-ui/Table/TableSortLabel",
+  >
+  declare export var Tabs: $Exports<"material-ui/Tabs/Tab">
+  declare export var Tab: $Exports<"material-ui/Tabs/Tab">
+  declare export var Typography: $Exports<"material-ui/Typography/Typography">
+  declare export var TextField: $Exports<"material-ui/TextField/TextField">
+  declare export var Toolbar: $Exports<"material-ui/Toolbar/Toolbar">
+  declare export var Tooltip: $Exports<"material-ui/Tooltip/Tooltip">
+  declare export var Slide: $Exports<"material-ui/transitions/Slide">
+  declare export var Grow: $Exports<"material-ui/transitions/Grow">
+  declare export var Fade: $Exports<"material-ui/transitions/Fade">
+  declare export var Collapse: $Exports<"material-ui/transitions/Collapse">
+  declare export var Zoom: $Exports<"material-ui/transitions/Zoom">
 
-  declare export var withWidth: $Exports<"material-ui/utils/withWidth">;
-  declare export var common: $Exports<"material-ui/colors/common">;
-  declare export var red: $Exports<"material-ui/colors/red">;
-  declare export var pink: $Exports<"material-ui/colors/pink">;
-  declare export var purple: $Exports<"material-ui/colors/purple">;
-  declare export var deepPurple: $Exports<"material-ui/colors/deepPurple">;
-  declare export var indigo: $Exports<"material-ui/colors/indigo">;
-  declare export var blue: $Exports<"material-ui/colors/blue">;
-  declare export var lightBlue: $Exports<"material-ui/colors/lightBlue">;
-  declare export var cyan: $Exports<"material-ui/colors/cyan">;
-  declare export var teal: $Exports<"material-ui/colors/teal">;
-  declare export var green: $Exports<"material-ui/colors/green">;
-  declare export var lightGreen: $Exports<"material-ui/colors/lightGreen">;
-  declare export var lime: $Exports<"material-ui/colors/lime">;
-  declare export var yellow: $Exports<"material-ui/colors/yellow">;
-  declare export var amber: $Exports<"material-ui/colors/amber">;
-  declare export var orange: $Exports<"material-ui/colors/orange">;
-  declare export var deepOrange: $Exports<"material-ui/colors/deepOrange">;
-  declare export var brown: $Exports<"material-ui/colors/brown">;
-  declare export var grey: $Exports<"material-ui/colors/grey">;
-  declare export var blueGrey: $Exports<"material-ui/colors/blueGrey">;
+  declare export var withWidth: $Exports<"material-ui/utils/withWidth">
+  declare export var common: $Exports<"material-ui/colors/common">
+  declare export var red: $Exports<"material-ui/colors/red">
+  declare export var pink: $Exports<"material-ui/colors/pink">
+  declare export var purple: $Exports<"material-ui/colors/purple">
+  declare export var deepPurple: $Exports<"material-ui/colors/deepPurple">
+  declare export var indigo: $Exports<"material-ui/colors/indigo">
+  declare export var blue: $Exports<"material-ui/colors/blue">
+  declare export var lightBlue: $Exports<"material-ui/colors/lightBlue">
+  declare export var cyan: $Exports<"material-ui/colors/cyan">
+  declare export var teal: $Exports<"material-ui/colors/teal">
+  declare export var green: $Exports<"material-ui/colors/green">
+  declare export var lightGreen: $Exports<"material-ui/colors/lightGreen">
+  declare export var lime: $Exports<"material-ui/colors/lime">
+  declare export var yellow: $Exports<"material-ui/colors/yellow">
+  declare export var amber: $Exports<"material-ui/colors/amber">
+  declare export var orange: $Exports<"material-ui/colors/orange">
+  declare export var deepOrange: $Exports<"material-ui/colors/deepOrange">
+  declare export var brown: $Exports<"material-ui/colors/brown">
+  declare export var grey: $Exports<"material-ui/colors/grey">
+  declare export var blueGrey: $Exports<"material-ui/colors/blueGrey">
 }
