@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { SnackbarContent } from "material-ui/Snackbar"
+import SnackbarContent from "@material-ui/core/SnackbarContent"
 import styled from "styled-components"
 
 // change background color of snackbar
@@ -12,7 +12,7 @@ const SnackbarStyle = styled(SnackbarContent)`
 
 type Props = {
   /** The error message to display */
-  error: string
+  error: string,
 }
 
 const ProtectedRouteNotification = (props: Props) => {
