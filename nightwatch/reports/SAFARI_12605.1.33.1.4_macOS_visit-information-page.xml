@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="visit-information-page"
+    errors="0" failures="1" hostname="" id="" package="visit-information-page" skipped="0"
+    tests="1" time="12.52" timestamp="Fri, 01 Jun 2018 16:11:26 GMT">
+  
+    <testcase name="browse information pages" classname="visit-information-page" time="12.52" assertions="3">
+
+    
+
+      <failure message="Failed [equal]: (&#39;‌&#39; == &#39;Ordering Information&#39;)">    at Object.&lt;anonymous&gt; (/Users/ech0266/Documents/Github/Dicty-Stock-Center/nightwatch/visit-information-page.js:9:21)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

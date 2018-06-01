@@ -8,7 +8,9 @@ module.exports = {
       .getText("h1", function(res) {
         this.assert.equal(res.value, "Contact Us")
       })
-    browser.assert.urlContains("contact")
+    browser.assert
+      .urlContains("contact")
+      .saveScreenshot("./nightwatch/snapshots/contact-page-snapshot.png")
+      .end()
   },
-  close: browser => {},
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="2">
+            tests="1">
 
   <testsuite name="visit-contact-page"
     errors="0" failures="0" hostname="" id="" package="visit-contact-page" skipped="0"
-    tests="2" time="12.77" timestamp="Tue, 29 May 2018 22:23:14 GMT">
+    tests="1" time="22.72" timestamp="Fri, 01 Jun 2018 16:10:57 GMT">
   
-    <testcase name="get to contact page" classname="visit-contact-page" time="12.77" assertions="4">
+    <testcase name="get to contact page" classname="visit-contact-page" time="22.72" assertions="4">
 
     
 
@@ -16,9 +16,6 @@
     
 
     
-    </testcase>
-  
-    <testcase name="close" classname="visit-contact-page" time="0.001000" assertions="0">
     </testcase>
   
 
