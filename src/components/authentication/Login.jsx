@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
-import ProtectedRouteNotification from "components/authentication/ProtectedRouteNotification"
+import ErrorNotification from "components/authentication/ErrorNotification"
 import { Flex, Box } from "rebass"
 import { DictyHeader } from "styles"
 import type { MapStateToProps } from "react-redux"
@@ -65,18 +65,17 @@ class Login extends Component<Props> {
     )
   }
   render() {
+    const { auth } = this.props
     const { state = {} } = this.props.location
     const { error } = state
     return (
       <Flex justify="center">
-        <Box w={[1, "60%", "40%"]}>
+        <Box w={["100%", "60%", "40%"]}>
           <DictyHeader>
             <h1>Log in</h1>
           </DictyHeader>
-          {error && <ProtectedRouteNotification error={error} />}
-          {this.props.auth.error && (
-            <ProtectedRouteNotification error={this.props.auth.error} />
-          )}
+          {error && <ErrorNotification error={error} />}
+          {auth.error && <ErrorNotification error={auth.error} />}
           <Flex justify="center">
             <Box w={"17%"} />
             <Box w={"83%"}>

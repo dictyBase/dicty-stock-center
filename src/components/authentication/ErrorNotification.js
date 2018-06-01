@@ -15,7 +15,7 @@ type Props = {
   error: string,
 }
 
-const ProtectedRouteNotification = (props: Props) => {
+const ErrorNotification = (props: Props) => {
   return (
     <center>
       <SnackbarStyle message={props.error} />
@@ -25,4 +25,4 @@ const ProtectedRouteNotification = (props: Props) => {
   )
 }
 
-export default ProtectedRouteNotification
+export default ErrorNotification

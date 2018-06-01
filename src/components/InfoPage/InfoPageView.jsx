@@ -11,6 +11,7 @@ import findLinkEntities from "utils/findLinkEntities"
 import { ContentAPI } from "utils/apiClasses"
 import Link from "components/Link"
 import Authorization from "components/authentication/Authorization"
+import ErrorNotification from "components/authentication/ErrorNotification"
 import timeSince from "utils/timeSince"
 import { AuthenticatedUser } from "utils/apiClasses"
 import { editPage } from "actions/page"
@@ -25,6 +26,9 @@ const decorator = [
     component: Link,
   },
 ]
+
+const error =
+  "Your login token is expired. Please log out and then log back in to regain full user access."
 
 type Props = {
   /** React Router's match object */
@@ -79,6 +83,11 @@ class InfoPageView extends Component<Props, State> {
           render={({ canEditPages, fetchedUserData, verifiedToken }) => {
             return (
               <div>
+                {canEditPages &&
+                  verifiedToken === false && (
+                    <ErrorNotification error={error} />
+                  )}
+                <br />
                 {canEditPages && (
                   <ToolbarNav>
                     <Flex>
