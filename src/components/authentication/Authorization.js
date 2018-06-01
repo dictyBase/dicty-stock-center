@@ -7,6 +7,7 @@ import {
   AuthAPI,
 } from "utils/apiClasses"
 import { dsccontent } from "constants/resources"
+import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** contains the object representing the logged in user's data */
@@ -15,6 +16,8 @@ type Props = {
   roles: Object,
   /** contains the object representing the fetched (non-authenticated) user's data */
   fetchedUserData: Object,
+  /** contains the object representing the AuthAPI */
+  verifiedToken: Object,
   /** render props; function passed in by another component */
   render: Function,
 }
