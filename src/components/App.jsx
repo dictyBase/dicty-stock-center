@@ -5,19 +5,19 @@ import { Navbar } from "dicty-components-navbar"
 import {
   headerItems,
   loggedHeaderItems,
-  generateLinks
+  generateLinks,
 } from "utils/headerItems"
 import Cart from "components/Cart"
 import RenderRoutes from "routes/RenderRoutes"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
-import { FooterLinks } from "constants/footer"
-import { NavbarLinks } from "constants/navbar"
+import { FooterLinks } from "constants/Rooter"
+import { NavbarLinks } from "constants/Navbar"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
   cart: Object,
-  auth: Object
+  auth: Object,
 }
 
 const App = (props: Props) => {
@@ -42,7 +42,7 @@ const App = (props: Props) => {
 
 const mapStateToProps: MapStateToProps<*, *, *> = ({ auth, cart }) => ({
   auth,
-  cart
+  cart,
 })
 
 export default withRouter(connect(mapStateToProps)(App))
