@@ -8,3 +8,4 @@ coverage
 clientConfig.js
 client/
 .env.development.local
+build/
