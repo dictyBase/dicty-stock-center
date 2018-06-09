@@ -1,7 +1,7 @@
 # It's a multi stage build https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
 # The first one build single file js for the web app
 # The second one copies the file and server with a golang static web server
-FROM node:8.11.2-alpine
+FROM node:10.4.0-alpine
 LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 LABEL maintainer "Eric Hartline <eric.hartline@northwestern.edu>"
 
