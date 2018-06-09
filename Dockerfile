@@ -1,3 +1,6 @@
+# It's a multi stage build https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
+# The first one build single file js for the web app
+# The second one copies the file and server with a golang static web server
 FROM node:8.11.2-alpine
 LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 LABEL maintainer "Eric Hartline <eric.hartline@northwestern.edu>"
@@ -16,7 +19,7 @@ ENV REACT_APP_AUTH_SERVER ${auth_server:-http://betaauth.dictybase.local}
 
 # base path for React Router
 ARG basename
-ENV REACT_APP_BASENAME $basename
+ENV REACT_APP_BASENAME ${basename:-stockcenter}
 
 # Setup client keys for third party auth
 ARG client_keys
@@ -40,11 +43,11 @@ ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 # Use same node path
 ENV NODE_PATH src
 
-# install dependencies
-RUN npm install
+#
+RUN npm install && npm run build
 
-# build app
-RUN npm run build
-
-
-
+FROM dictybase/static-server:0.0.1
+RUN mkdir /www
+WORKDIR /www
+COPY --from=0 /usr/src/app/build/* ./
+ENTRYPOINT ["/usr/local/bin/app"]
