@@ -1,63 +1,117 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
-import asyncComponent from "utils/asyncComponent"
+import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
+import Loader from "components/Loader"
 
 // homepage route
-const Homepage = asyncComponent(() => import("components/Home/Homepage"))
+const Homepage = Loadable({
+  loader: () => import("components/Home/Homepage"),
+  loading: Loader,
+})
 
 // authentication routes
-const Login = asyncComponent(() => import("components/authentication/Login"))
-const OauthCallback = asyncComponent(() =>
-  import("components/authentication/OauthCallback"),
-)
-const AuthLoader = asyncComponent(() =>
-  import("components/authentication/AuthLoader"),
-)
-const Logout = asyncComponent(() => import("components/authentication/Logout"))
-const MyDsc = asyncComponent(() => import("components/MyDsc"))
+const Login = Loadable({
+  loader: () => import("components/authentication/Login"),
+  loading: Loader,
+})
+const OauthCallback = Loadable({
+  loader: () => import("components/authentication/OauthCallback"),
+  loading: Loader,
+})
+const AuthLoader = Loadable({
+  loader: () => import("components/authentication/AuthLoader"),
+  loading: Loader,
+})
+const Logout = Loadable({
+  loader: () => import("components/authentication/Logout"),
+  loading: Loader,
+})
+const MyDsc = Loadable({
+  loader: () => import("components/MyDsc"),
+  loading: Loader,
+})
 
 // infopage routes
-const InfoPage = asyncComponent(() => import("components/InfoPage/InfoPage"))
-const EditInfoPage = asyncComponent(() =>
-  import("components/InfoPage/EditInfoPage"),
-)
+const InfoPage = Loadable({
+  loader: () => import("components/InfoPage/InfoPage"),
+  loading: Loader,
+})
+const EditInfoPage = Loadable({
+  loader: () => import("components/InfoPage/EditInfoPage"),
+  loading: Loader,
+})
 
 // strains routes
-const Strains = asyncComponent(() => import("components/Strains"))
-const StrainDetail = asyncComponent(() =>
-  import("components/Strains/StrainDetail"),
-)
+const Strains = Loadable({
+  loader: () => import("components/Strains"),
+  loading: Loader,
+})
+const StrainDetail = Loadable({
+  loader: () => import("components/Strains/StrainDetail"),
+  loading: Loader,
+})
 
 // plasmids routes
-const Plasmids = asyncComponent(() => import("components/Plasmids"))
-const PlasmidDetail = asyncComponent(() =>
-  import("components/Plasmids/PlasmidDetail"),
-)
+const Plasmids = Loadable({
+  loader: () => import("components/Plasmids"),
+  loading: Loader,
+})
+const PlasmidDetail = Loadable({
+  loader: () => import("components/Plasmids/PlasmidDetail"),
+  loading: Loader,
+})
 
 // order form routes
-const Shipping = asyncComponent(() => import("components/form/Shipping"))
-const EditShipping = asyncComponent(() =>
-  import("components/form/EditShipping"),
-)
-const Payment = asyncComponent(() => import("components/form/Payment"))
-const EditPayment = asyncComponent(() => import("components/form/EditPayment"))
-const Submit = asyncComponent(() => import("components/form/Submit"))
-const SubmitLoader = asyncComponent(() =>
-  import("components/form/SubmitLoader"),
-)
-const OrderConfirmation = asyncComponent(() =>
-  import("components/OrderConfirmation"),
-)
+const Shipping = Loadable({
+  loader: () => import("components/form/Shipping"),
+  loading: Loader,
+})
+const EditShipping = Loadable({
+  loader: () => import("components/form/EditShipping"),
+  loading: Loader,
+})
+const Payment = Loadable({
+  loader: () => import("components/form/Payment"),
+  loading: Loader,
+})
+const EditPayment = Loadable({
+  loader: () => import("components/form/EditPayment"),
+  loading: Loader,
+})
+const Submit = Loadable({
+  loader: () => import("components/form/Submit"),
+  loading: Loader,
+})
+const SubmitLoader = Loadable({
+  loader: () => import("components/form/SubmitLoader"),
+  loading: Loader,
+})
+const OrderConfirmation = Loadable({
+  loader: () => import("components/OrderConfirmation"),
+  loading: Loader,
+})
 
 // misc routes
-const Contact = asyncComponent(() => import("components/Contact"))
-const Error = asyncComponent(() => import("components/Error"))
-const ShoppingCart = asyncComponent(() => import("components/ShoppingCart"))
+const Contact = Loadable({
+  loader: () => import("components/Contact"),
+  loading: Loader,
+})
+const Error = Loadable({
+  loader: () => import("components/Error"),
+  loading: Loader,
+})
+const ShoppingCart = Loadable({
+  loader: () => import("components/ShoppingCart"),
+  loading: Loader,
+})
 
 // custom 404 route
-const PageNotReady = asyncComponent(() => import("components/PageNotReady"))
+const PageNotReady = Loadable({
+  loader: () => import("components/PageNotReady"),
+  loading: Loader,
+})
 
 const RenderRoutes = () => {
   return (

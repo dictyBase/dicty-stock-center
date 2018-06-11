@@ -15,7 +15,7 @@ type Props = {
   /** React Router's match object */
   match: Object,
   /** Action creator that fetches data from API */
-  fetchInfoPage: Function
+  fetchInfoPage: Function,
 }
 
 /**
@@ -27,9 +27,9 @@ class InfoPage extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
-        attributes: {}
-      }
-    }
+        attributes: {},
+      },
+    },
   }
   componentDidMount() {
     const { match, fetchInfoPage } = this.props
@@ -44,7 +44,7 @@ class InfoPage extends Component<Props> {
     }
     return (
       <Flex justify="center">
-        <Box w={"70%"}>
+        <Box w={"50%"}>
           <h1>
             <Skeleton />
           </h1>
@@ -65,8 +65,11 @@ const mapStateToProps = (state, ownProps) => {
   const slugName = `${NAMESPACE}-${ownProps.match.params.name}`
   return {
     isFetching: state.page.isFetching,
-    page: state.page[slugName]
+    page: state.page[slugName],
   }
 }
 
-export default connect(mapStateToProps, { fetchInfoPage })(InfoPage)
+export default connect(
+  mapStateToProps,
+  { fetchInfoPage },
+)(InfoPage)
