@@ -7,109 +7,128 @@ import Loader from "components/Loader"
 
 // homepage route
 const Homepage = Loadable({
-  loader: () => import("components/Home/Homepage"),
+  loader: () =>
+    import("components/Home/Homepage" /* webpackChunkName: "Homepage" */),
   loading: Loader,
 })
 
 // authentication routes
 const Login = Loadable({
-  loader: () => import("components/authentication/Login"),
+  loader: () =>
+    import("components/authentication/Login" /* webpackChunkName: "Login" */),
   loading: Loader,
 })
 const OauthCallback = Loadable({
-  loader: () => import("components/authentication/OauthCallback"),
+  loader: () =>
+    import("components/authentication/OauthCallback" /* webpackChunkName: "OauthCallback" */),
   loading: Loader,
 })
 const AuthLoader = Loadable({
-  loader: () => import("components/authentication/AuthLoader"),
+  loader: () =>
+    import("components/authentication/AuthLoader" /* webpackChunkName: "AuthLoader" */),
   loading: Loader,
 })
 const Logout = Loadable({
-  loader: () => import("components/authentication/Logout"),
+  loader: () =>
+    import("components/authentication/Logout" /* webpackChunkName: "Logout" */),
   loading: Loader,
 })
 const MyDsc = Loadable({
-  loader: () => import("components/MyDsc"),
+  loader: () => import("components/MyDsc" /* webpackChunkName: "MyDsc" */),
   loading: Loader,
 })
 
 // infopage routes
 const InfoPage = Loadable({
-  loader: () => import("components/InfoPage/InfoPage"),
+  loader: () =>
+    import("components/InfoPage/InfoPage" /* webpackChunkName: "InfoPage" */),
   loading: Loader,
 })
 const EditInfoPage = Loadable({
-  loader: () => import("components/InfoPage/EditInfoPage"),
+  loader: () =>
+    import("components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */),
   loading: Loader,
 })
 
 // strains routes
 const Strains = Loadable({
-  loader: () => import("components/Strains"),
+  loader: () => import("components/Strains" /* webpackChunkName: "Strains" */),
   loading: Loader,
 })
 const StrainDetail = Loadable({
-  loader: () => import("components/Strains/StrainDetail"),
+  loader: () =>
+    import("components/Strains/StrainDetail" /* webpackChunkName: "StrainDetail" */),
   loading: Loader,
 })
 
 // plasmids routes
 const Plasmids = Loadable({
-  loader: () => import("components/Plasmids"),
+  loader: () =>
+    import("components/Plasmids" /* webpackChunkName: "Plasmids" */),
   loading: Loader,
 })
 const PlasmidDetail = Loadable({
-  loader: () => import("components/Plasmids/PlasmidDetail"),
+  loader: () =>
+    import("components/Plasmids/PlasmidDetail" /* webpackChunkName: "PlasmidDetail" */),
   loading: Loader,
 })
 
 // order form routes
 const Shipping = Loadable({
-  loader: () => import("components/form/Shipping"),
+  loader: () =>
+    import("components/form/Shipping" /* webpackChunkName: "Shipping" */),
   loading: Loader,
 })
 const EditShipping = Loadable({
-  loader: () => import("components/form/EditShipping"),
+  loader: () =>
+    import("components/form/EditShipping" /* webpackChunkName: "EditShipping" */),
   loading: Loader,
 })
 const Payment = Loadable({
-  loader: () => import("components/form/Payment"),
+  loader: () =>
+    import("components/form/Payment" /* webpackChunkName: "Payment" */),
   loading: Loader,
 })
 const EditPayment = Loadable({
-  loader: () => import("components/form/EditPayment"),
+  loader: () =>
+    import("components/form/EditPayment" /* webpackChunkName: "EditPayment" */),
   loading: Loader,
 })
 const Submit = Loadable({
-  loader: () => import("components/form/Submit"),
+  loader: () =>
+    import("components/form/Submit" /* webpackChunkName: "Submit" */),
   loading: Loader,
 })
 const SubmitLoader = Loadable({
-  loader: () => import("components/form/SubmitLoader"),
+  loader: () =>
+    import("components/form/SubmitLoader" /* webpackChunkName: "SubmitLoader" */),
   loading: Loader,
 })
 const OrderConfirmation = Loadable({
-  loader: () => import("components/OrderConfirmation"),
+  loader: () =>
+    import("components/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */),
   loading: Loader,
 })
 
 // misc routes
 const Contact = Loadable({
-  loader: () => import("components/Contact"),
+  loader: () => import("components/Contact" /* webpackChunkName: "Contact" */),
   loading: Loader,
 })
 const Error = Loadable({
-  loader: () => import("components/Error"),
+  loader: () => import("components/Error" /* webpackChunkName: "Error" */),
   loading: Loader,
 })
 const ShoppingCart = Loadable({
-  loader: () => import("components/ShoppingCart"),
+  loader: () =>
+    import("components/ShoppingCart" /* webpackChunkName: "ShoppingCart" */),
   loading: Loader,
 })
 
 // custom 404 route
 const PageNotReady = Loadable({
-  loader: () => import("components/PageNotReady"),
+  loader: () =>
+    import("components/PageNotReady" /* webpackChunkName: "PageNotReady" */),
   loading: Loader,
 })
 
