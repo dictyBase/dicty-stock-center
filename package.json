@@ -39,7 +39,7 @@
     "core-js": "^2.5.3",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v4.2.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login",
-    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.1.1",
+    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.2.0",
     "dicty-components-panel": "github:dictyBase/dicty-components-panel",
     "dicty-components-redux": "github:dictybase-playground/dicty-components-redux",
     "draft-js": "^0.10.1",
