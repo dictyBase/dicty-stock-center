@@ -1,7 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of PaymentMethod 1`] = `
+.c0 {
+  margin-top: 5px;
+  border: 1px solid;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  font-size: 14px;
+  line-height: 1.4285714;
+  color: #333;
+  border-radius: 4px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
 .c1 {
+  background-color: #15317e;
+  border-color: #ddd;
+  padding: 10px 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  cursor: pointer;
+}
+
+.c2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.c3 {
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.c4 {
+  padding: 0px 15px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-top: 1px solid;
+  border-top-width: 1px;
+  -webkit-transition: height 600ms cubic-bezier(0.23,1,0.32,1),border-top-width 400ms cubic-bezier(0.23,1,0.32,1);
+  transition: height 600ms cubic-bezier(0.23,1,0.32,1),border-top-width 400ms cubic-bezier(0.23,1,0.32,1);
+  height: auto;
+  overflow: hidden;
+}
+
+.c5 {
+  height: 15px;
+}
+
+.c7 {
   display: inline-block;
   padding-top: 7px;
   margin-bottom: 0;
@@ -9,12 +65,12 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
   font-weight: 600;
 }
 
-.c0 {
+.c6 {
   margin-right: -15px;
   margin-left: -15px;
 }
 
-.c3 {
+.c9 {
   position: relative;
   display: inline-block;
   padding-right: 20px;
@@ -24,12 +80,12 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
   cursor: pointer;
 }
 
-.c2 {
+.c8 {
   color: #dc3545;
 }
 
 <div
-  className="gsdTnU"
+  className="c0"
   style={
     Object {
       "border": "1px solid #D2D7D3",
@@ -39,7 +95,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
   }
 >
   <div
-    className="bBgvkp"
+    className="c1"
     onClick={[Function]}
     style={
       Object {
@@ -51,7 +107,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
     }
   >
     <h3
-      className="jXCrp"
+      className="c2"
       style={
         Object {
           "color": "#ffffff",
@@ -61,7 +117,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
       }
     >
       <div
-        className="kyzudI"
+        className="c3"
         onClick={[Function]}
       >
         Method
@@ -69,29 +125,29 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
     </h3>
   </div>
   <div
-    className="panel-body cgBkWQ"
+    className="panel-body c4"
     open={true}
     style={Object {}}
   >
     <div
-      className="DRXhs"
+      className="c5"
     />
     <div
-      className="c0"
+      className="c6"
     >
       <div
-        className="sc-htpNat eDtRyC sc-bdVaJa iHZvIS"
+        className="eDtRyC sc-bdVaJa iHZvIS"
         is={null}
       >
         <div
-          className="cyncUw"
+          className="sc-bdVaJa cyncUw"
           is={null}
         >
           <label
-            className="c1"
+            className="c7"
           >
             <span
-              className="c2"
+              className="c8"
               title="required field"
             >
               * 
@@ -100,11 +156,11 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
           </label>
         </div>
         <div
-          className="XupaC"
+          className="sc-bdVaJa XupaC"
           is={null}
         >
           <label
-            className="c3"
+            className="c9"
           >
             <input
               checked={false}
@@ -115,7 +171,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
               Credit Card
           </label>
           <label
-            className="c3"
+            className="c9"
           >
             <input
               checked={false}
@@ -126,7 +182,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
               Wire Transfer
           </label>
           <label
-            className="c3"
+            className="c9"
           >
             <input
               checked={false}
@@ -140,7 +196,7 @@ exports[`matching a snapshot of PaymentMethod 1`] = `
       </div>
     </div>
     <div
-      className="DRXhs"
+      className="c5"
     />
   </div>
 </div>
