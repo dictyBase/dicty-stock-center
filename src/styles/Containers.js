@@ -32,3 +32,7 @@ export const DetailContainer = styled.div`
   border-left: 1px solid grey;
   border-right: 1px solid grey;
 `
+
+export const MainBodyContainer = styled.div`
+  margin-bottom: 50px;
+`

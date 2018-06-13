@@ -40,7 +40,7 @@ a {
     color: #337ab7;
     text-decoration: none;
 }
-`
+`,
 ])
 
 // get all of the styled components from individual files
@@ -58,7 +58,7 @@ export {
   SuccessSmallButton,
   SuccessLargeButton,
   DangerButton,
-  DisabledButton
+  DisabledButton,
 } from "styles/Buttons"
 export {
   HorizontalForm,
@@ -70,14 +70,19 @@ export {
   FormTextArea,
   RadioInline,
   RequiredText,
-  HelpBlock
+  HelpBlock,
 } from "styles/Forms"
 export {
   DictyHeader,
   HomepageHeader,
-  StrainDetailsHeader
+  StrainDetailsHeader,
 } from "styles/Headers"
-export { Container, ContainerFluid, DetailContainer } from "styles/Containers"
+export {
+  Container,
+  ContainerFluid,
+  DetailContainer,
+  MainBodyContainer,
+} from "styles/Containers"
 export { AlertBox, AlertSuccess, AlertInfo } from "styles/Alerts"
 export { StaticToolbar } from "styles/DraftjsToolbar"
 export { PanelGray, PanelGreen, PanelBlue, EditPanel } from "styles/Panels"
