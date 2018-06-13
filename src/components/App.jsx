@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { FooterLinks } from "constants/Footer"
 import { NavbarLinks } from "constants/Navbar"
+import { MainBodyContainer } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
@@ -34,7 +35,9 @@ const App = (props: Props) => {
       <Navbar items={NavbarLinks} />
       <br />
       <Cart cart={props.cart} />
-      <RenderRoutes {...props} />
+      <MainBodyContainer>
+        <RenderRoutes {...props} />
+      </MainBodyContainer>
       <Footer items={FooterLinks} />
     </div>
   )
