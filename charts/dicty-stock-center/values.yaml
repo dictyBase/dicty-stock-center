@@ -8,7 +8,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  name: dicty-stock-center
+  name: stock-center
   type: NodePort
   port: 9595
 
