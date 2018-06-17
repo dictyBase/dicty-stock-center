@@ -7,7 +7,7 @@ LABEL maintainer "Eric Hartline <eric.hartline@northwestern.edu>"
 
 # include git, otherwise npm install doesn't work
 RUN apk update && apk upgrade && \
-  apk add --no-cache bash git openssh
+  apk add --no-cache bash git openssh jq
 
 # URL for api server
 ARG api_server
@@ -30,8 +30,13 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-# also to separate caching of dependencies from source code
-COPY package.json package-lock.json .babelrc ./
+COPY package-lock.json .babelrc ./
+
+# package.json have to be modified later on, so 
+ADD package.json package-dev.json
+# create new package.json with relative path
+RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
+  && rm package-dev.json
 
 # add necessary folders
 ADD src src
@@ -43,11 +48,11 @@ ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 # Use same node path
 ENV NODE_PATH src
 
-#
+# obvious isn't it
 RUN npm install && npm run build
 
 FROM dictybase/static-server:0.0.2
 RUN mkdir /www
 WORKDIR /www
-COPY --from=0 /usr/src/app/build/* ./
-ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www", "--sub-url", "stockcenter"]
+COPY --from=0 /usr/src/app/build ./
+ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www", "--sub-url", "/stockcenter"]
