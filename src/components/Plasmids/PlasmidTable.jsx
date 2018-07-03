@@ -2,14 +2,16 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import { Table, Column, InfiniteLoader } from "react-virtualized"
+import Table from "react-virtualized/dist/commonjs/Table/index"
+import Column from "react-virtualized/dist/commonjs/Table/Column"
+import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader/index"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
 import TableLoader from "components/TableLoader"
 import {
   fetchPlasmids,
   searchPlasmids,
-  clearPlasmidSearch
+  clearPlasmidSearch,
 } from "actions/stockCenter"
 import { addToCart } from "actions/cart"
 import {
@@ -17,7 +19,7 @@ import {
   ItemUnavailable,
   TableResponsive,
   PrimaryButton,
-  DisabledButton
+  DisabledButton,
 } from "styles"
 import "react-virtualized/styles.css"
 
@@ -32,14 +34,14 @@ type Props = {
   addToCart: Function,
   cellHeight: number,
   cellWidth: number,
-  height: number
+  height: number,
 }
 
 class PlasmidTable extends Component<Props> {
   static defaultProps = {
     cellWidth: 130,
     cellHeight: 90,
-    height: 630
+    height: 630,
   }
 
   searchInput: ?HTMLInputElement
@@ -107,17 +109,17 @@ class PlasmidTable extends Component<Props> {
       return {
         margin: "0 auto",
         borderTop: "1px solid #efefef",
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     } else if (index === data.length) {
       return {}
     } else if (index % 2 > 0) {
       return {
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     } else if (index % 2 === 0) {
       return {
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     }
   }
@@ -130,13 +132,13 @@ class PlasmidTable extends Component<Props> {
     columns,
     key,
     style,
-    className
+    className,
   }: {
     index: number,
     columns: any,
     key: string,
     style: Object,
-    className: string
+    className: string,
   }) => {
     let content
     if (!this.isRowLoaded({ index })) {
@@ -172,10 +174,10 @@ class PlasmidTable extends Component<Props> {
   }
   cellDataGetter = ({
     rowData,
-    dataKey
+    dataKey,
   }: {
     rowData: Object,
-    dataKey: string
+    dataKey: string,
   }) => {
     if (rowData) {
       return rowData.attributes[dataKey]
@@ -189,11 +191,11 @@ class PlasmidTable extends Component<Props> {
   inStockRenderer = ({
     cellData,
     rowIndex,
-    rowData
+    rowData,
   }: {
     cellData: any,
     rowIndex: number,
-    rowData: Object
+    rowData: Object,
   }) => {
     const addToCart = this.props.addToCart
     const data = this.props.plasmidCatalogData
@@ -226,7 +228,7 @@ class PlasmidTable extends Component<Props> {
                 textAlign: "center",
                 height: "100%",
                 WebkitAppearance: "textfield",
-                width: "400px"
+                width: "400px",
               }}
               type="search"
               placeholder="Search Plasmids"
@@ -265,7 +267,7 @@ class PlasmidTable extends Component<Props> {
                 gridStyle={{
                   margin: "0 auto",
                   textAlign: "center",
-                  verticalAlign: "middle"
+                  verticalAlign: "middle",
                 }}
                 rowRenderer={this.rowRenderer}>
                 <Column
@@ -316,7 +318,7 @@ const mapStateToProps = state => {
     isFetching: state.stockCenter.plasmidCatalog.isFetching,
     links: state.stockCenter.plasmidCatalog.links,
     paginationNumber: state.stockCenter.plasmidCatalog.meta.pagination.number,
-    plasmidCatalogData: state.stockCenter.plasmidCatalog.data
+    plasmidCatalogData: state.stockCenter.plasmidCatalog.data,
   }
 }
 
@@ -333,8 +335,11 @@ const mapDispatchToProps = dispatch => {
     },
     addToCart: id => {
       dispatch(addToCart(id))
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlasmidTable)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PlasmidTable)

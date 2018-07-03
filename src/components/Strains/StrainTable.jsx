@@ -1,15 +1,17 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { Table, Column, InfiniteLoader } from "react-virtualized"
 import { Link } from "react-router-dom"
+import Table from "react-virtualized/dist/commonjs/Table/index"
+import Column from "react-virtualized/dist/commonjs/Table/Column"
+import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader/index"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
 import TableLoader from "components/TableLoader"
 import {
   fetchStrains,
   searchStrains,
-  clearStrainSearch
+  clearStrainSearch,
 } from "actions/stockCenter"
 import { addToCart } from "actions/cart"
 import {
@@ -17,7 +19,7 @@ import {
   ItemUnavailable,
   TableResponsive,
   PrimaryButton,
-  DisabledButton
+  DisabledButton,
 } from "styles"
 import "react-virtualized/styles.css"
 
@@ -31,13 +33,13 @@ type Props = {
   clearStrainSearch: Function,
   addToCart: Function,
   cellHeight: number,
-  cellWidth: number
+  cellWidth: number,
 }
 
 class StrainTable extends Component<Props> {
   static defaultProps = {
     cellWidth: 130,
-    cellHeight: 60
+    cellHeight: 60,
   }
 
   searchInput: ?HTMLInputElement
@@ -108,17 +110,17 @@ class StrainTable extends Component<Props> {
       return {
         margin: "0 auto",
         borderTop: "1px solid #efefef",
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     } else if (index === data.length) {
       return {}
     } else if (index % 2 > 0) {
       return {
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     } else if (index % 2 === 0) {
       return {
-        borderBottom: "1px solid #efefef"
+        borderBottom: "1px solid #efefef",
       }
     }
   }
@@ -204,7 +206,7 @@ class StrainTable extends Component<Props> {
                 textAlign: "center",
                 height: "100%",
                 WebkitAppearance: "textfield",
-                width: "400px"
+                width: "400px",
               }}
               type="search"
               placeholder="Search Strains"
@@ -236,7 +238,7 @@ class StrainTable extends Component<Props> {
                 headerHeight={50}
                 headerStyle={{
                   textAlign: "center",
-                  verticalAlign: "middle"
+                  verticalAlign: "middle",
                 }}
                 rowHeight={this.getRowHeight}
                 rowGetter={this.rowGetter}
@@ -246,7 +248,7 @@ class StrainTable extends Component<Props> {
                 gridStyle={{
                   margin: "0 auto",
                   textAlign: "center",
-                  verticalAlign: "middle"
+                  verticalAlign: "middle",
                 }}
                 rowRenderer={this.rowRenderer}>
                 <Column
@@ -288,7 +290,7 @@ const mapStateToProps = state => {
     isFetching: state.stockCenter.strainCatalog.isFetching,
     links: state.stockCenter.strainCatalog.links,
     paginationNumber: state.stockCenter.strainCatalog.meta.pagination.number,
-    strainCatalogData: state.stockCenter.strainCatalog.data
+    strainCatalogData: state.stockCenter.strainCatalog.data,
   }
 }
 
@@ -305,8 +307,11 @@ const mapDispatchToProps = dispatch => {
     },
     addToCart: id => {
       dispatch(addToCart(id))
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StrainTable)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StrainTable)
