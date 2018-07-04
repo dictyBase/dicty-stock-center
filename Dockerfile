@@ -51,7 +51,7 @@ ENV NODE_PATH src
 # obvious isn't it
 RUN npm install && npm run build
 
-FROM dictybase/static-server:0.1.0
+FROM dictybase/static-server:0.2.0
 RUN mkdir /www
 WORKDIR /www
 COPY --from=0 /usr/src/app/build ./

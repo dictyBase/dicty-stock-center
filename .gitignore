@@ -9,3 +9,5 @@ clientConfig.js
 client/
 .env.development.local
 build/
+static-server
+.env.production.local
