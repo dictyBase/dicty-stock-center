@@ -35,7 +35,7 @@ COPY package-lock.json .babelrc ./
 # package.json have to be modified later on, so 
 ADD package.json package-dev.json
 # create new package.json with relative path
-RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
+RUN jq '. + {"homepage": "http://betatest.dictybase.local/stockcenter"}' package-dev.json > package.json \
   && rm package-dev.json
 
 # add necessary folders
