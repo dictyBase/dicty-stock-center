@@ -30,7 +30,7 @@ exports[`matching a snapshot of Info 1`] = `
     <ul>
       <li>
         <a
-          href="/information/orders"
+          href="/information/order"
           onClick={[Function]}
         >
           Order Information
@@ -38,7 +38,7 @@ exports[`matching a snapshot of Info 1`] = `
       </li>
       <li>
         <a
-          href="/information/payments"
+          href="/information/payment"
           onClick={[Function]}
         >
           Payment Information
@@ -46,7 +46,7 @@ exports[`matching a snapshot of Info 1`] = `
       </li>
       <li>
         <a
-          href="/information/deposits"
+          href="/information/deposit"
           onClick={[Function]}
         >
           Deposit Information
