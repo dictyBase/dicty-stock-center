@@ -46,6 +46,15 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
       fetchedUserData: fetchedUserData,
       verifiedToken: verifiedToken,
     }
+  } else if (state.auth.user) {
+    const loggedInUser = new PermissionAPI(state.auth.user)
+    const roles = new RoleAPI(state.auth.user)
+    const verifiedToken = new AuthAPI(state.auth)
+    return {
+      loggedInUser: loggedInUser,
+      roles: roles,
+      verifiedToken: verifiedToken,
+    }
   } else {
     return {
       loggedInUser: { verifyPermissions: () => {} },
