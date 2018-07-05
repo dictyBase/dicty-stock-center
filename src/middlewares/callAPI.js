@@ -32,7 +32,7 @@ const callAPI = ({ dispatch, getState }: param) => {
       console.error(
         `HTTP Response: ${res.status}
       Title: ${json.errors[0].title}
-      Detail: ${json.errors[0].detail}`
+      Detail: ${json.errors[0].detail}`,
       )
     }
 
@@ -41,8 +41,8 @@ const callAPI = ({ dispatch, getState }: param) => {
     dispatch({
       type: requestType,
       payload: {
-        isFetching: true
-      }
+        isFetching: true,
+      },
     })
 
     try {
@@ -50,7 +50,7 @@ const callAPI = ({ dispatch, getState }: param) => {
       if (config.method === "PATCH" || config.method === "POST") {
         config.headers = {
           "Content-Type": "application/json",
-          Application: `Bearer: ${getState().auth.token}`
+          Application: `Bearer: ${getState().auth.token}`,
         }
       }
       const res = await fetch(url, config)
@@ -75,8 +75,8 @@ const callAPI = ({ dispatch, getState }: param) => {
                 type: successType,
                 payload: {
                   isFetching: false,
-                  json
-                }
+                  json,
+                },
               })
           }
         } else {
@@ -84,33 +84,33 @@ const callAPI = ({ dispatch, getState }: param) => {
           if (process.env.NODE_ENV !== "production") {
             printError(res, json)
           }
-          // dispatch(push("/error"))
+          dispatch(push("/error"))
           return next({
             type: failureType,
             payload: {
-              error: json.errors[0].title
-            }
+              error: json.errors[0].title,
+            },
           })
         }
       } else {
-        // dispatch(push("/error"))
+        dispatch(push("/error"))
         return next({
           type: failureType,
           payload: {
-            error: res.body
-          }
+            error: res.body,
+          },
         })
       }
     } catch (error) {
       if (process.env.NODE_ENV !== "production") {
         console.error(`Network error: ${error.message}`)
       }
-      // dispatch(push("/error"))
+      dispatch(push("/error"))
       return next({
         type: failureType,
         payload: {
-          error: error.toString()
-        }
+          error: error.toString(),
+        },
       })
     }
   }
