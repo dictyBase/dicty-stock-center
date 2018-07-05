@@ -8,14 +8,14 @@ const content = [
   { name: "DSC FAQ", to: "/information/faq", routerAware: true },
   {
     name: "Nomenclature Guide",
-    to: "/information/nomenclature-guide",
-    routerAware: false
+    to: "/information/nomenclature-guidelines",
+    routerAware: false,
   },
   {
     name: "Other Stock Centers",
     to: "/information/other-stock-centers",
-    routerAware: true
-  }
+    routerAware: true,
+  },
 ]
 
 /**
