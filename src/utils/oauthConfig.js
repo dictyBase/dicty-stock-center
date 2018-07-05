@@ -45,17 +45,6 @@ const oauthConfig = {
     requiredUrlParams: [["response_type", "code"]],
     popupOptions: { width: 1028, height: 640 },
   },
-  facebook: {
-    name: "Facebook",
-    url: "/auth/facebook",
-    authorizationEndpoint: "https://www.facebook.com/dialog/oauth",
-    clientId: clientConfig.facebook.clientId,
-    redirectUrl: `${window.location.origin}/facebook/callback`,
-    scopes: ["email"],
-    scopeDelimiter: ",",
-    optionalUrlParams: [["state", "facebook"], ["response_type", "code"]],
-    popupOptions: { width: 1028, height: 640 },
-  },
 }
 
 export default oauthConfig

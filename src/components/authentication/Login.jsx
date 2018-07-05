@@ -10,7 +10,7 @@ import { DictyHeader } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
-const buttons = ["orcid", "google", "linkedin", "facebook"]
+const buttons = ["orcid", "google", "linkedin"]
 
 // custom theme for styling the buttons
 const theme = {
