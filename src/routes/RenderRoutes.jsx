@@ -4,8 +4,8 @@ import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/Loader"
-import InfoPage from "components/InfoPage/InfoPage"
-import EditInfoPage from "components/InfoPage/EditInfoPage"
+// import InfoPage from "components/InfoPage/InfoPage"
+// import EditInfoPage from "components/InfoPage/EditInfoPage"
 
 // homepage route
 const Homepage = Loadable({
@@ -41,16 +41,16 @@ const MyDsc = Loadable({
 })
 
 // infopage routes
-// const InfoPage = Loadable({
-//   loader: () =>
-//     import("components/InfoPage/InfoPage" /* webpackChunkName: "InfoPage" */),
-//   loading: Loader,
-// })
-// const EditInfoPage = Loadable({
-//   loader: () =>
-//     import("components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */),
-//   loading: Loader,
-// })
+const InfoPage = Loadable({
+  loader: () =>
+    import("components/InfoPage/InfoPage" /* webpackChunkName: "InfoPage" */),
+  loading: Loader,
+})
+const EditInfoPage = Loadable({
+  loader: () =>
+    import("components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */),
+  loading: Loader,
+})
 
 // strains routes
 const Strains = Loadable({
