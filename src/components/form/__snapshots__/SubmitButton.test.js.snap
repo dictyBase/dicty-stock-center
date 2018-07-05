@@ -84,7 +84,7 @@ exports[`matching a snapshot of SubmitButton 1`] = `
 }
 
 <button
-  className="large block c0"
+  className="c0"
   disabled={false}
   type="submit"
 >
