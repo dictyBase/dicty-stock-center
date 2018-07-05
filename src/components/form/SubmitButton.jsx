@@ -6,16 +6,13 @@ import { PrimaryLargeButton } from "styles"
 type Props = {
   submitting: boolean,
   name: string,
-  icon: string
+  icon: string,
 }
 
 const SubmitButton = (props: Props) => {
   const { submitting, name, icon } = props
   return (
-    <PrimaryLargeButton
-      type="submit"
-      className={`large block`}
-      disabled={submitting}>
+    <PrimaryLargeButton type="submit" disabled={submitting}>
       {" "}
       {name}
       {submitting ? (
