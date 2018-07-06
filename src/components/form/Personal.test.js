@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import Personal from "./Personal"
 import FormGroupInput from "./FormGroupInput"
 import { shallow } from "enzyme"
@@ -12,7 +13,7 @@ describe("form/Personal", () => {
   const email = { value: "john@gmail.com", touched: true }
 
   const wrapper = shallow(
-    <Personal firstName={firstName} lastName={lastName} email={email} />
+    <Personal firstName={firstName} lastName={lastName} email={email} />,
   )
 
   it("should render firstName field", () => {
@@ -21,8 +22,8 @@ describe("form/Personal", () => {
         <FormGroupInput field={firstName}>
           <RequiredText>* </RequiredText>
           First Name:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render lastName field", () => {
@@ -31,8 +32,8 @@ describe("form/Personal", () => {
         <FormGroupInput field={lastName}>
           <RequiredText>* </RequiredText>
           Last Name:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render email field", () => {
@@ -41,8 +42,8 @@ describe("form/Personal", () => {
         <FormGroupInput field={email}>
           <RequiredText>* </RequiredText>
           Email:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
 })
@@ -50,19 +51,19 @@ describe("form/Personal", () => {
 test("matching a snapshot of Personal", () => {
   const firstName = {
     value: "Jane",
-    touched: true
+    touched: true,
   }
   const lastName = {
     value: "Doe",
-    touched: true
+    touched: true,
   }
   const email = {
     value: "janedoe@gmail.com",
-    touched: true
+    touched: true,
   }
 
   const component = renderer.create(
-    <Personal firstName={firstName} lastName={lastName} email={email} />
+    <Personal firstName={firstName} lastName={lastName} email={email} />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

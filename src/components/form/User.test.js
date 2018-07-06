@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import User from "./User"
 import Contact from "./Contact"
 import Personal from "./Personal"
@@ -27,7 +28,7 @@ describe("form/User", () => {
         country={{ value: "USA" }}
         phone={{ value: "7778859988" }}
         title={"User"}
-      />
+      />,
     )
   })
 
@@ -38,16 +39,16 @@ describe("form/User", () => {
           firstName={{ value: "John" }}
           lastName={{ value: "Smith" }}
           email={{ value: "john@gmail.com" }}
-        />
-      )
+        />,
+      ),
     ).toEqual(true)
   })
 
   it("should render <Organization> with correct props", () => {
     expect(
       wrapper.contains(
-        <Organization org={{ value: "NU" }} group={{ value: "Bio" }} />
-      )
+        <Organization org={{ value: "NU" }} group={{ value: "Bio" }} />,
+      ),
     ).toEqual(true)
   })
 
@@ -61,14 +62,14 @@ describe("form/User", () => {
           state={{ value: "IL" }}
           zip={{ value: "60555" }}
           country={{ value: "USA" }}
-        />
-      )
+        />,
+      ),
     ).toEqual(true)
   })
 
   it("should render <Contact> with correct props", () => {
     expect(
-      wrapper.contains(<Contact phone={{ value: "7778859988" }} />)
+      wrapper.contains(<Contact phone={{ value: "7778859988" }} />),
     ).toEqual(true)
   })
 })
@@ -103,7 +104,7 @@ test("matching a snapshot of User", () => {
       country={country}
       phone={phone}
       title={title}
-    />
+    />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

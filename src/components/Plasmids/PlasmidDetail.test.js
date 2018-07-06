@@ -1,5 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
+import "../../setupTests"
 import { PlasmidDetail } from "components/Plasmids/PlasmidDetail"
 import StockDetailRow from "components/Strains/StockDetailRow"
 import sinon from "sinon"
@@ -9,8 +10,8 @@ describe("plasmids/PlasmidDetail", () => {
   const props = {
     match: {
       params: {
-        id: "ID number"
-      }
+        id: "ID number",
+      },
     },
     addToCart: sinon.spy(),
     fetchPlasmid: () => {},
@@ -19,8 +20,8 @@ describe("plasmids/PlasmidDetail", () => {
       name: "aca",
       genotypes: ["genotype 1", "genotype 2"],
       characteristics: "characteristics",
-      id: "ID number"
-    }
+      id: "ID number",
+    },
   }
   const wrapper = shallow(<PlasmidDetail {...props} />)
   it("should have 4 <StockDetailRow />s", () => {

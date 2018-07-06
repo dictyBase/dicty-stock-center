@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import SubmitLoader from "./SubmitLoader"
 import { shallow } from "enzyme"
 

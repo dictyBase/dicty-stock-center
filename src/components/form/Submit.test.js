@@ -31,10 +31,10 @@ test("matching a snapshot of Submit", () => {
   const editPayment = () => {}
   const addedItems = ["1", "2"]
   const consumer = {
-    firstName: "Jane"
+    firstName: "Jane",
   }
   const payer = {
-    firstName: "John"
+    firstName: "John",
   }
   const component = renderer.create(
     <Submit
@@ -43,7 +43,7 @@ test("matching a snapshot of Submit", () => {
       addedItems={addedItems}
       consumer={consumer}
       payer={payer}
-    />
+    />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

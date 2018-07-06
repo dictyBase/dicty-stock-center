@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import PaymentInfo from "./PaymentInfo"
 import { shallow } from "enzyme"
 import { FormControl, HelpBlock } from "styles"
@@ -29,15 +30,15 @@ describe("form/PaymentInfo", () => {
 test("matching a snapshot of PaymentInfo", () => {
   const payMethod = {
     value: "Credit",
-    touched: true
+    touched: true,
   }
   const poNum = {
     value: "",
-    touched: true
+    touched: true,
   }
 
   const component = renderer.create(
-    <PaymentInfo payMethod={payMethod} poNum={poNum} />
+    <PaymentInfo payMethod={payMethod} poNum={poNum} />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import ShippingMethod from "./ShippingMethod"
 import ShippingInfo from "./ShippingInfo"
 import { shallow } from "enzyme"
@@ -15,7 +16,7 @@ describe("form/ShippingMethod", () => {
       shipAccount={shipAccount}
       shipAccountNum={shipAccountNum}
       title={title}
-    />
+    />,
   )
 
   it("should render <ShippingInfo>", () => {
@@ -24,8 +25,8 @@ describe("form/ShippingMethod", () => {
         <ShippingInfo
           shipAccount={shipAccount}
           shipAccountNum={shipAccountNum}
-        />
-      )
+        />,
+      ),
     ).toEqual(true)
   })
 })
@@ -33,11 +34,11 @@ describe("form/ShippingMethod", () => {
 test("matching a snapshot of ShippingMethod", () => {
   const shipAccount = {
     value: "Fedex",
-    touched: true
+    touched: true,
   }
   const shipAccountNum = {
     value: "",
-    touched: false
+    touched: false,
   }
   const title = "Method"
 
@@ -46,7 +47,7 @@ test("matching a snapshot of ShippingMethod", () => {
       shipAccount={shipAccount}
       shipAccountNum={shipAccountNum}
       title={title}
-    />
+    />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

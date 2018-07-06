@@ -1,5 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
+import "../../setupTests"
 import { StrainDetail } from "./StrainDetail"
 import StrainDetailRow from "./StockDetailRow"
 import PhenotypeRow from "./PhenotypeRow"
@@ -10,8 +11,8 @@ describe("strains/StrainDetail", () => {
   const props = {
     match: {
       params: {
-        id: "ID number"
-      }
+        id: "ID number",
+      },
     },
     addToCart: sinon.spy(),
     fetchStrain: () => {},
@@ -26,7 +27,7 @@ describe("strains/StrainDetail", () => {
           attribute: "attribute",
           notes: "value",
           evidence: "evidence",
-          reference: "placeholder"
+          reference: "placeholder",
         },
         {
           name: "phenotype name",
@@ -34,11 +35,11 @@ describe("strains/StrainDetail", () => {
           attribute: "attribute",
           notes: "value",
           evidence: "evidence",
-          reference: "placeholder"
-        }
+          reference: "placeholder",
+        },
       ],
       characteristics: "characteristics",
-      id: "ID number"
+      id: "ID number",
     },
     phenotypes: [
       {
@@ -47,7 +48,7 @@ describe("strains/StrainDetail", () => {
         attribute: "attribute",
         notes: "value",
         evidence: "evidence",
-        reference: "placeholder"
+        reference: "placeholder",
       },
       {
         name: "phenotype name",
@@ -55,9 +56,9 @@ describe("strains/StrainDetail", () => {
         attribute: "attribute",
         notes: "value",
         evidence: "evidence",
-        reference: "placeholder"
-      }
-    ]
+        reference: "placeholder",
+      },
+    ],
   }
   const wrapper = shallow(<StrainDetail {...props} />)
   it("should have 8 <StrainDetailRow />s", () => {
@@ -65,7 +66,7 @@ describe("strains/StrainDetail", () => {
   })
   it("has as many <PhenotypeRow />s as there are phenotypes", () => {
     expect(wrapper.find(PhenotypeRow)).toHaveLength(
-      props.strain.phenotypes.length
+      props.strain.phenotypes.length,
     )
   })
   it('should dispatch an action when "Add to Cart" button is clicked', () => {

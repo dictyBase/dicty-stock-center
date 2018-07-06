@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import FormGroupInput from "./FormGroupInput"
 import { shallow } from "enzyme"
 import { HelpBlock } from "styles"
@@ -21,7 +22,7 @@ describe("form/FormGroupInput", () => {
 
 test("matching a snapshot of FormGroupInput", () => {
   const field = {
-    touched: true
+    touched: true,
   }
 
   const component = renderer.create(<FormGroupInput field={field} />)

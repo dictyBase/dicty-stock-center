@@ -17,7 +17,7 @@ const order = {
   consumer: { type: "user", id: "john@gmail.com" },
   shipping: { account: "Fedex", accountNum: "123456", comments: "" },
   payer: { type: "user", id: "john@gmail.com" },
-  payment: { method: "Credit", poNum: "" }
+  payment: { method: "Credit", poNum: "" },
 }
 
 describe("async actions/order", () => {
@@ -32,7 +32,7 @@ describe("async actions/order", () => {
 
     const expectedActions = [
       { type: SUBMIT_REQUEST, submitting: true },
-      { type: SUBMIT_SUCCESS, submitting: false, order }
+      { type: SUBMIT_SUCCESS, submitting: false, order },
     ]
     const store = mockStore({ order: order })
 

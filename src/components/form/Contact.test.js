@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import Contact from "./Contact"
 import FormGroupInput from "./FormGroupInput"
 import { shallow } from "enzyme"
@@ -15,8 +16,8 @@ describe("form/Contact", () => {
       wrapper.contains(
         <FormGroupInput field={phone}>
           <RequiredText title="required field">* </RequiredText>Phone:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
 })
@@ -24,7 +25,7 @@ describe("form/Contact", () => {
 test("matching a snapshot of Contact", () => {
   const phone = {
     value: "555-5555",
-    touched: true
+    touched: true,
   }
 
   const component = renderer.create(<Contact phone={phone} />)

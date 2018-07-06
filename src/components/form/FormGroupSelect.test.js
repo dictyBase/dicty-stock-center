@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import FormGroupSelect from "./FormGroupSelect"
 import { shallow } from "enzyme"
 import { HelpBlock } from "styles"
@@ -10,7 +11,7 @@ describe("form/FormGroupSelect", () => {
     <FormGroupSelect
       field={{ value: "", touched: true }}
       list={["USA", "Japan", "England"]}
-    />
+    />,
   )
 
   it("should render a select element", () => {
@@ -28,12 +29,12 @@ describe("form/FormGroupSelect", () => {
 
 test("matching a snapshot of FormGroupSelect", () => {
   const field = {
-    touched: true
+    touched: true,
   }
   const list = ["USA", "Iceland", "Japan"]
 
   const component = renderer.create(
-    <FormGroupSelect field={field} list={list} />
+    <FormGroupSelect field={field} list={list} />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

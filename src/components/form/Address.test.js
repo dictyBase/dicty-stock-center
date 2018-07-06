@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import Address from "./Address"
 import FormGroupInput from "components/form/FormGroupInput"
 import FormGroupSelect from "components/form/FormGroupSelect"
@@ -24,7 +25,7 @@ describe("form/Address", () => {
       state={state}
       zip={zip}
       country={country}
-    />
+    />,
   )
 
   it("should render address line_1 field", () => {
@@ -33,15 +34,15 @@ describe("form/Address", () => {
         <FormGroupInput field={address}>
           <RequiredText>* </RequiredText>
           Address:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render address line_2 field", () => {
     expect(
       wrapper.contains(
-        <FormGroupInput field={address2}>Address:</FormGroupInput>
-      )
+        <FormGroupInput field={address2}>Address:</FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render city field", () => {
@@ -50,15 +51,15 @@ describe("form/Address", () => {
         <FormGroupInput field={city}>
           <RequiredText>* </RequiredText>
           City:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render state field", () => {
     expect(
       wrapper.contains(
-        <FormGroupInput field={state}>State/Province:</FormGroupInput>
-      )
+        <FormGroupInput field={state}>State/Province:</FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render zip field", () => {
@@ -67,8 +68,8 @@ describe("form/Address", () => {
         <FormGroupInput field={zip}>
           <RequiredText>* </RequiredText>
           ZIP:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render country field with the list of countries", () => {
@@ -77,8 +78,8 @@ describe("form/Address", () => {
         <FormGroupSelect field={country} list={countryList}>
           <RequiredText>* </RequiredText>
           Country:
-        </FormGroupSelect>
-      )
+        </FormGroupSelect>,
+      ),
     ).toEqual(true)
   })
 })
@@ -99,7 +100,7 @@ test("matching a snapshot of Address", () => {
       state={state}
       zip={zip}
       country={country}
-    />
+    />,
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

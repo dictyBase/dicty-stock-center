@@ -1,5 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
+import "../../setupTests"
 import PhenotypeRow from "./PhenotypeRow"
 import { BorderBox } from "styles"
 
@@ -7,7 +8,7 @@ describe("strains/PhenotypeRow", () => {
   const props = {
     phenotype: "phenotype",
     notes: "notes",
-    reference: "reference"
+    reference: "reference",
   }
   const wrapper = shallow(<PhenotypeRow {...props} />)
   it("has 4 cells", () => {

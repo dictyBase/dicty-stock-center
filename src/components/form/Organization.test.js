@@ -1,6 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import "jest-styled-components"
+import "../../setupTests"
 import Organization from "./Organization"
 import FormGroupInput from "./FormGroupInput"
 import { shallow } from "enzyme"
@@ -18,8 +19,8 @@ describe("form/Organization", () => {
         <FormGroupInput field={org}>
           <RequiredText title="required field">* </RequiredText>
           Organization:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
   it("should render lab/group field", () => {
@@ -28,8 +29,8 @@ describe("form/Organization", () => {
         <FormGroupInput field={group}>
           <RequiredText title="required field">* </RequiredText>
           Lab/Group:
-        </FormGroupInput>
-      )
+        </FormGroupInput>,
+      ),
     ).toEqual(true)
   })
 })
@@ -37,11 +38,11 @@ describe("form/Organization", () => {
 test("matching a snapshot of Organization", () => {
   const org = {
     value: "Northwestern",
-    touched: true
+    touched: true,
   }
   const group = {
     value: "dictyBase",
-    touched: true
+    touched: true,
   }
 
   const component = renderer.create(<Organization org={org} group={group} />)
