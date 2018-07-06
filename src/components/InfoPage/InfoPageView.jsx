@@ -43,6 +43,8 @@ type Props = {
   fetchedUserData: Object,
   /** contains the object representing the logged in user's data */
   loggedInUser: Object,
+  /** boolean representing whether the user is logged in or not */
+  isAuthenticated: boolean,
 }
 
 type State = {
