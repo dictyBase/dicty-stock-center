@@ -63,8 +63,10 @@ class InfoPageView extends Component<Props, State> {
     }
   }
   componentDidMount() {
-    const fetchedUser = new ContentAPI(this.props.page).getUser()
-    this.props.fetchUserInfo(fetchedUser)
+    if (this.props.isAuthenticated) {
+      const fetchedUser = new ContentAPI(this.props.page).getUser()
+      this.props.fetchUserInfo(fetchedUser)
+    }
   }
   onChange = editorState => this.setState({ editorState })
   onClick = e => {
@@ -75,47 +77,49 @@ class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_at } = this.props.page.data.attributes
-    const { loggedInUser } = this.props
+    const { loggedInUser, isAuthenticated } = this.props
 
     return (
       <Container>
-        <Authorization
-          render={({ canEditPages, fetchedUserData, verifiedToken }) => {
-            return (
-              <div>
-                {canEditPages &&
-                  verifiedToken === false && (
-                    <ErrorNotification error={error} />
+        {isAuthenticated && (
+          <Authorization
+            render={({ canEditPages, fetchedUserData, verifiedToken }) => {
+              return (
+                <div>
+                  {canEditPages &&
+                    verifiedToken === false && (
+                      <ErrorNotification error={error} />
+                    )}
+                  <br />
+                  {canEditPages && (
+                    <ToolbarNav>
+                      <Flex>
+                        <Box>
+                          <TextInfo>
+                            <strong>
+                              <FontAwesome name="user" />{" "}
+                              {fetchedUserData.getFullName()}
+                            </strong>{" "}
+                            edited {timeSince(updated_at)} ago
+                          </TextInfo>
+                        </Box>
+                        <Box ml="auto">
+                          <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
+                          {loggedInUser.canOverwrite(fetchedUserData.getId()) &&
+                            verifiedToken && (
+                              <InlineLink onClick={this.onClick}>
+                                <FontAwesome name="pencil" title="Edit page" />
+                              </InlineLink>
+                            )}
+                        </Box>
+                      </Flex>
+                    </ToolbarNav>
                   )}
-                <br />
-                {canEditPages && (
-                  <ToolbarNav>
-                    <Flex>
-                      <Box>
-                        <TextInfo>
-                          <strong>
-                            <FontAwesome name="user" />{" "}
-                            {fetchedUserData.getFullName()}
-                          </strong>{" "}
-                          edited {timeSince(updated_at)} ago
-                        </TextInfo>
-                      </Box>
-                      <Box ml="auto">
-                        <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                        {loggedInUser.canOverwrite(fetchedUserData.getId()) &&
-                          verifiedToken && (
-                            <InlineLink onClick={this.onClick}>
-                              <FontAwesome name="pencil" title="Edit page" />
-                            </InlineLink>
-                          )}
-                      </Box>
-                    </Flex>
-                  </ToolbarNav>
-                )}
-              </div>
-            )
-          }}
-        />
+                </div>
+              )
+            }}
+          />
+        )}
 
         <Flex>
           <Box>
@@ -134,12 +138,19 @@ class InfoPageView extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-  const loggedInUser = new AuthenticatedUser(state.auth.user)
-  return {
-    loggedInUser: loggedInUser,
+  if (state.auth.user) {
+    const loggedInUser = new AuthenticatedUser(state.auth.user)
+    return {
+      loggedInUser: loggedInUser,
+    }
+  } else {
+    return {
+      isAuthenticated: state.auth.isAuthenticated,
+    }
   }
 }
 
-export default connect(mapStateToProps, { editPage, fetchUserInfo })(
-  InfoPageView,
-)
+export default connect(
+  mapStateToProps,
+  { editPage, fetchUserInfo },
+)(InfoPageView)
