@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import Skeleton from "react-loading-skeleton"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
@@ -42,10 +42,12 @@ export class About extends Component<Props> {
     return (
       <Flex justify="center">
         <Box w={"95%"}>
-          <Skeleton count={5} />
-          <br />
-          <br />
-          <Skeleton count={5} />
+          <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+            <Skeleton count={7} />
+            <br />
+            <br />
+            <Skeleton count={7} />
+          </SkeletonTheme>
         </Box>
       </Flex>
     )
@@ -61,4 +63,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchInfoPage })(About)
+export default connect(
+  mapStateToProps,
+  { fetchInfoPage },
+)(About)

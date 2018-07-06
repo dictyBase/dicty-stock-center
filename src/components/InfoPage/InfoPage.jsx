@@ -1,10 +1,9 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import Skeleton from "react-loading-skeleton"
+import Loader from "components/Loader"
 import InfoPageView from "./InfoPageView"
 import { fetchInfoPage } from "actions/page"
-import { Flex, Box } from "rebass"
 import { NAMESPACE } from "constants/dsctypes"
 
 type Props = {
@@ -42,22 +41,7 @@ class InfoPage extends Component<Props> {
     if (!isFetching && page.data.attributes.content) {
       return <InfoPageView page={page} match={this.props.match} />
     }
-    return (
-      <Flex justify="center">
-        <Box w={"50%"}>
-          <h1>
-            <Skeleton />
-          </h1>
-          <Skeleton count={10} />
-          <br />
-          <br />
-          <Skeleton count={10} />
-          <br />
-          <br />
-          <Skeleton count={10} />
-        </Box>
-      </Flex>
-    )
+    return <Loader />
   }
 }
 
