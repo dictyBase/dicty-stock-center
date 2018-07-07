@@ -53,7 +53,7 @@ type State = {
 
 /** Displays the info page data that was fetched from the InfoPage component */
 
-class InfoPageView extends Component<Props, State> {
+export class InfoPageView extends Component<Props, State> {
   constructor(props) {
     super(props)
 
