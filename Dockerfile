@@ -11,11 +11,11 @@ RUN apk update && apk upgrade && \
 
 # URL for api server
 ARG api_server
-ENV REACT_APP_API_SERVER ${api_server:-http://betaapi.dictybase.local}
+ENV REACT_APP_API_SERVER ${api_server:-https://betaapi.dictybase.local}
 
 # URL for auth server
 ARG auth_server
-ENV REACT_APP_AUTH_SERVER ${auth_server:-http://betaauth.dictybase.local}
+ENV REACT_APP_AUTH_SERVER ${auth_server:-https://betaauth.dictybase.local}
 
 # base path for React Router
 ARG basename
