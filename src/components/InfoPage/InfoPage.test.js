@@ -56,29 +56,29 @@ describe("InfoPage/InfoPage", () => {
     })
   })
 
-  describe("after content is fetched", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-            },
-          },
-        },
-        match: {
-          params: {
-            name: "order",
-          },
-        },
-        fetchInfoPage: () => {},
-        isFetching: false,
-      }
-    })
+  // describe("after content is fetched", () => {
+  //   beforeEach(() => {
+  //     props = {
+  //       page: {
+  //         data: {
+  //           attributes: {
+  //             content: "page content",
+  //           },
+  //         },
+  //       },
+  //       match: {
+  //         params: {
+  //           name: "order",
+  //         },
+  //       },
+  //       fetchInfoPage: () => {},
+  //       isFetching: false,
+  //     }
+  //   })
 
-    it("renders InfoPageView", () => {
-      const Shallow = shallow(<InfoPage {...props} />)
-      expect(Shallow.find(InfoPageView).length).toBe(1)
-    })
-  })
+  //   it("renders InfoPageView", () => {
+  //     const wrapper = shallow(<InfoPage {...props} />)
+  //     expect(wrapper.find(InfoPageView).length).toBe(1)
+  //   })
+  // })
 })

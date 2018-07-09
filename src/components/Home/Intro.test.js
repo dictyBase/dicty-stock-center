@@ -5,6 +5,52 @@ import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
 import { Intro } from "./Intro"
+import { Flex } from "rebass"
+
+describe("Home/Intro", () => {
+  let props
+  let mountedIntroPage
+  const introPage = () => {
+    if (!mountedIntroPage) {
+      mountedIntroPage = mount(<Intro {...props} />)
+    }
+    return mountedIntroPage
+  }
+
+  beforeEach(() => {
+    props = {
+      page: undefined,
+      match: undefined,
+      fetchInfoPage: undefined,
+      isFetching: undefined,
+    }
+    mountedIntroPage = undefined
+  })
+  describe("initial render", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: "page content",
+            },
+          },
+        },
+        fetchInfoPage: () => {},
+        isFetching: true,
+      }
+    })
+
+    it("always renders Flex", () => {
+      expect(introPage().find(Flex).length).toBe(1)
+    })
+    it("calls componentDidMount", () => {
+      sinon.spy(Intro.prototype, "componentDidMount")
+      introPage()
+      expect(Intro.prototype.componentDidMount.calledOnce).toEqual(true)
+    })
+  })
+})
 
 test("matching a snapshot of Intro", () => {
   const fetchInfoPage = () => {}
@@ -19,23 +65,4 @@ test("matching a snapshot of Intro", () => {
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()
-})
-
-describe("Home/Intro", () => {
-  const props = {
-    page: {
-      data: {
-        attributes: {},
-      },
-    },
-    fetchInfoPage: () => {},
-    isFetching: false,
-  }
-  const slugName = "dsc-intro"
-
-  it("calls componentDidMount", () => {
-    sinon.spy(Intro.prototype, "componentDidMount")
-    const wrapper = mount(<Intro {...props} />)
-    expect(Intro.prototype.componentDidMount.calledOnce).toEqual(true)
-  })
 })
