@@ -5,6 +5,7 @@ import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
 import { OtherMaterials } from "./OtherMaterials"
+import InlineEditor from "components/InlineEditor"
 import { Flex } from "rebass"
 
 describe("Home/OtherMaterials", () => {
@@ -50,6 +51,32 @@ describe("Home/OtherMaterials", () => {
       expect(OtherMaterials.prototype.componentDidMount.calledOnce).toEqual(
         true,
       )
+    })
+  })
+
+  describe("after content is fetched", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: "page content",
+            },
+          },
+        },
+        fetchInfoPage: () => {},
+        isFetching: false,
+      }
+    })
+
+    it("renders InlineEditor", () => {
+      const wrapper = shallow(<OtherMaterials {...props} />)
+      expect(wrapper.find(InlineEditor).length).toBe(1)
+    })
+
+    it("no longer renders Flex", () => {
+      const wrapper = shallow(<OtherMaterials {...props} />)
+      expect(wrapper.find(Flex).length).toBe(0)
     })
   })
 })

@@ -5,6 +5,7 @@ import sinon from "sinon"
 import "jest-styled-components"
 import "../../setupTests"
 import { About } from "./About"
+import InlineEditor from "components/InlineEditor"
 import { Flex } from "rebass"
 
 describe("Home/About", () => {
@@ -48,6 +49,32 @@ describe("Home/About", () => {
       sinon.spy(About.prototype, "componentDidMount")
       aboutPage()
       expect(About.prototype.componentDidMount.calledOnce).toEqual(true)
+    })
+  })
+
+  describe("after content is fetched", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: "page content",
+            },
+          },
+        },
+        fetchInfoPage: () => {},
+        isFetching: false,
+      }
+    })
+
+    it("renders InlineEditor", () => {
+      const wrapper = shallow(<About {...props} />)
+      expect(wrapper.find(InlineEditor).length).toBe(1)
+    })
+
+    it("no longer renders Flex", () => {
+      const wrapper = shallow(<About {...props} />)
+      expect(wrapper.find(Flex).length).toBe(0)
     })
   })
 })
