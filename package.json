@@ -41,7 +41,7 @@
     "dicty-components-login": "github:dictyBase/dicty-components-login#v1.4.0",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.2.0",
     "dicty-components-panel": "github:dictyBase/dicty-components-panel#v1.0.0",
-    "dicty-components-redux": "github:dictybase-playground/dicty-components-redux#v2.2.0",
+    "dicty-components-redux": "github:dictybase-playground/dicty-components-redux#v2.3.0",
     "draft-js": "^0.10.5",
     "draft-js-plugins-editor": "^2.0.4",
     "draft-js-static-toolbar-plugin": "^2.0.1",
