@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
 import { EditInfoPage } from "./EditInfoPage"
-import { Container } from "styles"
+import { Container, SuccessBlockButton, CancelButton } from "styles"
 import { EditorState } from "draft-js"
 
 describe("InfoPage/EditInfoPage", () => {
@@ -51,6 +51,12 @@ describe("InfoPage/EditInfoPage", () => {
     })
     it("always renders an Editor", () => {
       expect(editInfoPage().find(Editor).length).toBeGreaterThan(0)
+    })
+    it("always renders a CancelButton", () => {
+      expect(editInfoPage().find(CancelButton).length).toBeGreaterThan(0)
+    })
+    it("always renders a SuccessBlockButton", () => {
+      expect(editInfoPage().find(SuccessBlockButton).length).toBeGreaterThan(0)
     })
   })
 })
