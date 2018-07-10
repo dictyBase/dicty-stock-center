@@ -24,7 +24,7 @@ type Props = {
 
 /** This uses render props to provide access to different areas of DSC based on user permissions. */
 
-const Authorization = (props: Props) => {
+export const Authorization = (props: Props) => {
   const { loggedInUser, roles, fetchedUserData, verifiedToken } = props
   return props.render({
     canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
