@@ -10,7 +10,7 @@ exports[`matching a snapshot of About 1`] = `
     is={null}
   >
     <div
-      className="react-loading-theme-0"
+      className="react-loading-theme-2"
     >
       <span>
         <span

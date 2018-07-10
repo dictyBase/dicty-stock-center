@@ -21,7 +21,7 @@ type Props = {
  * Fetches the data for the desired info page
  */
 
-class InfoPage extends Component<Props> {
+export class InfoPage extends Component<Props> {
   // set defaultProps to prevent console warnings
   static defaultProps = {
     page: {

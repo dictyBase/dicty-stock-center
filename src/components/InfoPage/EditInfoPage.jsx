@@ -17,7 +17,7 @@ import {
   UnorderedListButton,
   OrderedListButton,
   BlockquoteButton,
-  CodeBlockButton
+  CodeBlockButton,
 } from "draft-js-buttons"
 import { saveEditing, cancelEditing } from "actions/page"
 import { Flex, Box } from "rebass"
@@ -28,14 +28,14 @@ import {
   EditPanel,
   StaticToolbar,
   CancelButton,
-  SuccessBlockButton
+  SuccessBlockButton,
 } from "styles"
 import { NAMESPACE } from "constants/dsctypes"
 
 // Set up Draft.js toolbar and plugins
 const undoPlugin = createUndoPlugin()
 const toolbarLinkPlugin = createToolbarLinkPlugin({
-  inputPlaceholder: "Insert URL here..."
+  inputPlaceholder: "Insert URL here...",
 })
 const { LinkButton } = toolbarLinkPlugin
 const { UndoButton, RedoButton } = undoPlugin
@@ -54,8 +54,8 @@ const toolbarPlugin = createToolbarPlugin({
     CodeBlockButton,
     LinkButton,
     UndoButton,
-    RedoButton
-  ]
+    RedoButton,
+  ],
 })
 const { Toolbar } = toolbarPlugin
 const plugins = [toolbarPlugin, toolbarLinkPlugin, undoPlugin]
@@ -70,26 +70,26 @@ type Props = {
   /** value for who last updated the page */
   updated_by: string,
   /** action creator to save page content */
-  saveEditing: Function
+  saveEditing: Function,
 }
 
 type State = {
-  editorState: EditorState
+  editorState: EditorState,
 }
 
 /**
  * Allows editing of the info page components (i.e. Deposit, Payment, Order)
  */
 
-class EditInfoPage extends Component<Props, State> {
+export class EditInfoPage extends Component<Props, State> {
   constructor(props) {
     super(props)
 
     if (props.content) {
       this.state = {
         editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(props.content))
-        )
+          convertFromRaw(JSON.parse(props.content)),
+        ),
       }
     }
   }
@@ -100,7 +100,7 @@ class EditInfoPage extends Component<Props, State> {
     const { editorState } = this.state
     const { id, updated_by, saveEditing } = this.props
     const rawData = JSON.stringify(
-      convertToRaw(editorState.getCurrentContent())
+      convertToRaw(editorState.getCurrentContent()),
     )
     const body = {
       id: id,
@@ -109,9 +109,9 @@ class EditInfoPage extends Component<Props, State> {
         type: "contents",
         attributes: {
           updated_by: updated_by,
-          content: rawData
-        }
-      }
+          content: rawData,
+        },
+      },
     }
     saveEditing(id, body)
   }
@@ -163,10 +163,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     content: state.page[slugName].data.attributes.content,
     updated_by: state.page[slugName].data.attributes.updated_by,
-    id: state.page[slugName].data.id
+    id: state.page[slugName].data.id,
   }
 }
 
-export default connect(mapStateToProps, { saveEditing, cancelEditing })(
-  EditInfoPage
-)
+export default connect(
+  mapStateToProps,
+  { saveEditing, cancelEditing },
+)(EditInfoPage)

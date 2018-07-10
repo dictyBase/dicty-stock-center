@@ -5,6 +5,7 @@ import { dsctypes } from "constants/dsctypes"
 import nock from "nock"
 import configureMockStore from "redux-mock-store"
 import thunk from "redux-thunk"
+import "whatwg-fetch"
 
 const { SUBMIT_REQUEST, SUBMIT_SUCCESS } = dsctypes
 
