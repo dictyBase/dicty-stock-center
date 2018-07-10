@@ -36,8 +36,6 @@ import {
 type Props = {
   /** the object that contains page data from current state */
   page: Object,
-  /** checks if user is authenticated */
-  isAuthenticated: boolean,
   /** the current user's ID number */
   id: string,
   /** value for who last updated the page */
@@ -54,10 +52,10 @@ type State = {
 }
 
 /**
- * Inline editor for the About page content
+ * Inline editor for all inline editable content
  */
 
-class InlineEditor extends Component<Props, State> {
+export class InlineEditor extends Component<Props, State> {
   undoPlugin: Object
   toolbarLinkPlugin: Object
   toolbarPlugin: Object
@@ -207,4 +205,7 @@ class InlineEditor extends Component<Props, State> {
   }
 }
 
-export default connect(null, { editInline, saveInlineEditing })(InlineEditor)
+export default connect(
+  null,
+  { editInline, saveInlineEditing },
+)(InlineEditor)
