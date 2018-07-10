@@ -1,5 +1,5 @@
 import React from "react"
-import { shallow, mount } from "enzyme"
+import { shallow, mount, render } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
 import { InfoPageView } from "./InfoPageView"
@@ -154,12 +154,15 @@ describe("InfoPage/InfoPageView", () => {
       }
     })
 
-    // jest.mock(
-    //   "components/authentication/Authorization",
-    //   () => ({ canEditPages, fetchedUserData, verifiedToken }) => render(),
+    // const AuthorizationWrapper = shallow(
+    //   infoPageView()
+    //     .find(Authorization)
+    //     .prop("render")({
+    //     canEditPages,
+    //     fetchedUserData,
+    //     verifiedToken,
+    //   }),
     // )
-
-    const AuthorizationMock = () => {}
 
     it("renders the Authorization component", () => {
       expect(infoPageView().find(Authorization).length).toBe(1)
