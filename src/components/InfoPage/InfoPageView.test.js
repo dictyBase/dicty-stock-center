@@ -29,13 +29,25 @@ describe("InfoPage/InfoPageView", () => {
     mountedInfoPageView = undefined
   })
 
+  const content = JSON.stringify({
+    entityMap: {},
+    blocks: [
+      {
+        key: "abc",
+        text: "123",
+        type: "unstyled",
+        depth: 0,
+      },
+    ],
+  })
+
   describe("initial render", () => {
     beforeEach(() => {
       props = {
         page: {
           data: {
             attributes: {
-              content: "page content",
+              content: content,
               updated_at: "999",
             },
           },
@@ -57,9 +69,7 @@ describe("InfoPage/InfoPageView", () => {
     })
     it("Editor is readOnly", () => {
       const editor = infoPageView().find(Editor)
-      expect(editor)
-        .props()
-        .readOnly.toBe(true)
+      expect(editor.props().readOnly).toBe(true)
     })
   })
 
@@ -69,7 +79,7 @@ describe("InfoPage/InfoPageView", () => {
         page: {
           data: {
             attributes: {
-              content: "page content",
+              content: content,
               updated_at: "999",
             },
           },
