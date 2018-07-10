@@ -4,7 +4,7 @@ import sinon from "sinon"
 import "../../setupTests"
 import { EditInfoPage } from "./EditInfoPage"
 import { Container, SuccessBlockButton, CancelButton } from "styles"
-import { EditorState } from "draft-js"
+import { Editor, EditorState } from "draft-js"
 
 describe("InfoPage/EditInfoPage", () => {
   let props
@@ -23,8 +23,21 @@ describe("InfoPage/EditInfoPage", () => {
       id: undefined,
       updated_by: undefined,
       saveEditing: undefined,
+      content: undefined,
     }
     mountedEditInfoPage = undefined
+  })
+
+  const content = JSON.stringify({
+    entityMap: {},
+    blocks: [
+      {
+        key: "abc",
+        text: "123",
+        type: "unstyled",
+        depth: 0,
+      },
+    ],
   })
 
   describe("initial render", () => {
@@ -33,11 +46,12 @@ describe("InfoPage/EditInfoPage", () => {
         page: {
           data: {
             attributes: {
-              content: "page content",
+              content: content,
               updated_at: "999",
             },
           },
         },
+        content: content,
         match: {
           params: {
             name: "order",
@@ -47,16 +61,16 @@ describe("InfoPage/EditInfoPage", () => {
     })
 
     it("always renders a Container", () => {
-      expect(editInfoPage().find(Container).length).toBeGreaterThan(0)
+      expect(editInfoPage().find(Container).length).toBe(1)
     })
     it("always renders an Editor", () => {
-      expect(editInfoPage().find(Editor).length).toBeGreaterThan(0)
+      expect(editInfoPage().find(Editor).length).toBe(1)
     })
     it("always renders a CancelButton", () => {
-      expect(editInfoPage().find(CancelButton).length).toBeGreaterThan(0)
+      expect(editInfoPage().find(CancelButton).length).toBe(1)
     })
     it("always renders a SuccessBlockButton", () => {
-      expect(editInfoPage().find(SuccessBlockButton).length).toBeGreaterThan(0)
+      expect(editInfoPage().find(SuccessBlockButton).length).toBe(1)
     })
   })
 })
