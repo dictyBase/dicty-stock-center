@@ -3,7 +3,9 @@ import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
 import { InfoPageView } from "./InfoPageView"
-import { Container } from "styles"
+import Authorization from "components/authentication/Authorization"
+import ErrorNotification from "components/authentication/ErrorNotification"
+import { Container, ToolbarNav } from "styles"
 import { Editor } from "draft-js"
 
 describe("InfoPage/InfoPageView", () => {
@@ -62,14 +64,40 @@ describe("InfoPage/InfoPageView", () => {
     })
 
     it("always renders a Container", () => {
-      expect(infoPageView().find(Container).length).toBeGreaterThan(0)
+      expect(infoPageView().find(Container).length).toBe(1)
     })
     it("always renders an Editor", () => {
-      expect(infoPageView().find(Editor).length).toBeGreaterThan(0)
+      expect(infoPageView().find(Editor).length).toBe(1)
     })
     it("Editor is readOnly", () => {
       const editor = infoPageView().find(Editor)
       expect(editor.props().readOnly).toBe(true)
+    })
+  })
+
+  describe("user is not authenticated", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: content,
+              updated_at: "999",
+            },
+          },
+        },
+        match: {
+          params: {
+            name: "order",
+          },
+        },
+        fetchUserInfo: () => {},
+        isAuthenticated: false,
+      }
+    })
+
+    it("renders the Authorization component", () => {
+      expect(infoPageView().find(Authorization).length).toBe(0)
     })
   })
 
@@ -98,13 +126,71 @@ describe("InfoPage/InfoPageView", () => {
       infoPageView()
       expect(InfoPageView.prototype.componentDidMount.calledOnce).toEqual(true)
     })
+    it("renders the Authorization component", () => {
+      expect(infoPageView().find(Authorization).length).toBe(1)
+    })
   })
 
   describe("user is authenticated with editing privileges and valid JWT", () => {
-    // add tests here
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: content,
+              updated_at: "999",
+            },
+          },
+        },
+        match: {
+          params: {
+            name: "order",
+          },
+        },
+        fetchUserInfo: () => {},
+        isAuthenticated: true,
+        canEditPages: true,
+        verifiedToken: true,
+      }
+    })
+
+    // jest.mock(
+    //   "components/authentication/Authorization",
+    //   () => ({ canEditPages, fetchedUserData, verifiedToken }) => render(),
+    // )
+
+    const AuthorizationMock = () => {}
+
+    it("renders the Authorization component", () => {
+      expect(infoPageView().find(Authorization).length).toBe(1)
+    })
   })
 
   describe("user is authenticated with editing privileges but JWT is invalid", () => {
-    // add tests here
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: content,
+              updated_at: "999",
+            },
+          },
+        },
+        match: {
+          params: {
+            name: "order",
+          },
+        },
+        fetchUserInfo: () => {},
+        isAuthenticated: true,
+        canEditPages: true,
+        verifiedToken: false,
+      }
+    })
+
+    it("renders the Authorization component", () => {
+      expect(infoPageView().find(Authorization).length).toBe(1)
+    })
   })
 })
