@@ -22,14 +22,14 @@ type Props = {
   /** the User object from the current state */
   user: Object,
   /** the user's first and last names, taken from the AuthenticatedUser class */
-  fullName: string
+  fullName: string,
 }
 
 /**
  * This is the main homepage component for DSC
  */
 
-class Homepage extends Component<Props> {
+export class Homepage extends Component<Props> {
   renderGreeting = () => {
     return (
       <span>
@@ -101,7 +101,7 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
     const userData = new AuthenticatedUser(state.auth.user)
     return {
       user: state.auth.user,
-      fullName: userData.getFullName()
+      fullName: userData.getFullName(),
     }
   }
   return {}
