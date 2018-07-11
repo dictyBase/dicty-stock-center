@@ -4,7 +4,12 @@ import sinon from "sinon"
 import "../setupTests"
 import { InlineEditor } from "./InlineEditor"
 import Authorization from "components/authentication/Authorization"
-import { EditPanel } from "styles"
+import {
+  EditPanel,
+  DefaultBlockButton,
+  SuccessBlockButton,
+  ToolbarNav,
+} from "styles"
 import Editor from "draft-js-plugins-editor"
 
 describe("InlineEditor", () => {
@@ -62,6 +67,24 @@ describe("InlineEditor", () => {
     })
     it("renders the Authorization component", () => {
       expect(inlineEditor().find(Authorization).length).toBe(1)
+    })
+    it("renders ToolbarNav if editor isn't read only", () => {
+      inlineEditor().setState({
+        readOnly: false,
+      })
+      expect(inlineEditor().find(ToolbarNav).length).toBe(1)
+    })
+    it("renders DefaultBlockButton if editor isn't read only", () => {
+      inlineEditor().setState({
+        readOnly: false,
+      })
+      expect(inlineEditor().find(DefaultBlockButton).length).toBe(1)
+    })
+    it("renders SuccessBlockButton if editor isn't read only", () => {
+      inlineEditor().setState({
+        readOnly: false,
+      })
+      expect(inlineEditor().find(SuccessBlockButton).length).toBe(1)
     })
   })
 })
