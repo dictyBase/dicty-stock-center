@@ -33,7 +33,7 @@ const oauthConfig = {
   linkedin: {
     name: "LinkedIn",
     url: "/auth/linkedin",
-    authorizationEndpoint: "https://www.linkedin.com/uas/oauth2/authorization",
+    authorizationEndpoint: "https://www.linkedin.com/oauth/v2/authorization",
     clientId: clientConfig.linkedin.clientId,
     redirectUrl: redirectUrlGenerator("linkedin"),
     scopes: ["r_emailaddress"],
