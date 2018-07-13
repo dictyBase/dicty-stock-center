@@ -134,19 +134,22 @@ exports[`matching a snapshot of PageNotReady 1`] = `
       />
        Under Construction
     </h1>
+    <br />
     <p>
       This page is not ready yet.
     </p>
-    <button
-      className="c2"
+    <br />
+    <br />
+    <a
+      href="/"
+      onClick={[Function]}
     >
-      <a
-        href="/"
-        onClick={[Function]}
+      <button
+        className="c2"
       >
         Stock Center Home
-      </a>
-    </button>
+      </button>
+    </a>
   </div>
 </div>
 `;

@@ -15,7 +15,7 @@ import {
   StrainDetailsHeader,
   PrimaryBlockButton,
   SuccessBlockButton,
-  BorderBox
+  BorderBox,
 } from "styles"
 
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
   isFetching: boolean,
   cartItem: { type: string, id: number, systematicName: string },
   title: string,
-  match: Object
+  match: Object,
 }
 
 export class StrainDetail extends Component<Props> {
@@ -79,7 +79,7 @@ export class StrainDetail extends Component<Props> {
     const cartItem = {
       type: "strain",
       id: strain.id,
-      systematicName: strain.name
+      systematicName: strain.name,
     }
     const data1 = [
       { "Strain Descriptor": "No Information" },
@@ -90,7 +90,7 @@ export class StrainDetail extends Component<Props> {
       { "Parental Strain": "DH1-10 (DBS0302388)" },
       { Plasmid: "No Information" },
       /* multiple possible parental strains*/
-      { "Associated Gene(s)": "mcln" }
+      { "Associated Gene(s)": "mcln" },
     ]
     const data2 = [
       { "Strain ID": strain && strain.id },
@@ -100,7 +100,7 @@ export class StrainDetail extends Component<Props> {
       { Species: "Dictyostelium discoideum" },
       { Depositor: "No Information" },
       /* just display id, no link > eventually go to internal publication id*/
-      { "Reference(s)": "22357942" }
+      { "Reference(s)": "22357942" },
       // {_blank: 'asdf '}
     ]
     return (
@@ -157,11 +157,11 @@ export class StrainDetail extends Component<Props> {
             </PrimaryBlockButton>
           </Box>
           <Box w={["80%", "35%"]} mt={10} mr={1}>
-            <SuccessBlockButton>
-              <Link to="/order/shipping">
+            <Link to="/order/shipping">
+              <SuccessBlockButton>
                 <FontAwesome name="shopping-cart" /> Checkout
-              </Link>
-            </SuccessBlockButton>
+              </SuccessBlockButton>
+            </Link>
           </Box>
         </Flex>
       </div>
@@ -173,7 +173,7 @@ const mapStateToProps = state => {
   return {
     phenotypes: state.stockCenter.strain.phenotypes,
     strain: state.stockCenter.strain,
-    isFetching: state.stockCenter.strain.isFetching
+    isFetching: state.stockCenter.strain.isFetching,
   }
 }
 
@@ -184,8 +184,11 @@ const mapDispatchToProps = dispatch => {
     },
     addToCart: id => {
       dispatch(addToCart(id))
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StrainDetail)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StrainDetail)

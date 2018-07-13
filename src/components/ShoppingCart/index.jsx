@@ -10,12 +10,12 @@ import {
   Container,
   AlertBox,
   PrimaryLargeButton,
-  SuccessLargeButton
+  SuccessLargeButton,
 } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
-  addedItems: Array<Object>
+  addedItems: Array<Object>,
 }
 
 class ShoppingCart extends Component<Props> {
@@ -52,18 +52,18 @@ class ShoppingCart extends Component<Props> {
             </Flex>
             <Flex wrap justify="center">
               <Box w={[1, "40%"]} mt={10} mr={1}>
-                <PrimaryLargeButton>
-                  <Link to="/strains">
+                <Link to="/strains">
+                  <PrimaryLargeButton>
                     <FontAwesome name="share" /> Continue Shopping
-                  </Link>
-                </PrimaryLargeButton>
+                  </PrimaryLargeButton>
+                </Link>
               </Box>
               <Box w={[1, "40%"]} mt={10} mr={1}>
-                <SuccessLargeButton>
-                  <Link to="/order/shipping">
+                <Link to="/order/shipping">
+                  <SuccessLargeButton>
                     <FontAwesome name="shopping-cart" /> Checkout
-                  </Link>
-                </SuccessLargeButton>
+                  </SuccessLargeButton>
+                </Link>
               </Box>
             </Flex>
           </div>
@@ -77,7 +77,7 @@ class ShoppingCart extends Component<Props> {
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {
-    addedItems: state.cart.addedItems
+    addedItems: state.cart.addedItems,
   }
 }
 

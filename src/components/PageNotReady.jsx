@@ -15,10 +15,13 @@ const PageNotReady = () => {
         <h1>
           <FontAwesome name="wrench" /> Under Construction
         </h1>
+        <br />
         <p>This page is not ready yet.</p>
-        <PrimaryButton>
-          <Link to="/">Stock Center Home</Link>
-        </PrimaryButton>
+        <br />
+        <br />
+        <Link to="/">
+          <PrimaryButton>Stock Center Home</PrimaryButton>
+        </Link>
       </Jumbotron>
     </Container>
   )

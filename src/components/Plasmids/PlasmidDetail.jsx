@@ -12,7 +12,7 @@ import {
   DictyHeader,
   StrainDetailsHeader,
   PrimaryBlockButton,
-  SuccessBlockButton
+  SuccessBlockButton,
 } from "styles"
 
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
   isFetching: boolean,
   cartItem: { type: string, id: number, systematicName: string },
   match: Object,
-  title: string
+  title: string,
 }
 
 export class PlasmidDetail extends Component<Props> {
@@ -38,20 +38,20 @@ export class PlasmidDetail extends Component<Props> {
     const cartItem = {
       type: "plasmid",
       id: plasmid.id,
-      systematicName: plasmid.name
+      systematicName: plasmid.name,
     }
     const data1 = [
       { "Plasmid Name": "No Information" },
       { Description: "No Information" },
       { Depositor: "N/A" },
       /* just display id, no link > eventually go to internal publication id*/
-      { "Reference(s)": "22357942" }
+      { "Reference(s)": "22357942" },
     ]
     const data2 = [
       { "Plasmid ID": this.props.match.params.id },
       { "Plasmid Keywords": "No Information" },
       { "GenBank Accession": "No Information" },
-      { "Test row": "No Information" }
+      { "Test row": "No Information" },
     ]
     return (
       <div>
@@ -98,11 +98,11 @@ export class PlasmidDetail extends Component<Props> {
             </PrimaryBlockButton>
           </Box>
           <Box w={["80%", "35%"]} mt={10} mr={1}>
-            <SuccessBlockButton>
-              <Link to="/order/shipping">
+            <Link to="/order/shipping">
+              <SuccessBlockButton>
                 <FontAwesome name="shopping-cart" /> Checkout
-              </Link>
-            </SuccessBlockButton>
+              </SuccessBlockButton>
+            </Link>
           </Box>
         </Flex>
       </div>
@@ -113,7 +113,7 @@ export class PlasmidDetail extends Component<Props> {
 const mapStateToProps = state => {
   return {
     plasmid: state.stockCenter.plasmid,
-    isFetching: state.stockCenter.plasmid.isFetching
+    isFetching: state.stockCenter.plasmid.isFetching,
   }
 }
 
@@ -124,8 +124,11 @@ const mapDispatchToProps = dispatch => {
     },
     addToCart: id => {
       dispatch(addToCart(id))
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlasmidDetail)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PlasmidDetail)
