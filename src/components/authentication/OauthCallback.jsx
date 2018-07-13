@@ -4,7 +4,18 @@ import { Flex, Box } from "rebass"
 
 type Props = {
   location: Object,
-  match: Object
+  match: Object,
+}
+
+// helper function to set redirect URL with basename if included
+const redirectUrlGenerator = basename => {
+  let url
+  if (basename === "" || basename === "/") {
+    url = `${window.location.origin}`
+  } else {
+    url = `${window.location.origin}${basename}`
+  }
+  return url
 }
 
 /**
@@ -17,9 +28,11 @@ export default class OauthCallback extends Component<Props> {
       {
         query: this.props.location.search,
         provider: this.props.match.params.provider,
-        url: `${window.location.origin}${this.props.location.pathname}`
+        url: `${redirectUrlGenerator(process.env.REACT_APP_BASENAME)}${
+          this.props.location.pathname
+        }`,
       },
-      window.location
+      window.location,
     )
     window.close()
   }
