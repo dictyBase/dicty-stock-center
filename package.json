@@ -37,6 +37,7 @@
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "bowser": "^1.9.3",
+    "connected-react-router": "^4.3.0",
     "core-js": "^2.5.3",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v6.1.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#v1.4.0",

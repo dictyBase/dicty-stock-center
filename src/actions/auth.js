@@ -6,10 +6,10 @@ import {
   oauthEndpointResource,
   fetchUserByIdResource,
   fetchRoleByIdResource,
-  fetchHeaderConfig
+  fetchHeaderConfig,
 } from "utils/fetchResources"
 // import history from "utils/routerHistory"
-import { push } from "react-router-redux"
+import { push } from "connected-react-router"
 
 const {
   LOGIN_REQUEST,
@@ -27,7 +27,7 @@ const {
   FETCH_NON_AUTH_ROLE_FAILURE,
   FETCH_PERMISSION_REQUEST,
   FETCH_PERMISSION_SUCCESS,
-  FETCH_PERMISSION_FAILURE
+  FETCH_PERMISSION_FAILURE,
 } = dsctypes
 
 type oauthArg = { query: string, provider: string, url: string }
@@ -41,7 +41,7 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   let config = {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body
+    body: body,
   }
   const endpoint = `${oauthEndpointResource}/${provider}`
   return { config, endpoint }
@@ -52,8 +52,8 @@ export const requestLogin = (provider: string) => {
     type: LOGIN_REQUEST,
     payload: {
       isFetching: true,
-      provider: provider
-    }
+      provider: provider,
+    },
   }
 }
 
@@ -63,8 +63,8 @@ export const receiveLogin = ({ user, token }: receiveLoginArg) => {
     payload: {
       isFetching: false,
       token: token,
-      user: user
-    }
+      user: user,
+    },
   }
 }
 
@@ -73,8 +73,8 @@ export const loginError = (error: string) => {
     type: LOGIN_FAILURE,
     payload: {
       isFetching: false,
-      error: error
-    }
+      error: error,
+    },
   }
 }
 
@@ -82,8 +82,8 @@ const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
     payload: {
-      isFetching: false
-    }
+      isFetching: false,
+    },
   }
 }
 
@@ -91,8 +91,8 @@ export const fetchUserRequest = () => {
   return {
     type: FETCH_USER_REQUEST,
     payload: {
-      isFetching: true
-    }
+      isFetching: true,
+    },
   }
 }
 
@@ -101,8 +101,8 @@ export const fetchUserSuccess = (json: Object) => {
     type: FETCH_USER_SUCCESS,
     payload: {
       isFetching: false,
-      json
-    }
+      json,
+    },
   }
 }
 
@@ -110,8 +110,8 @@ export const fetchUserFailure = (error: string) => {
   return {
     type: FETCH_USER_FAILURE,
     payload: {
-      error: error
-    }
+      error: error,
+    },
   }
 }
 
@@ -119,8 +119,8 @@ export const fetchRoleRequest = () => {
   return {
     type: FETCH_ROLE_REQUEST,
     payload: {
-      isFetching: true
-    }
+      isFetching: true,
+    },
   }
 }
 
@@ -129,8 +129,8 @@ export const fetchRoleSuccess = (json: Object) => {
     type: FETCH_ROLE_SUCCESS,
     payload: {
       isFetching: false,
-      json
-    }
+      json,
+    },
   }
 }
 
@@ -138,8 +138,8 @@ export const fetchRoleFailure = (error: string) => {
   return {
     type: FETCH_ROLE_FAILURE,
     payload: {
-      error: error
-    }
+      error: error,
+    },
   }
 }
 
@@ -165,8 +165,8 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => {
           dispatch(
             loginError(
               `You are not an authorized user of dictyBase.
-              Please sign in with proper credentials or sign up with our user registration form when it is available.`
-            )
+              Please sign in with proper credentials or sign up with our user registration form when it is available.`,
+            ),
           )
           dispatch(push("/login"))
         } else {
@@ -203,7 +203,7 @@ export const fetchUserInfo = (userId: string) => {
       dispatch(fetchUserRequest())
       const res = await fetch(
         `${fetchUserByIdResource}/${userId}`,
-        fetchHeaderConfig
+        fetchHeaderConfig,
       )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
@@ -243,7 +243,7 @@ export const fetchRoleInfo = (userId: string) => {
       dispatch(fetchRoleRequest())
       const res = await fetch(
         `${fetchUserByIdResource}/${userId}/roles`,
-        fetchHeaderConfig
+        fetchHeaderConfig,
       )
       const contentType = res.headers.get("content-type")
       if (contentType && contentType.includes("application/vnd.api+json")) {
@@ -279,10 +279,10 @@ export const fetchNonAuthRoleInfo = (userId: string) => {
     types: [
       FETCH_NON_AUTH_ROLE_REQUEST,
       FETCH_NON_AUTH_ROLE_SUCCESS,
-      FETCH_NON_AUTH_ROLE_FAILURE
+      FETCH_NON_AUTH_ROLE_FAILURE,
     ],
     url: `${fetchUserByIdResource}/${userId}/roles`,
-    config: fetchHeaderConfig
+    config: fetchHeaderConfig,
   }
 }
 
@@ -291,10 +291,10 @@ export const fetchPermissionInfo = (roleId: string) => {
     types: [
       FETCH_PERMISSION_REQUEST,
       FETCH_PERMISSION_SUCCESS,
-      FETCH_PERMISSION_FAILURE
+      FETCH_PERMISSION_FAILURE,
     ],
     url: `${fetchRoleByIdResource}/${roleId}/permissions`,
-    config: fetchHeaderConfig
+    config: fetchHeaderConfig,
   }
 }
 
@@ -305,6 +305,6 @@ const printError = (res, json) => {
   console.error(
     `HTTP Response: ${res.status}
     Title: ${json.errors[0].title}
-    Detail: ${json.errors[0].detail}`
+    Detail: ${json.errors[0].detail}`,
   )
 }
