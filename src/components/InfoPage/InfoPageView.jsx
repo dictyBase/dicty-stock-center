@@ -139,7 +139,7 @@ export class InfoPageView extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   if (state.auth.user) {
     const loggedInUser = new AuthenticatedUser(state.auth.user)
     return {
