@@ -2,7 +2,7 @@ import React from "react"
 import { shallow, mount, render } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
-import { InfoPageView } from "./InfoPageView"
+import { InfoPageView, mapStateToProps } from "./InfoPageView"
 import Authorization from "components/authentication/Authorization"
 import ErrorNotification from "components/authentication/ErrorNotification"
 import { Container, ToolbarNav } from "styles"
@@ -194,6 +194,53 @@ describe("InfoPage/InfoPageView", () => {
 
     it("renders the Authorization component", () => {
       expect(infoPageView().find(Authorization).length).toBe(1)
+    })
+  })
+
+  describe("InfoPageView mapStateToProps", () => {
+    const mockState = {
+      auth: {
+        isAuthenticated: true,
+      },
+    }
+    it("works correctly", () => {
+      expect(mapStateToProps(mockState)).toEqual({
+        isAuthenticated: true,
+      })
+    })
+  })
+
+  describe("InfoPageView methods", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: content,
+              updated_at: "999",
+            },
+          },
+        },
+        match: {
+          params: {
+            name: "order",
+          },
+        },
+        editPage: () => {},
+        fetchUserInfo: () => {},
+        isAuthenticated: true,
+        onClick: () => {},
+      }
+    })
+
+    const preventDefault = jest.fn()
+
+    it("should handle onClick correctly", () => {
+      const instance = infoPageView().instance()
+      const spy = jest.spyOn(instance, "onClick")
+      instance.onClick({ preventDefault })
+
+      expect(spy).toHaveBeenCalled()
     })
   })
 })

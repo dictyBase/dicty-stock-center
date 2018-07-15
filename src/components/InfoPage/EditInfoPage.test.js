@@ -73,4 +73,45 @@ describe("InfoPage/EditInfoPage", () => {
       expect(editInfoPage().find(SuccessBlockButton).length).toBe(1)
     })
   })
+
+  describe("EditInfoPage methods", () => {
+    beforeEach(() => {
+      props = {
+        page: {
+          data: {
+            attributes: {
+              content: content,
+              updated_at: "999",
+            },
+          },
+        },
+        content: content,
+        match: {
+          params: {
+            name: "order",
+          },
+        },
+        saveEditing: () => {},
+        cancelEditing: () => {},
+      }
+    })
+
+    const preventDefault = jest.fn()
+
+    it("should be read only after using onSave", () => {
+      const instance = editInfoPage().instance()
+      const spy = jest.spyOn(instance, "onSave")
+      instance.onSave()
+
+      expect(spy).toHaveBeenCalled()
+    })
+
+    it("should be read only after using onCancel", () => {
+      const instance = editInfoPage().instance()
+      const spy = jest.spyOn(instance, "onCancel")
+      instance.onCancel()
+
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })
