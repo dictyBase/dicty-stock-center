@@ -77,11 +77,19 @@ export class AuthenticatedUser extends JsonAPI {
   getRoles() {
     if (this.json.roles) {
       const rolesArr = this.json.roles
-      // return the role and capitalize the first letter
-      const role = rolesArr[0].attributes.role
-      return role.charAt(0).toUpperCase() + role.substr(1)
+
+      if (rolesArr[0] === undefined || rolesArr[0] === null) {
+        // if user doesn't have role for some reason, just return "User"
+        return "User"
+      } else {
+        // return the role and capitalize the first letter
+        return (
+          rolesArr[0].attributes.role.charAt(0).toUpperCase() +
+          rolesArr[0].attributes.role.substr(1)
+        )
+      }
     } else {
-      return ""
+      return "User"
     }
   }
 
@@ -123,7 +131,7 @@ export class PermissionAPI extends JsonAPI {
   // this verifies that the user has the right resource
   // and permission to edit content
   verifyPermissions = (perm: string, resource: string) => {
-    if (this.json.permissions.length > 0) {
+    if (this.json.permissions) {
       const validPermissions = item => {
         return (
           item.attributes.permission === "admin" ||
@@ -133,9 +141,16 @@ export class PermissionAPI extends JsonAPI {
             item.attributes.resource === MAIN_RESOURCE)
         )
       }
-      return this.json.permissions.filter(validPermissions)
+      const filteredPerms = this.json.permissions.filter(validPermissions)
+
+      // check if array is empty
+      if (!Array.isArray(filteredPerms) || !filteredPerms.length) {
+        return false
+      } else {
+        return true
+      }
     } else {
-      return null
+      return false
     }
   }
 }
@@ -157,6 +172,8 @@ export class RoleAPI extends JsonAPI {
   // checks if user has specified role
   checkRoles = (role: string) => {
     if (this.json.roles) {
+      // return this.json.roles.includes(role)
+      // console.log(this.json.roles.filter(item => item.attributes.role === role))
       return this.json.roles.filter(item => item.attributes.role === role)
     } else {
       return
