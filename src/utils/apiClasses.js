@@ -88,18 +88,17 @@ export class AuthenticatedUser extends JsonAPI {
           rolesArr[0].attributes.role.substr(1)
         )
       }
-    } else {
-      return "User"
     }
+    // default role if none exists
+    return "User"
   }
 
   // checks if user can overwrite current content
   canOverwrite = (id: string) => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
-    } else {
-      return null
     }
+    return false
   }
 }
 
@@ -112,9 +111,8 @@ export class PermissionAPI extends JsonAPI {
       this.json.permissions.forEach(item => {
         return item.attributes.resource
       })
-    } else {
-      return
     }
+    return null
   }
 
   // gets full list of user's permissions
@@ -123,9 +121,8 @@ export class PermissionAPI extends JsonAPI {
       this.json.permissions.forEach(item => {
         return item.attributes.permission
       })
-    } else {
-      return
     }
+    return null
   }
 
   // this verifies that the user has the right resource
@@ -146,12 +143,12 @@ export class PermissionAPI extends JsonAPI {
       // check if array is empty
       if (!Array.isArray(filteredPerms) || !filteredPerms.length) {
         return false
-      } else {
-        return true
       }
-    } else {
-      return false
+      // valid permission found, return true
+      return true
     }
+    // if no permissions, just return false
+    return false
   }
 }
 
@@ -164,19 +161,22 @@ export class RoleAPI extends JsonAPI {
       this.json.roles.forEach(item => {
         return item.attributes.role
       })
-    } else {
-      return
     }
+    return null
   }
 
   // checks if user has specified role
   checkRoles = (role: string) => {
     if (this.json.roles) {
-      // return this.json.roles.includes(role)
-      // console.log(this.json.roles.filter(item => item.attributes.role === role))
-      return this.json.roles.filter(item => item.attributes.role === role)
-    } else {
-      return
+      const filteredRoles = this.json.roles.filter(
+        item => item.attributes.role === role,
+      )
+
+      // check if array is empty
+      if (!Array.isArray(filteredRoles) || !filteredRoles.length) {
+        return false
+      }
+      return true
     }
   }
 }
@@ -188,8 +188,7 @@ export class ContentAPI extends AuthenticatedUser {
   getUser() {
     if (this.json.data) {
       return this.json.data.attributes.updated_by
-    } else {
-      return
     }
+    return null
   }
 }
