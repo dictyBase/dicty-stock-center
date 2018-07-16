@@ -93,30 +93,36 @@ export class InfoPageView extends Component<Props, State> {
                       <ErrorNotification error={error} />
                     )}
                   <br />
-                  {canEditPages && (
-                    <ToolbarNav>
-                      <Flex>
-                        <Box>
-                          <TextInfo>
-                            <strong>
-                              <FontAwesome name="user" />{" "}
-                              {fetchedUserData.getFullName()}
-                            </strong>{" "}
-                            edited {timeSince(updated_at)} ago
-                          </TextInfo>
-                        </Box>
-                        <Box ml="auto">
-                          <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                          {loggedInUser.canOverwrite(fetchedUserData.getId()) &&
-                            verifiedToken && (
-                              <InlineLink onClick={this.onClick}>
-                                <FontAwesome name="pencil" title="Edit page" />
-                              </InlineLink>
-                            )}
-                        </Box>
-                      </Flex>
-                    </ToolbarNav>
-                  )}
+                  {canEditPages &&
+                    fetchedUserData && (
+                      <ToolbarNav>
+                        <Flex>
+                          <Box>
+                            <TextInfo>
+                              <strong>
+                                <FontAwesome name="user" />{" "}
+                                {fetchedUserData.getFullName()}
+                              </strong>{" "}
+                              edited {timeSince(updated_at)} ago
+                            </TextInfo>
+                          </Box>
+                          <Box ml="auto">
+                            <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
+                            {loggedInUser.canOverwrite(
+                              fetchedUserData.getId(),
+                            ) &&
+                              verifiedToken && (
+                                <InlineLink onClick={this.onClick}>
+                                  <FontAwesome
+                                    name="pencil"
+                                    title="Edit page"
+                                  />
+                                </InlineLink>
+                              )}
+                          </Box>
+                        </Flex>
+                      </ToolbarNav>
+                    )}
                 </div>
               )
             }}
@@ -144,6 +150,7 @@ export const mapStateToProps = state => {
     const loggedInUser = new AuthenticatedUser(state.auth.user)
     return {
       loggedInUser: loggedInUser,
+      isAuthenticated: state.auth.isAuthenticated,
     }
   } else {
     return {
