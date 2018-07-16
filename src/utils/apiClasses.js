@@ -75,13 +75,21 @@ export class AuthenticatedUser extends JsonAPI {
 
   // gets capitalized version of user's role
   getRoles() {
-    if (this.json.roles && this.json.roles[0] !== null) {
+    if (this.json.roles) {
       const rolesArr = this.json.roles
-      // return the role and capitalize the first letter
-      const role = rolesArr[0].attributes.role
-      return role.charAt(0).toUpperCase() + role.substr(1)
+
+      if (rolesArr[0] === undefined || rolesArr[0] === null) {
+        // if user doesn't have role for some reason, just return "User"
+        return "User"
+      } else {
+        // return the role and capitalize the first letter
+        return (
+          rolesArr[0].attributes.role.charAt(0).toUpperCase() +
+          rolesArr[0].attributes.role.substr(1)
+        )
+      }
     } else {
-      return ""
+      return "User"
     }
   }
 
