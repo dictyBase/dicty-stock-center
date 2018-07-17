@@ -2,13 +2,15 @@ import React from "react"
 import toJson from "enzyme-to-json"
 import { shallow } from "enzyme"
 import "jest-styled-components"
-import { Homepage } from "./Homepage"
+import { App } from "./App"
 
-test("matching a snapshot of Home/Homepage", () => {
+test("matching a snapshot of App", () => {
   const props = {
-    user: {},
-    fullName: "Jane Doe",
+    auth: {
+      isAuthenticated: false,
+    },
+    cart: {},
   }
-  const subject = shallow(<Homepage {...props} />)
+  const subject = shallow(<App {...props} />)
   expect(toJson(subject)).toMatchSnapshot()
 })
