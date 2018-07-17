@@ -141,27 +141,61 @@ describe("API Classes", () => {
           created_at: "2018-07-16T22:58:10.407Z",
           updated_at: "2018-07-16T22:58:10.407Z",
         },
-        relationships: {
-          roles: {
-            links: {
-              self: "string",
-            },
+      },
+      roles: [
+        {
+          type: "roles",
+          id: "99",
+          attributes: {
+            role: "superuser",
+            description: "total power",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
           },
         },
-      },
-      roles: {
-        type: "roles",
+      ],
+    }
+
+    const reguser = {
+      token: "faketoken",
+      isAuthenticated: true,
+      provider: "google",
+      data: {
         id: "99",
         attributes: {
-          role: "superuser",
-          description: "total power",
-          created_at: "2018-07-17T00:57:07.502Z",
-          updated_at: "2018-07-17T00:57:07.502Z",
+          first_name: "John",
+          last_name: "Doe",
+          email: "johndoe@fakeemail.com",
+          organization: "Northwestern University",
+          group_name: "n/a",
+          first_address: "750 N Lake Shore Drive",
+          second_address: "#11",
+          city: "Chicago",
+          state: "IL",
+          zipcode: "60611",
+          country: "USA",
+          phone: "n/a",
+          is_active: true,
+          created_at: "2018-07-16T22:58:10.407Z",
+          updated_at: "2018-07-16T22:58:10.407Z",
         },
       },
+      roles: [
+        {
+          type: "roles",
+          id: "99",
+          attributes: {
+            role: "user",
+            description: "total power",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+          },
+        },
+      ],
     }
 
     let instance = new AuthenticatedUser(superuser)
+    let regInstance = new AuthenticatedUser(reguser)
 
     it("creates a new AuthenticatedUser instance", () => {
       expect(typeof instance, "object")
@@ -172,17 +206,20 @@ describe("API Classes", () => {
       expect(name).toBe("John Doe")
     })
 
-    // need to list roles as array above
+    it("can get roles", () => {
+      const roles = instance.getRoles()
+      expect(roles).toBe("Superuser")
+    })
 
-    // it("can get roles", () => {
-    //   const roles = instance.getRoles()
-    //   expect(roles).toBe("Superuser")
-    // })
+    it("can overwrite as superuser and different id", () => {
+      const endUser = instance.canOverwrite("0")
+      expect(endUser).toBe(true)
+    })
 
-    // it("can overwrite as superuser", () => {
-    //   const endUser = instance.canOverwrite("99")
-    //   expect(endUser).toBe(true)
-    // })
+    it("can overwrite as same id but not superuser", () => {
+      const endUser = regInstance.canOverwrite("99")
+      expect(endUser).toBe(true)
+    })
   })
 
   describe("PermissionAPI class", () => {
