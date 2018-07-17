@@ -158,7 +158,7 @@ export class InlineEditor extends Component<Props, State> {
     return (
       <EditPanel>
         <Flex wrap>
-          <Box w={"90%"}>{!readOnly && this.renderToolbar()}</Box>
+          <Box w={1}>{!readOnly && this.renderToolbar()}</Box>
           <Box mt={1}>
             <Editor
               editorState={editorState}
@@ -185,19 +185,23 @@ export class InlineEditor extends Component<Props, State> {
               }}
             />
           </Box>
-          <Box width={"40%"} mr={1} mt={1}>
-            {!readOnly && (
-              <DefaultBlockButton type="button" onClick={this.onCancel}>
-                Cancel
-              </DefaultBlockButton>
-            )}
-          </Box>
-          <Box width={"40%"} mt={1}>
-            {!readOnly && (
-              <SuccessBlockButton type="button" onClick={this.onSave}>
-                Save
-              </SuccessBlockButton>
-            )}
+          <Box w={1}>
+            <Flex>
+              <Box width={"30%"} mr={1} mt={1}>
+                {!readOnly && (
+                  <DefaultBlockButton type="button" onClick={this.onCancel}>
+                    Cancel
+                  </DefaultBlockButton>
+                )}
+              </Box>
+              <Box width={"30%"} mt={1}>
+                {!readOnly && (
+                  <SuccessBlockButton type="button" onClick={this.onSave}>
+                    Save
+                  </SuccessBlockButton>
+                )}
+              </Box>
+            </Flex>
           </Box>
         </Flex>
       </EditPanel>

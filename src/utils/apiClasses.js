@@ -104,8 +104,32 @@ export class AuthenticatedUser extends JsonAPI {
   }
 }
 
-export class PermissionAPI extends JsonAPI {
+export class RolesPermissionsAPI extends JsonAPI {
   json: Object
+
+  // get full list of user's roles
+  getRoles() {
+    if (this.json.roles) {
+      const roles = this.json.roles.map(item => item.attributes.role)
+      return roles
+    }
+    return null
+  }
+
+  // checks if user has specified role
+  checkRoles = (role: string) => {
+    if (this.json.roles) {
+      const filteredRoles = this.json.roles.filter(
+        item => item.attributes.role === role,
+      )
+
+      // check if array is empty
+      if (!Array.isArray(filteredRoles) || !filteredRoles.length) {
+        return false
+      }
+      return true
+    }
+  }
 
   // gets lists of all resources from user's permissions
   getResources() {
@@ -133,6 +157,11 @@ export class PermissionAPI extends JsonAPI {
   // and permission to edit content
   verifyPermissions = (perm: string, resource: string) => {
     if (this.json.permissions) {
+      // immediately return true if superuser
+      if (this.checkRoles("superuser")) {
+        return true
+      }
+
       const validPermissions = item => {
         return (
           item.attributes.permission === "admin" ||
@@ -153,34 +182,6 @@ export class PermissionAPI extends JsonAPI {
     }
     // if no permissions, just return false
     return false
-  }
-}
-
-export class RoleAPI extends JsonAPI {
-  json: Object
-
-  // get full list of user's roles
-  getRoles() {
-    if (this.json.roles) {
-      const roles = this.json.roles.map(item => item.attributes.role)
-      return roles
-    }
-    return null
-  }
-
-  // checks if user has specified role
-  checkRoles = (role: string) => {
-    if (this.json.roles) {
-      const filteredRoles = this.json.roles.filter(
-        item => item.attributes.role === role,
-      )
-
-      // check if array is empty
-      if (!Array.isArray(filteredRoles) || !filteredRoles.length) {
-        return false
-      }
-      return true
-    }
   }
 }
 

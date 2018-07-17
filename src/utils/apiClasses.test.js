@@ -2,8 +2,7 @@ import {
   JsonAPI,
   AuthAPI,
   AuthenticatedUser,
-  PermissionAPI,
-  RoleAPI,
+  RolesPermissionsAPI,
   ContentAPI,
 } from "./apiClasses"
 
@@ -284,7 +283,7 @@ describe("API Classes", () => {
     })
   })
 
-  describe("PermissionAPI class", () => {
+  describe("RolesPermissionsAPI class", () => {
     const superuser = {
       data: {
         id: "9",
@@ -365,55 +364,54 @@ describe("API Classes", () => {
       permissions: [],
     }
 
-    let instance = new PermissionAPI(superuser)
-    let noPermsInstance = new PermissionAPI(noPerms)
-    let emptyPermsInstance = new PermissionAPI(emptyPerms)
+    const adminPerms = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+      permissions: [
+        {
+          type: "permissions",
+          id: "3",
+          attributes: {
+            permission: "admin",
+            description: "write access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dsccontent",
+          },
+        },
+      ],
+    }
 
-    it("creates a new PermissionAPI instance", () => {
-      expect(typeof instance, "object")
-    })
+    const readPerms = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+      permissions: [
+        {
+          type: "permissions",
+          id: "3",
+          attributes: {
+            permission: "read",
+            description: "write access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dsccontent",
+          },
+        },
+      ],
+    }
 
-    describe("getResources()", () => {
-      it("can get resources", () => {
-        const list = instance.getResources()
-        expect(list).toEqual(["dictybase", "genome", "dsccontent"])
-      })
-      it("returns null if no resources exist", () => {
-        const list = noPermsInstance.getResources()
-        expect(list).toEqual(null)
-      })
-    })
-
-    describe("getPermissions()", () => {
-      it("can get permissions", () => {
-        const list = instance.getPermissions()
-        expect(list).toEqual(["admin", "read", "write"])
-      })
-      it("returns null if no permissions exist", () => {
-        const list = noPermsInstance.getPermissions()
-        expect(list).toEqual(null)
-      })
-    })
-
-    describe("verifyPermissions()", () => {
-      it("can verify permissions", () => {
-        const list = instance.verifyPermissions("write", "dsccontent")
-        expect(list).toBe(true)
-      })
-
-      it("returns false if no permissions exist", () => {
-        const list = noPermsInstance.verifyPermissions("write", "dsccontent")
-        expect(list).toBe(false)
-      })
-
-      it("returns false if no permissions exist", () => {
-        const list = emptyPermsInstance.verifyPermissions("write", "dsccontent")
-        expect(list).toBe(false)
-      })
-    })
-  })
-
-  describe("RoleAPI class", () => {
     const regularUser = {
       data: {
         id: "9",
@@ -446,16 +444,70 @@ describe("API Classes", () => {
       },
     }
 
-    let instance = new RoleAPI(regularUser)
-    let noRolesInstance = new RoleAPI(userNoRoles)
+    let instance = new RolesPermissionsAPI(superuser)
+    let regUserInstance = new RolesPermissionsAPI(regularUser)
+    let noPermsInstance = new RolesPermissionsAPI(noPerms)
+    let emptyPermsInstance = new RolesPermissionsAPI(emptyPerms)
+    let adminPermsInstance = new RolesPermissionsAPI(adminPerms)
+    let readPermsInstance = new RolesPermissionsAPI(readPerms)
+    let noRolesInstance = new RolesPermissionsAPI(userNoRoles)
 
-    it("creates a new RoleAPI instance", () => {
+    it("creates a new RolesPermissionsAPI instance", () => {
       expect(typeof instance, "object")
+    })
+
+    describe("getResources()", () => {
+      it("can get resources", () => {
+        const list = instance.getResources()
+        expect(list).toEqual(["dictybase", "genome", "dsccontent"])
+      })
+      it("returns null if no resources exist", () => {
+        const list = noPermsInstance.getResources()
+        expect(list).toEqual(null)
+      })
+    })
+
+    describe("getPermissions()", () => {
+      it("can get permissions", () => {
+        const list = instance.getPermissions()
+        expect(list).toEqual(["admin", "read", "write"])
+      })
+      it("returns null if no permissions exist", () => {
+        const list = noPermsInstance.getPermissions()
+        expect(list).toEqual(null)
+      })
+    })
+
+    describe("verifyPermissions()", () => {
+      it("verifies permissions as true for superuser", () => {
+        const list = instance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(true)
+      })
+
+      it("verifies permissions if admin and requested permission is write", () => {
+        const list = adminPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(true)
+      })
+
+      it("returns false if only permission is read", () => {
+        const list = readPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
+      })
+
+      it("returns false if no permissions exist", () => {
+        const list = noPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
+      })
+
+      it("returns false if permissions array is empty", () => {
+        const list = emptyPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
+      })
     })
 
     describe("getRoles()", () => {
       it("can get roles", () => {
-        const list = instance.getRoles()
+        const list = regUserInstance.getRoles()
         expect(list).toEqual(["user"])
       })
 
@@ -467,12 +519,12 @@ describe("API Classes", () => {
 
     describe("checkRoles()", () => {
       it("should not be superuser", () => {
-        const list = instance.checkRoles("superuser")
+        const list = regUserInstance.checkRoles("superuser")
         expect(list).toBe(false)
       })
 
       it("should be user", () => {
-        const list = instance.checkRoles("user")
+        const list = regUserInstance.checkRoles("user")
         expect(list).toBe(true)
       })
     })
