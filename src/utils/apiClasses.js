@@ -163,10 +163,6 @@ export class RolesPermissionsAPI extends JsonAPI {
       }
 
       const validPermissions = item => {
-        // switch(perm) {
-        //   case "admin":
-        //   return item.attributes.permission === perm
-        // }
         return (
           item.attributes.permission === "admin" ||
           (item.attributes.permission === perm &&

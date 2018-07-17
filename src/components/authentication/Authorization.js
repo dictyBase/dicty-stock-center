@@ -27,7 +27,6 @@ export const Authorization = (props: Props) => {
   const { loggedInUser, fetchedUserData, verifiedToken } = props
   return props.render({
     canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
-    isSuperUser: loggedInUser.checkRoles("superuser"),
     fetchedUserData: fetchedUserData,
     verifiedToken: verifiedToken.verifyToken(),
   })
@@ -52,7 +51,7 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
     }
   } else {
     return {
-      loggedInUser: { verifyPermissions: () => {}, checkRoles: () => {} },
+      loggedInUser: { verifyPermissions: () => {} },
       fetchedUserData: {},
       verifiedToken: { verifyToken: () => {} },
     }
