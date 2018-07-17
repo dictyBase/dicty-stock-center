@@ -364,6 +364,54 @@ describe("API Classes", () => {
       permissions: [],
     }
 
+    const adminPerms = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+      permissions: [
+        {
+          type: "permissions",
+          id: "3",
+          attributes: {
+            permission: "admin",
+            description: "write access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dsccontent",
+          },
+        },
+      ],
+    }
+
+    const readPerms = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+      permissions: [
+        {
+          type: "permissions",
+          id: "3",
+          attributes: {
+            permission: "read",
+            description: "write access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dsccontent",
+          },
+        },
+      ],
+    }
+
     const regularUser = {
       data: {
         id: "9",
@@ -400,6 +448,8 @@ describe("API Classes", () => {
     let regUserInstance = new RolesPermissionsAPI(regularUser)
     let noPermsInstance = new RolesPermissionsAPI(noPerms)
     let emptyPermsInstance = new RolesPermissionsAPI(emptyPerms)
+    let adminPermsInstance = new RolesPermissionsAPI(adminPerms)
+    let readPermsInstance = new RolesPermissionsAPI(readPerms)
     let noRolesInstance = new RolesPermissionsAPI(userNoRoles)
 
     it("creates a new RolesPermissionsAPI instance", () => {
@@ -429,9 +479,19 @@ describe("API Classes", () => {
     })
 
     describe("verifyPermissions()", () => {
-      it("can verify permissions", () => {
+      it("verifies permissions as true for superuser", () => {
         const list = instance.verifyPermissions("write", "dsccontent")
         expect(list).toBe(true)
+      })
+
+      it("verifies permissions if admin and requested permission is write", () => {
+        const list = adminPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(true)
+      })
+
+      it("returns false if only permission is read", () => {
+        const list = readPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
       })
 
       it("returns false if no permissions exist", () => {
@@ -439,7 +499,7 @@ describe("API Classes", () => {
         expect(list).toBe(false)
       })
 
-      it("returns false if no permissions exist", () => {
+      it("returns false if permissions array is empty", () => {
         const list = emptyPermsInstance.verifyPermissions("write", "dsccontent")
         expect(list).toBe(false)
       })
