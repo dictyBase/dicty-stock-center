@@ -40,16 +40,18 @@ export class AuthAPI extends JsonAPI {
   verifyToken() {
     // get stored token
     const token = this.json.token
+
     // decode token
     const decodedToken = jwtDecode(token)
+
     // get current time in plain UTC
     const currentTime = Date.now().valueOf() / 1000
+
     // check if current time is less than token expiration date
     if (currentTime < decodedToken.exp) {
       return true
-    } else {
-      return false
     }
+    return false
   }
 
   // gets provider (i.e. google) from logged in user

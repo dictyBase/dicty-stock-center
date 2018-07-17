@@ -93,18 +93,16 @@ describe("API Classes", () => {
             created_at: "2018-07-16T22:58:10.407Z",
             updated_at: "2018-07-16T22:58:10.407Z",
           },
-          relationships: {
-            roles: {
-              links: {
-                self: "string",
-              },
-            },
-          },
         },
       },
     }
 
+    const unauthenticatedUser = {
+      isAuthenticated: false,
+    }
+
     let instance = new AuthAPI(authenticatedUser)
+    let unauthInstance = new AuthAPI(unauthenticatedUser)
 
     it("creates a new AuthAPI instance", () => {
       expect(typeof instance, "object")
@@ -114,6 +112,11 @@ describe("API Classes", () => {
       it("checks if authenticated", () => {
         const authenticated = instance.isAuthenticated()
         expect(authenticated).toBe(true)
+      })
+
+      it("successfully finds unauthenticated user", () => {
+        const unauthenticated = unauthInstance.isAuthenticated()
+        expect(unauthenticated).toBe(false)
       })
     })
 
@@ -125,10 +128,28 @@ describe("API Classes", () => {
     })
 
     describe("verifyToken()", () => {
-      // it("can verify token", () => {
-      //   const token = instance.verifyToken()
-      //   expect(token).toBe(false)
-      // })
+      afterAll(() => {
+        // unlock time
+        dateNowSpy.mockReset()
+        dateNowSpy.mockRestore()
+      })
+
+      it("verifies token", () => {
+        let dateNowSpy = jest
+          .spyOn(Date, "now")
+          .mockImplementation(() => 1487076708000) // 2017-02-14
+
+        const token = instance.verifyToken()
+        expect(token).toBe(true)
+      })
+      it("says token is invalid", () => {
+        let dateNowSpy = jest
+          .spyOn(Date, "now")
+          .mockImplementation(() => 1932701199000) // 2031-03-31
+
+        const token = instance.verifyToken()
+        expect(token).toBe(false)
+      })
     })
 
     describe("getProvider()", () => {
