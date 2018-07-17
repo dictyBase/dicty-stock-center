@@ -40,16 +40,18 @@ export class AuthAPI extends JsonAPI {
   verifyToken() {
     // get stored token
     const token = this.json.token
+
     // decode token
     const decodedToken = jwtDecode(token)
+
     // get current time in plain UTC
     const currentTime = Date.now().valueOf() / 1000
+
     // check if current time is less than token expiration date
     if (currentTime < decodedToken.exp) {
       return true
-    } else {
-      return false
     }
+    return false
   }
 
   // gets provider (i.e. google) from logged in user
@@ -88,18 +90,17 @@ export class AuthenticatedUser extends JsonAPI {
           rolesArr[0].attributes.role.substr(1)
         )
       }
-    } else {
-      return "User"
     }
+    // default role if none exists
+    return "User"
   }
 
   // checks if user can overwrite current content
   canOverwrite = (id: string) => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
-    } else {
-      return null
     }
+    return false
   }
 }
 
@@ -109,23 +110,23 @@ export class PermissionAPI extends JsonAPI {
   // gets lists of all resources from user's permissions
   getResources() {
     if (this.json.permissions) {
-      this.json.permissions.forEach(item => {
-        return item.attributes.resource
-      })
-    } else {
-      return
+      const resources = this.json.permissions.map(
+        item => item.attributes.resource,
+      )
+      return resources
     }
+    return null
   }
 
   // gets full list of user's permissions
   getPermissions() {
     if (this.json.permissions) {
-      this.json.permissions.forEach(item => {
-        return item.attributes.permission
-      })
-    } else {
-      return
+      const permissions = this.json.permissions.map(
+        item => item.attributes.permission,
+      )
+      return permissions
     }
+    return null
   }
 
   // this verifies that the user has the right resource
@@ -146,12 +147,12 @@ export class PermissionAPI extends JsonAPI {
       // check if array is empty
       if (!Array.isArray(filteredPerms) || !filteredPerms.length) {
         return false
-      } else {
-        return true
       }
-    } else {
-      return false
+      // valid permission found, return true
+      return true
     }
+    // if no permissions, just return false
+    return false
   }
 }
 
@@ -161,22 +162,24 @@ export class RoleAPI extends JsonAPI {
   // get full list of user's roles
   getRoles() {
     if (this.json.roles) {
-      this.json.roles.forEach(item => {
-        return item.attributes.role
-      })
-    } else {
-      return
+      const roles = this.json.roles.map(item => item.attributes.role)
+      return roles
     }
+    return null
   }
 
   // checks if user has specified role
   checkRoles = (role: string) => {
     if (this.json.roles) {
-      // return this.json.roles.includes(role)
-      // console.log(this.json.roles.filter(item => item.attributes.role === role))
-      return this.json.roles.filter(item => item.attributes.role === role)
-    } else {
-      return
+      const filteredRoles = this.json.roles.filter(
+        item => item.attributes.role === role,
+      )
+
+      // check if array is empty
+      if (!Array.isArray(filteredRoles) || !filteredRoles.length) {
+        return false
+      }
+      return true
     }
   }
 }
@@ -188,8 +191,7 @@ export class ContentAPI extends AuthenticatedUser {
   getUser() {
     if (this.json.data) {
       return this.json.data.attributes.updated_by
-    } else {
-      return
     }
+    return null
   }
 }
