@@ -69,7 +69,8 @@ describe("API Classes", () => {
 
   describe("AuthAPI class", () => {
     const authenticatedUser = {
-      token: "faketoken",
+      token:
+        "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNTMyNzAxMTk5LCJqdGkiOiJiZDZ2bTN0M2Q3djAwMDlpdGNmZyIsImlhdCI6MTUzMTgzNzE5OSwiaXNzIjoiZGljdHlCYXNlIiwibmJmIjoxNTMxODM3MTk5LCJzdWIiOiJkaWN0eUJhc2UgbG9naW4gdG9rZW4ifQ",
       isAuthenticated: true,
       provider: "google",
       user: {
@@ -123,6 +124,13 @@ describe("API Classes", () => {
       })
     })
 
+    describe("verifyToken()", () => {
+      // it("can verify token", () => {
+      //   const token = instance.verifyToken()
+      //   expect(token).toBe(false)
+      // })
+    })
+
     describe("getProvider()", () => {
       it("can get provider", () => {
         const provider = instance.getProvider()
@@ -140,27 +148,11 @@ describe("API Classes", () => {
 
   describe("AuthenticatedUser class", () => {
     const superuser = {
-      token: "faketoken",
-      isAuthenticated: true,
-      provider: "google",
       data: {
         id: "9",
         attributes: {
           first_name: "John",
           last_name: "Doe",
-          email: "johndoe@fakeemail.com",
-          organization: "Northwestern University",
-          group_name: "n/a",
-          first_address: "750 N Lake Shore Drive",
-          second_address: "#11",
-          city: "Chicago",
-          state: "IL",
-          zipcode: "60611",
-          country: "USA",
-          phone: "n/a",
-          is_active: true,
-          created_at: "2018-07-16T22:58:10.407Z",
-          updated_at: "2018-07-16T22:58:10.407Z",
         },
       },
       roles: [
@@ -178,27 +170,11 @@ describe("API Classes", () => {
     }
 
     const reguser = {
-      token: "faketoken",
-      isAuthenticated: true,
-      provider: "google",
       data: {
         id: "99",
         attributes: {
           first_name: "John",
           last_name: "Doe",
-          email: "johndoe@fakeemail.com",
-          organization: "Northwestern University",
-          group_name: "n/a",
-          first_address: "750 N Lake Shore Drive",
-          second_address: "#11",
-          city: "Chicago",
-          state: "IL",
-          zipcode: "60611",
-          country: "USA",
-          phone: "n/a",
-          is_active: true,
-          created_at: "2018-07-16T22:58:10.407Z",
-          updated_at: "2018-07-16T22:58:10.407Z",
         },
       },
       roles: [
@@ -215,8 +191,31 @@ describe("API Classes", () => {
       ],
     }
 
+    const emptyRoles = {
+      data: {
+        id: "99",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+    }
+
+    const userNoRoles = {
+      data: {
+        id: "99",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+    }
+
     let instance = new AuthenticatedUser(superuser)
     let regInstance = new AuthenticatedUser(reguser)
+    let noRolesInstance = new AuthenticatedUser(userNoRoles)
+    let emptyRolesInstance = new AuthenticatedUser(emptyRoles)
 
     it("creates a new AuthenticatedUser instance", () => {
       expect(typeof instance, "object")
@@ -234,6 +233,16 @@ describe("API Classes", () => {
         const roles = instance.getRoles()
         expect(roles).toBe("Superuser")
       })
+
+      it("returns User if no roles exist", () => {
+        const roles = noRolesInstance.getRoles()
+        expect(roles).toBe("User")
+      })
+
+      it("returns User if roles array is empty", () => {
+        const roles = emptyRolesInstance.getRoles()
+        expect(roles).toBe("User")
+      })
     })
 
     describe("canOverwrite()", () => {
@@ -245,6 +254,11 @@ describe("API Classes", () => {
       it("can overwrite as same id but not superuser", () => {
         const endUser = regInstance.canOverwrite("99")
         expect(endUser).toBe(true)
+      })
+
+      it("cannot overwrite as wrong id and not superuser", () => {
+        const endUser = regInstance.canOverwrite("122")
+        expect(endUser).toBe(false)
       })
     })
   })
@@ -343,12 +357,20 @@ describe("API Classes", () => {
         const list = instance.getResources()
         expect(list).toEqual(["dictybase", "genome", "dsccontent"])
       })
+      it("returns null if no resources exist", () => {
+        const list = noPermsInstance.getResources()
+        expect(list).toEqual(null)
+      })
     })
 
     describe("getPermissions()", () => {
       it("can get permissions", () => {
         const list = instance.getPermissions()
         expect(list).toEqual(["admin", "read", "write"])
+      })
+      it("returns null if no permissions exist", () => {
+        const list = noPermsInstance.getPermissions()
+        expect(list).toEqual(null)
       })
     })
 
