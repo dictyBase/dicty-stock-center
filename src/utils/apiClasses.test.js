@@ -2,8 +2,7 @@ import {
   JsonAPI,
   AuthAPI,
   AuthenticatedUser,
-  PermissionAPI,
-  RoleAPI,
+  RolesPermissionsAPI,
   ContentAPI,
 } from "./apiClasses"
 
@@ -284,7 +283,7 @@ describe("API Classes", () => {
     })
   })
 
-  describe("PermissionAPI class", () => {
+  describe("RolesPermissionsAPI class", () => {
     const superuser = {
       data: {
         id: "9",
@@ -365,11 +364,45 @@ describe("API Classes", () => {
       permissions: [],
     }
 
-    let instance = new PermissionAPI(superuser)
-    let noPermsInstance = new PermissionAPI(noPerms)
-    let emptyPermsInstance = new PermissionAPI(emptyPerms)
+    const regularUser = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [
+        {
+          type: "roles",
+          id: "99",
+          attributes: {
+            role: "user",
+            description: "regular user",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+          },
+        },
+      ],
+    }
 
-    it("creates a new PermissionAPI instance", () => {
+    const userNoRoles = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+    }
+
+    let instance = new RolesPermissionsAPI(superuser)
+    let regUserInstance = new RolesPermissionsAPI(regularUser)
+    let noPermsInstance = new RolesPermissionsAPI(noPerms)
+    let emptyPermsInstance = new RolesPermissionsAPI(emptyPerms)
+    let noRolesInstance = new RolesPermissionsAPI(userNoRoles)
+
+    it("creates a new RolesPermissionsAPI instance", () => {
       expect(typeof instance, "object")
     })
 
@@ -411,51 +444,10 @@ describe("API Classes", () => {
         expect(list).toBe(false)
       })
     })
-  })
-
-  describe("RoleAPI class", () => {
-    const regularUser = {
-      data: {
-        id: "9",
-        attributes: {
-          first_name: "John",
-          last_name: "Doe",
-        },
-      },
-      roles: [
-        {
-          type: "roles",
-          id: "99",
-          attributes: {
-            role: "user",
-            description: "regular user",
-            created_at: "2018-07-17T00:57:07.502Z",
-            updated_at: "2018-07-17T00:57:07.502Z",
-          },
-        },
-      ],
-    }
-
-    const userNoRoles = {
-      data: {
-        id: "9",
-        attributes: {
-          first_name: "John",
-          last_name: "Doe",
-        },
-      },
-    }
-
-    let instance = new RoleAPI(regularUser)
-    let noRolesInstance = new RoleAPI(userNoRoles)
-
-    it("creates a new RoleAPI instance", () => {
-      expect(typeof instance, "object")
-    })
 
     describe("getRoles()", () => {
       it("can get roles", () => {
-        const list = instance.getRoles()
+        const list = regUserInstance.getRoles()
         expect(list).toEqual(["user"])
       })
 
@@ -467,16 +459,81 @@ describe("API Classes", () => {
 
     describe("checkRoles()", () => {
       it("should not be superuser", () => {
-        const list = instance.checkRoles("superuser")
+        const list = regUserInstance.checkRoles("superuser")
         expect(list).toBe(false)
       })
 
       it("should be user", () => {
-        const list = instance.checkRoles("user")
+        const list = regUserInstance.checkRoles("user")
         expect(list).toBe(true)
       })
     })
   })
+
+  // describe("RoleAPI class", () => {
+  //   const regularUser = {
+  //     data: {
+  //       id: "9",
+  //       attributes: {
+  //         first_name: "John",
+  //         last_name: "Doe",
+  //       },
+  //     },
+  //     roles: [
+  //       {
+  //         type: "roles",
+  //         id: "99",
+  //         attributes: {
+  //           role: "user",
+  //           description: "regular user",
+  //           created_at: "2018-07-17T00:57:07.502Z",
+  //           updated_at: "2018-07-17T00:57:07.502Z",
+  //         },
+  //       },
+  //     ],
+  //   }
+
+  //   const userNoRoles = {
+  //     data: {
+  //       id: "9",
+  //       attributes: {
+  //         first_name: "John",
+  //         last_name: "Doe",
+  //       },
+  //     },
+  //   }
+
+  //   let instance = new RoleAPI(regularUser)
+  //   let noRolesInstance = new RoleAPI(userNoRoles)
+
+  //   it("creates a new RoleAPI instance", () => {
+  //     expect(typeof instance, "object")
+  //   })
+
+  //   describe("getRoles()", () => {
+  //     it("can get roles", () => {
+  //       const list = instance.getRoles()
+  //       expect(list).toEqual(["user"])
+  //     })
+
+  //     it("should return null if no roles exist", () => {
+  //       const list = noRolesInstance.getRoles()
+  //       expect(list).toEqual(null)
+  //     })
+  //   })
+
+  //   describe("checkRoles()", () => {
+  //     it("should not be superuser", () => {
+  //       const list = instance.checkRoles("superuser")
+  //       expect(list).toBe(false)
+  //     })
+
+  //     it("should be user", () => {
+  //       const list = instance.checkRoles("user")
+  //       expect(list).toBe(true)
+  //     })
+  //   })
+  // })
 
   describe("ContentAPI class", () => {
     const content = {

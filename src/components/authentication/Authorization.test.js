@@ -5,13 +5,11 @@ import { Authorization } from "./Authorization"
 
 describe("authentication/Authorization", () => {
   const props = {
-    loggedInUser: { verifyPermissions: () => {} },
-    roles: { checkRoles: () => {} },
+    loggedInUser: { verifyPermissions: () => {}, checkRoles: () => {} },
     fetchedUserData: {},
     verifiedToken: { verifyToken: () => {} },
   }
   const loggedInUser = undefined
-  const roles = undefined
   const fetchedUserData = {}
   const verifiedToken = undefined
 
@@ -21,7 +19,6 @@ describe("authentication/Authorization", () => {
   it("should call `render` with classes", () => {
     expect(renderMock).toHaveBeenCalledWith({
       loggedInUser,
-      roles,
       fetchedUserData,
       verifiedToken,
     })

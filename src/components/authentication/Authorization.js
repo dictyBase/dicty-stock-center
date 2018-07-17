@@ -1,8 +1,7 @@
 // @flow
 import { connect } from "react-redux"
 import {
-  PermissionAPI,
-  RoleAPI,
+  RolesPermissionsAPI,
   AuthenticatedUser,
   AuthAPI,
 } from "utils/apiClasses"
@@ -25,10 +24,10 @@ type Props = {
 /** This uses render props to provide access to different areas of DSC based on user permissions. */
 
 export const Authorization = (props: Props) => {
-  const { loggedInUser, roles, fetchedUserData, verifiedToken } = props
+  const { loggedInUser, fetchedUserData, verifiedToken } = props
   return props.render({
     canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
-    isSuperUser: roles.checkRoles("superuser"),
+    isSuperUser: loggedInUser.checkRoles("superuser"),
     fetchedUserData: fetchedUserData,
     verifiedToken: verifiedToken.verifyToken(),
   })
@@ -36,29 +35,24 @@ export const Authorization = (props: Props) => {
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {
   if (state.auth.user && state.auth.fetchedUserData) {
-    const loggedInUser = new PermissionAPI(state.auth.user)
-    const roles = new RoleAPI(state.auth.user)
+    const loggedInUser = new RolesPermissionsAPI(state.auth.user)
     const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
     const verifiedToken = new AuthAPI(state.auth)
     return {
       loggedInUser: loggedInUser,
-      roles: roles,
       fetchedUserData: fetchedUserData,
       verifiedToken: verifiedToken,
     }
   } else if (state.auth.user) {
-    const loggedInUser = new PermissionAPI(state.auth.user)
-    const roles = new RoleAPI(state.auth.user)
+    const loggedInUser = new RolesPermissionsAPI(state.auth.user)
     const verifiedToken = new AuthAPI(state.auth)
     return {
       loggedInUser: loggedInUser,
-      roles: roles,
       verifiedToken: verifiedToken,
     }
   } else {
     return {
-      loggedInUser: { verifyPermissions: () => {} },
-      roles: { checkRoles: () => {} },
+      loggedInUser: { verifyPermissions: () => {}, checkRoles: () => {} },
       fetchedUserData: {},
       verifiedToken: { verifyToken: () => {} },
     }
