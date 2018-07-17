@@ -45,19 +45,25 @@ describe("API Classes", () => {
       expect(typeof instance, "object")
     })
 
-    it("can get attributes", () => {
-      const attr = instance.getAttributes()
-      expect(attr).toBe(userJson.data.attributes)
+    describe("getAttributes()", () => {
+      it("can get attributes", () => {
+        const attr = instance.getAttributes()
+        expect(attr).toBe(userJson.data.attributes)
+      })
     })
 
-    it("can get id", () => {
-      const id = instance.getId()
-      expect(id).toBe("9")
+    describe("getId()", () => {
+      it("can get id", () => {
+        const id = instance.getId()
+        expect(id).toBe("9")
+      })
     })
 
-    it("can get relationships", () => {
-      const relationships = instance.getRelationships()
-      expect(relationships).toBe(userJson.data.relationships)
+    describe("getRelationships()", () => {
+      it("can get relationships", () => {
+        const relationships = instance.getRelationships()
+        expect(relationships).toBe(userJson.data.relationships)
+      })
     })
   })
 
@@ -103,24 +109,32 @@ describe("API Classes", () => {
       expect(typeof instance, "object")
     })
 
-    it("checks if authenticated", () => {
-      const authenticated = instance.isAuthenticated()
-      expect(authenticated).toBe(true)
+    describe("isAuthenticated()", () => {
+      it("checks if authenticated", () => {
+        const authenticated = instance.isAuthenticated()
+        expect(authenticated).toBe(true)
+      })
     })
 
-    it("can get token", () => {
-      const token = instance.getToken()
-      expect(token).toBe(authenticatedUser.token)
+    describe("getToken()", () => {
+      it("can get token", () => {
+        const token = instance.getToken()
+        expect(token).toBe(authenticatedUser.token)
+      })
     })
 
-    it("can get provider", () => {
-      const provider = instance.getProvider()
-      expect(provider).toBe("google")
+    describe("getProvider()", () => {
+      it("can get provider", () => {
+        const provider = instance.getProvider()
+        expect(provider).toBe("google")
+      })
     })
 
-    it("can get user", () => {
-      const user = instance.getUser()
-      expect(user).toBe(authenticatedUser.user)
+    describe("getUser()", () => {
+      it("can get user", () => {
+        const user = instance.getUser()
+        expect(user).toBe(authenticatedUser.user)
+      })
     })
   })
 
@@ -208,47 +222,40 @@ describe("API Classes", () => {
       expect(typeof instance, "object")
     })
 
-    it("can get user's full name", () => {
-      const name = instance.getFullName()
-      expect(name).toBe("John Doe")
+    describe("getFullName()", () => {
+      it("can get user's full name", () => {
+        const name = instance.getFullName()
+        expect(name).toBe("John Doe")
+      })
     })
 
-    it("can get roles", () => {
-      const roles = instance.getRoles()
-      expect(roles).toBe("Superuser")
+    describe("getRoles()", () => {
+      it("can get roles", () => {
+        const roles = instance.getRoles()
+        expect(roles).toBe("Superuser")
+      })
     })
 
-    it("can overwrite as superuser and different id", () => {
-      const endUser = instance.canOverwrite("0")
-      expect(endUser).toBe(true)
-    })
+    describe("canOverwrite()", () => {
+      it("can overwrite as superuser and different id", () => {
+        const endUser = instance.canOverwrite("0")
+        expect(endUser).toBe(true)
+      })
 
-    it("can overwrite as same id but not superuser", () => {
-      const endUser = regInstance.canOverwrite("99")
-      expect(endUser).toBe(true)
+      it("can overwrite as same id but not superuser", () => {
+        const endUser = regInstance.canOverwrite("99")
+        expect(endUser).toBe(true)
+      })
     })
   })
 
   describe("PermissionAPI class", () => {
-    const authenticatedUser = {
+    const superuser = {
       data: {
         id: "9",
         attributes: {
           first_name: "John",
           last_name: "Doe",
-          email: "johndoe@fakeemail.com",
-          organization: "Northwestern University",
-          group_name: "n/a",
-          first_address: "750 N Lake Shore Drive",
-          second_address: "#11",
-          city: "Chicago",
-          state: "IL",
-          zipcode: "60611",
-          country: "USA",
-          phone: "n/a",
-          is_active: true,
-          created_at: "2018-07-16T22:58:10.407Z",
-          updated_at: "2018-07-16T22:58:10.407Z",
         },
       },
       roles: [
@@ -294,53 +301,82 @@ describe("API Classes", () => {
             description: "write access",
             created_at: "2018-07-17T00:57:07.502Z",
             updated_at: "2018-07-17T00:57:07.502Z",
-            resource: "dictybase",
+            resource: "dsccontent",
           },
         },
       ],
     }
 
-    let instance = new PermissionAPI(authenticatedUser)
-
-    it("creates a new PermissionAPI instance", () => {
-      expect(typeof instance, "object")
-    })
-
-    it("can get resources", () => {
-      const list = instance.getResources()
-      expect(list).toEqual(["dictybase", "genome", "dictybase"])
-    })
-
-    it("can get permissions", () => {
-      const list = instance.getPermissions()
-      expect(list).toEqual(["admin", "read", "write"])
-    })
-
-    it("can verify permissions", () => {
-      // tests go here
-    })
-  })
-
-  describe("RoleAPI class", () => {
-    const authenticatedUser = {
+    const noPerms = {
       data: {
         id: "9",
         attributes: {
           first_name: "John",
           last_name: "Doe",
-          email: "johndoe@fakeemail.com",
-          organization: "Northwestern University",
-          group_name: "n/a",
-          first_address: "750 N Lake Shore Drive",
-          second_address: "#11",
-          city: "Chicago",
-          state: "IL",
-          zipcode: "60611",
-          country: "USA",
-          phone: "n/a",
-          is_active: true,
-          created_at: "2018-07-16T22:58:10.407Z",
-          updated_at: "2018-07-16T22:58:10.407Z",
+        },
+      },
+      roles: [],
+    }
+
+    const emptyPerms = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+      roles: [],
+      permissions: [],
+    }
+
+    let instance = new PermissionAPI(superuser)
+    let noPermsInstance = new PermissionAPI(noPerms)
+    let emptyPermsInstance = new PermissionAPI(emptyPerms)
+
+    it("creates a new PermissionAPI instance", () => {
+      expect(typeof instance, "object")
+    })
+
+    describe("getResources()", () => {
+      it("can get resources", () => {
+        const list = instance.getResources()
+        expect(list).toEqual(["dictybase", "genome", "dsccontent"])
+      })
+    })
+
+    describe("getPermissions()", () => {
+      it("can get permissions", () => {
+        const list = instance.getPermissions()
+        expect(list).toEqual(["admin", "read", "write"])
+      })
+    })
+
+    describe("verifyPermissions()", () => {
+      it("can verify permissions", () => {
+        const list = instance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(true)
+      })
+
+      it("returns false if no permissions exist", () => {
+        const list = noPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
+      })
+
+      it("returns false if no permissions exist", () => {
+        const list = emptyPermsInstance.verifyPermissions("write", "dsccontent")
+        expect(list).toBe(false)
+      })
+    })
+  })
+
+  describe("RoleAPI class", () => {
+    const regularUser = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
         },
       },
       roles: [
@@ -355,35 +391,47 @@ describe("API Classes", () => {
           },
         },
       ],
-      permissions: [
-        {
-          type: "permissions",
-          id: "1",
-          attributes: {
-            permission: "admin",
-            description: "admin access",
-            created_at: "2018-07-17T00:57:07.502Z",
-            updated_at: "2018-07-17T00:57:07.502Z",
-            resource: "dictybase",
-          },
-        },
-      ],
     }
 
-    let instance = new RoleAPI(authenticatedUser)
+    const userNoRoles = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+        },
+      },
+    }
+
+    let instance = new RoleAPI(regularUser)
+    let noRolesInstance = new RoleAPI(userNoRoles)
 
     it("creates a new RoleAPI instance", () => {
       expect(typeof instance, "object")
     })
 
-    it("can get roles", () => {
-      const list = instance.getRoles()
-      expect(list).toEqual(["user"])
+    describe("getRoles()", () => {
+      it("can get roles", () => {
+        const list = instance.getRoles()
+        expect(list).toEqual(["user"])
+      })
+
+      it("should return null if no roles exist", () => {
+        const list = noRolesInstance.getRoles()
+        expect(list).toEqual(null)
+      })
     })
 
-    it("should not be superuser", () => {
-      const list = instance.checkRoles("superuser")
-      expect(list).toBe(false)
+    describe("checkRoles()", () => {
+      it("should not be superuser", () => {
+        const list = instance.checkRoles("superuser")
+        expect(list).toBe(false)
+      })
+
+      it("should be user", () => {
+        const list = instance.checkRoles("user")
+        expect(list).toBe(true)
+      })
     })
   })
 
@@ -404,15 +452,27 @@ describe("API Classes", () => {
       },
     }
 
+    const noData = {
+      something: "no data",
+    }
+
     let instance = new ContentAPI(content)
+    let noDataInstance = new ContentAPI(noData)
 
     it("creates a new ContentAPI instance", () => {
       expect(typeof instance, "object")
     })
 
-    it("can get user's ID", () => {
-      const name = instance.getUser()
-      expect(name).toBe("99")
+    describe("getUser()", () => {
+      it("can get user's ID", () => {
+        const name = instance.getUser()
+        expect(name).toBe("99")
+      })
+
+      it("returns null if no data", () => {
+        const name = noDataInstance.getUser()
+        expect(name).toBe(null)
+      })
     })
   })
 })
