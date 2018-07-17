@@ -157,6 +157,11 @@ export class RolesPermissionsAPI extends JsonAPI {
   // and permission to edit content
   verifyPermissions = (perm: string, resource: string) => {
     if (this.json.permissions) {
+      // immediately return true if superuser
+      if (this.checkRoles("superuser")) {
+        return true
+      }
+
       const validPermissions = item => {
         // switch(perm) {
         //   case "admin":
