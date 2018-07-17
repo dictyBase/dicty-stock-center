@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matching a snapshot of App 1`] = `
+<div>
+  <WithStyles(Header)
+    items={
+      Array [
+        Object {
+          "icon": "plus",
+          "text": "Cite Us",
+          "url": "/cite",
+        },
+        Object {
+          "icon": "download",
+          "text": "Downloads",
+          "url": "/downloads",
+        },
+        Object {
+          "icon": "info-circle",
+          "text": "About dictyBase",
+          "url": "/info",
+        },
+        Object {
+          "icon": "sign-in",
+          "isRouter": true,
+          "text": "Login",
+          "url": "/login",
+        },
+      ]
+    }
+  />
+  <br />
+  <Navbar
+    items={
+      Array [
+        Object {
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/genomes",
+              "name": "Genomes Home",
+            },
+          ],
+          "title": "Genomes",
+        },
+        Object {
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/tools",
+              "name": "Tools Home",
+            },
+            Object {
+              "href": "/tools/jbrowse",
+              "name": "New Genome Browser",
+            },
+          ],
+          "title": "Tools",
+        },
+        Object {
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/explore",
+              "name": "Explore Home",
+            },
+            Object {
+              "href": "/explore/art",
+              "name": "Dicty Art",
+            },
+            Object {
+              "href": "/explore/gallery",
+              "name": "Gallery",
+            },
+            Object {
+              "href": "/explore/resources",
+              "name": "Genome Resources",
+            },
+            Object {
+              "href": "/explore/statistics",
+              "name": "Genome Statistics",
+            },
+            Object {
+              "href": "/explore/learn",
+              "name": "Learn About Dicty",
+            },
+            Object {
+              "href": "/explore/teach",
+              "name": "Teaching Protocols",
+            },
+            Object {
+              "href": "/explore/links",
+              "name": "Useful Links",
+            },
+          ],
+          "title": "Explore",
+        },
+        Object {
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/research",
+              "name": "Research Home",
+            },
+            Object {
+              "href": "/research/ontology",
+              "name": "Anatomy Ontology",
+            },
+            Object {
+              "href": "/research/codon",
+              "name": "Codon Bias Table",
+            },
+            Object {
+              "href": "/research/nomenclature",
+              "name": "Nomenclature Guidelines",
+            },
+            Object {
+              "href": "/research/phenotyping",
+              "name": "Phenotyping",
+            },
+            Object {
+              "href": "/research/techniques",
+              "name": "Techniques",
+            },
+          ],
+          "title": "Research",
+        },
+        Object {
+          "href": "/stockcenter",
+          "title": "Dicty Stock Center",
+        },
+        Object {
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/community",
+              "name": "Community Home",
+            },
+            Object {
+              "href": "/citation",
+              "name": "Cite Us",
+            },
+            Object {
+              "href": "/community/conference",
+              "name": "Dicty Annual Conferences",
+            },
+            Object {
+              "href": "/community/listserv",
+              "name": "Dicty Email Forum",
+            },
+            Object {
+              "href": "/community/labs",
+              "name": "Dicty Labs",
+            },
+            Object {
+              "href": "/community/history",
+              "name": "History",
+            },
+            Object {
+              "href": "/community/jobs",
+              "name": "Jobs",
+            },
+            Object {
+              "href": "/community/meetings",
+              "name": "Upcoming Meetings",
+            },
+          ],
+          "title": "Community",
+        },
+      ]
+    }
+  />
+  <br />
+  <Connect(Component)
+    cart={Object {}}
+  />
+  <styled.div>
+    <RenderRoutes
+      auth={
+        Object {
+          "isAuthenticated": false,
+        }
+      }
+      cart={Object {}}
+    />
+  </styled.div>
+  <WithStyles(Footer)
+    items={
+      Array [
+        Array [
+          Object {
+            "header": Object {
+              "description": "Genomes Home",
+              "link": "/genomes",
+            },
+            "items": Array [],
+          },
+          Object {
+            "header": Object {
+              "description": "Stock Center Home",
+              "link": "/stockcenter",
+            },
+            "items": Array [],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Tools Home",
+              "link": "/tools",
+            },
+            "items": Array [
+              Object {
+                "description": "New Genome Browser",
+                "link": "/tools/jbrowse",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Explore Home",
+              "link": "/explore",
+            },
+            "items": Array [
+              Object {
+                "description": "Dicty Art",
+                "link": "/explore/art",
+              },
+              Object {
+                "description": "Gallery",
+                "link": "/explore/gallery",
+              },
+              Object {
+                "description": "Genome Resources",
+                "link": "/explore/resources",
+              },
+              Object {
+                "description": "Genome Statistics",
+                "link": "/explore/statistics",
+              },
+              Object {
+                "description": "Learn About Dicty",
+                "link": "/explore/learn",
+              },
+              Object {
+                "description": "Teaching Protocols",
+                "link": "/explore/teach",
+              },
+              Object {
+                "description": "Useful Links",
+                "link": "/explore/links",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Research Home",
+              "link": "/research",
+            },
+            "items": Array [
+              Object {
+                "description": "Anatomy Ontology",
+                "link": "/research/ontology",
+              },
+              Object {
+                "description": "Codon Bias Table",
+                "link": "/research/codon",
+              },
+              Object {
+                "description": "Nomenclature Guidelines",
+                "link": "/research/nomenclature",
+              },
+              Object {
+                "description": "Phenotyping",
+                "link": "/research/phenotyping",
+              },
+              Object {
+                "description": "Techniques",
+                "link": "/research/techniques",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Community Home",
+              "link": "/community",
+            },
+            "items": Array [
+              Object {
+                "description": "Cite Us",
+                "link": "/citation",
+              },
+              Object {
+                "description": "Dicty Annual Conferences",
+                "link": "/community/conference",
+              },
+              Object {
+                "description": "Dicty Email Forum",
+                "link": "/community/listserv",
+              },
+              Object {
+                "description": "Dicty Labs",
+                "link": "/community/labs",
+              },
+              Object {
+                "description": "History",
+                "link": "/community/history",
+              },
+              Object {
+                "description": "Jobs",
+                "link": "/community/jobs",
+              },
+              Object {
+                "description": "Upcoming Meetings",
+                "link": "/community/meetings",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Please Cite:",
+              "link": "#",
+            },
+            "items": Array [
+              Object {
+                "description": "dictyBase",
+                "link": "http://www.ncbi.nlm.nih.gov/pubmed/23172289",
+              },
+              Object {
+                "description": "Dicty Stock Center",
+                "link": "http://www.ncbi.nlm.nih.gov/pubmed/23494302",
+              },
+            ],
+          },
+          Object {
+            "header": Object {
+              "description": "Supported By:",
+              "link": "#",
+            },
+            "items": Array [
+              Object {
+                "description": "NIH",
+                "link": "https://www.nih.gov/",
+              },
+              Object {
+                "description": "GMOD",
+                "link": "http://gmod.org/wiki/Main_Page",
+              },
+              Object {
+                "description": "Gene Ontology",
+                "link": "http://geneontology.org/",
+              },
+            ],
+          },
+        ],
+      ]
+    }
+  />
+</div>
+`;
