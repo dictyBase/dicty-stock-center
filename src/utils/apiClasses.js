@@ -108,9 +108,10 @@ export class PermissionAPI extends JsonAPI {
   // gets lists of all resources from user's permissions
   getResources() {
     if (this.json.permissions) {
-      this.json.permissions.forEach(item => {
-        return item.attributes.resource
-      })
+      const resources = this.json.permissions.map(
+        item => item.attributes.resource,
+      )
+      return resources
     }
     return null
   }
@@ -118,9 +119,10 @@ export class PermissionAPI extends JsonAPI {
   // gets full list of user's permissions
   getPermissions() {
     if (this.json.permissions) {
-      this.json.permissions.forEach(item => {
-        return item.attributes.permission
-      })
+      const permissions = this.json.permissions.map(
+        item => item.attributes.permission,
+      )
+      return permissions
     }
     return null
   }
@@ -158,9 +160,8 @@ export class RoleAPI extends JsonAPI {
   // get full list of user's roles
   getRoles() {
     if (this.json.roles) {
-      this.json.roles.forEach(item => {
-        return item.attributes.role
-      })
+      const roles = this.json.roles.map(item => item.attributes.role)
+      return roles
     }
     return null
   }

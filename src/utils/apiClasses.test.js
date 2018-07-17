@@ -1,4 +1,11 @@
-import { JsonAPI, AuthAPI, AuthenticatedUser, ContentAPI } from "./apiClasses"
+import {
+  JsonAPI,
+  AuthAPI,
+  AuthenticatedUser,
+  PermissionAPI,
+  RoleAPI,
+  ContentAPI,
+} from "./apiClasses"
 
 describe("API Classes", () => {
   describe("JsonAPI class", () => {
@@ -186,7 +193,7 @@ describe("API Classes", () => {
           id: "99",
           attributes: {
             role: "user",
-            description: "total power",
+            description: "regular user",
             created_at: "2018-07-17T00:57:07.502Z",
             updated_at: "2018-07-17T00:57:07.502Z",
           },
@@ -223,12 +230,90 @@ describe("API Classes", () => {
   })
 
   describe("PermissionAPI class", () => {
+    const authenticatedUser = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+          email: "johndoe@fakeemail.com",
+          organization: "Northwestern University",
+          group_name: "n/a",
+          first_address: "750 N Lake Shore Drive",
+          second_address: "#11",
+          city: "Chicago",
+          state: "IL",
+          zipcode: "60611",
+          country: "USA",
+          phone: "n/a",
+          is_active: true,
+          created_at: "2018-07-16T22:58:10.407Z",
+          updated_at: "2018-07-16T22:58:10.407Z",
+        },
+      },
+      roles: [
+        {
+          type: "roles",
+          id: "99",
+          attributes: {
+            role: "superuser",
+            description: "total power",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+          },
+        },
+      ],
+      permissions: [
+        {
+          type: "permissions",
+          id: "1",
+          attributes: {
+            permission: "admin",
+            description: "admin access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dictybase",
+          },
+        },
+        {
+          type: "permissions",
+          id: "2",
+          attributes: {
+            permission: "read",
+            description: "read access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "genome",
+          },
+        },
+        {
+          type: "permissions",
+          id: "3",
+          attributes: {
+            permission: "write",
+            description: "write access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dictybase",
+          },
+        },
+      ],
+    }
+
+    let instance = new PermissionAPI(authenticatedUser)
+
+    it("creates a new PermissionAPI instance", () => {
+      expect(typeof instance, "object")
+    })
+
     it("can get resources", () => {
-      // test goes here
+      const list = instance.getResources()
+      expect(list).toEqual(["dictybase", "genome", "dictybase"])
     })
 
     it("can get permissions", () => {
-      // tests go here
+      const list = instance.getPermissions()
+      expect(list).toEqual(["admin", "read", "write"])
     })
 
     it("can verify permissions", () => {
@@ -237,12 +322,68 @@ describe("API Classes", () => {
   })
 
   describe("RoleAPI class", () => {
-    it("can get roles", () => {
-      // test goes here
+    const authenticatedUser = {
+      data: {
+        id: "9",
+        attributes: {
+          first_name: "John",
+          last_name: "Doe",
+          email: "johndoe@fakeemail.com",
+          organization: "Northwestern University",
+          group_name: "n/a",
+          first_address: "750 N Lake Shore Drive",
+          second_address: "#11",
+          city: "Chicago",
+          state: "IL",
+          zipcode: "60611",
+          country: "USA",
+          phone: "n/a",
+          is_active: true,
+          created_at: "2018-07-16T22:58:10.407Z",
+          updated_at: "2018-07-16T22:58:10.407Z",
+        },
+      },
+      roles: [
+        {
+          type: "roles",
+          id: "99",
+          attributes: {
+            role: "user",
+            description: "regular user",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+          },
+        },
+      ],
+      permissions: [
+        {
+          type: "permissions",
+          id: "1",
+          attributes: {
+            permission: "admin",
+            description: "admin access",
+            created_at: "2018-07-17T00:57:07.502Z",
+            updated_at: "2018-07-17T00:57:07.502Z",
+            resource: "dictybase",
+          },
+        },
+      ],
+    }
+
+    let instance = new RoleAPI(authenticatedUser)
+
+    it("creates a new RoleAPI instance", () => {
+      expect(typeof instance, "object")
     })
 
-    it("can check roles", () => {
-      // tests go here
+    it("can get roles", () => {
+      const list = instance.getRoles()
+      expect(list).toEqual(["user"])
+    })
+
+    it("should not be superuser", () => {
+      const list = instance.checkRoles("superuser")
+      expect(list).toBe(false)
     })
   })
 
