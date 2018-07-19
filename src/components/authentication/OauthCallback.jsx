@@ -12,6 +12,8 @@ const redirectUrlGenerator = basename => {
   let url
   if (basename === "" || basename === "/") {
     url = `${window.location.origin}`
+  } else if (basename.charAt(0) === "/") {
+    url = `${window.location.origin}${basename}`
   } else {
     url = `${window.location.origin}/${basename}`
   }

@@ -9,13 +9,15 @@ const redirectUrlGenerator = provider => {
     process.env.REACT_APP_BASENAME === "/"
   ) {
     url = `${window.location.origin}/${provider}/callback`
-  } else {
+  } else if (process.env.REACT_APP_BASENAME.charAt(0) === "/") {
     url = `${window.location.origin}${
       process.env.REACT_APP_BASENAME
     }/${provider}/callback`
+  } else {
+    url = `${window.location.origin}/${
+      process.env.REACT_APP_BASENAME
+    }/${provider}/callback`
   }
-  console.log("origin: ", window.location.origin)
-  console.log("oauthUrl: ", url)
   return url
 }
 
