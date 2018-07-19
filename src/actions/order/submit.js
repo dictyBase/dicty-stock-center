@@ -1,7 +1,7 @@
 // @flow
 import { createOrder } from "utils/api"
 import { status, json } from "utils/fetch"
-import { push } from "react-router-redux"
+import { push } from "connected-react-router"
 import { dsctypes } from "constants/dsctypes"
 
 const { SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE } = dsctypes
@@ -9,7 +9,7 @@ const { SUBMIT_REQUEST, SUBMIT_SUCCESS, SUBMIT_FAILURE } = dsctypes
 const submitRequest = () => {
   return {
     type: SUBMIT_REQUEST,
-    submitting: true
+    submitting: true,
   }
 }
 
@@ -17,7 +17,7 @@ const submitSuccess = (order: Object) => {
   return {
     type: SUBMIT_SUCCESS,
     submitting: false,
-    order
+    order,
   }
 }
 
@@ -25,7 +25,7 @@ const submitFailure = (error: string) => {
   return {
     type: SUBMIT_FAILURE,
     submitting: false,
-    error
+    error,
   }
 }
 

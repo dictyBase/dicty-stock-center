@@ -1,5 +1,5 @@
 // @flow
-import { push } from "react-router-redux"
+import { push } from "connected-react-router"
 import { createUser, getUser, updateUser } from "utils/api"
 import { status, json } from "utils/fetch"
 import { dsctypes } from "constants/dsctypes"
@@ -23,8 +23,8 @@ export const addShipping = (user: Object, details: Object) => {
       state,
       zip,
       country,
-      phone
-    }
+      phone,
+    },
   } = user.data
 
   const consumer = {
@@ -41,25 +41,25 @@ export const addShipping = (user: Object, details: Object) => {
     state,
     zip,
     country,
-    phone
+    phone,
   }
   return {
     type: ADD_SHIPPING,
     initialized: true,
     consumer,
-    details
+    details,
   }
 }
 
 let server = process.env.REACT_APP_API_SERVER
 export const submitForm = (
   values: Object,
-  dispatch: Function
+  dispatch: Function,
 ): Promise<any> => {
   let details = {
     shipAccount: values.shipAccount,
     shipAccountNum: values.shipAccountNum,
-    comments: values.comments
+    comments: values.comments,
   }
   return new Promise((resolve, reject) => {
     getUser(server, values.email)
