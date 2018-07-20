@@ -17,6 +17,11 @@
       "precommit": "lint-staged"
     }
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -37,6 +42,7 @@
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "bowser": "^1.9.3",
+    "connected-react-router": "^4.3.0",
     "core-js": "^2.5.3",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#v6.1.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#v1.4.0",
@@ -63,7 +69,6 @@
     "react-redux": "^5.0.6",
     "react-responsive-carousel": "^3.1.30",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.8",
     "react-scripts": "^1.1.4",
     "react-virtualized": "^9.19.1",
     "rebass": "^1.0.4",

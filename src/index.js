@@ -6,13 +6,13 @@ import configureStore from "store"
 import { hydrateAll, hydrateStore } from "dicty-components-redux"
 import App from "components/App"
 import { Provider } from "react-redux"
-import { ConnectedRouter } from "react-router-redux"
+import { ConnectedRouter } from "connected-react-router"
 
 // load state from localStorage(if any) to set the
 // initial state for the store
 const initialState = hydrateAll(
   hydrateStore({ key: "auth", namespace: "auth" }),
-  hydrateStore({ key: "cart", namespace: "shoppingCart" })
+  hydrateStore({ key: "cart", namespace: "shoppingCart" }),
 )
 const store = configureStore(initialState)
 
@@ -43,7 +43,7 @@ const renderApp = Component => {
         </ConnectedRouter>
       </div>
     </Provider>,
-    document.getElementById("root")
+    document.getElementById("root"),
   )
 }
 

@@ -21,7 +21,7 @@ type Props = {
   auth: Object,
 }
 
-const App = (props: Props) => {
+export const App = (props: Props) => {
   return (
     <div>
       {props.auth.isAuthenticated ? (

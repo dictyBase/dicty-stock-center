@@ -15,4 +15,5 @@ script:
 # safelist
 branches:
   only:
+  - master
   - develop

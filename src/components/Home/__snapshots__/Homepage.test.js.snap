@@ -1,770 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matching a snapshot of Home/Homepage 1`] = `
-.c1 h1 {
-  font-size: 48px;
-  margin-top: 0px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #eee;
-}
-
-.c0 {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.c4 {
-  background-color: #f2f2f2;
-  border: 1px solid #f2f2f2;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-}
-
-.c2 {
-  background-color: #eff8fb;
-  border: 1px solid #eff8fb;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-}
-
-.c3 ul,
-.c3 li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.c3 a {
-  font-size: 18px;
-}
-
-.c5 {
-  color: #961818;
-}
-
-@media (min-width:768px) {
-  .c0 {
-    width: 750px;
-  }
-}
-
-@media (min-width:992px) {
-  .c0 {
-    width: 970px;
-  }
-}
-
-@media (min-width:1200px) {
-  .c0 {
-    width: 1170px;
-  }
-}
-
-<div
-  className="c0"
->
+<styled.div>
   <span>
     <h3>
       Hello, 
       Jane Doe!
     </h3>
   </span>
-  <div
-    className="sc-htpNat ftFunm sc-bdVaJa iHZvIS"
-    is={null}
+  <Flex
+    justify="space-between"
+    wrap={true}
   >
-    <div
-      className="iHZvIS"
-      is={null}
-    >
-      <div
-        className="c1"
-      >
+    <Box>
+      <styled.div>
         <h1>
           Welcome to Dicty Stock Center (DSC)
         </h1>
-      </div>
-    </div>
-    <div
-      className="gRrvFh"
-      is={null}
+      </styled.div>
+    </Box>
+    <Box
+      w={1}
     >
-      <div
-        className="sc-htpNat iZBBQa sc-bdVaJa iHZvIS"
-        is={null}
-      >
-        <div
-          className="eJiGdf"
-          is={null}
-        >
-          <div
-            className="react-loading-theme-0"
-          >
-            <span>
-              <span
-                className="react-loading-skeleton"
-                style={
-                  Object {
-                    "animation": "progress 1.2s ease-in-out infinite",
-                  }
-                }
-              >
-                ‌
-              </span>
-              <span
-                className="react-loading-skeleton"
-                style={
-                  Object {
-                    "animation": "progress 1.2s ease-in-out infinite",
-                  }
-                }
-              >
-                ‌
-              </span>
-              <span
-                className="react-loading-skeleton"
-                style={
-                  Object {
-                    "animation": "progress 1.2s ease-in-out infinite",
-                  }
-                }
-              >
-                ‌
-              </span>
-              <span
-                className="react-loading-skeleton"
-                style={
-                  Object {
-                    "animation": "progress 1.2s ease-in-out infinite",
-                  }
-                }
-              >
-                ‌
-              </span>
-              <span
-                className="react-loading-skeleton"
-                style={
-                  Object {
-                    "animation": "progress 1.2s ease-in-out infinite",
-                  }
-                }
-              >
-                ‌
-              </span>
-            </span>
-            <br />
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="lmjRPw"
-      is={null}
+      <Connect(Intro) />
+    </Box>
+    <Box
+      w={
+        Array [
+          1,
+          "30%",
+          "30%",
+        ]
+      }
     >
-      <div
-        className="sc-htpNat pyeRb sc-bdVaJa iHZvIS"
-        is={null}
+      <Flex
+        column={true}
       >
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="sc-htpNat iZBBQa sc-bdVaJa iHZvIS"
-            is={null}
-          >
-            <div
-              className="FHiEA"
-              is={null}
-            >
-              <div
-                className="react-loading-theme-1"
-              >
-                <span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                </span>
-                <br />
-                <br />
-                <span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c2"
-          >
-            <div
-              className="c3"
-            >
-              <ul>
-                <li>
-                  <a
-                    href="/contact"
-                    onClick={[Function]}
-                  >
-                    Contact the DSC
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information/faq"
-                    onClick={[Function]}
-                  >
-                    DSC FAQ
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information/nomenclature-guidelines"
-                  >
-                    Nomenclature Guide
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information/other-stock-centers"
-                    onClick={[Function]}
-                  >
-                    Other Stock Centers
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="lmjRPw"
-      is={null}
+        <Box>
+          <Connect(About) />
+        </Box>
+        <Box>
+          <Links />
+        </Box>
+      </Flex>
+    </Box>
+    <Box
+      w={
+        Array [
+          1,
+          "30%",
+          "30%",
+        ]
+      }
     >
-      <div
-        className="sc-htpNat pyeRb sc-bdVaJa iHZvIS"
-        is={null}
+      <Flex
+        column={true}
       >
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c2"
-          >
-            <div
-              className="c3"
-            >
-              <ul>
-                <li>
-                  <a
-                    href="/information/order"
-                    onClick={[Function]}
-                  >
-                    Order Information
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information/payment"
-                    onClick={[Function]}
-                  >
-                    Payment Information
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information/deposit"
-                    onClick={[Function]}
-                  >
-                    Deposit Information
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c4"
-          >
-            <h4>
-              Strain & Plasmid Availability
-            </h4>
-            <h5>
-              <strong>
-                1927
-              </strong>
-               
-              Strains
-            </h5>
-            <h5>
-              <strong>
-                882
-              </strong>
-               
-              Plasmids
-            </h5>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="sc-htpNat iZBBQa sc-bdVaJa iHZvIS"
-            is={null}
-          >
-            <div
-              className="FHiEA"
-              is={null}
-            >
-              <div
-                className="react-loading-theme-2"
-              >
-                <span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                  <span
-                    className="react-loading-skeleton"
-                    style={
-                      Object {
-                        "animation": "progress 1.2s ease-in-out infinite",
-                      }
-                    }
-                  >
-                    ‌
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c4"
-          >
-            <a
-              className="c5"
-              href="https://northwestern.box.com/s/p0f8m70whgiuib2u0wt8gtn497ncmq8i"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Standard Operating Procedures
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="gFCdqg"
-      is={null}
+        <Box>
+          <Info />
+        </Box>
+        <Box>
+          <Connect(Availability) />
+        </Box>
+        <Box>
+          <Connect(OtherMaterials) />
+        </Box>
+        <Box>
+          <Materials />
+        </Box>
+      </Flex>
+    </Box>
+    <Box
+      w={
+        Array [
+          1,
+          "33%",
+          "33%",
+        ]
+      }
     >
-      <div
-        className="sc-htpNat bPnPne sc-bdVaJa iHZvIS"
-        is={null}
+      <Flex
+        column={true}
+        justify="center"
       >
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className={undefined}
-          >
-            <div
-              className="carousel carousel-slider"
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            >
-              <button
-                className="control-arrow control-prev"
-                onClick={[Function]}
-                type="button"
-              />
-              <div
-                className="slider-wrapper axis-horizontal"
-                style={Object {}}
-              >
-                <ul
-                  className="slider animated"
-                  onMouseDown={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchStart={[Function]}
-                  style={
-                    Object {
-                      "MozTransform": "translate3d(0%,0,0)",
-                      "MozTransitionDuration": "350ms",
-                      "MsTransform": "translate3d(0%,0,0)",
-                      "MsTransitionDuration": "350ms",
-                      "OTransform": "translate3d(0%,0,0)",
-                      "OTransitionDuration": "350ms",
-                      "WebkitTransform": "translate3d(0%,0,0)",
-                      "WebkitTransitionDuration": "350ms",
-                      "msTransform": "translate3d(0%,0,0)",
-                      "msTransitionDuration": "350ms",
-                      "transform": "translate3d(0%,0,0)",
-                      "transitionDuration": "350ms",
-                    }
-                  }
-                >
-                  <li
-                    className="slide selected"
-                    onClick={[Function]}
-                  >
-                    <div>
-                      <img
-                        alt="ctr9-mutant-DG1071"
-                        src="ctr9-mutant-DG1071.png"
-                      />
-                    </div>
-                  </li>
-                  <li
-                    className="slide"
-                    onClick={[Function]}
-                  >
-                    <div>
-                      <img
-                        alt="gbqA-mutant-DG1120"
-                        src="gbqA-mutant-DG1120.png"
-                      />
-                    </div>
-                  </li>
-                  <li
-                    className="slide"
-                    onClick={[Function]}
-                  >
-                    <div>
-                      <img
-                        alt="ggtA-mutant-DG1109"
-                        src="ggtA-mutant-DG1109.png"
-                      />
-                    </div>
-                  </li>
-                  <li
-                    className="slide"
-                    onClick={[Function]}
-                  >
-                    <div>
-                      <img
-                        alt="tipB-mutant-DG1036"
-                        src="tipB-mutant-DG1036.png"
-                      />
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <button
-                className="control-arrow control-next"
-                onClick={[Function]}
-                type="button"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c4"
-          >
-            <div
-              className="c3"
-            >
-              <ul>
-                <li>
-                  <a
-                    href="/strains"
-                    onClick={[Function]}
-                  >
-                    Strain Catalog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/plasmids"
-                    onClick={[Function]}
-                  >
-                    Plasmid Catalog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Bacterial Strains
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Other Materials
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
-          className="iHZvIS"
-          is={null}
-        >
-          <div
-            className="c2"
-          >
-            <h3>
-              Download / View
-            </h3>
-            <div
-              className="c3"
-            >
-              <ul>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Phenotype Ontology
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Strain Characteristics
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Mutagenesis Methods
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Plasmid Keywords
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <Box>
+          <Slideshow />
+        </Box>
+        <Box>
+          <Materials />
+        </Box>
+        <Box>
+          <Downloads />
+        </Box>
+      </Flex>
+    </Box>
+  </Flex>
+</styled.div>
 `;

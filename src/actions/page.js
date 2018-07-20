@@ -3,9 +3,9 @@ import { dsctypes } from "constants/dsctypes"
 import {
   fetchBySlugResource,
   fetchByIdResource,
-  fetchHeaderConfig
+  fetchHeaderConfig,
 } from "utils/fetchResources"
-import { push } from "react-router-redux"
+import { push } from "connected-react-router"
 
 const {
   EDIT_PAGE,
@@ -15,14 +15,14 @@ const {
   SAVE_INLINE_PAGE_SUCCESS,
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
-  FETCH_PAGE_FAILURE
+  FETCH_PAGE_FAILURE,
 } = dsctypes
 
 export const fetchInfoPage = (slug: string) => {
   return {
     types: [FETCH_PAGE_REQUEST, FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE],
     url: `${fetchBySlugResource}/${slug}`,
-    config: fetchHeaderConfig
+    config: fetchHeaderConfig,
   }
 }
 
@@ -30,8 +30,8 @@ export const doEdit = (content: Object) => {
   return {
     type: EDIT_PAGE,
     payload: {
-      content
-    }
+      content,
+    },
   }
 }
 
@@ -54,8 +54,8 @@ export const saveEditing = (id: string, body: Object) => {
     url: `${fetchByIdResource}/${id}`,
     config: {
       method: "PATCH",
-      body: JSON.stringify(body)
-    }
+      body: JSON.stringify(body),
+    },
   }
 }
 
@@ -65,8 +65,8 @@ export const saveInlineEditing = (id: string, body: Object) => {
     url: `${fetchByIdResource}/${id}`,
     config: {
       method: "PATCH",
-      body: JSON.stringify(body)
-    }
+      body: JSON.stringify(body),
+    },
   }
 }
 
