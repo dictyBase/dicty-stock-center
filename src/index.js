@@ -20,7 +20,7 @@ const setGoogleAnalytics = async (location, action) => {
   try {
     const module = await import("react-ga")
     let ReactGA = module.default
-    ReactGA.initialize("UA-000000-01") // placeholder tracking ID
+    ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID)
     ReactGA.set({ page: window.location.pathname })
     ReactGA.pageview(window.location.pathname)
   } catch (e) {
