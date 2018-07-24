@@ -5,7 +5,7 @@ import {
   Panel,
   PanelHeader,
   PanelTitle,
-  PanelBody
+  PanelBody,
 } from "dicty-components-panel"
 import FormGroupInput from "./form/FormGroupInput"
 import Comments from "./form/Comments"
@@ -20,14 +20,14 @@ import {
   RequiredText,
   Container,
   HorizontalForm,
-  ResetButton
+  ResetButton,
 } from "styles"
 
 export const fields = ["name", "email", "subject", "message"]
 
 const theme = {
   headerBackgroundColor: "#f9f9f9",
-  headerTextColor: "#000000"
+  headerTextColor: "#000000",
 }
 
 type Props = {
@@ -38,7 +38,7 @@ type Props = {
   /** checks if form is submitting */
   submitting: boolean,
   /** erases the current form content */
-  resetForm: Function
+  resetForm: Function,
 }
 
 /**
@@ -50,7 +50,7 @@ const Contact = (props: Props) => {
     fields: { name, email, subject, message },
     handleSubmit,
     resetForm,
-    submitting
+    submitting,
   } = props
   return (
     <Container>
@@ -65,9 +65,9 @@ const Contact = (props: Props) => {
             For questions, comments, or suggestions, please fill out the form
             below to send us an email&nbsp;
             <a
-              href="mailto:dictybase@northwestern.edu?Subject=Question"
+              href="mailto:dictystocks@northwestern.edu?Subject=Question"
               target="_top">
-              (dictybase@northwestern.edu)
+              (dictystocks@northwestern.edu)
             </a>
           </p>
         </Box>
@@ -127,8 +127,8 @@ const mapStateToProps = state => {
   const { user } = state.auth
   return {
     initialValues: {
-      email: user ? user.email : ""
-    }
+      email: user ? user.email : "",
+    },
   }
 }
 
@@ -137,7 +137,7 @@ export default reduxForm(
     form: "contact",
     fields,
     onSubmit: submitEmail,
-    validate: syncValidate
+    validate: syncValidate,
   },
-  mapStateToProps
+  mapStateToProps,
 )(Contact)
