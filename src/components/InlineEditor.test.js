@@ -183,6 +183,7 @@ describe("InlineEditor", () => {
         },
         saveInlineEditing: () => {},
         editInline: () => {},
+        fetchInfoPage: () => {},
       }
     })
 
