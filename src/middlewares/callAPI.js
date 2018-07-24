@@ -50,7 +50,7 @@ const callAPI = ({ dispatch, getState }: param) => {
       if (config.method === "PATCH" || config.method === "POST") {
         config.headers = {
           "Content-Type": "application/json",
-          Application: `Bearer: ${getState().auth.token}`,
+          Authorization: `Bearer ${getState().auth.token}`,
         }
       }
       const res = await fetch(url, config)
