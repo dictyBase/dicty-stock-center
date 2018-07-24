@@ -65,10 +65,10 @@ type Props = {
   match: Object,
   /** action creator to cancel editing */
   cancelEditing: Function,
-  /** the user's ID number */
+  /** the ID number for the page content */
   id: string,
-  /** value for who last updated the page */
-  updated_by: string,
+  /** the user's ID number */
+  userId: string,
   /** action creator to save page content */
   saveEditing: Function,
 }
@@ -98,7 +98,7 @@ export class EditInfoPage extends Component<Props, State> {
   focus = () => this.refs.editor.focus()
   onSave = () => {
     const { editorState } = this.state
-    const { id, updated_by, saveEditing } = this.props
+    const { id, saveEditing, userId } = this.props
     const rawData = JSON.stringify(
       convertToRaw(editorState.getCurrentContent()),
     )
@@ -108,7 +108,7 @@ export class EditInfoPage extends Component<Props, State> {
         id: id,
         type: "contents",
         attributes: {
-          updated_by: updated_by,
+          updated_by: userId,
           content: rawData,
         },
       },
@@ -162,8 +162,8 @@ const mapStateToProps = (state, ownProps) => {
   const slugName = `${NAMESPACE}-${ownProps.match.params.name}`
   return {
     content: state.page[slugName].data.attributes.content,
-    updated_by: state.page[slugName].data.attributes.updated_by,
     id: state.page[slugName].data.id,
+    userId: state.auth.user.data.id,
   }
 }
 
