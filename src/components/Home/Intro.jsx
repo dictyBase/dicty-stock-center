@@ -17,6 +17,8 @@ type Props = {
   isFetching: boolean,
 }
 
+const slugName = "dsc-intro"
+
 /**
  * Fetches and displays the Intro page content
  */
@@ -31,13 +33,19 @@ export class Intro extends Component<Props> {
     },
   }
   componentDidMount() {
-    this.props.fetchInfoPage("dsc-intro")
+    this.props.fetchInfoPage(slugName)
   }
   render() {
     const { isFetching, page } = this.props
 
     if (!isFetching && page.data.attributes.content) {
-      return <InlineEditor auth={this.props.auth} page={this.props.page} />
+      return (
+        <InlineEditor
+          auth={this.props.auth}
+          page={this.props.page}
+          slug={slugName}
+        />
+      )
     }
     return (
       <Flex justify="center">

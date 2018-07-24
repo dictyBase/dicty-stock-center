@@ -20,7 +20,7 @@ import {
   CodeBlockButton,
 } from "draft-js-buttons"
 import Authorization from "components/authentication/Authorization"
-import { editInline, saveInlineEditing } from "actions/page"
+import { editInline, saveInlineEditing, fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
 import FontAwesome from "react-fontawesome"
 import {
@@ -97,6 +97,7 @@ export class InlineEditor extends Component<Props, State> {
       readOnly: true,
     }
   }
+
   onChange = editorState => this.setState({ editorState })
   focus = () => this.refs.editor.focus()
   onEdit = e => {
@@ -126,8 +127,13 @@ export class InlineEditor extends Component<Props, State> {
     }
     saveInlineEditing(page.data.id, body)
     this.setState({
+      editorState: EditorState.createWithContent(
+        convertFromRaw(JSON.parse(this.props.page.data.attributes.content)),
+      ),
       readOnly: true,
     })
+
+    this.props.fetchInfoPage(this.props.slug)
   }
   onCancel = () => {
     this.setState({
@@ -211,5 +217,5 @@ export class InlineEditor extends Component<Props, State> {
 
 export default connect(
   null,
-  { editInline, saveInlineEditing },
+  { editInline, saveInlineEditing, fetchInfoPage },
 )(InlineEditor)

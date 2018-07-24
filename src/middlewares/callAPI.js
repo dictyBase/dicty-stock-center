@@ -65,11 +65,11 @@ const callAPI = ({ dispatch, getState }: param) => {
                 dispatch(push(`/information/${json.data.attributes.name}`))
               }, 500)
               break
-            // case "SAVE_INLINE_PAGE_SUCCESS":
-            //   setTimeout(() => {
-            //     window.location.reload()
-            //   }, 500)
-            //   break
+            case "SAVE_INLINE_PAGE_SUCCESS":
+              setTimeout(() => {
+                dispatch(push(`/`))
+              }, 800)
+              break
             default:
               return next({
                 type: successType,

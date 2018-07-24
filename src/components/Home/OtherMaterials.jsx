@@ -18,6 +18,8 @@ type Props = {
   isFetching: boolean,
 }
 
+const slugName = "dsc-other-materials"
+
 /**
  * Fetches and displays the Other Materials page content
  */
@@ -32,7 +34,7 @@ export class OtherMaterials extends Component<Props> {
     },
   }
   componentDidMount() {
-    this.props.fetchInfoPage("dsc-other-materials")
+    this.props.fetchInfoPage(slugName)
   }
   render() {
     const { isFetching, page } = this.props
@@ -40,7 +42,11 @@ export class OtherMaterials extends Component<Props> {
     if (!isFetching && page.data.attributes.content) {
       return (
         <PanelBlue>
-          <InlineEditor auth={this.props.auth} page={this.props.page} />
+          <InlineEditor
+            auth={this.props.auth}
+            page={this.props.page}
+            slug={slugName}
+          />
         </PanelBlue>
       )
     }
