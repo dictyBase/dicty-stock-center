@@ -133,7 +133,9 @@ export class InlineEditor extends Component<Props, State> {
       readOnly: true,
     })
 
-    this.props.fetchInfoPage(this.props.slug)
+    setTimeout(() => {
+      this.props.fetchInfoPage(this.props.slug)
+    }, 100)
   }
   onCancel = () => {
     this.setState({
