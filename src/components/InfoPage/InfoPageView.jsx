@@ -13,7 +13,6 @@ import Link from "components/Link"
 import Authorization from "components/authentication/Authorization"
 import ErrorNotification from "components/authentication/ErrorNotification"
 import timeSince from "utils/timeSince"
-import { AuthenticatedUser } from "utils/apiClasses"
 import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
 import FontAwesome from "react-fontawesome"
@@ -79,7 +78,7 @@ export class InfoPageView extends Component<Props, State> {
   }
   render() {
     const { updated_at } = this.props.page.data.attributes
-    const { loggedInUser, isAuthenticated } = this.props
+    const { isAuthenticated } = this.props
 
     return (
       <Container>
@@ -108,17 +107,11 @@ export class InfoPageView extends Component<Props, State> {
                           </Box>
                           <Box ml="auto">
                             <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                            {loggedInUser.canOverwrite(
-                              fetchedUserData.getId(),
-                            ) &&
-                              verifiedToken && (
-                                <InlineLink onClick={this.onClick}>
-                                  <FontAwesome
-                                    name="pencil"
-                                    title="Edit page"
-                                  />
-                                </InlineLink>
-                              )}
+                            {verifiedToken && (
+                              <InlineLink onClick={this.onClick}>
+                                <FontAwesome name="pencil" title="Edit page" />
+                              </InlineLink>
+                            )}
                           </Box>
                         </Flex>
                       </ToolbarNav>
@@ -146,16 +139,8 @@ export class InfoPageView extends Component<Props, State> {
 }
 
 export const mapStateToProps = state => {
-  if (state.auth.user) {
-    const loggedInUser = new AuthenticatedUser(state.auth.user)
-    return {
-      loggedInUser: loggedInUser,
-      isAuthenticated: state.auth.isAuthenticated,
-    }
-  } else {
-    return {
-      isAuthenticated: state.auth.isAuthenticated,
-    }
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
   }
 }
 

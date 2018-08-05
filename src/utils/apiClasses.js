@@ -96,6 +96,8 @@ export class AuthenticatedUser extends JsonAPI {
   }
 
   // checks if user can overwrite current content
+  // this logic only allows overwriting for same user
+  // unless current user is Superuser
   canOverwrite = (id: string) => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
