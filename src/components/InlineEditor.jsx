@@ -36,14 +36,14 @@ import {
 type Props = {
   /** the object that contains page data from current state */
   page: Object,
-  /** the current user's ID number */
-  id: string,
-  /** value for who last updated the page */
-  updated_by: string,
   /** action creator that saves the inline content */
   saveInlineEditing: Function,
   /** action creator to edit the inline content */
   editInline: Function,
+  /** action creator to fetch info page content */
+  fetchInfoPage: Function,
+  /** slug name to fetch */
+  slug: string,
 }
 
 type State = {
@@ -57,7 +57,9 @@ type State = {
 
 export class InlineEditor extends Component<Props, State> {
   undoPlugin: Object
+
   toolbarLinkPlugin: Object
+
   toolbarPlugin: Object
 
   constructor(props) {
@@ -98,9 +100,11 @@ export class InlineEditor extends Component<Props, State> {
     }
   }
 
-  onChange = editorState => this.setState({ editorState })
+  onChange = (editorState: EditorState) => this.setState({ editorState })
+
   focus = () => this.refs.editor.focus()
-  onEdit = e => {
+
+  onEdit = (e: SyntheticEvent<>) => {
     e.preventDefault()
     this.setState({
       readOnly: false,
@@ -108,6 +112,7 @@ export class InlineEditor extends Component<Props, State> {
     const { editInline, page } = this.props
     editInline(page.data.attributes.content)
   }
+
   onSave = () => {
     const { editorState } = this.state
     const { page, saveInlineEditing } = this.props
@@ -137,6 +142,7 @@ export class InlineEditor extends Component<Props, State> {
       this.props.fetchInfoPage(this.props.slug)
     }, 100)
   }
+
   onCancel = () => {
     this.setState({
       editorState: EditorState.createWithContent(
@@ -145,6 +151,7 @@ export class InlineEditor extends Component<Props, State> {
       readOnly: true,
     })
   }
+
   renderToolbar = () => {
     const { Toolbar } = this.toolbarPlugin
     return (
@@ -155,6 +162,7 @@ export class InlineEditor extends Component<Props, State> {
       </ToolbarNav>
     )
   }
+
   render() {
     const plugins = [
       this.toolbarPlugin,
@@ -176,33 +184,31 @@ export class InlineEditor extends Component<Props, State> {
               readOnly={readOnly}
             />
             <Authorization
-              render={({ canEditPages, verifiedToken }) => {
-                return (
-                  <div>
-                    {canEditPages &&
-                      verifiedToken &&
-                      readOnly && (
-                        <TextInfo>
-                          <InlineLink onClick={this.onEdit} title="Edit">
-                            <FontAwesome name="pencil" /> Edit
-                          </InlineLink>
-                        </TextInfo>
-                      )}
-                  </div>
-                )
-              }}
+              render={({ canEditPages, verifiedToken }) => (
+                <div>
+                  {canEditPages &&
+                    verifiedToken &&
+                    readOnly && (
+                      <TextInfo>
+                        <InlineLink onClick={this.onEdit} title="Edit">
+                          <FontAwesome name="pencil" /> Edit
+                        </InlineLink>
+                      </TextInfo>
+                    )}
+                </div>
+              )}
             />
           </Box>
           <Box w={1}>
             <Flex>
-              <Box width={"30%"} mr={1} mt={1}>
+              <Box width="30%" mr={1} mt={1}>
                 {!readOnly && (
                   <DefaultBlockButton type="button" onClick={this.onCancel}>
                     Cancel
                   </DefaultBlockButton>
                 )}
               </Box>
-              <Box width={"30%"} mt={1}>
+              <Box width="30%" mt={1}>
                 {!readOnly && (
                   <SuccessBlockButton type="button" onClick={this.onSave}>
                     Save

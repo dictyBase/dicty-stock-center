@@ -2,7 +2,7 @@
 import clientConfig from "utils/clientConfig"
 
 // helper function to set redirect URL with basename if included
-export const redirectUrlGenerator = provider => {
+export const redirectUrlGenerator = (provider: string) => {
   let url
   const basename = process.env.REACT_APP_BASENAME || "/"
   if (basename === "" || basename === "/") {

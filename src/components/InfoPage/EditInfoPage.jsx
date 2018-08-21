@@ -94,8 +94,10 @@ export class EditInfoPage extends Component<Props, State> {
     }
   }
 
-  onChange = editorState => this.setState({ editorState })
+  onChange = (editorState: EditorState) => this.setState({ editorState })
+
   focus = () => this.refs.editor.focus()
+
   onSave = () => {
     const { editorState } = this.state
     const { id, saveEditing, userId } = this.props
@@ -103,9 +105,9 @@ export class EditInfoPage extends Component<Props, State> {
       convertToRaw(editorState.getCurrentContent()),
     )
     const body = {
-      id: id,
+      id,
       data: {
-        id: id,
+        id,
         type: "contents",
         attributes: {
           updated_by: userId,
@@ -115,10 +117,12 @@ export class EditInfoPage extends Component<Props, State> {
     }
     saveEditing(id, body)
   }
+
   onCancel = () => {
     const { cancelEditing, match } = this.props
     cancelEditing(`${match.params.name}`)
   }
+
   render() {
     const { editorState } = this.state
 

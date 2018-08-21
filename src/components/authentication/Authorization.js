@@ -27,7 +27,7 @@ export const Authorization = (props: Props) => {
   const { loggedInUser, fetchedUserData, verifiedToken } = props
   return props.render({
     canEditPages: loggedInUser.verifyPermissions("write", dsccontent),
-    fetchedUserData: fetchedUserData,
+    fetchedUserData,
     verifiedToken: verifiedToken.verifyToken(),
   })
 }
@@ -38,23 +38,23 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
     const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
     const verifiedToken = new AuthAPI(state.auth)
     return {
-      loggedInUser: loggedInUser,
-      fetchedUserData: fetchedUserData,
-      verifiedToken: verifiedToken,
+      loggedInUser,
+      fetchedUserData,
+      verifiedToken,
     }
-  } else if (state.auth.user) {
+  }
+  if (state.auth.user) {
     const loggedInUser = new RolesPermissionsAPI(state.auth.user)
     const verifiedToken = new AuthAPI(state.auth)
     return {
-      loggedInUser: loggedInUser,
-      verifiedToken: verifiedToken,
+      loggedInUser,
+      verifiedToken,
     }
-  } else {
-    return {
-      loggedInUser: { verifyPermissions: () => {} },
-      fetchedUserData: {},
-      verifiedToken: { verifyToken: () => {} },
-    }
+  }
+  return {
+    loggedInUser: { verifyPermissions: () => {} },
+    fetchedUserData: {},
+    verifiedToken: { verifyToken: () => {} },
   }
 }
 

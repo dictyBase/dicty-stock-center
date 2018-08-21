@@ -38,10 +38,6 @@ type Props = {
   fetchUserInfo: Function,
   /** the object that contains page data from current state */
   page: Object,
-  /** contains the object representing the fetched user's data */
-  fetchedUserData: Object,
-  /** contains the object representing the logged in user's data */
-  loggedInUser: Object,
   /** boolean representing whether the user is logged in or not */
   isAuthenticated: boolean,
 }
@@ -63,19 +59,24 @@ export class InfoPageView extends Component<Props, State> {
       ),
     }
   }
+
   componentDidMount() {
-    if (this.props.isAuthenticated) {
-      const fetchedUser = new ContentAPI(this.props.page).getUser()
-      this.props.fetchUserInfo(fetchedUser)
+    const { isAuthenticated, page, fetchUserInfo } = this.props
+    if (isAuthenticated) {
+      const fetchedUser = new ContentAPI(page).getUser()
+      fetchUserInfo(fetchedUser)
     }
   }
-  onChange = editorState => this.setState({ editorState })
-  onClick = e => {
+
+  onChange = (editorState: EditorState) => this.setState({ editorState })
+
+  onClick = (e: SyntheticEvent<>) => {
     e.preventDefault()
 
     const { editPage, match, page } = this.props
     editPage(page.data.attributes.content, match.params.name)
   }
+
   render() {
     const { updated_at } = this.props.page.data.attributes
     const { isAuthenticated } = this.props
