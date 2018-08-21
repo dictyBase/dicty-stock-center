@@ -37,8 +37,20 @@ exports[`matching a snapshot of App 1`] = `
           "dropdown": true,
           "items": Array [
             Object {
-              "href": "/genomes",
-              "name": "Genomes Home",
+              "href": "/",
+              "name": "Dictyostelium discoideum",
+            },
+            Object {
+              "href": "http://genomes.dictybase.org/purpureum",
+              "name": "Dictyostelium purpureum",
+            },
+            Object {
+              "href": "http://genomes.dictybase.org/fasciculatum",
+              "name": "Dictyostelium fasciculatum",
+            },
+            Object {
+              "href": "http://genomes.dictybase.org/pallidum",
+              "name": "Polysphondylium pallium",
             },
           ],
           "title": "Genomes",
@@ -47,12 +59,12 @@ exports[`matching a snapshot of App 1`] = `
           "dropdown": true,
           "items": Array [
             Object {
-              "href": "/tools",
-              "name": "Tools Home",
+              "href": "http://dictybase.org/tools/jbrowse/?data=data/jbrowse/discoideum&loc=6:1..50011&tracks=reference,gene,transcript",
+              "name": "Genome Browser",
             },
             Object {
-              "href": "/tools/jbrowse",
-              "name": "New Genome Browser",
+              "href": "/dictyaccess",
+              "name": "Dashboard",
             },
           ],
           "title": "Tools",
@@ -61,24 +73,12 @@ exports[`matching a snapshot of App 1`] = `
           "dropdown": true,
           "items": Array [
             Object {
-              "href": "/explore",
-              "name": "Explore Home",
-            },
-            Object {
               "href": "/explore/art",
               "name": "Dicty Art",
             },
             Object {
               "href": "/explore/gallery",
               "name": "Gallery",
-            },
-            Object {
-              "href": "/explore/resources",
-              "name": "Genome Resources",
-            },
-            Object {
-              "href": "/explore/statistics",
-              "name": "Genome Statistics",
             },
             Object {
               "href": "/explore/learn",
@@ -98,10 +98,6 @@ exports[`matching a snapshot of App 1`] = `
         Object {
           "dropdown": true,
           "items": Array [
-            Object {
-              "href": "/research",
-              "name": "Research Home",
-            },
             Object {
               "href": "/research/ontology",
               "name": "Anatomy Ontology",
@@ -126,18 +122,28 @@ exports[`matching a snapshot of App 1`] = `
           "title": "Research",
         },
         Object {
-          "href": "/stockcenter",
+          "dropdown": true,
+          "items": Array [
+            Object {
+              "href": "/stockcenter",
+              "name": "Stock Center Home",
+            },
+            Object {
+              "href": "/stockcenter/information/order",
+              "name": "Order Information",
+            },
+            Object {
+              "href": "/stockcenter/information/faq",
+              "name": "FAQ",
+            },
+          ],
           "title": "Dicty Stock Center",
         },
         Object {
           "dropdown": true,
           "items": Array [
             Object {
-              "href": "/community",
-              "name": "Community Home",
-            },
-            Object {
-              "href": "/citation",
+              "href": "/community/citation",
               "name": "Cite Us",
             },
             Object {
@@ -182,6 +188,10 @@ exports[`matching a snapshot of App 1`] = `
         }
       }
       cart={Object {}}
+      fetchFooterAction={[Function]}
+      fetchNavbarAction={[Function]}
+      footer={Object {}}
+      navbar={Object {}}
     />
   </styled.div>
   <WithStyles(Footer)
@@ -190,29 +200,24 @@ exports[`matching a snapshot of App 1`] = `
         Array [
           Object {
             "header": Object {
-              "description": "Genomes Home",
-              "link": "/genomes",
-            },
-            "items": Array [],
-          },
-          Object {
-            "header": Object {
-              "description": "Stock Center Home",
-              "link": "/stockcenter",
-            },
-            "items": Array [],
-          },
-        ],
-        Array [
-          Object {
-            "header": Object {
-              "description": "Tools Home",
-              "link": "/tools",
+              "description": "Genomes",
             },
             "items": Array [
               Object {
-                "description": "New Genome Browser",
-                "link": "/tools/jbrowse",
+                "description": "Dictyostelium discoideum",
+                "link": "/",
+              },
+              Object {
+                "description": "Dictyostelium purpureum",
+                "link": "http://genomes.dictybase.org/purpureum",
+              },
+              Object {
+                "description": "Dictyostelium fasciculatum",
+                "link": "http://genomes.dictybase.org/fasciculatum",
+              },
+              Object {
+                "description": "Polysphondylium pallium",
+                "link": "http://genomes.dictybase.org/pallidum",
               },
             ],
           },
@@ -220,8 +225,24 @@ exports[`matching a snapshot of App 1`] = `
         Array [
           Object {
             "header": Object {
-              "description": "Explore Home",
-              "link": "/explore",
+              "description": "Tools",
+            },
+            "items": Array [
+              Object {
+                "description": "Genome Browser",
+                "link": "http://dictybase.org/tools/jbrowse/?data=data/jbrowse/discoideum&loc=6:1..50011&tracks=reference,gene,transcript",
+              },
+              Object {
+                "description": "Dashboard",
+                "link": "/dictyaccess",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Explore",
             },
             "items": Array [
               Object {
@@ -231,14 +252,6 @@ exports[`matching a snapshot of App 1`] = `
               Object {
                 "description": "Gallery",
                 "link": "/explore/gallery",
-              },
-              Object {
-                "description": "Genome Resources",
-                "link": "/explore/resources",
-              },
-              Object {
-                "description": "Genome Statistics",
-                "link": "/explore/statistics",
               },
               Object {
                 "description": "Learn About Dicty",
@@ -258,8 +271,7 @@ exports[`matching a snapshot of App 1`] = `
         Array [
           Object {
             "header": Object {
-              "description": "Research Home",
-              "link": "/research",
+              "description": "Research",
             },
             "items": Array [
               Object {
@@ -288,13 +300,33 @@ exports[`matching a snapshot of App 1`] = `
         Array [
           Object {
             "header": Object {
-              "description": "Community Home",
-              "link": "/community",
+              "description": "Dicty Stock Center",
+            },
+            "items": Array [
+              Object {
+                "description": "Stock Center Home",
+                "link": "/stockcenter",
+              },
+              Object {
+                "description": "Order Information",
+                "link": "/stockcenter/information/order",
+              },
+              Object {
+                "description": "FAQ",
+                "link": "/stockcenter/information/faq",
+              },
+            ],
+          },
+        ],
+        Array [
+          Object {
+            "header": Object {
+              "description": "Community",
             },
             "items": Array [
               Object {
                 "description": "Cite Us",
-                "link": "/citation",
+                "link": "/community/citation",
               },
               Object {
                 "description": "Dicty Annual Conferences",
@@ -326,24 +358,22 @@ exports[`matching a snapshot of App 1`] = `
         Array [
           Object {
             "header": Object {
-              "description": "Please Cite:",
-              "link": "#",
+              "description": "Please Cite",
             },
             "items": Array [
               Object {
                 "description": "dictyBase",
-                "link": "http://www.ncbi.nlm.nih.gov/pubmed/23172289",
+                "link": "",
               },
               Object {
                 "description": "Dicty Stock Center",
-                "link": "http://www.ncbi.nlm.nih.gov/pubmed/23494302",
+                "link": "/stockcenter",
               },
             ],
           },
           Object {
             "header": Object {
-              "description": "Supported By:",
-              "link": "#",
+              "description": "Supported By",
             },
             "items": Array [
               Object {
@@ -356,7 +386,7 @@ exports[`matching a snapshot of App 1`] = `
               },
               Object {
                 "description": "Gene Ontology",
-                "link": "http://geneontology.org/",
+                "link": "http://www.geneontology.org/",
               },
             ],
           },

@@ -10,6 +10,10 @@ test("matching a snapshot of App", () => {
       isAuthenticated: false,
     },
     cart: {},
+    footer: {},
+    navbar: {},
+    fetchNavbarAction: () => {},
+    fetchFooterAction: () => {},
   }
   const subject = shallow(<App {...props} />)
   expect(toJson(subject)).toMatchSnapshot()
