@@ -25,6 +25,14 @@ ENV REACT_APP_BASENAME ${basename:-stockcenter}
 ARG ga_tracking_id
 ENV REACT_APP_GA_TRACKING_ID ${ga_tracking_id:-UA-16352781-8}
 
+# URL for navbar json
+ARG navbar_json
+ENV REACT_APP_NAVBAR_JSON ${navbar_json:-https://raw.githubusercontent.com/dictyBase/migration-data/master/navbar/navbar.json}
+
+# URL for footer json
+ARG footer_json
+ENV REACT_APP_FOOTER_JSON ${footer_json:-https://raw.githubusercontent.com/dictyBase/migration-data/master/footer/footer.json}
+
 # Setup client keys for third party auth
 ARG client_keys
 ENV CLIENT_KEYS ${client_keys:-https://raw.githubusercontent.com/dictybase-playground/client-keys/master/clientConfig.js}

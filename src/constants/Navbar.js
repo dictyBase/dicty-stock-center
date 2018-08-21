@@ -1,136 +1,146 @@
-export const NavbarLinks = [
+// keep old links as fall back
+const navItems = [
   {
     dropdown: true,
     title: "Genomes",
     items: [
       {
-        name: "Genomes Home",
-        href: "/genomes"
-      }
-    ]
+        name: "Dictyostelium discoideum",
+        href: "/",
+      },
+      {
+        name: "Dictyostelium purpureum",
+        href: "http://genomes.dictybase.org/purpureum",
+      },
+      {
+        name: "Dictyostelium fasciculatum",
+        href: "http://genomes.dictybase.org/fasciculatum",
+      },
+      {
+        name: "Polysphondylium pallium",
+        href: "http://genomes.dictybase.org/pallidum",
+      },
+    ],
   },
   {
     dropdown: true,
     title: "Tools",
     items: [
       {
-        name: "Tools Home",
-        href: "/tools"
+        name: "Genome Browser",
+        href:
+          "http://dictybase.org/tools/jbrowse/?data=data/jbrowse/discoideum&loc=6:1..50011&tracks=reference,gene,transcript",
       },
       {
-        name: "New Genome Browser",
-        href: "/tools/jbrowse"
-      }
-    ]
+        name: "Dashboard",
+        href: "/dictyaccess",
+      },
+    ],
   },
   {
     dropdown: true,
     title: "Explore",
     items: [
       {
-        name: "Explore Home",
-        href: "/explore"
-      },
-      {
         name: "Dicty Art",
-        href: "/explore/art"
+        href: "/explore/art",
       },
       {
         name: "Gallery",
-        href: "/explore/gallery"
-      },
-      {
-        name: "Genome Resources",
-        href: "/explore/resources"
-      },
-      {
-        name: "Genome Statistics",
-        href: "/explore/statistics"
+        href: "/explore/gallery",
       },
       {
         name: "Learn About Dicty",
-        href: "/explore/learn"
+        href: "/explore/learn",
       },
       {
         name: "Teaching Protocols",
-        href: "/explore/teach"
+        href: "/explore/teach",
       },
       {
         name: "Useful Links",
-        href: "/explore/links"
-      }
-    ]
+        href: "/explore/links",
+      },
+    ],
   },
   {
     dropdown: true,
     title: "Research",
     items: [
       {
-        name: "Research Home",
-        href: "/research"
-      },
-      {
         name: "Anatomy Ontology",
-        href: "/research/ontology"
+        href: "/research/ontology",
       },
       {
         name: "Codon Bias Table",
-        href: "/research/codon"
+        href: "/research/codon",
       },
       {
         name: "Nomenclature Guidelines",
-        href: "/research/nomenclature"
+        href: "/research/nomenclature",
       },
       {
         name: "Phenotyping",
-        href: "/research/phenotyping"
+        href: "/research/phenotyping",
       },
       {
         name: "Techniques",
-        href: "/research/techniques"
-      }
-    ]
+        href: "/research/techniques",
+      },
+    ],
   },
   {
+    dropdown: true,
     title: "Dicty Stock Center",
-    href: "/stockcenter"
+    items: [
+      {
+        name: "Stock Center Home",
+        href: "/stockcenter",
+      },
+      {
+        name: "Order Information",
+        href: "/stockcenter/information/order",
+      },
+      {
+        name: "FAQ",
+        href: "/stockcenter/information/faq",
+      },
+    ],
   },
   {
     dropdown: true,
     title: "Community",
     items: [
       {
-        name: "Community Home",
-        href: "/community"
-      },
-      {
         name: "Cite Us",
-        href: "/citation"
+        href: "/community/citation",
       },
       {
         name: "Dicty Annual Conferences",
-        href: "/community/conference"
+        href: "/community/conference",
       },
       {
         name: "Dicty Email Forum",
-        href: "/community/listserv"
+        href: "/community/listserv",
       },
       {
         name: "Dicty Labs",
-        href: "/community/labs"
+        href: "/community/labs",
       },
       {
         name: "History",
-        href: "/community/history"
+        href: "/community/history",
       },
       {
         name: "Jobs",
-        href: "/community/jobs"
+        href: "/community/jobs",
       },
       {
         name: "Upcoming Meetings",
-        href: "/community/meetings"
-      }
-    ]
-  }
+        href: "/community/meetings",
+      },
+    ],
+  },
 ]
+
+export default navItems

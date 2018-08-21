@@ -1,12 +1,13 @@
 // @flow
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
-import rootReducer from "../reducers"
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly"
 import { connectRouter, routerMiddleware } from "connected-react-router"
 import { manageStateStorage } from "dicty-components-redux"
 import callAPI from "middlewares/callAPI"
 import { dsctypes } from "constants/dsctypes"
 import history from "utils/routerHistory"
+import rootReducer from "../reducers"
 
 const authArg = {
   save_action: dsctypes.LOGIN_SUCCESS,
@@ -33,14 +34,16 @@ const cartArg = {
   namespace: "shoppingCart",
 }
 
-const enhancer = applyMiddleware(
-  routerMiddleware(history),
-  thunk,
-  callAPI,
-  manageStateStorage(authArg),
-  manageStateStorage(roleArg),
-  manageStateStorage(permArg),
-  manageStateStorage(cartArg),
+const enhancer = composeWithDevTools(
+  applyMiddleware(
+    routerMiddleware(history),
+    thunk,
+    callAPI,
+    manageStateStorage(authArg),
+    manageStateStorage(roleArg),
+    manageStateStorage(permArg),
+    manageStateStorage(cartArg),
+  ),
 )
 
 export default function configureStore(initialState: Object) {
