@@ -19,8 +19,8 @@ export const PanelGreen = styled.div`
 `
 
 export const PanelBlue = styled.div`
-  background-color: #eff8fb;
-  border: 1px solid #eff8fb;
+  background-color: #e6f2ff;
+  border: 1px solid #e6f2ff;
   margin: 15px auto;
   padding: 15px;
   border-radius: 10px;

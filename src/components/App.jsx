@@ -33,16 +33,16 @@ type Props = {
   /** Object representing footer part of state */
   footer: Object,
   /** Action creator to fetch navbar content */
-  fetchNavbarAction: Function,
+  fetchNavbar: Function,
   /** Action creator to fetch footer content */
-  fetchFooterAction: Function,
+  fetchFooter: Function,
 }
 
 export class App extends Component<Props> {
   componentDidMount() {
-    const { fetchNavbarAction, fetchFooterAction } = this.props
-    fetchNavbarAction()
-    fetchFooterAction()
+    const { fetchNavbar, fetchFooter } = this.props
+    fetchNavbar()
+    fetchFooter()
   }
 
   render() {
@@ -104,11 +104,9 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
   footer,
 })
 
-// why rename action creator?
-// https://stackoverflow.com/questions/37682705/avoid-no-shadow-eslint-error-with-mapdispatchtoprops/42337137#42337137
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchNavbarAction: fetchNavbar, fetchFooterAction: fetchFooter },
+    { fetchNavbar, fetchFooter },
   )(App),
 )

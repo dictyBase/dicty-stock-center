@@ -37,7 +37,7 @@ body {
 }
 
 a {
-    color: #337ab7;
+    color: #004080;
     text-decoration: none;
 }
 `,

@@ -44,7 +44,7 @@ export const Button = styled.button`
 
 export const PrimaryButton = Button.extend`
   color: #fff;
-  background-color: #337ab7;
+  background-color: #0059b3;
   border-color: #2e6da4;
 
   a {
@@ -64,7 +64,7 @@ export const PrimaryButton = Button.extend`
 
   &:hover {
     color: #fff;
-    background-color: #286090;
+    background-color: #0073e6;
     border-color: #204d74;
   }
 
