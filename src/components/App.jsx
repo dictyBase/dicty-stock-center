@@ -18,6 +18,11 @@ import Cart from "components/Cart"
 import RenderRoutes from "routes/RenderRoutes"
 import { MainBodyContainer } from "styles"
 
+const navTheme = {
+  primary: "#004080",
+  secondary: "#0059b3",
+}
+
 type Props = {
   /** Object representing auth part of state */
   auth: Object,
@@ -57,7 +62,7 @@ export class App extends Component<Props> {
             </Header>
           )}
           <br />
-          <Navbar items={navItems} />
+          <Navbar items={navItems} theme={navTheme} />
           <br />
           <Cart cart={cart} />
           <MainBodyContainer>
@@ -80,7 +85,7 @@ export class App extends Component<Props> {
           </Header>
         )}
         <br />
-        <Navbar items={navbar.links} />
+        <Navbar items={navbar.links} theme={navTheme} />
         <br />
         <Cart cart={cart} />
         <MainBodyContainer>
