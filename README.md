@@ -92,6 +92,8 @@ This will look at your most recent commits since the last `git tag` and automati
 
 This was reconfigured to use the [create-react-app](https://github.com/facebook/create-react-app) structure and philosophy. Please read their [User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for more detailed information.
 
+Wireframes, diagrams and Redux shape of the state can be found in the [docs](./docs) folder.
+
 # Deployment
 
 The application is deployed by [building a Docker
