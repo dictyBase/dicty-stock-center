@@ -3,12 +3,14 @@
 [![Build Status](https://travis-ci.org/dictyBase/Dicty-Stock-Center.svg?branch=master)](https://travis-ci.org/dictyBase/Dicty-Stock-Center)
 [![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master)
 [![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/master/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/master?type=dev)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## Develop branch
 
 [![Build Status](https://travis-ci.org/dictyBase/Dicty-Stock-Center.svg?branch=develop)](https://travis-ci.org/dictyBase/Dicty-Stock-Center)
 [![Dependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop)
 [![devDependency Status](https://david-dm.org/dictybase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictybase/Dicty-Stock-Center/develop?type=dev)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 # Dicty Stock Center
 
@@ -19,6 +21,7 @@ Dicty Stock Center application rebuilt with React and Redux!
     - [Providers](#providers)
     - [Auth server](#auth-server)
     - [API server](#api-server)
+    - [Navbar and footer](#navbar-and-footer)
   - [Running the application(dev version)](#running-the-application-dev-version)
   - [Application Structure](#application-structure)
 - [Deployment](#deployment)
@@ -61,6 +64,24 @@ Dicty Stock Center application rebuilt with React and Redux!
 - The API server to manage data from the rich text editor frontend is available [here](https://github.com/dictyBase/modware-content).
 - The **REACT_APP_API_SERVER** env variable can also be customize by modifying the
   global variable in the [env](.env.development) file.
+
+### Navbar and Footer
+
+- The application has env variables for `REACT_APP_NAVBAR_JSON` and `REACT_APP_FOOTER_JSON` that are set to
+  the corresponding URLs where the JSON data is stored on GitHub.
+
+## Semantic Versioning
+
+This app has been set up to use [semantic-release](https://github.com/semantic-release/semantic-release) and [commitizen](https://github.com/commitizen/cz-cli). After adding a new commit (`git add .`), use `npm run cz` and follow the prompts to categorize and provide more details about your commit. Once complete, push your changes to whatever branch you are working on.
+
+When you are ready to push to prod, you can use `semantic-release` to automate the release process:
+
+- Merge your changes into `master`
+- Run `npx semantic-release`
+
+**Important:** you MUST have an env variable stored for `GH_TOKEN` or `GITHUB_TOKEN` that contains a GitHub [personal access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). You can either pass this in manually when you run the script (i.e. `GH_TOKEN=XXX npx semantic-release`) or you can [store your env variable locally](https://www.schrodinger.com/kb/1842).
+
+This will look at your most recent commits since the last `git tag` and automatically determine the appropriate version number for your release. It also updates the [CHANGELOG](./CHANGELOD.md) documentation.
 
 ## Running the application (dev version)
 
