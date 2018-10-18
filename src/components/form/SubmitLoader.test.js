@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import "../../setupTests"
 import SubmitLoader from "./SubmitLoader"
@@ -16,10 +15,4 @@ describe("form/SubmitLoader", () => {
     const icon = wrapper.find("i.fa-spinner")
     expect(icon).toExist
   })
-})
-
-test("matching a snapshot of SubmitLoader", () => {
-  const component = renderer.create(<SubmitLoader />)
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

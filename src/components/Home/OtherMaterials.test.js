@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
@@ -79,23 +78,4 @@ describe("Home/OtherMaterials", () => {
       expect(wrapper.find(Flex).length).toBe(0)
     })
   })
-})
-
-test("matching a snapshot of OtherMaterials", () => {
-  const fetchInfoPage = () => {}
-  const page = {
-    data: {
-      attributes: {},
-    },
-  }
-
-  const component = renderer.create(
-    <OtherMaterials
-      page={page}
-      fetchInfoPage={fetchInfoPage}
-      isFetching={false}
-    />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

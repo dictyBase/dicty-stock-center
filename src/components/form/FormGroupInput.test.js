@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import "../../setupTests"
 import FormGroupInput from "./FormGroupInput"
@@ -18,14 +17,4 @@ describe("form/FormGroupInput", () => {
     wrapper.setProps({ field })
     expect(wrapper.contains(<HelpBlock>{field.error}</HelpBlock>)).toEqual(true)
   })
-})
-
-test("matching a snapshot of FormGroupInput", () => {
-  const field = {
-    touched: true,
-  }
-
-  const component = renderer.create(<FormGroupInput field={field} />)
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

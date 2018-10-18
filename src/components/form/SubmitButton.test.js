@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import "../../setupTests"
 import SubmitButton from "./SubmitButton"
@@ -14,12 +13,4 @@ describe("form/SubmitButton", () => {
   it("Should render as a <button>.", () => {
     expect(wrapper.is(PrimaryLargeButton)).toEqual(true)
   })
-})
-
-test("matching a snapshot of SubmitButton", () => {
-  const component = renderer.create(
-    <SubmitButton submitting={false} name={"Submit"} icon={"Submit"} />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

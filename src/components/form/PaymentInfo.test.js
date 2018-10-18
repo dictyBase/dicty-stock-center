@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import "../../setupTests"
 import PaymentInfo from "./PaymentInfo"
@@ -25,21 +24,4 @@ describe("form/PaymentInfo", () => {
     wrapper.setProps({ payMethod: field })
     expect(wrapper.contains(<HelpBlock>{field.error}</HelpBlock>)).toEqual(true)
   })
-})
-
-test("matching a snapshot of PaymentInfo", () => {
-  const payMethod = {
-    value: "Credit",
-    touched: true,
-  }
-  const poNum = {
-    value: "",
-    touched: true,
-  }
-
-  const component = renderer.create(
-    <PaymentInfo payMethod={payMethod} poNum={poNum} />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

@@ -1,6 +1,4 @@
 import React from "react"
-import { BrowserRouter } from "react-router-dom"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
@@ -89,31 +87,4 @@ describe("InfoPage/InfoPage", () => {
       expect(wrapper.find(Loader).length).toBe(0)
     })
   })
-})
-
-test("matching a snapshot of InfoPage/InfoPage", () => {
-  const props = {
-    page: {
-      data: {
-        attributes: {
-          content: "page content",
-        },
-      },
-    },
-    match: {
-      params: {
-        name: "order",
-      },
-    },
-    fetchInfoPage: () => {},
-    isFetching: true,
-  }
-
-  const component = renderer.create(
-    <BrowserRouter>
-      <InfoPage {...props} />
-    </BrowserRouter>,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })

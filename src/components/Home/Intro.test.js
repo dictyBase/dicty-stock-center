@@ -1,5 +1,4 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
@@ -77,19 +76,4 @@ describe("Home/Intro", () => {
       expect(wrapper.find(Flex).length).toBe(0)
     })
   })
-})
-
-test("matching a snapshot of Intro", () => {
-  const fetchInfoPage = () => {}
-  const page = {
-    data: {
-      attributes: {},
-    },
-  }
-
-  const component = renderer.create(
-    <Intro page={page} fetchInfoPage={fetchInfoPage} isFetching={false} />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })
