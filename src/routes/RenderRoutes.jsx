@@ -117,8 +117,9 @@ const Contact = Loadable({
   loader: () => import("components/Contact" /* webpackChunkName: "Contact" */),
   loading: Loader,
 })
-const Error = Loadable({
-  loader: () => import("components/Error" /* webpackChunkName: "Error" */),
+const ErrorPage = Loadable({
+  loader: () =>
+    import("components/ErrorPage" /* webpackChunkName: "ErrorPage" */),
   loading: Loader,
 })
 const ShoppingCart = Loadable({
@@ -134,44 +135,42 @@ const PageNotReady = Loadable({
   loading: Loader,
 })
 
-const RenderRoutes = () => {
-  return (
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      {/* authentication routes */}
-      <LoginRoute exact path="/login" component={Login} />
-      <Route exact path="/:provider/callback" component={OauthCallback} />
-      <Route exact path="/load/auth" component={AuthLoader} />
-      <PrivateRoute exact path="/logout" component={Logout} />
-      <PrivateRoute exact path="/mydsc" component={MyDsc} />
-      {/* infopage routes */}
-      <Route exact path="/information/:name" component={InfoPage} />
-      <PrivateRoute
-        exact
-        path="/information/:name/edit"
-        component={EditInfoPage}
-      />
-      {/* order form routes */}
-      <Route exact path="/order/shipping" component={Shipping} />
-      <Route exact path="/order/shipping/edit" component={EditShipping} />
-      <Route exact path="/order/payment" component={Payment} />
-      <Route exact path="/order/payment/edit" component={EditPayment} />
-      <Route exact path="/order/submit" component={Submit} />
-      <Route exact path="/order/submitting" component={SubmitLoader} />
-      <Route exact path="/order/submitted" component={OrderConfirmation} />
-      {/* strain routes */}
-      <Route exact path="/strains" component={Strains} />
-      <Route exact path="/strains/:id" component={StrainDetail} />
-      {/* plasmid routes */}
-      <Route exact path="/plasmids" component={Plasmids} />
-      <Route exact path="/plasmids/:id" component={PlasmidDetail} />
-      {/* misc routes */}
-      <Route exact path="/contact" component={Contact} />
-      <Route exact path="/error" component={Error} />
-      <Route exact path="/cart" component={ShoppingCart} />
-      <Route exact path="*" component={PageNotReady} />
-    </Switch>
-  )
-}
+const RenderRoutes = () => (
+  <Switch>
+    <Route exact path="/" component={Homepage} />
+    {/* authentication routes */}
+    <LoginRoute exact path="/login" component={Login} />
+    <Route exact path="/:provider/callback" component={OauthCallback} />
+    <Route exact path="/load/auth" component={AuthLoader} />
+    <PrivateRoute exact path="/logout" component={Logout} />
+    <PrivateRoute exact path="/mydsc" component={MyDsc} />
+    {/* infopage routes */}
+    <Route exact path="/information/:name" component={InfoPage} />
+    <PrivateRoute
+      exact
+      path="/information/:name/edit"
+      component={EditInfoPage}
+    />
+    {/* order form routes */}
+    <Route exact path="/order/shipping" component={Shipping} />
+    <Route exact path="/order/shipping/edit" component={EditShipping} />
+    <Route exact path="/order/payment" component={Payment} />
+    <Route exact path="/order/payment/edit" component={EditPayment} />
+    <Route exact path="/order/submit" component={Submit} />
+    <Route exact path="/order/submitting" component={SubmitLoader} />
+    <Route exact path="/order/submitted" component={OrderConfirmation} />
+    {/* strain routes */}
+    <Route exact path="/strains" component={Strains} />
+    <Route exact path="/strains/:id" component={StrainDetail} />
+    {/* plasmid routes */}
+    <Route exact path="/plasmids" component={Plasmids} />
+    <Route exact path="/plasmids/:id" component={PlasmidDetail} />
+    {/* misc routes */}
+    <Route exact path="/contact" component={Contact} />
+    <Route exact path="/error" component={ErrorPage} />
+    <Route exact path="/cart" component={ShoppingCart} />
+    <Route exact path="*" component={PageNotReady} />
+  </Switch>
+)
 
 export default RenderRoutes

@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import Loader from "components/Loader"
 import InfoPageView from "./InfoPageView"
+import ErrorPage from "components/ErrorPage"
 import { fetchInfoPage } from "actions/page"
 import { NAMESPACE } from "constants/dsctypes"
 
@@ -37,6 +38,10 @@ export class InfoPage extends Component<Props> {
   }
   render() {
     const { isFetching, page } = this.props
+
+    if (page.error) {
+      return <ErrorPage error={page.error} />
+    }
 
     if (!isFetching && page.data.attributes.content) {
       return <InfoPageView page={page} match={this.props.match} />

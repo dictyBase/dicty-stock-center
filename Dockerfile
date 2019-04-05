@@ -17,6 +17,10 @@ ENV REACT_APP_API_SERVER ${api_server:-https://betaapi.dictybase.local}
 ARG auth_server
 ENV REACT_APP_AUTH_SERVER ${auth_server:-https://betatoken.dictybase.local}
 
+# URL for graphql server
+ARG graphql_server
+ENV REACT_APP_GRAPHQL_SERVER ${graphql_server:-https://betagraphql.dictybase.local}
+
 # base path for React Router
 ARG basename
 ENV REACT_APP_BASENAME ${basename:-stockcenter}

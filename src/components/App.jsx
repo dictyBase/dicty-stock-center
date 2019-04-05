@@ -14,7 +14,8 @@ import {
   loggedHeaderItems,
   generateLinks,
 } from "utils/headerItems"
-import Cart from "components/Cart"
+import Cart from "./Cart"
+import ErrorBoundary from "./ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { MainBodyContainer } from "styles"
 
@@ -47,7 +48,6 @@ export class App extends Component<Props> {
 
   render() {
     const { auth, cart, navbar, footer } = this.props
-
     // if any errors, fall back to old link setup
     if (navbar.error || !navbar.links || footer.error || !footer.links) {
       return (
@@ -66,7 +66,9 @@ export class App extends Component<Props> {
           <br />
           <Cart cart={cart} />
           <MainBodyContainer>
-            <RenderRoutes {...this.props} />
+            <ErrorBoundary>
+              <RenderRoutes {...this.props} />
+            </ErrorBoundary>
           </MainBodyContainer>
           <Footer items={footerItems} />
         </div>
@@ -89,7 +91,9 @@ export class App extends Component<Props> {
         <br />
         <Cart cart={cart} />
         <MainBodyContainer>
-          <RenderRoutes {...this.props} />
+          <ErrorBoundary>
+            <RenderRoutes {...this.props} />
+          </ErrorBoundary>
         </MainBodyContainer>
         <Footer items={footer.links} />
       </div>

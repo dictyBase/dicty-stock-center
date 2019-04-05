@@ -1,8 +1,8 @@
 // @flow
-import createHistory from "history/createBrowserHistory"
+import { createBrowserHistory } from "history"
 
-const history = createHistory({
-  basename: process.env.REACT_APP_BASENAME
+const history = createBrowserHistory({
+  basename: process.env.REACT_APP_BASENAME,
 })
 
 export default history
