@@ -23,8 +23,15 @@ const styles = (theme: Theme) =>
   })
 
 type Props = {
-  classes: Object,
+  /** Material-UI styling */
+  classes: {
+    layout: string,
+  },
 }
+
+/**
+ * StrainDetailsLoader is the loading screen displayed while fetching strain data.
+ */
 
 const StrainDetailsLoader = (props: Props) => {
   const { classes } = props
