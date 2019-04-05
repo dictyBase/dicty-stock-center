@@ -4,6 +4,7 @@ import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/Loader"
+import StrainDetailsLoader from "components/Strains/StrainDetailsLoader"
 // import InfoPage from "components/InfoPage/InfoPage"
 // import EditInfoPage from "components/InfoPage/EditInfoPage"
 
@@ -57,10 +58,10 @@ const Strains = Loadable({
   loader: () => import("components/Strains" /* webpackChunkName: "Strains" */),
   loading: Loader,
 })
-const StrainDetail = Loadable({
+const StrainDetailsContainer = Loadable({
   loader: () =>
-    import("components/Strains/StrainDetail" /* webpackChunkName: "StrainDetail" */),
-  loading: Loader,
+    import("components/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */),
+  loading: StrainDetailsLoader,
 })
 
 // plasmids routes
@@ -161,7 +162,7 @@ const RenderRoutes = () => (
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
     <Route exact path="/strains" component={Strains} />
-    <Route exact path="/strains/:id" component={StrainDetail} />
+    <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={Plasmids} />
     <Route exact path="/plasmids/:id" component={PlasmidDetail} />
