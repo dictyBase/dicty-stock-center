@@ -3,12 +3,12 @@ import React, { Component } from "react"
 import { AlertInfo } from "styles"
 
 type Props = {
-  paymentInfoLink: string
+  paymentInfoLink: string,
 }
 
 export default class PaymentAlert extends Component<Props> {
   static defaultProps = {
-    paymentInfoLink: "/stockcenter/payments/information"
+    paymentInfoLink: "/stockcenter/payments/information",
   }
 
   render() {
@@ -38,7 +38,10 @@ export default class PaymentAlert extends Component<Props> {
           <p>
             For full payment information please click&nbsp;
             <u>
-              <a href={this.props.paymentInfoLink} target="_blank">
+              <a
+                href={this.props.paymentInfoLink}
+                target="_blank"
+                rel="noopener noreferrer">
                 here
               </a>
             </u>

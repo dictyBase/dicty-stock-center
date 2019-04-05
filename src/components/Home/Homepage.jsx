@@ -30,13 +30,11 @@ type Props = {
  */
 
 export class Homepage extends Component<Props> {
-  renderGreeting = () => {
-    return (
-      <span>
-        <h3>Hello, {`${this.props.fullName}!`}</h3>
-      </span>
-    )
-  }
+  renderGreeting = () => (
+    <span>
+      <h3>Hello, {`${this.props.fullName}!`}</h3>
+    </span>
+  )
   render() {
     return (
       <Container>
