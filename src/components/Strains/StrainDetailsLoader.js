@@ -8,17 +8,14 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme"
 const styles = (theme: Theme) =>
   createStyles({
     layout: {
-      width: "70%",
+      width: "80%",
       marginLeft: "auto",
       marginRight: "auto",
       [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-        width: 1300,
+        width: "80%",
         marginLeft: "auto",
         marginRight: "auto",
       },
-    },
-    title: {
-      textAlign: "center",
     },
   })
 

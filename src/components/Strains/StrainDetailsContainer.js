@@ -7,16 +7,17 @@ import { withStyles } from "@material-ui/core/styles"
 import createStyles from "@material-ui/core/styles/createStyles"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StrainDetailsHeader from "./StrainDetailsHeader"
+import StrainDetailsList from "./StrainDetailsList"
 import StrainDetailsLoader from "./StrainDetailsLoader"
 
 const styles = (theme: Theme) =>
   createStyles({
     layout: {
-      width: "70%",
+      width: "80%",
       marginLeft: "auto",
       marginRight: "auto",
       [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-        width: 1300,
+        width: "80%",
         marginLeft: "auto",
         marginRight: "auto",
       },
@@ -72,6 +73,12 @@ export const StrainDetailsContainer = (props: Props) => {
           <Grid container spacing={16} className={classes.layout}>
             <Grid item xs={12}>
               <StrainDetailsHeader title={data.strain.id} />
+            </Grid>
+            <Grid item xs={12}>
+              {/* {data.strain.phenotypes && (
+                <PhenotypeTable data={data.strain.phenotypes} />
+              )} */}
+              <StrainDetailsList data={data.strain} />
             </Grid>
           </Grid>
         )
