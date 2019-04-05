@@ -2,10 +2,8 @@ import { redirectUrlGenerator } from "./oauthConfig"
 
 describe("redirectUrlGenerator function", () => {
   beforeEach(() => {
-    Object.defineProperty(window.location, "origin", {
-      writable: true,
-      value: "http://localhost:3000",
-    })
+    delete global.window.location
+    global.window.location = new URL("http://localhost:3000")
   })
 
   afterEach(() => {
