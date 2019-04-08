@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import StrainDetailsListHeader from "./StrainDetailsListHeader"
 import ItemDisplay from "components/common/ItemDisplay"
 import LeftDisplay from "components/common/LeftDisplay"
 import RightDisplay from "components/common/RightDisplay"
@@ -38,14 +37,11 @@ const StrainDetailsList = (props: Props) => {
 
   return (
     <div>
-      <StrainDetailsListHeader
-        title={`Strain Details for ${data.names.join(", ")}`}
-      />
       <ItemDisplay>
-        <LeftDisplay>Strain ID</LeftDisplay>
-        <RightDisplay>{data.id}</RightDisplay>
         <LeftDisplay>Strain Descriptor</LeftDisplay>
         <RightDisplay>{data.descriptor}</RightDisplay>
+        <LeftDisplay>Strain ID</LeftDisplay>
+        <RightDisplay>{data.id}</RightDisplay>
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>Strain Names</LeftDisplay>
@@ -63,7 +59,9 @@ const StrainDetailsList = (props: Props) => {
         <LeftDisplay>Genetic Modification</LeftDisplay>
         <RightDisplay>{data.genetic_modification}</RightDisplay>
         <LeftDisplay>Genotypes</LeftDisplay>
-        <RightDisplay>{data.genotypes.join(", ")}</RightDisplay>
+        <RightDisplay>
+          <em>{data.genotypes.join(", ")}</em>
+        </RightDisplay>
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>Mutagenesis Method</LeftDisplay>
@@ -85,7 +83,9 @@ const StrainDetailsList = (props: Props) => {
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>Associated Genes</LeftDisplay>
-        <RightDisplay>{data.genes.join(", ")}</RightDisplay>
+        <RightDisplay>
+          <em>{data.genes.join(", ")}</em>
+        </RightDisplay>
         <RightDisplay />
         <RightDisplay />
       </ItemDisplay>

@@ -72,7 +72,17 @@ export const StrainDetailsContainer = (props: Props) => {
         return (
           <Grid container spacing={16} className={classes.layout}>
             <Grid item xs={12}>
-              <StrainDetailsHeader title={data.strain.id} />
+              {data.strain.phenotypes.length > 0 ? (
+                <StrainDetailsHeader
+                  title={`Phenotype and Strain Details for ${
+                    data.strain.descriptor
+                  }`}
+                />
+              ) : (
+                <StrainDetailsHeader
+                  title={`Strain Details for ${data.strain.descriptor}`}
+                />
+              )}
             </Grid>
             <Grid item xs={12}>
               {/* {data.strain.phenotypes && (
