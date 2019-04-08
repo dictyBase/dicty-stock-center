@@ -43,7 +43,7 @@ type Props = {
 }
 
 /**
- * StrainDetailsList is the main component for displaying strain data.
+ * StrainDetailsList is the main component for displaying individual strain data.
  */
 
 const StrainDetailsList = (props: Props) => {

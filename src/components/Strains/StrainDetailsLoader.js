@@ -45,9 +45,6 @@ const StrainDetailsLoader = (props: Props) => {
         <br />
         <br />
         <Skeleton count={10} />
-        <br />
-        <br />
-        <Skeleton count={10} />
       </Grid>
     </Grid>
   )

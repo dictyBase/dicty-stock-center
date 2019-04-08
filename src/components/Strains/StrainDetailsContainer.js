@@ -10,6 +10,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StrainDetailsHeader from "./StrainDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
 import StrainDetailsLoader from "./StrainDetailsLoader"
+import PhenotypeTable from "./Phenotypes/PhenotypeTable"
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -93,9 +94,9 @@ export const StrainDetailsContainer = (props: Props) => {
               <StrainDetailsHeader title={title} />
             </Grid>
             <Grid item xs={12}>
-              {/* {data.strain.phenotypes && (
+              {data.strain.phenotypes.length > 0 && (
                 <PhenotypeTable data={data.strain.phenotypes} />
-              )} */}
+              )}
               <StrainDetailsList data={data.strain} />
             </Grid>
           </Grid>
