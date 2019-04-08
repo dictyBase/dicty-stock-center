@@ -8,6 +8,7 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
+import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 import styles from "./PhenotypeTableStyles"
 
 type Props = {
@@ -20,6 +21,17 @@ type Props = {
     assay: string,
     environment: string,
     dbxrefs: Array<string>,
+    publications: Array<{
+      authors: Array<{
+        last_name: string,
+      }>,
+      pub_date: string,
+      title: string,
+      journal: string,
+      volume: string,
+      pages: string,
+      doi: string,
+    }>,
   }>,
 }
 
@@ -62,7 +74,9 @@ const PhenotypeTable = (props: Props) => {
                   </Fragment>
                 )}
               </TableCell>
-              <TableCell>{item.dbxrefs.join(", ")}</TableCell>
+              <TableCell>
+                <PhenotypePublicationDisplay data={item.publications} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

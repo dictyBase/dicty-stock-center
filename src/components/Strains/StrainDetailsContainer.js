@@ -53,6 +53,17 @@ const GET_STRAIN = gql`
         assay
         environment
         dbxrefs
+        publications {
+          authors {
+            last_name
+          }
+          pub_date
+          title
+          journal
+          volume
+          pages
+          doi
+        }
       }
     }
   }
