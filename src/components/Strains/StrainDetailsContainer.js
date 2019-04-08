@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
@@ -63,6 +64,7 @@ const GET_STRAIN = gql`
 
 export const StrainDetailsContainer = (props: Props) => {
   const { classes, match } = props
+  let title
 
   return (
     <Query query={GET_STRAIN} variables={{ id: match.params.id }}>
@@ -70,20 +72,25 @@ export const StrainDetailsContainer = (props: Props) => {
         if (loading) return <StrainDetailsLoader />
         if (error) return <p>{error.toString()}</p>
 
+        if (data.strain.phenotypes.length > 0) {
+          title = `Phenotype and Strain Details for ${data.strain.descriptor}`
+        } else {
+          title = `Strain Details for ${data.strain.descriptor}`
+        }
+
         return (
           <Grid container spacing={16} className={classes.layout}>
+            <Helmet>
+              <title>{title} - Dicty Stock Center</title>
+              <meta
+                name="description"
+                content={`Dicty Stock Center strain details page for ${
+                  data.strain.descriptor
+                }`}
+              />
+            </Helmet>
             <Grid item xs={12}>
-              {data.strain.phenotypes.length > 0 ? (
-                <StrainDetailsHeader
-                  title={`Phenotype and Strain Details for ${
-                    data.strain.descriptor
-                  }`}
-                />
-              ) : (
-                <StrainDetailsHeader
-                  title={`Strain Details for ${data.strain.descriptor}`}
-                />
-              )}
+              <StrainDetailsHeader title={title} />
             </Grid>
             <Grid item xs={12}>
               {/* {data.strain.phenotypes && (
