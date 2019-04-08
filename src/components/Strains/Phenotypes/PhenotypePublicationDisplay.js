@@ -2,6 +2,7 @@
 import React, { Fragment } from "react"
 
 type Props = {
+  /** Publication data */
   data: Array<{
     authors: Array<{
       last_name: string,
@@ -15,6 +16,10 @@ type Props = {
   }>,
 }
 
+/**
+ * PhenotypePublicationDisplay handles the display of the phenotype reference table cell.
+ */
+
 const PhenotypePublicationDisplay = (props: Props) => {
   const { data } = props
 
@@ -23,13 +28,11 @@ const PhenotypePublicationDisplay = (props: Props) => {
       {data.map((item, index) => {
         const lastNames = item.authors.map(item => item.last_name)
         return (
-          <Fragment>
+          <Fragment key={index}>
             <strong>
               {lastNames.join(", ")} ({item.pub_date.slice(0, 4)})
-            </strong>
-            &nbsp;'{item.title}'&nbsp;
-            <em>{item.journal}</em>&nbsp;
-            {item.volume}:{item.pages}
+            </strong>{" "}
+            '{item.title}' <em>{item.journal}</em> {item.volume}:{item.pages}
           </Fragment>
         )
       })}
