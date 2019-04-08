@@ -39,6 +39,7 @@ const GET_STRAIN = gql`
       species
       parent {
         id
+        descriptor
       }
       depositor
       plasmid

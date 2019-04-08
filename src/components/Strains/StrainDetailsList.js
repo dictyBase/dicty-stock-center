@@ -1,5 +1,6 @@
 // @flow
 import React, { Fragment } from "react"
+import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "components/common/ItemDisplay"
@@ -89,7 +90,15 @@ const StrainDetailsList = (props: Props) => {
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>Parental Strain</LeftDisplay>
-        <RightDisplay>{data.parent.id}</RightDisplay>
+        <RightDisplay>
+          {data.parent ? (
+            <Link to={`/strains/${data.parent.id}`}>
+              {data.parent.descriptor}
+            </Link>
+          ) : (
+            <Fragment>N/A</Fragment>
+          )}
+        </RightDisplay>
         <LeftDisplay>Depositor</LeftDisplay>
         <RightDisplay>{data.depositor}</RightDisplay>
       </ItemDisplay>
