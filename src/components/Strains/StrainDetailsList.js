@@ -111,7 +111,13 @@ const StrainDetailsList = (props: Props) => {
       <ItemDisplay>
         <LeftDisplay>Associated Genes</LeftDisplay>
         <RightDisplay>
-          <em>{data.genes.join(", ")}</em>
+          <em>
+            {data.genes.map((gene, index) => (
+              <Fragment>
+                <a href={`/gene/${gene}`}>{(index ? ", " : "") + gene}</a>
+              </Fragment>
+            ))}
+          </em>
         </RightDisplay>
         <RightDisplay />
         <RightDisplay />
