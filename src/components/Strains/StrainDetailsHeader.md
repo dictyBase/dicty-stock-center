@@ -1,3 +1,3 @@
 ```js
-<StrainDetailsHeader title="DBS9999999" />
+<StrainDetailsHeader title="Strain Details for sadA" />
 ```

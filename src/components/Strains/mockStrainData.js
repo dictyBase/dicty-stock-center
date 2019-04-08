@@ -1,0 +1,21 @@
+export const data = {
+  descriptor: "aarA-",
+  id: "DBS0236123",
+  names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
+  systematic_name: "HAD186",
+  characteristics: ["blasticidin resistant", "axenic", "null mutant"],
+  summary: "aarA (aardvark) null mutant (β-catenin knock-out)",
+  editable_summary: "aarA (aardvark) null mutant (β-catenin knock-out)",
+  genotypes: ["axeA2", "axeB2", "axeC2", "aarA-[aarA-KO]", "bsR"],
+  genetic_modification: "endogenous insertion",
+  mutagenesis_method: "Homologous Recombination",
+  species: "Dictyostelium discoideum",
+  parent: {
+    id: "DBS0350762",
+    descriptor: "AX2",
+  },
+  depositor: "Adrian Harwood",
+  plasmid: "aar-KO (aar cDNA with bsR cassette)",
+  dbxrefs: ["11130075", "d6532"],
+  genes: ["aarA"],
+}
