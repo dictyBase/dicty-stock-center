@@ -54,10 +54,10 @@ const EditInfoPage = Loadable({
 })
 
 // strains routes
-const Strains = Loadable({
-  loader: () => import("components/Strains" /* webpackChunkName: "Strains" */),
-  loading: Loader,
-})
+// const Strains = Loadable({
+//   loader: () => import("components/Strains" /* webpackChunkName: "Strains" */),
+//   loading: Loader,
+// })
 const StrainDetailsContainer = Loadable({
   loader: () =>
     import("components/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */),
@@ -65,16 +65,16 @@ const StrainDetailsContainer = Loadable({
 })
 
 // plasmids routes
-const Plasmids = Loadable({
-  loader: () =>
-    import("components/Plasmids" /* webpackChunkName: "Plasmids" */),
-  loading: Loader,
-})
-const PlasmidDetail = Loadable({
-  loader: () =>
-    import("components/Plasmids/PlasmidDetail" /* webpackChunkName: "PlasmidDetail" */),
-  loading: Loader,
-})
+// const Plasmids = Loadable({
+//   loader: () =>
+//     import("components/Plasmids" /* webpackChunkName: "Plasmids" */),
+//   loading: Loader,
+// })
+// const PlasmidDetail = Loadable({
+//   loader: () =>
+//     import("components/Plasmids/PlasmidDetail" /* webpackChunkName: "PlasmidDetail" */),
+//   loading: Loader,
+// })
 
 // order form routes
 const Shipping = Loadable({
@@ -161,11 +161,11 @@ const RenderRoutes = () => (
     <Route exact path="/order/submitting" component={SubmitLoader} />
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
-    <Route exact path="/strains" component={Strains} />
+    {/* <Route exact path="/strains" component={Strains} /> */}
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
-    <Route exact path="/plasmids" component={Plasmids} />
-    <Route exact path="/plasmids/:id" component={PlasmidDetail} />
+    {/* <Route exact path="/plasmids" component={Plasmids} />
+    <Route exact path="/plasmids/:id" component={PlasmidDetail} /> */}
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/error" component={ErrorPage} />
