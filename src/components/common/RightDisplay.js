@@ -5,15 +5,10 @@ import Grid from "@material-ui/core/Grid"
 
 const styles = theme => ({
   rightContainer: {
-    width: "80%",
-    height: "100%",
-    padding: "4px 56px 4px 24px",
-    verticalAlign: "middle",
-  },
-  innerSpan: {
-    height: "100%",
+    padding: "8px 56px 4px 24px",
     fontSize: "0.8125rem",
     fontWeight: 400,
+    marginBottom: "5px",
   },
 })
 
@@ -30,8 +25,8 @@ type Props = {
  */
 
 const RightDisplay = ({ classes, children }: Props) => (
-  <Grid item xs={4} component="span" className={classes.rightContainer}>
-    <span className={classes.innerSpan}>{children}</span>
+  <Grid item xs={4} className={classes.rightContainer}>
+    {children}
   </Grid>
 )
 

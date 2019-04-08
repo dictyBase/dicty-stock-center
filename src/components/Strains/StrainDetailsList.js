@@ -1,8 +1,18 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
+import Grid from "@material-ui/core/Grid"
+import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "components/common/ItemDisplay"
 import LeftDisplay from "components/common/LeftDisplay"
 import RightDisplay from "components/common/RightDisplay"
+
+const styles = theme => ({
+  header: {
+    textAlign: "center",
+    backgroundColor: "#0059b3",
+    color: "#fff",
+  },
+})
 
 type Props = {
   data: {
@@ -19,6 +29,7 @@ type Props = {
     species: string,
     parent: {
       id: string,
+      descriptor: string,
     },
     depositor: string,
     plasmid: string,
@@ -26,6 +37,8 @@ type Props = {
     genes: Array<string>,
     phenotypes: Object,
   },
+  /** Material-UI styling */
+  classes: Object,
 }
 
 /**
@@ -33,10 +46,15 @@ type Props = {
  */
 
 const StrainDetailsList = (props: Props) => {
-  const { data } = props
+  const { data, classes } = props
 
   return (
-    <div>
+    <Fragment>
+      <Grid container>
+        <Grid item xs={12} className={classes.header}>
+          <h3>Strain Details</h3>
+        </Grid>
+      </Grid>
       <ItemDisplay>
         <LeftDisplay>Strain Descriptor</LeftDisplay>
         <RightDisplay>{data.descriptor}</RightDisplay>
@@ -89,8 +107,8 @@ const StrainDetailsList = (props: Props) => {
         <RightDisplay />
         <RightDisplay />
       </ItemDisplay>
-    </div>
+    </Fragment>
   )
 }
 
-export default StrainDetailsList
+export default withStyles(styles)(StrainDetailsList)

@@ -5,8 +5,8 @@ import Grid from "@material-ui/core/Grid"
 
 const styles = theme => ({
   container: {
-    border: "1px dotted #A3BAE9",
-    height: "48px",
+    // border: "1px dotted #cce6ff",
+    // height: "48px",
   },
 })
 
@@ -15,7 +15,7 @@ const styles = theme => ({
  */
 
 const ItemDisplay = ({ children, classes }) => (
-  <Grid container className={classes.container}>
+  <Grid container alignItems="center" className={classes.container}>
     {children}
   </Grid>
 )
