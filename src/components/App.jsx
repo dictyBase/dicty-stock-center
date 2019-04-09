@@ -58,7 +58,6 @@ export class App extends Component<Props> {
               {items => items.map(generateLinks)}
             </Header>
           )}
-          <br />
           <Navbar items={navItems} theme={navTheme} />
           <br />
           <Cart cart={cart} />
@@ -83,7 +82,6 @@ export class App extends Component<Props> {
             {items => items.map(generateLinks)}
           </Header>
         )}
-        <br />
         <Navbar items={navbar.links} theme={navTheme} />
         <br />
         <Cart cart={cart} />

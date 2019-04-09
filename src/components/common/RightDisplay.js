@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid"
 const styles = theme => ({
   rightContainer: {
     padding: "8px 56px 4px 24px",
-    fontSize: "0.8125rem",
     fontWeight: 400,
     marginBottom: "5px",
   },
