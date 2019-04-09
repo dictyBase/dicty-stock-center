@@ -5,6 +5,7 @@ export const data = [
       "not localized in a polarized fashion to the stalk side of the tip cells",
     assay: "confocal microscopy",
     publication: {
+      id: "21393547",
       pub_date: "2011-03-01T00:00:00.000Z",
       title:
         "A polarized epithelium organized by beta- and alpha-catenin predates cadherin and metazoan origins.",
@@ -30,6 +31,7 @@ export const data = [
     assay: "Northern blot",
     environment: "during development",
     publication: {
+      id: "11130075",
       authors: [
         {
           last_name: "Grimson",
@@ -62,6 +64,7 @@ export const data = [
     phenotype: "decreased sporulation",
     note: "",
     publication: {
+      id: "11130075",
       authors: [
         {
           last_name: "Grimson",

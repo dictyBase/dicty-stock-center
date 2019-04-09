@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper"
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 import styles from "./PhenotypeTableStyles"
+import logo from "static/dicty-login.png"
 
 type Props = {
   /** Material-UI styling */
@@ -29,6 +30,7 @@ type Props = {
       journal: string,
       volume: string,
       pages: string,
+      id: string,
     },
   }>,
 }
@@ -73,7 +75,16 @@ const PhenotypeTable = (props: Props) => {
                 )}
               </TableCell>
               <TableCell>
-                <PhenotypePublicationDisplay data={item.publication} />
+                <PhenotypePublicationDisplay data={item.publication} />{" "}
+                <a href={`/publication/${item.publication.id}`}>
+                  {" "}
+                  <img
+                    alt="link to dictyBase publication"
+                    src={logo}
+                    height={32}
+                    width={32}
+                  />
+                </a>
               </TableCell>
             </TableRow>
           ))}

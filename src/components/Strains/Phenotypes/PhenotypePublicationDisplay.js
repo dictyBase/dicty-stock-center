@@ -7,6 +7,7 @@ type Props = {
     authors: Array<{
       last_name: string,
     }>,
+    id: string,
     pub_date: string,
     title: string,
     journal: string,

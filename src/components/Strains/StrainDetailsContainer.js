@@ -57,6 +57,7 @@ const GET_STRAIN = gql`
           authors {
             last_name
           }
+          id
           pub_date
           title
           journal
