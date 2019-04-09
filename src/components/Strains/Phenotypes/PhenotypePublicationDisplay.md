@@ -1,4 +1,4 @@
 ```js
 import { data } from "./mockPhenotypeData"
-;<PhenotypePublicationDisplay data={data[0].publications} />
+;<PhenotypePublicationDisplay data={data[0].publication} />
 ```

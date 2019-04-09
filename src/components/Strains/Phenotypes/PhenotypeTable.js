@@ -56,7 +56,7 @@ const PhenotypeTable = (props: Props) => {
               <TableCell component="th" scope="row">
                 {item.phenotype}
               </TableCell>
-              <TableCell>{item.notes}</TableCell>
+              <TableCell>{item.note}</TableCell>
               <TableCell>
                 {item.assay && (
                   <Fragment>
@@ -73,7 +73,7 @@ const PhenotypeTable = (props: Props) => {
                 )}
               </TableCell>
               <TableCell>
-                <PhenotypePublicationDisplay data={item.publications} />
+                <PhenotypePublicationDisplay data={item.publication} />
               </TableCell>
             </TableRow>
           ))}

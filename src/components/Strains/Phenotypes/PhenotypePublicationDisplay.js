@@ -3,7 +3,7 @@ import React, { Fragment } from "react"
 
 type Props = {
   /** Publication data */
-  data: Array<{
+  data: {
     authors: Array<{
       last_name: string,
     }>,
@@ -12,8 +12,7 @@ type Props = {
     journal: string,
     volume: string,
     pages: string,
-    doi: string,
-  }>,
+  },
 }
 
 /**
@@ -22,22 +21,27 @@ type Props = {
 
 const PhenotypePublicationDisplay = (props: Props) => {
   const { data } = props
+  const lastNames = data.authors.map(item => item.last_name)
 
   return (
     <Fragment>
-      {data.map((item, index) => {
-        const lastNames = item.authors.map(item => item.last_name)
-        return (
-          <Fragment key={index}>
-            <strong>
-              {lastNames.join(", ")} ({item.pub_date.slice(0, 4)})
-            </strong>{" "}
-            '{item.title}' <em>{item.journal}</em> {item.volume}:{item.pages}
-          </Fragment>
-        )
-      })}
+      <strong>
+        {lastNames.join(", ")} ({data.pub_date.slice(0, 4)})
+      </strong>{" "}
+      '{data.title}' <em>{data.journal}</em> {data.volume}:{data.pages}
     </Fragment>
   )
+}
+
+PhenotypePublicationDisplay.defaultProps = {
+  data: {
+    authors: [],
+    pub_date: "",
+    title: "",
+    journal: "",
+    volume: "",
+    pages: "",
+  },
 }
 
 export default PhenotypePublicationDisplay
