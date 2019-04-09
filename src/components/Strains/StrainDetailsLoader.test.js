@@ -14,8 +14,8 @@ describe("Strain/StrainDetailsLoader", () => {
     it("always renders one <h1> element", () => {
       expect(wrapper.dive().find("h1")).toHaveLength(1)
     })
-    it("always renders four <Skeleton> elements", () => {
-      expect(wrapper.dive().find(Skeleton)).toHaveLength(4)
+    it("always renders three <Skeleton> elements", () => {
+      expect(wrapper.dive().find(Skeleton)).toHaveLength(3)
     })
     it("always renders three <Grid> elements", () => {
       expect(wrapper.dive().find(Grid)).toHaveLength(3)

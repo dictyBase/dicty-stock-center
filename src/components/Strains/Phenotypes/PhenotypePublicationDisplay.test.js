@@ -5,28 +5,25 @@ import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 
 describe("Strains/Phenotypes/PhenotypePublicationDisplay", () => {
   const props = {
-    data: [
-      {
-        pub_date: "2011-03-01T00:00:00.000Z",
-        title:
-          "A polarized epithelium organized by beta- and alpha-catenin predates cadherin and metazoan origins.",
-        journal: "Science (New York, N.Y.)",
-        volume: "331",
-        pages: "1336-9",
-        doi: "10.1126/science.1199633",
-        authors: [
-          {
-            last_name: "Dickinson",
-          },
-          {
-            last_name: "Nelson",
-          },
-          {
-            last_name: "Weis",
-          },
-        ],
-      },
-    ],
+    data: {
+      pub_date: "2011-03-01T00:00:00.000Z",
+      title:
+        "A polarized epithelium organized by beta- and alpha-catenin predates cadherin and metazoan origins.",
+      journal: "Science (New York, N.Y.)",
+      volume: "331",
+      pages: "1336-9",
+      authors: [
+        {
+          last_name: "Dickinson",
+        },
+        {
+          last_name: "Nelson",
+        },
+        {
+          last_name: "Weis",
+        },
+      ],
+    },
   }
   const wrapper = shallow(<PhenotypePublicationDisplay {...props} />)
   describe("initial render", () => {
