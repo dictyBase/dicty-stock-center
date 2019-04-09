@@ -5,8 +5,7 @@ import { connect } from "react-redux"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 
-import fetchNavbar from "actions/navbar"
-import fetchFooter from "actions/footer"
+import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
 import {
@@ -33,23 +32,21 @@ type Props = {
   navbar: Object,
   /** Object representing footer part of state */
   footer: Object,
-  /** Action creator to fetch navbar content */
-  fetchNavbar: Function,
-  /** Action creator to fetch footer content */
-  fetchFooter: Function,
+  /** Action creator to fetch navbar and footer content */
+  fetchNavbarAndFooter: Function,
 }
 
 export class App extends Component<Props> {
   componentDidMount() {
-    const { fetchNavbar, fetchFooter } = this.props
-    fetchNavbar()
-    fetchFooter()
+    const { fetchNavbarAndFooter } = this.props
+    fetchNavbarAndFooter()
   }
 
   render() {
     const { auth, cart, navbar, footer } = this.props
+
     // if any errors, fall back to old link setup
-    if (navbar.error || !navbar.links || footer.error || !footer.links) {
+    if (!navbar.links || !footer.links) {
       return (
         <div>
           {auth.isAuthenticated ? (
@@ -111,6 +108,6 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchNavbar, fetchFooter },
+    { fetchNavbarAndFooter },
   )(App),
 )
