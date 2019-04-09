@@ -17,11 +17,10 @@ type Props = {
   /** Phenotype data */
   data: Array<{
     phenotype: string,
-    notes: string,
+    note: string,
     assay: string,
     environment: string,
-    dbxrefs: Array<string>,
-    publications: Array<{
+    publication: {
       authors: Array<{
         last_name: string,
       }>,
@@ -30,8 +29,7 @@ type Props = {
       journal: string,
       volume: string,
       pages: string,
-      doi: string,
-    }>,
+    },
   }>,
 }
 

@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
@@ -25,6 +24,10 @@ const styles = theme => ({
     borderRadius: 5,
     color: "#e3e3e3",
   },
+  link500: {
+    color: "#e0e0e0",
+    textDecoration: "none",
+  },
   backButton: {
     width: "25%",
     padding: "20px",
@@ -45,58 +48,34 @@ const styles = theme => ({
     color: "#428bca",
     textDecoration: "none",
   },
-  link500: {
-    color: "#e0e0e0",
-    textDecoration: "none",
-  },
-  list: {
-    margin: "0 auto",
-    display: "table",
-  },
 })
 
 type Props = {
+  /** GraphQL error object */
+  error: Object,
   /** Material-UI styling */
   classes: Object,
-  /** the object that contains auth data from current state */
-  auth: Object,
-  /** the object that contains order data from current state */
-  order: Object,
-  /** the object that contains page data from current state */
-  page: Object,
 }
 
 /**
- * General error handling page. It displays different messages based on HTTP status code.
+ * GraphQLErrorPage is used to display any errors found when issuing a
+ * GraphQL query or mutation.
  */
 
-export const ErrorPage = (props: Props) => {
-  const { auth, order, page, classes } = props
+const GraphQLErrorPage = ({ error, classes }: Props) => {
+  if (!error || !error.message) return null
 
-  let errorStatus = 0
-  let errorMsg
-
-  if (auth.error) {
-    errorStatus = auth.error.status
-    errorMsg = auth.error.title
-  }
-
-  if (order.error) {
-    errorStatus = order.error.status
-    errorMsg = order.error.title
-  }
-
-  if (page.error) {
-    errorStatus = page.error.status
-    errorMsg = page.error.title
-  }
-
-  if (errorStatus >= 500) {
+  // Network errors warrant a more alarming error page.
+  if (
+    error.networkError &&
+    error.networkError.result &&
+    error.networkError.result.errors.length
+  ) {
     return (
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>
           <div className={classes.error500}>
-            <h2>Sorry! There was a server error.</h2>
+            <h2>Sorry! There was a network error.</h2>
             <p>
               If the problem persists, please email us at{" "}
               <a
@@ -121,13 +100,15 @@ export const ErrorPage = (props: Props) => {
     )
   }
 
-  if (errorStatus === 404) {
+  const errorCode = error.graphQLErrors[0].extensions.code
+  const errorMsg = error.graphQLErrors[0].message
+  if (errorCode === "NotFound") {
     return (
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>
           <div className={classes.error400}>
-            <img src={sadDicty} alt="Sad Dicty -- Item Not Found" />
-            <h3>Item Not Found</h3>
+            <img src={sadDicty} alt="Sad Dicty -- Stock Not Found" />
+            <h3>{errorMsg.charAt(0).toUpperCase() + errorMsg.slice(1)}</h3>
             <div className={classes.list}>
               <ul>
                 <li>This is probably an invalid ID. Try a different one.</li>
@@ -135,8 +116,7 @@ export const ErrorPage = (props: Props) => {
               </ul>
             </div>
             <p>
-              {" "}
-              If problems persist, email us at{" "}
+              If the problem persists, please email us at{" "}
               <a
                 className={classes.link}
                 href="mailto:dictybase@northwestern.edu">
@@ -150,7 +130,7 @@ export const ErrorPage = (props: Props) => {
                 size="small"
                 variant="contained"
                 color="primary">
-                Back to homepage
+                Back to Homepage
               </Button>
             </a>
           </div>
@@ -165,9 +145,9 @@ export const ErrorPage = (props: Props) => {
         <div className={classes.error400}>
           <img src={sadDicty} alt="Sad Dicty -- HTTP Error" />
           <h1>
-            <FontAwesome name="exclamation-circle" /> {errorStatus} Error
+            <FontAwesome name="exclamation-circle" /> Error
           </h1>
-          <h3>{errorMsg}</h3>
+          <h3>{error.message.replace("GraphQL error: ", "")}</h3>
           <p>
             If the problem persists, please email us at{" "}
             <a
@@ -192,7 +172,8 @@ export const ErrorPage = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ auth, order, page }) => ({ auth, order, page })
+GraphQLErrorPage.defaultProps = {
+  error: {},
+}
 
-// $FlowFixMe
-export default connect(mapStateToProps)(withStyles(styles)(ErrorPage))
+export default withStyles(styles)(GraphQLErrorPage)

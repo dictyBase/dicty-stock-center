@@ -11,6 +11,7 @@ import StrainDetailsHeader from "./StrainDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
 import StrainDetailsLoader from "./StrainDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
+import GraphQLErrorPage from "../GraphQLErrorPage"
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -49,11 +50,10 @@ const GET_STRAIN = gql`
       genes
       phenotypes {
         phenotype
-        notes
+        note
         assay
         environment
-        dbxrefs
-        publications {
+        publication {
           authors {
             last_name
           }
@@ -62,7 +62,6 @@ const GET_STRAIN = gql`
           journal
           volume
           pages
-          doi
         }
       }
     }
@@ -82,7 +81,7 @@ export const StrainDetailsContainer = (props: Props) => {
     <Query query={GET_STRAIN} variables={{ id: match.params.id }}>
       {({ loading, error, data }) => {
         if (loading) return <StrainDetailsLoader />
-        if (error) return <p>{error.toString()}</p>
+        if (error) return <GraphQLErrorPage error={error} />
 
         if (data.strain.phenotypes.length > 0) {
           title = `Phenotype and Strain Details for ${data.strain.descriptor}`
