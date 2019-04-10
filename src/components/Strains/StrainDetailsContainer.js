@@ -9,6 +9,7 @@ import createStyles from "@material-ui/core/styles/createStyles"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StrainDetailsHeader from "./StrainDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
+import ShoppingButtons from "./ShoppingButtons"
 import StrainDetailsLoader from "./StrainDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "../GraphQLErrorPage"
@@ -109,6 +110,11 @@ export const StrainDetailsContainer = (props: Props) => {
                 <PhenotypeTable data={data.strain.phenotypes} />
               )}
               <StrainDetailsList data={data.strain} />
+              <ShoppingButtons
+                type="strain"
+                id={data.strain.id}
+                name={data.strain.descriptor}
+              />
             </Grid>
           </Grid>
         )

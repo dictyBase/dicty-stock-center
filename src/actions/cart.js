@@ -18,30 +18,25 @@ export const addItem = (item: Object) => {
     type: ADD_TO_CART,
     payload: {
       fee: fee,
-      item
-    }
+      item,
+    },
   }
 }
 
-export const addToCart = (item: Object) => {
-  return (dispatch: Function) => {
-    dispatch(addItem(item))
-  }
+export const addToCart = (item: Object) => (dispatch: Function) => {
+  dispatch(addItem(item))
 }
 
-export const removeItem = (id: string) => {
-  return (dispatch: Function, getState: Function) => {
-    const { addedItems } = getState().cart
-    const removeIndex = addedItems
-      .map(itm => {
-        return itm.id
-      })
-      .indexOf(id)
-    dispatch({
-      type: REMOVE_FROM_CART,
-      payload: {
-        removeIndex
-      }
-    })
-  }
+export const removeItem = (id: string) => (
+  dispatch: Function,
+  getState: Function,
+) => {
+  const { addedItems } = getState().cart
+  const removeIndex = addedItems.map(item => item.id).indexOf(id)
+  dispatch({
+    type: REMOVE_FROM_CART,
+    payload: {
+      removeIndex,
+    },
+  })
 }
