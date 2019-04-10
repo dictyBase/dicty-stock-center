@@ -70,11 +70,11 @@ const StrainDetailsContainer = Loadable({
 //     import("components/Plasmids" /* webpackChunkName: "Plasmids" */),
 //   loading: Loader,
 // })
-// const PlasmidDetail = Loadable({
-//   loader: () =>
-//     import("components/Plasmids/PlasmidDetail" /* webpackChunkName: "PlasmidDetail" */),
-//   loading: Loader,
-// })
+const PlasmidDetailsContainer = Loadable({
+  loader: () =>
+    import("components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */),
+  loading: Loader,
+})
 
 // order form routes
 const Shipping = Loadable({
@@ -164,8 +164,8 @@ const RenderRoutes = () => (
     {/* <Route exact path="/strains" component={Strains} /> */}
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
-    {/* <Route exact path="/plasmids" component={Plasmids} />
-    <Route exact path="/plasmids/:id" component={PlasmidDetail} /> */}
+    {/* <Route exact path="/plasmids" component={Plasmids} /> */}
+    <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/error" component={ErrorPage} />
