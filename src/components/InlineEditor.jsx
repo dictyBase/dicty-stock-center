@@ -62,7 +62,7 @@ export class InlineEditor extends Component<Props, State> {
 
   toolbarPlugin: Object
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
 
     // Set up Draft.js toolbar and plugins
@@ -183,6 +183,7 @@ export class InlineEditor extends Component<Props, State> {
               ref="{(element) => { this.editor = element }}"
               readOnly={readOnly}
             />
+            {/* $FlowFixMe */}
             <Authorization
               render={({ canEditPages, verifiedToken }) => (
                 <div>

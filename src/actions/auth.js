@@ -47,6 +47,11 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   return { config, endpoint }
 }
 
+const createErrorObj = (err: number, msg: string) => ({
+  status: err,
+  title: msg,
+})
+
 export const requestLogin = (provider: string) => ({
   type: LOGIN_REQUEST,
   payload: {
@@ -144,21 +149,22 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
       } else if (res.status === 401) {
         // user has invalid credentials, redirect with notification
         dispatch(
-          loginError(
+          createErrorObj(
+            res.status,
             `You are not an authorized user of dictyBase.
-              Please sign in with proper credentials or sign up with our user registration form when it is available.`,
+             Please sign in with proper credentials.`,
           ),
         )
         dispatch(push("/login"))
       } else {
-        dispatch(loginError(res.body))
+        dispatch(loginError(createErrorObj(res.status, res.statusText)))
         dispatch(push("/error"))
       }
     } else {
       if (process.env.NODE_ENV !== "production") {
         console.error(res.body)
       }
-      dispatch(loginError(res.body))
+      dispatch(loginError(createErrorObj(res.status, res.statusText)))
       dispatch(push("/error"))
     }
   } catch (error) {
@@ -199,7 +205,7 @@ export const fetchUserInfo = (userId: string) => async (dispatch: Function) => {
       if (process.env.NODE_ENV !== "production") {
         console.error(res.statusText)
       }
-      dispatch(fetchUserFailure(res.body))
+      dispatch(fetchUserFailure(createErrorObj(res.status, res.statusText)))
       dispatch(push("/error"))
     }
   } catch (error) {
@@ -238,7 +244,7 @@ export const fetchRoleInfo = (userId: string) => async (dispatch: Function) => {
       if (process.env.NODE_ENV !== "production") {
         console.error(res.statusText)
       }
-      dispatch(fetchRoleFailure(res.statusText))
+      dispatch(fetchRoleFailure(createErrorObj(res.status, res.statusText)))
     }
   } catch (error) {
     dispatch(fetchUserFailure(error.toString()))

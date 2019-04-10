@@ -49,7 +49,7 @@ type State = {
 /** Displays the info page data that was fetched from the InfoPage component */
 
 export class InfoPageView extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
 
     this.state = {
@@ -84,6 +84,7 @@ export class InfoPageView extends Component<Props, State> {
     return (
       <Container>
         {isAuthenticated && (
+          //$FlowFixMe
           <Authorization
             render={({ canEditPages, fetchedUserData, verifiedToken }) => (
               <div>
@@ -138,7 +139,13 @@ export class InfoPageView extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = state => ({
+type authState = {
+  auth: {
+    isAuthenticated: boolean,
+  },
+}
+
+export const mapStateToProps = (state: authState) => ({
   isAuthenticated: state.auth.isAuthenticated,
 })
 

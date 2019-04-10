@@ -67,5 +67,6 @@ class process {
     REACT_APP_GA_TRACKING_ID: string,
     REACT_APP_GRAPHQL_SERVER: string,
     REACT_APP_NAVBAR_JSON: string,
+    NODE_ENV: string,
   }
 }

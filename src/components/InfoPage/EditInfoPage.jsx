@@ -82,7 +82,7 @@ type State = {
  */
 
 export class EditInfoPage extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
 
     if (props.content) {
