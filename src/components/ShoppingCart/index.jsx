@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Helmet } from "react-helmet"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -34,6 +35,13 @@ class ShoppingCart extends Component<Props> {
   render() {
     return (
       <Container>
+        <Helmet>
+          <title>Shopping Cart - Dicty Stock Center</title>
+          <meta
+            name="description"
+            content="Shopping cart page for Dicty Stock Center"
+          />
+        </Helmet>
         <Flex justify="center">
           <Box>
             <DictyHeader>

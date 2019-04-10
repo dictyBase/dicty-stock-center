@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Helmet } from "react-helmet"
 import { Flex, Box } from "rebass"
 import bowser from "bowser"
 import Links from "./Links"
@@ -38,6 +39,13 @@ export class Homepage extends Component<Props> {
   render() {
     return (
       <Container>
+        <Helmet>
+          <title>Dicty Stock Center</title>
+          <meta
+            name="description"
+            content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
+          />
+        </Helmet>
         {this.props.user && this.renderGreeting()}
         {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
         <Flex wrap justify="space-between">

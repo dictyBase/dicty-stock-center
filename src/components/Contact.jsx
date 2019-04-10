@@ -1,5 +1,6 @@
 // @flow
 import React from "react"
+import { Helmet } from "react-helmet"
 import {
   PanelGroup,
   Panel,
@@ -54,6 +55,13 @@ const Contact = (props: Props) => {
   } = props
   return (
     <Container>
+      <Helmet>
+        <title>Contact Us - Dicty Stock Center</title>
+        <meta
+          name="description"
+          content="Contact page for Dicty Stock Center"
+        />
+      </Helmet>
       <Flex wrap justify="center">
         <Box>
           <DictyHeader>

@@ -1,6 +1,7 @@
 // @flow
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { connect } from "react-redux"
+import { Helmet } from "react-helmet"
 import Loader from "components/Loader"
 import InfoPageView from "./InfoPageView"
 import ErrorPage from "components/ErrorPage"
@@ -38,13 +39,27 @@ export class InfoPage extends Component<Props> {
   }
   render() {
     const { isFetching, page } = this.props
-
+    const name = page.data.attributes.name
     if (page.error) {
       return <ErrorPage error={page.error} />
     }
 
     if (!isFetching && page.data.attributes.content) {
-      return <InfoPageView page={page} match={this.props.match} />
+      return (
+        <Fragment>
+          <Helmet>
+            <title>
+              {name.charAt(0).toUpperCase() + name.slice(1)} Information - Dicty
+              Stock Center
+            </title>
+            <meta
+              name="description"
+              content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
+            />
+          </Helmet>
+          <InfoPageView page={page} match={this.props.match} />
+        </Fragment>
+      )
     }
     return <Loader />
   }
