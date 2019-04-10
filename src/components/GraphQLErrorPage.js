@@ -71,6 +71,7 @@ const GraphQLErrorPage = ({ error, classes }: Props) => {
     error.networkError.result &&
     error.networkError.result.errors.length
   ) {
+    console.error(error.networkError.result.errors)
     return (
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>
@@ -102,7 +103,44 @@ const GraphQLErrorPage = ({ error, classes }: Props) => {
 
   const errorCode = error.graphQLErrors[0].extensions.code
   const errorMsg = error.graphQLErrors[0].message
+  const printError = `
+  error: ${errorMsg}
+  code: ${errorCode}
+  `
+
+  if (errorCode === "Unavailable") {
+    console.error(printError)
+    return (
+      <Grid container className={classes.mainGrid} justify="center">
+        <Grid item xs={10} md={8}>
+          <div className={classes.error500}>
+            <h2>Sorry! There was a server error.</h2>
+            <p>
+              If the problem persists, please email us at{" "}
+              <a
+                className={classes.link500}
+                href="mailto:dictybase@northwestern.edu">
+                dictybase@northwestern.edu
+              </a>
+              .
+            </p>
+            <a href="/">
+              <Button
+                className={classes.backButton}
+                size="small"
+                variant="contained"
+                color="default">
+                Back to homepage
+              </Button>
+            </a>
+          </div>
+        </Grid>
+      </Grid>
+    )
+  }
+
   if (errorCode === "NotFound") {
+    console.error(printError)
     return (
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>
@@ -138,7 +176,7 @@ const GraphQLErrorPage = ({ error, classes }: Props) => {
       </Grid>
     )
   }
-
+  console.error(printError)
   return (
     <Grid container className={classes.mainGrid} justify="center">
       <Grid item xs={10} md={8}>
