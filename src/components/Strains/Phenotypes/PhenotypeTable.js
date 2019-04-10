@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-bind */
 // @flow
-import React, { Fragment } from "react"
+import React, { Fragment, useState } from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -35,12 +36,26 @@ type Props = {
   }>,
 }
 
+// helper function for table sorting
+const getSorting = (order, orderBy) =>
+  order === "desc"
+    ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
+    : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1)
+
 /**
  * The table used to display phenotype data.
  */
 
 const PhenotypeTable = (props: Props) => {
+  const [order, setOrder] = useState("asc")
+  const [orderBy, setOrderBy] = useState("phenotype")
   const { classes, data } = props
+
+  const handleRequestSort = (event, property) => {
+    const isDesc = orderBy === property && order === "desc"
+    setOrder(isDesc ? "asc" : "desc")
+    setOrderBy(property)
+  }
 
   return (
     <Paper className={classes.root}>
@@ -51,43 +66,49 @@ const PhenotypeTable = (props: Props) => {
           <col style={{ width: "30%" }} />
           <col style={{ width: "20%" }} />
         </colgroup>
-        <PhenotypeTableHeader />
+        <PhenotypeTableHeader
+          order={order}
+          orderBy={orderBy}
+          onRequestSort={handleRequestSort}
+        />
         <TableBody>
-          {data.map((item: Object, index: number) => (
-            <TableRow className={classes.row} key={index}>
-              <TableCell component="th" scope="row">
-                {item.phenotype}
-              </TableCell>
-              <TableCell>{item.note}</TableCell>
-              <TableCell>
-                {item.assay && (
-                  <Fragment>
-                    <strong>Assay: </strong>
-                    {item.assay}
-                    <br />
-                  </Fragment>
-                )}
-                {item.environment && (
-                  <Fragment>
-                    <strong>Environment: </strong>
-                    {item.environment}
-                  </Fragment>
-                )}
-              </TableCell>
-              <TableCell>
-                <PhenotypePublicationDisplay data={item.publication} />{" "}
-                <a href={`/publication/${item.publication.id}`}>
-                  {" "}
-                  <img
-                    alt="link to dictyBase publication"
-                    src={logo}
-                    height={32}
-                    width={32}
-                  />
-                </a>
-              </TableCell>
-            </TableRow>
-          ))}
+          {data
+            .sort(getSorting(order, orderBy))
+            .map((item: Object, index: number) => (
+              <TableRow className={classes.row} key={index}>
+                <TableCell component="th" scope="row">
+                  {item.phenotype}
+                </TableCell>
+                <TableCell>{item.note}</TableCell>
+                <TableCell>
+                  {item.assay && (
+                    <Fragment>
+                      <strong>Assay: </strong>
+                      {item.assay}
+                      <br />
+                    </Fragment>
+                  )}
+                  {item.environment && (
+                    <Fragment>
+                      <strong>Environment: </strong>
+                      {item.environment}
+                    </Fragment>
+                  )}
+                </TableCell>
+                <TableCell>
+                  <PhenotypePublicationDisplay data={item.publication} />{" "}
+                  <a href={`/publication/${item.publication.id}`}>
+                    {" "}
+                    <img
+                      alt="link to dictyBase publication"
+                      src={logo}
+                      height={32}
+                      width={32}
+                    />
+                  </a>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </Paper>
