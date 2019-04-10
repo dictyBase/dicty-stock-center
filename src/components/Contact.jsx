@@ -14,7 +14,7 @@ import { submitEmail } from "actions/contact"
 import { reduxForm } from "redux-form"
 import { syncValidate } from "forms/validate/contact-form"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   DictyHeader,
   RequiredText,
@@ -76,7 +76,7 @@ const Contact = (props: Props) => {
             <Panel collapse>
               <PanelHeader style={{ padding: "20px" }}>
                 <PanelTitle>
-                  <FontAwesome name="envelope-o" /> Email dictyBase
+                  <FontAwesomeIcon icon="envelope" /> Email dictyBase
                 </PanelTitle>
               </PanelHeader>
               <PanelBody style={{ height: "auto" }}>
@@ -109,7 +109,7 @@ const Contact = (props: Props) => {
                       <SubmitButton
                         name={"Submit "}
                         submitting={submitting}
-                        icon={"paper-plane-o"}
+                        icon={"paper-plane"}
                       />
                     </Box>
                   </Flex>

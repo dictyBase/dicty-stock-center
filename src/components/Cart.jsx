@@ -3,17 +3,18 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Container } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** Array for currently added items in the cart */
-  addedItems: Array<Object>
+  addedItems: Array<Object>,
 }
 
 /**
- * This is the cart component that displays between the Navbar and body content on every page. It has a cart icon with the current number of added items next to it.
+ * This is the cart component that displays between the Navbar and body content on every page.
+ * It has a cart icon with the current number of added items next to it.
  */
 
 export const Cart = (props: Props) => {
@@ -23,8 +24,8 @@ export const Cart = (props: Props) => {
       <Flex justify="flex-end">
         <Box>
           <Link to="/cart">
-            <FontAwesome name="shopping-cart" size="3x" />
-            ({addedItems.length})
+            <FontAwesomeIcon icon="shopping-cart" size="2x" /> (
+            {addedItems.length})
           </Link>
         </Box>
       </Flex>
@@ -32,10 +33,8 @@ export const Cart = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  return {
-    addedItems: state.cart.addedItems
-  }
-}
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  addedItems: state.cart.addedItems,
+})
 
 export default connect(mapStateToProps)(Cart)

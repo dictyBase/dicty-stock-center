@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PrimaryLargeButton } from "styles"
 
 type Props = {
@@ -16,9 +16,9 @@ const SubmitButton = (props: Props) => {
       {" "}
       {name}
       {submitting ? (
-        <FontAwesome name="spinner" pulse fixedWidth />
+        <FontAwesomeIcon icon="spinner" pulse fixedWidth />
       ) : (
-        <FontAwesome name={icon && icon} aria-hidden="true" />
+        <FontAwesomeIcon icon={icon && icon} aria-hidden="true" />
       )}
     </PrimaryLargeButton>
   )

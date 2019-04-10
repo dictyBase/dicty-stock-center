@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { InlineLink } from "styles"
 
 type Props = {
@@ -40,8 +40,9 @@ export default class EditPanel extends Component<Props> {
         <div>
           <strong>Payment method: </strong>
           {payment.method}
-          {payment.method === "PO" &&
-            payment.poNum && <span> (#{payment.poNum})</span>}
+          {payment.method === "PO" && payment.poNum && (
+            <span> (#{payment.poNum})</span>
+          )}
         </div>
       )
     }
@@ -62,7 +63,7 @@ export default class EditPanel extends Component<Props> {
     return (
       <div>
         <h4>
-          {icon && <FontAwesome name={icon} />}
+          {icon && <FontAwesomeIcon icon={icon} />}
           {title}
         </h4>
         <div>
@@ -80,7 +81,7 @@ export default class EditPanel extends Component<Props> {
         <br />
         <div>
           <InlineLink onClick={edit}>
-            <FontAwesome name="pencil-square-o" />
+            <FontAwesomeIcon icon="pencil-alt" />
             {payment ? " Edit payment info" : " Edit shipping info"}
           </InlineLink>
         </div>

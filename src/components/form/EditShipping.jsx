@@ -9,7 +9,7 @@ import { submitForm } from "actions/order/shipping"
 import { syncValidateShipping } from "forms/validate/order-form"
 import { Flex, Box } from "rebass"
 import { DictyHeader, AlertBox, HorizontalForm } from "styles"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const fields = [
   "firstName",
@@ -26,7 +26,7 @@ export const fields = [
   "phone",
   "shipAccount",
   "shipAccountNum",
-  "comments"
+  "comments",
 ]
 
 type Props = {
@@ -34,8 +34,8 @@ type Props = {
   handleSubmit: Function,
   submitting: boolean,
   error: {
-    message: string
-  }
+    message: string,
+  },
 }
 
 class EditShipping extends Component<Props> {
@@ -57,8 +57,8 @@ class EditShipping extends Component<Props> {
         phone,
         shipAccount,
         shipAccountNum,
-        comments
-      }
+        comments,
+      },
     } = this.props
     return (
       <Flex wrap justify="center">
@@ -109,7 +109,7 @@ class EditShipping extends Component<Props> {
                   <Flex>
                     <Box w={1}>
                       <AlertBox>
-                        <FontAwesome name="exclamation-circle" />
+                        <FontAwesomeIcon icon="exclamation-circle" />
                         <strong> Error! </strong> {error} {error.message}
                       </AlertBox>
                     </Box>
@@ -147,7 +147,7 @@ const mapStateToProps = state => {
     city,
     zip,
     country,
-    phone
+    phone,
   } = order.consumer
   const { account, accountNum, comments } = order.shipping
 
@@ -167,8 +167,8 @@ const mapStateToProps = state => {
       phone: phone,
       shipAccount: account,
       shipAccountNum: accountNum,
-      comments: comments
-    }
+      comments: comments,
+    },
   }
 }
 
@@ -177,7 +177,7 @@ export default reduxForm(
     form: "editShipping",
     fields,
     onSubmit: submitForm,
-    validate: syncValidateShipping
+    validate: syncValidateShipping,
   },
-  mapStateToProps
+  mapStateToProps,
 )(EditShipping)

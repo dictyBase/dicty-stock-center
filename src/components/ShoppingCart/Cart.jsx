@@ -1,13 +1,13 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { removeItem } from "actions/cart"
 import { Container, TableResponsive, Table, DangerButton } from "styles"
 
 type Props = {
   addedItems: Array<Object>,
-  removeItem: Function
+  removeItem: Function,
 }
 
 const Cart = (props: Props) => {
@@ -24,22 +24,20 @@ const Cart = (props: Props) => {
             </tr>
           </thead>
           <tbody>
-            {addedItems.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.fee}</td>
-                  <td>
-                    <DangerButton
-                      type="button"
-                      onClick={() => props.removeItem(item.id)}>
-                      <FontAwesome name="trash-o" />
-                    </DangerButton>
-                  </td>
-                </tr>
-              )
-            })}
+            {addedItems.map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.fee}</td>
+                <td>
+                  <DangerButton
+                    type="button"
+                    onClick={() => props.removeItem(item.id)}>
+                    <FontAwesomeIcon icon="trash" />
+                  </DangerButton>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </TableResponsive>
@@ -47,18 +45,17 @@ const Cart = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    addedItems: state.cart.addedItems
-  }
-}
+const mapStateToProps = state => ({
+  addedItems: state.cart.addedItems,
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    removeItem: id => {
-      dispatch(removeItem(id))
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  removeItem: id => {
+    dispatch(removeItem(id))
+  },
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Cart)

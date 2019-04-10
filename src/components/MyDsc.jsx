@@ -5,12 +5,12 @@ import { Panel, PanelBody } from "dicty-components-panel"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
 import { Container, DictyHeader, Breadcrumb } from "styles"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** the object that contains auth data from current state */
-  auth: Object
+  auth: Object,
 }
 
 /**
@@ -19,6 +19,7 @@ type Props = {
 
 export const MyDsc = (props: Props) => {
   const { auth } = props
+
   return (
     <Container>
       <Flex wrap justify="center">
@@ -39,7 +40,7 @@ export const MyDsc = (props: Props) => {
           <Panel collapse>
             <PanelBody>
               <h1>
-                <FontAwesome name="user" /> Personal Information
+                <FontAwesomeIcon icon="user" /> Personal Information
               </h1>
               <hr />
               {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}

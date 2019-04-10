@@ -12,14 +12,14 @@ import { syncValidatePayment } from "forms/validate/order-form"
 import { editShipping } from "actions/order/shipping"
 import { sameAsShipping } from "actions/order/payment"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   PanelGreen,
   DictyHeader,
   AlertBox,
   TextInfo,
   HorizontalForm,
-  SuccessSmallButton
+  SuccessSmallButton,
 } from "styles"
 
 export const fields = [
@@ -36,7 +36,7 @@ export const fields = [
   "country",
   "phone",
   "payMethod",
-  "poNum"
+  "poNum",
 ]
 
 type Props = {
@@ -47,7 +47,7 @@ type Props = {
   editShipping: Function,
   sameAsShipping: Function,
   handleSubmit: Function,
-  error: string
+  error: string,
 }
 
 class Payment extends Component<Props> {
@@ -71,8 +71,8 @@ class Payment extends Component<Props> {
         country,
         phone,
         payMethod,
-        poNum
-      }
+        poNum,
+      },
     } = this.props
     return (
       <Flex wrap justify="center">
@@ -95,7 +95,8 @@ class Payment extends Component<Props> {
               <SuccessSmallButton type="button" onClick={sameAsShipping}>
                 Same as shipping
               </SuccessSmallButton>{" "}
-              Click here if payer address is the same as shipping address<br />
+              Click here if payer address is the same as shipping address
+              <br />
               <br />
             </Box>
           </Flex>
@@ -139,7 +140,7 @@ class Payment extends Component<Props> {
                   <Flex>
                     <Box w={1}>
                       <AlertBox>
-                        <FontAwesome name="exclamation-circle" />
+                        <FontAwesomeIcon icon="exclamation-circle" />
                         <strong> Error! </strong> {error}
                       </AlertBox>
                     </Box>
@@ -184,7 +185,7 @@ const mapStateToProps = state => {
       city,
       zip,
       country,
-      phone
+      phone,
     } = payer
     const { method, poNum } = payment
 
@@ -203,32 +204,33 @@ const mapStateToProps = state => {
         country: country,
         phone: phone,
         payMethod: method,
-        poNum: poNum
-      }
+        poNum: poNum,
+      },
     }
   }
 
   return {
-    consumer: state.order.consumer
+    consumer: state.order.consumer,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editShipping: () => {
-      dispatch(editShipping())
-    },
-    sameAsShipping: () => {
-      dispatch(sameAsShipping())
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  editShipping: () => {
+    dispatch(editShipping())
+  },
+  sameAsShipping: () => {
+    dispatch(sameAsShipping())
+  },
+})
 
-Payment = connect(mapStateToProps, mapDispatchToProps)(Payment)
+Payment = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Payment)
 
 export default reduxForm({
   form: "payment",
   fields,
   onSubmit: submitForm,
-  validate: syncValidatePayment
+  validate: syncValidatePayment,
 })(Payment)

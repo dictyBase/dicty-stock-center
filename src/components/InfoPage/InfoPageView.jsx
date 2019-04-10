@@ -15,7 +15,7 @@ import ErrorNotification from "components/authentication/ErrorNotification"
 import timeSince from "utils/timeSince"
 import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Flex, Box } from "rebass"
 import { Container, ToolbarNav, TextInfo, Label, InlineLink } from "styles"
 
@@ -85,41 +85,40 @@ export class InfoPageView extends Component<Props, State> {
       <Container>
         {isAuthenticated && (
           <Authorization
-            render={({ canEditPages, fetchedUserData, verifiedToken }) => {
-              return (
-                <div>
-                  {canEditPages &&
-                    verifiedToken === false && (
-                      <ErrorNotification error={error} />
-                    )}
-                  <br />
-                  {canEditPages &&
-                    fetchedUserData && (
-                      <ToolbarNav>
-                        <Flex>
-                          <Box>
-                            <TextInfo>
-                              <strong>
-                                <FontAwesome name="user" />{" "}
-                                {fetchedUserData.getFullName()}
-                              </strong>{" "}
-                              edited {timeSince(updated_at)} ago
-                            </TextInfo>
-                          </Box>
-                          <Box ml="auto">
-                            <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
-                            {verifiedToken && (
-                              <InlineLink onClick={this.onClick}>
-                                <FontAwesome name="pencil" title="Edit page" />
-                              </InlineLink>
-                            )}
-                          </Box>
-                        </Flex>
-                      </ToolbarNav>
-                    )}
-                </div>
-              )
-            }}
+            render={({ canEditPages, fetchedUserData, verifiedToken }) => (
+              <div>
+                {canEditPages && verifiedToken === false && (
+                  <ErrorNotification error={error} />
+                )}
+                <br />
+                {canEditPages && fetchedUserData && (
+                  <ToolbarNav>
+                    <Flex>
+                      <Box>
+                        <TextInfo>
+                          <strong>
+                            <FontAwesomeIcon icon="user" />{" "}
+                            {fetchedUserData.getFullName()}
+                          </strong>{" "}
+                          edited {timeSince(updated_at)} ago
+                        </TextInfo>
+                      </Box>
+                      <Box ml="auto">
+                        <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
+                        {verifiedToken && (
+                          <InlineLink onClick={this.onClick}>
+                            <FontAwesomeIcon
+                              icon="pencil-alt"
+                              title="Edit page"
+                            />
+                          </InlineLink>
+                        )}
+                      </Box>
+                    </Flex>
+                  </ToolbarNav>
+                )}
+              </div>
+            )}
           />
         )}
 
@@ -139,11 +138,9 @@ export class InfoPageView extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-  }
-}
+export const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+})
 
 export default connect(
   mapStateToProps,

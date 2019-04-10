@@ -18,9 +18,9 @@ import {
   AlertBox,
   TextInfo,
   HorizontalForm,
-  SuccessSmallButton
+  SuccessSmallButton,
 } from "styles"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const fields = [
   "firstName",
@@ -36,7 +36,7 @@ export const fields = [
   "country",
   "phone",
   "payMethod",
-  "poNum"
+  "poNum",
 ]
 
 type Props = {
@@ -47,7 +47,7 @@ type Props = {
   error: string,
   editShipping: Function,
   sameAsShipping: Function,
-  consumer: Object
+  consumer: Object,
 }
 
 class EditPayment extends Component<Props> {
@@ -71,8 +71,8 @@ class EditPayment extends Component<Props> {
         country,
         phone,
         payMethod,
-        poNum
-      }
+        poNum,
+      },
     } = this.props
     return (
       <Flex wrap justify="center">
@@ -95,7 +95,8 @@ class EditPayment extends Component<Props> {
               <SuccessSmallButton type="button" onClick={sameAsShipping}>
                 Same as shipping
               </SuccessSmallButton>{" "}
-              Click here if payer address is the same as shipping address<br />
+              Click here if payer address is the same as shipping address
+              <br />
               <br />
             </Box>
           </Flex>
@@ -139,7 +140,7 @@ class EditPayment extends Component<Props> {
                   <Flex>
                     <Box w={1}>
                       <AlertBox>
-                        <FontAwesome name="exclamation-circle" />
+                        <FontAwesomeIcon icon="exclamation-circle" />
                         <strong> Error! </strong> {error}
                       </AlertBox>
                     </Box>
@@ -182,7 +183,7 @@ const mapStateToProps = state => {
     city,
     zip,
     country,
-    phone
+    phone,
   } = payer
   const { method, poNum } = payment
 
@@ -201,28 +202,29 @@ const mapStateToProps = state => {
       country: country,
       phone: phone,
       payMethod: method,
-      poNum: poNum
+      poNum: poNum,
     },
-    consumer: state.order.consumer
+    consumer: state.order.consumer,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editShipping: () => {
-      dispatch(editShipping())
-    },
-    sameAsShipping: () => {
-      dispatch(sameAsShipping())
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  editShipping: () => {
+    dispatch(editShipping())
+  },
+  sameAsShipping: () => {
+    dispatch(sameAsShipping())
+  },
+})
 
-EditPayment = connect(mapStateToProps, mapDispatchToProps)(EditPayment)
+EditPayment = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EditPayment)
 
 export default reduxForm({
   form: "editPayment",
   fields,
   onSubmit: submitForm,
-  validate: syncValidatePayment
+  validate: syncValidatePayment,
 })(EditPayment)

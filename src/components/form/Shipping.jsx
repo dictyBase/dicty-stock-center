@@ -9,7 +9,7 @@ import { submitForm } from "actions/order/shipping"
 import { syncValidateShipping } from "forms/validate/order-form"
 import { Flex, Box } from "rebass"
 import { DictyHeader, AlertBox, HorizontalForm } from "styles"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const fields = [
   "firstName",
@@ -26,14 +26,14 @@ export const fields = [
   "phone",
   "shipAccount",
   "shipAccountNum",
-  "comments"
+  "comments",
 ]
 
 type Props = {
   fields: Object,
   handleSubmit: Function,
   submitting: boolean,
-  error: string
+  error: string,
 }
 
 class Shipping extends Component<Props> {
@@ -55,8 +55,8 @@ class Shipping extends Component<Props> {
         phone,
         shipAccount,
         shipAccountNum,
-        comments
-      }
+        comments,
+      },
     } = this.props
     return (
       <Flex wrap justify="center">
@@ -103,7 +103,7 @@ class Shipping extends Component<Props> {
                 {error && (
                   <Box mb={2}>
                     <AlertBox>
-                      <FontAwesome name="exclamation-circle" />
+                      <FontAwesomeIcon icon="exclamation-circle" />
                       <strong> Error! </strong> {error}
                     </AlertBox>
                   </Box>
@@ -129,5 +129,5 @@ export default reduxForm({
   form: "shipping",
   fields,
   onSubmit: submitForm,
-  validate: syncValidateShipping
+  validate: syncValidateShipping,
 })(Shipping)

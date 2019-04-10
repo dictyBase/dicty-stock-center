@@ -8,7 +8,7 @@ import { editPayment } from "actions/order/payment"
 import { submitOrder } from "actions/order/submit"
 import { Panel, PanelBody } from "dicty-components-panel"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { DictyHeader, PrimaryLargeButton } from "styles"
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
   consumer: Object,
   shipping: Object,
   payer: Object,
-  payment: Object
+  payment: Object,
 }
 
 export class Submit extends Component<Props> {
@@ -34,7 +34,7 @@ export class Submit extends Component<Props> {
       payment,
       editShipping,
       editPayment,
-      submitOrder
+      submitOrder,
     } = this.props
     return (
       <Flex wrap justify="center">
@@ -83,7 +83,7 @@ export class Submit extends Component<Props> {
               <Panel collapse>
                 <PanelBody>
                   <h4>
-                    <FontAwesome name="shopping-cart" /> Items
+                    <FontAwesomeIcon icon="shopping-cart" /> Items
                   </h4>
                   <Items items={addedItems} />
                 </PanelBody>
@@ -92,7 +92,7 @@ export class Submit extends Component<Props> {
             <Box w={1} mb={1} mr={1}>
               <hr />
               <PrimaryLargeButton type="button" onClick={submitOrder}>
-                Complete Your Order <FontAwesome name="check-circle" />
+                Complete Your Order <FontAwesomeIcon icon="check-circle" />
               </PrimaryLargeButton>
             </Box>
           </Flex>
@@ -102,28 +102,27 @@ export class Submit extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    addedItems: state.cart.addedItems,
-    consumer: state.order.consumer,
-    shipping: state.order.shipping,
-    payer: state.order.payer,
-    payment: state.order.payment
-  }
-}
+const mapStateToProps = state => ({
+  addedItems: state.cart.addedItems,
+  consumer: state.order.consumer,
+  shipping: state.order.shipping,
+  payer: state.order.payer,
+  payment: state.order.payment,
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editShipping: () => {
-      dispatch(editShipping())
-    },
-    editPayment: () => {
-      dispatch(editPayment())
-    },
-    submitOrder: () => {
-      dispatch(submitOrder())
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  editShipping: () => {
+    dispatch(editShipping())
+  },
+  editPayment: () => {
+    dispatch(editPayment())
+  },
+  submitOrder: () => {
+    dispatch(submitOrder())
+  },
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Submit)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Submit)

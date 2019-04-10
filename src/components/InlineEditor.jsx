@@ -22,7 +22,7 @@ import {
 import Authorization from "components/authentication/Authorization"
 import { editInline, saveInlineEditing, fetchInfoPage } from "actions/page"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   ToolbarNav,
   EditPanel,
@@ -186,15 +186,13 @@ export class InlineEditor extends Component<Props, State> {
             <Authorization
               render={({ canEditPages, verifiedToken }) => (
                 <div>
-                  {canEditPages &&
-                    verifiedToken &&
-                    readOnly && (
-                      <TextInfo>
-                        <InlineLink onClick={this.onEdit} title="Edit">
-                          <FontAwesome name="pencil" /> Edit
-                        </InlineLink>
-                      </TextInfo>
-                    )}
+                  {canEditPages && verifiedToken && readOnly && (
+                    <TextInfo>
+                      <InlineLink onClick={this.onEdit} title="Edit">
+                        <FontAwesomeIcon icon="pencil-alt" /> Edit
+                      </InlineLink>
+                    </TextInfo>
+                  )}
                 </div>
               )}
             />

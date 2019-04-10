@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cart from "./Cart"
 import {
   DictyHeader,
@@ -19,20 +19,18 @@ type Props = {
 }
 
 class ShoppingCart extends Component<Props> {
-  renderAlert = () => {
-    return (
-      <Flex wrap justify="center">
-        <Box w={["85%", 2 / 3]}>
-          <AlertBox>
-            <strong>
-              <FontAwesome name="exclamation-circle" />
-            </strong>{" "}
-            There are no items in your cart.
-          </AlertBox>
-        </Box>
-      </Flex>
-    )
-  }
+  renderAlert = () => (
+    <Flex wrap justify="center">
+      <Box w={["85%", 2 / 3]}>
+        <AlertBox>
+          <strong>
+            <FontAwesomeIcon icon="exclamation-circle" />
+          </strong>{" "}
+          There are no items in your cart.
+        </AlertBox>
+      </Box>
+    </Flex>
+  )
   render() {
     return (
       <Container>
@@ -54,14 +52,14 @@ class ShoppingCart extends Component<Props> {
               <Box w={[1, "40%"]} mt={10} mr={1}>
                 <Link to="/strains">
                   <PrimaryLargeButton>
-                    <FontAwesome name="share" /> Continue Shopping
+                    <FontAwesomeIcon icon="share" /> Continue Shopping
                   </PrimaryLargeButton>
                 </Link>
               </Box>
               <Box w={[1, "40%"]} mt={10} mr={1}>
                 <Link to="/order/shipping">
                   <SuccessLargeButton>
-                    <FontAwesome name="shopping-cart" /> Checkout
+                    <FontAwesomeIcon icon="shopping-cart" /> Checkout
                   </SuccessLargeButton>
                 </Link>
               </Box>
@@ -75,10 +73,8 @@ class ShoppingCart extends Component<Props> {
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
-  return {
-    addedItems: state.cart.addedItems,
-  }
-}
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  addedItems: state.cart.addedItems,
+})
 
 export default connect(mapStateToProps)(ShoppingCart)

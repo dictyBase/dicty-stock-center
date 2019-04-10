@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import sadDicty from "static/sad-dicty.png"
 
 const styles = theme => ({
@@ -165,7 +165,7 @@ export const ErrorPage = (props: Props) => {
         <div className={classes.error400}>
           <img src={sadDicty} alt="Sad Dicty -- HTTP Error" />
           <h1>
-            <FontAwesome name="exclamation-circle" /> {errorStatus} Error
+            <FontAwesomeIcon icon="exclamation-circle" /> {errorStatus} Error
           </h1>
           <h3>{errorMsg}</h3>
           <p>

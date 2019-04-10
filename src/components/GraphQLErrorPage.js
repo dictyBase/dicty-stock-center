@@ -3,7 +3,7 @@ import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import sadDicty from "static/sad-dicty.png"
 
 const styles = theme => ({
@@ -183,7 +183,7 @@ const GraphQLErrorPage = ({ error, classes }: Props) => {
         <div className={classes.error400}>
           <img src={sadDicty} alt="Sad Dicty -- HTTP Error" />
           <h1>
-            <FontAwesome name="exclamation-circle" /> Error
+            <FontAwesomeIcon icon="exclamation-circle" /> Error
           </h1>
           <h3>{error.message.replace("GraphQL error: ", "")}</h3>
           <p>

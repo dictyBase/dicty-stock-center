@@ -4,7 +4,28 @@ import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
-
+import { library } from "@fortawesome/fontawesome-svg-core"
+import {
+  faArrowCircleRight,
+  faCheckCircle,
+  faDownload,
+  faEnvelope,
+  faExternalLinkAlt,
+  faExclamationCircle,
+  faHome,
+  faInfoCircle,
+  faPaperPlane,
+  faPencilAlt,
+  faPlus,
+  faShare,
+  faShoppingCart,
+  faSignInAlt,
+  faSignOutAlt,
+  faSpinner,
+  faTrash,
+  faUser,
+  faWrench,
+} from "@fortawesome/free-solid-svg-icons"
 import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
@@ -22,6 +43,29 @@ const navTheme = {
   primary: "#004080",
   secondary: "#0059b3",
 }
+
+// define fontawesome icons used in the app
+library.add(
+  faArrowCircleRight,
+  faCheckCircle,
+  faDownload,
+  faEnvelope,
+  faExclamationCircle,
+  faExternalLinkAlt,
+  faHome,
+  faInfoCircle,
+  faPaperPlane,
+  faPencilAlt,
+  faPlus,
+  faShare,
+  faShoppingCart,
+  faSignInAlt,
+  faSignOutAlt,
+  faSpinner,
+  faTrash,
+  faUser,
+  faWrench,
+)
 
 type Props = {
   /** Object representing auth part of state */
