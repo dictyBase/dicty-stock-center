@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import Button from "@material-ui/core/Button"
+import Snackbar from "@material-ui/core/Snackbar"
 import { withStyles } from "@material-ui/core/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
@@ -41,6 +42,7 @@ const CustomLink = props => <Link to="/order/shipping" {...props} />
  */
 
 const ShoppingButtons = (props: Props) => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
   const { classes, type, id, name, addToCart } = props
   const cartItem = {
     type: type,
@@ -55,7 +57,10 @@ const ShoppingButtons = (props: Props) => {
         color="default"
         size="small"
         className={classes.button}
-        onClick={() => addToCart(cartItem)}>
+        onClick={() => {
+          addToCart(cartItem)
+          setSnackbarOpen(true)
+        }}>
         <FontAwesomeIcon icon="share" /> &nbsp;Add to Cart
       </Button>
       <Button
@@ -66,6 +71,21 @@ const ShoppingButtons = (props: Props) => {
         className={classes.button}>
         <FontAwesomeIcon icon="shopping-cart" /> &nbsp;Checkout
       </Button>
+      <Snackbar
+        autoHideDuration={2500}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+        ContentProps={{
+          "aria-describedby": "cart-id",
+        }}
+        message={
+          <span id="cart-id">
+            <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added to
+            cart
+          </span>
+        }
+      />
     </div>
   )
 }
