@@ -10,10 +10,6 @@ const initialState = {
 const addedItems = (state = initialState.addedItems, action: Object) => {
   switch (action.type) {
     case ADD_TO_CART:
-      if (state.map(item => item.id).indexOf(action.payload.item.id) !== -1) {
-        // item is already added to the cart
-        return state
-      }
       return [
         ...state,
         {
