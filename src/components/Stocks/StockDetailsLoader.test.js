@@ -1,12 +1,12 @@
 import React from "react"
 import { shallow } from "enzyme"
 import "../../setupTests"
-import StrainDetailsLoader from "./StrainDetailsLoader"
+import StockDetailsLoader from "./StockDetailsLoader"
 import Skeleton from "react-loading-skeleton"
 import Grid from "@material-ui/core/Grid"
 
-describe("Strain/StrainDetailsLoader", () => {
-  const wrapper = shallow(<StrainDetailsLoader />)
+describe("Stock/StockDetailsLoader", () => {
+  const wrapper = shallow(<StockDetailsLoader />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

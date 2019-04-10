@@ -1,13 +1,13 @@
 import React from "react"
 import { mount } from "enzyme"
 import "../../setupTests"
-import StrainDetailsHeader from "./StrainDetailsHeader"
+import StockDetailsHeader from "./StockDetailsHeader"
 
-describe("Strain/StrainDetailsHeader", () => {
+describe("Stock/StockDetailsHeader", () => {
   const props = {
     title: "DBS999999",
   }
-  const wrapper = mount(<StrainDetailsHeader {...props} />)
+  const wrapper = mount(<StockDetailsHeader {...props} />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

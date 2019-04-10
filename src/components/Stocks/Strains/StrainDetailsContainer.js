@@ -7,12 +7,12 @@ import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import createStyles from "@material-ui/core/styles/createStyles"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
-import StrainDetailsHeader from "./StrainDetailsHeader"
+import StockDetailsHeader from "../StockDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
-import ShoppingButtons from "./ShoppingButtons"
-import StrainDetailsLoader from "./StrainDetailsLoader"
+import ShoppingButtons from "../ShoppingButtons"
+import StockDetailsLoader from "../StockDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
-import GraphQLErrorPage from "../GraphQLErrorPage"
+import GraphQLErrorPage from "components/GraphQLErrorPage"
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -20,11 +20,6 @@ const styles = (theme: Theme) =>
       width: "80%",
       marginLeft: "auto",
       marginRight: "auto",
-      [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-        width: "80%",
-        marginLeft: "auto",
-        marginRight: "auto",
-      },
     },
   })
 
@@ -82,7 +77,7 @@ export const StrainDetailsContainer = (props: Props) => {
   return (
     <Query query={GET_STRAIN} variables={{ id: match.params.id }}>
       {({ loading, error, data }) => {
-        if (loading) return <StrainDetailsLoader />
+        if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
         if (data.strain.phenotypes.length > 0) {
@@ -103,7 +98,7 @@ export const StrainDetailsContainer = (props: Props) => {
               />
             </Helmet>
             <Grid item xs={12}>
-              <StrainDetailsHeader title={title} />
+              <StockDetailsHeader title={title} />
             </Grid>
             <Grid item xs={12}>
               {data.strain.phenotypes.length > 0 && (

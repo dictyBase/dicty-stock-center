@@ -11,11 +11,6 @@ const styles = (theme: Theme) =>
       width: "80%",
       marginLeft: "auto",
       marginRight: "auto",
-      [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-        width: "80%",
-        marginLeft: "auto",
-        marginRight: "auto",
-      },
     },
   })
 
@@ -27,10 +22,10 @@ type Props = {
 }
 
 /**
- * StrainDetailsLoader is the loading screen displayed while fetching strain data.
+ * StockDetailsLoader is the loading screen displayed while fetching stock data.
  */
 
-const StrainDetailsLoader = (props: Props) => {
+const StockDetailsLoader = (props: Props) => {
   const { classes } = props
 
   return (
@@ -50,4 +45,4 @@ const StrainDetailsLoader = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(StrainDetailsLoader)
+export default withStyles(styles)(StockDetailsLoader)

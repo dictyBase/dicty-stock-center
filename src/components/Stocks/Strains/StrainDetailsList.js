@@ -3,9 +3,9 @@ import React, { Fragment } from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import ItemDisplay from "components/common/ItemDisplay"
-import LeftDisplay from "components/common/LeftDisplay"
-import RightDisplay from "components/common/RightDisplay"
+import ItemDisplay from "../ItemDisplay"
+import LeftDisplay from "../LeftDisplay"
+import RightDisplay from "../RightDisplay"
 
 const styles = theme => ({
   header: {
