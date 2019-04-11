@@ -34,6 +34,7 @@ describe("InfoPage/InfoPage", () => {
           data: {
             attributes: {
               content: "page content",
+              name: "order",
             },
           },
         },
@@ -64,6 +65,7 @@ describe("InfoPage/InfoPage", () => {
           data: {
             attributes: {
               content: "page content",
+              name: "order",
             },
           },
         },

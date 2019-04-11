@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import "../../../setupTests"
+import "setupTests"
 import PhenotypeTable from "./PhenotypeTable"
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"

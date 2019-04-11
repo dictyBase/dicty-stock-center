@@ -51,6 +51,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -83,6 +84,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -109,6 +111,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -139,6 +142,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -177,6 +181,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -218,6 +223,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },

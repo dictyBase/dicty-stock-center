@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import "../../../setupTests"
+import "setupTests"
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import Table from "@material-ui/core/Table"
 import TableHead from "@material-ui/core/TableHead"

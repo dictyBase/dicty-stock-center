@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import "../../../setupTests"
+import "setupTests"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 
 describe("Strains/Phenotypes/PhenotypePublicationDisplay", () => {
