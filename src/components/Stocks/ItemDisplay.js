@@ -11,7 +11,7 @@ const styles = theme => ({
 })
 
 /**
- * Wrapper component for each item inside panel
+ * ItemDisplay is a wrapper component for each item inside stock details row
  */
 
 const ItemDisplay = ({ children, classes }) => (

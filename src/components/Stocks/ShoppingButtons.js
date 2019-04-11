@@ -41,7 +41,7 @@ const CustomLink = props => <Link to="/order/shipping" {...props} />
  * ShoppingButtons provides the buttons at the bottom of a stock details page.
  */
 
-const ShoppingButtons = (props: Props) => {
+export const ShoppingButtons = (props: Props) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const { classes, type, id, name, addToCart } = props
   const cartItem = {
