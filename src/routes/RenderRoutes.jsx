@@ -69,12 +69,12 @@ const StrainDetailsContainer = Loadable({
 const PlasmidCatalogContainer = Loadable({
   loader: () =>
     import("components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */),
-  loading: Loader,
+  loading: StockDetailsLoader,
 })
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
     import("components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */),
-  loading: Loader,
+  loading: StockDetailsLoader,
 })
 
 // order form routes

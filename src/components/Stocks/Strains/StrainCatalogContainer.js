@@ -11,6 +11,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
+import StrainCatalogTable from "./StrainCatalogTable"
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -64,7 +65,9 @@ export const StrainCatalogContainer = (props: Props) => {
             <Grid item xs={12}>
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
-            <Grid item xs={12} />
+            <Grid item xs={12}>
+              <StrainCatalogTable data={data.listStrains.strains} />
+            </Grid>
           </Grid>
         )
       }}
