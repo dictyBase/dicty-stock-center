@@ -9,8 +9,6 @@ import { withStyles } from "@material-ui/core/styles"
 import createStyles from "@material-ui/core/styles/createStyles"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StockDetailsHeader from "../StockDetailsHeader"
-import PlasmidDetailsList from "./PlasmidDetailsList"
-import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
 
@@ -23,65 +21,49 @@ const styles = (theme: Theme) =>
     },
   })
 
-const GET_PLASMID = gql`
-  query Plasmid($id: ID!) {
-    plasmid(id: $id) {
-      id
-      summary
-      depositor
-      dbxrefs
-      genes
-      image_map
-      sequence
-      keywords
-      genbank_accession
+const GET_PLASMID_LIST = gql`
+  query PlasmidList($cursor: Int!) {
+    listPlasmids(input: { cursor: $cursor, limit: 10 }) {
+      totalCount
+      plasmids {
+        id
+        summary
+      }
     }
   }
 `
 
 type Props = {
   classes: Object,
-  title: string,
 }
 
 /**
- * PlasmidDetailsContainer is the main component for an individual plasmid details page.
+ * PlasmidCatalogContainer is the main component for the plasmid catalog page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const PlasmidDetailsContainer = (props: Props) => {
-  const { classes, match } = props
+export const PlasmidCatalogContainer = (props: Props) => {
+  const { classes } = props
 
   return (
-    <Query query={GET_PLASMID} variables={{ id: match.params.id }}>
+    <Query query={GET_PLASMID_LIST} variables={{ cursor: 0 }}>
       {({ loading, error, data }) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
-        const title = `Plasmid Details for ${data.plasmid.id}`
-
         return (
           <Grid container spacing={16} className={classes.layout}>
             <Helmet>
-              <title>{title} - Dicty Stock Center</title>
+              <title>Plasmid Catalog - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center plasmid details page for ${
-                  data.plasmid.id
-                }`}
+                content={"Dicty Stock Center plasmid catalog"}
               />
             </Helmet>
             <Grid item xs={12}>
-              <StockDetailsHeader title={title} />
+              <StockDetailsHeader title="Plasmid Catalog" />
             </Grid>
-            <Grid item xs={12}>
-              <PlasmidDetailsList data={data.plasmid} />
-              <ShoppingButtons
-                type="plasmid"
-                id={data.plasmid.id}
-                name={data.plasmid.id}
-              />
-            </Grid>
+            <Grid item xs={12} />
           </Grid>
         )
       }}
@@ -89,4 +71,4 @@ export const PlasmidDetailsContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(PlasmidDetailsContainer))
+export default withRouter(withStyles(styles)(PlasmidCatalogContainer))

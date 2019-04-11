@@ -53,23 +53,24 @@ const EditInfoPage = Loadable({
   loading: Loader,
 })
 
-// strains routes
-// const Strains = Loadable({
-//   loader: () => import("components/Strains" /* webpackChunkName: "Strains" */),
-//   loading: Loader,
-// })
+// strain routes
+const StrainCatalogContainer = Loadable({
+  loader: () =>
+    import("components/Stocks/Strains/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */),
+  loading: StockDetailsLoader,
+})
 const StrainDetailsContainer = Loadable({
   loader: () =>
     import("components/Stocks/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */),
   loading: StockDetailsLoader,
 })
 
-// plasmids routes
-// const Plasmids = Loadable({
-//   loader: () =>
-//     import("components/Plasmids" /* webpackChunkName: "Plasmids" */),
-//   loading: Loader,
-// })
+// plasmid routes
+const PlasmidCatalogContainer = Loadable({
+  loader: () =>
+    import("components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */),
+  loading: Loader,
+})
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
     import("components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */),
@@ -161,10 +162,10 @@ const RenderRoutes = () => (
     <Route exact path="/order/submitting" component={SubmitLoader} />
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
-    {/* <Route exact path="/strains" component={Strains} /> */}
+    <Route exact path="/strains" component={StrainCatalogContainer} />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
-    {/* <Route exact path="/plasmids" component={Plasmids} /> */}
+    <Route exact path="/plasmids" component={PlasmidCatalogContainer} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />

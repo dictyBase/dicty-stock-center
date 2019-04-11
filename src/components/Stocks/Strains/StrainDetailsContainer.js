@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import { Helmet } from "react-helmet"
 import { withRouter } from "react-router-dom"
@@ -64,6 +65,11 @@ const GET_STRAIN = gql`
     }
   }
 `
+
+type Props = {
+  classes: Object,
+  title: string,
+}
 
 /**
  * StrainDetailsContainer is the main component for an individual strain details page.
