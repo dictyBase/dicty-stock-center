@@ -28,7 +28,7 @@ const GET_STRAIN = gql`
   query Strain($id: ID!) {
     strain(id: $id) {
       id
-      descriptor
+      label
       names
       systematic_name
       characteristics
@@ -39,7 +39,7 @@ const GET_STRAIN = gql`
       species
       parent {
         id
-        descriptor
+        label
       }
       depositor
       plasmid
@@ -69,6 +69,7 @@ const GET_STRAIN = gql`
 type Props = {
   classes: Object,
   title: string,
+  match: Object,
 }
 
 /**
@@ -87,9 +88,9 @@ export const StrainDetailsContainer = (props: Props) => {
         if (error) return <GraphQLErrorPage error={error} />
 
         if (data.strain.phenotypes.length > 0) {
-          title = `Phenotype and Strain Details for ${data.strain.descriptor}`
+          title = `Phenotype and Strain Details for ${data.strain.label}`
         } else {
-          title = `Strain Details for ${data.strain.descriptor}`
+          title = `Strain Details for ${data.strain.label}`
         }
 
         return (
@@ -99,7 +100,7 @@ export const StrainDetailsContainer = (props: Props) => {
               <meta
                 name="description"
                 content={`Dicty Stock Center strain details page for ${
-                  data.strain.descriptor
+                  data.strain.label
                 }`}
               />
             </Helmet>
@@ -114,7 +115,7 @@ export const StrainDetailsContainer = (props: Props) => {
               <ShoppingButtons
                 type="strain"
                 id={data.strain.id}
-                name={data.strain.descriptor}
+                name={data.strain.label}
               />
             </Grid>
           </Grid>

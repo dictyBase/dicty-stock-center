@@ -28,7 +28,7 @@ const GET_STRAIN_LIST = gql`
       totalCount
       strains {
         id
-        descriptor
+        label
         summary
       }
     }

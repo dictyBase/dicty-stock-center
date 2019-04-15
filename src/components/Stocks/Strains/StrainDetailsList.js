@@ -18,7 +18,7 @@ const styles = theme => ({
 type Props = {
   data: {
     id: string,
-    descriptor: string,
+    label: string,
     names: Array<string>,
     systematic_name: string,
     characteristics: Array<string>,
@@ -30,7 +30,7 @@ type Props = {
     species: string,
     parent: {
       id: string,
-      descriptor: string,
+      label: string,
     },
     depositor: string,
     plasmid: string,
@@ -58,7 +58,7 @@ const StrainDetailsList = (props: Props) => {
       </Grid>
       <ItemDisplay>
         <LeftDisplay>Strain Descriptor</LeftDisplay>
-        <RightDisplay>{data.descriptor}</RightDisplay>
+        <RightDisplay>{data.label}</RightDisplay>
         <LeftDisplay>Strain ID</LeftDisplay>
         <RightDisplay>{data.id}</RightDisplay>
       </ItemDisplay>
@@ -92,9 +92,7 @@ const StrainDetailsList = (props: Props) => {
         <LeftDisplay>Parental Strain</LeftDisplay>
         <RightDisplay>
           {data.parent ? (
-            <Link to={`/strains/${data.parent.id}`}>
-              {data.parent.descriptor}
-            </Link>
+            <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
           ) : (
             <Fragment>N/A</Fragment>
           )}

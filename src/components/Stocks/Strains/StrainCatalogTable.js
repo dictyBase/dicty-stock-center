@@ -2,6 +2,7 @@
 // @flow
 import React, { useState } from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 import { withStyles } from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -46,7 +47,7 @@ const styles = (theme: Object) => ({
 type Props = {
   data: Array<{
     id: string,
-    descriptor: string,
+    label: string,
     summary: string,
   }>,
   addToCart: Function,
@@ -77,7 +78,7 @@ const StrainCatalogTable = (props: Props) => {
           {data.map((item: Object, index: number) => (
             <TableRow className={classes.row} key={index}>
               <TableCell component="th" scope="row">
-                {item.descriptor}
+                <Link to={`/strains/${item.id}`}>{item.label}</Link>
               </TableCell>
               <TableCell>{item.summary}</TableCell>
               <TableCell>{item.id}</TableCell>
@@ -91,7 +92,7 @@ const StrainCatalogTable = (props: Props) => {
                     addToCart({
                       type: "strain",
                       id: item.id,
-                      name: item.descriptor,
+                      name: item.label,
                     })
                     setSnackbarOpen(true)
                   }}>

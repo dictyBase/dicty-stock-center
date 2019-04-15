@@ -1,5 +1,5 @@
 export const data = {
-  descriptor: "aarA-",
+  label: "aarA-",
   id: "DBS0236123",
   names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
   systematic_name: "HAD186",
@@ -12,7 +12,7 @@ export const data = {
   species: "Dictyostelium discoideum",
   parent: {
     id: "DBS0350762",
-    descriptor: "AX2",
+    label: "AX2",
   },
   depositor: "Adrian Harwood",
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
