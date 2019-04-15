@@ -6,8 +6,6 @@ import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import createStyles from "@material-ui/core/styles/createStyles"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
 import ShoppingButtons from "../ShoppingButtons"
@@ -15,14 +13,13 @@ import StockDetailsLoader from "../StockDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
 
-const styles = (theme: Theme) =>
-  createStyles({
-    layout: {
-      width: "80%",
-      marginLeft: "auto",
-      marginRight: "auto",
-    },
-  })
+const styles = theme => ({
+  layout: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+})
 
 const GET_STRAIN = gql`
   query Strain($id: ID!) {

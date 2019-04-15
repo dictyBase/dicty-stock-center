@@ -6,22 +6,19 @@ import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import createStyles from "@material-ui/core/styles/createStyles"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import StockDetailsHeader from "../StockDetailsHeader"
 import PlasmidDetailsList from "./PlasmidDetailsList"
 import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
 
-const styles = (theme: Theme) =>
-  createStyles({
-    layout: {
-      width: "80%",
-      marginLeft: "auto",
-      marginRight: "auto",
-    },
-  })
+const styles = theme => ({
+  layout: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+})
 
 const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
@@ -42,6 +39,7 @@ const GET_PLASMID = gql`
 type Props = {
   classes: Object,
   title: string,
+  match: Object,
 }
 
 /**

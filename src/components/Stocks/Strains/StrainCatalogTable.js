@@ -40,6 +40,8 @@ type Props = {
   addToCart: Function,
   /** Material-UI styling */
   classes: Object,
+  rowHeight: Number,
+  headerHeight: Number,
 }
 
 type State = {
@@ -51,6 +53,12 @@ type State = {
  */
 
 class StrainCatalogTable extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    headerHeight: 64,
+    rowHeight: 64,
+    data: [],
+  }
+
   state = {
     snackbarOpen: false,
   }
@@ -239,12 +247,6 @@ class StrainCatalogTable extends React.PureComponent<Props, State> {
       </Paper>
     )
   }
-}
-
-StrainCatalogTable.defaultProps = {
-  headerHeight: 64,
-  rowHeight: 64,
-  data: [],
 }
 
 export default connect(
