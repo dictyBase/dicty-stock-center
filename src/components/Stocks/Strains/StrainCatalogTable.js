@@ -1,46 +1,33 @@
 /* eslint-disable react/jsx-no-bind */
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
-import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
+import { AutoSizer, Column, Table } from "react-virtualized"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
-import StrainCatalogTableHeader from "./StrainCatalogTableHeader"
 
-const styles = (theme: Object) => ({
-  root: {
-    width: "100%",
-    overflowX: "auto",
+const styles = theme => ({
+  table: {
+    fontFamily: theme.typography.fontFamily,
   },
-  row: {
-    "&:nth-of-type(even)": {
-      backgroundColor: theme.palette.background.default,
-    },
+  flexContainer: {
+    display: "flex",
+    alignItems: "center",
+    boxSizing: "border-box",
+    flex: 1,
+    fontSize: 16,
   },
-  link: {
-    textDecoration: "none",
-    color: "#4C5E81",
-    "&:visited": {
-      color: "#4C5E81",
-    },
+  tableRowHover: {
     "&:hover": {
-      textDecoration: "underline",
+      backgroundColor: theme.palette.grey[200],
     },
-  },
-  head: {
-    backgroundColor: "#0059b3",
-  },
-  headerCell: {
-    color: "#fff",
-    fontWeight: "600",
   },
 })
 
@@ -55,71 +42,209 @@ type Props = {
   classes: Object,
 }
 
+type State = {
+  snackbarOpen: boolean,
+}
+
 /**
  * StrainCatalogTable is the table used to display strain catalog data.
  */
 
-const StrainCatalogTable = (props: Props) => {
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const { classes, data, addToCart } = props
+class StrainCatalogTable extends React.PureComponent<Props, State> {
+  state = {
+    snackbarOpen: false,
+  }
 
-  return (
-    <Paper className={classes.root}>
-      <Table>
-        <colgroup>
-          <col style={{ width: "25%" }} />
-          <col style={{ width: "45%" }} />
-          <col style={{ width: "10%" }} />
-          <col style={{ width: "20%" }} />
-        </colgroup>
-        {/* <StrainCatalogSearch/> */}
-        <StrainCatalogTableHeader />
-        <TableBody>
-          {data.map((item: Object, index: number) => (
-            <TableRow className={classes.row} key={index}>
-              <TableCell component="th" scope="row">
-                <Link to={`/strains/${item.id}`}>{item.label}</Link>
-              </TableCell>
-              <TableCell>{item.summary}</TableCell>
-              <TableCell>{item.id}</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  color="default"
-                  size="small"
-                  className={classes.button}
-                  onClick={() => {
-                    addToCart({
-                      type: "strain",
-                      id: item.id,
-                      name: item.label,
-                    })
-                    setSnackbarOpen(true)
-                  }}>
-                  <FontAwesomeIcon icon="share" /> &nbsp;Add to Cart
-                </Button>
-                <Snackbar
-                  autoHideDuration={2500}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  open={snackbarOpen}
-                  onClose={() => setSnackbarOpen(false)}
-                  ContentProps={{
-                    "aria-describedby": "cart-id",
-                  }}
-                  message={
-                    <span id="cart-id">
-                      <FontAwesomeIcon icon="check-circle" /> &nbsp; Item{" "}
-                      {item.id} added to cart
-                    </span>
-                  }
-                />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  )
+  getRowClassName = ({ index }) => {
+    const { classes } = this.props
+    return classNames(classes.flexContainer, {
+      [classes.tableRowHover]: index !== -1,
+    })
+  }
+
+  cellRenderer = ({ cellData }) => {
+    const { classes, rowHeight } = this.props
+    return (
+      <TableCell
+        component="div"
+        className={classes.flexContainer}
+        variant="body"
+        style={{ height: rowHeight }}>
+        {cellData}
+      </TableCell>
+    )
+  }
+
+  headerRenderer = ({ label }) => {
+    const { headerHeight, classes } = this.props
+    return (
+      <TableCell
+        component="div"
+        className={classes.flexContainer}
+        variant="head"
+        style={{ height: headerHeight, color: "#fff" }}>
+        <strong>{label}</strong>
+      </TableCell>
+    )
+  }
+
+  descriptorRenderer = ({ rowData, cellData }) => {
+    const { classes, rowHeight } = this.props
+    const { id } = rowData
+    return (
+      <TableCell
+        component="div"
+        className={classes.flexContainer}
+        variant="body"
+        style={{ height: rowHeight }}>
+        <Link to={`/strains/${id}`}>{cellData}</Link>
+      </TableCell>
+    )
+  }
+
+  inStockRenderer = ({ rowData, cellData }) => {
+    const { headerHeight, classes } = this.props
+    const { id, label } = rowData
+    // if (cellData === true) {
+    return (
+      <TableCell
+        component="div"
+        className={classes.flexContainer}
+        variant="head"
+        style={{ height: headerHeight }}>
+        <strong>
+          <Button
+            onClick={() => {
+              this.handleClick(id, label)
+            }}>
+            <FontAwesomeIcon icon="shopping-cart" />
+            &nbsp;Add to cart
+          </Button>
+        </strong>
+        <Snackbar
+          autoHideDuration={2500}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          open={this.state.snackbarOpen}
+          onClose={this.handleClose}
+          ContentProps={{
+            "aria-describedby": "cart-id",
+          }}
+          message={
+            <span id="cart-id">
+              <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added to
+              cart
+            </span>
+          }
+        />
+      </TableCell>
+    )
+    // }
+    // return (
+    //   <TableCell
+    //     component="div"
+    //     className={classes.flexContainer}
+    //     variant="head"
+    //     style={{ height: headerHeight }}>
+    //     <strong>
+    //       <Button disabled>Out of stock</Button>
+    //     </strong>
+    //   </TableCell>
+    // )
+  }
+
+  handleClick = (id, label) => {
+    this.props.addToCart({
+      type: "strain",
+      id: id,
+      name: label,
+    })
+    this.setState({ snackbarOpen: true })
+  }
+
+  handleClose = () => {
+    this.setState({ snackbarOpen: false })
+  }
+
+  render() {
+    const { classes, data, ...tableProps } = this.props
+    return (
+      <Paper style={{ height: 500, width: "100%" }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <Table
+              className={classes.table}
+              height={height}
+              width={width}
+              {...tableProps}
+              headerStyle={{ backgroundColor: "#0059b3", color: "#fff" }}
+              rowCount={data.length}
+              overscanRowCount={3}
+              rowGetter={({ index }) => data[index]}
+              rowClassName={this.getRowClassName}>
+              <Column
+                headerRenderer={headerProps =>
+                  this.headerRenderer({
+                    ...headerProps,
+                    columnIndex: 0,
+                  })
+                }
+                className={classNames(classes.flexContainer)}
+                cellRenderer={this.descriptorRenderer}
+                dataKey="label"
+                label="STRAIN DESCRIPTOR"
+                width={250}
+              />
+              <Column
+                headerRenderer={headerProps =>
+                  this.headerRenderer({
+                    ...headerProps,
+                    columnIndex: 1,
+                  })
+                }
+                className={classNames(classes.flexContainer)}
+                cellRenderer={this.cellRenderer}
+                dataKey="summary"
+                label="STRAIN SUMMARY"
+                width={250}
+                flexGrow={1.0}
+              />
+              <Column
+                headerRenderer={headerProps =>
+                  this.headerRenderer({
+                    ...headerProps,
+                    columnIndex: 2,
+                  })
+                }
+                className={classNames(classes.flexContainer)}
+                cellRenderer={this.cellRenderer}
+                dataKey="id"
+                label="STRAIN ID"
+                width={200}
+              />
+              <Column
+                headerRenderer={headerProps =>
+                  this.headerRenderer({
+                    ...headerProps,
+                    columnIndex: 3,
+                  })
+                }
+                className={classNames(classes.flexContainer)}
+                cellRenderer={this.inStockRenderer}
+                dataKey="in_stock"
+                width={200}
+              />
+            </Table>
+          )}
+        </AutoSizer>
+      </Paper>
+    )
+  }
+}
+
+StrainCatalogTable.defaultProps = {
+  headerHeight: 64,
+  rowHeight: 64,
+  data: [],
 }
 
 export default connect(
