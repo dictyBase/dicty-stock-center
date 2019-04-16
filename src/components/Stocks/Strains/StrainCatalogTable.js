@@ -58,7 +58,7 @@ type State = {
  * StrainCatalogTable is the table used to display strain catalog data.
  */
 
-class StrainCatalogTable extends React.PureComponent<Props, State> {
+export class StrainCatalogTable extends React.PureComponent<Props, State> {
   static defaultProps = {
     headerHeight: 64,
     rowHeight: 64,

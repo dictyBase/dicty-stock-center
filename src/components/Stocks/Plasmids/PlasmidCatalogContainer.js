@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
@@ -68,4 +67,4 @@ export const PlasmidCatalogContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(PlasmidCatalogContainer))
+export default withStyles(styles)(PlasmidCatalogContainer)

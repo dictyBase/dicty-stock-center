@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
@@ -72,4 +71,4 @@ export const StrainCatalogContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(StrainCatalogContainer))
+export default withStyles(styles)(StrainCatalogContainer)

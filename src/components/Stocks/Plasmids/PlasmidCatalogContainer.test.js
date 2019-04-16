@@ -1,17 +1,10 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { StrainDetailsContainer } from "./StrainDetailsContainer"
+import { PlasmidCatalogContainer } from "./PlasmidCatalogContainer"
 import { Query } from "react-apollo"
 
-describe("Stocks/Strains/StrainDetailsContainer", () => {
-  const props = {
-    match: {
-      params: {
-        id: "id",
-      },
-    },
-  }
-  const wrapper = shallow(<StrainDetailsContainer {...props} />)
+describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
+  const wrapper = shallow(<PlasmidCatalogContainer />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
