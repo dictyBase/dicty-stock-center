@@ -21,6 +21,7 @@ const styles = theme => ({
 const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
     listStrains(input: { cursor: $cursor, limit: 10 }) {
+      nextCursor
       totalCount
       strains {
         id
@@ -45,7 +46,7 @@ export const StrainCatalogContainer = (props: Props) => {
 
   return (
     <Query query={GET_STRAIN_LIST} variables={{ cursor: 0 }}>
-      {({ loading, error, data }) => {
+      {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
@@ -62,7 +63,12 @@ export const StrainCatalogContainer = (props: Props) => {
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogTable data={data.listStrains.strains} />
+              <StrainCatalogTable
+                data={data.listStrains.strains}
+                fetchMore={fetchMore}
+                cursor={data.listStrains.nextCursor}
+                totalCount={data.listStrains.totalCount}
+              />
             </Grid>
           </Grid>
         )

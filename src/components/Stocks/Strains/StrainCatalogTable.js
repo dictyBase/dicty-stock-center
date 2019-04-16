@@ -3,6 +3,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import gql from "graphql-tag"
 import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
 import TableCell from "@material-ui/core/TableCell"
@@ -15,6 +16,7 @@ import {
   Table,
   CellMeasurer,
   CellMeasurerCache,
+  InfiniteLoader,
 } from "react-virtualized"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
@@ -43,6 +45,20 @@ const styles = theme => ({
   },
 })
 
+const GET_MORE_STRAINS_LIST = gql`
+  query MoreStrainsList($cursor: Int!) {
+    listStrains(input: { cursor: $cursor, limit: 10 }) {
+      totalCount
+      nextCursor
+      strains {
+        id
+        label
+        summary
+      }
+    }
+  }
+`
+
 type Props = {
   /** Strain catalog data */
   data: Array<{
@@ -56,6 +72,12 @@ type Props = {
   classes: Object,
   /** Default height of header */
   headerHeight: Number,
+  /** Total number of strains fetched */
+  totalCount: Number,
+  /** GraphQL function to make another query */
+  fetchMore: Function,
+  /** Next cursor from fetched GraphQL data */
+  cursor: Number,
 }
 
 type State = {
@@ -225,57 +247,96 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     // )
   }
 
+  loadMoreRows = () => {
+    const { fetchMore, cursor } = this.props
+    return fetchMore({
+      query: GET_MORE_STRAINS_LIST,
+      variables: {
+        cursor: cursor,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const previousEntry = previousResult.listStrains
+        const newStrains = fetchMoreResult.listStrains.strains
+        const newCursor = fetchMoreResult.listStrains.nextCursor
+        const newTotalCount = fetchMoreResult.listStrains.totalCount
+
+        if (!fetchMoreResult) return previousResult
+        return {
+          listStrains: {
+            totalCount: newTotalCount,
+            nextCursor: newCursor,
+            strains: [...previousEntry.strains, ...newStrains],
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
+  }
+
   render() {
-    const { classes, data } = this.props
+    const { classes, data, totalCount } = this.props
 
     return (
       <Paper style={{ height: 600, width: "100%" }}>
-        <AutoSizer>
-          {({ height, width }) => (
-            <Table
-              height={height}
-              width={width}
-              headerHeight={64}
-              rowStyle={{ borderBottom: "1px solid rgba(224, 224, 224, 1)" }}
-              headerStyle={{ backgroundColor: "#0059b3", color: "#fff" }}
-              rowCount={data.length}
-              overscanRowCount={5}
-              rowGetter={({ index }) => data[index]}
-              deferredMeasurementCache={this.cache}
-              rowHeight={this.cache.rowHeight}
-              rowClassName={this.getRowClassName}>
-              <Column
-                headerRenderer={() => this.headerRenderer("STRAIN DESCRIPTOR")}
-                className={classes.flexContainer}
-                cellRenderer={this.descriptorRenderer}
-                dataKey="label"
-                width={300}
-              />
-              <Column
-                headerRenderer={() => this.headerRenderer("STRAIN SUMMARY")}
-                className={classes.flexContainer}
-                cellRenderer={this.cellRenderer}
-                dataKey="summary"
-                width={250}
-                flexGrow={1}
-              />
-              <Column
-                headerRenderer={() => this.headerRenderer("STRAIN ID")}
-                className={classes.flexContainer}
-                cellRenderer={this.cellRenderer}
-                dataKey="id"
-                width={200}
-              />
-              <Column
-                headerRenderer={() => this.headerRenderer("")}
-                className={classes.flexContainer}
-                cellRenderer={this.inStockRenderer}
-                dataKey="in_stock"
-                width={200}
-              />
-            </Table>
+        <InfiniteLoader
+          isRowLoaded={({ index }) => !!data[index]}
+          loadMoreRows={this.loadMoreRows}
+          rowCount={totalCount}>
+          {({ onRowsRendered, registerChild }) => (
+            <AutoSizer>
+              {({ height, width }) => (
+                <Table
+                  ref={registerChild}
+                  height={height}
+                  width={width}
+                  headerHeight={64}
+                  rowStyle={{
+                    borderBottom: "1px solid rgba(224, 224, 224, 1)",
+                  }}
+                  headerStyle={{ backgroundColor: "#0059b3", color: "#fff" }}
+                  rowCount={data.length}
+                  overscanRowCount={5}
+                  rowGetter={({ index }) => data[index]}
+                  deferredMeasurementCache={this.cache}
+                  rowHeight={this.cache.rowHeight}
+                  rowClassName={this.getRowClassName}
+                  onRowsRendered={onRowsRendered}>
+                  <Column
+                    headerRenderer={() =>
+                      this.headerRenderer("STRAIN DESCRIPTOR")
+                    }
+                    className={classes.flexContainer}
+                    cellRenderer={this.descriptorRenderer}
+                    dataKey="label"
+                    width={300}
+                  />
+                  <Column
+                    headerRenderer={() => this.headerRenderer("STRAIN SUMMARY")}
+                    className={classes.flexContainer}
+                    cellRenderer={this.cellRenderer}
+                    dataKey="summary"
+                    width={250}
+                    flexGrow={1}
+                  />
+                  <Column
+                    headerRenderer={() => this.headerRenderer("STRAIN ID")}
+                    className={classes.flexContainer}
+                    cellRenderer={this.cellRenderer}
+                    dataKey="id"
+                    width={200}
+                  />
+                  <Column
+                    headerRenderer={() => this.headerRenderer("")}
+                    className={classes.flexContainer}
+                    cellRenderer={this.inStockRenderer}
+                    dataKey="in_stock"
+                    width={200}
+                  />
+                </Table>
+              )}
+            </AutoSizer>
           )}
-        </AutoSizer>
+        </InfiniteLoader>
       </Paper>
     )
   }
