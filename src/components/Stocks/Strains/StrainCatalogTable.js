@@ -29,6 +29,12 @@ const styles = theme => ({
       backgroundColor: theme.palette.grey[200],
     },
   },
+  cartButton: {
+    backgroundColor: "#80c1ff",
+    "&:hover": {
+      backgroundColor: "#cce6ff",
+    },
+  },
 })
 
 type Props = {
@@ -122,6 +128,7 @@ class StrainCatalogTable extends React.PureComponent<Props, State> {
         style={{ height: headerHeight }}>
         <strong>
           <Button
+            className={classes.cartButton}
             onClick={() => {
               this.handleClick(id, label)
             }}>
