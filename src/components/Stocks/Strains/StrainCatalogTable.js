@@ -9,14 +9,17 @@ import TableCell from "@material-ui/core/TableCell"
 import Paper from "@material-ui/core/Paper"
 import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
-import { AutoSizer, Column, Table } from "react-virtualized"
+import {
+  AutoSizer,
+  Column,
+  Table,
+  CellMeasurer,
+  CellMeasurerCache,
+} from "react-virtualized"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
 
 const styles = theme => ({
-  table: {
-    fontFamily: theme.typography.fontFamily,
-  },
   flexContainer: {
     display: "flex",
     alignItems: "center",
@@ -35,22 +38,28 @@ const styles = theme => ({
       backgroundColor: "#cce6ff",
     },
   },
+  tableCell: {
+    borderBottom: 0,
+  },
 })
 
 type Props = {
+  /** Strain catalog data */
   data: Array<{
     id: string,
     label: string,
     summary: string,
   }>,
+  /** Action for adding an item to the shopping cart */
   addToCart: Function,
   /** Material-UI styling */
   classes: Object,
-  rowHeight: Number,
+  /** Default height of header */
   headerHeight: Number,
 }
 
 type State = {
+  /** Indicates whether snackbar is open or not */
   snackbarOpen: boolean,
 }
 
@@ -61,7 +70,6 @@ type State = {
 export class StrainCatalogTable extends React.PureComponent<Props, State> {
   static defaultProps = {
     headerHeight: 64,
-    rowHeight: 64,
     data: [],
   }
 
@@ -69,27 +77,65 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     snackbarOpen: false,
   }
 
-  getRowClassName = ({ index }) => {
-    const { classes } = this.props
-    return classNames(classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1,
+  handleClick = (id: string, label: string) => {
+    this.props.addToCart({
+      type: "strain",
+      id: id,
+      name: label,
     })
+    this.setState({ snackbarOpen: true })
   }
 
-  cellRenderer = ({ cellData }) => {
-    const { classes, rowHeight } = this.props
+  handleClose = () => {
+    this.setState({ snackbarOpen: false })
+  }
+
+  cache = new CellMeasurerCache({
+    fixedWidth: true, // don't need to calculate width of rows
+    defaultHeight: 64,
+    minHeight: 64,
+  })
+
+  getRowClassName = ({ index }: { index: Number }) => {
+    const { classes } = this.props
+    // don't return hover effect on header
+    if (index !== -1) {
+      return classNames(classes.flexContainer, classes.tableRowHover)
+    }
+    return classes.flexContainer
+  }
+
+  cellRenderer = ({
+    cellData,
+    dataKey,
+    parent,
+    rowIndex,
+  }: {
+    cellData: String,
+    dataKey: any,
+    parent: any,
+    rowIndex: Number,
+  }) => {
+    const { classes } = this.props
     return (
-      <TableCell
-        component="div"
-        className={classes.flexContainer}
-        variant="body"
-        style={{ height: rowHeight }}>
-        {cellData}
-      </TableCell>
+      <CellMeasurer
+        cache={this.cache}
+        columnIndex={0}
+        key={dataKey}
+        parent={parent}
+        rowIndex={rowIndex}
+        style={{ height: this.cache.rowHeight }}>
+        <TableCell
+          component="div"
+          className={classNames(classes.flexContainer, classes.tableCell)}
+          variant="body">
+          {cellData}
+        </TableCell>
+      </CellMeasurer>
     )
   }
 
-  headerRenderer = ({ label }) => {
+  headerRenderer = (label: string) => {
     const { headerHeight, classes } = this.props
     return (
       <TableCell
@@ -102,30 +148,42 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     )
   }
 
-  descriptorRenderer = ({ rowData, cellData }) => {
-    const { classes, rowHeight } = this.props
+  descriptorRenderer = ({
+    rowData,
+    cellData,
+  }: {
+    rowData: Object,
+    cellData: string,
+  }) => {
+    const { classes } = this.props
     const { id } = rowData
     return (
       <TableCell
         component="div"
-        className={classes.flexContainer}
+        className={classNames(classes.flexContainer, classes.tableCell)}
         variant="body"
-        style={{ height: rowHeight }}>
+        style={{ height: this.cache.rowHeight }}>
         <Link to={`/strains/${id}`}>{cellData}</Link>
       </TableCell>
     )
   }
 
-  inStockRenderer = ({ rowData, cellData }) => {
-    const { headerHeight, classes } = this.props
+  inStockRenderer = ({
+    rowData,
+    cellData,
+  }: {
+    rowData: Object,
+    cellData: string,
+  }) => {
+    const { classes } = this.props
     const { id, label } = rowData
     // if (cellData === true) {
     return (
       <TableCell
         component="div"
-        className={classes.flexContainer}
-        variant="head"
-        style={{ height: headerHeight }}>
+        className={classNames(classes.flexContainer, classes.tableCell)}
+        variant="body"
+        style={{ height: this.cache.rowHeight }}>
         <strong>
           <Button
             className={classes.cartButton}
@@ -167,83 +225,50 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     // )
   }
 
-  handleClick = (id, label) => {
-    this.props.addToCart({
-      type: "strain",
-      id: id,
-      name: label,
-    })
-    this.setState({ snackbarOpen: true })
-  }
-
-  handleClose = () => {
-    this.setState({ snackbarOpen: false })
-  }
-
   render() {
-    const { classes, data, ...tableProps } = this.props
+    const { classes, data } = this.props
+
     return (
-      <Paper style={{ height: 500, width: "100%" }}>
+      <Paper style={{ height: 600, width: "100%" }}>
         <AutoSizer>
           {({ height, width }) => (
             <Table
-              className={classes.table}
               height={height}
               width={width}
-              {...tableProps}
+              headerHeight={64}
+              rowStyle={{ borderBottom: "1px solid rgba(224, 224, 224, 1)" }}
               headerStyle={{ backgroundColor: "#0059b3", color: "#fff" }}
               rowCount={data.length}
-              overscanRowCount={3}
+              overscanRowCount={5}
               rowGetter={({ index }) => data[index]}
+              deferredMeasurementCache={this.cache}
+              rowHeight={this.cache.rowHeight}
               rowClassName={this.getRowClassName}>
               <Column
-                headerRenderer={headerProps =>
-                  this.headerRenderer({
-                    ...headerProps,
-                    columnIndex: 0,
-                  })
-                }
-                className={classNames(classes.flexContainer)}
+                headerRenderer={() => this.headerRenderer("STRAIN DESCRIPTOR")}
+                className={classes.flexContainer}
                 cellRenderer={this.descriptorRenderer}
                 dataKey="label"
-                label="STRAIN DESCRIPTOR"
-                width={250}
+                width={300}
               />
               <Column
-                headerRenderer={headerProps =>
-                  this.headerRenderer({
-                    ...headerProps,
-                    columnIndex: 1,
-                  })
-                }
-                className={classNames(classes.flexContainer)}
+                headerRenderer={() => this.headerRenderer("STRAIN SUMMARY")}
+                className={classes.flexContainer}
                 cellRenderer={this.cellRenderer}
                 dataKey="summary"
-                label="STRAIN SUMMARY"
                 width={250}
-                flexGrow={1.0}
+                flexGrow={1}
               />
               <Column
-                headerRenderer={headerProps =>
-                  this.headerRenderer({
-                    ...headerProps,
-                    columnIndex: 2,
-                  })
-                }
-                className={classNames(classes.flexContainer)}
+                headerRenderer={() => this.headerRenderer("STRAIN ID")}
+                className={classes.flexContainer}
                 cellRenderer={this.cellRenderer}
                 dataKey="id"
-                label="STRAIN ID"
                 width={200}
               />
               <Column
-                headerRenderer={headerProps =>
-                  this.headerRenderer({
-                    ...headerProps,
-                    columnIndex: 3,
-                  })
-                }
-                className={classNames(classes.flexContainer)}
+                headerRenderer={() => this.headerRenderer("")}
+                className={classes.flexContainer}
                 cellRenderer={this.inStockRenderer}
                 dataKey="in_stock"
                 width={200}
