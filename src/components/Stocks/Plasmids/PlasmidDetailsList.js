@@ -23,6 +23,7 @@ const styles = theme => ({
 type Props = {
   data: {
     id: string,
+    name: string,
     summary: string,
     depositor: string,
     dbxrefs: Array<string>,
@@ -51,10 +52,10 @@ const PlasmidDetailsList = (props: Props) => {
         </Grid>
       </Grid>
       <ItemDisplay>
+        <LeftDisplay>Name</LeftDisplay>
+        <RightDisplay>{data.name}</RightDisplay>
         <LeftDisplay>Description</LeftDisplay>
-        <Grid item xs={10} className={classes.rightDisplay}>
-          {data.summary}
-        </Grid>
+        <RightDisplay>{data.summary}</RightDisplay>
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>ID</LeftDisplay>

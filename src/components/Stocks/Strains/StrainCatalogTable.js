@@ -239,7 +239,7 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     return (
       <TableCell
         component="div"
-        className={classes.flexContainer}
+        className={classNames(classes.flexContainer, classes.tableCell)}
         variant="head"
         style={{ height: this.cache.rowHeight }}>
         <strong>

@@ -24,6 +24,7 @@ const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
     plasmid(id: $id) {
       id
+      name
       summary
       depositor
       dbxrefs
