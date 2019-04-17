@@ -1,8 +1,8 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import bowser from "bowser"
 import MiscLinks from "./MiscLinks"
 import InfoLinks from "./InfoLinks"
@@ -30,76 +30,75 @@ type Props = {
  * Homepage is the main homepage component for DSC.
  */
 
-export class Homepage extends Component<Props> {
-  renderGreeting = () => (
-    <span>
-      <h3>Hello, {`${this.props.fullName}!`}</h3>
-    </span>
+const Homepage = (props: Props) => {
+  const { fullName, user } = props
+
+  return (
+    <Container>
+      <Helmet>
+        <title>Dicty Stock Center</title>
+        <meta
+          name="description"
+          content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
+        />
+      </Helmet>
+      {user && (
+        <span>
+          <h3>Hello, {`${fullName}!`}</h3>
+        </span>
+      )}
+      {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
+      <Grid container wrap="wrap" justify="space-between" spacing={24}>
+        <Grid item>
+          <HomepageHeader>
+            <h1>Welcome to Dicty Stock Center (DSC)</h1>
+          </HomepageHeader>
+        </Grid>
+        <Grid item xs={12}>
+          <Intro />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container direction="column">
+            <Grid item>
+              <About />
+            </Grid>
+            <Grid item>
+              <MiscLinks />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container direction="column">
+            <Grid item>
+              <InfoLinks />
+            </Grid>
+            <Grid item>
+              <Availability />
+            </Grid>
+            <Grid item>
+              <OtherMaterials />
+            </Grid>
+            <Grid item>
+              <StandardOperatingProcedures />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container justify="center" direction="column">
+            <Grid item>
+              <Slideshow />
+            </Grid>
+            <Grid item>
+              <Materials />
+            </Grid>
+            <Grid item>
+              <Downloads />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
   )
-  render() {
-    return (
-      <Container>
-        <Helmet>
-          <title>Dicty Stock Center</title>
-          <meta
-            name="description"
-            content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
-          />
-        </Helmet>
-        {this.props.user && this.renderGreeting()}
-        {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
-        <Flex wrap justify="space-between">
-          <Box>
-            <HomepageHeader>
-              <h1>Welcome to Dicty Stock Center (DSC)</h1>
-            </HomepageHeader>
-          </Box>
-          <Box w={1}>
-            <Intro />
-          </Box>
-          <Box w={[1, "30%", "30%"]}>
-            <Flex column>
-              <Box>
-                <About />
-              </Box>
-              <Box>
-                <MiscLinks />
-              </Box>
-            </Flex>
-          </Box>
-          <Box w={[1, "30%", "30%"]}>
-            <Flex column>
-              <Box>
-                <InfoLinks />
-              </Box>
-              <Box>
-                <Availability />
-              </Box>
-              <Box>
-                <OtherMaterials />
-              </Box>
-              <Box>
-                <StandardOperatingProcedures />
-              </Box>
-            </Flex>
-          </Box>
-          <Box w={[1, "33%", "33%"]}>
-            <Flex justify="center" column>
-              <Box>
-                <Slideshow />
-              </Box>
-              <Box>
-                <Materials />
-              </Box>
-              <Box>
-                <Downloads />
-              </Box>
-            </Flex>
-          </Box>
-        </Flex>
-      </Container>
-    )
-  }
 }
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => {

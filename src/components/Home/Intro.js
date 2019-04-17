@@ -24,7 +24,6 @@ const slugName = "dsc-intro"
  */
 
 export class Intro extends Component<Props> {
-  // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
       data: {
