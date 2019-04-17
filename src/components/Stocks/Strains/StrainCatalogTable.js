@@ -54,6 +54,7 @@ const GET_MORE_STRAINS_LIST = gql`
         id
         label
         summary
+        in_stock
       }
     }
   }
@@ -199,52 +200,53 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }) => {
     const { classes } = this.props
     const { id, label } = rowData
-    // if (cellData === true) {
+
+    if (cellData === true) {
+      return (
+        <TableCell
+          component="div"
+          className={classNames(classes.flexContainer, classes.tableCell)}
+          variant="body"
+          style={{ height: this.cache.rowHeight }}>
+          <strong>
+            <Button
+              className={classes.cartButton}
+              onClick={() => {
+                this.handleClick(id, label)
+              }}>
+              <FontAwesomeIcon icon="shopping-cart" />
+              &nbsp;Add to cart
+            </Button>
+          </strong>
+          <Snackbar
+            autoHideDuration={2500}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            open={this.state.snackbarOpen}
+            onClose={this.handleClose}
+            ContentProps={{
+              "aria-describedby": "cart-id",
+            }}
+            message={
+              <span id="cart-id">
+                <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added
+                to cart
+              </span>
+            }
+          />
+        </TableCell>
+      )
+    }
     return (
       <TableCell
         component="div"
-        className={classNames(classes.flexContainer, classes.tableCell)}
-        variant="body"
+        className={classes.flexContainer}
+        variant="head"
         style={{ height: this.cache.rowHeight }}>
         <strong>
-          <Button
-            className={classes.cartButton}
-            onClick={() => {
-              this.handleClick(id, label)
-            }}>
-            <FontAwesomeIcon icon="shopping-cart" />
-            &nbsp;Add to cart
-          </Button>
+          <Button disabled>Out of stock</Button>
         </strong>
-        <Snackbar
-          autoHideDuration={2500}
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          open={this.state.snackbarOpen}
-          onClose={this.handleClose}
-          ContentProps={{
-            "aria-describedby": "cart-id",
-          }}
-          message={
-            <span id="cart-id">
-              <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added to
-              cart
-            </span>
-          }
-        />
       </TableCell>
     )
-    // }
-    // return (
-    //   <TableCell
-    //     component="div"
-    //     className={classes.flexContainer}
-    //     variant="head"
-    //     style={{ height: headerHeight }}>
-    //     <strong>
-    //       <Button disabled>Out of stock</Button>
-    //     </strong>
-    //   </TableCell>
-    // )
   }
 
   loadMoreRows = () => {

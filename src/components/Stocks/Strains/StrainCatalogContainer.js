@@ -27,6 +27,7 @@ const GET_STRAIN_LIST = gql`
         id
         label
         summary
+        in_stock
       }
     }
   }
