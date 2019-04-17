@@ -7,7 +7,7 @@ const Loader = () => (
   <Container>
     <Flex justify="center">
       <Box w={1}>
-        <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+        <SkeletonTheme color="#fff	" highlightColor="#fff">
           <Skeleton count={10} />
           <br />
           <br />

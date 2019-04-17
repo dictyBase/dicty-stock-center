@@ -54,7 +54,7 @@ export class OtherMaterials extends Component<Props> {
     }
     return (
       <Grid container justify="center">
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
             <Skeleton count={6} />
           </SkeletonTheme>
