@@ -17,7 +17,7 @@ export const data = [
   {
     id: "DBS0235557",
     label: "tipD-",
-    summary: " 	tipD REMI mutant",
+    summary: "tipD REMI mutant",
   },
   {
     id: "DBS0237027",
