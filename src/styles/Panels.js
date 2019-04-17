@@ -1,26 +1,8 @@
 import styled from "styled-components"
 
-export const PanelGray = styled.div`
-  background-color: #f2f2f2;
-  border: 1px solid #f2f2f2;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-`
-
 export const PanelGreen = styled.div`
   background-color: #dff0d8;
   border: 1px solid #dff0d8;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-`
-
-export const PanelBlue = styled.div`
-  background-color: #e6f2ff;
-  border: 1px solid #e6f2ff;
   margin: 15px auto;
   padding: 15px;
   border-radius: 10px;

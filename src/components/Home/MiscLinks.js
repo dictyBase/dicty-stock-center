@@ -1,9 +1,17 @@
 // @flow
 import React from "react"
 import LinkList from "../LinkList"
-import { PanelBlue } from "styles"
+import { withStyles } from "@material-ui/core/styles"
+import styles from "./homeStyles"
 
-const content = [
+type Props = {
+  /** Material-UI styling */
+  classes: {
+    panelBlue: string,
+  },
+}
+
+const links = [
   { name: "Contact the DSC", to: "/contact", routerAware: true },
   { name: "DSC FAQ", to: "/information/faq", routerAware: true },
   {
@@ -19,15 +27,17 @@ const content = [
 ]
 
 /**
- * Displays misc links
+ * MiscLinks displays misc links on the left side of the homepage.
  */
 
-const Links = () => {
+const MiscLinks = (props: Props) => {
+  const { classes } = props
+
   return (
-    <PanelBlue>
-      <LinkList list={content} />
-    </PanelBlue>
+    <div className={classes.panelBlue}>
+      <LinkList list={links} />
+    </div>
   )
 }
 
-export default Links
+export default withStyles(styles)(MiscLinks)

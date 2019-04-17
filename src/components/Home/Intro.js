@@ -1,11 +1,10 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import Grid from "@material-ui/core/Grid"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
-import { Flex, Box } from "rebass"
-import { PanelBlue } from "styles"
 
 type Props = {
   /** the Auth object taken from the current state */
@@ -18,13 +17,13 @@ type Props = {
   isFetching: boolean,
 }
 
-const slugName = "dsc-other-materials"
+const slugName = "dsc-intro"
 
 /**
- * Fetches and displays the Other Materials page content
+ * Intro fetches and displays the Intro page content.
  */
 
-export class OtherMaterials extends Component<Props> {
+export class Intro extends Component<Props> {
   // set defaultprops to prevent console warnings
   static defaultProps = {
     page: {
@@ -41,37 +40,34 @@ export class OtherMaterials extends Component<Props> {
 
     if (!isFetching && page.data.attributes.content) {
       return (
-        <PanelBlue>
-          <InlineEditor
-            auth={this.props.auth}
-            page={this.props.page}
-            slug={slugName}
-          />
-        </PanelBlue>
+        <InlineEditor
+          auth={this.props.auth}
+          page={this.props.page}
+          slug={slugName}
+        />
       )
     }
     return (
-      <Flex justify="center">
-        <Box w={"95%"}>
+      <Grid container justify="center">
+        <Grid item xs={12}>
           <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-            <Skeleton count={6} />
+            <Skeleton count={5} />
+            <br />
+            <br />
           </SkeletonTheme>
-        </Box>
-      </Flex>
+        </Grid>
+      </Grid>
     )
   }
 }
 
-const mapStateToProps = state => {
-  const slugName = "dsc-other-materials"
-  return {
-    auth: state.auth,
-    isFetching: state.page.isFetching,
-    page: state.page[slugName],
-  }
-}
+const mapStateToProps = state => ({
+  auth: state.auth,
+  isFetching: state.page.isFetching,
+  page: state.page[slugName],
+})
 
 export default connect(
   mapStateToProps,
   { fetchInfoPage },
-)(OtherMaterials)
+)(Intro)

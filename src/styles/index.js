@@ -85,7 +85,7 @@ export {
 } from "styles/Containers"
 export { AlertBox, AlertSuccess, AlertInfo } from "styles/Alerts"
 export { StaticToolbar } from "styles/DraftjsToolbar"
-export { PanelGray, PanelGreen, PanelBlue, EditPanel } from "styles/Panels"
+export { PanelGreen, EditPanel } from "styles/Panels"
 export { Table, TableResponsive } from "styles/Tables"
 export { BorderBox, CenteredBox } from "styles/Boxes"
 export { Jumbotron } from "styles/Jumbotron"

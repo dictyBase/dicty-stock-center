@@ -2,10 +2,9 @@ import React from "react"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "jest-styled-components"
-import "../../setupTests"
 import { About } from "./About"
 import InlineEditor from "components/InlineEditor"
-import { Flex } from "rebass"
+import Grid from "@material-ui/core/Grid"
 
 describe("Home/About", () => {
   let props
@@ -41,8 +40,8 @@ describe("Home/About", () => {
       }
     })
 
-    it("always renders Flex", () => {
-      expect(aboutPage().find(Flex).length).toBe(1)
+    it("always renders two Grid components", () => {
+      expect(aboutPage().find(Grid).length).toBe(2)
     })
     it("calls componentDidMount", () => {
       sinon.spy(About.prototype, "componentDidMount")
@@ -71,9 +70,9 @@ describe("Home/About", () => {
       expect(wrapper.find(InlineEditor).length).toBe(1)
     })
 
-    it("no longer renders Flex", () => {
+    it("no longer renders Grid", () => {
       const wrapper = shallow(<About {...props} />)
-      expect(wrapper.find(Flex).length).toBe(0)
+      expect(wrapper.find(Grid).length).toBe(0)
     })
   })
 })

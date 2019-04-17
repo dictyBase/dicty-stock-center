@@ -1,10 +1,12 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import Grid from "@material-ui/core/Grid"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
-import { Flex, Box } from "rebass"
+
+const slugName = "dsc-about"
 
 type Props = {
   /** the Auth object taken from the current state */
@@ -17,14 +19,11 @@ type Props = {
   isFetching: boolean,
 }
 
-const slugName = "dsc-intro"
-
 /**
- * Fetches and displays the Intro page content
+ * About fetches and displays the About page content.
  */
 
-export class Intro extends Component<Props> {
-  // set defaultprops to prevent console warnings
+export class About extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
@@ -48,29 +47,27 @@ export class Intro extends Component<Props> {
       )
     }
     return (
-      <Flex justify="center">
-        <Box w={"98%"}>
+      <Grid container justify="center">
+        <Grid item xs={12}>
           <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-            <Skeleton count={5} />
+            <Skeleton count={7} />
             <br />
             <br />
+            <Skeleton count={7} />
           </SkeletonTheme>
-        </Box>
-      </Flex>
+        </Grid>
+      </Grid>
     )
   }
 }
 
-const mapStateToProps = state => {
-  const slugName = "dsc-intro"
-  return {
-    auth: state.auth,
-    isFetching: state.page.isFetching,
-    page: state.page[slugName],
-  }
-}
+const mapStateToProps = state => ({
+  auth: state.auth,
+  isFetching: state.page.isFetching,
+  page: state.page[slugName],
+})
 
 export default connect(
   mapStateToProps,
   { fetchInfoPage },
-)(Intro)
+)(About)

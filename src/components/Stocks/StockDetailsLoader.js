@@ -1,5 +1,5 @@
 import React from "react"
-import Skeleton from "react-loading-skeleton"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import createStyles from "@material-ui/core/styles/createStyles"
@@ -32,14 +32,18 @@ const StockDetailsLoader = (props: Props) => {
     <Grid container spacing={16} className={classes.layout}>
       <Grid item xs={12}>
         <h1>
-          <Skeleton />
+          <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+            <Skeleton />
+          </SkeletonTheme>
         </h1>
       </Grid>
       <Grid item xs={12}>
-        <Skeleton count={10} />
-        <br />
-        <br />
-        <Skeleton count={10} />
+        <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+          <Skeleton count={10} />
+          <br />
+          <br />
+          <Skeleton count={10} />
+        </SkeletonTheme>
       </Grid>
     </Grid>
   )

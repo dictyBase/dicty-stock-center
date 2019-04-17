@@ -1,10 +1,14 @@
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import Grid from "@material-ui/core/Grid"
+import { withStyles } from "@material-ui/core/styles"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
-import { Flex, Box } from "rebass"
+import styles from "./homeStyles"
+
+const slugName = "dsc-other-materials"
 
 type Props = {
   /** the Auth object taken from the current state */
@@ -15,16 +19,15 @@ type Props = {
   page: Object,
   /** Checks if data is currently being fetched */
   isFetching: boolean,
+  /** Material-UI styling */
+  classes: Object,
 }
 
-const slugName = "dsc-about"
-
 /**
- * Fetches and displays the About page content
+ * OtherMaterials fetches and displays the Other Materials page content.
  */
 
-export class About extends Component<Props> {
-  // set defaultprops to prevent console warnings
+export class OtherMaterials extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
@@ -36,42 +39,38 @@ export class About extends Component<Props> {
     this.props.fetchInfoPage(slugName)
   }
   render() {
-    const { isFetching, page } = this.props
+    const { isFetching, page, classes } = this.props
 
     if (!isFetching && page.data.attributes.content) {
       return (
-        <InlineEditor
-          auth={this.props.auth}
-          page={this.props.page}
-          slug={slugName}
-        />
+        <div className={classes.panelBlue}>
+          <InlineEditor
+            auth={this.props.auth}
+            page={this.props.page}
+            slug={slugName}
+          />
+        </div>
       )
     }
     return (
-      <Flex justify="center">
-        <Box w={"95%"}>
+      <Grid container justify="center">
+        <Grid xs={12}>
           <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-            <Skeleton count={7} />
-            <br />
-            <br />
-            <Skeleton count={7} />
+            <Skeleton count={6} />
           </SkeletonTheme>
-        </Box>
-      </Flex>
+        </Grid>
+      </Grid>
     )
   }
 }
 
-const mapStateToProps = state => {
-  const slugName = "dsc-about"
-  return {
-    auth: state.auth,
-    isFetching: state.page.isFetching,
-    page: state.page[slugName],
-  }
-}
+const mapStateToProps = state => ({
+  auth: state.auth,
+  isFetching: state.page.isFetching,
+  page: state.page[slugName],
+})
 
 export default connect(
   mapStateToProps,
   { fetchInfoPage },
-)(About)
+)(withStyles(styles)(OtherMaterials))

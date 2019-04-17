@@ -4,8 +4,8 @@ import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import { Flex, Box } from "rebass"
 import bowser from "bowser"
-import Links from "./Links"
-import Info from "./Info"
+import MiscLinks from "./MiscLinks"
+import InfoLinks from "./InfoLinks"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
 import Downloads from "./Downloads"
@@ -27,7 +27,7 @@ type Props = {
 }
 
 /**
- * This is the main homepage component for DSC
+ * Homepage is the main homepage component for DSC.
  */
 
 export class Homepage extends Component<Props> {
@@ -63,14 +63,14 @@ export class Homepage extends Component<Props> {
                 <About />
               </Box>
               <Box>
-                <Links />
+                <MiscLinks />
               </Box>
             </Flex>
           </Box>
           <Box w={[1, "30%", "30%"]}>
             <Flex column>
               <Box>
-                <Info />
+                <InfoLinks />
               </Box>
               <Box>
                 <Availability />
