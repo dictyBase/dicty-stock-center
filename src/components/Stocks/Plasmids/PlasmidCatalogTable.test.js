@@ -1,11 +1,11 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { StrainCatalogTable } from "./StrainCatalogTable"
-import { data } from "./mockStrainCatalogData"
+import { PlasmidCatalogTable } from "./PlasmidCatalogTable"
+import { data } from "./mockPlasmidCatalogData"
 import { Table, Column, AutoSizer, InfiniteLoader } from "react-virtualized"
 import Paper from "@material-ui/core/Paper"
 
-describe("Stocks/Strains/StrainCatalogTable", () => {
+describe("Stocks/Plasmids/PlasmidCatalogTable", () => {
   const props = {
     data: data,
     classes: {
@@ -15,7 +15,7 @@ describe("Stocks/Strains/StrainCatalogTable", () => {
       cartButton: "cartButton",
     },
   }
-  const wrapper = shallow(<StrainCatalogTable {...props} />)
+  const wrapper = shallow(<PlasmidCatalogTable {...props} />)
   const infiniteLoader = wrapper.find(InfiniteLoader).dive()
   const autosizer = infiniteLoader.find(AutoSizer).dive()
   describe("initial render", () => {

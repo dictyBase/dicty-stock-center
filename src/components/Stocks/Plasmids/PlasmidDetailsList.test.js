@@ -14,10 +14,10 @@ describe("Stocks/Plasmids/PlasmidDetailsList", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(7)
+      expect(wrapper.dive().find(Grid)).toHaveLength(6)
       expect(wrapper.dive().find(ItemDisplay)).toHaveLength(7)
-      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(9)
-      expect(wrapper.dive().find(RightDisplay)).toHaveLength(4)
+      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(10)
+      expect(wrapper.dive().find(RightDisplay)).toHaveLength(6)
     })
   })
 })
