@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
+import PlasmidCatalogTable from "./PlasmidCatalogTable"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
 
 const styles = theme => ({
@@ -20,10 +21,13 @@ const styles = theme => ({
 const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
     listPlasmids(input: { cursor: $cursor, limit: 10 }) {
+      nextCursor
       totalCount
       plasmids {
         id
+        name
         summary
+        in_stock
       }
     }
   }
@@ -43,7 +47,7 @@ export const PlasmidCatalogContainer = (props: Props) => {
 
   return (
     <Query query={GET_PLASMID_LIST} variables={{ cursor: 0 }}>
-      {({ loading, error, data }) => {
+      {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
@@ -59,7 +63,14 @@ export const PlasmidCatalogContainer = (props: Props) => {
             <Grid item xs={12}>
               <StockDetailsHeader title="Plasmid Catalog" />
             </Grid>
-            <Grid item xs={12} />
+            <Grid item xs={12}>
+              <PlasmidCatalogTable
+                data={data.listPlasmids.plasmids}
+                fetchMore={fetchMore}
+                cursor={data.listPlasmids.nextCursor}
+                totalCount={data.listPlasmids.totalCount}
+              />
+            </Grid>
           </Grid>
         )
       }}
