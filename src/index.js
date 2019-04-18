@@ -18,7 +18,7 @@ const initialState = hydrateAll(
 )
 const store = configureStore(initialState)
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql`,
 })
 
