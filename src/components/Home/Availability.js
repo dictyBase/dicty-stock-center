@@ -4,7 +4,6 @@ import { Query } from "react-apollo"
 import gql from "graphql-tag"
 import { withStyles } from "@material-ui/core/styles"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
 import styles from "./homeStyles"
 
 const GET_STOCK_TOTALS = gql`
@@ -41,7 +40,12 @@ const Availability = (props: Props) => {
               <Skeleton count={5} />
             </SkeletonTheme>
           )
-        if (error) return <GraphQLErrorPage error={error} />
+        if (error)
+          return (
+            <div className={classes.panelGray}>
+              Error fetching number of strains and plasmids
+            </div>
+          )
 
         return (
           <div className={classes.panelGray}>
