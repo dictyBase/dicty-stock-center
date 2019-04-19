@@ -4,13 +4,24 @@ import { Form, Formik } from "formik"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
+import * as Yup from "yup"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
 import styles from "./formStyles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const pages = [<ShippingPage />, <PaymentPage />, <SubmitPage />]
+const pages = [ShippingPage, PaymentPage, SubmitPage]
+
+const initialValues = {
+  firstName: "",
+  lastName: "",
+}
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+})
 
 type Props = {
   classes: Object,
@@ -34,14 +45,18 @@ class OrderForm extends React.PureComponent<Props, State> {
 
   render() {
     const { classes } = this.props
+    const PageComponent = pages[this.state.page]
 
     return (
       <Grid container spacing={16} className={classes.layout}>
         <Grid item xs={12}>
-          <Formik initialValues={{}} onSubmit={this.submit}>
-            {() => (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={this.submit}>
+            {props => (
               <Form>
-                {pages[this.state.page]}
+                <PageComponent {...props} />
                 <br />
                 <Grid container justify="flex-end">
                   <Grid item>
@@ -52,11 +67,11 @@ class OrderForm extends React.PureComponent<Props, State> {
                       </Button>
                     )}
                     {this.state.page === pages.length - 1 ? (
-                      <Button type="primary">Submit Order</Button>
+                      <Button type="submit">Submit Order</Button>
                     ) : (
                       <Button type="primary" onClick={this.nextPage}>
+                        Continue &nbsp;
                         <FontAwesomeIcon icon="arrow-circle-right" />
-                        &nbsp; Continue
                       </Button>
                     )}
                   </Grid>

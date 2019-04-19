@@ -12,6 +12,10 @@ const styles = (theme: Object) => ({
     borderBottom: "1px solid #eee",
     textAlign: "center",
   },
+  textField: {
+    backgroundColor: "#fff",
+    color: "#000",
+  },
 })
 
 export default styles
