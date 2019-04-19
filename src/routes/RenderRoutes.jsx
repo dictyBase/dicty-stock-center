@@ -83,6 +83,11 @@ const Shipping = Loadable({
     import("components/form/Shipping" /* webpackChunkName: "Shipping" */),
   loading: Loader,
 })
+const OrderForm = Loadable({
+  loader: () =>
+    import("components/OrderForm/OrderForm" /* webpackChunkName: "OrderForm" */),
+  loading: Loader,
+})
 const EditShipping = Loadable({
   loader: () =>
     import("components/form/EditShipping" /* webpackChunkName: "EditShipping" */),
@@ -154,7 +159,8 @@ const RenderRoutes = () => (
       component={EditInfoPage}
     />
     {/* order form routes */}
-    <Route exact path="/order/shipping" component={Shipping} />
+    <Route exact path="/order/shipping" component={OrderForm} />
+    <Route exact path="/order/shipping-old" component={Shipping} />
     <Route exact path="/order/shipping/edit" component={EditShipping} />
     <Route exact path="/order/payment" component={Payment} />
     <Route exact path="/order/payment/edit" component={EditPayment} />

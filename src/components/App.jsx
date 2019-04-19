@@ -6,6 +6,7 @@ import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import {
+  faArrowCircleLeft,
   faArrowCircleRight,
   faCheckCircle,
   faDownload,
@@ -46,6 +47,7 @@ const navTheme = {
 
 // define fontawesome icons used in the app
 library.add(
+  faArrowCircleLeft,
   faArrowCircleRight,
   faCheckCircle,
   faDownload,
