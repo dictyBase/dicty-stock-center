@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
-import { Panel, PanelBody } from "dicty-components-panel"
+import PanelWrapper from "components/common/PanelWrapper"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
 import { Container, DictyHeader, Breadcrumb } from "styles"
@@ -37,22 +37,16 @@ export const MyDsc = (props: Props) => {
           </DictyHeader>
         </Box>
         <Box w={3 / 4}>
-          <Panel collapse>
-            <PanelBody>
-              <h1>
-                <FontAwesomeIcon icon="user" /> Personal Information
-              </h1>
-              <hr />
-              {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}
-              {auth.user.data.attributes.email && (
-                <h3>Email: {auth.user.data.attributes.email}</h3>
-              )}
-              {auth.user.data.attributes.name && (
-                <h3>Name: {auth.user.data.attributes.name}</h3>
-              )}
-              <h3>Provider: {auth.provider}</h3>
-            </PanelBody>
-          </Panel>
+          <PanelWrapper title="Personal Information">
+            {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}
+            {auth.user.data.attributes.email && (
+              <h3>Email: {auth.user.data.attributes.email}</h3>
+            )}
+            {auth.user.data.attributes.name && (
+              <h3>Name: {auth.user.data.attributes.name}</h3>
+            )}
+            <h3>Provider: {auth.provider}</h3>
+          </PanelWrapper>
         </Box>
       </Flex>
     </Container>
