@@ -2,7 +2,7 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import PanelWrapper from "components/common/PanelWrapper"
-import User from "./User"
+import ShippingAddress from "./ShippingAddress"
 import styles from "../formStyles"
 
 const ShippingPage = props => {
@@ -15,7 +15,7 @@ const ShippingPage = props => {
       </Grid>
       <Grid item xs={6}>
         <PanelWrapper title="Shipping Address">
-          <User {...props} />
+          <ShippingAddress {...props} />
         </PanelWrapper>
       </Grid>
       <Grid item xs={6}>

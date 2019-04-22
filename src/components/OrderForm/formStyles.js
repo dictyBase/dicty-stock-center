@@ -12,9 +12,11 @@ const styles = (theme: Object) => ({
     borderBottom: "1px solid #eee",
     textAlign: "center",
   },
-  textField: {
-    backgroundColor: "#fff",
-    color: "#000",
+  innerForm: {
+    paddingBottom: "10px",
+  },
+  requiredText: {
+    color: "#dc3545",
   },
 })
 

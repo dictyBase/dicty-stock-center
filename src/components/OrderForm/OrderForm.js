@@ -4,12 +4,12 @@ import { Form, Formik } from "formik"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import * as Yup from "yup"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
+import validationSchema from "./validationSchema"
 import styles from "./formStyles"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
@@ -17,11 +17,6 @@ const initialValues = {
   firstName: "",
   lastName: "",
 }
-
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
-})
 
 type Props = {
   classes: Object,
