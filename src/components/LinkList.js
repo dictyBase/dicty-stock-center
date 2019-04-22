@@ -1,11 +1,21 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { LinkedList } from "styles"
+import { withStyles } from "@material-ui/core/styles"
+
+const styles = theme => ({
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+  },
+})
 
 type Props = {
   /** List of links in array form */
-  list: Array<Object>
+  list: Array<Object>,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 /**
@@ -13,23 +23,23 @@ type Props = {
  */
 
 const LinkList = (props: Props) => {
+  const { classes } = props
+
   return (
-    <LinkedList>
-      <ul>
-        {props.list.map((link, index) => {
-          return (
-            <li key={index}>
-              {link.routerAware ? (
-                <Link to={link.to}>{link.name}</Link>
-              ) : (
-                <a href={link.to}>{link.name}</a>
-              )}
-            </li>
-          )
-        })}
+    <div>
+      <ul className={classes.list}>
+        {props.list.map((link, index) => (
+          <li key={index}>
+            {link.routerAware ? (
+              <Link to={link.to}>{link.name}</Link>
+            ) : (
+              <a href={link.to}>{link.name}</a>
+            )}
+          </li>
+        ))}
       </ul>
-    </LinkedList>
+    </div>
   )
 }
 
-export default LinkList
+export default withStyles(styles)(LinkList)

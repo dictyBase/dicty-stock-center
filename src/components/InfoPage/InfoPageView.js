@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
@@ -7,6 +8,7 @@ import {
   convertFromRaw,
   CompositeDecorator,
 } from "draft-js"
+import { withStyles } from "@material-ui/core/styles"
 import findLinkEntities from "utils/findLinkEntities"
 import { ContentAPI } from "utils/apiClasses"
 import Link from "components/Link"
@@ -17,7 +19,32 @@ import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Flex, Box } from "rebass"
-import { Container, ToolbarNav, TextInfo, Label, InlineLink } from "styles"
+import { Container, ToolbarNav, TextInfo } from "styles"
+
+const styles = theme => ({
+  label: {
+    display: "inline",
+    padding: "0.2em 0.6em 0.3em",
+    fontSize: "75%",
+    fontWeight: "bold",
+    lineHeight: 1,
+    color: "#fff",
+    textAlign: "center",
+    whiteSpace: "nowrap",
+    verticalAlign: "baseline",
+    borderRadius: "0.25em",
+    backgroundColor: "#337ab7",
+    "&:hover": {
+      backgroundColor: "#337ab7",
+    },
+    "&:focus": {
+      backgroundColor: "#337ab7",
+    },
+  },
+  inlineLink: {
+    cursor: "pointer",
+  },
+})
 
 const decorator = [
   {
@@ -79,7 +106,7 @@ export class InfoPageView extends Component<Props, State> {
 
   render() {
     const { updated_at } = this.props.page.data.attributes
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, classes } = this.props
 
     return (
       <Container>
@@ -105,14 +132,20 @@ export class InfoPageView extends Component<Props, State> {
                         </TextInfo>
                       </Box>
                       <Box ml="auto">
-                        <Label>{fetchedUserData.getRoles()}</Label> &nbsp;
+                        <span className={classes.label}>
+                          {fetchedUserData.getRoles()}
+                        </span>{" "}
+                        &nbsp,
                         {verifiedToken && (
-                          <InlineLink onClick={this.onClick}>
+                          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                          <a
+                            className={classes.inlineLink}
+                            onClick={this.onClick}>
                             <FontAwesomeIcon
                               icon="pencil-alt"
                               title="Edit page"
                             />
-                          </InlineLink>
+                          </a>
                         )}
                       </Box>
                     </Flex>
@@ -152,4 +185,4 @@ export const mapStateToProps = (state: authState) => ({
 export default connect(
   mapStateToProps,
   { editPage, fetchUserInfo },
-)(InfoPageView)
+)(withStyles(styles)(InfoPageView))

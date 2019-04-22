@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-bind */
 // @flow
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { withStyles } from "@material-ui/core/styles"
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
 import Editor from "draft-js-plugins-editor"
 import createUndoPlugin from "draft-js-undo-plugin"
@@ -30,8 +32,13 @@ import {
   TextInfo,
   DefaultBlockButton,
   SuccessBlockButton,
-  InlineLink,
 } from "styles"
+
+const styles = theme => ({
+  inlineLink: {
+    cursor: "pointer",
+  },
+})
 
 type Props = {
   /** the object that contains page data from current state */
@@ -170,6 +177,7 @@ export class InlineEditor extends Component<Props, State> {
       this.undoPlugin,
     ]
     const { editorState, readOnly } = this.state
+    const { classes } = this.props
 
     return (
       <EditPanel>
@@ -189,9 +197,12 @@ export class InlineEditor extends Component<Props, State> {
                 <div>
                   {canEditPages && verifiedToken && readOnly && (
                     <TextInfo>
-                      <InlineLink onClick={this.onEdit} title="Edit">
+                      <a
+                        className={classes.inlineLink}
+                        onClick={this.onEdit}
+                        title="Edit">
                         <FontAwesomeIcon icon="pencil-alt" /> Edit
-                      </InlineLink>
+                      </a>
                     </TextInfo>
                   )}
                 </div>
@@ -225,4 +236,4 @@ export class InlineEditor extends Component<Props, State> {
 export default connect(
   null,
   { editInline, saveInlineEditing, fetchInfoPage },
-)(InlineEditor)
+)(withStyles(styles)(InlineEditor))

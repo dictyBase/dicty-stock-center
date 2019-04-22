@@ -61,18 +61,6 @@ export {
   DisabledButton,
 } from "styles/Buttons"
 export {
-  HorizontalForm,
-  ControlLabel,
-  FormGroup,
-  FormControl,
-  FormControlSelect,
-  FormControlTextArea,
-  FormTextArea,
-  RadioInline,
-  RequiredText,
-  HelpBlock,
-} from "styles/Forms"
-export {
   DictyHeader,
   HomepageHeader,
   StrainDetailsHeader,
@@ -88,13 +76,8 @@ export { StaticToolbar } from "styles/DraftjsToolbar"
 export { PanelGreen, EditPanel } from "styles/Panels"
 export { Table, TableResponsive } from "styles/Tables"
 export { BorderBox, CenteredBox } from "styles/Boxes"
-export { Jumbotron } from "styles/Jumbotron"
 export { EditorStyle } from "styles/Editors"
 export { ItemAvailable, ItemUnavailable } from "styles/ItemAvailability"
-export { LinkedList, InlineLink, SopLink } from "styles/Links"
-export { ResponsiveImage } from "styles/Images"
 export { Breadcrumb } from "styles/Breadcrumbs"
-export { PhenotypeData } from "styles/PhenotypeData"
-export { Label } from "styles/Labels"
 export { TextInfo } from "styles/TextInfo"
 export { ToolbarNav } from "styles/ToolbarNav"
