@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles"
 import PanelWrapper from "components/common/PanelWrapper"
 import ShippingAddress from "./ShippingAddress"
 import styles from "../formStyles"
+import AdditionalInformation from "./AdditionalInformation"
 
 const ShippingPage = props => {
   const { classes } = props
@@ -27,7 +28,7 @@ const ShippingPage = props => {
           </Grid>
           <Grid item>
             <PanelWrapper title="Additional Information">
-              Additional Information Form goes here
+              <AdditionalInformation {...props} />
             </PanelWrapper>
           </Grid>
         </Grid>
