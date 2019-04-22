@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // @flow
 import React from "react"
 import { Form, Formik } from "formik"
@@ -48,8 +49,8 @@ class OrderForm extends React.PureComponent<Props, State> {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={this.submit}>
-            {props => (
+            onSubmit={this.submit}
+            render={props => (
               <Form>
                 <PageComponent {...props} />
                 <br />
@@ -76,7 +77,7 @@ class OrderForm extends React.PureComponent<Props, State> {
                 </Grid>
               </Form>
             )}
-          </Formik>
+          />
         </Grid>
       </Grid>
     )

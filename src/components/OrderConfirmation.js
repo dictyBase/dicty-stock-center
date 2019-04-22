@@ -1,11 +1,9 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { connect } from "react-redux"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AlertSuccess, PrimaryLargeButton } from "styles"
-import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** the current order ID number */
@@ -46,8 +44,4 @@ export const OrderConfirmation = (props: Props) => (
   </Grid>
 )
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  id: state.order.id,
-})
-
-export default connect(mapStateToProps)(OrderConfirmation)
+export default OrderConfirmation
