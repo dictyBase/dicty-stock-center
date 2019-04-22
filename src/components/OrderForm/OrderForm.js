@@ -62,7 +62,10 @@ class OrderForm extends React.PureComponent<Props, State> {
                       </Button>
                     )}
                     {this.state.page === pages.length - 1 ? (
-                      <Button type="submit">Submit Order</Button>
+                      <Button type="submit">
+                        Submit Order &nbsp;
+                        <FontAwesomeIcon icon="check-circle" />
+                      </Button>
                     ) : (
                       <Button type="primary" onClick={this.nextPage}>
                         Continue &nbsp;

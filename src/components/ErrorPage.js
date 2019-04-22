@@ -60,8 +60,6 @@ type Props = {
   classes: Object,
   /** the object that contains auth data from current state */
   auth: Object,
-  /** the object that contains order data from current state */
-  order: Object,
   /** the object that contains page data from current state */
   page: Object,
 }
@@ -71,7 +69,7 @@ type Props = {
  */
 
 export const ErrorPage = (props: Props) => {
-  const { auth, order, page, classes } = props
+  const { auth, page, classes } = props
 
   let errorStatus = 0
   let errorMsg
@@ -79,11 +77,6 @@ export const ErrorPage = (props: Props) => {
   if (auth.error) {
     errorStatus = auth.error.status
     errorMsg = auth.error.title
-  }
-
-  if (order.error) {
-    errorStatus = order.error.status
-    errorMsg = order.error.title
   }
 
   if (page.error) {
@@ -192,7 +185,7 @@ export const ErrorPage = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ auth, order, page }) => ({ auth, order, page })
+const mapStateToProps = ({ auth, page }) => ({ auth, page })
 
 // $FlowFixMe
 export default connect(mapStateToProps)(withStyles(styles)(ErrorPage))
