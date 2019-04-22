@@ -27,6 +27,10 @@ const styles = (theme: Object) => ({
     borderRadius: "10px",
     width: "100%",
   },
+  submit: {
+    textAlign: "center",
+    paddingLeft: "25px",
+  },
 })
 
 export default styles
