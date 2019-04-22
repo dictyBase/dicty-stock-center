@@ -15,7 +15,7 @@ type Props = {
 }
 
 const ShippingMethod = (props: Props) => {
-  const [shipAccountNum, setShipAccountNum] = useState(false)
+  const [shipAccountNum, setShipAccountNum] = useState(true)
   const { classes, handleChange } = props
 
   return (

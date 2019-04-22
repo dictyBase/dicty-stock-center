@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "react-apollo"
 import ApolloClient from "apollo-boost"
+import "typeface-roboto"
 
 // load state from localStorage(if any) to set the
 // initial state for the store
