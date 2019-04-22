@@ -2,6 +2,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
+import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import bowser from "bowser"
 import MiscLinks from "./MiscLinks"
@@ -16,14 +17,31 @@ import About from "./About"
 import BrowserWarning from "./BrowserWarning"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { AuthenticatedUser } from "utils/apiClasses"
-import { HomepageHeader, Container } from "styles"
 import type { MapStateToProps } from "react-redux"
+
+const styles = theme => ({
+  container: {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "75%",
+  },
+  header: {
+    fontSize: "48px",
+    marginTop: "0px",
+    marginBottom: "25px",
+    borderBottom: "1px solid #eee",
+  },
+})
 
 type Props = {
   /** the User object from the current state */
   user: Object,
   /** the user's first and last names, taken from the AuthenticatedUser class */
   fullName: string,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 /**
@@ -31,10 +49,10 @@ type Props = {
  */
 
 const Homepage = (props: Props) => {
-  const { fullName, user } = props
+  const { fullName, user, classes } = props
 
   return (
-    <Container>
+    <div className={classes.container}>
       <Helmet>
         <title>Dicty Stock Center</title>
         <meta
@@ -50,9 +68,9 @@ const Homepage = (props: Props) => {
       {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
       <Grid container wrap="wrap" justify="space-between" spacing={24}>
         <Grid item>
-          <HomepageHeader>
-            <h1>Welcome to Dicty Stock Center (DSC)</h1>
-          </HomepageHeader>
+          <h1 className={classes.header}>
+            Welcome to Dicty Stock Center (DSC)
+          </h1>
         </Grid>
         <Grid item xs={12}>
           <Intro />
@@ -97,7 +115,7 @@ const Homepage = (props: Props) => {
           </Grid>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   )
 }
 
@@ -112,4 +130,4 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {}
 }
 
-export default connect(mapStateToProps)(Homepage)
+export default connect(mapStateToProps)(withStyles(styles)(Homepage))

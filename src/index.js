@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "react-apollo"
 import ApolloClient from "apollo-boost"
+import CssBaseline from "@material-ui/core/CssBaseline"
 import "typeface-roboto"
 
 // load state from localStorage(if any) to set the
@@ -46,11 +47,12 @@ const renderApp = Component => {
   render(
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <div>
-          <ConnectedRouter history={history}>
+        <ConnectedRouter history={history}>
+          <>
+            <CssBaseline />
             <Component />
-          </ConnectedRouter>
-        </div>
+          </>
+        </ConnectedRouter>
       </Provider>
     </ApolloProvider>,
     document.getElementById("root"),

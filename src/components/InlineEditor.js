@@ -51,6 +51,8 @@ type Props = {
   fetchInfoPage: Function,
   /** slug name to fetch */
   slug: string,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 type State = {
@@ -197,6 +199,7 @@ export class InlineEditor extends Component<Props, State> {
                 <div>
                   {canEditPages && verifiedToken && readOnly && (
                     <TextInfo>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                       <a
                         className={classes.inlineLink}
                         onClick={this.onEdit}

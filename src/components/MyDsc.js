@@ -5,7 +5,6 @@ import PanelWrapper from "components/common/PanelWrapper"
 import { Link } from "react-router-dom"
 import { Flex, Box } from "rebass"
 import { Container, DictyHeader, Breadcrumb } from "styles"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {

@@ -2,6 +2,7 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
+import { withStyles } from "@material-ui/core/styles"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import { library } from "@fortawesome/fontawesome-svg-core"
@@ -38,12 +39,7 @@ import {
 import Cart from "./Cart"
 import ErrorBoundary from "./ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
-import { MainBodyContainer } from "styles"
-
-const navTheme = {
-  primary: "#004080",
-  secondary: "#0059b3",
-}
+import { appStyles as styles, navTheme } from "./appStyles"
 
 // define fontawesome icons used in the app
 library.add(
@@ -80,6 +76,8 @@ type Props = {
   footer: Object,
   /** Action creator to fetch navbar and footer content */
   fetchNavbarAndFooter: Function,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 export class App extends Component<Props> {
@@ -89,12 +87,12 @@ export class App extends Component<Props> {
   }
 
   render() {
-    const { auth, cart, navbar, footer } = this.props
+    const { auth, cart, navbar, footer, classes } = this.props
 
     // if any errors, fall back to old link setup
     if (!navbar.links || !footer.links) {
       return (
-        <div>
+        <div className={classes.body}>
           {auth.isAuthenticated ? (
             <Header items={loggedHeaderItems}>
               {items => items.map(generateLinks)}
@@ -107,18 +105,18 @@ export class App extends Component<Props> {
           <Navbar items={navItems} theme={navTheme} />
           <br />
           <Cart cart={cart} />
-          <MainBodyContainer>
+          <main className={classes.main}>
             <ErrorBoundary>
               <RenderRoutes {...this.props} />
             </ErrorBoundary>
-          </MainBodyContainer>
+          </main>
           <Footer items={footerItems} />
         </div>
       )
     }
 
     return (
-      <div>
+      <div className={classes.body}>
         {auth.isAuthenticated ? (
           <Header items={loggedHeaderItems}>
             {items => items.map(generateLinks)}
@@ -131,11 +129,11 @@ export class App extends Component<Props> {
         <Navbar items={navbar.links} theme={navTheme} />
         <br />
         <Cart cart={cart} />
-        <MainBodyContainer>
+        <main className={classes.main}>
           <ErrorBoundary>
             <RenderRoutes {...this.props} />
           </ErrorBoundary>
-        </MainBodyContainer>
+        </main>
         <Footer items={footer.links} />
       </div>
     )
@@ -153,5 +151,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { fetchNavbarAndFooter },
-  )(App),
+  )(withStyles(styles)(App)),
 )
