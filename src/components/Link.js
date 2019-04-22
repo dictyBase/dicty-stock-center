@@ -4,7 +4,7 @@ import React from "react"
 type Props = {
   entityKey: string,
   children: any,
-  contentState: Function
+  contentState: Function,
 }
 
 /**
