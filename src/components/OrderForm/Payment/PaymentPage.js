@@ -2,6 +2,9 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import PanelWrapper from "components/common/PanelWrapper"
+import PaymentAddress from "./PaymentAddress"
+import PaymentMethod from "./PaymentMethod"
+import PaymentInfoBox from "./PaymentInfoBox"
 import styles from "../formStyles"
 
 const PaymentPage = props => {
@@ -14,20 +17,18 @@ const PaymentPage = props => {
       </Grid>
       <Grid item xs={6}>
         <PanelWrapper title="Payment Address">
-          Payment Address Form goes here
+          <PaymentAddress {...props} />
         </PanelWrapper>
       </Grid>
       <Grid item xs={6}>
         <Grid container direction="column" spacing={16}>
           <Grid item>
             <PanelWrapper title="Payment Method">
-              Payment Method Form goes here
+              <PaymentMethod {...props} />
             </PanelWrapper>
           </Grid>
           <Grid item>
-            <PanelWrapper title="Payment Information">
-              Payment info goes here
-            </PanelWrapper>
+            <PaymentInfoBox />
           </Grid>
         </Grid>
       </Grid>

@@ -14,8 +14,8 @@ type Props = {
   handleChange: Function,
 }
 
-const ShippingMethod = (props: Props) => {
-  const [shipAccountNum, setShipAccountNum] = useState(true)
+const PaymentMethod = (props: Props) => {
+  const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
   const { classes, handleChange } = props
 
   return (
@@ -25,44 +25,38 @@ const ShippingMethod = (props: Props) => {
       alignItems="center"
       className={classes.innerForm}>
       <Grid item xs={3}>
-        <span className={classes.requiredText}>*</span> Shipping Account:
+        <span className={classes.requiredText}>*</span> Payment Method:
       </Grid>
       <Grid item xs={8}>
         <RadioGroup
-          aria-label="Shipping Account"
-          name="shippingAccount"
+          aria-label="Payment Method"
+          name="paymentMethod"
           onChange={handleChange}
           row>
           <FormControlLabel
-            value="fedex"
+            value="credit"
             control={<Radio />}
-            label="FedEx"
-            onChange={() => setShipAccountNum(true)}
+            label="Credit Card"
+            onChange={() => setPurchaseOrderNum(false)}
           />
           <FormControlLabel
-            value="ups"
+            value="wire"
             control={<Radio />}
-            label="UPS"
-            onChange={() => setShipAccountNum(true)}
+            label="Wire transfer"
+            onChange={() => setPurchaseOrderNum(false)}
           />
           <FormControlLabel
-            value="dhl"
+            value="purchaseOrder"
             control={<Radio />}
-            label="DHL"
-            onChange={() => setShipAccountNum(true)}
-          />
-          <FormControlLabel
-            value="prepaid"
-            control={<Radio />}
-            label="Send prepaid shipping label"
-            onChange={() => setShipAccountNum(false)}
+            label="Purchase Order (PO)"
+            onChange={() => setPurchaseOrderNum(true)}
           />
         </RadioGroup>
-        {shipAccountNum && (
+        {purchaseOrderNum && (
           <TextField
             type="text"
-            name="shippingAccountNumber"
-            placeholder="Shipping Account Number">
+            name="purchaseOrderNum"
+            placeholder="PO Number">
             test
           </TextField>
         )}
@@ -71,4 +65,4 @@ const ShippingMethod = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(ShippingMethod)
+export default withStyles(styles)(PaymentMethod)

@@ -18,6 +18,15 @@ const styles = (theme: Object) => ({
   requiredText: {
     color: "#dc3545",
   },
+  panelBlue: {
+    backgroundColor: "#e6f2ff",
+    color: "#31708f",
+    border: "1px solid #e6f2ff",
+    margin: "15px auto",
+    padding: "25px",
+    borderRadius: "10px",
+    width: "100%",
+  },
 })
 
 export default styles
