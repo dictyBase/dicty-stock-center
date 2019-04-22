@@ -2,9 +2,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { AlertSuccess, PrimaryLargeButton, CenteredBox } from "styles"
+import { AlertSuccess, PrimaryLargeButton } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
@@ -17,10 +17,10 @@ type Props = {
  */
 
 export const OrderConfirmation = (props: Props) => (
-  <Flex wrap justify="center">
-    <Box w={"75%"}>
-      <Flex wrap justify="center">
-        <CenteredBox w={1}>
+  <Grid container wrap="wrap" justify="center">
+    <Grid item={8}>
+      <Grid container wrap="wrap" justify="center">
+        <Grid item xs={12}>
           <AlertSuccess>
             <FontAwesomeIcon icon="check-circle" size="5x" />
             <h3>Thank you, your order has been submitted successfully!</h3>
@@ -33,17 +33,17 @@ export const OrderConfirmation = (props: Props) => (
               <strong>NU Core</strong> system to complete payment.
             </p>
           </AlertSuccess>
-        </CenteredBox>
-        <Box w={1}>
+        </Grid>
+        <Grid item xs={12}>
           <PrimaryLargeButton>
             <Link to="/">
               <FontAwesomeIcon icon="home" /> Stock Center Home
             </Link>
           </PrimaryLargeButton>
-        </Box>
-      </Flex>
-    </Box>
-  </Flex>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Grid>
 )
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({

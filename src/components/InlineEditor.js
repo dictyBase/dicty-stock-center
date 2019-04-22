@@ -23,7 +23,7 @@ import {
 } from "draft-js-buttons"
 import Authorization from "components/authentication/Authorization"
 import { editInline, saveInlineEditing, fetchInfoPage } from "actions/page"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   ToolbarNav,
@@ -183,9 +183,11 @@ export class InlineEditor extends Component<Props, State> {
 
     return (
       <EditPanel>
-        <Flex wrap>
-          <Box w={1}>{!readOnly && this.renderToolbar()}</Box>
-          <Box mt={1}>
+        <Grid container wrap="wrap">
+          <Grid item xs={12}>
+            {!readOnly && this.renderToolbar()}
+          </Grid>
+          <Grid item style={{ marginTop: "4px" }}>
             <Editor
               editorState={editorState}
               onChange={this.onChange}
@@ -211,26 +213,29 @@ export class InlineEditor extends Component<Props, State> {
                 </div>
               )}
             />
-          </Box>
-          <Box w={1}>
-            <Flex>
-              <Box width="30%" mr={1} mt={1}>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid
+                item
+                xs={4}
+                style={{ marginRight: "4px", marginTop: "4px" }}>
                 {!readOnly && (
                   <DefaultBlockButton type="button" onClick={this.onCancel}>
                     Cancel
                   </DefaultBlockButton>
                 )}
-              </Box>
-              <Box width="30%" mt={1}>
+              </Grid>
+              <Grid item xs={4} style={{ marginTop: "4px" }}>
                 {!readOnly && (
                   <SuccessBlockButton type="button" onClick={this.onSave}>
                     Save
                   </SuccessBlockButton>
                 )}
-              </Box>
-            </Flex>
-          </Box>
-        </Flex>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </EditPanel>
     )
   }

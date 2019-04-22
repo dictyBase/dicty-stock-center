@@ -3,7 +3,7 @@ import React from "react"
 import { connect } from "react-redux"
 import PanelWrapper from "components/common/PanelWrapper"
 import { Link } from "react-router-dom"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import { Container, DictyHeader, Breadcrumb } from "styles"
 import type { MapStateToProps } from "react-redux"
 
@@ -21,21 +21,21 @@ export const MyDsc = (props: Props) => {
 
   return (
     <Container>
-      <Flex wrap justify="center">
-        <Box w={1}>
+      <Grid container wrap="wrap" justify="center">
+        <Grid item xs={12}>
           <Breadcrumb>
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>My DSC</li>
           </Breadcrumb>
-        </Box>
-        <Box w={1}>
+        </Grid>
+        <Grid item xs={12}>
           <DictyHeader>
             <h2>My DSC</h2>
           </DictyHeader>
-        </Box>
-        <Box w={3 / 4}>
+        </Grid>
+        <Grid item xs={8}>
           <PanelWrapper title="Personal Information">
             {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}
             {auth.user.data.attributes.email && (
@@ -46,8 +46,8 @@ export const MyDsc = (props: Props) => {
             )}
             <h3>Provider: {auth.provider}</h3>
           </PanelWrapper>
-        </Box>
-      </Flex>
+        </Grid>
+      </Grid>
     </Container>
   )
 }

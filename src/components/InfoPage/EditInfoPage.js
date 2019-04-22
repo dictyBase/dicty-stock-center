@@ -20,7 +20,7 @@ import {
   CodeBlockButton,
 } from "draft-js-buttons"
 import { saveEditing, cancelEditing } from "actions/page"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import {
   Container,
   ToolbarNav,
@@ -142,20 +142,20 @@ export class EditInfoPage extends Component<Props, State> {
               ref="{(element) => { this.editor = element }}"
             />
           </EditorStyle>
-          <Flex justify="space-between">
-            <Box width="25%" />
-            <Box width="25%" />
-            <Box width="25%" mr={1}>
+          <Grid container justify="space-between">
+            <Grid item xs={3} />
+            <Grid item xs={3} />
+            <Grid item xs={3} style={{ marginRight: "5px" }}>
               <CancelButton type="button" onClick={this.onCancel}>
                 Cancel
               </CancelButton>
-            </Box>
-            <Box width="25%">
+            </Grid>
+            <Grid item xs={3}>
               <SuccessBlockButton type="button" onClick={this.onSave}>
                 Save
               </SuccessBlockButton>
-            </Box>
-          </Flex>
+            </Grid>
+          </Grid>
         </EditPanel>
       </Container>
     )

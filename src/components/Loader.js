@@ -1,12 +1,12 @@
 import React from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import { Container } from "styles"
 
 const Loader = () => (
   <Container>
-    <Flex justify="center">
-      <Box w={1}>
+    <Grid container justify="center">
+      <Grid item xs={12}>
         <SkeletonTheme color="#fff	" highlightColor="#fff">
           <Skeleton count={10} />
           <br />
@@ -19,8 +19,8 @@ const Loader = () => (
           <br />
           <Skeleton count={5} />
         </SkeletonTheme>
-      </Box>
-    </Flex>
+      </Grid>
+    </Grid>
   </Container>
 )
 

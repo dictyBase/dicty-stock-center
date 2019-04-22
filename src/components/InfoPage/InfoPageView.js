@@ -18,7 +18,7 @@ import timeSince from "utils/timeSince"
 import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Flex, Box } from "rebass"
+import Grid from "@material-ui/core/Grid"
 import { Container, ToolbarNav, TextInfo } from "styles"
 
 const styles = theme => ({
@@ -44,6 +44,9 @@ const styles = theme => ({
   inlineLink: {
     cursor: "pointer",
   },
+  content: {
+    marginLeft: "auto",
+  },
 })
 
 const decorator = [
@@ -67,6 +70,8 @@ type Props = {
   page: Object,
   /** boolean representing whether the user is logged in or not */
   isAuthenticated: boolean,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 type State = {
@@ -121,8 +126,8 @@ export class InfoPageView extends Component<Props, State> {
                 <br />
                 {canEditPages && fetchedUserData && (
                   <ToolbarNav>
-                    <Flex>
-                      <Box>
+                    <Grid container>
+                      <Grid item>
                         <TextInfo>
                           <strong>
                             <FontAwesomeIcon icon="user" />{" "}
@@ -130,8 +135,8 @@ export class InfoPageView extends Component<Props, State> {
                           </strong>{" "}
                           edited {timeSince(updated_at)} ago
                         </TextInfo>
-                      </Box>
-                      <Box ml="auto">
+                      </Grid>
+                      <Grid item className={classes.content}>
                         <span className={classes.label}>
                           {fetchedUserData.getRoles()}
                         </span>{" "}
@@ -147,8 +152,8 @@ export class InfoPageView extends Component<Props, State> {
                             />
                           </a>
                         )}
-                      </Box>
-                    </Flex>
+                      </Grid>
+                    </Grid>
                   </ToolbarNav>
                 )}
               </div>
@@ -156,8 +161,8 @@ export class InfoPageView extends Component<Props, State> {
           />
         )}
 
-        <Flex>
-          <Box>
+        <Grid container>
+          <Grid item>
             <Editor
               editorState={this.state.editorState}
               ref="editor"
@@ -165,8 +170,8 @@ export class InfoPageView extends Component<Props, State> {
               onChange={this.onChange}
               decorators={decorator}
             />
-          </Box>
-        </Flex>
+          </Grid>
+        </Grid>
       </Container>
     )
   }
