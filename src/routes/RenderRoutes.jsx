@@ -78,39 +78,9 @@ const PlasmidDetailsContainer = Loadable({
 })
 
 // order form routes
-const Shipping = Loadable({
-  loader: () =>
-    import("components/form/Shipping" /* webpackChunkName: "Shipping" */),
-  loading: Loader,
-})
 const OrderForm = Loadable({
   loader: () =>
     import("components/OrderForm/OrderForm" /* webpackChunkName: "OrderForm" */),
-  loading: Loader,
-})
-const EditShipping = Loadable({
-  loader: () =>
-    import("components/form/EditShipping" /* webpackChunkName: "EditShipping" */),
-  loading: Loader,
-})
-const Payment = Loadable({
-  loader: () =>
-    import("components/form/Payment" /* webpackChunkName: "Payment" */),
-  loading: Loader,
-})
-const EditPayment = Loadable({
-  loader: () =>
-    import("components/form/EditPayment" /* webpackChunkName: "EditPayment" */),
-  loading: Loader,
-})
-const Submit = Loadable({
-  loader: () =>
-    import("components/form/Submit" /* webpackChunkName: "Submit" */),
-  loading: Loader,
-})
-const SubmitLoader = Loadable({
-  loader: () =>
-    import("components/form/SubmitLoader" /* webpackChunkName: "SubmitLoader" */),
   loading: Loader,
 })
 const OrderConfirmation = Loadable({
@@ -159,13 +129,7 @@ const RenderRoutes = () => (
       component={EditInfoPage}
     />
     {/* order form routes */}
-    <Route exact path="/order/shipping" component={OrderForm} />
-    <Route exact path="/order/shipping-old" component={Shipping} />
-    <Route exact path="/order/shipping/edit" component={EditShipping} />
-    <Route exact path="/order/payment" component={Payment} />
-    <Route exact path="/order/payment/edit" component={EditPayment} />
-    <Route exact path="/order/submit" component={Submit} />
-    <Route exact path="/order/submitting" component={SubmitLoader} />
+    <Route exact path="/order/checkout" component={OrderForm} />
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
     <Route exact path="/strains" component={StrainCatalogContainer} />

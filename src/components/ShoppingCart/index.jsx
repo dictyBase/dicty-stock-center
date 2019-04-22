@@ -65,7 +65,7 @@ class ShoppingCart extends Component<Props> {
                 </Link>
               </Box>
               <Box w={[1, "40%"]} mt={10} mr={1}>
-                <Link to="/order/shipping">
+                <Link to="/order/checkout">
                   <SuccessLargeButton>
                     <FontAwesomeIcon icon="shopping-cart" /> Checkout
                   </SuccessLargeButton>
