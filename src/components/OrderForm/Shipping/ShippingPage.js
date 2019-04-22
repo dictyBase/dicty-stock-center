@@ -3,8 +3,9 @@ import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import PanelWrapper from "components/common/PanelWrapper"
 import ShippingAddress from "./ShippingAddress"
-import styles from "../formStyles"
+import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
+import styles from "../formStyles"
 
 const ShippingPage = props => {
   const { classes } = props
@@ -23,7 +24,7 @@ const ShippingPage = props => {
         <Grid container direction="column" spacing={16}>
           <Grid item>
             <PanelWrapper title="Shipping Method">
-              Shipping Method Form goes here
+              <ShippingMethod {...props} />
             </PanelWrapper>
           </Grid>
           <Grid item>
