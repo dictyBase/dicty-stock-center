@@ -99,9 +99,9 @@ const ErrorPage = Loadable({
     import("components/ErrorPage" /* webpackChunkName: "ErrorPage" */),
   loading: Loader,
 })
-const ShoppingCart = Loadable({
+const ShoppingCartPage = Loadable({
   loader: () =>
-    import("components/ShoppingCart" /* webpackChunkName: "ShoppingCart" */),
+    import("components/ShoppingCart/ShoppingCartPage" /* webpackChunkName: "ShoppingCartPage" */),
   loading: Loader,
 })
 
@@ -140,7 +140,7 @@ const RenderRoutes = () => (
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/error" component={ErrorPage} />
-    <Route exact path="/cart" component={ShoppingCart} />
+    <Route exact path="/cart" component={ShoppingCartPage} />
     <Route exact path="*" component={PageNotReady} />
   </Switch>
 )

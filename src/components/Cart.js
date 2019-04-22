@@ -2,14 +2,25 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import { Flex, Box } from "rebass"
+import { withStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Container } from "styles"
-import type { MapStateToProps } from "react-redux"
+
+const styles = theme => ({
+  container: {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "75%",
+  },
+})
 
 type Props = {
-  /** Array for currently added items in the cart */
-  addedItems: Array<Object>,
+  /** List of added items in the cart */
+  items: Array<Object>,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 /**
@@ -18,23 +29,21 @@ type Props = {
  */
 
 export const Cart = (props: Props) => {
-  const addedItems = props.addedItems
+  const { items, classes } = props
+
   return (
-    <Container>
-      <Flex justify="flex-end">
-        <Box>
-          <Link to="/cart">
-            <FontAwesomeIcon icon="shopping-cart" size="2x" /> (
-            {addedItems.length})
-          </Link>
-        </Box>
-      </Flex>
-    </Container>
+    <Grid container justify="flex-end" className={classes.container}>
+      <Grid item>
+        <Link to="/cart">
+          <FontAwesomeIcon icon="shopping-cart" size="2x" /> ({items.length})
+        </Link>
+      </Grid>
+    </Grid>
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  addedItems: state.cart.addedItems,
+const mapStateToProps = state => ({
+  items: state.cart.addedItems,
 })
 
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps)(withStyles(styles)(Cart))
