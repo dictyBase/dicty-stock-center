@@ -42,7 +42,7 @@ const OrderForm = (props: Props) => {
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              console.log(JSON.stringify(values, null, 2))
+              alert(JSON.stringify(values, null, 2))
               setSubmitting(false)
             }, 400)
           }}
@@ -50,24 +50,35 @@ const OrderForm = (props: Props) => {
             <Form>
               <PageComponent {...props} />
               <br />
-              <Grid container justify="flex-end">
-                <Grid item>
+              <Grid container justify="flex-end" spacing={8}>
+                <Grid item xs={3}>
                   {pageNum > 0 && (
                     <Button
-                      type="primary"
+                      color="primary"
+                      size="large"
+                      className={classes.previousBtn}
                       onClick={() => setPageNum(pageNum - 1)}>
                       <FontAwesomeIcon icon="arrow-circle-left" />
                       &nbsp; Previous
                     </Button>
                   )}
+                </Grid>
+                <Grid item xs={3} />
+                <Grid item xs={3} />
+                <Grid item xs={3}>
                   {pageNum === pages.length - 1 ? (
-                    <Button type="submit" disabled={props.isSubmitting}>
+                    <Button
+                      type="submit"
+                      size="large"
+                      className={classes.submitBtn}
+                      disabled={props.isSubmitting}>
                       Submit Order &nbsp;
                       <FontAwesomeIcon icon="check-circle" />
                     </Button>
                   ) : (
                     <Button
-                      type="primary"
+                      size="large"
+                      className={classes.continueBtn}
                       onClick={() => setPageNum(pageNum + 1)}>
                       Continue &nbsp;
                       <FontAwesomeIcon icon="arrow-circle-right" />

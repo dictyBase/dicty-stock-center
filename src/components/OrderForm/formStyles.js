@@ -31,6 +31,30 @@ const styles = (theme: Object) => ({
     textAlign: "center",
     paddingLeft: "25px",
   },
+  continueBtn: {
+    width: "100%",
+    color: "#fff",
+    backgroundColor: "rgb(46, 109, 164)",
+    "&:hover": {
+      backgroundColor: "#0073e6",
+    },
+  },
+  previousBtn: {
+    width: "100%",
+    color: "#fff",
+    backgroundColor: "#5cb85c",
+    "&:hover": {
+      backgroundColor: "#449d44",
+    },
+  },
+  submitBtn: {
+    width: "100%",
+    color: "#fff",
+    backgroundColor: "rgb(46, 109, 164)",
+    "&:hover": {
+      backgroundColor: "#0073e6",
+    },
+  },
 })
 
 export default styles
