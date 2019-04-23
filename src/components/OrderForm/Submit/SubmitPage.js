@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
 import { connect } from "react-redux"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
@@ -31,7 +31,7 @@ const SubmitPage = props => {
               </Grid>
               <Grid item xs={2} />
               {items.map((item, index) => (
-                <>
+                <Fragment key={index}>
                   <Grid item xs={2} />
                   <Grid item xs={4}>
                     {item.id}
@@ -40,7 +40,7 @@ const SubmitPage = props => {
                     {item.name}
                   </Grid>
                   <Grid item xs={2} />
-                </>
+                </Fragment>
               ))}
             </Grid>
           </div>

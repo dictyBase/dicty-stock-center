@@ -25,6 +25,7 @@ import {
   faSignOutAlt,
   faSpinner,
   faTrash,
+  faTruck,
   faUser,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons"
@@ -61,6 +62,7 @@ library.add(
   faSignOutAlt,
   faSpinner,
   faTrash,
+  faTruck,
   faUser,
   faWrench,
 )

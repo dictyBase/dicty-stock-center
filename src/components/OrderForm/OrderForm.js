@@ -2,6 +2,7 @@
 // @flow
 import React from "react"
 import { Form, Formik } from "formik"
+import { Helmet } from "react-helmet"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
@@ -45,6 +46,13 @@ class OrderForm extends React.PureComponent<Props, State> {
 
     return (
       <Grid container spacing={16} className={classes.layout}>
+        <Helmet>
+          <title>Order Form - Dicty Stock Center</title>
+          <meta
+            name="description"
+            content="Order form for Dicty Stock Center"
+          />
+        </Helmet>
         <Grid item xs={12}>
           <Formik
             initialValues={initialValues}
