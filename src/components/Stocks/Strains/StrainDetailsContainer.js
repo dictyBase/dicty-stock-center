@@ -113,6 +113,7 @@ export const StrainDetailsContainer = (props: Props) => {
                 type="strain"
                 id={data.strain.id}
                 name={data.strain.label}
+                inStock={data.strain.in_stock}
               />
             </Grid>
           </Grid>

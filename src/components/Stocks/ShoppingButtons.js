@@ -18,6 +18,10 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  disabledBtn: {
+    backgroundColor: "#c3ccdb",
+    margin: theme.spacing.unit,
+  },
 })
 
 type Props = {
@@ -31,6 +35,8 @@ type Props = {
   id: String,
   /** Name of the given item */
   name: string,
+  /** Availability of given item */
+  inStock: Boolean,
 }
 
 // Creating CustomLink is necessary to prevent unexpected unmounting.
@@ -43,7 +49,7 @@ const CustomLink = props => <Link to="/order/shipping" {...props} />
 
 export const ShoppingButtons = (props: Props) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const { classes, type, id, name, addToCart } = props
+  const { classes, type, id, name, addToCart, inStock } = props
   const cartItem = {
     type: type,
     id: id,
@@ -52,17 +58,27 @@ export const ShoppingButtons = (props: Props) => {
 
   return (
     <div className={classes.container}>
-      <Button
-        variant="contained"
-        color="default"
-        size="small"
-        className={classes.button}
-        onClick={() => {
-          addToCart(cartItem)
-          setSnackbarOpen(true)
-        }}>
-        <FontAwesomeIcon icon="share" /> &nbsp;Add to Cart
-      </Button>
+      {inStock ? (
+        <Button
+          variant="contained"
+          color="default"
+          size="small"
+          className={classes.button}
+          onClick={() => {
+            addToCart(cartItem)
+            setSnackbarOpen(true)
+          }}>
+          <FontAwesomeIcon icon="share" /> &nbsp;Add to Cart
+        </Button>
+      ) : (
+        <Button
+          size="small"
+          variant="head"
+          className={classes.disabled}
+          disabledBtn>
+          Out of stock
+        </Button>
+      )}
       <Button
         component={CustomLink}
         variant="contained"
@@ -81,8 +97,7 @@ export const ShoppingButtons = (props: Props) => {
         }}
         message={
           <span id="cart-id">
-            <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added to
-            cart
+            <FontAwesomeIcon icon="check-circle" /> &nbsp; Item added to cart
           </span>
         }
       />

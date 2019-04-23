@@ -78,7 +78,8 @@ export const PlasmidDetailsContainer = (props: Props) => {
               <ShoppingButtons
                 type="plasmid"
                 id={data.plasmid.id}
-                name={data.plasmid.id}
+                name={data.plasmid.name}
+                inStock={data.plasmid.in_stock}
               />
             </Grid>
           </Grid>
