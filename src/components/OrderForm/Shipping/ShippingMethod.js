@@ -10,9 +10,15 @@ import TextField from "../TextField"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
+  /** Function for handling radio button selection */
   handleChange: Function,
 }
+
+/**
+ * ShippingMethod contains radio buttons and a text field for listing courier information.
+ */
 
 const ShippingMethod = (props: Props) => {
   const [shipAccountNum, setShipAccountNum] = useState(true)

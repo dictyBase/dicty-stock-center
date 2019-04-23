@@ -6,8 +6,13 @@ import TextField from "../TextField"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
+
+/**
+ * AddressInformation contains text fields for entering a user address.
+ */
 
 const AddressInformation = (props: Props) => {
   const { classes } = props

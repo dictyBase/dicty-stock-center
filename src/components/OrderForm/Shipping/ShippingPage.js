@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
@@ -7,7 +8,16 @@ import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
 import styles from "../formStyles"
 
-const ShippingPage = props => {
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+}
+
+/**
+ * ShippingPage is the display component for when the user is entering shipping information.
+ */
+
+const ShippingPage = (props: Props) => {
   const { classes } = props
 
   return (

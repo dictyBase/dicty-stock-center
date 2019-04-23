@@ -10,9 +10,15 @@ import TextField from "../TextField"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
+  /** Function for handling radio button selection */
   handleChange: Function,
 }
+
+/**
+ * PaymentMethod contains radio buttons and a text field for listing payment method information.
+ */
 
 const PaymentMethod = (props: Props) => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)

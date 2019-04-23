@@ -6,8 +6,13 @@ import TextField from "../TextField"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
+
+/**
+ * AdditionalInformation contains a text area for entering any optional comments.
+ */
 
 const AdditionalInformation = (props: Props) => {
   const { classes } = props

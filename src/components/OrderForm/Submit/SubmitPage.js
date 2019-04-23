@@ -8,7 +8,21 @@ import styles from "../formStyles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
-const SubmitPage = props => {
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+  /** Stock items being ordered */
+  items: Array<{
+    id: string,
+    name: string,
+  }>,
+}
+
+/**
+ * SubmitPage is the final page the user sees before submitting the order.
+ */
+
+const SubmitPage = (props: Props) => {
   const { classes, items } = props
 
   return (

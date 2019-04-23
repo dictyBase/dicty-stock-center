@@ -9,8 +9,13 @@ import ContactInformation from "./ContactInformation"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
+
+/**
+ * PaymentAddress is a grid container that contains all of the main payer address components.
+ */
 
 const PaymentAddress = (props: Props) => {
   const { classes } = props

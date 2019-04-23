@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
@@ -7,7 +8,16 @@ import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 import styles from "../formStyles"
 
-const PaymentPage = props => {
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+}
+
+/**
+ * PaymentPage is the display component for when the user is entering payment information.
+ */
+
+const PaymentPage = (props: Props) => {
   const { classes } = props
 
   return (

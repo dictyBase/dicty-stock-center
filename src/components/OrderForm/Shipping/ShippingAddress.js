@@ -9,8 +9,13 @@ import ContactInformation from "./ContactInformation"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
+
+/**
+ * ShippingAddress is a grid container that contains all of the main shipping address components.
+ */
 
 const ShippingAddress = (props: Props) => {
   const { classes } = props

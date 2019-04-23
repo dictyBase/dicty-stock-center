@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import { Field } from "formik"
 import { TextField as MuiTextField } from "@material-ui/core"
@@ -34,6 +35,11 @@ const InputField = ({
   </MuiTextField>
 )
 
-const TextField = props => <Field {...props} component={InputField} />
+/**
+ * TextField is a wrapper component that puts all Formik and MUI props
+ * on the Material-UI TextField component.
+ */
+
+const TextField = (props: any) => <Field {...props} component={InputField} />
 
 export default TextField

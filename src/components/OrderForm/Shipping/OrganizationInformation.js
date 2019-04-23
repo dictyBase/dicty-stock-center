@@ -6,8 +6,13 @@ import TextField from "../TextField"
 import styles from "../formStyles"
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
+
+/**
+ * OrganizationInformation contains text fields for organization and lab/group.
+ */
 
 const OrganizationInformation = (props: Props) => {
   const { classes } = props

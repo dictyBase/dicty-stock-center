@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 // @flow
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import { Form, Formik } from "formik"
 import { Helmet } from "react-helmet"
 import { withStyles } from "@material-ui/core/styles"
@@ -30,6 +30,9 @@ const OrderForm = (props: Props) => {
   const { classes } = props
   const PageComponent = pages[pageNum]
 
+  const increasePage = useCallback(() => setPageNum(pageNum + 1), [pageNum])
+  const decreasePage = useCallback(() => setPageNum(pageNum - 1), [pageNum])
+
   return (
     <Grid container spacing={16} className={classes.layout}>
       <Helmet>
@@ -57,7 +60,7 @@ const OrderForm = (props: Props) => {
                       color="primary"
                       size="large"
                       className={classes.previousBtn}
-                      onClick={() => setPageNum(pageNum - 1)}>
+                      onClick={decreasePage}>
                       <FontAwesomeIcon icon="arrow-circle-left" />
                       &nbsp; Previous
                     </Button>
@@ -79,7 +82,7 @@ const OrderForm = (props: Props) => {
                     <Button
                       size="large"
                       className={classes.continueBtn}
-                      onClick={() => setPageNum(pageNum + 1)}>
+                      onClick={increasePage}>
                       Continue &nbsp;
                       <FontAwesomeIcon icon="arrow-circle-right" />
                     </Button>

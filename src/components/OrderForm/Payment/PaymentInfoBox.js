@@ -1,9 +1,19 @@
+// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import styles from "../formStyles"
 
-const PaymentInfoBox = props => {
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+}
+
+/**
+ * PaymentInfoBox contains general information about making a payment.
+ */
+
+const PaymentInfoBox = (props: Props) => {
   const { classes } = props
 
   return (
