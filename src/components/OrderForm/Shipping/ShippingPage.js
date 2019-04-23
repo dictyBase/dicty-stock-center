@@ -2,6 +2,8 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import ShippingAddress from "./ShippingAddress"
 import ShippingMethod from "./ShippingMethod"
@@ -19,6 +21,7 @@ type Props = {
 
 const ShippingPage = (props: Props) => {
   const { classes } = props
+  const [pageNum, setPageNum] = props.page
 
   return (
     <Grid container spacing={16}>
@@ -32,15 +35,24 @@ const ShippingPage = (props: Props) => {
       </Grid>
       <Grid item xs={6}>
         <Grid container direction="column" spacing={16}>
-          <Grid item>
+          <Grid item xs={12}>
             <PanelWrapper title="Shipping Method">
               <ShippingMethod {...props} />
             </PanelWrapper>
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <PanelWrapper title="Additional Information">
               <AdditionalInformation {...props} />
             </PanelWrapper>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              size="large"
+              className={classes.continueBtn}
+              onClick={() => setPageNum(pageNum + 1)}>
+              Continue &nbsp;
+              <FontAwesomeIcon icon="arrow-circle-right" />
+            </Button>
           </Grid>
         </Grid>
       </Grid>

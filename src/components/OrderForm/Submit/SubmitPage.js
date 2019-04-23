@@ -3,9 +3,10 @@ import React, { Fragment } from "react"
 import { connect } from "react-redux"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import styles from "../formStyles"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { MapStateToProps } from "react-redux"
 
 type Props = {
@@ -24,6 +25,7 @@ type Props = {
 
 const SubmitPage = (props: Props) => {
   const { classes, items } = props
+  const [pageNum, setPageNum] = props.page
 
   return (
     <Grid container spacing={16} className={classes.innerForm}>
@@ -32,7 +34,7 @@ const SubmitPage = (props: Props) => {
       </Grid>
       <Grid item xs={12}>
         <PanelWrapper title="Review Order">
-          <div className={classes.submit}>
+          <div className={classes.submitPage}>
             <h1>
               <FontAwesomeIcon icon="truck" /> Items
             </h1>
@@ -62,6 +64,31 @@ const SubmitPage = (props: Props) => {
           <br />
           <br />
         </PanelWrapper>
+        <br />
+        <Grid container justify="center" spacing={16}>
+          <Grid item xs={2} />
+          <Grid item xs={4}>
+            <Button
+              color="primary"
+              size="large"
+              className={classes.previousBtn}
+              onClick={() => setPageNum(pageNum - 1)}>
+              <FontAwesomeIcon icon="arrow-circle-left" />
+              &nbsp; Previous
+            </Button>
+          </Grid>
+          <Grid item xs={4}>
+            <Button
+              type="submit"
+              size="large"
+              className={classes.submitBtn}
+              disabled={props.isSubmitting}>
+              Submit Order &nbsp;
+              <FontAwesomeIcon icon="check-circle" />
+            </Button>
+          </Grid>
+          <Grid item xs={2} />
+        </Grid>
       </Grid>
     </Grid>
   )

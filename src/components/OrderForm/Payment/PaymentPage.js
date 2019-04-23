@@ -2,6 +2,8 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import PaymentAddress from "./PaymentAddress"
 import PaymentMethod from "./PaymentMethod"
@@ -19,6 +21,7 @@ type Props = {
 
 const PaymentPage = (props: Props) => {
   const { classes } = props
+  const [pageNum, setPageNum] = props.page
 
   return (
     <Grid container spacing={16}>
@@ -32,13 +35,34 @@ const PaymentPage = (props: Props) => {
       </Grid>
       <Grid item xs={6}>
         <Grid container direction="column" spacing={16}>
-          <Grid item>
+          <Grid item xs={12}>
             <PanelWrapper title="Payment Method">
               <PaymentMethod {...props} />
             </PanelWrapper>
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <PaymentInfoBox />
+          </Grid>
+          <Grid container justify="center" spacing={16}>
+            <Grid item xs={6}>
+              <Button
+                color="primary"
+                size="large"
+                className={classes.previousBtn}
+                onClick={() => setPageNum(pageNum - 1)}>
+                <FontAwesomeIcon icon="arrow-circle-left" />
+                &nbsp; Previous
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                size="large"
+                className={classes.continueBtn}
+                onClick={() => setPageNum(pageNum + 1)}>
+                Continue &nbsp;
+                <FontAwesomeIcon icon="arrow-circle-right" />
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

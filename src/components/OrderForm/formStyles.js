@@ -27,7 +27,7 @@ const styles = (theme: Object) => ({
     borderRadius: "10px",
     width: "100%",
   },
-  submit: {
+  submitPage: {
     textAlign: "center",
     paddingLeft: "25px",
   },
