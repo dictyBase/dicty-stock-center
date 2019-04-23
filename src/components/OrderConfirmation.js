@@ -16,7 +16,7 @@ type Props = {
 
 export const OrderConfirmation = (props: Props) => (
   <Grid container wrap="wrap" justify="center">
-    <Grid item={8}>
+    <Grid item xs={8}>
       <Grid container wrap="wrap" justify="center">
         <Grid item xs={12}>
           <AlertSuccess>

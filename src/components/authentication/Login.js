@@ -7,6 +7,7 @@ import oauthConfig from "utils/oauthConfig"
 import ErrorNotification from "components/authentication/ErrorNotification"
 import Grid from "@material-ui/core/Grid"
 import { DictyHeader } from "styles"
+import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
@@ -90,6 +91,6 @@ class Login extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
+const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
 
 export default connect(mapStateToProps)(Login)

@@ -21,7 +21,7 @@ type Props = {
   /** Material-UI styling */
   classes: Object,
   /** The order to sort the column */
-  order: string,
+  order: any,
   /** The item to be ordered by */
   orderBy: string,
   /** Function for handling sorting */

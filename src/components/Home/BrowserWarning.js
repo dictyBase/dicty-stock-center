@@ -8,6 +8,8 @@ import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import Slide from "@material-ui/core/Slide"
 
+type Props = {}
+
 type State = {
   /** Tells if the dialog box is open or not */
   open: boolean,
@@ -20,7 +22,7 @@ const Transition = props => <Slide direction="up" {...props} />
  * It uses Material-UI's Dialog component and Slide animation.
  */
 
-export default class BrowserWarning extends Component<null, State> {
+export default class BrowserWarning extends Component<Props, State> {
   state = {
     open: true,
   }

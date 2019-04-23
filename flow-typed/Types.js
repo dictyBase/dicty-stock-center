@@ -35,17 +35,11 @@ declare module "middlewares/storage" {
 declare module "middlewares/callAPI" {
   declare module.exports: any
 }
-declare module "validator/lib/isEmail" {
-  declare module.exports: any
-}
 declare module "history/createBrowserHistory" {
   declare module.exports: any
 }
 
 // styles
-declare module "react-virtualized/styles.css" {
-  declare module.exports: any
-}
 declare module "react-responsive-carousel/lib/styles/carousel.min.css" {
   declare module.exports: any
 }

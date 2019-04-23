@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles"
 import PanelWrapper from "components/common/PanelWrapper"
 import styles from "../formStyles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { MapStateToProps } from "react-redux"
 
 const SubmitPage = props => {
   const { classes, items } = props
@@ -52,7 +53,7 @@ const SubmitPage = props => {
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   items: state.cart.addedItems,
 })
 

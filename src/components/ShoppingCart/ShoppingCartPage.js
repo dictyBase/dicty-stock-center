@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartItems from "./ShoppingCartItems"
+import type { MapStateToProps } from "react-redux"
 
 const styles = theme => ({
   container: {
@@ -130,7 +131,7 @@ class ShoppingCartPage extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   items: state.cart.addedItems,
 })
 
