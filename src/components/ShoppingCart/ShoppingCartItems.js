@@ -2,6 +2,7 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Table from "@material-ui/core/Table"
@@ -72,7 +73,13 @@ const ShoppingCartItems = (props: Props) => {
         <TableBody>
           {items.map((item, index) => (
             <TableRow key={index} className={classes.tableRow}>
-              <TableCell className={classes.cell}>{item.id}</TableCell>
+              <TableCell className={classes.cell}>
+                {item.id.substring(0, 3) === "DBS" ? (
+                  <Link to={`/strains/${item.id}`}>{item.id}</Link>
+                ) : (
+                  <Link to={`/plasmids/${item.id}`}>{item.id}</Link>
+                )}
+              </TableCell>
               <TableCell className={classes.cell}>{item.name}</TableCell>
               <TableCell className={classes.cell}>{item.fee}</TableCell>
               <TableCell className={classes.cell}>

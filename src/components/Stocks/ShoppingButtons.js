@@ -71,11 +71,7 @@ export const ShoppingButtons = (props: Props) => {
           <FontAwesomeIcon icon="share" /> &nbsp;Add to Cart
         </Button>
       ) : (
-        <Button
-          size="small"
-          variant="head"
-          className={classes.disabled}
-          disabledBtn>
+        <Button size="small" className={classes.disabledBtn} disabled>
           Out of stock
         </Button>
       )}
