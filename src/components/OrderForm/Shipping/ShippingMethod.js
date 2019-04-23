@@ -62,9 +62,8 @@ const ShippingMethod = (props: Props) => {
           <TextField
             type="text"
             name="shippingAccountNumber"
-            placeholder="Shipping Account Number">
-            test
-          </TextField>
+            placeholder="Shipping Account Number"
+          />
         )}
       </Grid>
     </Grid>

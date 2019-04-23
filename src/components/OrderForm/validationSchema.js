@@ -12,6 +12,16 @@ const validationSchema = Yup.object().shape({
   zip: Yup.string().required("Zip code is required"),
   country: Yup.string().required("Country is required"),
   phone: Yup.string().required("Phone number is required"),
+  payerFirstName: Yup.string().required("First name is required"),
+  payerLastName: Yup.string().required("Last name is required"),
+  payerEmail: Yup.string().required("Email is required"),
+  payerOrganization: Yup.string().required("Organization is required"),
+  payerLab: Yup.string().required("Lab/Group is required"),
+  payerAddress1: Yup.string().required("Address is required"),
+  payerCity: Yup.string().required("City is required"),
+  payerZip: Yup.string().required("Zip code is required"),
+  payerCountry: Yup.string().required("Country is required"),
+  payerPhone: Yup.string().required("Phone number is required"),
 })
 
 export default validationSchema

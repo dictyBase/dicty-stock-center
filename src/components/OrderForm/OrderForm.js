@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import { Form, Formik } from "formik"
 import { Helmet } from "react-helmet"
 import { withStyles } from "@material-ui/core/styles"
@@ -10,86 +10,77 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
+import initialValues from "./initialValues"
 import validationSchema from "./validationSchema"
 import styles from "./formStyles"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
-const initialValues = {
-  firstName: "",
-  lastName: "",
-}
-
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
 
-type State = {
-  page: number,
-}
+/**
+ * OrderForm is the main component used for the checkout process.
+ */
 
-class OrderForm extends React.PureComponent<Props, State> {
-  state = {
-    page: 0,
-  }
+const OrderForm = (props: Props) => {
+  const [pageNum, setPageNum] = useState(0)
+  const { classes } = props
+  const PageComponent = pages[pageNum]
 
-  submit = (values: any) => {
-    console.log("values: ", values)
-  }
-
-  prevPage = () => this.setState(state => ({ page: state.page - 1 }))
-  nextPage = () => this.setState(state => ({ page: state.page + 1 }))
-
-  render() {
-    const { classes } = this.props
-    const PageComponent = pages[this.state.page]
-
-    return (
-      <Grid container spacing={16} className={classes.layout}>
-        <Helmet>
-          <title>Order Form - Dicty Stock Center</title>
-          <meta
-            name="description"
-            content="Order form for Dicty Stock Center"
-          />
-        </Helmet>
-        <Grid item xs={12}>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={this.submit}
-            render={props => (
-              <Form>
-                <PageComponent {...props} />
-                <br />
-                <Grid container justify="flex-end">
-                  <Grid item>
-                    {this.state.page > 0 && (
-                      <Button type="primary" onClick={this.prevPage}>
-                        <FontAwesomeIcon icon="arrow-circle-left" />
-                        &nbsp; Previous
-                      </Button>
-                    )}
-                    {this.state.page === pages.length - 1 ? (
-                      <Button type="submit">
-                        Submit Order &nbsp;
-                        <FontAwesomeIcon icon="check-circle" />
-                      </Button>
-                    ) : (
-                      <Button type="primary" onClick={this.nextPage}>
-                        Continue &nbsp;
-                        <FontAwesomeIcon icon="arrow-circle-right" />
-                      </Button>
-                    )}
-                  </Grid>
+  return (
+    <Grid container spacing={16} className={classes.layout}>
+      <Helmet>
+        <title>Order Form - Dicty Stock Center</title>
+        <meta name="description" content="Order form for Dicty Stock Center" />
+      </Helmet>
+      <Grid item xs={12}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              console.log(JSON.stringify(values, null, 2))
+              setSubmitting(false)
+            }, 400)
+          }}
+          render={props => (
+            <Form>
+              <PageComponent {...props} />
+              <br />
+              <Grid container justify="flex-end">
+                <Grid item>
+                  {pageNum > 0 && (
+                    <Button
+                      type="primary"
+                      onClick={() => setPageNum(pageNum - 1)}>
+                      <FontAwesomeIcon icon="arrow-circle-left" />
+                      &nbsp; Previous
+                    </Button>
+                  )}
+                  {pageNum === pages.length - 1 ? (
+                    <Button type="submit" disabled={props.isSubmitting}>
+                      Submit Order &nbsp;
+                      <FontAwesomeIcon icon="check-circle" />
+                    </Button>
+                  ) : (
+                    <Button
+                      type="primary"
+                      onClick={() => setPageNum(pageNum + 1)}>
+                      Continue &nbsp;
+                      <FontAwesomeIcon icon="arrow-circle-right" />
+                    </Button>
+                  )}
                 </Grid>
-              </Form>
-            )}
-          />
-        </Grid>
+              </Grid>
+            </Form>
+          )}
+        />
       </Grid>
-    )
-  }
+    </Grid>
+  )
 }
 
 export default withStyles(styles)(OrderForm)
