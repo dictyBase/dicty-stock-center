@@ -92,7 +92,8 @@ export const ShoppingButtons = (props: Props) => {
         }}
         message={
           <span id="cart-id">
-            <FontAwesomeIcon icon="check-circle" /> &nbsp; Item added to cart
+            <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added to
+            cart
           </span>
         }
       />

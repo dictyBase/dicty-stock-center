@@ -228,8 +228,8 @@ export class PlasmidCatalogTable extends React.PureComponent<Props, State> {
             }}
             message={
               <span id="cart-id">
-                <FontAwesomeIcon icon="check-circle" /> &nbsp; Item {id} added
-                to cart
+                <FontAwesomeIcon icon="check-circle" /> &nbsp; Item added to
+                cart
               </span>
             }
           />

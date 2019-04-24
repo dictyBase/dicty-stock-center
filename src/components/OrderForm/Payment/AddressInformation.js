@@ -1,8 +1,12 @@
 // @flow
 import React from "react"
 import { withStyles } from "@material-ui/core/styles"
-import { Grid } from "@material-ui/core"
+import Grid from "@material-ui/core/Grid"
+import Select from "@material-ui/core/Select"
+import OutlinedInput from "@material-ui/core/OutlinedInput"
+import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "../TextField"
+import countryList from "../countryList"
 import styles from "../formStyles"
 
 type Props = {
@@ -15,7 +19,7 @@ type Props = {
  */
 
 const AddressInformation = (props: Props) => {
-  const { classes } = props
+  const { classes, values, setFieldValue } = props
 
   return (
     <>
@@ -53,7 +57,20 @@ const AddressInformation = (props: Props) => {
         <span className={classes.requiredText}>*</span> Country:
       </Grid>
       <Grid item xs={8}>
-        <TextField type="text" name="payerCountry" />
+        <Select
+          name="country"
+          label="Country"
+          fullWidth
+          value={values.payerCountry}
+          onChange={e => setFieldValue("payerCountry", e.target.value)}
+          input={<OutlinedInput name="payerCountry" id="country" fullWidth />}>
+          {countryList &&
+            countryList.map(item => (
+              <MenuItem key={countryList.indexOf(item)} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+        </Select>
       </Grid>
     </>
   )
