@@ -63,7 +63,14 @@ const AddressInformation = (props: Props) => {
           fullWidth
           value={values.country}
           onChange={e => setFieldValue("country", e.target.value)}
-          input={<OutlinedInput name="country" id="country" fullWidth />}>
+          input={
+            <OutlinedInput
+              name="country"
+              id="country"
+              fullWidth
+              labelWidth={0}
+            />
+          }>
           {countryList &&
             countryList.map(item => (
               <MenuItem key={countryList.indexOf(item)} value={item}>

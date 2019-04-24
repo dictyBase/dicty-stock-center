@@ -1,7 +1,9 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Checkbox from "@material-ui/core/Checkbox"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
@@ -20,13 +22,41 @@ type Props = {
  */
 
 const PaymentPage = (props: Props) => {
-  const { classes } = props
+  const [checkbox, toggleCheckbox] = useState(false)
+
+  const { classes, setFieldValue, values } = props
   const [pageNum, setPageNum] = props.page
+
+  const handleChange = () => {
+    toggleCheckbox(!checkbox)
+    setFieldValue("payerFirstName", values.firstName)
+    setFieldValue("payerLastName", values.lastName)
+    setFieldValue("payerEmail", values.email)
+    setFieldValue("payerOrganization", values.organization)
+    setFieldValue("payerLab", values.lab)
+    setFieldValue("payerAddress1", values.address1)
+    setFieldValue("payerAddress2", values.address2)
+    setFieldValue("payerCity", values.city)
+    setFieldValue("payerState", values.state)
+    setFieldValue("payerZip", values.zip)
+    setFieldValue("payerCountry", values.country)
+    setFieldValue("payerPhone", values.phone)
+  }
 
   return (
     <Grid container spacing={16}>
       <Grid item xs={12}>
         <div className={classes.header}>Please enter payment information</div>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={checkbox}
+              onChange={handleChange}
+              value="sameAsShipping"
+            />
+          }
+          label="Same as shipping (click here if payer address is the same as shipping address)"
+        />
       </Grid>
       <Grid item xs={6}>
         <PanelWrapper title="Payment Address">

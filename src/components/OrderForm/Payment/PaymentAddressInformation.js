@@ -63,7 +63,14 @@ const PaymentAddressInformation = (props: Props) => {
           fullWidth
           value={values.payerCountry}
           onChange={e => setFieldValue("payerCountry", e.target.value)}
-          input={<OutlinedInput name="payerCountry" id="country" fullWidth />}>
+          input={
+            <OutlinedInput
+              name="payerCountry"
+              id="country"
+              fullWidth
+              labelWidth={0}
+            />
+          }>
           {countryList &&
             countryList.map(item => (
               <MenuItem key={countryList.indexOf(item)} value={item}>
