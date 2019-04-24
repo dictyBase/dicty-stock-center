@@ -1,47 +1,75 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
+import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { AlertSuccess, PrimaryLargeButton } from "styles"
+
+const styles = theme => ({
+  alertBox: {
+    padding: "15px",
+    marginBottom: "20px",
+    border: "1px solid transparent",
+    borderRadius: "4px",
+    color: "#3c763d",
+    backgroundColor: "#dff0d8",
+    borderColor: "#d6e9c6",
+    textAlign: "center",
+  },
+  btn: {
+    marginBottom: "10px",
+    backgroundColor: "#004080",
+    "&:hover": {
+      backgroundColor: "#0073e6",
+    },
+  },
+  btnGrid: {
+    textAlign: "center",
+  },
+})
 
 type Props = {
-  /** the current order ID number */
-  id: number,
+  /** Material-UI styling */
+  classes: Object,
 }
 
 /**
  * Displays notification that the user's order was submitted successfully.
  */
 
-export const OrderConfirmation = (props: Props) => (
-  <Grid container wrap="wrap" justify="center">
-    <Grid item xs={8}>
-      <Grid container wrap="wrap" justify="center">
-        <Grid item xs={12}>
-          <AlertSuccess>
-            <FontAwesomeIcon icon="check-circle" size="5x" />
-            <h3>Thank you, your order has been submitted successfully!</h3>
-            <p>
-              Order Number: <strong>{props.id}</strong>
-            </p>
-            <p>We have sent you a confirmation email.</p>
-            <p>
-              The <strong>Payer</strong> will soon receive emails through the{" "}
-              <strong>NU Core</strong> system to complete payment.
-            </p>
-          </AlertSuccess>
-        </Grid>
-        <Grid item xs={12}>
-          <PrimaryLargeButton>
-            <Link to="/">
-              <FontAwesomeIcon icon="home" /> Stock Center Home
-            </Link>
-          </PrimaryLargeButton>
+export const OrderConfirmation = (props: Props) => {
+  const { classes } = props
+
+  return (
+    <Grid container wrap="wrap" justify="center">
+      <Grid item xs={8}>
+        <Grid container wrap="wrap" justify="center">
+          <Grid item xs={12}>
+            <div className={classes.alertBox}>
+              <FontAwesomeIcon icon="check-circle" size="5x" />
+              <p>We have sent you a confirmation email.</p>
+              <p>
+                The <strong>Payer</strong> will soon receive emails through the{" "}
+                <strong>NU Core</strong> system to complete payment.
+              </p>
+            </div>
+          </Grid>
+          <Grid item>
+            <Button
+              component={Link}
+              to="/"
+              color="primary"
+              variant="contained"
+              size="large"
+              className={classes.btn}>
+              <FontAwesomeIcon icon="home" /> &nbsp; Stock Center Home
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
-  </Grid>
-)
+  )
+}
 
-export default OrderConfirmation
+export default withStyles(styles)(OrderConfirmation)

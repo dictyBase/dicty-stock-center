@@ -31,22 +31,14 @@ a {
 export {
   Button,
   PrimaryButton,
-  PrimaryBlockButton,
-  PrimaryLargeButton,
   DefaultButton,
   DefaultBlockButton,
-  ResetButton,
   CancelButton,
   SuccessBlockButton,
   SuccessButton,
-  SuccessSmallButton,
-  SuccessLargeButton,
-  DangerButton,
-  DisabledButton,
 } from "styles/Buttons"
 export { DictyHeader } from "styles/Headers"
 export { Container } from "styles/Containers"
-export { AlertBox, AlertSuccess, AlertInfo } from "styles/Alerts"
 export { StaticToolbar } from "styles/DraftjsToolbar"
 export { PanelGreen, EditPanel } from "styles/Panels"
 export { Table, TableResponsive } from "styles/Tables"
