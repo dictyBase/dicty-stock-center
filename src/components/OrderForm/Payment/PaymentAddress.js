@@ -2,10 +2,10 @@
 import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import { Grid } from "@material-ui/core"
-import PersonalInformation from "./PersonalInformation"
-import OrganizationInformation from "./OrganizationInformation"
-import AddressInformation from "./AddressInformation"
-import ContactInformation from "./ContactInformation"
+import PaymentPersonalInformation from "./PaymentPersonalInformation"
+import PaymentOrganizationInformation from "./PaymentOrganizationInformation"
+import PaymentAddressInformation from "./PaymentAddressInformation"
+import PaymentContactInformation from "./PaymentContactInformation"
 import styles from "../formStyles"
 
 type Props = {
@@ -26,10 +26,10 @@ const PaymentAddress = (props: Props) => {
       justify="center"
       alignItems="center"
       className={classes.innerForm}>
-      <PersonalInformation {...props} />
-      <OrganizationInformation {...props} />
-      <AddressInformation {...props} />
-      <ContactInformation {...props} />
+      <PaymentPersonalInformation {...props} />
+      <PaymentOrganizationInformation {...props} />
+      <PaymentAddressInformation {...props} />
+      <PaymentContactInformation {...props} />
     </Grid>
   )
 }

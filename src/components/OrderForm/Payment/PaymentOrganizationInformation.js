@@ -11,10 +11,10 @@ type Props = {
 }
 
 /**
- * OrganizationInformation contains text fields for organization and lab/group.
+ * PaymentOrganizationInformation contains text fields for organization and lab/group.
  */
 
-const OrganizationInformation = (props: Props) => {
+const PaymentOrganizationInformation = (props: Props) => {
   const { classes } = props
 
   return (
@@ -35,4 +35,4 @@ const OrganizationInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(OrganizationInformation)
+export default withStyles(styles)(PaymentOrganizationInformation)

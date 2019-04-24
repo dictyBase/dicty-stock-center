@@ -11,10 +11,10 @@ type Props = {
 }
 
 /**
- * ContactInformation contains a text field for entering a phone number.
+ * PaymentContactInformation contains a text field for entering a phone number.
  */
 
-const ContactInformation = (props: Props) => {
+const PaymentContactInformation = (props: Props) => {
   const { classes } = props
 
   return (
@@ -29,4 +29,4 @@ const ContactInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(ContactInformation)
+export default withStyles(styles)(PaymentContactInformation)

@@ -11,10 +11,10 @@ type Props = {
 }
 
 /**
- * PersonalInformation contains text fields for name and email.
+ * PaymentPersonalInformation contains text fields for name and email.
  */
 
-const PersonalInformation = (props: Props) => {
+const PaymentPersonalInformation = (props: Props) => {
   const { classes } = props
 
   return (
@@ -41,4 +41,4 @@ const PersonalInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PersonalInformation)
+export default withStyles(styles)(PaymentPersonalInformation)
