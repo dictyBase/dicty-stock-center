@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 // @flow
 import React, { Fragment, useState } from "react"
 import { withStyles } from "@material-ui/core/styles"

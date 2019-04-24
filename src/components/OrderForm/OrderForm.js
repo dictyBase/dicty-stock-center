@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 // @flow
 import React, { useState } from "react"
 import { connect } from "react-redux"

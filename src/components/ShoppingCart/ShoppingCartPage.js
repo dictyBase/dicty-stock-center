@@ -108,6 +108,7 @@ class ShoppingCartPage extends Component<Props> {
                   to="/strains"
                   color="primary"
                   variant="contained"
+                  size="large"
                   className={classes.continueBtn}>
                   <FontAwesomeIcon icon="share" /> &nbsp; Continue Shopping
                 </Button>
@@ -116,6 +117,7 @@ class ShoppingCartPage extends Component<Props> {
                   to="/order/checkout"
                   color="primary"
                   variant="contained"
+                  size="large"
                   className={classes.checkoutBtn}>
                   <FontAwesomeIcon icon="shopping-cart" /> &nbsp; Checkout
                 </Button>
