@@ -21,7 +21,7 @@ type Props = {
 
 const PaymentMethod = (props: Props) => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
-  const { classes, handleChange } = props
+  const { classes, handleChange, setFieldValue } = props
 
   return (
     <Grid
@@ -42,13 +42,19 @@ const PaymentMethod = (props: Props) => {
             value="credit"
             control={<Radio />}
             label="Credit Card"
-            onChange={() => setPurchaseOrderNum(false)}
+            onChange={() => {
+              setPurchaseOrderNum(false)
+              setFieldValue("purchaseOrderNum", "N/A - credit card")
+            }}
           />
           <FormControlLabel
             value="wire"
             control={<Radio />}
             label="Wire transfer"
-            onChange={() => setPurchaseOrderNum(false)}
+            onChange={() => {
+              setPurchaseOrderNum(false)
+              setFieldValue("purchaseOrderNum", "N/A - wire transfer")
+            }}
           />
           <FormControlLabel
             value="purchaseOrder"
@@ -61,9 +67,8 @@ const PaymentMethod = (props: Props) => {
           <TextField
             type="text"
             name="purchaseOrderNum"
-            placeholder="PO Number">
-            test
-          </TextField>
+            placeholder="PO Number"
+          />
         )}
       </Grid>
     </Grid>

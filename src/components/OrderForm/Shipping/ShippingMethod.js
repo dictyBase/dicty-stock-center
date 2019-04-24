@@ -21,7 +21,7 @@ type Props = {
 
 const ShippingMethod = (props: Props) => {
   const [shipAccountNum, setShipAccountNum] = useState(true)
-  const { classes, handleChange } = props
+  const { classes, handleChange, setFieldValue } = props
 
   return (
     <Grid
@@ -60,7 +60,13 @@ const ShippingMethod = (props: Props) => {
             value="prepaid"
             control={<Radio />}
             label="Send prepaid shipping label"
-            onChange={() => setShipAccountNum(false)}
+            onChange={() => {
+              setShipAccountNum(false)
+              setFieldValue(
+                "shippingAccountNumber",
+                "sending prepaid shipping label",
+              )
+            }}
           />
         </RadioGroup>
         {shipAccountNum && (
