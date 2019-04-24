@@ -1,8 +1,12 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
+import Dialog from "@material-ui/core/Dialog"
+import DialogContent from "@material-ui/core/DialogContent"
+import DialogContentText from "@material-ui/core/DialogContentText"
+import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import ShippingAddress from "./ShippingAddress"
@@ -20,8 +24,30 @@ type Props = {
  */
 
 const ShippingPage = (props: Props) => {
-  const { classes } = props
+  const [modalOpen, setModalOpen] = useState(false)
+  const { classes, values } = props
   const [pageNum, setPageNum] = props.page
+
+  const validationChecker = () => {
+    const fields = [
+      values.firstName,
+      values.lastName,
+      values.email,
+      values.organization,
+      values.lab,
+      values.address1,
+      values.city,
+      values.zip,
+      values.country,
+      values.phone,
+      values.shippingAccountNumber,
+    ]
+
+    if (fields.includes("")) {
+      setModalOpen(true)
+      setPageNum(0)
+    }
+  }
 
   return (
     <Grid container spacing={16}>
@@ -49,10 +75,24 @@ const ShippingPage = (props: Props) => {
             <Button
               size="large"
               className={classes.continueBtn}
-              onClick={() => setPageNum(pageNum + 1)}>
+              onClick={() => {
+                setPageNum(pageNum + 1)
+                validationChecker()
+              }}>
               Continue &nbsp;
               <FontAwesomeIcon icon="arrow-circle-right" />
             </Button>
+            {modalOpen && (
+              <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
+                <DialogTitle>{"Validation error"}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Some fields are missing. Please ensure that you have filled
+                    out all required fields and try again.
+                  </DialogContentText>
+                </DialogContent>
+              </Dialog>
+            )}
           </Grid>
         </Grid>
       </Grid>

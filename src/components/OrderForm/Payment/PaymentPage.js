@@ -5,6 +5,10 @@ import { withStyles } from "@material-ui/core/styles"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
 import Button from "@material-ui/core/Button"
+import Dialog from "@material-ui/core/Dialog"
+import DialogContent from "@material-ui/core/DialogContent"
+import DialogContentText from "@material-ui/core/DialogContentText"
+import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import PaymentAddress from "./PaymentAddress"
@@ -23,9 +27,31 @@ type Props = {
 
 const PaymentPage = (props: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const { classes, setFieldValue, values } = props
   const [pageNum, setPageNum] = props.page
+
+  const validationChecker = () => {
+    const fields = [
+      values.payerFirstName,
+      values.payerLastName,
+      values.payerEmail,
+      values.payerOrganization,
+      values.payerLab,
+      values.payerAddress1,
+      values.payerCity,
+      values.payerZip,
+      values.payerCountry,
+      values.payerPhone,
+      values.purchaseOrderNum,
+    ]
+
+    if (fields.includes("")) {
+      setModalOpen(true)
+      setPageNum(1)
+    }
+  }
 
   const handleChange = () => {
     toggleCheckbox(!checkbox)
@@ -88,10 +114,24 @@ const PaymentPage = (props: Props) => {
               <Button
                 size="large"
                 className={classes.continueBtn}
-                onClick={() => setPageNum(pageNum + 1)}>
+                onClick={() => {
+                  setPageNum(pageNum + 1)
+                  validationChecker()
+                }}>
                 Continue &nbsp;
                 <FontAwesomeIcon icon="arrow-circle-right" />
               </Button>
+              {modalOpen && (
+                <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
+                  <DialogTitle>{"Validation error"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Some fields are missing. Please ensure that you have
+                      filled out all required fields and try again.
+                    </DialogContentText>
+                  </DialogContent>
+                </Dialog>
+              )}
             </Grid>
           </Grid>
         </Grid>
