@@ -21,6 +21,7 @@ type Props = {
 
 const ShippingMethod = (props: Props) => {
   const [shipAccountNum, setShipAccountNum] = useState(true)
+  const [prepaidNotice, setPrepaidNotice] = useState(false)
   const { classes, handleChange, setFieldValue } = props
 
   return (
@@ -42,19 +43,28 @@ const ShippingMethod = (props: Props) => {
             value="fedex"
             control={<Radio />}
             label="FedEx"
-            onChange={() => setShipAccountNum(true)}
+            onChange={() => {
+              setShipAccountNum(true)
+              setPrepaidNotice(false)
+            }}
           />
           <FormControlLabel
             value="ups"
             control={<Radio />}
             label="UPS"
-            onChange={() => setShipAccountNum(true)}
+            onChange={() => {
+              setShipAccountNum(true)
+              setPrepaidNotice(false)
+            }}
           />
           <FormControlLabel
             value="dhl"
             control={<Radio />}
             label="DHL"
-            onChange={() => setShipAccountNum(true)}
+            onChange={() => {
+              setShipAccountNum(true)
+              setPrepaidNotice(false)
+            }}
           />
           <FormControlLabel
             value="prepaid"
@@ -62,6 +72,7 @@ const ShippingMethod = (props: Props) => {
             label="Send prepaid shipping label"
             onChange={() => {
               setShipAccountNum(false)
+              setPrepaidNotice(true)
               setFieldValue(
                 "shippingAccountNumber",
                 "sending prepaid shipping label",
@@ -75,6 +86,16 @@ const ShippingMethod = (props: Props) => {
             name="shippingAccountNumber"
             placeholder="Shipping Account Number"
           />
+        )}
+        {prepaidNotice && (
+          <div className={classes.panelBlue}>
+            If using a prepaid shipping label, please send ASAP to{" "}
+            <u>
+              <a href="mailto:dictystocks@northwestern.edu" target="_top">
+                dictystocks@northwestern.edu
+              </a>
+            </u>
+          </div>
         )}
       </Grid>
     </Grid>
