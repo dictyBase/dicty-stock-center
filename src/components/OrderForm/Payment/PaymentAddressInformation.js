@@ -56,7 +56,7 @@ const PaymentAddressInformation = (props: Props) => {
       <Grid item xs={3}>
         <span className={classes.requiredText}>*</span> Country:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={8} className={classes.selectBox}>
         <Select
           name="country"
           label="Country"

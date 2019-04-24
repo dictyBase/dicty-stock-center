@@ -55,6 +55,9 @@ const styles = (theme: Object) => ({
       backgroundColor: "#0073e6",
     },
   },
+  selectBox: {
+    marginTop: "8px",
+  },
 })
 
 export default styles
