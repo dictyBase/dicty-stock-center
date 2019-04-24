@@ -54,6 +54,9 @@ const styles = theme => ({
       backgroundColor: "#0073e6",
     },
   },
+  buttons: {
+    textAlign: "center",
+  },
 })
 
 type Props = {
@@ -64,18 +67,6 @@ type Props = {
 /** ShoppingCartPage displays the items in the cart and provides buttons to checkout or continue browsing. */
 
 class ShoppingCartPage extends Component<Props> {
-  renderAlert = () => (
-    <Grid container wrap="wrap" justify="center">
-      <Grid item xs={11} sm={7}>
-        <div className={this.props.classes.alertBox}>
-          <strong>
-            <FontAwesomeIcon icon="exclamation-circle" />
-          </strong>{" "}
-          There are no items in your cart.
-        </div>
-      </Grid>
-    </Grid>
-  )
   render() {
     const { items, classes } = this.props
 
@@ -126,7 +117,29 @@ class ShoppingCartPage extends Component<Props> {
             </Grid>
           </>
         ) : (
-          this.renderAlert()
+          <Grid container wrap="wrap" justify="center">
+            <Grid item xs={11} sm={7}>
+              <div className={classes.alertBox}>
+                <strong>
+                  <FontAwesomeIcon icon="exclamation-circle" />
+                </strong>{" "}
+                There are no items in your cart.
+              </div>
+              <Grid container justify="center">
+                <Grid item>
+                  <h2>Browse our catalogs</h2>
+                  <ul>
+                    <li>
+                      <Link to="/strains">Strains Catalog</Link>
+                    </li>
+                    <li>
+                      <Link to="/plasmids">Plasmids Catalog</Link>
+                    </li>
+                  </ul>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         )}
       </div>
     )

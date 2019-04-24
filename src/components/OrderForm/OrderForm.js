@@ -13,6 +13,7 @@ import SubmitPage from "./Submit/SubmitPage"
 import initialValues from "./initialValues"
 import validationSchema from "./validationSchema"
 import styles from "./formStyles"
+import { removeItem } from "actions/cart"
 import type { MapStateToProps } from "react-redux"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
@@ -36,7 +37,7 @@ type Props = {
 
 const OrderForm = (props: Props) => {
   const [pageNum, setPageNum] = useState(0)
-  const { classes, items } = props
+  const { classes, items, removeItem } = props
   const PageComponent = pages[pageNum]
 
   return (
@@ -69,6 +70,7 @@ const OrderForm = (props: Props) => {
                     },
                   },
                 })
+                items.forEach(item => removeItem(item.id))
                 const { history } = props
                 history.push("/order/submitted")
               }}
@@ -89,4 +91,13 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   items: state.cart.addedItems,
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(OrderForm))
+const mapDispatchToProps = dispatch => ({
+  removeItem: id => {
+    dispatch(removeItem(id))
+  },
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(OrderForm))

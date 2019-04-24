@@ -24,6 +24,9 @@ const validationSchema = Yup.object().shape({
   payerZip: Yup.string().required("Zip code is required"),
   payerCountry: Yup.string().required("Country is required"),
   payerPhone: Yup.string().required("Phone number is required"),
+  shippingAccountNumber: Yup.string().required(
+    "Shipping account number is required",
+  ),
 })
 
 export default validationSchema
