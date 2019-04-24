@@ -35,6 +35,9 @@ describe("Home/OtherMaterials", () => {
             },
           },
         },
+        classes: {
+          panelBlue: "panelBlue",
+        },
         fetchInfoPage: () => {},
         isFetching: true,
       }
@@ -61,6 +64,9 @@ describe("Home/OtherMaterials", () => {
               content: "page content",
             },
           },
+        },
+        classes: {
+          panelBlue: "panelBlue",
         },
         fetchInfoPage: () => {},
         isFetching: false,

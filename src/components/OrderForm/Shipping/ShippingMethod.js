@@ -1,7 +1,7 @@
 // @flow
 import React, { useState } from "react"
 import { withStyles } from "@material-ui/core/styles"
-import { Grid } from "@material-ui/core"
+import Grid from "@material-ui/core/Grid"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"

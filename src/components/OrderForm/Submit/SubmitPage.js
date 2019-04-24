@@ -1,8 +1,8 @@
 // @flow
 import React, { Fragment } from "react"
 import { connect } from "react-redux"
-import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"

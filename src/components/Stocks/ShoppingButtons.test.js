@@ -14,6 +14,7 @@ describe("Stock/ShoppingButtons", () => {
     type: "strain",
     id: "DBS123456",
     name: "test1",
+    inStock: true,
   }
   const wrapper = shallow(<ShoppingButtons {...props} />)
   describe("initial render", () => {
