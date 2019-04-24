@@ -85,7 +85,7 @@ const OrderForm = Loadable({
 })
 const OrderConfirmation = Loadable({
   loader: () =>
-    import("components/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */),
+    import("components/OrderForm/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */),
   loading: Loader,
 })
 
