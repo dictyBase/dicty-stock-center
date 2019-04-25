@@ -29,6 +29,17 @@ const POST_ORDER = gql`
 type Props = {
   /** Material-UI styling */
   classes: Object,
+  /** Action to remove items from the cart */
+  removeItem: Function,
+  /** Items currently in the cart */
+  items: Array<{
+    /** ID of item */
+    id: string,
+    /** Name of item */
+    name: string,
+  }>,
+  /** React Router History */
+  history: Object,
 }
 
 /**

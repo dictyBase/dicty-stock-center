@@ -13,6 +13,8 @@ type Props = {
   classes: Object,
   /** Function for handling radio button selection */
   handleChange: Function,
+  /** Function to manually set Formik field values */
+  setFieldValue: Function,
 }
 
 /**

@@ -12,6 +12,10 @@ import styles from "../formStyles"
 type Props = {
   /** Material-UI styling */
   classes: Object,
+  /** Function to manually set Formik field values */
+  setFieldValue: Function,
+  /** Values from Formik */
+  values: Object,
 }
 
 /**
