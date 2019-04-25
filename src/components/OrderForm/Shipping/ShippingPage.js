@@ -32,7 +32,7 @@ type Props = {
  * ShippingPage is the display component for when the user is entering shipping information.
  */
 
-const ShippingPage = (props: Props) => {
+export const ShippingPage = (props: Props) => {
   const [modalOpen, setModalOpen] = useState(false)
   const { classes, values } = props
   const [pageNum, setPageNum] = props.page
