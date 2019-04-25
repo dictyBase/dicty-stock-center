@@ -66,7 +66,7 @@ type Props = {
 
 /** ShoppingCartPage displays the items in the cart and provides buttons to checkout or continue browsing. */
 
-class ShoppingCartPage extends Component<Props> {
+export class ShoppingCartPage extends Component<Props> {
   render() {
     const { items, classes } = this.props
 
