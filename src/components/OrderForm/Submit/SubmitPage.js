@@ -32,7 +32,7 @@ type Props = {
  * SubmitPage is the final page the user sees before submitting the order.
  */
 
-const SubmitPage = (props: Props) => {
+export const SubmitPage = (props: Props) => {
   const { classes, items } = props
   const [pageNum, setPageNum] = props.page
 

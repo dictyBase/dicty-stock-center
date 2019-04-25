@@ -46,7 +46,7 @@ type Props = {
  * OrderForm is the main component used for the checkout process.
  */
 
-const OrderForm = (props: Props) => {
+export const OrderForm = (props: Props) => {
   const [pageNum, setPageNum] = useState(0)
   const { classes, items, removeItem } = props
   const PageComponent = pages[pageNum]
