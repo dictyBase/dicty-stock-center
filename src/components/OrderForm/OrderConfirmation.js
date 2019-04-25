@@ -48,7 +48,8 @@ export const OrderConfirmation = (props: Props) => {
               <p>We have sent you a confirmation email.</p>
               <p>
                 The <strong>Payer</strong> will soon receive emails through the{" "}
-                <strong>NU Core</strong> system to complete payment.
+                <strong>NU Core</strong> (Northwestern University) system to
+                complete payment.
               </p>
             </div>
           </Grid>

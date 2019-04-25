@@ -71,7 +71,7 @@ export const ShoppingButtons = (props: Props) => {
         </Button>
       ) : (
         <Button size="small" className={classes.disabledBtn} disabled>
-          Out of stock
+          Not available
         </Button>
       )}
       <Button

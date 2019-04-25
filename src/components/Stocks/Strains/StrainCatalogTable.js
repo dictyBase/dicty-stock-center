@@ -242,7 +242,7 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
         variant="head"
         style={{ height: this.cache.rowHeight }}>
         <strong>
-          <Button disabled>Out of stock</Button>
+          <Button disabled>Not available</Button>
         </strong>
       </TableCell>
     )
