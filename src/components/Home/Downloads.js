@@ -5,10 +5,30 @@ import { withStyles } from "@material-ui/core/styles"
 import styles from "./homeStyles"
 
 const downloadLinks = [
-  { name: "Phenotype Ontology", to: "", routerAware: true },
-  { name: "Strain Characteristics", to: "", routerAware: true },
-  { name: "Mutagenesis Methods", to: "", routerAware: true },
-  { name: "Plasmid Keywords", to: "", routerAware: true },
+  {
+    name: "Phenotype Ontology",
+    to:
+      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_phenotypes.obo",
+    routerAware: false,
+  },
+  {
+    name: "Strain Characteristics",
+    to:
+      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_strain_characteristics.obo",
+    routerAware: false,
+  },
+  {
+    name: "Mutagenesis Methods",
+    to:
+      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_mutagenesis_method.obo",
+    routerAware: false,
+  },
+  {
+    name: "Plasmid Keywords",
+    to:
+      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_plasmid_keywords.obo",
+    routerAware: false,
+  },
 ]
 
 type Props = {
