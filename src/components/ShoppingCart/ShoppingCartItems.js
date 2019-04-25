@@ -49,7 +49,7 @@ type Props = {
  * ShoppingCartItems displays the list of items currently in the shopping cart.
  */
 
-const ShoppingCartItems = (props: Props) => {
+export const ShoppingCartItems = (props: Props) => {
   const { items, classes } = props
 
   return (

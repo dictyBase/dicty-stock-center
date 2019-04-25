@@ -24,9 +24,6 @@ const styles = theme => ({
       backgroundColor: "#0073e6",
     },
   },
-  btnGrid: {
-    textAlign: "center",
-  },
 })
 
 type Props = {
