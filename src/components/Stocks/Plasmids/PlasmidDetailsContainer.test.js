@@ -3,6 +3,8 @@ import { shallow } from "enzyme"
 import { PlasmidDetailsContainer } from "./PlasmidDetailsContainer"
 import { Query } from "react-apollo"
 
+// needs coverage for 57,58,60,62
+
 describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
   const props = {
     match: {

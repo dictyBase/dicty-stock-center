@@ -5,6 +5,8 @@ import { data } from "./mockStrainCatalogData"
 import { Table, Column, AutoSizer, InfiniteLoader } from "react-virtualized"
 import Paper from "@material-ui/core/Paper"
 
+// needs coverage for 07,315,323,330
+
 describe("Stocks/Strains/StrainCatalogTable", () => {
   const props = {
     data: data,

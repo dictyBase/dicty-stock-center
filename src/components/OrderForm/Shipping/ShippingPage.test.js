@@ -4,6 +4,8 @@ import ShippingPage from "./ShippingPage"
 import Grid from "@material-ui/core/Grid"
 import TextField from "../TextField"
 
+// needs coverage for 57,61,88,89,95
+
 describe("OrderForm/Shipping/ShippingPage", () => {
   const props = {
     classes: {},

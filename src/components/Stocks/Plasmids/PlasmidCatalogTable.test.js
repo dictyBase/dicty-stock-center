@@ -5,6 +5,8 @@ import { data } from "./mockPlasmidCatalogData"
 import { Table, Column, AutoSizer, InfiniteLoader } from "react-virtualized"
 import Paper from "@material-ui/core/Paper"
 
+// needs coverage for 07,314,322,329
+
 describe("Stocks/Plasmids/PlasmidCatalogTable", () => {
   const props = {
     data: data,

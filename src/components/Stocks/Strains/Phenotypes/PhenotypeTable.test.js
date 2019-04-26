@@ -8,6 +8,8 @@ import Table from "@material-ui/core/Table"
 import TableRow from "@material-ui/core/TableRow"
 import TableCell from "@material-ui/core/TableCell"
 
+// needs coverage for 41,54,55,56
+
 describe("Strains/Phenotypes/PhenotypeTable", () => {
   const props = {
     data: data,
