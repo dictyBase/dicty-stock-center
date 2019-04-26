@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 })
 
-const GET_STRAIN_LIST = gql`
+export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
     listStrains(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
