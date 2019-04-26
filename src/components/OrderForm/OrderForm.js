@@ -87,7 +87,11 @@ export const OrderForm = (props: Props) => {
               }}
               render={props => (
                 <Form>
-                  <PageComponent {...props} page={[pageNum, setPageNum]} />
+                  <PageComponent
+                    {...props}
+                    pageNum={pageNum}
+                    setPageNum={setPageNum}
+                  />
                 </Form>
               )}
             />

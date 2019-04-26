@@ -23,13 +23,10 @@ type Props = {
   setFieldValue: Function,
   /** Values from Formik */
   values: Object,
-  /** Prop for handling current order form page number */
-  page: {
-    /** Current order form page number */
-    pageNum: Number,
-    /** Function to set the page number */
-    setPageNum: Function,
-  },
+  /** Current order form page number */
+  pageNum: Number,
+  /** Function to set the page number */
+  setPageNum: Function,
 }
 
 /**
@@ -39,9 +36,7 @@ type Props = {
 const PaymentPage = (props: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-
-  const { classes, setFieldValue, values } = props
-  const [pageNum, setPageNum] = props.page
+  const { classes, setFieldValue, values, pageNum, setPageNum } = props
 
   const validationChecker = () => {
     const fields = [

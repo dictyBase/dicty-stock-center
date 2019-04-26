@@ -19,24 +19,19 @@ type Props = {
   classes: Object,
   /** Values from Formik */
   values: Object,
-  /** Prop for handling current order form page number */
-  page: {
-    /** Current order form page number */
-    pageNum: Number,
-    /** Function to set the page number */
-    setPageNum: Function,
-  },
+  /** Current order form page number */
+  pageNum: Number,
+  /** Function to set the page number */
+  setPageNum: Function,
 }
 
 /**
  * ShippingPage is the display component for when the user is entering shipping information.
  */
 
-export const ShippingPage = (props: Props) => {
+const ShippingPage = (props: Props) => {
   const [modalOpen, setModalOpen] = useState(false)
-  const { classes, values } = props
-  const [pageNum, setPageNum] = props.page
-
+  const { classes, values, pageNum, setPageNum } = props
   const validationChecker = () => {
     const fields = [
       values.firstName,

@@ -19,13 +19,10 @@ type Props = {
   }>,
   /** Formik value to indicate if form is being submitted */
   isSubmitting: boolean,
-  /** Prop for handling current order form page number */
-  page: {
-    /** Current order form page number */
-    pageNum: Number,
-    /** Function to set the page number */
-    setPageNum: Function,
-  },
+  /** Current order form page number */
+  pageNum: Number,
+  /** Function to set the page number */
+  setPageNum: Function,
 }
 
 /**
@@ -33,8 +30,7 @@ type Props = {
  */
 
 export const SubmitPage = (props: Props) => {
-  const { classes, items } = props
-  const [pageNum, setPageNum] = props.page
+  const { classes, items, pageNum, setPageNum } = props
 
   return (
     <Grid container spacing={16} className={classes.innerForm}>
