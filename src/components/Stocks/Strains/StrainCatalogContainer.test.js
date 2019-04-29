@@ -72,7 +72,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(wrapper.find(StrainCatalogTable)).toHaveLength(1)
     })
   })
-  describe("error", () => {
+  describe("error handling", () => {
     const mocks = [
       {
         request: {

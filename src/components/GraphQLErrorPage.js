@@ -66,12 +66,8 @@ const GraphQLErrorPage = ({ error, classes }: Props) => {
   if (!error || !error.message) return null
 
   // Network errors warrant a more alarming error page.
-  if (
-    error.networkError &&
-    error.networkError.result &&
-    error.networkError.result.errors.length
-  ) {
-    console.error(error.networkError.result.errors)
+  if (error.networkError) {
+    console.error(error.networkError)
     return (
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>

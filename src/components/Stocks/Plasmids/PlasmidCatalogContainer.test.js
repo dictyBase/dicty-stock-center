@@ -73,7 +73,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       expect(wrapper.find(PlasmidCatalogTable)).toHaveLength(1)
     })
   })
-  describe("error", () => {
+  describe("error handling", () => {
     const mocks = [
       {
         request: {

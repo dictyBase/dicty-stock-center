@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 })
 
-const GET_PLASMID = gql`
+export const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
     plasmid(id: $id) {
       id
@@ -33,6 +33,7 @@ const GET_PLASMID = gql`
       sequence
       keywords
       genbank_accession
+      in_stock
     }
   }
 `

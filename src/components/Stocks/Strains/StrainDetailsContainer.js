@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 })
 
-const GET_STRAIN = gql`
+export const GET_STRAIN = gql`
   query Strain($id: ID!) {
     strain(id: $id) {
       id
@@ -42,6 +42,7 @@ const GET_STRAIN = gql`
       plasmid
       dbxrefs
       genes
+      in_stock
       phenotypes {
         phenotype
         note
