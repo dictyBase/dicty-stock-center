@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 })
 
-const GET_PLASMID_LIST = gql`
+export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
     listPlasmids(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
