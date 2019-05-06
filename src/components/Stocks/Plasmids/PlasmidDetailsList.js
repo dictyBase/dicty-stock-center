@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "../ItemDisplay"
 import LeftDisplay from "../LeftDisplay"
 import RightDisplay from "../RightDisplay"
+import logo from "static/dicty-login.png"
 
 const styles = theme => ({
   header: {
@@ -67,7 +68,20 @@ const PlasmidDetailsList = (props: Props) => {
         <LeftDisplay>Depositor</LeftDisplay>
         <RightDisplay>{data.depositor}</RightDisplay>
         <LeftDisplay>References</LeftDisplay>
-        <RightDisplay>{data.dbxrefs.join(", ")}</RightDisplay>
+        <RightDisplay>
+          {data.dbxrefs.map((ref, index) => (
+            <Fragment key={index}>
+              <a href={`/publication/${ref}`}>
+                <img
+                  alt="link to dictyBase publication"
+                  src={logo}
+                  height={32}
+                  width={32}
+                />
+              </a>
+            </Fragment>
+          ))}
+        </RightDisplay>
       </ItemDisplay>
       <ItemDisplay>
         <LeftDisplay>Image Map</LeftDisplay>
