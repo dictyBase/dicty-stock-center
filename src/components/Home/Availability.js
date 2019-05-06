@@ -38,6 +38,7 @@ const Availability = (props: Props) => {
           return (
             <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
               <Skeleton count={5} />
+              &nbsp;
             </SkeletonTheme>
           )
         if (error)
