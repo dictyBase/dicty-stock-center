@@ -21,7 +21,7 @@ describe("OrderForm/Submit/SubmitPage", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(21)
+      expect(wrapper.find(Grid)).toHaveLength(9)
       expect(wrapper.find(PanelWrapper)).toHaveLength(1)
       expect(wrapper.find(Button)).toHaveLength(2)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(3)

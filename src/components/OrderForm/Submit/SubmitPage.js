@@ -1,22 +1,16 @@
 // @flow
-import React, { Fragment } from "react"
-import { connect } from "react-redux"
+import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
+import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
 import styles from "../formStyles"
-import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** Material-UI styling */
   classes: Object,
-  /** Stock items being ordered */
-  items: Array<{
-    id: string,
-    name: string,
-  }>,
   /** Formik value to indicate if form is being submitted */
   isSubmitting: boolean,
   /** Current order form page number */
@@ -30,7 +24,7 @@ type Props = {
  */
 
 export const SubmitPage = (props: Props) => {
-  const { classes, items, pageNum, setPageNum } = props
+  const { classes, pageNum, setPageNum } = props
 
   return (
     <Grid container spacing={16} className={classes.innerForm}>
@@ -44,26 +38,7 @@ export const SubmitPage = (props: Props) => {
               <FontAwesomeIcon icon="truck" /> Items
             </h1>
             <Grid container justify="center">
-              <Grid item xs={2} />
-              <Grid item xs={4}>
-                <h3>ID</h3>
-              </Grid>
-              <Grid item xs={4}>
-                <h3>Name</h3>
-              </Grid>
-              <Grid item xs={2} />
-              {items.map((item, index) => (
-                <Fragment key={index}>
-                  <Grid item xs={2} />
-                  <Grid item xs={4}>
-                    {item.id}
-                  </Grid>
-                  <Grid item xs={4}>
-                    {item.name}
-                  </Grid>
-                  <Grid item xs={2} />
-                </Fragment>
-              ))}
+              <ShoppingCartItems />
             </Grid>
           </div>
           <br />
@@ -99,8 +74,4 @@ export const SubmitPage = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  items: state.cart.addedItems,
-})
-
-export default connect(mapStateToProps)(withStyles(styles)(SubmitPage))
+export default withStyles(styles)(SubmitPage)
