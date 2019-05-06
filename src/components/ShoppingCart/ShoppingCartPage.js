@@ -16,7 +16,6 @@ const styles = theme => ({
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "75%",
   },
   btnGrid: {
     marginTop: "20px",
@@ -91,8 +90,7 @@ export const ShoppingCartPage = (props: Props) => {
             </Grid>
           </Grid>
           <Grid container wrap="wrap" justify="center">
-            <Grid item xs={3} />
-            <Grid item xs={12} sm={6} className={classes.btnGrid}>
+            <Grid item className={classes.btnGrid}>
               <Button
                 component={Link}
                 to="/strains"
@@ -112,7 +110,6 @@ export const ShoppingCartPage = (props: Props) => {
                 <FontAwesomeIcon icon="shopping-cart" /> &nbsp; Checkout
               </Button>
             </Grid>
-            <Grid item xs={3} />
           </Grid>
         </>
       ) : (

@@ -25,7 +25,7 @@ const styles = theme => ({
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "75%",
+    width: "80%",
   },
   header: {
     fontSize: "48px",
