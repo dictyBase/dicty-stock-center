@@ -44,6 +44,7 @@ export const OrderConfirmation = (props: Props) => {
         <Grid container wrap="wrap" justify="center">
           <Grid item xs={12}>
             <div className={classes.alertBox}>
+              <h1>Success!</h1>
               <FontAwesomeIcon icon="check-circle" size="5x" />
               <p>We have sent you a confirmation email.</p>
               <p>
