@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import PanelWrapper from "components/common/PanelWrapper"
 import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
 import styles from "../formStyles"
 
@@ -32,18 +31,16 @@ export const SubmitPage = (props: Props) => {
         <div className={classes.header}>Please review your order</div>
       </Grid>
       <Grid item xs={12}>
-        <PanelWrapper title="Review Order">
-          <div className={classes.submitPage}>
-            <h1>
-              <FontAwesomeIcon icon="truck" /> Items
-            </h1>
-            <Grid container justify="center">
-              <ShoppingCartItems />
-            </Grid>
-          </div>
-          <br />
-          <br />
-        </PanelWrapper>
+        <div className={classes.submitPage}>
+          <h1>
+            <FontAwesomeIcon icon="truck" /> Items
+          </h1>
+          <Grid container justify="center">
+            <ShoppingCartItems />
+          </Grid>
+        </div>
+        <br />
+        <br />
         <br />
         <Grid container justify="center" spacing={16}>
           <Grid item xs={2} />

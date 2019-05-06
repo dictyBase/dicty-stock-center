@@ -6,7 +6,6 @@ import { data } from "./mockSubmitData"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import PanelWrapper from "components/common/PanelWrapper"
 
 describe("OrderForm/Submit/SubmitPage", () => {
   const setPageNumSpy = sinon.spy()
@@ -22,7 +21,6 @@ describe("OrderForm/Submit/SubmitPage", () => {
     })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(9)
-      expect(wrapper.find(PanelWrapper)).toHaveLength(1)
       expect(wrapper.find(Button)).toHaveLength(2)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(3)
     })
