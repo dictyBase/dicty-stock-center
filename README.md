@@ -21,9 +21,12 @@ Dicty Stock Center application rebuilt with React and Redux!
     - [Providers](#providers)
     - [Auth server](#auth-server)
     - [API server](#api-server)
+    - [GraphQL server](#graphql-server)
     - [Navbar and footer](#navbar-and-footer)
+  - [Semantic versioning](#semantic-versioning)
   - [Running the application(dev version)](#running-the-application-dev-version)
   - [Application Structure](#application-structure)
+  - [React Styleguidist](#react-styleguidist)
 - [Deployment](#deployment)
 
 # Development
@@ -36,34 +39,28 @@ Dicty Stock Center application rebuilt with React and Redux!
 ### Providers
 
 - This is the most important part and it is absolutely needed to run the application.
-- Copy the provided sample [clientConfig.sample.js](src/utils/clientConfig.sample.js) file
-  to **clientConfig.js** in the same folder.
-- Then add providers name and their corresponding client ids.
-- All the providers should have a matching counterpart in the
-  [oauthConfig.js](src/utils/oauthConfig.js) file. Fill up all the
-  configuration parameters for every new provider in that file.
-- For each of the provider name a corresponding login button will be shown up
-  in the login route. The list of supported buttons are given
-  [here](http://fontawesome.io/icons/#brand)
+- Copy the provided sample [clientConfig.sample.js](src/utils/clientConfig.sample.js) file to **clientConfig.js** in the same folder.
+- Then add the provider names and their corresponding client IDs.
+- All the providers should have a matching counterpart in the [oauthConfig.js](src/utils/oauthConfig.js) file. Fill up all the configuration parameters for every new provider in that file.
+- For each of the provider names, a corresponding login button will be shown up in the login route. The list of supported buttons are given [here](http://fontawesome.io/icons/#brand).
 
 ### Auth server
 
 - By default, the application expect it to run on `https://betatoken.dictybase.local`
-- The url of the auth server can be configured by **REACT_APP_AUTH_SERVER** environmental variable.
-- The binaries for the auth server could be downloaded from its release
-  [page](https://github.com/dictyBase/authserver/releases). Download that is
-  suitable for your OS and make sure you always use the latest one.
-- The **REACT_APP_AUTH_SERVER** env variable can also be customize by modifying the
-  global variable in the [env](.env.development) file.
+- The url of the auth server can be configured by **REACT_APP_AUTH_SERVER** environmental variable. For local development, this is in the [env](.env.development) file.
+- The binaries for the auth server can be downloaded from its release [page](https://github.com/dictyBase/authserver/releases). Download the one that is suitable for your OS and make sure you always use the latest version.
 
 ### API server
 
 - By default, the application expects it to run on `https://betaapi.dictybase.local`
-- The url of the auth server can be configured by **REACT_APP_API_SERVER** environmental variable.
+- The url of the auth server can be configured by **REACT_APP_API_SERVER** environmental variable. For local development, this is in the [env](.env.development) file.
 - An API server to **test** the strain/plasmid catalog inside the application can be found [here](https://github.com/dictyBase/fake-dsc-server)
 - The API server to manage data from the rich text editor frontend is available [here](https://github.com/dictyBase/modware-content).
-- The **REACT_APP_API_SERVER** env variable can also be customize by modifying the
-  global variable in the [env](.env.development) file.
+
+### GraphQL server
+
+- By default, the application expects it to run on `https://betagraphql.dictybase.local`
+- The url of the GraphQL server can be configured by modifying the **REACT_APP_GRAPHQL_SERVER** environmental variable. For local development, this is in the [env](.env.development) file.
 
 ### Navbar and Footer
 
@@ -81,7 +78,7 @@ When you are ready to push to prod, you can use `semantic-release` to automate t
 
 **Important:** you MUST have an env variable stored for `GH_TOKEN` or `GITHUB_TOKEN` that contains a GitHub [personal access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). You can either pass this in manually when you run the script (i.e. `GH_TOKEN=XXX npx semantic-release`) or you can [store your env variable locally](https://www.schrodinger.com/kb/1842).
 
-This will look at your most recent commits since the last `git tag` and automatically determine the appropriate version number for your release. It also updates the [CHANGELOG](./CHANGELOD.md) documentation.
+This will look at your most recent commits since the last `git tag` and automatically determine the appropriate version number for your release. It also updates the [CHANGELOG](./CHANGELOG.md) documentation.
 
 ## Running the application (dev version)
 
@@ -94,8 +91,12 @@ This was reconfigured to use the [create-react-app](https://github.com/facebook/
 
 Wireframes, diagrams and Redux shape of the state can be found in the [docs](./docs) folder.
 
+## React Styleguidist
+
+Our goal is to document every component used in our web applications with [react-styleguidist](https://github.com/styleguidist/react-styleguidist). An online version of our styleguide can be found [here](http://dictybase.github.io/Dicty-Stock-Center/). You can also run a local version with `npm run styleguide`.
+
+To update the build, use `npm run styleguide:build`.
+
 # Deployment
 
-The application is deployed by [building a Docker
-image](https://docs.docker.com/engine/reference/commandline/build/) and running
-it through [Kubernetes](https://k8s.io). More detailed information about the deployment process for DSC and all dicty software can be found [here](https://github.com/dictyBase/Migration/blob/master/deploy.md).
+The application is deployed by [building a Docker image](https://docs.docker.com/engine/reference/commandline/build/) and running it through [Kubernetes](https://k8s.io). More detailed information about the deployment process for DSC and all Dicty software can be found [here](https://github.com/dictyBase/Migration/blob/master/deploy.md).
