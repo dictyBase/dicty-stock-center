@@ -19,6 +19,20 @@ const styles = (theme: Object) => ({
   sopLink: {
     color: "#961818",
   },
+  container: {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "75%",
+    lineHeight: 1.6,
+  },
+  header: {
+    fontSize: "48px",
+    marginTop: "0px",
+    marginBottom: "25px",
+    borderBottom: "1px solid #eee",
+  },
 })
 
 export default styles

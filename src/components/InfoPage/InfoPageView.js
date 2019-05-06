@@ -139,7 +139,7 @@ export class InfoPageView extends Component<Props, State> {
                         <span className={classes.label}>
                           {fetchedUserData.getRoles()}
                         </span>{" "}
-                        &nbsp,
+                        &nbsp;
                         {verifiedToken && (
                           // eslint-disable-next-line jsx-a11y/anchor-is-valid
                           <a

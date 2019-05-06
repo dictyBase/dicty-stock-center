@@ -17,23 +17,8 @@ import About from "./About"
 import BrowserWarning from "./BrowserWarning"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { AuthenticatedUser } from "utils/apiClasses"
+import styles from "./homeStyles"
 import type { MapStateToProps } from "react-redux"
-
-const styles = theme => ({
-  container: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    width: "80%",
-  },
-  header: {
-    fontSize: "48px",
-    marginTop: "0px",
-    marginBottom: "25px",
-    borderBottom: "1px solid #eee",
-  },
-})
 
 type Props = {
   /** the User object from the current state */
@@ -103,13 +88,13 @@ const Homepage = (props: Props) => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Grid container justify="center" direction="column">
-            <Grid item>
+            <Grid item xs={12} xl={8}>
               <Slideshow />
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Materials />
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Downloads />
             </Grid>
           </Grid>
