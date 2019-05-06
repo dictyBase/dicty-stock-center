@@ -20,6 +20,10 @@ const styles = theme => ({
     marginRight: "auto",
     marginLeft: "auto",
     width: "75%",
+
+    [theme.breakpoints.up("xl")]: {
+      width: "1270px",
+    },
   },
   tableRow: {
     padding: "10px",

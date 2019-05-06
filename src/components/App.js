@@ -106,8 +106,8 @@ export class App extends Component<Props> {
           )}
           <Navbar items={navItems} theme={navTheme} />
           <br />
-          <Cart cart={cart} />
           <main className={classes.main}>
+            <Cart cart={cart} />
             <ErrorBoundary>
               <RenderRoutes {...this.props} />
             </ErrorBoundary>
@@ -130,8 +130,8 @@ export class App extends Component<Props> {
         )}
         <Navbar items={navbar.links} theme={navTheme} />
         <br />
-        <Cart cart={cart} />
         <main className={classes.main}>
+          <Cart cart={cart} />
           <ErrorBoundary>
             <RenderRoutes {...this.props} />
           </ErrorBoundary>

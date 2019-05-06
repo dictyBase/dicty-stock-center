@@ -26,6 +26,10 @@ const styles = (theme: Object) => ({
     marginLeft: "auto",
     width: "75%",
     lineHeight: 1.6,
+
+    [theme.breakpoints.up("xl")]: {
+      width: "1270px",
+    },
   },
   header: {
     fontSize: "48px",

@@ -19,30 +19,7 @@ import {
 } from "react-virtualized"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
-
-const styles = theme => ({
-  flexContainer: {
-    display: "flex",
-    alignItems: "center",
-    boxSizing: "border-box",
-    flex: 1,
-    fontSize: 16,
-  },
-  tableRowHover: {
-    "&:hover": {
-      backgroundColor: theme.palette.grey[200],
-    },
-  },
-  cartButton: {
-    backgroundColor: "#80c1ff",
-    "&:hover": {
-      backgroundColor: "#cce6ff",
-    },
-  },
-  tableCell: {
-    borderBottom: 0,
-  },
-})
+import styles from "./strainStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!) {

@@ -37,14 +37,16 @@ export const MyDsc = (props: Props) => {
         </Grid>
         <Grid item xs={8}>
           <PanelWrapper title="Personal Information">
-            {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}
-            {auth.user.data.attributes.email && (
-              <h3>Email: {auth.user.data.attributes.email}</h3>
-            )}
-            {auth.user.data.attributes.name && (
-              <h3>Name: {auth.user.data.attributes.name}</h3>
-            )}
-            <h3>Provider: {auth.provider}</h3>
+            <div style={{ padding: "10px" }}>
+              {auth.user.data.id && <h3>Id: {auth.user.data.id}</h3>}
+              {auth.user.data.attributes.email && (
+                <h3>Email: {auth.user.data.attributes.email}</h3>
+              )}
+              {auth.user.data.attributes.name && (
+                <h3>Name: {auth.user.data.attributes.name}</h3>
+              )}
+              <h3>Provider: {auth.provider}</h3>
+            </div>
           </PanelWrapper>
         </Grid>
       </Grid>

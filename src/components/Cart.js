@@ -9,11 +9,12 @@ import type { MapStateToProps } from "react-redux"
 
 const styles = theme => ({
   container: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
+    margin: "auto",
     width: "75%",
+
+    [theme.breakpoints.up("xl")]: {
+      width: "1270px",
+    },
   },
 })
 

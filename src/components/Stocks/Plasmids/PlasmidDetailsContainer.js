@@ -11,14 +11,7 @@ import PlasmidDetailsList from "./PlasmidDetailsList"
 import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
-
-const styles = theme => ({
-  layout: {
-    width: "80%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-})
+import styles from "./plasmidStyles"
 
 export const GET_PLASMID = gql`
   query Plasmid($id: ID!) {

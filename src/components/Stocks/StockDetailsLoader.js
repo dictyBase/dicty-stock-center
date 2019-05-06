@@ -8,9 +8,11 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme"
 const styles = (theme: Theme) =>
   createStyles({
     layout: {
-      width: "80%",
-      marginLeft: "auto",
-      marginRight: "auto",
+      width: "75%",
+      margin: "auto",
+      [theme.breakpoints.up("xl")]: {
+        width: "1270px",
+      },
     },
   })
 

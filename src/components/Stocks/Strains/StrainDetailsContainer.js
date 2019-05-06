@@ -12,14 +12,7 @@ import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
-
-const styles = theme => ({
-  layout: {
-    width: "80%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-})
+import styles from "./strainStyles"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {

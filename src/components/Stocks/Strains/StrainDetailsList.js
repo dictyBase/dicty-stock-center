@@ -7,14 +7,7 @@ import ItemDisplay from "../ItemDisplay"
 import LeftDisplay from "../LeftDisplay"
 import RightDisplay from "../RightDisplay"
 import logo from "static/dicty-login.png"
-
-const styles = theme => ({
-  header: {
-    textAlign: "center",
-    backgroundColor: "#0059b3",
-    color: "#fff",
-  },
-})
+import styles from "./strainStyles"
 
 type Props = {
   data: {

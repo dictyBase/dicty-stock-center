@@ -9,14 +9,7 @@ import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
 import PlasmidCatalogTable from "./PlasmidCatalogTable"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
-
-const styles = theme => ({
-  layout: {
-    width: "80%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-})
+import styles from "./plasmidStyles"
 
 export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {

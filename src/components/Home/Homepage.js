@@ -88,7 +88,7 @@ const Homepage = (props: Props) => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Grid container justify="center" direction="column">
-            <Grid item xs={12} xl={8}>
+            <Grid item xs={12}>
               <Slideshow />
             </Grid>
             <Grid item xs={12}>

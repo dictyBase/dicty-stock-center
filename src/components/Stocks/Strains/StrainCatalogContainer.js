@@ -9,14 +9,7 @@ import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
 import GraphQLErrorPage from "components/GraphQLErrorPage"
 import StrainCatalogTable from "./StrainCatalogTable"
-
-const styles = theme => ({
-  layout: {
-    width: "80%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-})
+import styles from "./strainStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {

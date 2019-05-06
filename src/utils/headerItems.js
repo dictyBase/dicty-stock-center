@@ -78,7 +78,7 @@ const loggedHeaderItems = [
   },
   {
     url: "/logout",
-    icon: "sign-out",
+    icon: "sign-out-alt",
     text: "Logout",
     isRouter: true,
   },

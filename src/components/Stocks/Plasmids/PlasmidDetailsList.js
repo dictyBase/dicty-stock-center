@@ -7,19 +7,7 @@ import ItemDisplay from "../ItemDisplay"
 import LeftDisplay from "../LeftDisplay"
 import RightDisplay from "../RightDisplay"
 import logo from "static/dicty-login.png"
-
-const styles = theme => ({
-  header: {
-    textAlign: "center",
-    backgroundColor: "#0059b3",
-    color: "#fff",
-  },
-  rightDisplay: {
-    padding: "8px 56px 4px 24px",
-    fontWeight: 400,
-    marginBottom: "5px",
-  },
-})
+import styles from "./plasmidStyles"
 
 type Props = {
   data: {
