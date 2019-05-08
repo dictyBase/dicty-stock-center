@@ -8,7 +8,7 @@ const styles = theme => ({
     // backgroundColor: "#e6f2ff",
     fontSize: "1.1em",
     fontWeight: 400,
-    padding: "8px 56px 4px 20px",
+    padding: "8px 30px 4px 20px",
     verticalAlign: "middle",
     marginBottom: "5px",
   },

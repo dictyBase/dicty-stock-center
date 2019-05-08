@@ -10,9 +10,13 @@ const styles = theme => ({
     width: "75%",
     marginLeft: "auto",
     marginRight: "auto",
-    [theme.breakpoints.up("xl")]: {
-      width: "1270px",
-    },
+    // [theme.breakpoints.up("xl")]: {
+    //   width: "1270px",
+    // },
+  },
+  root: {
+    width: "100%",
+    overflowX: "auto",
   },
   tableRowHover: {
     "&:hover": {

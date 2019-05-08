@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper"
 
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
-import styles from "./PhenotypeTableStyles"
+import styles from "./phenotypeTableStyles"
 import logo from "static/dicty-login.png"
 
 type Props = {
@@ -60,10 +60,11 @@ const PhenotypeTable = (props: Props) => {
     <Paper className={classes.root}>
       <Table>
         <colgroup>
+          <col style={{ width: "15%" }} />
           <col style={{ width: "25%" }} />
           <col style={{ width: "25%" }} />
           <col style={{ width: "30%" }} />
-          <col style={{ width: "20%" }} />
+          <col style={{ width: "5%" }} />
         </colgroup>
         <PhenotypeTableHeader
           order={order}
@@ -75,11 +76,11 @@ const PhenotypeTable = (props: Props) => {
             .sort(getSorting(order, orderBy))
             .map((item: Object, index: number) => (
               <TableRow className={classes.row} key={index}>
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" className={classes.cell}>
                   {item.phenotype}
                 </TableCell>
-                <TableCell>{item.note}</TableCell>
-                <TableCell>
+                <TableCell className={classes.cell}>{item.note}</TableCell>
+                <TableCell className={classes.cell}>
                   {item.assay && (
                     <Fragment>
                       <strong>Assay: </strong>
@@ -94,12 +95,14 @@ const PhenotypeTable = (props: Props) => {
                     </Fragment>
                   )}
                 </TableCell>
-                <TableCell>
+                <TableCell className={classes.cell}>
                   <PhenotypePublicationDisplay data={item.publication} />{" "}
+                </TableCell>
+                <TableCell className={classes.cell}>
                   <a href={`/publication/${item.publication.id}`}>
                     {" "}
                     <img
-                      alt="link to dictyBase publication"
+                      alt="Link to dictyBase publication"
                       src={logo}
                       height={32}
                       width={32}

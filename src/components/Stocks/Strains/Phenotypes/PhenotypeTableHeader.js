@@ -5,7 +5,7 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import TableCell from "@material-ui/core/TableCell"
 import TableSortLabel from "@material-ui/core/TableSortLabel"
-import styles from "./PhenotypeTableStyles"
+import styles from "./phenotypeTableStyles"
 
 const columnData = [
   {
@@ -15,6 +15,7 @@ const columnData = [
   { id: "notes", label: "Notes" },
   { id: "assay-environment", label: "Assay & Environment" },
   { id: "reference", label: "Reference" },
+  { id: "", label: "" },
 ]
 
 type Props = {

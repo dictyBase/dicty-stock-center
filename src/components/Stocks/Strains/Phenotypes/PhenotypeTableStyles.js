@@ -9,6 +9,9 @@ const styles = (theme: Object) => ({
       backgroundColor: theme.palette.background.default,
     },
   },
+  cell: {
+    fontSize: "16px",
+  },
   link: {
     textDecoration: "none",
     color: "#4C5E81",
