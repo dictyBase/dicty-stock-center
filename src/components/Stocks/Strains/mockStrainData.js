@@ -70,3 +70,27 @@ export const strainWithPhenotype = {
     },
   ],
 }
+
+export const gwdiData = {
+  id: "DBS0351107",
+  label: "gxcAA-",
+  names: ["GWDI_409_E_8"],
+  systematic_name: "DBS0351107",
+  summary:
+    "Genome Wide Dictyostelium Insertion bank (GWDI) gxcAA- mutant; insertion at position 6196058, chr 3; used enzyme: Hsp92II",
+  editable_summary:
+    "Genome Wide Dictyostelium Insertion bank (GWDI) gxcAA- mutant; insertion at position 6196058, chr 3; used enzyme: Hsp92II",
+  genotypes: ["axeA1", "axeB1", "axeC1", "gxcAA-", "[bsRcas]", "bsR"],
+  genetic_modification: "endogenous insertion",
+  characteristics: ["axenic", "null mutant", "blasticidin resistant"],
+  parent: {
+    id: "DBS0235554",
+    label: "AX4",
+  },
+  plasmid: "Blasticidin S resistance cassette",
+  genes: ["gxcAA"],
+  dbxrefs: [],
+  depositor: "Amy Baldwin (Hardwood and Thompson labs)",
+  species: "Dictyostelium discoideum",
+  mutagenesis_method: "Restriction Enzyme-Mediated Integration",
+}
