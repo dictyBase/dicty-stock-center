@@ -15,7 +15,11 @@ const materials = [
   { name: "Strain Catalog", to: "/strains", routerAware: true },
   { name: "Plasmid Catalog", to: "/plasmids", routerAware: true },
   { name: "Bacterial Strains", to: "", routerAware: true },
-  { name: "Other Materials", to: "", routerAware: true },
+  {
+    name: "Additional Materials",
+    to: "/information/additional-materials",
+    routerAware: true,
+  },
 ]
 
 /**
