@@ -113,7 +113,7 @@ const PaymentPage = (props: Props) => {
                 className={classes.previousBtn}
                 onClick={() => setPageNum(pageNum - 1)}>
                 <FontAwesomeIcon icon="arrow-circle-left" />
-                &nbsp; Previous
+                &nbsp; Back
               </Button>
             </Grid>
             <Grid item xs={6}>
