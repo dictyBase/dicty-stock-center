@@ -8,8 +8,6 @@ import Table from "@material-ui/core/Table"
 import TableRow from "@material-ui/core/TableRow"
 import TableCell from "@material-ui/core/TableCell"
 
-// needs coverage for 41,54,55,56
-
 describe("Strains/Phenotypes/PhenotypeTable", () => {
   const props = {
     data: data,
@@ -26,7 +24,7 @@ describe("Strains/Phenotypes/PhenotypeTable", () => {
       expect(wrapper.dive().find(TableRow)).toHaveLength(3)
     })
     it("renders twelve TableCell components based on given props", () => {
-      expect(wrapper.dive().find(TableCell)).toHaveLength(12)
+      expect(wrapper.dive().find(TableCell)).toHaveLength(15)
     })
     it("always renders one PhenotypeTableHeader", () => {
       expect(wrapper.dive().find(PhenotypeTableHeader)).toHaveLength(1)

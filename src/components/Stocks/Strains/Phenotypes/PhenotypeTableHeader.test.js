@@ -7,8 +7,6 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import TableCell from "@material-ui/core/TableCell"
 
-// needs coverage for 39
-
 describe("Strains/Phenotypes/PhenotypeTableHeader", () => {
   const wrapper = mount(
     <Table>
@@ -26,7 +24,7 @@ describe("Strains/Phenotypes/PhenotypeTableHeader", () => {
       expect(wrapper.find(TableRow)).toHaveLength(1)
     })
     it("always renders four TableCell components", () => {
-      expect(wrapper.find(TableCell)).toHaveLength(4)
+      expect(wrapper.find(TableCell)).toHaveLength(5)
     })
   })
 })

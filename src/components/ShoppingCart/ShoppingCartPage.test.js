@@ -29,7 +29,7 @@ describe("ShoppingCart/ShoppingCartPage", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(8)
+      expect(wrapper.find(Grid)).toHaveLength(6)
       expect(wrapper.find(Button)).toHaveLength(2)
       expect(wrapper.find(ShoppingCartItems)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
