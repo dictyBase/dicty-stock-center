@@ -1,12 +1,16 @@
 import "utils/polyfills" // necessary for IE11
 import React from "react"
 import { render } from "react-dom"
-import history from "utils/routerHistory"
-import configureStore from "store"
-import { hydrateAll, hydrateStore } from "dicty-components-redux"
-import App from "components/App"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
+import { ApolloProvider } from "react-apollo"
+import ApolloClient from "apollo-boost"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { hydrateAll, hydrateStore } from "dicty-components-redux"
+import configureStore from "store"
+import history from "utils/routerHistory"
+import App from "components/App"
+import "typeface-roboto"
 
 // load state from localStorage(if any) to set the
 // initial state for the store
@@ -15,6 +19,10 @@ const initialState = hydrateAll(
   hydrateStore({ key: "cart", namespace: "shoppingCart" }),
 )
 const store = configureStore(initialState)
+
+export const client = new ApolloClient({
+  uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql`,
+})
 
 const setGoogleAnalytics = async (location, action) => {
   try {
@@ -37,13 +45,16 @@ if (process.env.NODE_ENV === "production") {
 const renderApp = Component => {
   // Render the React application to the DOM
   render(
-    <Provider store={store}>
-      <div>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Component />
+          <>
+            <CssBaseline />
+            <Component />
+          </>
         </ConnectedRouter>
-      </div>
-    </Provider>,
+      </Provider>
+    </ApolloProvider>,
     document.getElementById("root"),
   )
 }

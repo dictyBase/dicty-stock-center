@@ -1,11 +1,9 @@
 import React from "react"
-import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
-import "../../setupTests"
 import { OtherMaterials } from "./OtherMaterials"
 import InlineEditor from "components/InlineEditor"
-import { Flex } from "rebass"
+import Grid from "@material-ui/core/Grid"
 
 describe("Home/OtherMaterials", () => {
   let props
@@ -36,13 +34,16 @@ describe("Home/OtherMaterials", () => {
             },
           },
         },
+        classes: {
+          panelBlue: "panelBlue",
+        },
         fetchInfoPage: () => {},
         isFetching: true,
       }
     })
 
-    it("always renders Flex", () => {
-      expect(otherMaterialsPage().find(Flex).length).toBe(1)
+    it("always renders two Grid components", () => {
+      expect(otherMaterialsPage().find(Grid).length).toBe(2)
     })
     it("calls componentDidMount", () => {
       sinon.spy(OtherMaterials.prototype, "componentDidMount")
@@ -63,6 +64,9 @@ describe("Home/OtherMaterials", () => {
             },
           },
         },
+        classes: {
+          panelBlue: "panelBlue",
+        },
         fetchInfoPage: () => {},
         isFetching: false,
       }
@@ -73,9 +77,9 @@ describe("Home/OtherMaterials", () => {
       expect(wrapper.find(InlineEditor).length).toBe(1)
     })
 
-    it("no longer renders Flex", () => {
+    it("no longer renders Grid", () => {
       const wrapper = shallow(<OtherMaterials {...props} />)
-      expect(wrapper.find(Flex).length).toBe(0)
+      expect(wrapper.find(Grid).length).toBe(0)
     })
   })
 })

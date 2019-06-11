@@ -1,11 +1,9 @@
 import React from "react"
-import { shallow, mount, render } from "enzyme"
+import { shallow } from "enzyme"
 import sinon from "sinon"
-import "../../setupTests"
 import { InfoPageView, mapStateToProps } from "./InfoPageView"
 import Authorization from "components/authentication/Authorization"
 import ErrorNotification from "components/authentication/ErrorNotification"
-import { Container, ToolbarNav } from "styles"
 import { Editor } from "draft-js"
 
 describe("InfoPage/InfoPageView", () => {
@@ -27,6 +25,9 @@ describe("InfoPage/InfoPageView", () => {
       fetchedUserData: undefined,
       loggedInUser: undefined,
       isAuthenticated: undefined,
+      classes: {
+        container: "container",
+      },
     }
     mountedInfoPageView = undefined
   })
@@ -51,6 +52,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -60,11 +62,10 @@ describe("InfoPage/InfoPageView", () => {
           },
         },
         fetchUserInfo: () => {},
+        classes: {
+          container: "container",
+        },
       }
-    })
-
-    it("always renders a Container", () => {
-      expect(infoPageView().find(Container).length).toBe(1)
     })
     it("always renders an Editor", () => {
       expect(infoPageView().find(Editor).length).toBe(1)
@@ -83,6 +84,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -93,6 +95,9 @@ describe("InfoPage/InfoPageView", () => {
         },
         fetchUserInfo: () => {},
         isAuthenticated: false,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -109,6 +114,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -119,6 +125,9 @@ describe("InfoPage/InfoPageView", () => {
         },
         fetchUserInfo: () => {},
         isAuthenticated: true,
+        classes: {
+          container: "container",
+        },
       }
     })
     it("calls componentDidMount", () => {
@@ -139,6 +148,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -151,6 +161,9 @@ describe("InfoPage/InfoPageView", () => {
         isAuthenticated: true,
         canEditPages: true,
         verifiedToken: true,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -177,6 +190,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -189,6 +203,9 @@ describe("InfoPage/InfoPageView", () => {
         isAuthenticated: true,
         canEditPages: true,
         verifiedToken: false,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -218,6 +235,7 @@ describe("InfoPage/InfoPageView", () => {
             attributes: {
               content: content,
               updated_at: "999",
+              name: "order",
             },
           },
         },
@@ -230,15 +248,18 @@ describe("InfoPage/InfoPageView", () => {
         fetchUserInfo: () => {},
         isAuthenticated: true,
         onClick: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
 
     const preventDefault = jest.fn()
 
-    it("should handle onClick correctly", () => {
+    it("should handle onEdit correctly", () => {
       const instance = infoPageView().instance()
-      const spy = jest.spyOn(instance, "onClick")
-      instance.onClick({ preventDefault })
+      const spy = jest.spyOn(instance, "onEdit")
+      instance.onEdit({ preventDefault })
 
       expect(spy).toHaveBeenCalled()
     })

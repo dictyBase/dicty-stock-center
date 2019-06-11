@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import FontAwesome from "react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import sadDicty from "static/sad-dicty.png"
 
 const styles = theme => ({
@@ -60,8 +60,6 @@ type Props = {
   classes: Object,
   /** the object that contains auth data from current state */
   auth: Object,
-  /** the object that contains order data from current state */
-  order: Object,
   /** the object that contains page data from current state */
   page: Object,
 }
@@ -71,7 +69,7 @@ type Props = {
  */
 
 export const ErrorPage = (props: Props) => {
-  const { auth, order, page, classes } = props
+  const { auth, page, classes } = props
 
   let errorStatus = 0
   let errorMsg
@@ -81,13 +79,7 @@ export const ErrorPage = (props: Props) => {
     errorMsg = auth.error.title
   }
 
-  if (order.error) {
-    errorStatus = order.error.status
-    errorMsg = order.error.title
-  }
-
   if (page.error) {
-    console.log(page.error)
     errorStatus = page.error.status
     errorMsg = page.error.title
   }
@@ -127,8 +119,8 @@ export const ErrorPage = (props: Props) => {
       <Grid container className={classes.mainGrid} justify="center">
         <Grid item xs={10} md={8}>
           <div className={classes.error400}>
-            <img src={sadDicty} alt="Sad Dicty -- Gene Not Found" />
-            <h3>Gene Not Found</h3>
+            <img src={sadDicty} alt="Sad Dicty -- Item Not Found" />
+            <h3>Item Not Found</h3>
             <div className={classes.list}>
               <ul>
                 <li>This is probably an invalid ID. Try a different one.</li>
@@ -166,7 +158,7 @@ export const ErrorPage = (props: Props) => {
         <div className={classes.error400}>
           <img src={sadDicty} alt="Sad Dicty -- HTTP Error" />
           <h1>
-            <FontAwesome name="exclamation-circle" /> {errorStatus} Error
+            <FontAwesomeIcon icon="exclamation-circle" /> {errorStatus} Error
           </h1>
           <h3>{errorMsg}</h3>
           <p>
@@ -193,7 +185,7 @@ export const ErrorPage = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ auth, order, page }) => ({ auth, order, page })
+const mapStateToProps = ({ auth, page }) => ({ auth, page })
 
 // $FlowFixMe
 export default connect(mapStateToProps)(withStyles(styles)(ErrorPage))

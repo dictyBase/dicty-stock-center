@@ -1,29 +1,24 @@
 import React from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
-import { Flex, Box } from "rebass"
-import { Container } from "styles"
+import Grid from "@material-ui/core/Grid"
 
-const Loader = () => {
-  return (
-    <Container>
-      <Flex justify="center">
-        <Box w={1}>
-          <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-            <Skeleton count={10} />
-            <br />
-            <br />
-            <Skeleton count={10} />
-            <br />
-            <br />
-            <Skeleton count={10} />
-            <br />
-            <br />
-            <Skeleton count={5} />
-          </SkeletonTheme>
-        </Box>
-      </Flex>
-    </Container>
-  )
-}
+const Loader = () => (
+  <Grid container justify="center">
+    <Grid item xs={12}>
+      <SkeletonTheme color="#fff	" highlightColor="#fff">
+        <Skeleton count={10} />
+        <br />
+        <br />
+        <Skeleton count={10} />
+        <br />
+        <br />
+        <Skeleton count={10} />
+        <br />
+        <br />
+        <Skeleton count={5} />
+      </SkeletonTheme>
+    </Grid>
+  </Grid>
+)
 
 export default Loader

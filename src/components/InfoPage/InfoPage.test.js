@@ -1,5 +1,4 @@
 import React from "react"
-import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import "../../setupTests"
@@ -34,6 +33,7 @@ describe("InfoPage/InfoPage", () => {
           data: {
             attributes: {
               content: "page content",
+              name: "order",
             },
           },
         },
@@ -64,6 +64,7 @@ describe("InfoPage/InfoPage", () => {
           data: {
             attributes: {
               content: "page content",
+              name: "order",
             },
           },
         },

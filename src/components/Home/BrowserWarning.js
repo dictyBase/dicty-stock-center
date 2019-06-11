@@ -15,12 +15,11 @@ type State = {
   open: boolean,
 }
 
-const Transition = props => {
-  return <Slide direction="up" {...props} />
-}
+const Transition = props => <Slide direction="up" {...props} />
 
 /**
- * This is a browser warning component that tells the user to upgrade if they are using an outdated version (i.e. IE10 or below). It uses Material-UI's Dialog component and Slide animation.
+ * BrowserWarning tells the user to upgrade if they are using an outdated version (i.e. IE10 or below).
+ * It uses Material-UI's Dialog component and Slide animation.
  */
 
 export default class BrowserWarning extends Component<Props, State> {
@@ -62,7 +61,8 @@ export default class BrowserWarning extends Component<Props, State> {
                   target="_blank"
                   rel="noopener noreferrer">
                   Google Chrome
-                </a>.
+                </a>
+                .
               </p>
             </DialogContentText>
           </DialogContent>

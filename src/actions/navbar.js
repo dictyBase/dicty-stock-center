@@ -1,6 +1,7 @@
 // @flow
 import navItems from "constants/Navbar"
 import { dsctypes } from "constants/dsctypes"
+import { fetchFooter } from "./footer"
 
 const {
   FETCH_NAVBAR_REQUEST,
@@ -33,7 +34,7 @@ const fetchNavbarFailure = error => ({
 })
 
 // fetch navbar function that fetches data using async/await
-export const fetchNavbar = () => async (dispatch: Function) => {
+export const fetchNavbarAndFooter = () => async (dispatch: Function) => {
   try {
     dispatch(fetchNavbarRequest())
     const res = await fetch(navbarJson)
@@ -52,13 +53,15 @@ export const fetchNavbar = () => async (dispatch: Function) => {
         }
       })
 
-      return dispatch(fetchNavbarSuccess(navbarArr))
+      dispatch(fetchNavbarSuccess(navbarArr))
+      await dispatch(fetchFooter())
+    } else {
+      dispatch(fetchNavbarFailure(res.statusText))
+      return navItems
     }
-    dispatch(fetchNavbarFailure(res.body))
-    return navItems
   } catch (error) {
     return dispatch(fetchNavbarFailure(error.toString()))
   }
 }
 
-export default fetchNavbar
+export default fetchNavbarAndFooter

@@ -35,21 +35,21 @@ declare module "middlewares/storage" {
 declare module "middlewares/callAPI" {
   declare module.exports: any
 }
-declare module "validator/lib/isEmail" {
-  declare module.exports: any
-}
 declare module "history/createBrowserHistory" {
   declare module.exports: any
 }
 
 // styles
-declare module "react-virtualized/styles.css" {
-  declare module.exports: any
-}
-declare module "font-awesome/css/font-awesome.min.css" {
-  declare module.exports: any
-}
 declare module "react-responsive-carousel/lib/styles/carousel.min.css" {
+  declare module.exports: any
+}
+
+declare module "draft-js-static-toolbar-plugin/lib/plugin.css" {
+  declare module.exports: any
+}
+
+// images
+declare module "images/sad-dicty.png" {
   declare module.exports: any
 }
 
@@ -63,8 +63,13 @@ declare var module: {
 class process {
   static env: {
     REACT_APP_API_SERVER: string,
+    REACT_APP_AUTH_SERVER: string,
     REACT_APP_BASENAME: string,
-    REACT_APP_NAVBAR_JSON: string,
+    REACT_APP_DEBUG: boolean,
     REACT_APP_FOOTER_JSON: string,
+    REACT_APP_GA_TRACKING_ID: string,
+    REACT_APP_GRAPHQL_SERVER: string,
+    REACT_APP_NAVBAR_JSON: string,
+    NODE_ENV: string,
   }
 }
