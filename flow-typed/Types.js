@@ -44,6 +44,10 @@ declare module "react-responsive-carousel/lib/styles/carousel.min.css" {
   declare module.exports: any
 }
 
+declare module "draft-js-static-toolbar-plugin/lib/plugin.css" {
+  declare module.exports: any
+}
+
 // declaration for hot reloading
 declare var module: {
   hot: {

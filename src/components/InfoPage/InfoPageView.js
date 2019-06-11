@@ -8,6 +8,9 @@ import {
   CompositeDecorator,
 } from "draft-js"
 import { withStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
+import Tooltip from "@material-ui/core/Tooltip"
+import IconButton from "@material-ui/core/IconButton"
 import findLinkEntities from "utils/findLinkEntities"
 import { ContentAPI } from "utils/apiClasses"
 import Link from "components/Link"
@@ -17,10 +20,18 @@ import timeSince from "utils/timeSince"
 import { editPage } from "actions/page"
 import { fetchUserInfo } from "actions/auth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Grid from "@material-ui/core/Grid"
-import { Container, ToolbarNav, TextInfo } from "styles"
 
 const styles = theme => ({
+  container: {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "75%",
+    "@media (min-width: 1300px)": {
+      width: "1270px",
+    },
+  },
   label: {
     display: "inline",
     padding: "0.2em 0.6em 0.3em",
@@ -45,6 +56,31 @@ const styles = theme => ({
   },
   content: {
     marginLeft: "auto",
+  },
+  toolbar: {
+    backgroundColor: "#fafafa",
+    borderRadius: "2px",
+    border: "1px solid #ddd",
+    padding: "5px",
+    width: "100%",
+    display: "inline-block",
+  },
+  editButton: {
+    fontSize: "0.99em",
+    color: "#337ab7",
+    "&:hover": {
+      color: "#337ab7",
+      backgroundColor: "transparent",
+    },
+  },
+  textInfo: {
+    color: "#31708f",
+    "&:hover": {
+      color: "#245269",
+    },
+    "&:focus": {
+      color: "#245269",
+    },
   },
 })
 
@@ -82,7 +118,6 @@ type State = {
 export class InfoPageView extends Component<Props, State> {
   constructor(props: any) {
     super(props)
-
     this.state = {
       editorState: EditorState.createWithContent(
         convertFromRaw(JSON.parse(props.page.data.attributes.content)),
@@ -101,9 +136,8 @@ export class InfoPageView extends Component<Props, State> {
 
   onChange = (editorState: EditorState) => this.setState({ editorState })
 
-  onClick = (e: SyntheticEvent<>) => {
+  onEdit = (e: SyntheticEvent<>) => {
     e.preventDefault()
-
     const { editPage, match, page } = this.props
     editPage(page.data.attributes.content, match.params.name)
   }
@@ -113,7 +147,7 @@ export class InfoPageView extends Component<Props, State> {
     const { isAuthenticated, classes } = this.props
 
     return (
-      <Container>
+      <div className={classes.container}>
         {isAuthenticated && (
           //$FlowFixMe
           <Authorization
@@ -124,16 +158,16 @@ export class InfoPageView extends Component<Props, State> {
                 )}
                 <br />
                 {canEditPages && fetchedUserData && (
-                  <ToolbarNav>
-                    <Grid container>
+                  <div className={classes.toolbar}>
+                    <Grid container alignItems="center">
                       <Grid item>
-                        <TextInfo>
+                        <span className={classes.textInfo}>
                           <strong>
                             <FontAwesomeIcon icon="user" />{" "}
                             {fetchedUserData.getFullName()}
                           </strong>{" "}
                           edited {timeSince(updated_at)} ago
-                        </TextInfo>
+                        </span>
                       </Grid>
                       <Grid item className={classes.content}>
                         <span className={classes.label}>
@@ -141,19 +175,17 @@ export class InfoPageView extends Component<Props, State> {
                         </span>{" "}
                         &nbsp;
                         {verifiedToken && (
-                          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                          <a
-                            className={classes.inlineLink}
-                            onClick={this.onClick}>
-                            <FontAwesomeIcon
-                              icon="pencil-alt"
-                              title="Edit page"
-                            />
-                          </a>
+                          <Tooltip title="Edit Page" placement="bottom">
+                            <IconButton
+                              className={classes.editButton}
+                              onClick={this.onEdit}>
+                              <FontAwesomeIcon icon="pencil-alt" />
+                            </IconButton>
+                          </Tooltip>
                         )}
                       </Grid>
                     </Grid>
-                  </ToolbarNav>
+                  </div>
                 )}
               </div>
             )}
@@ -171,7 +203,7 @@ export class InfoPageView extends Component<Props, State> {
             />
           </Grid>
         </Grid>
-      </Container>
+      </div>
     )
   }
 }

@@ -38,10 +38,3 @@ export {
   SuccessButton,
 } from "styles/Buttons"
 export { Container } from "styles/Containers"
-export { StaticToolbar } from "styles/DraftjsToolbar"
-export { PanelGreen, EditPanel } from "styles/Panels"
-export { Table, TableResponsive } from "styles/Tables"
-export { EditorStyle } from "styles/Editors"
-export { ItemAvailable, ItemUnavailable } from "styles/ItemAvailability"
-export { TextInfo } from "styles/TextInfo"
-export { ToolbarNav } from "styles/ToolbarNav"

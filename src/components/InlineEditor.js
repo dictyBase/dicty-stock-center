@@ -2,6 +2,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
+import Tooltip from "@material-ui/core/Tooltip"
+import Button from "@material-ui/core/Button"
+import IconButton from "@material-ui/core/IconButton"
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
 import Editor from "draft-js-plugins-editor"
 import createUndoPlugin from "draft-js-undo-plugin"
@@ -22,20 +26,50 @@ import {
 } from "draft-js-buttons"
 import Authorization from "components/authentication/Authorization"
 import { editInline, saveInlineEditing, fetchInfoPage } from "actions/page"
-import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  ToolbarNav,
-  EditPanel,
-  StaticToolbar,
-  TextInfo,
-  DefaultBlockButton,
-  SuccessBlockButton,
-} from "styles"
+import "draft-js-static-toolbar-plugin/lib/plugin.css"
 
 const styles = theme => ({
   inlineLink: {
     cursor: "pointer",
+  },
+  toolbar: {
+    backgroundColor: "#fafafa",
+    borderRadius: "2px",
+    border: "1px solid #ddd",
+    padding: "5px",
+    width: "100%",
+    display: "inline-block",
+  },
+  editorGrid: {
+    marginTop: "4px",
+  },
+  editButton: {
+    fontSize: "0.9em",
+    color: "#337ab7",
+    "&:hover": {
+      color: "#337ab7",
+      backgroundColor: "transparent",
+    },
+  },
+  saveButton: {
+    width: "100%",
+    backgroundColor: "#15317e",
+  },
+  cancelButton: {
+    width: "100%",
+  },
+  cancelButtonGrid: {
+    marginRight: "4px",
+    marginTop: "4px",
+  },
+  saveButtonGrid: {
+    marginTop: "4px",
+  },
+  container: {
+    "[contenteditable='true']:focus": {
+      outline: "none",
+    },
   },
 })
 
@@ -65,14 +99,11 @@ type State = {
 
 export class InlineEditor extends Component<Props, State> {
   undoPlugin: Object
-
   toolbarLinkPlugin: Object
-
   toolbarPlugin: Object
 
   constructor(props: any) {
     super(props)
-
     // Set up Draft.js toolbar and plugins
     // These have to be added in the constructor in order for multiple
     // editors to be used on the same page.
@@ -163,11 +194,9 @@ export class InlineEditor extends Component<Props, State> {
   renderToolbar = () => {
     const { Toolbar } = this.toolbarPlugin
     return (
-      <ToolbarNav>
-        <StaticToolbar>
-          <Toolbar />
-        </StaticToolbar>
-      </ToolbarNav>
+      <div className={this.props.classes.toolbar}>
+        <Toolbar />
+      </div>
     )
   }
 
@@ -181,61 +210,64 @@ export class InlineEditor extends Component<Props, State> {
     const { classes } = this.props
 
     return (
-      <EditPanel>
-        <Grid container wrap="wrap">
-          <Grid item xs={12}>
-            {!readOnly && this.renderToolbar()}
-          </Grid>
-          <Grid item style={{ marginTop: "4px" }}>
-            <Editor
-              editorState={editorState}
-              onChange={this.onChange}
-              plugins={plugins}
-              ref="{(element) => { this.editor = element }}"
-              readOnly={readOnly}
-            />
-            {/* $FlowFixMe */}
-            <Authorization
-              render={({ canEditPages, verifiedToken }) => (
-                <div>
-                  {canEditPages && verifiedToken && readOnly && (
-                    <TextInfo>
-                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                      <a
-                        className={classes.inlineLink}
-                        onClick={this.onEdit}
-                        title="Edit">
-                        <FontAwesomeIcon icon="pencil-alt" /> Edit
-                      </a>
-                    </TextInfo>
-                  )}
-                </div>
+      <Grid container className={classes.container}>
+        <Grid item xs={12}>
+          {!readOnly && this.renderToolbar()}
+        </Grid>
+        <Grid item className={classes.editorGrid}>
+          <Editor
+            editorState={editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+            ref="{(element) => { this.editor = element }}"
+            readOnly={readOnly}
+          />
+          {/* $FlowFixMe */}
+          <Authorization
+            render={({ canEditPages, verifiedToken }) => (
+              <div>
+                {canEditPages && verifiedToken && readOnly && (
+                  <Tooltip title="Edit Page" placement="bottom">
+                    <IconButton
+                      className={classes.editButton}
+                      onClick={this.onEdit}>
+                      <FontAwesomeIcon icon="pencil-alt" />
+                      &nbsp;Edit
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </div>
+            )}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container justify="flex-end">
+            <Grid item xs={2} className={classes.cancelButtonGrid}>
+              {!readOnly && (
+                <Button
+                  className={classes.cancelButton}
+                  size="small"
+                  variant="contained"
+                  onClick={this.onCancel}>
+                  Cancel
+                </Button>
               )}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container>
-              <Grid
-                item
-                xs={4}
-                style={{ marginRight: "4px", marginTop: "4px" }}>
-                {!readOnly && (
-                  <DefaultBlockButton type="button" onClick={this.onCancel}>
-                    Cancel
-                  </DefaultBlockButton>
-                )}
-              </Grid>
-              <Grid item xs={4} style={{ marginTop: "4px" }}>
-                {!readOnly && (
-                  <SuccessBlockButton type="button" onClick={this.onSave}>
-                    Save
-                  </SuccessBlockButton>
-                )}
-              </Grid>
+            </Grid>
+            <Grid item xs={2} className={classes.saveButtonGrid}>
+              {!readOnly && (
+                <Button
+                  className={classes.saveButton}
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  onClick={this.onSave}>
+                  Save
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
-      </EditPanel>
+      </Grid>
     )
   }
 }
