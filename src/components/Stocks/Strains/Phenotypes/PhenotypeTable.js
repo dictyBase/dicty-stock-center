@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper"
 
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
-import styles from "./phenotypeTableStyles"
+import styles from "./PhenotypeTableStyles"
 import logo from "static/dicty-login.png"
 
 type Props = {
