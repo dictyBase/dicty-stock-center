@@ -73,7 +73,7 @@ export const loginError = (error: Object) => ({
   type: LOGIN_FAILURE,
   payload: {
     isFetching: false,
-    error: error,
+    error,
   },
 })
 
@@ -149,10 +149,12 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
       } else if (res.status === 401) {
         // user has invalid credentials, redirect with notification
         dispatch(
-          createErrorObj(
-            res.status,
-            `You are not an authorized user of dictyBase.
-             Please sign in with proper credentials.`,
+          loginError(
+            createErrorObj(
+              res.status,
+              `You are not an authorized user of dictyBase.
+               Please sign in with proper credentials.`,
+            ),
           ),
         )
         dispatch(push("/login"))
@@ -162,13 +164,13 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
       }
     } else {
       if (process.env.NODE_ENV !== "production") {
-        console.error(res.body)
+        console.error(res.statusText)
       }
       dispatch(loginError(createErrorObj(res.status, res.statusText)))
       dispatch(push("/error"))
     }
   } catch (error) {
-    dispatch(loginError(error))
+    dispatch(loginError(createErrorObj(error.name, error.message)))
     dispatch(push("/error"))
   }
 }
