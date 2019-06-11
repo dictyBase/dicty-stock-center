@@ -6,7 +6,6 @@ import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
 import ErrorNotification from "components/authentication/ErrorNotification"
 import Grid from "@material-ui/core/Grid"
-import { DictyHeader } from "styles"
 import type { MapStateToProps } from "react-redux"
 
 // list of buttons to display
@@ -69,9 +68,9 @@ class Login extends Component<Props> {
     return (
       <Grid container justify="center">
         <Grid item xs={8}>
-          <DictyHeader>
+          <center>
             <h1>Log in</h1>
-          </DictyHeader>
+          </center>
           {error && <ErrorNotification error={error} />}
           {auth.error && <ErrorNotification error={auth.error} />}
           <Grid container justify="center">

@@ -37,7 +37,6 @@ export {
   SuccessBlockButton,
   SuccessButton,
 } from "styles/Buttons"
-export { DictyHeader } from "styles/Headers"
 export { Container } from "styles/Containers"
 export { StaticToolbar } from "styles/DraftjsToolbar"
 export { PanelGreen, EditPanel } from "styles/Panels"
