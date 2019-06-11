@@ -40,7 +40,7 @@ type Props = {
 
 // Creating CustomLink is necessary to prevent unexpected unmounting.
 // https://material-ui.com/guides/composition/#component-property
-const CustomLink = props => <Link to="/order/shipping" {...props} />
+const CustomLink = props => <Link to="/order/checkout" {...props} />
 
 /**
  * ShoppingButtons provides the buttons at the bottom of a stock details page.
