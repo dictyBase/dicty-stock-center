@@ -21,6 +21,9 @@ describe("InfoPage/EditInfoPage", () => {
       updated_by: undefined,
       saveEditing: undefined,
       content: undefined,
+      classes: {
+        container: "container",
+      },
     }
     mountedEditInfoPage = undefined
   })
@@ -54,6 +57,9 @@ describe("InfoPage/EditInfoPage", () => {
             name: "order",
           },
         },
+        classes: {
+          container: "container",
+        },
       }
     })
     it("always renders an Editor", () => {
@@ -80,6 +86,9 @@ describe("InfoPage/EditInfoPage", () => {
         },
         saveEditing: () => {},
         cancelEditing: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
 

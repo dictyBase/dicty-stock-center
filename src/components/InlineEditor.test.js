@@ -21,6 +21,9 @@ describe("InlineEditor", () => {
       updated_by: undefined,
       saveInlineEditing: undefined,
       editInline: undefined,
+      classes: {
+        container: "container",
+      },
     }
     mountedInlineEditor = undefined
   })
@@ -48,6 +51,9 @@ describe("InlineEditor", () => {
             },
           },
         },
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -71,6 +77,9 @@ describe("InlineEditor", () => {
           },
         },
         saveInlineEditing: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
   })
@@ -89,6 +98,9 @@ describe("InlineEditor", () => {
         saveInlineEditing: () => {},
         editInline: () => {},
         fetchInfoPage: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
 

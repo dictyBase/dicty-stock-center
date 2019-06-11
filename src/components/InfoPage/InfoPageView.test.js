@@ -25,6 +25,9 @@ describe("InfoPage/InfoPageView", () => {
       fetchedUserData: undefined,
       loggedInUser: undefined,
       isAuthenticated: undefined,
+      classes: {
+        container: "container",
+      },
     }
     mountedInfoPageView = undefined
   })
@@ -59,6 +62,9 @@ describe("InfoPage/InfoPageView", () => {
           },
         },
         fetchUserInfo: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
     it("always renders an Editor", () => {
@@ -89,6 +95,9 @@ describe("InfoPage/InfoPageView", () => {
         },
         fetchUserInfo: () => {},
         isAuthenticated: false,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -116,6 +125,9 @@ describe("InfoPage/InfoPageView", () => {
         },
         fetchUserInfo: () => {},
         isAuthenticated: true,
+        classes: {
+          container: "container",
+        },
       }
     })
     it("calls componentDidMount", () => {
@@ -149,6 +161,9 @@ describe("InfoPage/InfoPageView", () => {
         isAuthenticated: true,
         canEditPages: true,
         verifiedToken: true,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -188,6 +203,9 @@ describe("InfoPage/InfoPageView", () => {
         isAuthenticated: true,
         canEditPages: true,
         verifiedToken: false,
+        classes: {
+          container: "container",
+        },
       }
     })
 
@@ -230,15 +248,18 @@ describe("InfoPage/InfoPageView", () => {
         fetchUserInfo: () => {},
         isAuthenticated: true,
         onClick: () => {},
+        classes: {
+          container: "container",
+        },
       }
     })
 
     const preventDefault = jest.fn()
 
-    it("should handle onClick correctly", () => {
+    it("should handle onEdit correctly", () => {
       const instance = infoPageView().instance()
-      const spy = jest.spyOn(instance, "onClick")
-      instance.onClick({ preventDefault })
+      const spy = jest.spyOn(instance, "onEdit")
+      instance.onEdit({ preventDefault })
 
       expect(spy).toHaveBeenCalled()
     })

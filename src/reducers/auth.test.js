@@ -6,7 +6,7 @@ const {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_REQUEST,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
 } = dsctypes
 
 describe("reducers", () => {
@@ -24,14 +24,14 @@ describe("reducers", () => {
             payload: {
               isFetching: true,
               isAuthenticated: false,
-              provider: "google"
-            }
-          }
-        )
+              provider: "google",
+            },
+          },
+        ),
       ).toEqual({
         isFetching: true,
         isAuthenticated: false,
-        provider: "google"
+        provider: "google",
       })
     })
 
@@ -45,15 +45,16 @@ describe("reducers", () => {
               isFetching: false,
               isAuthenticated: true,
               token: "adsfgjkngdfa",
-              user: { name: "John" }
-            }
-          }
-        )
+              user: { name: "John" },
+            },
+          },
+        ),
       ).toEqual({
         isFetching: false,
         isAuthenticated: true,
         token: "adsfgjkngdfa",
-        user: { name: "John" }
+        user: { name: "John" },
+        error: null,
       })
     })
 
@@ -67,15 +68,15 @@ describe("reducers", () => {
               isFetching: false,
               isAuthenticated: false,
               error: "danger",
-              provider: null
-            }
-          }
-        )
+              provider: null,
+            },
+          },
+        ),
       ).toEqual({
         isFetching: false,
         isAuthenticated: false,
         error: "danger",
-        provider: null
+        provider: null,
       })
     })
 
@@ -86,12 +87,12 @@ describe("reducers", () => {
           {
             type: LOGOUT_REQUEST,
             payload: {
-              isFetching: true
-            }
-          }
-        )
+              isFetching: true,
+            },
+          },
+        ),
       ).toEqual({
-        isFetching: true
+        isFetching: true,
       })
     })
 
@@ -103,16 +104,16 @@ describe("reducers", () => {
             type: LOGOUT_SUCCESS,
             payload: {
               isFetching: false,
-              isAuthenticated: false
-            }
-          }
-        )
+              isAuthenticated: false,
+            },
+          },
+        ),
       ).toEqual({
         isFetching: false,
         isAuthenticated: false,
         provider: null,
         user: null,
-        token: null
+        token: null,
       })
     })
   })
