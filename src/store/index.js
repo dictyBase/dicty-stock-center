@@ -2,12 +2,12 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly"
-import { connectRouter, routerMiddleware } from "connected-react-router"
+import { routerMiddleware } from "connected-react-router"
 import { manageStateStorage } from "dicty-components-redux"
 import callAPI from "middlewares/callAPI"
 import { dsctypes } from "constants/dsctypes"
 import history from "utils/routerHistory"
-import rootReducer from "../reducers"
+import createRootReducer from "../reducers"
 
 const authArg = {
   save_action: dsctypes.LOGIN_SUCCESS,
@@ -47,15 +47,11 @@ const enhancer = composeWithDevTools(
 )
 
 export default function configureStore(initialState: Object) {
-  const store = createStore(
-    connectRouter(history)(rootReducer),
-    initialState,
-    enhancer,
-  )
+  const store = createStore(createRootReducer(history), initialState, enhancer)
   if (process.env.NODE_ENV === "development") {
     if (module.hot) {
       module.hot.accept("../reducers", () =>
-        store.replaceReducer(require("../reducers").default),
+        store.replaceReducer(createRootReducer(history)),
       )
     }
   }
