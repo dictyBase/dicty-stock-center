@@ -1,7 +1,6 @@
 import React from "react"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
-import "jest-styled-components"
 import { About } from "./About"
 import InlineEditor from "components/InlineEditor"
 import Grid from "@material-ui/core/Grid"

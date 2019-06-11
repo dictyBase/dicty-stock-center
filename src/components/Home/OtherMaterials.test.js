@@ -1,5 +1,4 @@
 import React from "react"
-import "jest-styled-components"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
 import { OtherMaterials } from "./OtherMaterials"

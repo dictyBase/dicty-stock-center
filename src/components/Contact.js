@@ -51,17 +51,19 @@ const Contact = (props: Props) => {
           </div>
         </Grid>
         <Grid item xs={12}>
-          <p>
-            For questions, comments, or suggestions, please send us an
-            email&nbsp;
-            <a
-              href="mailto:dictystocks@northwestern.edu?Subject=Question"
-              target="_top">
-              (dictystocks@northwestern.edu)
-            </a>
-            .
-          </p>
-          <p>We will be adding a working contact form soon.</p>
+          <center>
+            <p>
+              For questions, comments, or suggestions, please send us an
+              email&nbsp;
+              <a
+                href="mailto:dictystocks@northwestern.edu?Subject=Question"
+                target="_top">
+                (dictystocks@northwestern.edu)
+              </a>
+              .
+            </p>
+            <p>We will be adding a working contact form soon.</p>
+          </center>
         </Grid>
       </Grid>
     </>
