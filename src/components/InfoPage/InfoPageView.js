@@ -82,6 +82,12 @@ const styles = theme => ({
       color: "#245269",
     },
   },
+  editor: {
+    "& a": {
+      color: "#004080",
+      textDecoration: "none",
+    },
+  },
 })
 
 const decorator = [
@@ -193,7 +199,7 @@ export class InfoPageView extends Component<Props, State> {
         )}
 
         <Grid container>
-          <Grid item>
+          <Grid item className={classes.editor}>
             <Editor
               editorState={this.state.editorState}
               ref="editor"

@@ -8,12 +8,20 @@ export const appStyles = theme => ({
     width: "100%",
     fontFamily: "Roboto, sans-serif",
     fontSize: "16px",
-    lineHeight: 1.42857,
+    lineHeight: 1.6,
     color: "#333",
     backgroundColor: "#fff",
     boxSizing: "content-box",
     WebkitFontSmoothing: "auto",
     MozOsxFontSmoothing: "auto",
+    "& h1, h2, h3, h4, h5, h6": {
+      fontWeight: 500,
+      lineHeight: 1.1,
+    },
+    "& h4, h5, h6": {
+      marginTop: "10px",
+      marginBottom: "10px",
+    },
   },
 })
 

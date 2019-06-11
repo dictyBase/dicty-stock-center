@@ -18,6 +18,7 @@ const styles = (theme: Object) => ({
   },
   sopLink: {
     color: "#961818",
+    textDecoration: "none",
   },
   container: {
     paddingRight: "15px",
@@ -36,6 +37,10 @@ const styles = (theme: Object) => ({
     marginTop: "0px",
     marginBottom: "25px",
     borderBottom: "1px solid #eee",
+  },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
   },
 })
 

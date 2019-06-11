@@ -64,6 +64,11 @@ const styles = theme => ({
     marginBottom: "2em",
     background: "#fefefe",
     margin: "10px auto",
+
+    "& a": {
+      color: "#004080",
+      textDecoration: "none",
+    },
   },
   container: {
     paddingRight: "15px",
@@ -71,9 +76,6 @@ const styles = theme => ({
     marginRight: "auto",
     marginLeft: "auto",
     width: "75%",
-    "[contenteditable='true']:focus": {
-      outline: "none",
-    },
     "@media (min-width: 1300px)": {
       width: "1270px",
     },

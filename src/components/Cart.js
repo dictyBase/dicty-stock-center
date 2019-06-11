@@ -16,6 +16,10 @@ const styles = theme => ({
       width: "1270px",
     },
   },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
 })
 
 type Props = {
@@ -36,7 +40,7 @@ export const Cart = (props: Props) => {
   return (
     <Grid container justify="flex-end" className={classes.container}>
       <Grid item>
-        <Link to="/cart">
+        <Link className={classes.link} to="/cart">
           <FontAwesomeIcon icon="shopping-cart" size="2x" /> ({items.length})
         </Link>
       </Grid>

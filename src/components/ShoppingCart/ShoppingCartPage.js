@@ -56,6 +56,10 @@ const styles = theme => ({
   buttons: {
     textAlign: "center",
   },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
 })
 
 type Props = {
@@ -113,7 +117,7 @@ export const ShoppingCartPage = (props: Props) => {
           </Grid>
         </>
       ) : (
-        <Grid container wrap="wrap" justify="center">
+        <Grid container justify="center">
           <Grid item xs={11} sm={7}>
             <div className={classes.alertBox}>
               <strong>
@@ -126,10 +130,14 @@ export const ShoppingCartPage = (props: Props) => {
                 <h2>Browse our catalogs</h2>
                 <ul>
                   <li>
-                    <Link to="/strains">Strains Catalog</Link>
+                    <Link className={classes.link} to="/strains">
+                      Strains Catalog
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/plasmids">Plasmids Catalog</Link>
+                    <Link className={classes.link} to="/plasmids">
+                      Plasmids Catalog
+                    </Link>
                   </li>
                 </ul>
               </Grid>

@@ -43,6 +43,11 @@ const styles = theme => ({
   },
   editorGrid: {
     marginTop: "4px",
+
+    "& a": {
+      color: "#004080",
+      textDecoration: "none",
+    },
   },
   editButton: {
     fontSize: "0.9em",
