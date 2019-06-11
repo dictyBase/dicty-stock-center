@@ -1,15 +1,15 @@
 import "utils/polyfills" // necessary for IE11
 import React from "react"
 import { render } from "react-dom"
-import history from "utils/routerHistory"
-import configureStore from "store"
-import { hydrateAll, hydrateStore } from "dicty-components-redux"
-import App from "components/App"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "react-apollo"
 import ApolloClient from "apollo-boost"
 import CssBaseline from "@material-ui/core/CssBaseline"
+import { hydrateAll, hydrateStore } from "dicty-components-redux"
+import configureStore from "store"
+import history from "utils/routerHistory"
+import App from "components/App"
 import "typeface-roboto"
 
 // load state from localStorage(if any) to set the

@@ -1,11 +1,9 @@
 import React from "react"
-import { shallow, mount, render } from "enzyme"
+import { shallow } from "enzyme"
 import sinon from "sinon"
-import "../../setupTests"
 import { InfoPageView, mapStateToProps } from "./InfoPageView"
 import Authorization from "components/authentication/Authorization"
 import ErrorNotification from "components/authentication/ErrorNotification"
-import { Container, ToolbarNav } from "styles"
 import { Editor } from "draft-js"
 
 describe("InfoPage/InfoPageView", () => {
@@ -62,10 +60,6 @@ describe("InfoPage/InfoPageView", () => {
         },
         fetchUserInfo: () => {},
       }
-    })
-
-    it("always renders a Container", () => {
-      expect(infoPageView().find(Container).length).toBe(1)
     })
     it("always renders an Editor", () => {
       expect(infoPageView().find(Editor).length).toBe(1)

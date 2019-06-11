@@ -27,14 +27,4 @@ a {
 `,
 ])
 
-// get all of the styled components from individual files
-export {
-  Button,
-  PrimaryButton,
-  DefaultButton,
-  DefaultBlockButton,
-  CancelButton,
-  SuccessBlockButton,
-  SuccessButton,
-} from "styles/Buttons"
 export { Container } from "styles/Containers"

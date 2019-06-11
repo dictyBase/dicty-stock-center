@@ -1,10 +1,7 @@
 import React from "react"
-import { shallow, mount } from "enzyme"
-import sinon from "sinon"
-import "../../setupTests"
+import { mount } from "enzyme"
 import { EditInfoPage } from "./EditInfoPage"
-import { Container, SuccessBlockButton, CancelButton } from "styles"
-import { Editor, EditorState } from "draft-js"
+import { Editor } from "draft-js"
 
 describe("InfoPage/EditInfoPage", () => {
   let props
@@ -59,18 +56,8 @@ describe("InfoPage/EditInfoPage", () => {
         },
       }
     })
-
-    it("always renders a Container", () => {
-      expect(editInfoPage().find(Container).length).toBe(1)
-    })
     it("always renders an Editor", () => {
       expect(editInfoPage().find(Editor).length).toBe(1)
-    })
-    it("always renders a CancelButton", () => {
-      expect(editInfoPage().find(CancelButton).length).toBe(1)
-    })
-    it("always renders a SuccessBlockButton", () => {
-      expect(editInfoPage().find(SuccessBlockButton).length).toBe(1)
     })
   })
 
@@ -95,8 +82,6 @@ describe("InfoPage/EditInfoPage", () => {
         cancelEditing: () => {},
       }
     })
-
-    const preventDefault = jest.fn()
 
     it("should be read only after using onSave", () => {
       const instance = editInfoPage().instance()
