@@ -1,7 +1,7 @@
 # It's a multi stage build https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
 # The first one build single file js for the web app
 # The second one copies the file and server with a golang static web server
-FROM node:10.4.0-alpine
+FROM node:10.16.0-alpine
 LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 
 # include git, otherwise npm install doesn't work
@@ -43,7 +43,7 @@ WORKDIR /usr/src/app
 # copy only necessary files
 COPY package-lock.json .babelrc ./
 
-# package.json has to be modified later on, so 
+# package.json has to be modified later on, so
 ADD package.json package-dev.json
 # create new package.json with relative path
 RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
