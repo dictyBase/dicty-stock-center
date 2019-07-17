@@ -87,7 +87,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
             {
               message: "Plasmids not found",
               path: [],
-              extensions: [{ code: "NotFound" }],
+              extensions: { code: "NotFound" },
             },
           ],
         },

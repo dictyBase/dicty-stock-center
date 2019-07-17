@@ -86,7 +86,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
             {
               message: "Strains not found",
               path: [],
-              extensions: [{ code: "NotFound" }],
+              extensions: { code: "NotFound" },
             },
           ],
         },
