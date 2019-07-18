@@ -16,8 +16,8 @@ describe("Stocks/Strains/StrainDetailsList", () => {
     it("always renders initial components", () => {
       expect(wrapper.dive().find(Grid)).toHaveLength(2)
       expect(wrapper.dive().find(ItemDisplay)).toHaveLength(8)
-      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(15)
-      expect(wrapper.dive().find(RightDisplay)).toHaveLength(17)
+      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(16)
+      expect(wrapper.dive().find(RightDisplay)).toHaveLength(16)
     })
   })
 })
