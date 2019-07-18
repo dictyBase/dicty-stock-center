@@ -21,6 +21,11 @@ const styles = theme => ({
     marginLeft: "auto",
     width: "75%",
 
+    "& a": {
+      color: "#004080",
+      textDecoration: "none",
+    },
+
     [theme.breakpoints.up("xl")]: {
       width: "1270px",
     },
