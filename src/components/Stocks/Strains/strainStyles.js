@@ -17,9 +17,10 @@ const styles = theme => ({
     //   width: "1270px",
     // },
   },
-  root: {
+  detailsPaper: {
     width: "100%",
     overflowX: "auto",
+    paddingBottom: "10px",
   },
   tableRowHover: {
     "&:hover": {
