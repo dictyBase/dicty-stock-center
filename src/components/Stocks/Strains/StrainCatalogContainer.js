@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import StrainCatalogTable from "./StrainCatalogTable"
 import styles from "./strainStyles"
 

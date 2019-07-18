@@ -8,7 +8,7 @@ import { withStyles } from "@material-ui/core/styles"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StockDetailsLoader from "../StockDetailsLoader"
 import PlasmidCatalogTable from "./PlasmidCatalogTable"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import styles from "./plasmidStyles"
 
 export const GET_PLASMID_LIST = gql`

@@ -23,12 +23,16 @@ const Login = Loadable({
 })
 const OauthCallback = Loadable({
   loader: () =>
-    import("components/authentication/OauthCallback" /* webpackChunkName: "OauthCallback" */),
+    import(
+      "components/authentication/OauthCallback" /* webpackChunkName: "OauthCallback" */
+    ),
   loading: Loader,
 })
 const AuthLoader = Loadable({
   loader: () =>
-    import("components/authentication/AuthLoader" /* webpackChunkName: "AuthLoader" */),
+    import(
+      "components/authentication/AuthLoader" /* webpackChunkName: "AuthLoader" */
+    ),
   loading: Loader,
 })
 const Logout = Loadable({
@@ -49,43 +53,57 @@ const InfoPage = Loadable({
 })
 const EditInfoPage = Loadable({
   loader: () =>
-    import("components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */),
+    import(
+      "components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */
+    ),
   loading: Loader,
 })
 
 // strain routes
 const StrainCatalogContainer = Loadable({
   loader: () =>
-    import("components/Stocks/Strains/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */),
+    import(
+      "components/Stocks/Strains/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */
+    ),
   loading: StockDetailsLoader,
 })
 const StrainDetailsContainer = Loadable({
   loader: () =>
-    import("components/Stocks/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */),
+    import(
+      "components/Stocks/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
+    ),
   loading: StockDetailsLoader,
 })
 
 // plasmid routes
 const PlasmidCatalogContainer = Loadable({
   loader: () =>
-    import("components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */),
+    import(
+      "components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */
+    ),
   loading: StockDetailsLoader,
 })
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
-    import("components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */),
+    import(
+      "components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
+    ),
   loading: StockDetailsLoader,
 })
 
 // order form routes
 const OrderForm = Loadable({
   loader: () =>
-    import("components/OrderForm/OrderForm" /* webpackChunkName: "OrderForm" */),
+    import(
+      "components/OrderForm/OrderForm" /* webpackChunkName: "OrderForm" */
+    ),
   loading: Loader,
 })
 const OrderConfirmation = Loadable({
   loader: () =>
-    import("components/OrderForm/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */),
+    import(
+      "components/OrderForm/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */
+    ),
   loading: Loader,
 })
 
@@ -96,19 +114,23 @@ const Contact = Loadable({
 })
 const ErrorPage = Loadable({
   loader: () =>
-    import("components/ErrorPage" /* webpackChunkName: "ErrorPage" */),
+    import("components/Errors/ErrorPage" /* webpackChunkName: "ErrorPage" */),
   loading: Loader,
 })
 const ShoppingCartPage = Loadable({
   loader: () =>
-    import("components/ShoppingCart/ShoppingCartPage" /* webpackChunkName: "ShoppingCartPage" */),
+    import(
+      "components/ShoppingCart/ShoppingCartPage" /* webpackChunkName: "ShoppingCartPage" */
+    ),
   loading: Loader,
 })
 
 // custom 404 route
 const PageNotReady = Loadable({
   loader: () =>
-    import("components/PageNotReady" /* webpackChunkName: "PageNotReady" */),
+    import(
+      "components/Errors/PageNotReady" /* webpackChunkName: "PageNotReady" */
+    ),
   loading: Loader,
 })
 

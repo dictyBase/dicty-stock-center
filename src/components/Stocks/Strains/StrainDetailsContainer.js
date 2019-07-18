@@ -11,7 +11,7 @@ import StrainDetailsList from "./StrainDetailsList"
 import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
 import PhenotypeTable from "./Phenotypes/PhenotypeTable"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import styles from "./strainStyles"
 
 export const GET_STRAIN = gql`
@@ -90,9 +90,7 @@ export const StrainDetailsContainer = (props: Props) => {
               <title>{title} - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center strain details page for ${
-                  data.strain.label
-                }`}
+                content={`Dicty Stock Center strain details page for ${data.strain.label}`}
               />
             </Helmet>
             <Grid item xs={12}>

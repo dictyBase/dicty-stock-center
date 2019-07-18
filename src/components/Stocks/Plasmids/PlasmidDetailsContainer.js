@@ -10,7 +10,7 @@ import StockDetailsHeader from "../StockDetailsHeader"
 import PlasmidDetailsList from "./PlasmidDetailsList"
 import ShoppingButtons from "../ShoppingButtons"
 import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import styles from "./plasmidStyles"
 
 export const GET_PLASMID = gql`
@@ -59,9 +59,7 @@ export const PlasmidDetailsContainer = (props: Props) => {
               <title>{title} - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center plasmid details page for ${
-                  data.plasmid.id
-                }`}
+                content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
               />
             </Helmet>
             <Grid item xs={12}>
