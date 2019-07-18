@@ -24,7 +24,7 @@ type Props = {
  */
 
 const RightDisplay = ({ classes, children }: Props) => (
-  <Grid item xs={4} className={classes.rightContainer}>
+  <Grid item xs={12} md={4} className={classes.rightContainer}>
     {children}
   </Grid>
 )
