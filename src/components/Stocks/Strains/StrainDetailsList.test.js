@@ -1,9 +1,9 @@
 import React from "react"
 import { shallow } from "enzyme"
 import StrainDetailsList from "./StrainDetailsList"
-import ItemDisplay from "../ItemDisplay"
-import LeftDisplay from "../LeftDisplay"
-import RightDisplay from "../RightDisplay"
+import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
+import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
+import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import Grid from "@material-ui/core/Grid"
 import { data } from "./mockStrainData"
 
