@@ -44,6 +44,10 @@ const styles = theme => ({
     fontWeight: 400,
     marginBottom: "5px",
   },
+  catalogPaper: {
+    height: 600,
+    width: "100%",
+  },
 })
 
 export default styles

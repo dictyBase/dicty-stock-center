@@ -255,7 +255,7 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     const { classes, data, totalCount } = this.props
 
     return (
-      <Paper style={{ height: 600, width: "100%" }}>
+      <Paper className={classes.catalogPaper}>
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}

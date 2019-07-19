@@ -220,7 +220,7 @@ export class PlasmidCatalogTable extends React.PureComponent<Props, State> {
         variant="head"
         style={{ height: this.cache.rowHeight }}>
         <strong>
-          <Button disabled>Out of stock</Button>
+          <Button disabled>Not available</Button>
         </strong>
       </TableCell>
     )
@@ -256,7 +256,7 @@ export class PlasmidCatalogTable extends React.PureComponent<Props, State> {
     const { classes, data, totalCount } = this.props
 
     return (
-      <Paper style={{ height: 600, width: "100%" }}>
+      <Paper className={classes.catalogPaper}>
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}
