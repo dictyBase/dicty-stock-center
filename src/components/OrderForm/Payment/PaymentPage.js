@@ -75,6 +75,11 @@ const PaymentPage = (props: Props) => {
     setFieldValue("payerPhone", values.phone)
   }
 
+  const handleContinueClick = () => {
+    setPageNum(pageNum + 1)
+    validationChecker()
+  }
+
   return (
     <Grid container spacing={16}>
       <Grid item xs={12}>
@@ -120,10 +125,7 @@ const PaymentPage = (props: Props) => {
               <Button
                 size="large"
                 className={classes.continueBtn}
-                onClick={() => {
-                  setPageNum(pageNum + 1)
-                  validationChecker()
-                }}>
+                onClick={handleContinueClick}>
                 Continue &nbsp;
                 <FontAwesomeIcon icon="arrow-circle-right" />
               </Button>

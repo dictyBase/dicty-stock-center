@@ -26,6 +26,17 @@ const ShippingMethod = (props: Props) => {
   const [prepaidNotice, setPrepaidNotice] = useState(false)
   const { classes, handleChange, setFieldValue } = props
 
+  const handleShipAccountChange = () => {
+    setShipAccountNum(true)
+    setPrepaidNotice(false)
+  }
+
+  const handlePrepaidLabelChange = () => {
+    setShipAccountNum(false)
+    setPrepaidNotice(true)
+    setFieldValue("shippingAccountNumber", "sending prepaid shipping label")
+  }
+
   return (
     <Grid
       container
@@ -45,41 +56,25 @@ const ShippingMethod = (props: Props) => {
             value="fedex"
             control={<Radio />}
             label="FedEx"
-            onChange={() => {
-              setShipAccountNum(true)
-              setPrepaidNotice(false)
-            }}
+            onChange={handleShipAccountChange}
           />
           <FormControlLabel
             value="ups"
             control={<Radio />}
             label="UPS"
-            onChange={() => {
-              setShipAccountNum(true)
-              setPrepaidNotice(false)
-            }}
+            onChange={handleShipAccountChange}
           />
           <FormControlLabel
             value="dhl"
             control={<Radio />}
             label="DHL"
-            onChange={() => {
-              setShipAccountNum(true)
-              setPrepaidNotice(false)
-            }}
+            onChange={handleShipAccountChange}
           />
           <FormControlLabel
             value="prepaid"
             control={<Radio />}
             label="Send prepaid shipping label"
-            onChange={() => {
-              setShipAccountNum(false)
-              setPrepaidNotice(true)
-              setFieldValue(
-                "shippingAccountNumber",
-                "sending prepaid shipping label",
-              )
-            }}
+            onChange={handlePrepaidLabelChange}
           />
         </RadioGroup>
         {shipAccountNum && (
