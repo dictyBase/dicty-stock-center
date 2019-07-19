@@ -1,14 +1,11 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import gql from "graphql-tag"
 import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
 import TableCell from "@material-ui/core/TableCell"
 import Paper from "@material-ui/core/Paper"
-import Button from "@material-ui/core/Button"
-import Snackbar from "@material-ui/core/Snackbar"
 import {
   AutoSizer,
   Column,
@@ -17,8 +14,8 @@ import {
   CellMeasurerCache,
   InfiniteLoader,
 } from "react-virtualized"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { addToCart } from "actions/cart"
+import AddToCartButton from "components/Stocks/Strains/Catalog/AddToCartButton"
+import UnavailableButton from "components/Stocks/Strains/Catalog/UnavailableButton"
 import styles from "./strainStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -43,8 +40,6 @@ type Props = {
     label: string,
     summary: string,
   }>,
-  /** Action for adding an item to the shopping cart */
-  addToCart: Function,
   /** Material-UI styling */
   classes: Object,
   /** Default height of header */
@@ -57,36 +52,14 @@ type Props = {
   cursor: Number,
 }
 
-type State = {
-  /** Indicates whether snackbar is open or not */
-  snackbarOpen: boolean,
-}
-
 /**
  * StrainCatalogTable is the table used to display strain catalog data.
  */
 
-export class StrainCatalogTable extends React.PureComponent<Props, State> {
+export class StrainCatalogTable extends React.PureComponent<Props> {
   static defaultProps = {
     headerHeight: 64,
     data: [],
-  }
-
-  state = {
-    snackbarOpen: false,
-  }
-
-  handleClick = (id: string, label: string) => {
-    this.props.addToCart({
-      type: "strain",
-      id: id,
-      name: label,
-    })
-    this.setState({ snackbarOpen: true })
-  }
-
-  handleClose = () => {
-    this.setState({ snackbarOpen: false })
   }
 
   cache = new CellMeasurerCache({
@@ -174,54 +147,12 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     rowData: Object,
     cellData: string,
   }) => {
-    const { classes } = this.props
     const { id, label } = rowData
 
-    if (cellData === true) {
-      return (
-        <TableCell
-          component="div"
-          className={classNames(classes.flexContainer, classes.tableCell)}
-          variant="body"
-          style={{ height: this.cache.rowHeight }}>
-          <strong>
-            <Button
-              className={classes.cartButton}
-              onClick={() => {
-                this.handleClick(id, label)
-              }}>
-              <FontAwesomeIcon icon="shopping-cart" />
-              &nbsp;Add to cart
-            </Button>
-          </strong>
-          <Snackbar
-            autoHideDuration={2500}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            open={this.state.snackbarOpen}
-            onClose={this.handleClose}
-            ContentProps={{
-              "aria-describedby": "cart-id",
-            }}
-            message={
-              <span id="cart-id">
-                <FontAwesomeIcon icon="check-circle" /> &nbsp; Item added to
-                cart
-              </span>
-            }
-          />
-        </TableCell>
-      )
-    }
-    return (
-      <TableCell
-        component="div"
-        className={classNames(classes.flexContainer, classes.tableCell)}
-        variant="head"
-        style={{ height: this.cache.rowHeight }}>
-        <strong>
-          <Button disabled>Not available</Button>
-        </strong>
-      </TableCell>
+    return cellData ? (
+      <AddToCartButton id={id} label={label} rowHeight={this.cache.rowHeight} />
+    ) : (
+      <UnavailableButton rowHeight={this.cache.rowHeight} />
     )
   }
 
@@ -320,7 +251,4 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }
 }
 
-export default connect(
-  null,
-  { addToCart },
-)(withStyles(styles)(StrainCatalogTable))
+export default withStyles(styles)(StrainCatalogTable)
