@@ -8,8 +8,6 @@ import OtherError from "./OtherError"
 type Props = {
   /** GraphQL error object */
   error: Object,
-  /** Material-UI styling */
-  classes: Object,
 }
 
 /**
@@ -17,7 +15,7 @@ type Props = {
  * GraphQL query or mutation.
  */
 
-const GraphQLErrorPage = ({ error, classes }: Props) => {
+const GraphQLErrorPage = ({ error }: Props) => {
   if (!error || !error.message) return null
 
   if (error.networkError) {

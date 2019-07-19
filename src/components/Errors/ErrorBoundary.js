@@ -5,13 +5,25 @@ import { withStyles } from "@material-ui/core/styles"
 import sadDicty from "static/sad-dicty.png"
 import styles from "./errorStyles"
 
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+  /** Any children to render */
+  children: any,
+}
+
+type State = {
+  /** If there is an error with JS code */
+  hasError: boolean,
+}
+
 /**
  * This is an ErrorBoundary wrapper that catches any
  * JavaScript errors and provides a fallback UI.
  * https://reactjs.org/docs/error-boundaries.html
  */
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends Component<Props, State> {
   state = { hasError: false }
 
   static getDerivedStateFromError(error) {
@@ -28,7 +40,7 @@ class ErrorBoundary extends Component {
     const { hasError } = this.state
     const { children, classes } = this.props
 
-    if (!hasError) {
+    if (hasError) {
       return (
         <Grid className={classes.gridContainer} container justify="center">
           <Grid item xs={6} className={classes.paper}>

@@ -24,7 +24,7 @@ type Props = {
   /** Values from Formik */
   values: Object,
   /** Current order form page number */
-  pageNum: Number,
+  pageNum: number,
   /** Function to set the page number */
   setPageNum: Function,
 }

@@ -3,23 +3,19 @@ import { HeaderLink } from "dicty-components-header-footer"
 import { Link } from "react-router-dom"
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styled from "styled-components"
-
-const RouterLink = styled(Link)`
-  color: #15317e;
-  padding: 15px;
-  text-decoration: none;
-`
 
 const generateLinks = (link: Object, i: string) =>
   link.isRouter ? (
-    <RouterLink key={i} to={link.url}>
+    <Link
+      style={{ color: "#15317e", padding: "15px", textDecoration: "none" }}
+      key={i}
+      to={link.url}>
       <center>
         <FontAwesomeIcon icon={link.icon} size="2x" />
         <br />
         {link.text}
       </center>
-    </RouterLink>
+    </Link>
   ) : (
     <HeaderLink key={i} href={link.url}>
       <center>
