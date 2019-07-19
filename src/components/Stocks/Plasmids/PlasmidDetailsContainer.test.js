@@ -10,7 +10,7 @@ import PlasmidDetailsContainer, { GET_PLASMID } from "./PlasmidDetailsContainer"
 import StockDetailsHeader from "../StockDetailsHeader"
 import PlasmidDetailsList from "./PlasmidCatalogTable"
 import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()
@@ -97,7 +97,7 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
             {
               message: "could not find plasmid with ID DBP999999",
               path: ["plasmid"],
-              extensions: [{ code: "NotFound" }],
+              extensions: { code: "NotFound" },
             },
           ],
         },

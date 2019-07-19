@@ -11,7 +11,7 @@ import StrainCatalogContainer, {
 import StockDetailsHeader from "../StockDetailsHeader"
 import StrainCatalogTable from "./StrainCatalogTable"
 import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()

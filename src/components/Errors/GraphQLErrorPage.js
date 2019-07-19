@@ -20,17 +20,17 @@ type Props = {
 const GraphQLErrorPage = ({ error, classes }: Props) => {
   if (!error || !error.message) return null
 
+  if (error.networkError) {
+    console.error(error.networkError)
+    return <GraphQLNetworkError />
+  }
+
   const errorCode = error.graphQLErrors[0].extensions.code
   const errorMsg = error.graphQLErrors[0].message
   const printError = `
   error: ${errorMsg}
   code: ${errorCode}
   `
-
-  if (error.networkError) {
-    console.error(error.networkError)
-    return <GraphQLNetworkError />
-  }
 
   if (errorCode === "Unavailable") {
     console.error(printError)

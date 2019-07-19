@@ -10,7 +10,7 @@ import StrainDetailsContainer, { GET_STRAIN } from "./StrainDetailsContainer"
 import StockDetailsHeader from "../StockDetailsHeader"
 import StrainDetailsList from "./StrainCatalogTable"
 import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()
@@ -85,20 +85,20 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
             {
               message: "could not find strain with ID DBS999999",
               path: ["strain"],
-              extensions: [{ code: "NotFound" }],
+              extensions: { code: "NotFound" },
             },
           ],
         },
       },
     ]
     const wrapper = mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Provider store={store}>
+          <BrowserRouter>
             <StrainDetailsContainer {...props} />
-          </MockedProvider>
-        </BrowserRouter>
-      </Provider>,
+          </BrowserRouter>
+        </Provider>
+      </MockedProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()
