@@ -20,7 +20,7 @@ type Props = {
   /** Values from Formik */
   values: Object,
   /** Current order form page number */
-  pageNum: Number,
+  pageNum: number,
   /** Function to set the page number */
   setPageNum: Function,
 }
@@ -32,6 +32,7 @@ type Props = {
 const ShippingPage = (props: Props) => {
   const [modalOpen, setModalOpen] = useState(false)
   const { classes, values, pageNum, setPageNum } = props
+
   const validationChecker = () => {
     const fields = [
       values.firstName,
@@ -46,11 +47,15 @@ const ShippingPage = (props: Props) => {
       values.phone,
       values.shippingAccountNumber,
     ]
-
     if (fields.includes("")) {
       setModalOpen(true)
       setPageNum(0)
     }
+  }
+
+  const handleContinueClick = () => {
+    setPageNum(pageNum + 1)
+    validationChecker()
   }
 
   return (
@@ -79,10 +84,7 @@ const ShippingPage = (props: Props) => {
             <Button
               size="large"
               className={classes.continueBtn}
-              onClick={() => {
-                setPageNum(pageNum + 1)
-                validationChecker()
-              }}>
+              onClick={handleContinueClick}>
               Continue &nbsp;
               <FontAwesomeIcon icon="arrow-circle-right" />
             </Button>

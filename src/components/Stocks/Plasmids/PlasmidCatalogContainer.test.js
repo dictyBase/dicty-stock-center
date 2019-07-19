@@ -8,10 +8,10 @@ import Grid from "@material-ui/core/Grid"
 import PlasmidCatalogContainer, {
   GET_PLASMID_LIST,
 } from "./PlasmidCatalogContainer"
-import StockDetailsHeader from "../StockDetailsHeader"
 import PlasmidCatalogTable from "./PlasmidCatalogTable"
-import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()

@@ -1,6 +1,5 @@
 import React from "react"
 import { mount } from "enzyme"
-import "../../setupTests"
 import StockDetailsHeader from "./StockDetailsHeader"
 
 describe("Stock/StockDetailsHeader", () => {

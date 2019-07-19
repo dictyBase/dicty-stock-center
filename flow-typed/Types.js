@@ -39,6 +39,20 @@ declare module "history/createBrowserHistory" {
   declare module.exports: any
 }
 
+// react-virtualized pieces
+declare module "react-virtualized/dist/commonjs/Table" {
+  declare module.exports: any
+}
+declare module "react-virtualized/dist/commonjs/AutoSizer" {
+  declare module.exports: any
+}
+declare module "react-virtualized/dist/commonjs/InfiniteLoader" {
+  declare module.exports: any
+}
+declare module "react-virtualized/dist/commonjs/CellMeasurer" {
+  declare module.exports: any
+}
+
 // styles
 declare module "react-responsive-carousel/lib/styles/carousel.min.css" {
   declare module.exports: any

@@ -10,13 +10,17 @@ const styles = theme => ({
     width: "75%",
     marginLeft: "auto",
     marginRight: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
     // [theme.breakpoints.up("xl")]: {
     //   width: "1270px",
     // },
   },
-  root: {
+  detailsPaper: {
     width: "100%",
     overflowX: "auto",
+    paddingBottom: "10px",
   },
   tableRowHover: {
     "&:hover": {
@@ -41,6 +45,10 @@ const styles = theme => ({
     padding: "8px 56px 4px 24px",
     fontWeight: 400,
     marginBottom: "5px",
+  },
+  catalogPaper: {
+    height: 600,
+    width: "100%",
   },
 })
 
