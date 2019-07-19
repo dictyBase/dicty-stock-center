@@ -1,21 +1,19 @@
 // @flow
 import React from "react"
-import { Link } from "react-router-dom"
 import gql from "graphql-tag"
 import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
-import TableCell from "@material-ui/core/TableCell"
 import Paper from "@material-ui/core/Paper"
-import {
-  AutoSizer,
-  Column,
-  Table,
-  CellMeasurer,
-  CellMeasurerCache,
-  InfiniteLoader,
-} from "react-virtualized"
-import AddToCartButton from "components/Stocks/Strains/Catalog/AddToCartButton"
-import UnavailableButton from "components/Stocks/Strains/Catalog/UnavailableButton"
+import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader"
+import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
+import Column from "react-virtualized/dist/commonjs/Table/Column"
+import Table from "react-virtualized/dist/commonjs/Table"
+import CellMeasurerCache from "react-virtualized/dist/commonjs/CellMeasurer/CellMeasurerCache"
+import HeaderTableCell from "components/Stocks/Strains/CatalogItems/HeaderTableCell"
+import DescriptorTableCell from "components/Stocks/Strains/CatalogItems/DescriptorTableCell"
+import GeneralTableCell from "components/Stocks/Strains/CatalogItems/GeneralTableCell"
+import AddToCartButton from "components/Stocks/Strains/CatalogItems/AddToCartButton"
+import UnavailableButton from "components/Stocks/Strains/CatalogItems/UnavailableButton"
 import styles from "./strainStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -83,42 +81,24 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
     parent,
     rowIndex,
   }: {
-    cellData: String,
+    cellData: string,
     dataKey: any,
     parent: any,
     rowIndex: Number,
-  }) => {
-    const { classes } = this.props
-    return (
-      <CellMeasurer
-        cache={this.cache}
-        columnIndex={0}
-        key={dataKey}
-        parent={parent}
-        rowIndex={rowIndex}
-        style={{ height: this.cache.rowHeight }}>
-        <TableCell
-          component="div"
-          className={classNames(classes.flexContainer, classes.tableCell)}
-          variant="body">
-          {cellData}
-        </TableCell>
-      </CellMeasurer>
-    )
-  }
+  }) => (
+    <GeneralTableCell
+      cellData={cellData}
+      cache={this.cache}
+      key={dataKey}
+      parent={parent}
+      rowIndex={rowIndex}
+      rowHeight={this.cache.rowHeight}
+    />
+  )
 
-  headerRenderer = (label: string) => {
-    const { headerHeight, classes } = this.props
-    return (
-      <TableCell
-        component="div"
-        className={classes.flexContainer}
-        variant="head"
-        style={{ height: headerHeight, color: "#fff" }}>
-        <strong>{label}</strong>
-      </TableCell>
-    )
-  }
+  headerRenderer = (label: string) => (
+    <HeaderTableCell headerHeight={this.props.headerHeight} label={label} />
+  )
 
   descriptorRenderer = ({
     rowData,
@@ -126,19 +106,13 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
   }: {
     rowData: Object,
     cellData: string,
-  }) => {
-    const { classes } = this.props
-    const { id } = rowData
-    return (
-      <TableCell
-        component="div"
-        className={classNames(classes.flexContainer, classes.tableCell)}
-        variant="body"
-        style={{ height: this.cache.rowHeight }}>
-        <Link to={`/strains/${id}`}>{cellData}</Link>
-      </TableCell>
-    )
-  }
+  }) => (
+    <DescriptorTableCell
+      id={rowData.id}
+      rowHeight={this.cache.rowHeight}
+      descriptor={cellData}
+    />
+  )
 
   inStockRenderer = ({
     rowData,
@@ -146,15 +120,16 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
   }: {
     rowData: Object,
     cellData: string,
-  }) => {
-    const { id, label } = rowData
-
-    return cellData ? (
-      <AddToCartButton id={id} label={label} rowHeight={this.cache.rowHeight} />
+  }) =>
+    cellData ? (
+      <AddToCartButton
+        id={rowData.id}
+        label={rowData.label}
+        rowHeight={this.cache.rowHeight}
+      />
     ) : (
       <UnavailableButton rowHeight={this.cache.rowHeight} />
     )
-  }
 
   loadMoreRows = () => {
     const { fetchMore, cursor } = this.props

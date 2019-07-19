@@ -6,12 +6,19 @@ import Button from "@material-ui/core/Button"
 import TableCell from "@material-ui/core/TableCell"
 import styles from "components/Stocks/Strains/strainStyles"
 
+type Props = {
+  /** Material-UI styling */
+  classes: Object,
+  /** Height of row */
+  rowHeight: string,
+}
+
 /**
  * UnavailableButton is displayed when a stock is not available
  * for purchase.
  */
 
-const UnavailableButton = ({ classes, rowHeight }) => (
+const UnavailableButton = ({ classes, rowHeight }: Props) => (
   <TableCell
     component="div"
     className={classNames(classes.flexContainer, classes.tableCell)}
