@@ -1,0 +1,3 @@
+```js
+<DescriptorTableCell descriptor="sadA" />
+```
