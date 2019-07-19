@@ -14,7 +14,7 @@ type Props = {
 }
 
 /**
- * NotFoundError is the UI display when there is a server error.
+ * NotFoundError is the UI display when an item was not found.
  */
 
 const NotFoundError = ({ classes, error }: Props) => (

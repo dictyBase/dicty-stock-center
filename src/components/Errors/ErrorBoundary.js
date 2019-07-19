@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
@@ -7,24 +8,27 @@ import styles from "./errorStyles"
 /**
  * This is an ErrorBoundary wrapper that catches any
  * JavaScript errors and provides a fallback UI.
+ * https://reactjs.org/docs/error-boundaries.html
  */
 
 class ErrorBoundary extends Component {
-  state = { error: null, errorInfo: null }
+  state = { hasError: false }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true }
+  }
 
   componentDidCatch(error, errorInfo) {
-    // catch errors in any components below and re-render with error message
-    this.setState({
-      error,
-      errorInfo,
-    })
+    // You can also log the error to an error reporting service
+    console.error(error, errorInfo)
   }
 
   render() {
-    const { errorInfo, error } = this.state
+    const { hasError } = this.state
     const { children, classes } = this.props
 
-    if (errorInfo) {
+    if (!hasError) {
       return (
         <Grid className={classes.gridContainer} container justify="center">
           <Grid item xs={6} className={classes.paper}>
@@ -32,7 +36,6 @@ class ErrorBoundary extends Component {
               <img src={sadDicty} alt="Sad Dicty Logo" />
               <h2>Sorry! There was an error loading this page.</h2>
               <p>Something went wrong behind the scenes.</p>
-              <em>{error && error.toString()}</em>
               <p>
                 If the problem persists, please email us at{" "}
                 <a href="mailto:dictybase@northwestern.edu">
