@@ -1,0 +1,3 @@
+```js
+<StrainDescriptorTableCell descriptor="sadA" />
+```

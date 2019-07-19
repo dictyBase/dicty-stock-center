@@ -9,11 +9,11 @@ import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
 import Column from "react-virtualized/dist/commonjs/Table/Column"
 import Table from "react-virtualized/dist/commonjs/Table"
 import CellMeasurerCache from "react-virtualized/dist/commonjs/CellMeasurer/CellMeasurerCache"
-import HeaderTableCell from "components/Stocks/Strains/CatalogItems/HeaderTableCell"
-import DescriptorTableCell from "components/Stocks/Strains/CatalogItems/DescriptorTableCell"
-import GeneralTableCell from "components/Stocks/Strains/CatalogItems/GeneralTableCell"
-import AddToCartButton from "components/Stocks/Strains/CatalogItems/AddToCartButton"
-import UnavailableButton from "components/Stocks/Strains/CatalogItems/UnavailableButton"
+import HeaderTableCell from "components/Stocks/CatalogTableItems/HeaderTableCell"
+import StrainDescriptorTableCell from "components/Stocks/CatalogTableItems/StrainDescriptorTableCell"
+import GeneralTableCell from "components/Stocks/CatalogTableItems/GeneralTableCell"
+import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
+import UnavailableButton from "components/Stocks/CatalogTableItems/UnavailableButton"
 import styles from "./strainStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -107,7 +107,7 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
     rowData: Object,
     cellData: string,
   }) => (
-    <DescriptorTableCell
+    <StrainDescriptorTableCell
       id={rowData.id}
       rowHeight={this.cache.rowHeight}
       descriptor={cellData}

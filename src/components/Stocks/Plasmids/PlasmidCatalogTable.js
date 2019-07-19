@@ -9,11 +9,11 @@ import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
 import Column from "react-virtualized/dist/commonjs/Table/Column"
 import Table from "react-virtualized/dist/commonjs/Table"
 import CellMeasurerCache from "react-virtualized/dist/commonjs/CellMeasurer/CellMeasurerCache"
-import HeaderTableCell from "components/Stocks/Plasmids/CatalogItems/HeaderTableCell"
-import GeneralTableCell from "components/Stocks/Plasmids/CatalogItems/GeneralTableCell"
-import NameTableCell from "components/Stocks/Plasmids/CatalogItems/NameTableCell"
-import AddToCartButton from "components/Stocks/Plasmids/CatalogItems/AddToCartButton"
-import UnavailableButton from "components/Stocks/Plasmids/CatalogItems/UnavailableButton"
+import HeaderTableCell from "components/Stocks/CatalogTableItems/HeaderTableCell"
+import GeneralTableCell from "components/Stocks/CatalogTableItems/GeneralTableCell"
+import PlasmidNameTableCell from "components/Stocks/CatalogTableItems/PlasmidNameTableCell"
+import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
+import UnavailableButton from "components/Stocks/CatalogTableItems/UnavailableButton"
 import styles from "./plasmidStyles"
 
 const GET_MORE_PLASMIDS_LIST = gql`
@@ -108,7 +108,7 @@ export class PlasmidCatalogTable extends React.PureComponent<Props> {
     rowData: Object,
     cellData: string,
   }) => (
-    <NameTableCell
+    <PlasmidNameTableCell
       id={rowData.id}
       rowHeight={this.cache.rowHeight}
       name={cellData}

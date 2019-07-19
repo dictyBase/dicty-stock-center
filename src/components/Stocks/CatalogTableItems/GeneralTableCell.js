@@ -22,7 +22,8 @@ type Props = {
 
 /**
  * GeneralCell handles the rendering of a catalog header cell.
- * This is currently used for plasmid description and plasmid ID.
+ * This is currently used for plasmid description, plasmid ID,
+ * strain summary and strain ID table cells.
  */
 
 const GeneralTableCell = ({
