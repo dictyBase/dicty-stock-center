@@ -5,8 +5,6 @@ import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-// needs coverage for 67,68,69
-
 describe("Stock/ShoppingButtons", () => {
   const props = {
     classes: {

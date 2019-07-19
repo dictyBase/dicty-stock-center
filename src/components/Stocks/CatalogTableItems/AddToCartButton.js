@@ -28,7 +28,7 @@ type Props = {
  * for purchase.
  */
 
-const AddToCartButton = ({
+export const AddToCartButton = ({
   classes,
   id,
   label,
