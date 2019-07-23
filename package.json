@@ -17,7 +17,6 @@
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "nightwatch": "nightwatch -e chrome,firefox,safari",
-    "precommit": "lint-staged",
     "cz": "git-cz",
     "semantic-release": "semantic-release",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
