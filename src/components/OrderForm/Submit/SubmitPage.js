@@ -26,7 +26,7 @@ export const SubmitPage = (props: Props) => {
   const { classes, pageNum, setPageNum } = props
 
   return (
-    <Grid container spacing={16} className={classes.innerForm}>
+    <Grid container spacing={2} className={classes.innerForm}>
       <Grid item xs={12}>
         <div className={classes.header}>Please review your order</div>
       </Grid>
@@ -42,7 +42,7 @@ export const SubmitPage = (props: Props) => {
         <br />
         <br />
         <br />
-        <Grid container justify="center" spacing={16}>
+        <Grid container justify="center" spacing={2}>
           <Grid item xs={2} />
           <Grid item xs={4}>
             <Button

@@ -54,7 +54,7 @@ export const PlasmidDetailsContainer = (props: Props) => {
         const title = `Plasmid Details for ${data.plasmid.id}`
 
         return (
-          <Grid container spacing={16} className={classes.layout}>
+          <Grid container spacing={2} className={classes.layout}>
             <Helmet>
               <title>{title} - Dicty Stock Center</title>
               <meta

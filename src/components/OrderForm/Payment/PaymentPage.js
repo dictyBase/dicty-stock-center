@@ -81,7 +81,7 @@ const PaymentPage = (props: Props) => {
   }
 
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <div className={classes.header}>Please enter payment information</div>
         <FormControlLabel
@@ -101,7 +101,7 @@ const PaymentPage = (props: Props) => {
         </PanelWrapper>
       </Grid>
       <Grid item xs={6}>
-        <Grid container direction="column" spacing={16}>
+        <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <PanelWrapper title="Payment Method">
               <PaymentMethod {...props} />
@@ -110,7 +110,7 @@ const PaymentPage = (props: Props) => {
           <Grid item xs={12}>
             <PaymentInfoBox />
           </Grid>
-          <Grid container justify="center" spacing={16}>
+          <Grid container justify="center" spacing={2}>
             <Grid item xs={6}>
               <Button
                 color="primary"

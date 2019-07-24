@@ -59,7 +59,7 @@ const ShippingPage = (props: Props) => {
   }
 
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <div className={classes.header}>Please enter shipping information</div>
       </Grid>
@@ -69,7 +69,7 @@ const ShippingPage = (props: Props) => {
         </PanelWrapper>
       </Grid>
       <Grid item xs={6}>
-        <Grid container direction="column" spacing={16}>
+        <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <PanelWrapper title="Shipping Method">
               <ShippingMethod {...props} />
