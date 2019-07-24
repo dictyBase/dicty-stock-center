@@ -51,7 +51,7 @@ const Homepage = (props: Props) => {
         </span>
       )}
       {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
-      <Grid container wrap="wrap" justify="space-between" spacing={24}>
+      <Grid container justify="space-between" spacing={3}>
         <Grid item>
           <h1 className={classes.header}>
             Welcome to Dicty Stock Center (DSC)

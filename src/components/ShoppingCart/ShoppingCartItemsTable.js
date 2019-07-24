@@ -55,8 +55,10 @@ export const ShoppingCartItemsTable = (props: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map(item => (
-            <TableRow key={item.id}>
+          {items.map((item, index) => (
+            // can't use item ID as key since user may have
+            // multiples of same item in cart
+            <TableRow key={index}>
               <TableCell>
                 <Link to={`/${stock.toLowerCase()}/${item.id}`}>{item.id}</Link>
               </TableCell>

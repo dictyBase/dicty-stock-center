@@ -46,7 +46,7 @@ export const StrainCatalogContainer = (props: Props) => {
         if (error) return <GraphQLErrorPage error={error} />
 
         return (
-          <Grid container spacing={16} className={classes.layout}>
+          <Grid container spacing={2} className={classes.layout}>
             <Helmet>
               <title>Strain Catalog - Dicty Stock Center</title>
               <meta

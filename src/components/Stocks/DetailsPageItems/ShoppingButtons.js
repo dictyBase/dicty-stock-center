@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React, { useState, forwardRef } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import Button from "@material-ui/core/Button"
@@ -15,11 +15,11 @@ const styles = theme => ({
     padding: "5px",
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(2),
   },
   disabledBtn: {
     backgroundColor: "#c3ccdb",
-    margin: theme.spacing.unit,
+    margin: theme.spacing(2),
   },
 })
 
@@ -40,7 +40,9 @@ type Props = {
 
 // Creating CustomLink is necessary to prevent unexpected unmounting.
 // https://material-ui.com/guides/composition/#component-property
-const CustomLink = props => <Link to="/order/checkout" {...props} />
+const CustomLink = forwardRef((props, ref) => (
+  <Link to="/order/checkout" {...props} ref={ref} />
+))
 
 /**
  * ShoppingButtons provides the buttons at the bottom of a stock details page.
