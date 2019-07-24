@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "/stockcenter",
   "engines": {
-    "node": "10.4.0"
+    "node": "10.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,7 +37,7 @@
     "connected-react-router": "^6.5.2",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#8.0.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#2.0.0",
-    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#v0.2.0",
+    "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#1.2.0",
     "dicty-components-redux": "github:dictybase-playground/dicty-components-redux#v2.3.0",
     "draft-js": "^0.10.5",
     "draft-js-plugins-editor": "^2.0.4",
