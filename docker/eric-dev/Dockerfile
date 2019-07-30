@@ -35,7 +35,7 @@ WORKDIR /usr/src/app
 
 # copy only necessary files
 COPY package*.json /usr/src/app/
-COPY babel.rc /usr/src/app/
+COPY .babelrc /usr/src/app/
 COPY jsconfig.json /usr/src/app/
 
 RUN npm ci
