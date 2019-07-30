@@ -1,0 +1,11 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  local: {}
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:{{.IMAGE_TAG}}"
+  artifacts:
+    - image: dictybase/dicty-stock-center
+      docker:
+        dockerfile: docker/staging/Dockerfile

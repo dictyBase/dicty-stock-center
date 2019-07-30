@@ -1,6 +1,3 @@
-# It's a multi stage build https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
-# The first one build single file js for the web app
-# The second one copies the file and server with a golang static web server
 FROM node:10.16.0-alpine
 LABEL maintainer "Eric Hartline <eric.hartline@northwestern.edu>"
 
@@ -32,35 +29,25 @@ ENV REACT_APP_NAVBAR_JSON ${navbar_json:-https://raw.githubusercontent.com/dicty
 ARG footer_json
 ENV REACT_APP_FOOTER_JSON ${footer_json:-https://raw.githubusercontent.com/dictyBase/migration-data/master/footer/footer.json}
 
-# Setup client keys for third party auth
-ARG client_keys
-ENV CLIENT_KEYS ${client_keys:-https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.0/clientConfig.eric.js}
-
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-COPY package-lock.json .babelrc ./
+COPY package*.json /usr/src/app/
+COPY babel.rc /usr/src/app/
+COPY jsconfig.json /usr/src/app/
 
-# package.json has to be modified later on, so
-ADD package.json package-dev.json
-# create new package.json with relative path
-RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
-  && rm package-dev.json
+RUN npm ci
 
 # add necessary folders
 ADD src src
 ADD public public
 
 # overwrite the client key file
-ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
+ADD https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.0/clientConfig.eric.js /usr/src/app/src/utils/clientConfig.js
 
-# Use same node path
-ENV NODE_PATH src
-
-# obvious isn't it
-RUN npm install && npm run build
+RUN npm run build
 
 FROM dictybase/static-server:1.0.0
 RUN mkdir /www
