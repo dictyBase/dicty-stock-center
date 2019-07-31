@@ -19,13 +19,7 @@ export const GET_STRAIN = gql`
     strain(id: $id) {
       id
       label
-      names
-      systematic_name
-      characteristics
       summary
-      genetic_modification
-      genotypes
-      mutagenesis_method
       species
       parent {
         id
@@ -34,8 +28,23 @@ export const GET_STRAIN = gql`
       depositor
       plasmid
       dbxrefs
+      publications {
+        id
+      }
       genes
       in_stock
+    }
+  }
+`
+
+/**
+ * query will still need these from annotations:
+ *       names
+      systematic_name
+      characteristics
+      genetic_modification
+      genotypes
+      mutagenesis_method
       phenotypes {
         phenotype
         note
@@ -53,9 +62,7 @@ export const GET_STRAIN = gql`
           pages
         }
       }
-    }
-  }
-`
+ */
 
 type Props = {
   classes: Object,
