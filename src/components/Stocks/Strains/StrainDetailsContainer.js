@@ -10,7 +10,7 @@ import StrainDetailsList from "./StrainDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
+// import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import styles from "./strainStyles"
 
@@ -85,11 +85,11 @@ export const StrainDetailsContainer = (props: Props) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
-        if (data.strain.phenotypes.length > 0) {
-          title = `Phenotype and Strain Details for ${data.strain.label}`
-        } else {
-          title = `Strain Details for ${data.strain.label}`
-        }
+        // if (data.strain.phenotypes.length > 0) {
+        //   title = `Phenotype and Strain Details for ${data.strain.label}`
+        // } else {
+        title = `Strain Details for ${data.strain.label}`
+        // }
 
         return (
           <Grid container spacing={2} className={classes.layout}>
@@ -104,9 +104,9 @@ export const StrainDetailsContainer = (props: Props) => {
               <StockDetailsHeader title={title} />
             </Grid>
             <Grid item xs={12}>
-              {data.strain.phenotypes.length > 0 && (
+              {/* {data.strain.phenotypes.length > 0 && (
                 <PhenotypeTable data={data.strain.phenotypes} />
-              )}
+              )} */}
               <StrainDetailsList data={data.strain} />
               <ShoppingButtons
                 type="strain"

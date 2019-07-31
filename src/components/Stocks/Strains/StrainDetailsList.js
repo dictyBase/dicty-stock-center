@@ -7,7 +7,6 @@ import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
-import logo from "static/dicty-login.png"
 import styles from "./strainStyles"
 
 type Props = {
@@ -29,6 +28,9 @@ type Props = {
     },
     depositor: string,
     plasmid: string,
+    publications: {
+      id: string,
+    },
     dbxrefs: Array<string>,
     genes: Array<string>,
     phenotypes: {
@@ -68,18 +70,10 @@ const StrainDetailsList = (props: Props) => {
     parent = <>N/A</>
   }
 
-  // display dicty logo/link for each reference
-  const dbxrefs = data.dbxrefs.map((ref, index) => (
+  // display IDs for each publication
+  const publications = data.publications.map((ref, index) => (
     <Fragment key={index}>
-      <a href={`/publication/${ref}`}>
-        {" "}
-        <img
-          alt="link to dictyBase publication"
-          src={logo}
-          height={32}
-          width={32}
-        />
-      </a>
+      <a href={`/publication/${ref.id}`}>{(index ? ", " : "") + ref.id}</a>
     </Fragment>
   ))
 
@@ -102,23 +96,23 @@ const StrainDetailsList = (props: Props) => {
     {
       id: 1,
       leftTitle: "Strain Names",
-      leftData: data.names.join(", "),
+      leftData: [], // data.names.join(", "),
       rightTitle: "Systematic Name",
-      rightData: data.systematic_name,
+      rightData: "", // data.systematic_name,
     },
     {
       id: 2,
       leftTitle: "Strain Summary",
       leftData: data.summary,
       rightTitle: "Strain Characteristics",
-      rightData: data.characteristics.join(", "),
+      rightData: [], // data.characteristics.join(", "),
     },
     {
       id: 3,
       leftTitle: "Genetic Modification",
-      leftData: data.genetic_modification,
+      leftData: "", // data.genetic_modification,
       rightTitle: "Genotypes",
-      rightData: data.genotypes.join(", "),
+      rightData: [], // data.genotypes.join(", "),
     },
     {
       id: 4,
@@ -139,7 +133,7 @@ const StrainDetailsList = (props: Props) => {
       leftTitle: "Plasmid",
       leftData: data.plasmid,
       rightTitle: "Reference(s)",
-      rightData: dbxrefs,
+      rightData: publications,
     },
     {
       id: 7,
