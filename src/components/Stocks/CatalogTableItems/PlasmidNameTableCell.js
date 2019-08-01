@@ -27,7 +27,9 @@ const NameTableCell = ({ classes, rowHeight, id, name }: Props) => (
     className={classNames(classes.flexContainer, classes.tableCell)}
     variant="body"
     style={{ height: rowHeight }}>
-    <Link to={`/plasmids/${id}`}>{name}</Link>
+    <Link className={classes.link} to={`/plasmids/${id}`}>
+      {name}
+    </Link>
   </TableCell>
 )
 

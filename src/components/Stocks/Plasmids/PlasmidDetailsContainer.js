@@ -20,6 +20,9 @@ export const GET_PLASMID = gql`
       name
       summary
       depositor
+      publications {
+        id
+      }
       dbxrefs
       genes
       image_map

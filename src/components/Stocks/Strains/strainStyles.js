@@ -50,6 +50,10 @@ const styles = theme => ({
     height: 600,
     width: "100%",
   },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
 })
 
 export default styles

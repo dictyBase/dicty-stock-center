@@ -73,14 +73,18 @@ const StrainDetailsList = (props: Props) => {
   // display IDs for each publication
   const publications = data.publications.map((ref, index) => (
     <Fragment key={index}>
-      <a href={`/publication/${ref.id}`}>{(index ? ", " : "") + ref.id}</a>
+      <a className={classes.link} href={`/publication/${ref.id}`}>
+        {(index ? ", " : "") + ref.id}
+      </a>
     </Fragment>
   ))
 
   // italicize each associated gene and remove comma from last item
   const genes = data.genes.map((gene, index) => (
     <em key={index}>
-      <a href={`/gene/${gene}`}>{(index ? ", " : "") + gene}</a>
+      <a className={classes.link} href={`/gene/${gene}`}>
+        {(index ? ", " : "") + gene}
+      </a>
     </em>
   ))
 

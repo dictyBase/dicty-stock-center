@@ -27,7 +27,9 @@ const DescriptorTableCell = ({ classes, rowHeight, id, descriptor }: Props) => (
     className={classNames(classes.flexContainer, classes.tableCell)}
     variant="body"
     style={{ height: rowHeight }}>
-    <Link to={`/strains/${id}`}>{descriptor}</Link>
+    <Link to={`/strains/${id}`} className={classes.link}>
+      {descriptor}
+    </Link>
   </TableCell>
 )
 

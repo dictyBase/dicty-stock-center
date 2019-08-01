@@ -62,7 +62,6 @@ export const StrainCatalogContainer = (props: Props) => {
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
-                totalCount={data.listStrains.totalCount}
               />
             </Grid>
           </Grid>

@@ -42,8 +42,6 @@ type Props = {
   classes: Object,
   /** Default height of header */
   headerHeight: Number,
-  /** Total number of strains fetched */
-  totalCount: Number,
   /** GraphQL function to make another query */
   fetchMore: Function,
   /** Next cursor from fetched GraphQL data */
@@ -158,14 +156,14 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
   }
 
   render() {
-    const { classes, data, totalCount } = this.props
+    const { classes, data } = this.props
 
     return (
       <Paper className={classes.catalogPaper}>
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}
-          rowCount={totalCount}>
+          rowCount={100}>
           {({ onRowsRendered, registerChild }) => (
             <AutoSizer>
               {({ height, width }) => (

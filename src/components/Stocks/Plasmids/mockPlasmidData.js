@@ -5,4 +5,5 @@ export const data = {
   dbxrefs: ["17267449"],
   genes: ["acgA"],
   image_map: "http://dictybase.org/data/plasmid/images/385.jpg",
+  publications: [{ id: "123456789" }],
 }

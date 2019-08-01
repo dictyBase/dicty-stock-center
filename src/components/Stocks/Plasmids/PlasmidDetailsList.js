@@ -7,7 +7,6 @@ import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
-import logo from "static/dicty-login.png"
 import styles from "./plasmidStyles"
 
 type Props = {
@@ -16,6 +15,9 @@ type Props = {
     name: string,
     summary: string,
     depositor: string,
+    publications: {
+      id: string,
+    },
     dbxrefs: Array<string>,
     genes: Array<string>,
     image_map: string,
@@ -43,17 +45,11 @@ const PlasmidDetailsList = (props: Props) => {
     image_map = ""
   }
 
-  // display dicty logo/link for each reference
-  const dbxrefs = data.dbxrefs.map((ref, index) => (
+  // display IDs for each publication
+  const publications = data.publications.map((ref, index) => (
     <Fragment key={index}>
-      <a href={`/publication/${ref}`}>
-        {" "}
-        <img
-          alt="link to dictyBase publication"
-          src={logo}
-          height={32}
-          width={32}
-        />
+      <a className={classes.link} href={`/publication/${ref.id}`}>
+        {(index ? ", " : "") + ref.id}
       </a>
     </Fragment>
   ))
@@ -61,7 +57,9 @@ const PlasmidDetailsList = (props: Props) => {
   // italicize each associated gene and remove comma from last item
   const genes = data.genes.map((gene, index) => (
     <em key={index}>
-      <a href={`/gene/${gene}`}>{(index ? ", " : "") + gene}</a>
+      <a className={classes.link} href={`/gene/${gene}`}>
+        {(index ? ", " : "") + gene}
+      </a>
     </em>
   ))
 
@@ -86,7 +84,7 @@ const PlasmidDetailsList = (props: Props) => {
       leftTitle: "Depositor",
       leftData: data.depositor,
       rightTitle: "Reference(s)",
-      rightData: dbxrefs,
+      rightData: publications,
     },
   ]
 
