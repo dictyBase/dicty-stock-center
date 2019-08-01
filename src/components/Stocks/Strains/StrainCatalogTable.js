@@ -163,7 +163,7 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}
-          rowCount={100}>
+          rowCount={7000}>
           {({ onRowsRendered, registerChild }) => (
             <AutoSizer>
               {({ height, width }) => (

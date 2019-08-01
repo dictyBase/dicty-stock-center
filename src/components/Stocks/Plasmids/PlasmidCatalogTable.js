@@ -43,8 +43,6 @@ type Props = {
   classes: Object,
   /** Default height of header */
   headerHeight: Number,
-  /** Total number of plasmids fetched */
-  totalCount: Number,
   /** GraphQL function to make another query */
   fetchMore: Function,
   /** Next cursor from fetched GraphQL data */
@@ -134,6 +132,7 @@ export class PlasmidCatalogTable extends React.PureComponent<Props> {
 
   loadMoreRows = () => {
     const { fetchMore, cursor } = this.props
+
     return fetchMore({
       query: GET_MORE_PLASMIDS_LIST,
       variables: {
@@ -159,14 +158,14 @@ export class PlasmidCatalogTable extends React.PureComponent<Props> {
   }
 
   render() {
-    const { classes, data, totalCount } = this.props
+    const { classes, data } = this.props
 
     return (
       <Paper className={classes.catalogPaper}>
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}
-          rowCount={totalCount}>
+          rowCount={1000}>
           {({ onRowsRendered, registerChild }) => (
             <AutoSizer>
               {({ height, width }) => (
