@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
+import characterConverter from "components/Stocks/utils/characterConverter"
 import styles from "./strainStyles"
 
 type Props = {
@@ -93,7 +94,7 @@ const StrainDetailsList = (props: Props) => {
     {
       id: 0, // used for indexing purposes
       leftTitle: "Strain Descriptor",
-      leftData: data.label,
+      leftData: characterConverter(data.label),
       rightTitle: "Strain ID",
       rightData: data.id,
     },

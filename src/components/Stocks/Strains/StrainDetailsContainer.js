@@ -12,6 +12,7 @@ import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import characterConverter from "components/Stocks/utils/characterConverter"
 import styles from "./strainStyles"
 
 export const GET_STRAIN = gql`
@@ -85,10 +86,12 @@ export const StrainDetailsContainer = (props: Props) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
+        const label = characterConverter(data.strain.label)
+
         // if (data.strain.phenotypes.length > 0) {
         //   title = `Phenotype and Strain Details for ${data.strain.label}`
         // } else {
-        title = `Strain Details for ${data.strain.label}`
+        title = `Strain Details for ${label}`
         // }
 
         return (
@@ -97,7 +100,7 @@ export const StrainDetailsContainer = (props: Props) => {
               <title>{title} - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center strain details page for ${data.strain.label}`}
+                content={`Dicty Stock Center strain details page for ${label}`}
               />
             </Helmet>
             <Grid item xs={12}>
