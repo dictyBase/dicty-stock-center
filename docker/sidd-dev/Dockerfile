@@ -13,9 +13,9 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-COPY package-lock.json ./
+COPY package*.json ./
+COPY .babelrc ./
 COPY jsconfig.json ./
-COPY package.json ./
 
 RUN npm ci
 
