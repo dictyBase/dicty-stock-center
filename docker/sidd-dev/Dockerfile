@@ -4,6 +4,10 @@
 FROM dictybase/frontend-builder:devsidd
 LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 
+# base path for React Router
+ARG basename
+ENV REACT_APP_BASENAME ${basename:-stockcenter}
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -29,4 +33,4 @@ FROM dictybase/static-server:2.0.0
 RUN mkdir /www
 WORKDIR /www
 COPY --from=0 /usr/src/app/build ./
-ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www"]
+ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www", "--vf", "/static", "--sub-url", "/stockcenter"]
