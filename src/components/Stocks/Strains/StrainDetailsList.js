@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import { withStyles } from "@material-ui/core/styles"
-import ItemDisplay from "../ItemDisplay"
-import LeftDisplay from "../LeftDisplay"
-import RightDisplay from "../RightDisplay"
-import logo from "static/dicty-login.png"
+import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
+import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
+import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
+import characterConverter from "components/Stocks/utils/characterConverter"
 import styles from "./strainStyles"
 
 type Props = {
@@ -29,6 +29,9 @@ type Props = {
     },
     depositor: string,
     plasmid: string,
+    publications: {
+      id: string,
+    },
     dbxrefs: Array<string>,
     genes: Array<string>,
     phenotypes: {
@@ -60,6 +63,92 @@ type Props = {
 const StrainDetailsList = (props: Props) => {
   const { data, classes } = props
 
+  // set parent display in variable
+  let parent
+  if (data.parent) {
+    parent = <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
+  } else {
+    parent = <>N/A</>
+  }
+
+  // display IDs for each publication
+  const publications = data.publications.map((ref, index) => (
+    <Fragment key={index}>
+      <a className={classes.link} href={`/publication/${ref.id}`}>
+        {(index ? ", " : "") + ref.id}
+      </a>
+    </Fragment>
+  ))
+
+  // italicize each associated gene and remove comma from last item
+  const genes = data.genes.map((gene, index) => (
+    <em key={index}>
+      <a className={classes.link} href={`/gene/${gene}`}>
+        {(index ? ", " : "") + gene}
+      </a>
+    </em>
+  ))
+
+  // put strain details data into an array of item rows
+  const rows = [
+    {
+      id: 0, // used for indexing purposes
+      leftTitle: "Strain Descriptor",
+      leftData: characterConverter(data.label),
+      rightTitle: "Strain ID",
+      rightData: data.id,
+    },
+    {
+      id: 1,
+      leftTitle: "Strain Names",
+      leftData: [], // data.names.join(", "),
+      rightTitle: "Systematic Name",
+      rightData: "", // data.systematic_name,
+    },
+    {
+      id: 2,
+      leftTitle: "Strain Summary",
+      leftData: data.summary,
+      rightTitle: "Strain Characteristics",
+      rightData: [], // data.characteristics.join(", "),
+    },
+    {
+      id: 3,
+      leftTitle: "Genetic Modification",
+      leftData: "", // data.genetic_modification,
+      rightTitle: "Genotypes",
+      rightData: [], // data.genotypes.join(", "),
+    },
+    {
+      id: 4,
+      leftTitle: "Mutagenesis Method",
+      leftData: data.mutagenesis_method,
+      rightTitle: "Species",
+      rightData: data.species,
+    },
+    {
+      id: 5,
+      leftTitle: "Parental Strain",
+      leftData: parent,
+      rightTitle: "Depositor",
+      rightData: data.depositor,
+    },
+    {
+      id: 6,
+      leftTitle: "Plasmid",
+      leftData: data.plasmid,
+      rightTitle: "Reference(s)",
+      rightData: publications,
+    },
+    {
+      id: 7,
+      leftTitle: "Associated Genes",
+      leftData: genes,
+      rightTitle: "",
+      rightData: "",
+    },
+  ]
+
   return (
     <Fragment>
       <Grid container>
@@ -67,85 +156,15 @@ const StrainDetailsList = (props: Props) => {
           <h3>Strain Details</h3>
         </Grid>
       </Grid>
-      <Paper className={classes.root}>
-        <ItemDisplay>
-          <LeftDisplay>Strain Descriptor</LeftDisplay>
-          <RightDisplay>{data.label}</RightDisplay>
-          <LeftDisplay>Strain ID</LeftDisplay>
-          <RightDisplay>{data.id}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Strain Names</LeftDisplay>
-          <RightDisplay>{data.names.join(", ")}</RightDisplay>
-          <LeftDisplay>Systematic Name</LeftDisplay>
-          <RightDisplay>{data.systematic_name}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Strain Summary</LeftDisplay>
-          <RightDisplay>{data.summary}</RightDisplay>
-          <LeftDisplay>Strain Characteristics</LeftDisplay>
-          <RightDisplay>{data.characteristics.join(", ")}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Genetic Modification</LeftDisplay>
-          <RightDisplay>{data.genetic_modification}</RightDisplay>
-          <LeftDisplay>Genotypes</LeftDisplay>
-          <RightDisplay>
-            <em>{data.genotypes.join(", ")}</em>
-          </RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Mutagenesis Method</LeftDisplay>
-          <RightDisplay>{data.mutagenesis_method}</RightDisplay>
-          <LeftDisplay>Species</LeftDisplay>
-          <RightDisplay>{data.species}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Parental Strain</LeftDisplay>
-          <RightDisplay>
-            {data.parent ? (
-              <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
-            ) : (
-              <Fragment>N/A</Fragment>
-            )}
-          </RightDisplay>
-          <LeftDisplay>Depositor</LeftDisplay>
-          <RightDisplay>{data.depositor}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Plasmid</LeftDisplay>
-          <RightDisplay>{data.plasmid}</RightDisplay>
-          <LeftDisplay>Reference(s)</LeftDisplay>
-          <RightDisplay>
-            {data.dbxrefs.map((ref, index) => (
-              <Fragment key={index}>
-                <a href={`/publication/${ref}`}>
-                  {" "}
-                  <img
-                    alt="link to dictyBase publication"
-                    src={logo}
-                    height={32}
-                    width={32}
-                  />
-                </a>
-              </Fragment>
-            ))}
-          </RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Associated Genes</LeftDisplay>
-          <RightDisplay>
-            <em>
-              {data.genes.map((gene, index) => (
-                <Fragment key={index}>
-                  <a href={`/gene/${gene}`}>{(index ? ", " : "") + gene}</a>
-                </Fragment>
-              ))}
-            </em>
-          </RightDisplay>
-          <RightDisplay />
-          <RightDisplay />
-        </ItemDisplay>
+      <Paper className={classes.detailsPaper}>
+        {rows.map(item => (
+          <ItemDisplay key={item.id}>
+            <LeftDisplay>{item.leftTitle}</LeftDisplay>
+            <RightDisplay>{item.leftData}</RightDisplay>
+            <LeftDisplay>{item.rightTitle}</LeftDisplay>
+            <RightDisplay>{item.rightData}</RightDisplay>
+          </ItemDisplay>
+        ))}
       </Paper>
     </Fragment>
   )

@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import Loader from "components/Loader"
 import InfoPageView from "./InfoPageView"
-import ErrorPage from "components/ErrorPage"
+import ErrorPage from "components/Errors/ErrorPage"
 import { fetchInfoPage } from "actions/page"
 import { NAMESPACE } from "constants/dsctypes"
 
@@ -40,7 +40,8 @@ export class InfoPage extends Component<Props> {
   render() {
     const { isFetching, page } = this.props
     const name = page.data.attributes.name
-    if (page.error) {
+
+    if (!isFetching && page.error) {
       return <ErrorPage error={page.error} />
     }
 

@@ -5,9 +5,9 @@ import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import StockDetailsHeader from "../StockDetailsHeader"
-import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import StrainCatalogTable from "./StrainCatalogTable"
 import styles from "./strainStyles"
 
@@ -27,6 +27,7 @@ export const GET_STRAIN_LIST = gql`
 `
 
 type Props = {
+  /** Material-UI styling */
   classes: Object,
 }
 
@@ -45,7 +46,7 @@ export const StrainCatalogContainer = (props: Props) => {
         if (error) return <GraphQLErrorPage error={error} />
 
         return (
-          <Grid container spacing={16} className={classes.layout}>
+          <Grid container spacing={2} className={classes.layout}>
             <Helmet>
               <title>Strain Catalog - Dicty Stock Center</title>
               <meta
@@ -61,7 +62,6 @@ export const StrainCatalogContainer = (props: Props) => {
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
-                totalCount={data.listStrains.totalCount}
               />
             </Grid>
           </Grid>

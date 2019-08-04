@@ -38,7 +38,7 @@ import {
   generateLinks,
 } from "utils/headerItems"
 import Cart from "./Cart"
-import ErrorBoundary from "./ErrorBoundary"
+import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { appStyles as styles, navTheme } from "./appStyles"
 

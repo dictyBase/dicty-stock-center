@@ -1,9 +1,9 @@
 import React from "react"
 import { shallow } from "enzyme"
 import StrainDetailsList from "./StrainDetailsList"
-import ItemDisplay from "../ItemDisplay"
-import LeftDisplay from "../LeftDisplay"
-import RightDisplay from "../RightDisplay"
+import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
+import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
+import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import Grid from "@material-ui/core/Grid"
 import { data } from "./mockStrainData"
 
@@ -16,8 +16,8 @@ describe("Stocks/Strains/StrainDetailsList", () => {
     it("always renders initial components", () => {
       expect(wrapper.dive().find(Grid)).toHaveLength(2)
       expect(wrapper.dive().find(ItemDisplay)).toHaveLength(8)
-      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(15)
-      expect(wrapper.dive().find(RightDisplay)).toHaveLength(17)
+      expect(wrapper.dive().find(LeftDisplay)).toHaveLength(16)
+      expect(wrapper.dive().find(RightDisplay)).toHaveLength(16)
     })
   })
 })

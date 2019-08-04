@@ -11,22 +11,6 @@ import type { MapStateToProps } from "react-redux"
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
 
-// custom theme for styling the buttons
-const theme = {
-  overrides: {
-    MuiButton: {
-      root: {
-        borderRadius: 3,
-        color: "white",
-        width: "80%",
-        justifyContent: "start",
-        minHeight: "55px",
-        marginBottom: "5px",
-      },
-    },
-  },
-}
-
 type Props = {
   // Object passed by React-Router
   location: Object,
@@ -76,11 +60,7 @@ class Login extends Component<Props> {
           <Grid container justify="center">
             <Grid item xs={1} />
             <Grid item xs={4}>
-              <LoginContainer
-                buttons={buttons}
-                theme={theme}
-                onClick={this.handleClick}
-              />
+              <LoginContainer buttons={buttons} onClick={this.handleClick} />
               <OauthSignHandler />
             </Grid>
           </Grid>
