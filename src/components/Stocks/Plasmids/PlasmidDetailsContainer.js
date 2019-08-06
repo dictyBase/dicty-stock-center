@@ -6,11 +6,11 @@ import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import StockDetailsHeader from "../StockDetailsHeader"
 import PlasmidDetailsList from "./PlasmidDetailsList"
-import ShoppingButtons from "../ShoppingButtons"
-import StockDetailsLoader from "../StockDetailsLoader"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
+import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import styles from "./plasmidStyles"
 
 export const GET_PLASMID = gql`
@@ -20,6 +20,9 @@ export const GET_PLASMID = gql`
       name
       summary
       depositor
+      publications {
+        id
+      }
       dbxrefs
       genes
       image_map
@@ -54,14 +57,12 @@ export const PlasmidDetailsContainer = (props: Props) => {
         const title = `Plasmid Details for ${data.plasmid.id}`
 
         return (
-          <Grid container spacing={16} className={classes.layout}>
+          <Grid container spacing={2} className={classes.layout}>
             <Helmet>
               <title>{title} - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center plasmid details page for ${
-                  data.plasmid.id
-                }`}
+                content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
               />
             </Helmet>
             <Grid item xs={12}>

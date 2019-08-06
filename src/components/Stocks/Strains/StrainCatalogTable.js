@@ -1,24 +1,19 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
 import gql from "graphql-tag"
 import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
-import TableCell from "@material-ui/core/TableCell"
 import Paper from "@material-ui/core/Paper"
-import Button from "@material-ui/core/Button"
-import Snackbar from "@material-ui/core/Snackbar"
-import {
-  AutoSizer,
-  Column,
-  Table,
-  CellMeasurer,
-  CellMeasurerCache,
-  InfiniteLoader,
-} from "react-virtualized"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { addToCart } from "actions/cart"
+import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader"
+import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
+import Column from "react-virtualized/dist/commonjs/Table/Column"
+import Table from "react-virtualized/dist/commonjs/Table"
+import CellMeasurerCache from "react-virtualized/dist/commonjs/CellMeasurer/CellMeasurerCache"
+import HeaderTableCell from "components/Stocks/CatalogTableItems/HeaderTableCell"
+import StrainDescriptorTableCell from "components/Stocks/CatalogTableItems/StrainDescriptorTableCell"
+import GeneralTableCell from "components/Stocks/CatalogTableItems/GeneralTableCell"
+import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
+import UnavailableButton from "components/Stocks/CatalogTableItems/UnavailableButton"
 import styles from "./strainStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -43,50 +38,24 @@ type Props = {
     label: string,
     summary: string,
   }>,
-  /** Action for adding an item to the shopping cart */
-  addToCart: Function,
   /** Material-UI styling */
   classes: Object,
   /** Default height of header */
   headerHeight: Number,
-  /** Total number of strains fetched */
-  totalCount: Number,
   /** GraphQL function to make another query */
   fetchMore: Function,
   /** Next cursor from fetched GraphQL data */
   cursor: Number,
 }
 
-type State = {
-  /** Indicates whether snackbar is open or not */
-  snackbarOpen: boolean,
-}
-
 /**
  * StrainCatalogTable is the table used to display strain catalog data.
  */
 
-export class StrainCatalogTable extends React.PureComponent<Props, State> {
+export class StrainCatalogTable extends React.PureComponent<Props> {
   static defaultProps = {
     headerHeight: 64,
     data: [],
-  }
-
-  state = {
-    snackbarOpen: false,
-  }
-
-  handleClick = (id: string, label: string) => {
-    this.props.addToCart({
-      type: "strain",
-      id: id,
-      name: label,
-    })
-    this.setState({ snackbarOpen: true })
-  }
-
-  handleClose = () => {
-    this.setState({ snackbarOpen: false })
   }
 
   cache = new CellMeasurerCache({
@@ -110,42 +79,24 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
     parent,
     rowIndex,
   }: {
-    cellData: String,
+    cellData: string,
     dataKey: any,
     parent: any,
     rowIndex: Number,
-  }) => {
-    const { classes } = this.props
-    return (
-      <CellMeasurer
-        cache={this.cache}
-        columnIndex={0}
-        key={dataKey}
-        parent={parent}
-        rowIndex={rowIndex}
-        style={{ height: this.cache.rowHeight }}>
-        <TableCell
-          component="div"
-          className={classNames(classes.flexContainer, classes.tableCell)}
-          variant="body">
-          {cellData}
-        </TableCell>
-      </CellMeasurer>
-    )
-  }
+  }) => (
+    <GeneralTableCell
+      cellData={cellData}
+      cache={this.cache}
+      key={dataKey}
+      parent={parent}
+      rowIndex={rowIndex}
+      rowHeight={this.cache.rowHeight}
+    />
+  )
 
-  headerRenderer = (label: string) => {
-    const { headerHeight, classes } = this.props
-    return (
-      <TableCell
-        component="div"
-        className={classes.flexContainer}
-        variant="head"
-        style={{ height: headerHeight, color: "#fff" }}>
-        <strong>{label}</strong>
-      </TableCell>
-    )
-  }
+  headerRenderer = (label: string) => (
+    <HeaderTableCell headerHeight={this.props.headerHeight} label={label} />
+  )
 
   descriptorRenderer = ({
     rowData,
@@ -153,19 +104,13 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }: {
     rowData: Object,
     cellData: string,
-  }) => {
-    const { classes } = this.props
-    const { id } = rowData
-    return (
-      <TableCell
-        component="div"
-        className={classNames(classes.flexContainer, classes.tableCell)}
-        variant="body"
-        style={{ height: this.cache.rowHeight }}>
-        <Link to={`/strains/${id}`}>{cellData}</Link>
-      </TableCell>
-    )
-  }
+  }) => (
+    <StrainDescriptorTableCell
+      id={rowData.id}
+      rowHeight={this.cache.rowHeight}
+      descriptor={cellData}
+    />
+  )
 
   inStockRenderer = ({
     rowData,
@@ -173,57 +118,16 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }: {
     rowData: Object,
     cellData: string,
-  }) => {
-    const { classes } = this.props
-    const { id, label } = rowData
-
-    if (cellData === true) {
-      return (
-        <TableCell
-          component="div"
-          className={classNames(classes.flexContainer, classes.tableCell)}
-          variant="body"
-          style={{ height: this.cache.rowHeight }}>
-          <strong>
-            <Button
-              className={classes.cartButton}
-              onClick={() => {
-                this.handleClick(id, label)
-              }}>
-              <FontAwesomeIcon icon="shopping-cart" />
-              &nbsp;Add to cart
-            </Button>
-          </strong>
-          <Snackbar
-            autoHideDuration={2500}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            open={this.state.snackbarOpen}
-            onClose={this.handleClose}
-            ContentProps={{
-              "aria-describedby": "cart-id",
-            }}
-            message={
-              <span id="cart-id">
-                <FontAwesomeIcon icon="check-circle" /> &nbsp; Item added to
-                cart
-              </span>
-            }
-          />
-        </TableCell>
-      )
-    }
-    return (
-      <TableCell
-        component="div"
-        className={classNames(classes.flexContainer, classes.tableCell)}
-        variant="head"
-        style={{ height: this.cache.rowHeight }}>
-        <strong>
-          <Button disabled>Not available</Button>
-        </strong>
-      </TableCell>
+  }) =>
+    cellData ? (
+      <AddToCartButton
+        id={rowData.id}
+        label={rowData.label}
+        rowHeight={this.cache.rowHeight}
+      />
+    ) : (
+      <UnavailableButton rowHeight={this.cache.rowHeight} />
     )
-  }
 
   loadMoreRows = () => {
     const { fetchMore, cursor } = this.props
@@ -252,14 +156,14 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { classes, data, totalCount } = this.props
+    const { classes, data } = this.props
 
     return (
-      <Paper style={{ height: 600, width: "100%" }}>
+      <Paper className={classes.catalogPaper}>
         <InfiniteLoader
           isRowLoaded={({ index }) => !!data[index]}
           loadMoreRows={this.loadMoreRows}
-          rowCount={totalCount}>
+          rowCount={7000}>
           {({ onRowsRendered, registerChild }) => (
             <AutoSizer>
               {({ height, width }) => (
@@ -320,7 +224,4 @@ export class StrainCatalogTable extends React.PureComponent<Props, State> {
   }
 }
 
-export default connect(
-  null,
-  { addToCart },
-)(withStyles(styles)(StrainCatalogTable))
+export default withStyles(styles)(StrainCatalogTable)

@@ -24,7 +24,7 @@ type Props = {
   /** Values from Formik */
   values: Object,
   /** Current order form page number */
-  pageNum: Number,
+  pageNum: number,
   /** Function to set the page number */
   setPageNum: Function,
 }
@@ -75,8 +75,13 @@ const PaymentPage = (props: Props) => {
     setFieldValue("payerPhone", values.phone)
   }
 
+  const handleContinueClick = () => {
+    setPageNum(pageNum + 1)
+    validationChecker()
+  }
+
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <div className={classes.header}>Please enter payment information</div>
         <FormControlLabel
@@ -96,7 +101,7 @@ const PaymentPage = (props: Props) => {
         </PanelWrapper>
       </Grid>
       <Grid item xs={6}>
-        <Grid container direction="column" spacing={16}>
+        <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <PanelWrapper title="Payment Method">
               <PaymentMethod {...props} />
@@ -105,7 +110,7 @@ const PaymentPage = (props: Props) => {
           <Grid item xs={12}>
             <PaymentInfoBox />
           </Grid>
-          <Grid container justify="center" spacing={16}>
+          <Grid container justify="center" spacing={2}>
             <Grid item xs={6}>
               <Button
                 color="primary"
@@ -120,10 +125,7 @@ const PaymentPage = (props: Props) => {
               <Button
                 size="large"
                 className={classes.continueBtn}
-                onClick={() => {
-                  setPageNum(pageNum + 1)
-                  validationChecker()
-                }}>
+                onClick={handleContinueClick}>
                 Continue &nbsp;
                 <FontAwesomeIcon icon="arrow-circle-right" />
               </Button>

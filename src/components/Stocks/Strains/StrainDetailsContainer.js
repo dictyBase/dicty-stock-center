@@ -6,12 +6,13 @@ import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
-import StockDetailsHeader from "../StockDetailsHeader"
 import StrainDetailsList from "./StrainDetailsList"
-import ShoppingButtons from "../ShoppingButtons"
-import StockDetailsLoader from "../StockDetailsLoader"
-import PhenotypeTable from "./Phenotypes/PhenotypeTable"
-import GraphQLErrorPage from "components/GraphQLErrorPage"
+import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
+import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+// import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import characterConverter from "components/Stocks/utils/characterConverter"
 import styles from "./strainStyles"
 
 export const GET_STRAIN = gql`
@@ -19,13 +20,7 @@ export const GET_STRAIN = gql`
     strain(id: $id) {
       id
       label
-      names
-      systematic_name
-      characteristics
       summary
-      genetic_modification
-      genotypes
-      mutagenesis_method
       species
       parent {
         id
@@ -34,8 +29,23 @@ export const GET_STRAIN = gql`
       depositor
       plasmid
       dbxrefs
+      publications {
+        id
+      }
       genes
       in_stock
+    }
+  }
+`
+
+/**
+ * query will still need these from annotations:
+ *       names
+      systematic_name
+      characteristics
+      genetic_modification
+      genotypes
+      mutagenesis_method
       phenotypes {
         phenotype
         note
@@ -53,9 +63,7 @@ export const GET_STRAIN = gql`
           pages
         }
       }
-    }
-  }
-`
+ */
 
 type Props = {
   classes: Object,
@@ -78,30 +86,30 @@ export const StrainDetailsContainer = (props: Props) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
 
-        if (data.strain.phenotypes.length > 0) {
-          title = `Phenotype and Strain Details for ${data.strain.label}`
-        } else {
-          title = `Strain Details for ${data.strain.label}`
-        }
+        const label = characterConverter(data.strain.label)
+
+        // if (data.strain.phenotypes.length > 0) {
+        //   title = `Phenotype and Strain Details for ${data.strain.label}`
+        // } else {
+        title = `Strain Details for ${label}`
+        // }
 
         return (
-          <Grid container spacing={16} className={classes.layout}>
+          <Grid container spacing={2} className={classes.layout}>
             <Helmet>
               <title>{title} - Dicty Stock Center</title>
               <meta
                 name="description"
-                content={`Dicty Stock Center strain details page for ${
-                  data.strain.label
-                }`}
+                content={`Dicty Stock Center strain details page for ${label}`}
               />
             </Helmet>
             <Grid item xs={12}>
               <StockDetailsHeader title={title} />
             </Grid>
             <Grid item xs={12}>
-              {data.strain.phenotypes.length > 0 && (
+              {/* {data.strain.phenotypes.length > 0 && (
                 <PhenotypeTable data={data.strain.phenotypes} />
-              )}
+              )} */}
               <StrainDetailsList data={data.strain} />
               <ShoppingButtons
                 type="strain"

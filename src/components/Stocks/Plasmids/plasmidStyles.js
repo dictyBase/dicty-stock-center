@@ -9,6 +9,9 @@ const styles = theme => ({
   layout: {
     width: "75%",
     margin: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
     // [theme.breakpoints.up("xl")]: {
     //   width: "1270px",
     // },
@@ -40,6 +43,14 @@ const styles = theme => ({
     padding: "8px 56px 4px 24px",
     fontWeight: 400,
     marginBottom: "5px",
+  },
+  catalogPaper: {
+    height: 600,
+    width: "100%",
+  },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
   },
 })
 

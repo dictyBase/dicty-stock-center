@@ -4,10 +4,9 @@ import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import { withStyles } from "@material-ui/core/styles"
-import ItemDisplay from "../ItemDisplay"
-import LeftDisplay from "../LeftDisplay"
-import RightDisplay from "../RightDisplay"
-import logo from "static/dicty-login.png"
+import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
+import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
+import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import styles from "./plasmidStyles"
 
 type Props = {
@@ -16,6 +15,9 @@ type Props = {
     name: string,
     summary: string,
     depositor: string,
+    publications: {
+      id: string,
+    },
     dbxrefs: Array<string>,
     genes: Array<string>,
     image_map: string,
@@ -34,6 +36,82 @@ type Props = {
 const PlasmidDetailsList = (props: Props) => {
   const { data, classes } = props
 
+  let image_map
+  if (data.image_map) {
+    image_map = (
+      <img src={data.image_map} alt={`Image map for plasmid ${data.id}`} />
+    )
+  } else {
+    image_map = ""
+  }
+
+  // display IDs for each publication
+  const publications = data.publications.map((ref, index) => (
+    <Fragment key={index}>
+      <a className={classes.link} href={`/publication/${ref.id}`}>
+        {(index ? ", " : "") + ref.id}
+      </a>
+    </Fragment>
+  ))
+
+  // italicize each associated gene and remove comma from last item
+  const genes = data.genes.map((gene, index) => (
+    <em key={index}>
+      <a className={classes.link} href={`/gene/${gene}`}>
+        {(index ? ", " : "") + gene}
+      </a>
+    </em>
+  ))
+
+  // represents each row containing two sets of data
+  const doubleDataRows = [
+    {
+      id: 0, // used for indexing purposes
+      leftTitle: "Name",
+      leftData: data.name,
+      rightTitle: "Description",
+      rightData: data.summary,
+    },
+    {
+      id: 1,
+      leftTitle: "ID",
+      leftData: data.id,
+      rightTitle: "GenBank Accession Number",
+      rightData: data.genbank_accession,
+    },
+    {
+      id: 2,
+      leftTitle: "Depositor",
+      leftData: data.depositor,
+      rightTitle: "Reference(s)",
+      rightData: publications,
+    },
+  ]
+
+  // every row containing just one piece of data
+  const singleDataRows = [
+    {
+      id: 0,
+      leftTitle: "Image Map",
+      leftData: image_map,
+    },
+    {
+      id: 1,
+      leftTitle: "Sequence",
+      leftData: data.sequence,
+    },
+    {
+      id: 2,
+      leftTitle: "Keywords",
+      leftData: data.keywords,
+    },
+    {
+      id: 3,
+      leftTitle: "Associated Genes",
+      leftData: genes,
+    },
+  ]
+
   return (
     <Fragment>
       <Grid container>
@@ -41,73 +119,23 @@ const PlasmidDetailsList = (props: Props) => {
           <h3>Plasmid Details</h3>
         </Grid>
       </Grid>
-      <Paper className={classes.root}>
-        <ItemDisplay>
-          <LeftDisplay>Name</LeftDisplay>
-          <RightDisplay>{data.name}</RightDisplay>
-          <LeftDisplay>Description</LeftDisplay>
-          <RightDisplay>{data.summary}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>ID</LeftDisplay>
-          <RightDisplay>{data.id}</RightDisplay>
-          <LeftDisplay>GenBank Accession Number</LeftDisplay>
-          <RightDisplay>{data.genbank_accession}</RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Depositor</LeftDisplay>
-          <RightDisplay>{data.depositor}</RightDisplay>
-          <LeftDisplay>References</LeftDisplay>
-          <RightDisplay>
-            {data.dbxrefs.map((ref, index) => (
-              <Fragment key={index}>
-                <a href={`/publication/${ref}`}>
-                  <img
-                    alt="link to dictyBase publication"
-                    src={logo}
-                    height={32}
-                    width={32}
-                  />
-                </a>
-              </Fragment>
-            ))}
-          </RightDisplay>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Image Map</LeftDisplay>
-          <Grid item xs={10} className={classes.rightDisplay}>
-            {data.image_map && (
-              <img
-                src={data.image_map}
-                alt={`Image map for plasmid ${data.id}`}
-              />
-            )}
-          </Grid>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Sequence</LeftDisplay>
-          <Grid item xs={10} className={classes.rightDisplay}>
-            {data.sequence}
-          </Grid>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Keywords</LeftDisplay>
-          <Grid item xs={10}>
-            {data.keywords}
-          </Grid>
-        </ItemDisplay>
-        <ItemDisplay>
-          <LeftDisplay>Associated Genes</LeftDisplay>
-          <Grid item xs={10} className={classes.rightDisplay}>
-            <em>
-              {data.genes.map((gene, index) => (
-                <Fragment key={index}>
-                  <a href={`/gene/${gene}`}>{(index ? ", " : "") + gene}</a>
-                </Fragment>
-              ))}
-            </em>
-          </Grid>
-        </ItemDisplay>
+      <Paper className={classes.detailsPaper}>
+        {doubleDataRows.map(item => (
+          <ItemDisplay key={item.id}>
+            <LeftDisplay>{item.leftTitle}</LeftDisplay>
+            <RightDisplay>{item.leftData}</RightDisplay>
+            <LeftDisplay>{item.rightTitle}</LeftDisplay>
+            <RightDisplay>{item.rightData}</RightDisplay>
+          </ItemDisplay>
+        ))}
+        {singleDataRows.map(item => (
+          <ItemDisplay key={item.id}>
+            <LeftDisplay>{item.leftTitle}</LeftDisplay>
+            <Grid item xs={10} className={classes.rightDisplay}>
+              {item.leftData}
+            </Grid>
+          </ItemDisplay>
+        ))}
       </Paper>
     </Fragment>
   )
