@@ -13,11 +13,16 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-COPY package-lock.json ./
+COPY package-lock.json .babelrc ./
 COPY jsconfig.json ./
-COPY package.json ./
+# package.json has to be modified later on, so 
+ADD package.json package-dev.json
 
-RUN npm ci
+# create new package.json with relative path
+RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
+  && rm package-dev.json
+
+RUN npm install
 
 # add necessary folders
 ADD src src
