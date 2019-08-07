@@ -103,7 +103,7 @@ const StrainDetailsList = (props: Props) => {
       leftTitle: "Strain Names",
       leftData: [], // data.names.join(", "),
       rightTitle: "Systematic Name",
-      rightData: "", // data.systematic_name,
+      rightData: data.systematic_name,
     },
     {
       id: 2,
