@@ -35,6 +35,9 @@ export const GET_STRAIN = gql`
       genes
       in_stock
       systematic_name
+      characteristics
+      genotypes
+      mutagenesis_method
     }
   }
 `
@@ -42,10 +45,7 @@ export const GET_STRAIN = gql`
 /**
  * query will still need these from annotations:
  *       names
-      systematic_name
-      characteristics
       genetic_modification
-      genotypes
       mutagenesis_method
       phenotypes {
         phenotype

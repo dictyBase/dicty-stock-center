@@ -110,14 +110,14 @@ const StrainDetailsList = (props: Props) => {
       leftTitle: "Strain Summary",
       leftData: data.summary,
       rightTitle: "Strain Characteristics",
-      rightData: [], // data.characteristics.join(", "),
+      rightData: data.characteristics.join(", "),
     },
     {
       id: 3,
       leftTitle: "Genetic Modification",
       leftData: "", // data.genetic_modification,
       rightTitle: "Genotypes",
-      rightData: [], // data.genotypes.join(", "),
+      rightData: data.genotypes.join(", "),
     },
     {
       id: 4,
