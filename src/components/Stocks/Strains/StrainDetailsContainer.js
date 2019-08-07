@@ -34,6 +34,7 @@ export const GET_STRAIN = gql`
       }
       genes
       in_stock
+      systematic_name
     }
   }
 `
