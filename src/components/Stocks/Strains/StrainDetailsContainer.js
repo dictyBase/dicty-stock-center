@@ -37,6 +37,7 @@ export const GET_STRAIN = gql`
       systematic_name
       genotypes
       mutagenesis_method
+      genetic_modification
     }
   }
 `

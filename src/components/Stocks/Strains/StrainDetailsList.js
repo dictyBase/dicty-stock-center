@@ -115,7 +115,7 @@ const StrainDetailsList = (props: Props) => {
     {
       id: 3,
       leftTitle: "Genetic Modification",
-      leftData: "", // data.genetic_modification,
+      leftData: data.genetic_modification,
       rightTitle: "Genotypes",
       rightData: data.genotypes.join(", "),
     },
