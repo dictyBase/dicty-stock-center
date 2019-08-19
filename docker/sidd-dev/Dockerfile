@@ -1,6 +1,3 @@
-# It's a multi stage build https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
-# The first one build single file js for the web app
-# The second one copies the file and server with a golang static web server
 FROM dictybase/frontend-builder:devsidd
 LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 
@@ -13,16 +10,11 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-COPY package-lock.json .babelrc ./
+COPY package*.json ./
+COPY .babelrc ./
 COPY jsconfig.json ./
-# package.json has to be modified later on, so 
-ADD package.json package-dev.json
 
-# create new package.json with relative path
-RUN jq '. + {"homepage": "/stockcenter"}' package-dev.json > package.json \
-  && rm package-dev.json
-
-RUN npm install
+RUN npm ci
 
 # add necessary folders
 ADD src src
@@ -31,7 +23,6 @@ ADD public public
 # overwrite the client key file
 ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 
-# standard install/build commands
 RUN npm run build
 
 FROM dictybase/static-server:1.0.0
