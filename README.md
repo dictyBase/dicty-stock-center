@@ -28,6 +28,7 @@ Dicty Stock Center application rebuilt with React and Redux!
   - [Application Structure](#application-structure)
   - [React Styleguidist](#react-styleguidist)
 - [Deployment](#deployment)
+- [Developers](#developers)
 
 # Development
 
@@ -100,3 +101,8 @@ To update the build, use `npm run styleguide:build`.
 # Deployment
 
 The application is deployed by [building a Docker image](https://docs.docker.com/engine/reference/commandline/build/) and running it through [Kubernetes](https://k8s.io). More detailed information about the deployment process for DSC and all Dicty software can be found [here](https://github.com/dictyBase/Migration/blob/master/deploy.md).
+
+# Developers
+
+<a href="https://sourcerer.io/cybersiddhu"><img src="https://sourcerer.io/assets/avatar/cybersiddhu" height="80px" alt="Sourcerer"></a>
+<a href="https://sourcerer.io/wildlifehexagon"><img src="https://sourcerer.io/assets/avatar/wildlifehexagon" height="80px" alt="Sourcerer"></a>
