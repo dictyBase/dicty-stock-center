@@ -63,7 +63,6 @@ export const AddToCartButton = ({
             handleClick(id, label)
           }}>
           <FontAwesomeIcon icon="shopping-cart" />
-          &nbsp;Add to cart
         </Button>
       </strong>
       <Snackbar
