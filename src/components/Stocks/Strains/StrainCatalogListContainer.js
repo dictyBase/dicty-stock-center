@@ -13,7 +13,7 @@ import styles from "./strainStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
-    listStrains(input: { cursor: $cursor, limit: 60 }) {
+    listStrains(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
       totalCount
       strains {
@@ -60,8 +60,8 @@ export const StrainCatalogListContainer = (props: Props) => {
             <Grid item xs={12}>
               <StrainCatalogList
                 data={data.listStrains.strains}
-                // fetchMore={fetchMore}
-                // cursor={data.listStrains.nextCursor}
+                fetchMore={fetchMore}
+                cursor={data.listStrains.nextCursor}
               />
             </Grid>
           </Grid>

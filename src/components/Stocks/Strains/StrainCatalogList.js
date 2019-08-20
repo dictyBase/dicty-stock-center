@@ -1,12 +1,30 @@
+// @flow
 import React from "react"
+import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
+import InfiniteLoader from "react-window-infinite-loader"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import StrainCatalogListItem from "./StrainCatalogListItem"
+
+const GET_MORE_STRAINS_LIST = gql`
+  query MoreStrainsList($cursor: Int!) {
+    listStrains(input: { cursor: $cursor, limit: 10 }) {
+      totalCount
+      nextCursor
+      strains {
+        id
+        label
+        summary
+        in_stock
+      }
+    }
+  }
+`
 
 const useStyles = makeStyles({
   catalogPaper: {
@@ -20,8 +38,32 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogList = ({ data }) => {
+const StrainCatalogList = ({ data, fetchMore, cursor }) => {
   const classes = useStyles()
+
+  const loadMoreItems = () =>
+    fetchMore({
+      query: GET_MORE_STRAINS_LIST,
+      variables: {
+        cursor: cursor,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const previousEntry = previousResult.listStrains
+        const newStrains = fetchMoreResult.listStrains.strains
+        const newCursor = fetchMoreResult.listStrains.nextCursor
+        const newTotalCount = fetchMoreResult.listStrains.totalCount
+
+        if (!fetchMoreResult) return previousResult
+        return {
+          listStrains: {
+            totalCount: newTotalCount,
+            nextCursor: newCursor,
+            strains: [...previousEntry.strains, ...newStrains],
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
 
   return (
     <Paper className={classes.catalogPaper}>
@@ -40,18 +82,27 @@ const StrainCatalogList = ({ data }) => {
           </Grid>
         </ListItem>
       </List>
-      <AutoSizer>
-        {({ height, width }) => (
-          <FixedSizeList
-            height={515}
-            width={width}
-            itemSize={50}
-            itemCount={data.length}
-            itemData={data}>
-            {StrainCatalogListItem}
-          </FixedSizeList>
+      <InfiniteLoader
+        isItemLoaded={({ index }) => !!data[index]}
+        itemCount={10000}
+        loadMoreItems={loadMoreItems}>
+        {({ onItemsRendered, ref }) => (
+          <AutoSizer>
+            {({ height, width }) => (
+              <FixedSizeList
+                onItemsRendered={onItemsRendered}
+                ref={ref}
+                height={515}
+                width={width}
+                itemSize={50}
+                itemCount={data.length}
+                itemData={data}>
+                {StrainCatalogListItem}
+              </FixedSizeList>
+            )}
+          </AutoSizer>
         )}
-      </AutoSizer>
+      </InfiniteLoader>
     </Paper>
   )
 }
