@@ -31,10 +31,8 @@ const useStyles = makeStyles({
     height: 600,
     width: "100%",
   },
-  listItem: {
-    "&:hover": {
-      backgroundColor: "#eeeeee",
-    },
+  listHeaders: {
+    borderBottom: "1px solid #888",
   },
 })
 
@@ -82,13 +80,13 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
           </Grid>
         </ListItem>
       </List>
-      <InfiniteLoader
-        isItemLoaded={({ index }) => !!data[index]}
-        itemCount={10000}
-        loadMoreItems={loadMoreItems}>
-        {({ onItemsRendered, ref }) => (
-          <AutoSizer>
-            {({ height, width }) => (
+      <AutoSizer>
+        {({ height, width }) => (
+          <InfiniteLoader
+            isItemLoaded={({ index }) => !!data[index]}
+            itemCount={10000}
+            loadMoreItems={loadMoreItems}>
+            {({ onItemsRendered, ref }) => (
               <FixedSizeList
                 onItemsRendered={onItemsRendered}
                 ref={ref}
@@ -100,9 +98,9 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
                 {StrainCatalogListItem}
               </FixedSizeList>
             )}
-          </AutoSizer>
+          </InfiniteLoader>
         )}
-      </InfiniteLoader>
+      </AutoSizer>
     </Paper>
   )
 }

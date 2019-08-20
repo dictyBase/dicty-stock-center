@@ -11,10 +11,19 @@ const useStyles = makeStyles({
     position: "sticky",
     top: 0,
   },
-  listItem: {
+  row: {
+    borderBottom: "1px solid rgba(224, 224, 224, 1)",
+
     "&:hover": {
       backgroundColor: "#eeeeee",
     },
+  },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
+  item: {
+    paddingRight: "10px",
   },
 })
 
@@ -31,17 +40,19 @@ const StrainCatalogList = ({ index, style, data }) => {
   return (
     <ListItem
       key={item.id}
-      className={classes.listItem}
+      className={classes.row}
       style={style}
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}>
       <Grid container>
-        <Grid item xs={3}>
+        <Grid item xs={3} className={classes.item}>
           <Typography noWrap>
-            <Link to={`/strains/${item.id}`}>{item.label}</Link>
+            <Link className={classes.link} to={`/strains/${item.id}`}>
+              {item.label}
+            </Link>
           </Typography>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7} className={classes.item}>
           <Typography noWrap>{item.summary}</Typography>
         </Grid>
         <Grid item xs={2}>
