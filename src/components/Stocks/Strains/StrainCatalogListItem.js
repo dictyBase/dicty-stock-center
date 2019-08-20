@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
-// import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
 
@@ -33,13 +33,24 @@ const StrainCatalogList = ({ item }) => {
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}>
       <Grid item xs={3}>
-        <Link to={`/${item.id}`}>{item.label}</Link>
+        <Typography>
+          <Link to={`/strains/${item.id}`}>{item.label}</Link>
+        </Typography>
       </Grid>
-      <Grid item xs={8}>
-        {item.summary}
+      <Grid item xs={7}>
+        <Typography noWrap>{item.summary}</Typography>
       </Grid>
-      <Grid item xs={1}>
-        {hover ? <AddToCartButton /> : item.id}
+      <Grid item xs={2}>
+        <Typography>
+          {hover ? (
+            <span>
+              {item.id} &nbsp;
+              <AddToCartButton id={item.id} label={item.label} />
+            </span>
+          ) : (
+            item.id
+          )}
+        </Typography>
       </Grid>
     </ListItem>
   )
