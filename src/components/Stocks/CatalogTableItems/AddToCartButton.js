@@ -1,9 +1,7 @@
 // @flow
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
-import TableCell from "@material-ui/core/TableCell"
 import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -51,11 +49,7 @@ export const AddToCartButton = ({
   }
 
   return (
-    <TableCell
-      component="div"
-      className={classNames(classes.flexContainer, classes.tableCell)}
-      variant="body"
-      style={{ height: rowHeight }}>
+    <>
       <strong>
         <Button
           className={classes.cartButton}
@@ -79,7 +73,7 @@ export const AddToCartButton = ({
           </span>
         }
       />
-    </TableCell>
+    </>
   )
 }
 

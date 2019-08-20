@@ -4,7 +4,6 @@ import sinon from "sinon"
 import { AddToCartButton } from "./AddToCartButton"
 import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
-import TableCell from "@material-ui/core/TableCell"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("Stocks/CatalogTableItems/AddToCartButton", () => {
@@ -25,7 +24,6 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("renders expected initial components", () => {
-      expect(wrapper.find(TableCell)).toHaveLength(1)
       expect(wrapper.find(Button)).toHaveLength(1)
       expect(wrapper.find(Snackbar)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)

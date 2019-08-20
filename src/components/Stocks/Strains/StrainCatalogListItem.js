@@ -33,7 +33,7 @@ const StrainCatalogList = ({ item }) => {
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}>
       <Grid item xs={3}>
-        <Typography>
+        <Typography noWrap>
           <Link to={`/strains/${item.id}`}>{item.label}</Link>
         </Typography>
       </Grid>
@@ -41,7 +41,7 @@ const StrainCatalogList = ({ item }) => {
         <Typography noWrap>{item.summary}</Typography>
       </Grid>
       <Grid item xs={2}>
-        <Typography>
+        <Typography noWrap>
           {hover ? (
             <span>
               {item.id} &nbsp;

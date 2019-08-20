@@ -9,8 +9,8 @@ import StrainCatalogListItem from "./StrainCatalogListItem"
 
 const useStyles = makeStyles({
   listHeaders: {
-    position: "sticky",
-    top: 0,
+    // position: "sticky",
+    // top: 0,
   },
   listItem: {
     "&:hover": {
@@ -30,10 +30,10 @@ const StrainCatalogList = ({ data }) => {
             <Grid item xs={3}>
               <strong>Strain Descriptor</strong>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={7}>
               <strong>Strain Summary</strong>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <strong>Strain ID</strong>
             </Grid>
           </ListItem>
