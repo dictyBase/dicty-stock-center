@@ -66,6 +66,9 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "react-virtualized": "^9.21.1",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
+    "react-window-infinite-loader": "^1.0.3",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
@@ -102,7 +105,7 @@
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3",
     "selenium-server": "^3.13.0",
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^15.13.23",
     "sinon": "^7.3.2",
     "source-map-explorer": "^2.0.1",
     "waait": "^1.0.5"

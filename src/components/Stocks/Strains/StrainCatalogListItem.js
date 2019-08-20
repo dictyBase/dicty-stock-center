@@ -18,9 +18,11 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogList = ({ item }) => {
+const StrainCatalogList = ({ index, style, data }) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
+
+  const item = data[index]
 
   const toggleHover = () => {
     setHover(!hover)
@@ -30,27 +32,30 @@ const StrainCatalogList = ({ item }) => {
     <ListItem
       key={item.id}
       className={classes.listItem}
+      style={style}
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}>
-      <Grid item xs={3}>
-        <Typography noWrap>
-          <Link to={`/strains/${item.id}`}>{item.label}</Link>
-        </Typography>
-      </Grid>
-      <Grid item xs={7}>
-        <Typography noWrap>{item.summary}</Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography noWrap>
-          {hover ? (
-            <span>
-              {item.id} &nbsp;
-              <AddToCartButton id={item.id} label={item.label} />
-            </span>
-          ) : (
-            item.id
-          )}
-        </Typography>
+      <Grid container>
+        <Grid item xs={3}>
+          <Typography noWrap>
+            <Link to={`/strains/${item.id}`}>{item.label}</Link>
+          </Typography>
+        </Grid>
+        <Grid item xs={7}>
+          <Typography noWrap>{item.summary}</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography noWrap>
+            {hover ? (
+              <span>
+                {item.id} &nbsp;
+                <AddToCartButton id={item.id} label={item.label} />
+              </span>
+            ) : (
+              item.id
+            )}
+          </Typography>
+        </Grid>
       </Grid>
     </ListItem>
   )

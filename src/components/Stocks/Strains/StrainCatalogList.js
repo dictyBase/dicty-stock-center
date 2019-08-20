@@ -1,16 +1,17 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { FixedSizeList } from "react-window"
+import AutoSizer from "react-virtualized-auto-sizer"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
-// import Typography from "@material-ui/core/Typography"
+import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import StrainCatalogListItem from "./StrainCatalogListItem"
 
 const useStyles = makeStyles({
-  listHeaders: {
-    // position: "sticky",
-    // top: 0,
+  catalogPaper: {
+    height: 600,
+    width: "100%",
   },
   listItem: {
     "&:hover": {
@@ -23,10 +24,10 @@ const StrainCatalogList = ({ data }) => {
   const classes = useStyles()
 
   return (
-    <Grid container justify="center">
-      <Grid item xs={12}>
-        <List>
-          <ListItem className={classes.listHeaders}>
+    <Paper className={classes.catalogPaper}>
+      <List>
+        <ListItem className={classes.listHeaders}>
+          <Grid container>
             <Grid item xs={3}>
               <strong>Strain Descriptor</strong>
             </Grid>
@@ -36,16 +37,22 @@ const StrainCatalogList = ({ data }) => {
             <Grid item xs={2}>
               <strong>Strain ID</strong>
             </Grid>
-          </ListItem>
-          {data.map(item => (
-            <StrainCatalogListItem key={item.id} item={item} />
-          ))}
-        </List>
-        <Grid item xs={12}>
-          <Link to="/strains">Old Strain Catalog</Link>
-        </Grid>
-      </Grid>
-    </Grid>
+          </Grid>
+        </ListItem>
+      </List>
+      <AutoSizer>
+        {({ height, width }) => (
+          <FixedSizeList
+            height={515}
+            width={width}
+            itemSize={50}
+            itemCount={data.length}
+            itemData={data}>
+            {StrainCatalogListItem}
+          </FixedSizeList>
+        )}
+      </AutoSizer>
+    </Paper>
   )
 }
 
