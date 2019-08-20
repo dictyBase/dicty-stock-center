@@ -5,6 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/Loader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+import StrainCatalogList from "components/Stocks/Strains/StrainCatalogList"
 // import InfoPage from "components/InfoPage/InfoPage"
 // import EditInfoPage from "components/InfoPage/EditInfoPage"
 
@@ -156,6 +157,7 @@ const RenderRoutes = () => (
     {/* strain routes */}
     <Route exact path="/strains" component={StrainCatalogContainer} />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
+    <Route exact path="/strainlist" component={StrainCatalogList} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={PlasmidCatalogContainer} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
