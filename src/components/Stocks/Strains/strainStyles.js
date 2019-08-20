@@ -28,10 +28,7 @@ const styles = theme => ({
     },
   },
   cartButton: {
-    backgroundColor: "#80c1ff",
-    "&:hover": {
-      backgroundColor: "#cce6ff",
-    },
+    color: "#004080",
   },
   tableCell: {
     borderBottom: 0,

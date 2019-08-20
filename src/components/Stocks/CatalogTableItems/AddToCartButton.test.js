@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import sinon from "sinon"
 import { AddToCartButton } from "./AddToCartButton"
-import Button from "@material-ui/core/Button"
+import IconButton from "@material-ui/core/IconButton"
 import Snackbar from "@material-ui/core/Snackbar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -24,7 +24,7 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("renders expected initial components", () => {
-      expect(wrapper.find(Button)).toHaveLength(1)
+      expect(wrapper.find(IconButton)).toHaveLength(1)
       expect(wrapper.find(Snackbar)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
     })
@@ -37,7 +37,7 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
   })
   describe("clicking add to cart button", () => {
     it("should call addToCart function on click", () => {
-      const btn = wrapper.find(Button)
+      const btn = wrapper.find(IconButton)
       btn.simulate("click")
       expect(addToCartSpy.calledOnce).toBe(true)
     })

@@ -2,7 +2,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
-import Button from "@material-ui/core/Button"
+import IconButton from "@material-ui/core/IconButton"
 import Snackbar from "@material-ui/core/Snackbar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
@@ -51,13 +51,16 @@ export const AddToCartButton = ({
   return (
     <>
       <strong>
-        <Button
+        <IconButton
+          size="small"
           className={classes.cartButton}
           onClick={() => {
             handleClick(id, label)
-          }}>
+          }}
+          title="add to cart"
+          aria-label="add to shopping cart">
           <FontAwesomeIcon icon="shopping-cart" />
-        </Button>
+        </IconButton>
       </strong>
       <Snackbar
         autoHideDuration={2500}
