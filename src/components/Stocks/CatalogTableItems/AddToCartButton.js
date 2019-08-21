@@ -52,7 +52,7 @@ export const AddToCartButton = ({
     <>
       <strong>
         <IconButton
-          size="small"
+          size="medium"
           className={classes.cartButton}
           onClick={() => {
             handleClick(id, label)

@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
@@ -10,6 +10,8 @@ import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
+import IconButton from "@material-ui/core/IconButton"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -41,7 +43,28 @@ const useStyles = makeStyles({
 })
 
 const StrainCatalogList = ({ data, fetchMore, cursor }) => {
+  const [checkedItems, setCheckedItems] = useState({})
   const classes = useStyles()
+
+  const checkedItemsLength = Object.keys(checkedItems).length
+
+  const handleChange = id => event => {
+    // need to check if item is already there
+    // if user unchecks box then it should be removed
+    setCheckedItems({ ...checkedItems, [id]: event.target.checked })
+  }
+
+  const handleCheckAllChange = event => {
+    if (checkedItemsLength > 0) {
+      setCheckedItems([])
+    }
+    // also need to make sure checkbox is empty after click
+    // and each checkbox should lose their checkmark
+  }
+
+  const handleCartClick = () => {
+    console.log(checkedItems)
+  }
 
   const loadMoreItems = () =>
     fetchMore({
@@ -73,23 +96,37 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
           <Grid container spacing={0} alignItems="center">
             <Grid item xs={1}>
               <Checkbox
+                indeterminate={checkedItemsLength > 0 ? true : false}
+                checked={checkedItemsLength > 0 ? true : false}
                 color="default"
                 value="selectAll"
+                onChange={handleCheckAllChange}
                 inputProps={{
                   "aria-label": "checkbox select all",
                 }}
               />
             </Grid>
-            <Grid item xs={3}>
-              <strong>Strain Descriptor</strong>
-            </Grid>
-            <Grid item xs={6}>
-              <strong>Strain Summary</strong>
-            </Grid>
-            <Grid item xs={1}>
-              <strong>Strain ID</strong>
-            </Grid>
-            <Grid item xs={1}></Grid>
+            {checkedItemsLength > 0 ? (
+              <IconButton
+                size="medium"
+                color="default"
+                onClick={handleCartClick}>
+                <FontAwesomeIcon icon="shopping-cart" />
+              </IconButton>
+            ) : (
+              <>
+                <Grid item xs={3}>
+                  <strong>Strain Descriptor</strong>
+                </Grid>
+                <Grid item xs={6}>
+                  <strong>Strain Summary</strong>
+                </Grid>
+                <Grid item xs={1}>
+                  <strong>Strain ID</strong>
+                </Grid>
+                <Grid item xs={1}></Grid>
+              </>
+            )}
           </Grid>
         </ListItem>
       </List>
@@ -97,7 +134,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
         {({ height, width }) => (
           <InfiniteLoader
             isItemLoaded={({ index }) => !!data[index]}
-            itemCount={10000}
+            itemCount={30000}
             loadMoreItems={loadMoreItems}>
             {({ onItemsRendered, ref }) => (
               <FixedSizeList
@@ -107,7 +144,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
-                itemData={data}>
+                itemData={{ item: data, handleChange, checkedItems }}>
                 {StrainCatalogListItem}
               </FixedSizeList>
             )}

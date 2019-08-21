@@ -35,14 +35,13 @@ const useStyles = makeStyles({
 const StrainCatalogList = ({ index, style, data }) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
+  const { item, handleChange } = data
 
-  const item = data[index]
+  const strain = item[index]
 
   const toggleHover = () => {
     setHover(!hover)
   }
-
-  const handleCheckbox = () => {}
 
   return (
     <ListItem
@@ -54,9 +53,9 @@ const StrainCatalogList = ({ index, style, data }) => {
       <Grid container alignItems="center">
         <Grid item xs={1}>
           <Checkbox
-            onChange={handleCheckbox}
+            onChange={handleChange(strain.id)}
             color="default"
-            value={item.id}
+            value={strain.id}
             inputProps={{
               "aria-label": "checkbox header",
             }}
@@ -64,22 +63,22 @@ const StrainCatalogList = ({ index, style, data }) => {
         </Grid>
         <Grid item xs={3} className={classes.item}>
           <Typography noWrap>
-            <Link className={classes.link} to={`/strains/${item.id}`}>
-              {characterConverter(item.label)}
+            <Link className={classes.link} to={`/strains/${strain.id}`}>
+              {characterConverter(strain.label)}
             </Link>
           </Typography>
         </Grid>
         <Grid item xs={6} className={classes.item}>
-          <Typography noWrap>{item.summary}</Typography>
+          <Typography noWrap>{strain.summary}</Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography noWrap>{item.id}</Typography>
+          <Typography noWrap>{strain.id}</Typography>
         </Grid>
         <Grid item xs={1}>
           <Grid container justify="center">
             {hover ? (
               <span>
-                <AddToCartButton id={item.id} label={item.label} />
+                <AddToCartButton id={strain.id} label={strain.label} />
               </span>
             ) : (
               ""
