@@ -9,6 +9,7 @@ import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsH
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import StrainCatalogList from "components/Stocks/Strains/StrainCatalogList"
+import StrainCatalogAppBar from "components/Stocks/Strains/StrainCatalogAppBar"
 import styles from "./strainStyles"
 
 export const GET_STRAIN_LIST = gql`
@@ -45,7 +46,7 @@ export const StrainCatalogContainer = (props: Props) => {
         if (error) return <GraphQLErrorPage error={error} />
 
         return (
-          <Grid container spacing={2} className={classes.layout}>
+          <Grid container className={classes.layout}>
             <Helmet>
               <title>Strain Catalog - Dicty Stock Center</title>
               <meta
@@ -55,6 +56,9 @@ export const StrainCatalogContainer = (props: Props) => {
             </Helmet>
             <Grid item xs={12}>
               <StockDetailsHeader title="Strain Catalog" />
+            </Grid>
+            <Grid item xs={12}>
+              <StrainCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
               <StrainCatalogList

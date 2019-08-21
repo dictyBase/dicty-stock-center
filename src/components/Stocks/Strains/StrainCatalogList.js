@@ -32,6 +32,10 @@ const useStyles = makeStyles({
   },
   listHeaders: {
     borderBottom: "1px solid #888",
+    // backgroundColor: "#DCDCDC",
+  },
+  list: {
+    padding: 0,
   },
 })
 
@@ -63,9 +67,9 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
 
   return (
     <Paper className={classes.catalogPaper}>
-      <List>
+      <List className={classes.list}>
         <ListItem className={classes.listHeaders}>
-          <Grid container>
+          <Grid container spacing={0}>
             <Grid item xs={3}>
               <strong>Strain Descriptor</strong>
             </Grid>
@@ -88,7 +92,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
               <FixedSizeList
                 onItemsRendered={onItemsRendered}
                 ref={ref}
-                height={515}
+                height={535}
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
