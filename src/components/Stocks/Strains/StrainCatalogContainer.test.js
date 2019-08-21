@@ -4,11 +4,10 @@ import { MockedProvider } from "react-apollo/test-utils"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
-import Grid from "@material-ui/core/Grid"
 import StrainCatalogContainer, {
   GET_STRAIN_LIST,
 } from "./StrainCatalogContainer"
-import StrainCatalogTable from "./StrainCatalogTable"
+import StrainCatalogList from "./StrainCatalogList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
@@ -67,9 +66,9 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(Grid)).toHaveLength(3)
+
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(StrainCatalogTable)).toHaveLength(1)
+      expect(wrapper.find(StrainCatalogList)).toHaveLength(1)
     })
   })
   describe("error handling", () => {

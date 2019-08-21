@@ -8,14 +8,13 @@ import { withStyles } from "@material-ui/core/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import StrainCatalogTable from "./StrainCatalogTable"
+import StrainCatalogList from "components/Stocks/Strains/StrainCatalogList"
 import styles from "./strainStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
     listStrains(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
-      totalCount
       strains {
         id
         label
@@ -58,7 +57,7 @@ export const StrainCatalogContainer = (props: Props) => {
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogTable
+              <StrainCatalogList
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
