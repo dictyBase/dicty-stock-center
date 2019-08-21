@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
+import Checkbox from "@material-ui/core/Checkbox"
 import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
 
 const GET_MORE_STRAINS_LIST = gql`
@@ -69,16 +70,26 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
     <Paper className={classes.catalogPaper}>
       <List className={classes.list}>
         <ListItem className={classes.listHeaders}>
-          <Grid container spacing={0}>
+          <Grid container spacing={0} alignItems="center">
+            <Grid item xs={1}>
+              <Checkbox
+                color="default"
+                value="selectAll"
+                inputProps={{
+                  "aria-label": "checkbox select all",
+                }}
+              />
+            </Grid>
             <Grid item xs={3}>
               <strong>Strain Descriptor</strong>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
               <strong>Strain Summary</strong>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={1}>
               <strong>Strain ID</strong>
             </Grid>
+            <Grid item xs={1}></Grid>
           </Grid>
         </ListItem>
       </List>
