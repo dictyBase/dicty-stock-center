@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
+import characterConverter from "components/Stocks/utils/characterConverter"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -51,7 +52,7 @@ const StrainCatalogList = ({ index, style, data }) => {
         <Grid item xs={3} className={classes.item}>
           <Typography noWrap>
             <Link className={classes.link} to={`/strains/${item.id}`}>
-              {item.label}
+              {characterConverter(item.label)}
             </Link>
           </Typography>
         </Grid>
