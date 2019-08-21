@@ -8,9 +8,9 @@ import { withStyles } from "@material-ui/core/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import StrainCatalogList from "components/Stocks/Strains/StrainCatalogList"
-import StrainCatalogAppBar from "components/Stocks/Strains/StrainCatalogAppBar"
-import styles from "./strainStyles"
+import StrainCatalogList from "components/Stocks/Strains/Catalog/StrainCatalogList"
+import StrainCatalogAppBar from "components/Stocks/Strains/Catalog/StrainCatalogAppBar"
+import styles from "components/Stocks/Strains/strainStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {

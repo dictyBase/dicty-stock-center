@@ -61,7 +61,7 @@ const EditInfoPage = Loadable({
 const StrainCatalogContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */
+      "components/Stocks/Strains/Catalog/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */
     ),
   loading: StockDetailsLoader,
 })

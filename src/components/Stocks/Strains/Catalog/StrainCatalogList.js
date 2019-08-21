@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import StrainCatalogListItem from "./StrainCatalogListItem"
+import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!) {

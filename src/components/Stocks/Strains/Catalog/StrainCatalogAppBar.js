@@ -4,9 +4,10 @@ import { makeStyles, fade } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
-import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import StrainCatalogAppBarRightMenu from "components/Stocks/Strains/Catalog/StrainCatalogAppBarRightMenu"
+import StrainCatalogAppBarSearch from "components/Stocks/Strains/Catalog/StrainCatalogAppBarSearch"
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -67,26 +68,10 @@ const StrainCatalogAppBar = props => {
           </IconButton>
         </Grid>
         <Grid container justify="center">
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <IconButton size="small" className={classes.icon}>
-                <FontAwesomeIcon icon="search" />
-              </IconButton>
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          <StrainCatalogAppBarSearch />
         </Grid>
         <Grid container justify="flex-end">
-          <IconButton size="small" className={classes.icon}>
-            <FontAwesomeIcon icon="ellipsis-v" />
-          </IconButton>
+          <StrainCatalogAppBarRightMenu />
         </Grid>
       </Toolbar>
     </AppBar>
