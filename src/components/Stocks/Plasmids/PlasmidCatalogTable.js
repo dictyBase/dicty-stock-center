@@ -143,13 +143,14 @@ export class PlasmidCatalogTable extends React.PureComponent<Props> {
         const newPlasmids = fetchMoreResult.listPlasmids.plasmids
         const newCursor = fetchMoreResult.listPlasmids.nextCursor
         const newTotalCount = fetchMoreResult.listPlasmids.totalCount
+        const allPlasmids = [...previousEntry.plasmids, ...newPlasmids]
 
         if (!fetchMoreResult) return previousResult
         return {
           listPlasmids: {
             totalCount: newTotalCount,
             nextCursor: newCursor,
-            plasmids: [...previousEntry.plasmids, ...newPlasmids],
+            plasmids: [...new Set(allPlasmids)], // remove any duplicate entries
             __typename: previousEntry.__typename,
           },
         }

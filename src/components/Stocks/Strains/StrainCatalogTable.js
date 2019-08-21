@@ -141,13 +141,14 @@ export class StrainCatalogTable extends React.PureComponent<Props> {
         const newStrains = fetchMoreResult.listStrains.strains
         const newCursor = fetchMoreResult.listStrains.nextCursor
         const newTotalCount = fetchMoreResult.listStrains.totalCount
+        const allStrains = [...previousEntry.strains, ...newStrains]
 
         if (!fetchMoreResult) return previousResult
         return {
           listStrains: {
             totalCount: newTotalCount,
             nextCursor: newCursor,
-            strains: [...previousEntry.strains, ...newStrains],
+            strains: [...new Set(allStrains)], // remove any duplicate entries
             __typename: previousEntry.__typename,
           },
         }

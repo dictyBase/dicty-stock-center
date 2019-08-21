@@ -14,7 +14,6 @@ import StrainCatalogListItem from "./StrainCatalogListItem"
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!) {
     listStrains(input: { cursor: $cursor, limit: 10 }) {
-      totalCount
       nextCursor
       strains {
         id
@@ -46,17 +45,16 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
         cursor: cursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return previousResult
         const previousEntry = previousResult.listStrains
         const newStrains = fetchMoreResult.listStrains.strains
         const newCursor = fetchMoreResult.listStrains.nextCursor
-        const newTotalCount = fetchMoreResult.listStrains.totalCount
+        const allStrains = [...previousEntry.strains, ...newStrains]
 
-        if (!fetchMoreResult) return previousResult
         return {
           listStrains: {
-            totalCount: newTotalCount,
             nextCursor: newCursor,
-            strains: [...previousEntry.strains, ...newStrains],
+            strains: [...new Set(allStrains)], // remove any duplicate entries
             __typename: previousEntry.__typename,
           },
         }
