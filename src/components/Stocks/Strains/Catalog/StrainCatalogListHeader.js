@@ -24,17 +24,10 @@ const StrainCatalogListHeader = ({
   checkedItems,
   setCheckedItems,
   addToCart,
+  handleCheckAllChange,
 }) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
-
-  const handleCheckAllChange = event => {
-    if (checkedItemsLength > 0) {
-      setCheckedItems([])
-    }
-    // also need to make sure checkbox is empty after click
-    // and each checkbox should lose their checkmark
-  }
 
   const handleCartClick = () => {
     checkedItems.forEach(item => {
@@ -51,16 +44,17 @@ const StrainCatalogListHeader = ({
       <ListItem className={classes.listHeaders}>
         <Grid container spacing={0} alignItems="center">
           <Grid item xs={1}>
-            <Checkbox
-              indeterminate={checkedItemsLength > 0 ? true : false}
-              checked={checkedItemsLength > 0 ? true : false}
-              color="default"
-              value="selectAll"
-              onChange={handleCheckAllChange}
-              inputProps={{
-                "aria-label": "checkbox select all",
-              }}
-            />
+            {checkedItemsLength > 0 && (
+              <Checkbox
+                indeterminate={checkedItemsLength > 0 ? true : false}
+                color="default"
+                value="selectAll"
+                onChange={handleCheckAllChange}
+                inputProps={{
+                  "aria-label": "checkbox select all",
+                }}
+              />
+            )}
           </Grid>
           {checkedItemsLength > 0 ? (
             <IconButton size="medium" color="default" onClick={handleCartClick}>

@@ -43,6 +43,12 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
     }
   }
 
+  const handleCheckAllChange = () => {
+    if (checkedItems.length > 0) {
+      setCheckedItems([])
+    }
+  }
+
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,
@@ -71,6 +77,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
       <StrainCatalogListHeader
         checkedItems={checkedItems}
         setCheckedItems={setCheckedItems}
+        handleCheckAllChange={handleCheckAllChange}
       />
       <AutoSizer>
         {({ height, width }) => (
@@ -86,7 +93,11 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
-                itemData={{ item: data, handleCheckboxChange, checkedItems }}>
+                itemData={{
+                  item: data,
+                  handleCheckboxChange,
+                  checkedItems,
+                }}>
                 {StrainCatalogListItem}
               </FixedSizeList>
             )}
