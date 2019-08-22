@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     paddingRight: "5px",
   },
+  menuItem: {
+    fontSize: "0.8rem",
+  },
 }))
 
 const StrainCatalogAppBarRightMenu = props => {
@@ -37,12 +40,12 @@ const StrainCatalogAppBarRightMenu = props => {
         keepMounted
         open={open}
         onClose={handleClose}>
-        <MenuItem onClick={handleClose}>
-          <FontAwesomeIcon icon="download" />
+        <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <FontAwesomeIcon icon="download" size="small" />
           &nbsp; Download PDF
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <FontAwesomeIcon icon="download" />
+        <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <FontAwesomeIcon icon="download" size="small" />
           &nbsp; Download CSV
         </MenuItem>
       </Menu>

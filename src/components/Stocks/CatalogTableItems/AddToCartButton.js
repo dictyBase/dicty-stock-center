@@ -57,8 +57,8 @@ export const AddToCartButton = ({
           onClick={() => {
             handleClick(id, label)
           }}
-          title="add to cart"
-          aria-label="add to shopping cart">
+          title="Add to cart"
+          aria-label="Add to shopping cart">
           <FontAwesomeIcon icon="cart-plus" />
         </IconButton>
       </strong>
