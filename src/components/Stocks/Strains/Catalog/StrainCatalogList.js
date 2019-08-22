@@ -34,15 +34,15 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
   const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()
 
-  const handleChange = (id, label) => event => {
-    // if (checkedItems.some(item => item.id)) {
-    //   const newArr = checkedItems.filter(item => item.id !== id)
-    //   return setCheckedItems(newArr)
-    // } else {
-    setCheckedItems([...checkedItems, { id, label }])
-    // }
+  const handleCheckboxChange = (id, label) => event => {
+    // if checkbox is already checked, remove that item from state
+    if (checkedItems.some(item => item.id === id)) {
+      setCheckedItems(checkedItems.filter(item => item.id !== id))
+    } else {
+      setCheckedItems([...checkedItems, { id, label }])
+    }
   }
-  console.log(checkedItems)
+
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,
@@ -86,7 +86,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
-                itemData={{ item: data, handleChange, checkedItems }}>
+                itemData={{ item: data, handleCheckboxChange, checkedItems }}>
                 {StrainCatalogListItem}
               </FixedSizeList>
             )}

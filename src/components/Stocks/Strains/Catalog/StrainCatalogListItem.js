@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 const StrainCatalogList = ({ index, style, data }) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
-  const { item, handleChange, checkedItems } = data
+  const { item, handleCheckboxChange, checkedItems } = data
 
   const strain = item[index]
 
@@ -43,13 +43,8 @@ const StrainCatalogList = ({ index, style, data }) => {
     setHover(!hover)
   }
 
-  const checkedItemsLookup = id => {
-    // if item is checked, then return true for checkbox
-    if (checkedItems.some(item => item.id === id)) {
-      return true
-    }
-    return false
-  }
+  // if item is checked, then return true for checkbox
+  const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
 
   return (
     <ListItem
@@ -62,7 +57,7 @@ const StrainCatalogList = ({ index, style, data }) => {
         <Grid item xs={1}>
           <Checkbox
             checked={checkedItemsLookup(strain.id)}
-            onChange={handleChange(strain.id, strain.label)}
+            onChange={handleCheckboxChange(strain.id, strain.label)}
             color="default"
             value={strain.id}
             inputProps={{
