@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 const StrainCatalogList = ({ index, style, data }) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
-  const { item, handleChange } = data
+  const { item, handleChange, checkedItems } = data
 
   const strain = item[index]
 
@@ -43,9 +43,17 @@ const StrainCatalogList = ({ index, style, data }) => {
     setHover(!hover)
   }
 
+  const checkedItemsLookup = id => {
+    // if item is checked, then return true for checkbox
+    if (Object.keys(checkedItems).some(() => checkedItems[id] === true)) {
+      return true
+    }
+    return false
+  }
+
   return (
     <ListItem
-      key={item.id}
+      key={strain.id}
       className={classes.row}
       style={style}
       onMouseEnter={toggleHover}
@@ -53,11 +61,12 @@ const StrainCatalogList = ({ index, style, data }) => {
       <Grid container alignItems="center">
         <Grid item xs={1}>
           <Checkbox
+            checked={checkedItemsLookup(strain.id)}
             onChange={handleChange(strain.id)}
             color="default"
             value={strain.id}
             inputProps={{
-              "aria-label": "checkbox header",
+              "aria-label": "Strain catalog checkbox",
             }}
           />
         </Grid>

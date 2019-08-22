@@ -41,11 +41,11 @@ const StrainCatalogAppBarRightMenu = props => {
         open={open}
         onClose={handleClose}>
         <MenuItem onClick={handleClose} className={classes.menuItem}>
-          <FontAwesomeIcon icon="download" size="small" />
+          <FontAwesomeIcon icon="download" size="sm" />
           &nbsp; Download PDF
         </MenuItem>
         <MenuItem onClick={handleClose} className={classes.menuItem}>
-          <FontAwesomeIcon icon="download" size="small" />
+          <FontAwesomeIcon icon="download" size="sm" />
           &nbsp; Download CSV
         </MenuItem>
       </Menu>
