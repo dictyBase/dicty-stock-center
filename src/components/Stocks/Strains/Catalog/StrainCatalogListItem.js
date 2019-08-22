@@ -1,12 +1,16 @@
 import React, { useState } from "react"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
+import IconButton from "@material-ui/core/IconButton"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
+import { removeItem } from "actions/cart"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -32,7 +36,7 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogList = ({ index, style, data }) => {
+const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
   const { item, handleCheckboxChange, checkedItems } = data
@@ -45,6 +49,13 @@ const StrainCatalogList = ({ index, style, data }) => {
 
   // if item is checked, then return true for checkbox
   const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
+  // check if hovered item is already in cart
+  const selectedCartItems = cartItems.some(item => item.id === strain.id)
+
+  const handleRemoveItemClick = () => {
+    removeItem(strain.id)
+    setHover(false)
+  }
 
   return (
     <ListItem
@@ -83,6 +94,14 @@ const StrainCatalogList = ({ index, style, data }) => {
             {hover ? (
               <span>
                 <AddToCartButton id={strain.id} label={strain.label} />
+                {selectedCartItems && (
+                  <IconButton
+                    size="medium"
+                    color="secondary"
+                    onClick={handleRemoveItemClick}>
+                    <FontAwesomeIcon icon="trash" />
+                  </IconButton>
+                )}
               </span>
             ) : (
               ""
@@ -94,4 +113,11 @@ const StrainCatalogList = ({ index, style, data }) => {
   )
 }
 
-export default StrainCatalogList
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  cartItems: state.cart.addedItems,
+})
+
+export default connect(
+  mapStateToProps,
+  { removeItem },
+)(StrainCatalogList)
