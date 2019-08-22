@@ -1,5 +1,6 @@
 // @flow
 import React from "react"
+import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
@@ -7,6 +8,7 @@ import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { addToCart } from "actions/cart"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -18,20 +20,30 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogListHeader = ({ checkedItems, setCheckedItems }) => {
+const StrainCatalogListHeader = ({
+  checkedItems,
+  setCheckedItems,
+  addToCart,
+}) => {
   const classes = useStyles()
-  const checkedItemsLength = Object.keys(checkedItems).length
+  const checkedItemsLength = checkedItems.length
 
   const handleCheckAllChange = event => {
     if (checkedItemsLength > 0) {
-      setCheckedItems({})
+      setCheckedItems([])
     }
     // also need to make sure checkbox is empty after click
     // and each checkbox should lose their checkmark
   }
 
   const handleCartClick = () => {
-    console.log(checkedItems)
+    checkedItems.forEach(item => {
+      addToCart({
+        type: "strain",
+        id: item.id,
+        name: item.label,
+      })
+    })
   }
 
   return (
@@ -74,4 +86,7 @@ const StrainCatalogListHeader = ({ checkedItems, setCheckedItems }) => {
   )
 }
 
-export default StrainCatalogListHeader
+export default connect(
+  null,
+  { addToCart },
+)(StrainCatalogListHeader)

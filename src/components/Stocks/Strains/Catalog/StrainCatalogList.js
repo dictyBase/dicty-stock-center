@@ -31,15 +31,18 @@ const useStyles = makeStyles({
 })
 
 const StrainCatalogList = ({ data, fetchMore, cursor }) => {
-  const [checkedItems, setCheckedItems] = useState({})
+  const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()
 
-  const handleChange = id => event => {
-    // need to check if item is already there
-    // if user unchecks box then it should be removed
-    setCheckedItems({ ...checkedItems, [id]: event.target.checked })
+  const handleChange = (id, label) => event => {
+    // if (checkedItems.some(item => item.id)) {
+    //   const newArr = checkedItems.filter(item => item.id !== id)
+    //   return setCheckedItems(newArr)
+    // } else {
+    setCheckedItems([...checkedItems, { id, label }])
+    // }
   }
-
+  console.log(checkedItems)
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,

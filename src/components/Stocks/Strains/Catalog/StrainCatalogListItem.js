@@ -45,7 +45,7 @@ const StrainCatalogList = ({ index, style, data }) => {
 
   const checkedItemsLookup = id => {
     // if item is checked, then return true for checkbox
-    if (Object.keys(checkedItems).some(() => checkedItems[id] === true)) {
+    if (checkedItems.some(item => item.id === id)) {
       return true
     }
     return false
@@ -62,7 +62,7 @@ const StrainCatalogList = ({ index, style, data }) => {
         <Grid item xs={1}>
           <Checkbox
             checked={checkedItemsLookup(strain.id)}
-            onChange={handleChange(strain.id)}
+            onChange={handleChange(strain.id, strain.label)}
             color="default"
             value={strain.id}
             inputProps={{
