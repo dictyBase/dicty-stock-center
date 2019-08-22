@@ -56,7 +56,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
 
   const handleCheckAllChange = event => {
     if (checkedItemsLength > 0) {
-      setCheckedItems([])
+      setCheckedItems({})
     }
     // also need to make sure checkbox is empty after click
     // and each checkbox should lose their checkmark
@@ -111,7 +111,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }) => {
                 size="medium"
                 color="default"
                 onClick={handleCartClick}>
-                <FontAwesomeIcon icon="shopping-cart" />
+                <FontAwesomeIcon icon="cart-plus" />
               </IconButton>
             ) : (
               <>

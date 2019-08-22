@@ -59,7 +59,7 @@ export const AddToCartButton = ({
           }}
           title="add to cart"
           aria-label="add to shopping cart">
-          <FontAwesomeIcon icon="shopping-cart" />
+          <FontAwesomeIcon icon="cart-plus" />
         </IconButton>
       </strong>
       <Snackbar
