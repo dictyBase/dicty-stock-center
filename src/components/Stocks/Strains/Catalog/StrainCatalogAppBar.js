@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StrainCatalogAppBar = props => {
+const StrainCatalogAppBar = () => {
   const classes = useStyles()
 
   return (

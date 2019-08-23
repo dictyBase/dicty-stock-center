@@ -30,7 +30,17 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogList = ({ data, fetchMore, cursor }) => {
+type Props = {
+  data: Array<{
+    label: string,
+    id: string,
+    summary: string,
+  }>,
+  fetchMore: Function,
+  cursor: number,
+}
+
+const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()
 

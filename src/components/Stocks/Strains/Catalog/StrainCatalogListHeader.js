@@ -20,12 +20,22 @@ const useStyles = makeStyles({
   },
 })
 
+type Props = {
+  checkedItems: Array<{
+    id: string,
+    label: string,
+  }>,
+  setCheckedItems: Function,
+  addToCart: Function,
+  handleCheckAllChange: Function,
+}
+
 const StrainCatalogListHeader = ({
   checkedItems,
   setCheckedItems,
   addToCart,
   handleCheckAllChange,
-}) => {
+}: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

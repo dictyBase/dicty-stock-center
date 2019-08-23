@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StrainCatalogAppBarSearch = props => {
+const StrainCatalogAppBarSearch = () => {
   const classes = useStyles()
 
   return (

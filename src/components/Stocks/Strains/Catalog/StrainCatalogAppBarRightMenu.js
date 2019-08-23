@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StrainCatalogAppBarRightMenu = props => {
+const StrainCatalogAppBarRightMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const classes = useStyles()

@@ -15,9 +15,9 @@ type Props = {
     name: string,
     summary: string,
     depositor: string,
-    publications: {
+    publications: Array<{
       id: string,
-    },
+    }>,
     dbxrefs: Array<string>,
     genes: Array<string>,
     image_map: string,

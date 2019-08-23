@@ -739,7 +739,7 @@ declare module "@material-ui/core/Grid/Grid" {
     | "flex-end"
     | "space-between"
     | "space-around"
-  declare type Spacing = 0 | 8 | 16 | 24 | 32 | 40
+  declare type Spacing = 0 | 1 | 2 | 3 | 4 | 5
   declare type Wrap = "nowrap" | "wrap" | "wrap-reverse"
 
   declare module.exports: React$ComponentType<{
@@ -1791,6 +1791,8 @@ declare module "@material-ui/core/styles" {
     withTheme: $Exports<"@material-ui/core/styles/withTheme">,
     createMuiTheme: $Exports<"@material-ui/core/styles/createMuiTheme">,
     jssPreset: $Exports<"@material-ui/core/styles/jssPreset">,
+    fade: any,
+    makeStyles: any,
   }
 }
 

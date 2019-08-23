@@ -29,9 +29,9 @@ type Props = {
     },
     depositor: string,
     plasmid: string,
-    publications: {
+    publications: Array<{
       id: string,
-    },
+    }>,
     dbxrefs: Array<string>,
     genes: Array<string>,
     phenotypes: {
