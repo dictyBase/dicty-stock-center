@@ -93,7 +93,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
         {({ height, width }) => (
           <InfiniteLoader
             isItemLoaded={({ index }) => !!data[index]}
-            itemCount={30000}
+            itemCount={data.length}
             loadMoreItems={loadMoreItems}>
             {({ onItemsRendered, ref }) => (
               <FixedSizeList
