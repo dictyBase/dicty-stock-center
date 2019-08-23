@@ -6,14 +6,10 @@ import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     margin: "auto",
-    width: "75%",
-
-    [theme.breakpoints.up("xl")]: {
-      width: "1270px",
-    },
+    width: "80%",
   },
   link: {
     color: "#004080",

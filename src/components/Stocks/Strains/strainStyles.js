@@ -7,7 +7,7 @@ const styles = theme => ({
     fontSize: 16,
   },
   layout: {
-    width: "75%",
+    width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
     "& a": {

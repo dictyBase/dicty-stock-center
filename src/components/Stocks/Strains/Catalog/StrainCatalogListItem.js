@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
+import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
@@ -64,32 +65,38 @@ const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
       style={style}
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}>
-      <Grid container alignItems="center">
-        <Grid item xs={1}>
-          <Checkbox
-            checked={checkedItemsLookup(strain.id)}
-            onChange={handleCheckboxChange(strain.id, strain.label)}
-            color="default"
-            value={strain.id}
-            inputProps={{
-              "aria-label": "Strain catalog checkbox",
-            }}
-          />
-        </Grid>
-        <Grid item xs={3} className={classes.item}>
+      <Grid container spacing={0} alignItems="center">
+        <Hidden smDown>
+          <Grid item md={1}>
+            <Checkbox
+              checked={checkedItemsLookup(strain.id)}
+              onChange={handleCheckboxChange(strain.id, strain.label)}
+              color="default"
+              value={strain.id}
+              inputProps={{
+                "aria-label": "Strain catalog checkbox",
+              }}
+            />
+          </Grid>
+        </Hidden>
+        <Grid item xs={8} md={3} className={classes.item}>
           <Typography noWrap>
             <Link className={classes.link} to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
             </Link>
           </Typography>
         </Grid>
-        <Grid item xs={6} className={classes.item}>
-          <Typography noWrap>{strain.summary}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography noWrap>{strain.id}</Typography>
-        </Grid>
-        <Grid item xs={1}>
+        <Hidden smDown>
+          <Grid item md={6} className={classes.item}>
+            <Typography noWrap>{strain.summary}</Typography>
+          </Grid>
+        </Hidden>
+        <Hidden lgDown>
+          <Grid item xl={1}>
+            <Typography noWrap>{strain.id}</Typography>
+          </Grid>
+        </Hidden>
+        <Grid item xs={4} md={2} lg={2} xl={1}>
           <Grid container justify="center">
             {hover ? (
               <span>

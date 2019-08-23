@@ -7,6 +7,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
+import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { addToCart } from "actions/cart"
 
@@ -55,35 +56,43 @@ const StrainCatalogListHeader = ({
     <List className={classes.list}>
       <ListItem className={classes.listHeaders}>
         <Grid container spacing={0} alignItems="center">
-          <Grid item xs={1}>
-            {checkedItemsLength > 0 && (
-              <Checkbox
-                indeterminate={checkedItemsLength > 0 ? true : false}
-                color="default"
-                value="selectAll"
-                onChange={handleCheckAllChange}
-                inputProps={{
-                  "aria-label": "checkbox select all",
-                }}
-              />
-            )}
-          </Grid>
+          <Hidden smDown>
+            <Grid item md={1}>
+              {checkedItemsLength > 0 && (
+                <Checkbox
+                  indeterminate={checkedItemsLength > 0 ? true : false}
+                  color="default"
+                  value="selectAll"
+                  onChange={handleCheckAllChange}
+                  inputProps={{
+                    "aria-label": "checkbox select all",
+                  }}
+                />
+              )}
+            </Grid>
+          </Hidden>
           {checkedItemsLength > 0 ? (
             <IconButton size="medium" color="default" onClick={handleCartClick}>
               <FontAwesomeIcon icon="cart-plus" />
             </IconButton>
           ) : (
             <>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={3}>
                 Strain Descriptor
               </Grid>
-              <Grid item xs={6}>
-                Strain Summary
-              </Grid>
-              <Grid item xs={1}>
-                Strain ID
-              </Grid>
-              <Grid item xs={1}></Grid>
+              <Hidden smDown>
+                <Grid item md={6}>
+                  Strain Summary
+                </Grid>
+              </Hidden>
+              <Hidden lgDown>
+                <Grid item xl={1}>
+                  Strain ID
+                </Grid>
+              </Hidden>
+              <Hidden smDown>
+                <Grid item xs={4} md={1}></Grid>
+              </Hidden>
             </>
           )}
         </Grid>
