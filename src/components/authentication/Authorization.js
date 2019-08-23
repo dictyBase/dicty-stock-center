@@ -6,7 +6,6 @@ import {
   AuthAPI,
 } from "utils/apiClasses"
 import { dsccontent } from "constants/resources"
-import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** contains the object representing the logged in user's data */
@@ -32,7 +31,7 @@ export const Authorization = (props: Props) => {
   })
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
+const mapStateToProps = state => {
   if (state.auth.user && state.auth.fetchedUserData) {
     const loggedInUser = new RolesPermissionsAPI(state.auth.user)
     const fetchedUserData = new AuthenticatedUser(state.auth.fetchedUserData)
@@ -58,4 +57,4 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
   }
 }
 
-export default connect(mapStateToProps)(Authorization)
+export default connect<*, *, *, *, *, *>(mapStateToProps)(Authorization)

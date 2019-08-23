@@ -90,7 +90,7 @@ const StrainCatalogListHeader = ({
   )
 }
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   null,
   { addToCart },
 )(StrainCatalogListHeader)

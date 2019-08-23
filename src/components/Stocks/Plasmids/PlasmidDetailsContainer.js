@@ -84,4 +84,4 @@ export const PlasmidDetailsContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(PlasmidDetailsContainer))
+export default withRouter<*>(withStyles(styles)(PlasmidDetailsContainer))

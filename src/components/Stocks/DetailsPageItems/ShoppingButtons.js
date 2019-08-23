@@ -103,7 +103,7 @@ export const ShoppingButtons = (props: Props) => {
   )
 }
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   null,
   { addToCart },
 )(withStyles(styles)(ShoppingButtons))

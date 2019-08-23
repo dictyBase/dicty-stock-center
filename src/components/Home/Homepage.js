@@ -18,7 +18,6 @@ import BrowserWarning from "./BrowserWarning"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { AuthenticatedUser } from "utils/apiClasses"
 import styles from "./homeStyles"
-import type { MapStateToProps } from "react-redux"
 
 type Props = {
   /** the User object from the current state */
@@ -104,7 +103,7 @@ const Homepage = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => {
+const mapStateToProps = state => {
   if (state.auth.user) {
     const userData = new AuthenticatedUser(state.auth.user)
     return {
@@ -115,4 +114,6 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => {
   return {}
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Homepage))
+export default connect<*, *, *, *, *, *>(mapStateToProps)(
+  withStyles(styles)(Homepage),
+)

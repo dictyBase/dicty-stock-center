@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
   page: state.page[slugName],
 })
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   { fetchInfoPage },
 )(withStyles(styles)(OtherMaterials))

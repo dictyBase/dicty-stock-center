@@ -224,7 +224,7 @@ export const mapStateToProps = (state: authState) => ({
   isAuthenticated: state.auth.isAuthenticated,
 })
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   { editPage, fetchUserInfo },
 )(withStyles(styles)(InfoPageView))

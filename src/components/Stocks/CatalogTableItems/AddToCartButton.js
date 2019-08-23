@@ -80,7 +80,7 @@ export const AddToCartButton = ({
   )
 }
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   null,
   { addToCart },
 )(withStyles(styles)(AddToCartButton))

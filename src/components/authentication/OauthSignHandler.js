@@ -8,7 +8,7 @@ type Props = {
 }
 
 class OauthSignHandler extends Component<Props> {
-  onMessage = event => {
+  onMessage = (event: SyntheticInputEvent<>) => {
     event.preventDefault()
     event.stopPropagation()
     if (!event.data.provider) {
@@ -27,7 +27,7 @@ class OauthSignHandler extends Component<Props> {
   }
 }
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   null,
   { oAuthLogin },
 )(OauthSignHandler)

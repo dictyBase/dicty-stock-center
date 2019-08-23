@@ -127,4 +127,4 @@ export const StrainDetailsContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(StrainDetailsContainer))
+export default withRouter<*>(withStyles(styles)(StrainDetailsContainer))

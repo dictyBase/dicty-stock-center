@@ -113,7 +113,7 @@ const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 

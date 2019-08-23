@@ -65,7 +65,7 @@ export class PlasmidCatalogTable extends React.PureComponent<Props> {
     minHeight: 64,
   })
 
-  getRowClassName = ({ index }: { index: Number }) => {
+  getRowClassName = ({ index }: { index: number }) => {
     const { classes } = this.props
     // don't return hover effect on header
     if (index !== -1) {
