@@ -13,7 +13,9 @@ import { addToCart } from "actions/cart"
 const useStyles = makeStyles({
   listHeaders: {
     borderBottom: "1px solid #888",
-    // backgroundColor: "#DCDCDC",
+    backgroundColor: "#f6f9fc",
+    color: "#525f7f",
+    fontWeight: 600,
   },
   list: {
     padding: 0,
@@ -73,13 +75,13 @@ const StrainCatalogListHeader = ({
           ) : (
             <>
               <Grid item xs={3}>
-                <strong>Strain Descriptor</strong>
+                Strain Descriptor
               </Grid>
               <Grid item xs={6}>
-                <strong>Strain Summary</strong>
+                Strain Summary
               </Grid>
               <Grid item xs={1}>
-                <strong>Strain ID</strong>
+                Strain ID
               </Grid>
               <Grid item xs={1}></Grid>
             </>
