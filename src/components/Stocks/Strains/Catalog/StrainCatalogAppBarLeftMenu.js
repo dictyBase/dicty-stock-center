@@ -11,12 +11,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StrainCatalogAppBarLeftMenu = () => {
+const StrainCatalogAppBarLeftMenu = ({ toggleDrawer }) => {
   const classes = useStyles()
 
   return (
     <>
-      <IconButton size="small" className={classes.icon}>
+      <IconButton size="small" className={classes.icon} onClick={toggleDrawer}>
         <FontAwesomeIcon icon="bars" />
       </IconButton>
     </>

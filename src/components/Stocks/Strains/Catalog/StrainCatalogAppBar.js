@@ -9,19 +9,19 @@ import StrainCatalogAppBarSearch from "components/Stocks/Strains/Catalog/StrainC
 import StrainCatalogAppBarRightMenu from "components/Stocks/Strains/Catalog/StrainCatalogAppBarRightMenu"
 
 const useStyles = makeStyles(theme => ({
-  container: {
+  appBar: {
     backgroundColor: "#0059b3",
   },
 }))
 
-const StrainCatalogAppBar = () => {
+const StrainCatalogAppBar = ({ toggleDrawer }) => {
   const classes = useStyles()
 
   return (
-    <AppBar position="static" className={classes.container}>
+    <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         <Grid container justify="flex-start">
-          <StrainCatalogAppBarLeftMenu />
+          <StrainCatalogAppBarLeftMenu toggleDrawer={toggleDrawer} />
         </Grid>
         <Grid container justify="center">
           <StrainCatalogAppBarSearch />

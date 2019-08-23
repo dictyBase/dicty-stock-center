@@ -34,12 +34,7 @@ const StrainCatalogAppBarRightMenu = () => {
       <IconButton size="small" className={classes.icon} onClick={handleClick}>
         <FontAwesomeIcon icon="ellipsis-v" />
       </IconButton>
-      <Menu
-        id="menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}>
+      <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleClose} className={classes.menuItem}>
           <FontAwesomeIcon icon="download" size="sm" />
           &nbsp; Download PDF

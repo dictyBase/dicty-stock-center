@@ -98,7 +98,7 @@ const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
         </Hidden>
         <Grid item xs={4} md={2} lg={2} xl={1}>
           <Grid container justify="center">
-            {hover ? (
+            {hover && (
               <span>
                 <AddToCartButton id={strain.id} label={strain.label} />
                 {selectedCartItems && (
@@ -110,8 +110,6 @@ const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
                   </IconButton>
                 )}
               </span>
-            ) : (
-              ""
             )}
           </Grid>
         </Grid>

@@ -6,6 +6,9 @@ import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
 import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
+import Drawer from "@material-ui/core/Drawer"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Checkbox from "@material-ui/core/Checkbox"
 import StrainCatalogListHeader from "components/Stocks/Strains/Catalog/StrainCatalogListHeader"
 import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
 
@@ -28,6 +31,10 @@ const useStyles = makeStyles({
     height: 600,
     width: "100%",
   },
+  drawerPaper: {
+    position: "relative",
+    width: "240px",
+  },
 })
 
 type Props = {
@@ -38,9 +45,10 @@ type Props = {
   }>,
   fetchMore: Function,
   cursor: number,
+  drawerOpen: boolean,
 }
 
-const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
+const StrainCatalogList = ({ data, fetchMore, cursor, drawerOpen }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()
 
@@ -84,6 +92,15 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   return (
     <Paper className={classes.catalogPaper}>
+      {/* <Drawer
+        variant="persistent"
+        open={drawerOpen}
+        classes={{ paper: classes.drawerPaper }}>
+        <FormControlLabel
+          control={<Checkbox value="gwdi" />}
+          label="GWDI Strains"
+        />
+      </Drawer> */}
       <StrainCatalogListHeader
         checkedItems={checkedItems}
         setCheckedItems={setCheckedItems}

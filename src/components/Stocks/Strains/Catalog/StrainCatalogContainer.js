@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
@@ -37,7 +37,12 @@ type Props = {
  */
 
 export const StrainCatalogContainer = (props: Props) => {
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { classes } = props
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen)
+  }
 
   return (
     <Query query={GET_STRAIN_LIST} variables={{ cursor: 0 }}>
@@ -58,13 +63,14 @@ export const StrainCatalogContainer = (props: Props) => {
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogAppBar />
+              <StrainCatalogAppBar toggleDrawer={toggleDrawer} />
             </Grid>
             <Grid item xs={12}>
               <StrainCatalogList
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
+                drawerOpen={drawerOpen}
               />
             </Grid>
           </Grid>
