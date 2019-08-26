@@ -14,14 +14,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StrainCatalogAppBar = ({ toggleDrawer }) => {
+const StrainCatalogAppBar = () => {
   const classes = useStyles()
 
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         <Grid container justify="flex-start">
-          <StrainCatalogAppBarLeftMenu toggleDrawer={toggleDrawer} />
+          <StrainCatalogAppBarLeftMenu />
         </Grid>
         <Grid container justify="center">
           <StrainCatalogAppBarSearch />
