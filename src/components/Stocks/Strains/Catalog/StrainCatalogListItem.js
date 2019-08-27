@@ -37,7 +37,18 @@ const useStyles = makeStyles({
   },
 })
 
-const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
+/**
+ * StrainCatalogListItem handles the display of an individual
+ * row of data in the strain catalog.
+ */
+
+const StrainCatalogListItem = ({
+  index,
+  style,
+  data,
+  cartItems,
+  removeItem,
+}) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
   const { item, handleCheckboxChange, checkedItems } = data
@@ -50,6 +61,7 @@ const StrainCatalogList = ({ index, style, data, cartItems, removeItem }) => {
 
   // if item is checked, then return true for checkbox
   const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
+
   // check if hovered item is already in cart
   const selectedCartItems = cartItems.some(item => item.id === strain.id)
 
@@ -125,4 +137,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { removeItem },
-)(StrainCatalogList)
+)(StrainCatalogListItem)

@@ -41,6 +41,11 @@ type Props = {
   drawerOpen: boolean,
 }
 
+/**
+ * StrainCatalogList provides the virtualized list of data
+ * (via react-window) and handles the checkbox state.
+ */
+
 const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()

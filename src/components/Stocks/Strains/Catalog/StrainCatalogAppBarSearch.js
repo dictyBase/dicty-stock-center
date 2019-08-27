@@ -49,6 +49,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * StrainCatalogAppBarSearch contains the search box on the catalog
+ * page.
+ */
+
 const StrainCatalogAppBarSearch = () => {
   const classes = useStyles()
 

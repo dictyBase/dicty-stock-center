@@ -16,6 +16,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * StrainCatalogAppBarRightMenu contains the icon and display logic
+ * for the right menu in the app bar.
+ */
+
 const StrainCatalogAppBarRightMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)

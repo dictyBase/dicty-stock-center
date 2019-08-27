@@ -11,6 +11,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * StrainCatalogAppBarLeftMenu handles everything related to the
+ * left side of the app bar.
+ */
+
 const StrainCatalogAppBarLeftMenu = () => {
   const classes = useStyles()
 

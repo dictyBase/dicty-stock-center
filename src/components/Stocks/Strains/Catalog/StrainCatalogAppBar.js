@@ -14,6 +14,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * StrainCatalogAppBar is the container component for the app bar
+ * at the top of the catalog page.
+ */
+
 const StrainCatalogAppBar = () => {
   const classes = useStyles()
 

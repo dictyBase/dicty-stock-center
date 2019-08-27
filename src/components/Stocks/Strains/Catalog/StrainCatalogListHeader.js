@@ -33,6 +33,11 @@ type Props = {
   handleCheckAllChange: Function,
 }
 
+/**
+ * StrainCatalogListHeader contains the list of headers (i.e.
+ * descriptor, summary, etc) at the top of the catalog page.
+ */
+
 const StrainCatalogListHeader = ({
   checkedItems,
   setCheckedItems,
