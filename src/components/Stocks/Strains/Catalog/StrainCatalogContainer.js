@@ -4,13 +4,12 @@ import { Helmet } from "react-helmet"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import StrainCatalogList from "components/Stocks/Strains/Catalog/StrainCatalogList"
 import StrainCatalogAppBar from "components/Stocks/Strains/Catalog/StrainCatalogAppBar"
-import styles from "components/Stocks/Strains/strainStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
@@ -26,18 +25,24 @@ export const GET_STRAIN_LIST = gql`
   }
 `
 
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
+const useStyles = makeStyles({
+  layout: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+})
 
 /**
  * StrainCatalogContainer is the main component for the strain catalog page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const StrainCatalogContainer = (props: Props) => {
-  const { classes } = props
+export const StrainCatalogContainer = () => {
+  const classes = useStyles()
 
   return (
     <Query query={GET_STRAIN_LIST} variables={{ cursor: 0 }}>
@@ -74,4 +79,4 @@ export const StrainCatalogContainer = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(StrainCatalogContainer)
+export default StrainCatalogContainer

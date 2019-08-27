@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import StrainDetailsList from "./StrainDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
@@ -13,7 +13,6 @@ import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsL
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import styles from "./strainStyles"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {
@@ -67,9 +66,19 @@ export const GET_STRAIN = gql`
       }
  */
 
+const useStyles = makeStyles({
+  layout: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+})
+
 type Props = {
-  classes: Object,
-  title: string,
+  /** React Router data */
   match: Object,
 }
 
@@ -78,8 +87,9 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const StrainDetailsContainer = (props: Props) => {
-  const { classes, match } = props
+export const StrainDetailsContainer = ({ match }: Props) => {
+  const classes = useStyles()
+
   let title
 
   return (
@@ -127,4 +137,4 @@ export const StrainDetailsContainer = (props: Props) => {
   )
 }
 
-export default withRouter<*>(withStyles(styles)(StrainDetailsContainer))
+export default withRouter<*>(StrainDetailsContainer)
