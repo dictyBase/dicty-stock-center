@@ -10,6 +10,7 @@ module.exports = {
     "src/components/OrderForm/initialValues.js",
     "src/components/OrderForm/validationSchema.js",
     "src/components/authentication/Authorization.js",
+    "src/components/Stocks/utils/characterConverter.js",
   ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, "src/styleguide/Wrapper"),
