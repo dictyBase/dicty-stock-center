@@ -77,7 +77,7 @@ const StrainDetailsContainer = Loadable({
 const PlasmidCatalogContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */
+      "components/Stocks/Plasmids/Catalog/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */
     ),
   loading: StockDetailsLoader,
 })

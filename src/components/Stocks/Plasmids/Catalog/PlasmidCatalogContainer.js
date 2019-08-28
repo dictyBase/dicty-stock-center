@@ -4,18 +4,16 @@ import { Helmet } from "react-helmet"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import PlasmidCatalogTable from "./PlasmidCatalogTable"
+import PlasmidCatalogList from "components/Stocks/Plasmids/Catalog/PlasmidCatalogList"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import styles from "./plasmidStyles"
 
 export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
     listPlasmids(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
-      totalCount
       plasmids {
         id
         name
@@ -26,17 +24,24 @@ export const GET_PLASMID_LIST = gql`
   }
 `
 
-type Props = {
-  classes: Object,
-}
+const useStyles = makeStyles({
+  layout: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+})
 
 /**
  * PlasmidCatalogContainer is the main component for the plasmid catalog page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const PlasmidCatalogContainer = (props: Props) => {
-  const { classes } = props
+export const PlasmidCatalogContainer = () => {
+  const classes = useStyles()
 
   return (
     <Query query={GET_PLASMID_LIST} variables={{ cursor: 0 }}>
@@ -57,11 +62,10 @@ export const PlasmidCatalogContainer = (props: Props) => {
               <StockDetailsHeader title="Plasmid Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <PlasmidCatalogTable
+              <PlasmidCatalogList
                 data={data.listPlasmids.plasmids}
                 fetchMore={fetchMore}
                 cursor={data.listPlasmids.nextCursor}
-                totalCount={data.listPlasmids.totalCount}
               />
             </Grid>
           </Grid>
@@ -71,4 +75,4 @@ export const PlasmidCatalogContainer = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PlasmidCatalogContainer)
+export default PlasmidCatalogContainer

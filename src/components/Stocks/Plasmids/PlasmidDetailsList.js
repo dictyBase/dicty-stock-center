@@ -3,11 +3,27 @@
 import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
-import styles from "./plasmidStyles"
+
+const useStyles = makeStyles({
+  header: {
+    textAlign: "center",
+    backgroundColor: "#0059b3",
+    color: "#fff",
+  },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
+  detailsPaper: {
+    width: "100%",
+    overflowX: "auto",
+    paddingBottom: "10px",
+  },
+})
 
 type Props = {
   data: {
@@ -33,8 +49,8 @@ type Props = {
  * PlasmidDetailsList is the main component for displaying individual plasmid data.
  */
 
-const PlasmidDetailsList = (props: Props) => {
-  const { data, classes } = props
+const PlasmidDetailsList = ({ data }: Props) => {
+  const classes = useStyles()
 
   let image_map
   if (data.image_map) {
@@ -141,4 +157,4 @@ const PlasmidDetailsList = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PlasmidDetailsList)
+export default PlasmidDetailsList

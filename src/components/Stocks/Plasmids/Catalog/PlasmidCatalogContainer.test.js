@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid"
 import PlasmidCatalogContainer, {
   GET_PLASMID_LIST,
 } from "./PlasmidCatalogContainer"
-import PlasmidCatalogTable from "./PlasmidCatalogTable"
+import PlasmidCatalogList from "./PlasmidCatalogList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
@@ -68,9 +68,9 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(5)
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(PlasmidCatalogTable)).toHaveLength(1)
+      expect(wrapper.find(PlasmidCatalogList)).toHaveLength(1)
     })
   })
   describe("error handling", () => {

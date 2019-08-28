@@ -7,15 +7,16 @@ import InfiniteLoader from "react-window-infinite-loader"
 import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogListHeader"
-import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
+import PlasmidCatalogListItem from "components/Stocks/Plasmids/Catalog/PlasmidCatalogListItem"
 
-const GET_MORE_STRAINS_LIST = gql`
-  query MoreStrainsList($cursor: Int!) {
-    listStrains(input: { cursor: $cursor, limit: 10 }) {
+const GET_MORE_PLASMIDS_LIST = gql`
+  query MorePlasmidsList($cursor: Int!) {
+    listPlasmids(input: { cursor: $cursor, limit: 10 }) {
+      totalCount
       nextCursor
-      strains {
+      plasmids {
         id
-        label
+        name
         summary
         in_stock
       }
@@ -41,11 +42,11 @@ type Props = {
 }
 
 /**
- * StrainCatalogList provides the virtualized list of data
+ * PlasmidCatalogList provides the virtualized list of data
  * (via react-window) and handles the checkbox state.
  */
 
-const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
+const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
@@ -67,21 +68,21 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   const loadMoreItems = () =>
     fetchMore({
-      query: GET_MORE_STRAINS_LIST,
+      query: GET_MORE_PLASMIDS_LIST,
       variables: {
         cursor: cursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return previousResult
-        const previousEntry = previousResult.listStrains
-        const newStrains = fetchMoreResult.listStrains.strains
-        const newCursor = fetchMoreResult.listStrains.nextCursor
-        const allStrains = [...previousEntry.strains, ...newStrains]
+        const previousEntry = previousResult.listPlasmids
+        const newPlasmids = fetchMoreResult.listPlasmids.plasmids
+        const newCursor = fetchMoreResult.listPlasmids.nextCursor
+        const allPlasmids = [...previousEntry.plasmids, ...newPlasmids]
 
         return {
-          listStrains: {
+          listPlasmids: {
             nextCursor: newCursor,
-            strains: [...new Set(allStrains)], // remove any duplicate entries
+            plasmids: [...new Set(allPlasmids)], // remove any duplicate entries
             __typename: previousEntry.__typename,
           },
         }
@@ -96,7 +97,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
         handleCheckAllChange={handleCheckAllChange}
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
-        stockType="strain"
+        stockType="plasmid"
       />
       <AutoSizer>
         {({ height, width }) => (
@@ -112,13 +113,13 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
-                // pass props to StrainCatalogListItem via itemData
+                // pass props to PlasmidCatalogListItem via itemData
                 itemData={{
                   item: data,
                   handleCheckboxChange,
                   checkedItems,
                 }}>
-                {StrainCatalogListItem}
+                {PlasmidCatalogListItem}
               </FixedSizeList>
             )}
           </InfiniteLoader>
@@ -128,4 +129,4 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   )
 }
 
-export default StrainCatalogList
+export default PlasmidCatalogList
