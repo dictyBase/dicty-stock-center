@@ -82,7 +82,11 @@ const StrainCatalogListItem = ({
           <Grid item md={1}>
             <Checkbox
               checked={checkedItemsLookup(strain.id)}
-              onChange={handleCheckboxChange(strain.id, strain.label)}
+              onChange={handleCheckboxChange(
+                strain.id,
+                strain.label,
+                strain.summary,
+              )}
               color="default"
               value={strain.id}
               inputProps={{
@@ -112,7 +116,11 @@ const StrainCatalogListItem = ({
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton id={strain.id} label={strain.label} />
+                <AddToCartButton
+                  id={strain.id}
+                  label={strain.label}
+                  summary={strain.summary}
+                />
                 {selectedCartItems && (
                   <IconButton
                     size="medium"

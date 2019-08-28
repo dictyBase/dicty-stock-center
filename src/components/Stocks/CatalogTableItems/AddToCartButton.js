@@ -48,8 +48,8 @@ type Props = {
   id: string,
   /** Strain label (name) */
   label: string,
-  /** Height of row */
-  rowHeight: string,
+  /** Strain summary */
+  summary: string,
 }
 
 /**
@@ -60,18 +60,19 @@ type Props = {
 export const AddToCartButton = ({
   id,
   label,
+  summary,
   addToCart,
-  rowHeight,
   history,
 }: Props) => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
 
-  const handleClick = (id: string, label: string) => {
+  const handleClick = (id: string, label: string, summary: string) => {
     addToCart({
       type: "strain",
       id: id,
       name: label,
+      summary: summary,
     })
     setDialogOpen(true)
   }

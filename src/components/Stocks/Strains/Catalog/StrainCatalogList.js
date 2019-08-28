@@ -50,12 +50,12 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const classes = useStyles()
 
-  const handleCheckboxChange = (id, label) => event => {
+  const handleCheckboxChange = (id, label, summary) => event => {
     // if checkbox is already checked, remove that item from state
     if (checkedItems.some(item => item.id === id)) {
       setCheckedItems(checkedItems.filter(item => item.id !== id))
     } else {
-      setCheckedItems([...checkedItems, { id, label }])
+      setCheckedItems([...checkedItems, { id, label, summary }])
     }
   }
 
@@ -109,6 +109,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
                 width={width}
                 itemSize={50}
                 itemCount={data.length}
+                // pass props to StrainCatalogListItem via itemData
                 itemData={{
                   item: data,
                   handleCheckboxChange,

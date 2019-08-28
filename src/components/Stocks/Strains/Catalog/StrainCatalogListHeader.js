@@ -53,6 +53,7 @@ const StrainCatalogListHeader = ({
         type: "strain",
         id: item.id,
         name: item.label,
+        summary: item.summary,
       })
     })
     setCheckedItems([])
