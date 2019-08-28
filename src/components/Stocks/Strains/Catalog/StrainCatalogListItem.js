@@ -1,3 +1,4 @@
+// @flow
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
@@ -42,7 +43,7 @@ const useStyles = makeStyles({
  * row of data in the strain catalog.
  */
 
-const StrainCatalogListItem = ({
+export const StrainCatalogListItem = ({
   index,
   style,
   data,
