@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AddToCartDialog from "components/Stocks/CatalogTableItems/AddToCartDialog"
+import AddToCartDialog from "components/Stocks/CatalogPageItems/AddToCartDialog"
 import { addToCart } from "actions/cart"
 
 const useStyles = makeStyles(theme => ({
@@ -29,10 +29,12 @@ type Props = {
   setHover?: Function,
   /** Function to add to checked items array */
   setCheckedItems?: Function,
+  /** Type of stock (strain or plasmid) */
+  stockType: string,
 }
 
 /**
- * AddToCartButton appears in a catalog row if the stock is available
+ * AddToCartButton appears on the catalog page if the stock is available
  * for purchase.
  */
 
@@ -41,14 +43,16 @@ export const AddToCartButton = ({
   addToCart,
   setHover,
   setCheckedItems,
+  stockType,
 }: Props) => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
 
   const handleClick = data => {
+    console.log(stockType)
     data.forEach(item => {
       addToCart({
-        type: "strain",
+        type: stockType,
         id: item.id,
         name: item.label,
         summary: item.summary,

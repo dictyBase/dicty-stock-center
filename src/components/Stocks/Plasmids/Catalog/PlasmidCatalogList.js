@@ -6,7 +6,7 @@ import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
 import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
-import CatalogListHeader from "components/Stocks/CatalogListHeader"
+import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import PlasmidCatalogListItem from "components/Stocks/Plasmids/Catalog/PlasmidCatalogListItem"
 
 const GET_MORE_PLASMIDS_LIST = gql`

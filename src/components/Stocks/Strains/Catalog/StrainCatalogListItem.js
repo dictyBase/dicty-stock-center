@@ -9,7 +9,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
+import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
 
@@ -125,6 +125,7 @@ const StrainCatalogListItem = ({
                     },
                   ]}
                   setHover={setHover}
+                  stockType="strain"
                 />
                 {selectedCartItems && (
                   <IconButton

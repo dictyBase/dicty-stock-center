@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
@@ -9,8 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
-import { addToCart } from "actions/cart"
+import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -33,25 +31,86 @@ type Props = {
     label: string,
   }>,
   setCheckedItems: Function,
-  addToCart: Function,
   handleCheckAllChange: Function,
 }
 
 /**
- * StrainCatalogListHeader contains the list of headers (i.e.
+ * CatalogListHeader contains the list of headers (i.e.
  * descriptor, summary, etc) at the top of the catalog page.
  */
 
-const StrainCatalogListHeader = ({
+const CatalogListHeader = ({
   checkedItems,
   setCheckedItems,
-  addToCart,
   handleCheckAllChange,
   dialogOpen,
   setDialogOpen,
+  stockType,
 }: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
+
+  let content
+
+  if (checkedItemsLength > 0) {
+    content = (
+      <>
+        <AddToCartButton
+          data={checkedItems}
+          setCheckedItems={setCheckedItems}
+        />
+        <IconButton
+          size="medium"
+          className={classes.button}
+          onClick={() => {}}
+          title="Download PDF"
+          aria-label="Download PDF">
+          <FontAwesomeIcon icon="download" />
+        </IconButton>
+      </>
+    )
+  } else {
+    content =
+      stockType === "strain" ? (
+        <>
+          <Grid item xs={12} md={3}>
+            Strain Descriptor
+          </Grid>
+          <Hidden smDown>
+            <Grid item md={6}>
+              Strain Summary
+            </Grid>
+          </Hidden>
+          <Hidden lgDown>
+            <Grid item xl={1}>
+              Strain ID
+            </Grid>
+          </Hidden>
+          <Hidden smDown>
+            <Grid item xs={4} md={1}></Grid>
+          </Hidden>
+        </>
+      ) : (
+        <>
+          <Grid item xs={12} md={2}>
+            Plasmid Name
+          </Grid>
+          <Hidden smDown>
+            <Grid item md={7}>
+              Description
+            </Grid>
+          </Hidden>
+          <Hidden lgDown>
+            <Grid item xl={1}>
+              Plasmid ID
+            </Grid>
+          </Hidden>
+          <Hidden smDown>
+            <Grid item xs={4} md={1}></Grid>
+          </Hidden>
+        </>
+      )
+  }
 
   return (
     <List className={classes.list}>
@@ -72,48 +131,11 @@ const StrainCatalogListHeader = ({
               )}
             </Grid>
           </Hidden>
-          {checkedItemsLength > 0 ? (
-            <>
-              <AddToCartButton
-                data={checkedItems}
-                setCheckedItems={setCheckedItems}
-              />
-              <IconButton
-                size="medium"
-                className={classes.button}
-                onClick={() => {}}
-                title="Download PDF"
-                aria-label="Download PDF">
-                <FontAwesomeIcon icon="download" />
-              </IconButton>
-            </>
-          ) : (
-            <>
-              <Grid item xs={12} md={3}>
-                Strain Descriptor
-              </Grid>
-              <Hidden smDown>
-                <Grid item md={6}>
-                  Strain Summary
-                </Grid>
-              </Hidden>
-              <Hidden lgDown>
-                <Grid item xl={1}>
-                  Strain ID
-                </Grid>
-              </Hidden>
-              <Hidden smDown>
-                <Grid item xs={4} md={1}></Grid>
-              </Hidden>
-            </>
-          )}
+          {content}
         </Grid>
       </ListItem>
     </List>
   )
 }
 
-export default connect<*, *, *, *, *, *>(
-  null,
-  { addToCart },
-)(StrainCatalogListHeader)
+export default CatalogListHeader

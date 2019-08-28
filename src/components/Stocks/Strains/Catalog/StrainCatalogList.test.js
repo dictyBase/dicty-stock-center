@@ -4,7 +4,7 @@ import StrainCatalogList from "./StrainCatalogList"
 import { data } from "./mockStrainCatalogData"
 import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
-import CatalogListHeader from "components/Stocks/CatalogListHeader"
+import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 
 describe("Stocks/Strains/StrainCatalogList", () => {
   const props = {
