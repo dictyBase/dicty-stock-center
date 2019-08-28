@@ -7,6 +7,8 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import Hidden from "@material-ui/core/Hidden"
+import IconButton from "@material-ui/core/IconButton"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
 import { addToCart } from "actions/cart"
 
@@ -19,6 +21,9 @@ const useStyles = makeStyles({
   },
   list: {
     padding: 0,
+  },
+  button: {
+    color: "#004080",
   },
 })
 
@@ -68,10 +73,20 @@ const StrainCatalogListHeader = ({
             </Grid>
           </Hidden>
           {checkedItemsLength > 0 ? (
-            <AddToCartButton
-              data={checkedItems}
-              setCheckedItems={setCheckedItems}
-            />
+            <>
+              <AddToCartButton
+                data={checkedItems}
+                setCheckedItems={setCheckedItems}
+              />
+              <IconButton
+                size="medium"
+                className={classes.button}
+                onClick={() => {}}
+                title="Download PDF"
+                aria-label="Download PDF">
+                <FontAwesomeIcon icon="download" />
+              </IconButton>
+            </>
           ) : (
             <>
               <Grid item xs={12} md={3}>
