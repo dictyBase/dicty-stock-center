@@ -63,7 +63,7 @@ type Props = {
  * is added to the cart.
  */
 
-const AddToCartDialog = ({
+export const AddToCartDialog = ({
   data,
   dialogOpen,
   setDialogOpen,
