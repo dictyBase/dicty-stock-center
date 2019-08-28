@@ -4,7 +4,6 @@ import { MockedProvider } from "react-apollo/test-utils"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
-import Grid from "@material-ui/core/Grid"
 import PlasmidCatalogContainer, {
   GET_PLASMID_LIST,
 } from "./PlasmidCatalogContainer"
@@ -68,7 +67,6 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(Grid)).toHaveLength(5)
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidCatalogList)).toHaveLength(1)
     })

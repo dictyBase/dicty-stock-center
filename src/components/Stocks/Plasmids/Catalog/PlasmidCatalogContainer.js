@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import PlasmidCatalogList from "components/Stocks/Plasmids/Catalog/PlasmidCatalogList"
+import PlasmidCatalogAppBar from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBar"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 
 export const GET_PLASMID_LIST = gql`
@@ -60,6 +61,9 @@ export const PlasmidCatalogContainer = () => {
             </Helmet>
             <Grid item xs={12}>
               <StockDetailsHeader title="Plasmid Catalog" />
+            </Grid>
+            <Grid item xs={12}>
+              <PlasmidCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
               <PlasmidCatalogList
