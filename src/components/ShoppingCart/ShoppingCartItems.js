@@ -44,6 +44,16 @@ const useStyles = makeStyles({
   },
 })
 
+type Props = {
+  items: Array<{
+    id: string,
+    name: string,
+    summary: string,
+    fee: string,
+  }>,
+  removeItem: Function,
+}
+
 /**
  * ShoppingCartItems lists all of the items in the user's cart.
  */

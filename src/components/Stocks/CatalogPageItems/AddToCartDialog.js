@@ -47,9 +47,9 @@ type Props = {
     summary: string,
   }>,
   /** Function to set hovering of list item */
-  setHover?: Function,
+  setHover: Function,
   /** Function to add to checked items array */
-  setCheckedItems?: Function,
+  setCheckedItems: Function,
   /** Boolean for whether item added dialog is open */
   dialogOpen: Boolean,
   /** Function that toggles whether dialog is open */
@@ -131,4 +131,4 @@ const AddToCartDialog = ({
 export default connect<*, *, *, *, *, *>(
   null,
   { addToCart },
-)(withRouter(AddToCartDialog))
+)(withRouter<*>(AddToCartDialog))

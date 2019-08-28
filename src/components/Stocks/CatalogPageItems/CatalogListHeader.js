@@ -29,9 +29,18 @@ type Props = {
   checkedItems: Array<{
     id: string,
     label: string,
+    summary: string,
   }>,
+  /** Determines if cart dialog is open */
+  dialogOpen: boolean,
+  /** Toggles cart dialog box */
+  setDialogOpen: Function,
+  /** Function for controlling checked items array */
   setCheckedItems: Function,
+  /** Function for handling the "check all" box */
   handleCheckAllChange: Function,
+  /** Type of stock (strain or plasmid) */
+  stockType: string,
 }
 
 /**

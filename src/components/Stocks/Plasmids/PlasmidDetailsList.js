@@ -41,8 +41,6 @@ type Props = {
     keywords: Array<string>,
     genbank_accession: string,
   },
-  /** Material-UI styling */
-  classes: Object,
 }
 
 /**
