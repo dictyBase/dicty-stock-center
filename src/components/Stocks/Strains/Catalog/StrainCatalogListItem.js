@@ -117,9 +117,14 @@ const StrainCatalogListItem = ({
             {hover && (
               <span>
                 <AddToCartButton
-                  id={strain.id}
-                  label={strain.label}
-                  summary={strain.summary}
+                  data={[
+                    {
+                      id: strain.id,
+                      label: strain.label,
+                      summary: strain.summary,
+                    },
+                  ]}
+                  setHover={setHover}
                 />
                 {selectedCartItems && (
                   <IconButton

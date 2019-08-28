@@ -38,7 +38,6 @@ type Props = {
   }>,
   fetchMore: Function,
   cursor: number,
-  drawerOpen: boolean,
 }
 
 /**
@@ -48,6 +47,7 @@ type Props = {
 
 const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
+  const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
 
   const handleCheckboxChange = (id, label, summary) => event => {
@@ -94,6 +94,8 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
         checkedItems={checkedItems}
         setCheckedItems={setCheckedItems}
         handleCheckAllChange={handleCheckAllChange}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
       />
       <AutoSizer>
         {({ height, width }) => (

@@ -14,8 +14,13 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
     },
     rowHeight: "64",
     addToCart: addToCartSpy,
-    id: "DBS123456",
-    label: "test1",
+    data: [
+      {
+        id: "DBS123456",
+        label: "test1",
+        summary: "this is a test summary",
+      },
+    ],
   }
   const wrapper = shallow(<AddToCartButton {...props} />)
   describe("initial render", () => {
@@ -23,13 +28,13 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("renders expected initial components", () => {
-      expect(wrapper.find(IconButton)).toHaveLength(2)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
+      expect(wrapper.find(IconButton)).toHaveLength(1)
+      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
     })
   })
   describe("clicking add to cart button", () => {
     it("should call addToCart function on click", () => {
-      const btn = wrapper.find(IconButton).first()
+      const btn = wrapper.find(IconButton)
       btn.simulate("click")
       expect(addToCartSpy.calledOnce).toBe(true)
     })

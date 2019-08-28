@@ -6,9 +6,8 @@ import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
-import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import AddToCartButton from "components/Stocks/CatalogTableItems/AddToCartButton"
 import { addToCart } from "actions/cart"
 
 const useStyles = makeStyles({
@@ -43,21 +42,11 @@ const StrainCatalogListHeader = ({
   setCheckedItems,
   addToCart,
   handleCheckAllChange,
+  dialogOpen,
+  setDialogOpen,
 }: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
-
-  const handleCartClick = () => {
-    checkedItems.forEach(item => {
-      addToCart({
-        type: "strain",
-        id: item.id,
-        name: item.label,
-        summary: item.summary,
-      })
-    })
-    setCheckedItems([])
-  }
 
   return (
     <List className={classes.list}>
@@ -79,9 +68,10 @@ const StrainCatalogListHeader = ({
             </Grid>
           </Hidden>
           {checkedItemsLength > 0 ? (
-            <IconButton size="medium" color="default" onClick={handleCartClick}>
-              <FontAwesomeIcon icon="cart-plus" />
-            </IconButton>
+            <AddToCartButton
+              data={checkedItems}
+              setCheckedItems={setCheckedItems}
+            />
           ) : (
             <>
               <Grid item xs={12} md={3}>
