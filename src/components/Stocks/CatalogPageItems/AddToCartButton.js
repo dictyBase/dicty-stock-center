@@ -49,7 +49,6 @@ export const AddToCartButton = ({
   const classes = useStyles()
 
   const handleClick = data => {
-    console.log(stockType)
     data.forEach(item => {
       addToCart({
         type: stockType,

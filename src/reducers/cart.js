@@ -15,8 +15,8 @@ const addedItems = (state = initialState.addedItems, action: Object) => {
         {
           id: action.payload.item.id,
           name: action.payload.item.name,
+          summary: action.payload.item.summary,
           fee: action.payload.fee,
-          summary: action.payload.summary,
         },
       ]
     case REMOVE_FROM_CART:

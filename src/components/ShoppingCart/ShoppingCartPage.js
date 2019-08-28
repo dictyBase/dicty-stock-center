@@ -34,7 +34,7 @@ export const ShoppingCartPage = (props: Props) => {
       </Helmet>
       <Grid container justify="center">
         <Grid item>
-          <h1 className={classes.header}>Shopping Cart</h1>
+          <h2 className={classes.header}>Shopping Cart</h2>
         </Grid>
       </Grid>
       {items.length > 0 ? (

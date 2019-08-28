@@ -58,6 +58,7 @@ const CatalogListHeader = ({
         <AddToCartButton
           data={checkedItems}
           setCheckedItems={setCheckedItems}
+          stockType={stockType}
         />
         <IconButton
           size="medium"
