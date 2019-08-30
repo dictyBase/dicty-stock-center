@@ -73,11 +73,21 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
         filter: filter,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return {}
+        if (!fetchMoreResult) return previousResult
         const previousEntry = previousResult.listStrains
+        const previousStrains = previousEntry.strains
         const newStrains = fetchMoreResult.listStrains.strains
         const newCursor = fetchMoreResult.listStrains.nextCursor
-        const allStrains = [...previousEntry.strains, ...newStrains]
+        const allStrains = [...previousStrains, ...newStrains]
+
+        // fix issue where response always brings back a duplicate of last item;
+        // check if first item of new batch equals last item of previous batch
+        // if dupes, then remove it
+        if (
+          newStrains[0].id === previousStrains[previousStrains.length - 1].id
+        ) {
+          allStrains.pop()
+        }
 
         return {
           listStrains: {
