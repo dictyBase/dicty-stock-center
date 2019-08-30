@@ -10,8 +10,8 @@ import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHea
 import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
 
 const GET_MORE_STRAINS_LIST = gql`
-  query MoreStrainsList($cursor: Int!) {
-    listStrains(input: { cursor: $cursor, limit: 10 }) {
+  query MoreStrainsList($cursor: Int!, $filter: String) {
+    listStrains(input: { cursor: $cursor, limit: 10, filter: $filter }) {
       nextCursor
       strains {
         id
@@ -45,7 +45,7 @@ type Props = {
  * (via react-window) and handles the checkbox state.
  */
 
-const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
+const StrainCatalogList = ({ data, fetchMore, cursor, variables }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
@@ -68,9 +68,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,
-      variables: {
-        cursor: cursor,
-      },
+      variables: variables,
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return previousResult
         const previousEntry = previousResult.listStrains

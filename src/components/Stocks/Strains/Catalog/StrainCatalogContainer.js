@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
@@ -42,10 +42,12 @@ const useStyles = makeStyles({
  */
 
 export const StrainCatalogContainer = () => {
+  const [query, setQuery] = useState(GET_STRAIN_LIST)
+  const [variables, setVariables] = useState({ cursor: 0 })
   const classes = useStyles()
 
   return (
-    <Query query={GET_STRAIN_LIST} variables={{ cursor: 0 }}>
+    <Query query={query} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
         if (error) return <GraphQLErrorPage error={error} />
@@ -63,13 +65,17 @@ export const StrainCatalogContainer = () => {
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogAppBar />
+              <StrainCatalogAppBar
+                setQuery={setQuery}
+                setVariables={setVariables}
+              />
             </Grid>
             <Grid item xs={12}>
               <StrainCatalogList
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
+                variables={variables}
               />
             </Grid>
           </Grid>

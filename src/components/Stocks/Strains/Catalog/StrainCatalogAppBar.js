@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
  * at the top of the catalog page.
  */
 
-const StrainCatalogAppBar = () => {
+const StrainCatalogAppBar = ({ setQuery, setVariables }) => {
   const classes = useStyles()
 
   return (
@@ -29,7 +29,10 @@ const StrainCatalogAppBar = () => {
           <StrainCatalogAppBarLeftMenu />
         </Grid>
         <Grid container justify="center">
-          <StrainCatalogAppBarSearch />
+          <StrainCatalogAppBarSearch
+            setQuery={setQuery}
+            setVariables={setVariables}
+          />
         </Grid>
         <Grid container justify="flex-end">
           <StrainCatalogAppBarRightMenu />

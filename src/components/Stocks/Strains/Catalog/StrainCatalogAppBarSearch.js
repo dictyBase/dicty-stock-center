@@ -1,9 +1,24 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
+import gql from "graphql-tag"
 import { makeStyles, fade } from "@material-ui/core/styles"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+export const GET_STRAINS_FILTER = gql`
+  query StrainListFilter($cursor: Int!, $filter: String!) {
+    listStrains(input: { cursor: $cursor, limit: 10, filter: $filter }) {
+      nextCursor
+      strains {
+        id
+        label
+        summary
+        in_stock
+      }
+    }
+  }
+`
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -54,25 +69,40 @@ const useStyles = makeStyles(theme => ({
  * page.
  */
 
-const StrainCatalogAppBarSearch = () => {
+const StrainCatalogAppBarSearch = ({ setQuery, setVariables }) => {
+  const [searchValue, setSearchValue] = useState("")
   const classes = useStyles()
 
+  const handleChange = event => {
+    setSearchValue(event.target.value)
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    setQuery(GET_STRAINS_FILTER)
+    setVariables({ cursor: 0, filter: `id~${searchValue}` })
+  }
+
   return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <IconButton size="small" className={classes.icon}>
-          <FontAwesomeIcon icon="search" />
-        </IconButton>
+    <form onSubmit={handleSubmit}>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <IconButton size="small" className={classes.icon}>
+            <FontAwesomeIcon icon="search" />
+          </IconButton>
+        </div>
+        <InputBase
+          placeholder="Search…"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ "aria-label": "search" }}
+          onChange={handleChange}
+          value={searchValue}
+        />
       </div>
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ "aria-label": "search" }}
-      />
-    </div>
+    </form>
   )
 }
 
