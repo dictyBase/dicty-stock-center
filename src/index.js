@@ -29,7 +29,7 @@ const setGoogleAnalytics = async (location, action) => {
     const module = await import("react-ga")
     let ReactGA = module.default
     ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID)
-    ReactGA.set({ page: window.location.pathname })
+    ReactGA.set({ page: window.location.pathname, anonymizeIp: true })
     ReactGA.pageview(window.location.pathname)
   } catch (e) {
     console.error("could not load react-ga module", JSON.stringify(e))
