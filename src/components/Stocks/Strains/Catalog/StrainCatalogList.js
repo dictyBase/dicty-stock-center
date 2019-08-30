@@ -45,7 +45,7 @@ type Props = {
  * (via react-window) and handles the checkbox state.
  */
 
-const StrainCatalogList = ({ data, fetchMore, cursor, variables }: Props) => {
+const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
   const [checkedItems, setCheckedItems] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles()
@@ -68,9 +68,12 @@ const StrainCatalogList = ({ data, fetchMore, cursor, variables }: Props) => {
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,
-      variables: variables,
+      variables: {
+        cursor: cursor,
+        filter: filter,
+      },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return previousResult
+        if (!fetchMoreResult) return {}
         const previousEntry = previousResult.listStrains
         const newStrains = fetchMoreResult.listStrains.strains
         const newCursor = fetchMoreResult.listStrains.nextCursor
@@ -86,6 +89,8 @@ const StrainCatalogList = ({ data, fetchMore, cursor, variables }: Props) => {
       },
     })
 
+  const isItemLoaded = ({ index }) => !!data[index]
+
   return (
     <Paper className={classes.catalogPaper}>
       <CatalogListHeader
@@ -99,7 +104,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor, variables }: Props) => {
       <AutoSizer>
         {({ height, width }) => (
           <InfiniteLoader
-            isItemLoaded={({ index }) => !!data[index]}
+            isItemLoaded={isItemLoaded}
             itemCount={data.length}
             loadMoreItems={loadMoreItems}>
             {({ onItemsRendered, ref }) => (

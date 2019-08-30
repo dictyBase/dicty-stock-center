@@ -75,7 +75,7 @@ export const StrainCatalogContainer = () => {
                 data={data.listStrains.strains}
                 fetchMore={fetchMore}
                 cursor={data.listStrains.nextCursor}
-                variables={variables}
+                filter={variables.filter}
               />
             </Grid>
           </Grid>
