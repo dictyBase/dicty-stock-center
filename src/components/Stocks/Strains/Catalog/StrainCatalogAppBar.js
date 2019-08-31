@@ -14,12 +14,17 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  setQuery: Function,
+  setVariables: Function,
+}
+
 /**
  * StrainCatalogAppBar is the container component for the app bar
  * at the top of the catalog page.
  */
 
-const StrainCatalogAppBar = ({ setQuery, setVariables }) => {
+const StrainCatalogAppBar = ({ setQuery, setVariables }: Props) => {
   const classes = useStyles()
 
   return (

@@ -38,6 +38,22 @@ const useStyles = makeStyles({
   },
 })
 
+type Props = {
+  index: number,
+  style: Object,
+  data: {
+    handleCheckboxChange: Function,
+    checkedItems: Array<Object>,
+    item: Array<{
+      name: string,
+      id: string,
+      summary: string,
+    }>,
+  },
+  cartItems: Array<Object>,
+  removeItem: Function,
+}
+
 /**
  * PlasmidCatalogListItem handles the display of an individual
  * row of data in the plasmid catalog.
@@ -49,7 +65,7 @@ export const PlasmidCatalogListItem = ({
   data,
   cartItems,
   removeItem,
-}) => {
+}: Props) => {
   const [hover, setHover] = useState(false)
   const classes = useStyles()
   const { item, handleCheckboxChange, checkedItems } = data
@@ -149,7 +165,7 @@ const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   { removeItem },
 )(PlasmidCatalogListItem)

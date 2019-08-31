@@ -38,6 +38,7 @@ type Props = {
   }>,
   fetchMore: Function,
   cursor: number,
+  filter: string,
 }
 
 /**

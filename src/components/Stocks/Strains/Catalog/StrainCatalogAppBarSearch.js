@@ -64,12 +64,17 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  setQuery: Function,
+  setVariables: Function,
+}
+
 /**
  * StrainCatalogAppBarSearch contains the search box on the catalog
  * page.
  */
 
-const StrainCatalogAppBarSearch = ({ setQuery, setVariables }) => {
+const StrainCatalogAppBarSearch = ({ setQuery, setVariables }: Props) => {
   const [searchValue, setSearchValue] = useState("")
   const classes = useStyles()
 
