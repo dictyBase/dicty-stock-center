@@ -50,7 +50,6 @@ export const StrainCatalogContainer = () => {
     <Query query={query} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
-        if (error) return <GraphQLErrorPage error={error} />
 
         return (
           <Grid container className={classes.layout}>
@@ -71,12 +70,16 @@ export const StrainCatalogContainer = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogList
-                data={data.listStrains.strains}
-                fetchMore={fetchMore}
-                cursor={data.listStrains.nextCursor}
-                filter={variables.filter}
-              />
+              {error ? (
+                <GraphQLErrorPage error={error} />
+              ) : (
+                <StrainCatalogList
+                  data={data.listStrains.strains}
+                  fetchMore={fetchMore}
+                  cursor={data.listStrains.nextCursor}
+                  filter={variables.filter}
+                />
+              )}
             </Grid>
           </Grid>
         )
