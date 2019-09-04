@@ -10,6 +10,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useStrainCatalogState } from "./StrainCatalogContext"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
@@ -42,8 +43,6 @@ type Props = {
   index: number,
   style: Object,
   data: {
-    handleCheckboxChange: Function,
-    checkedItems: Array<Object>,
     item: Array<{
       label: string,
       id: string,
@@ -66,10 +65,13 @@ export const StrainCatalogListItem = ({
   cartItems,
   removeItem,
 }: Props) => {
+  // need to keep hover state localized, otherwise
+  // it will hover for every item at the same time
   const [hover, setHover] = useState(false)
+  const { handleCheckboxChange, checkedItems } = useStrainCatalogState()
   const classes = useStyles()
-  const { item, handleCheckboxChange, checkedItems } = data
 
+  const { item } = data
   const strain = item[index]
 
   const toggleHover = () => {

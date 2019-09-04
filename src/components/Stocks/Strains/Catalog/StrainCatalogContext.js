@@ -16,6 +16,22 @@ export const StrainCatalogProvider = ({ children }) => {
   const [filter, setFilter] = useState("")
   const [checkedItems, setCheckedItems] = useState([])
   const [cartDialogOpen, setCartDialogOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
+
+  const handleCheckboxChange = (id, label, summary) => event => {
+    // if checkbox is already checked, remove that item from state
+    if (checkedItems.some(item => item.id === id)) {
+      setCheckedItems(checkedItems.filter(item => item.id !== id))
+    } else {
+      setCheckedItems([...checkedItems, { id, label, summary }])
+    }
+  }
+
+  const handleCheckAllChange = () => {
+    if (checkedItems.length > 0) {
+      setCheckedItems([])
+    }
+  }
 
   return (
     <StrainCatalogContext.Provider
@@ -30,6 +46,10 @@ export const StrainCatalogProvider = ({ children }) => {
         setCheckedItems,
         cartDialogOpen,
         setCartDialogOpen,
+        handleCheckboxChange,
+        handleCheckAllChange,
+        searchValue,
+        setSearchValue,
       }}>
       {children}
     </StrainCatalogContext.Provider>

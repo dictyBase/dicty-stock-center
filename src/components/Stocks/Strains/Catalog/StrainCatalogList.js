@@ -7,8 +7,7 @@ import InfiniteLoader from "react-window-infinite-loader"
 import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
-import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
-import { useStrainCatalogState } from "./StrainCatalogContext"
+import StrainCatalogListItem from "./StrainCatalogListItem"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -48,23 +47,7 @@ type Props = {
  */
 
 const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
-  const { checkedItems, setCheckedItems } = useStrainCatalogState()
   const classes = useStyles()
-
-  const handleCheckboxChange = (id, label, summary) => event => {
-    // if checkbox is already checked, remove that item from state
-    if (checkedItems.some(item => item.id === id)) {
-      setCheckedItems(checkedItems.filter(item => item.id !== id))
-    } else {
-      setCheckedItems([...checkedItems, { id, label, summary }])
-    }
-  }
-
-  const handleCheckAllChange = () => {
-    if (checkedItems.length > 0) {
-      setCheckedItems([])
-    }
-  }
 
   const loadMoreItems = () =>
     fetchMore({
@@ -104,10 +87,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
 
   return (
     <Paper className={classes.catalogPaper}>
-      <CatalogListHeader
-        handleCheckAllChange={handleCheckAllChange}
-        stockType="strain"
-      />
+      <CatalogListHeader stockType="strain" />
       <AutoSizer>
         {({ height, width }) => (
           <InfiniteLoader
@@ -125,8 +105,6 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
                 // pass props to StrainCatalogListItem via itemData
                 itemData={{
                   item: data,
-                  handleCheckboxChange,
-                  checkedItems,
                 }}>
                 {StrainCatalogListItem}
               </FixedSizeList>

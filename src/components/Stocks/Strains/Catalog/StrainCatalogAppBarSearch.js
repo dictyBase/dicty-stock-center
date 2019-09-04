@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import gql from "graphql-tag"
 import { makeStyles, fade } from "@material-ui/core/styles"
 import InputBase from "@material-ui/core/InputBase"
@@ -71,8 +71,12 @@ const useStyles = makeStyles(theme => ({
  */
 
 const StrainCatalogAppBarSearch = () => {
-  const [searchValue, setSearchValue] = useState("")
-  const { setQuery, setVariables } = useStrainCatalogState()
+  const {
+    setQuery,
+    setVariables,
+    searchValue,
+    setSearchValue,
+  } = useStrainCatalogState()
   const classes = useStyles()
 
   const handleChange = event => {
