@@ -9,6 +9,7 @@ import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
+import { useStrainCatalogState } from "components/Stocks/Strains/Catalog/StrainCatalogContext"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -31,10 +32,6 @@ type Props = {
     label: string,
     summary: string,
   }>,
-  /** Determines if cart dialog is open */
-  dialogOpen: boolean,
-  /** Toggles cart dialog box */
-  setDialogOpen: Function,
   /** Function for controlling checked items array */
   setCheckedItems: Function,
   /** Function for handling the "check all" box */
@@ -48,14 +45,8 @@ type Props = {
  * descriptor, summary, etc) at the top of the catalog page.
  */
 
-const CatalogListHeader = ({
-  checkedItems,
-  setCheckedItems,
-  handleCheckAllChange,
-  dialogOpen,
-  setDialogOpen,
-  stockType,
-}: Props) => {
+const CatalogListHeader = ({ handleCheckAllChange, stockType }: Props) => {
+  const { checkedItems, setCheckedItems } = useStrainCatalogState()
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

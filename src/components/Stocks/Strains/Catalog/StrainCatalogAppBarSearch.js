@@ -5,6 +5,7 @@ import { makeStyles, fade } from "@material-ui/core/styles"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useStrainCatalogState } from "./StrainCatalogContext"
 
 export const GET_STRAINS_FILTER = gql`
   query StrainListFilter($cursor: Int!, $filter: String!) {
@@ -64,18 +65,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
-  setQuery: Function,
-  setVariables: Function,
-}
-
 /**
  * StrainCatalogAppBarSearch contains the search box on the catalog
  * page.
  */
 
-const StrainCatalogAppBarSearch = ({ setQuery, setVariables }: Props) => {
+const StrainCatalogAppBarSearch = () => {
   const [searchValue, setSearchValue] = useState("")
+  const { setQuery, setVariables } = useStrainCatalogState()
   const classes = useStyles()
 
   const handleChange = event => {

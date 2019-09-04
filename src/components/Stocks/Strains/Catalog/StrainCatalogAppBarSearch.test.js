@@ -1,13 +1,18 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import StrainCatalogAppBarSearch from "components/Stocks/Strains/Catalog/StrainCatalogAppBarSearch"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { StrainCatalogProvider } from "./StrainCatalogContext"
 
 describe("Stocks/Strains/Catalog/StrainCatalogAppBarSearch", () => {
   describe("initial render", () => {
-    const wrapper = shallow(<StrainCatalogAppBarSearch />)
+    const wrapper = mount(
+      <StrainCatalogProvider>
+        <StrainCatalogAppBarSearch />
+      </StrainCatalogProvider>,
+    )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })

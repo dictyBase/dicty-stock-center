@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import StrainCatalogListItem from "components/Stocks/Strains/Catalog/StrainCatalogListItem"
+import { useStrainCatalogState } from "./StrainCatalogContext"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -47,8 +48,7 @@ type Props = {
  */
 
 const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
-  const [checkedItems, setCheckedItems] = useState([])
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const { checkedItems, setCheckedItems } = useStrainCatalogState()
   const classes = useStyles()
 
   const handleCheckboxChange = (id, label, summary) => event => {
@@ -105,11 +105,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
   return (
     <Paper className={classes.catalogPaper}>
       <CatalogListHeader
-        checkedItems={checkedItems}
-        setCheckedItems={setCheckedItems}
         handleCheckAllChange={handleCheckAllChange}
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
         stockType="strain"
       />
       <AutoSizer>

@@ -1,17 +1,21 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import StrainCatalogList from "./StrainCatalogList"
 import { data } from "./mockStrainCatalogData"
 import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
+import { StrainCatalogProvider } from "./StrainCatalogContext"
 
 describe("Stocks/Strains/StrainCatalogList", () => {
   const props = {
     data: data,
-    classes: {},
   }
-  const wrapper = shallow(<StrainCatalogList {...props} />)
+  const wrapper = mount(
+    <StrainCatalogProvider>
+      <StrainCatalogList {...props} />
+    </StrainCatalogProvider>,
+  )
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

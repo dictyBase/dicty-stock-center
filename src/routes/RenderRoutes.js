@@ -58,10 +58,10 @@ const EditInfoPage = Loadable({
 })
 
 // strain routes
-const StrainCatalogContainer = Loadable({
+const StrainCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/Catalog/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */
+      "components/Stocks/Strains/Catalog/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
@@ -152,7 +152,7 @@ const RenderRoutes = () => (
     <Route exact path="/order/checkout" component={OrderForm} />
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
-    <Route exact path="/strains" component={StrainCatalogContainer} />
+    <Route exact path="/strains" component={StrainCatalogWrapper} />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={PlasmidCatalogContainer} />

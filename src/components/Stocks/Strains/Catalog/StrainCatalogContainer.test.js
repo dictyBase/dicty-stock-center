@@ -11,6 +11,7 @@ import StrainCatalogList from "./StrainCatalogList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { StrainCatalogProvider } from "./StrainCatalogContext"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()
@@ -48,11 +49,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
-          <StrainCatalogContainer {...props} />
-        </Provider>
-      </MockedProvider>,
+      <StrainCatalogProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Provider store={store}>
+            <StrainCatalogContainer {...props} />
+          </Provider>
+        </MockedProvider>
+      </StrainCatalogProvider>,
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
@@ -92,11 +95,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
-          <StrainCatalogContainer {...props} />
-        </Provider>
-      </MockedProvider>,
+      <StrainCatalogProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Provider store={store}>
+            <StrainCatalogContainer {...props} />
+          </Provider>
+        </MockedProvider>
+      </StrainCatalogProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

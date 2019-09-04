@@ -1,6 +1,5 @@
 // @flow
-import React, { useState } from "react"
-import { Helmet } from "react-helmet"
+import React from "react"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
@@ -8,8 +7,9 @@ import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import StrainCatalogList from "components/Stocks/Strains/Catalog/StrainCatalogList"
-import StrainCatalogAppBar from "components/Stocks/Strains/Catalog/StrainCatalogAppBar"
+import StrainCatalogList from "./StrainCatalogList"
+import StrainCatalogAppBar from "./StrainCatalogAppBar"
+import { useStrainCatalogState } from "./StrainCatalogContext"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
@@ -42,8 +42,7 @@ const useStyles = makeStyles({
  */
 
 export const StrainCatalogContainer = () => {
-  const [query, setQuery] = useState(GET_STRAIN_LIST)
-  const [variables, setVariables] = useState({ cursor: 0 })
+  const { query, variables } = useStrainCatalogState()
   const classes = useStyles()
 
   return (
@@ -53,21 +52,11 @@ export const StrainCatalogContainer = () => {
 
         return (
           <Grid container className={classes.layout}>
-            <Helmet>
-              <title>Strain Catalog - Dicty Stock Center</title>
-              <meta
-                name="description"
-                content={"Dicty Stock Center strain catalog"}
-              />
-            </Helmet>
             <Grid item xs={12}>
               <StockDetailsHeader title="Strain Catalog" />
             </Grid>
             <Grid item xs={12}>
-              <StrainCatalogAppBar
-                setQuery={setQuery}
-                setVariables={setVariables}
-              />
+              <StrainCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
               {error ? (
