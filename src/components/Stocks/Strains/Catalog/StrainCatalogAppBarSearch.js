@@ -2,9 +2,13 @@
 import React from "react"
 import gql from "graphql-tag"
 import { makeStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
+import FormControl from "@material-ui/core/FormControl"
+import Select from "@material-ui/core/Select"
+import Input from "@material-ui/core/Input"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useStrainCatalogState } from "./StrainCatalogContext"
 
@@ -25,9 +29,7 @@ export const GET_STRAINS_FILTER = gql`
 const useStyles = makeStyles(theme => ({
   root: {
     padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: 400,
+    minWidth: 400,
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -49,6 +51,8 @@ const StrainCatalogAppBarSearch = () => {
     setVariables,
     searchValue,
     setSearchValue,
+    filter,
+    setFilter,
   } = useStrainCatalogState()
   const classes = useStyles()
 
@@ -62,19 +66,42 @@ const StrainCatalogAppBarSearch = () => {
     setVariables({ cursor: 0, filter: `id~${searchValue}` })
   }
 
+  const handleFilterChange = event => {
+    setFilter(event.target.value)
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <Paper className={classes.root}>
-        <IconButton className={classes.iconButton} aria-label="menu">
-          <FontAwesomeIcon icon="search" />
-        </IconButton>
-        <InputBase
-          className={classes.input}
-          placeholder="Search..."
-          inputProps={{ "aria-label": "search" }}
-          onChange={handleChange}
-          value={searchValue}
-        />
+        <Grid container alignItems="center">
+          <IconButton className={classes.iconButton} aria-label="menu">
+            <FontAwesomeIcon icon="search" />
+          </IconButton>
+          <InputBase
+            className={classes.input}
+            placeholder="Search..."
+            inputProps={{ "aria-label": "search" }}
+            onChange={handleChange}
+            value={searchValue}
+          />
+          <FormControl>
+            <Select
+              native
+              value={filter}
+              onChange={handleFilterChange}
+              input={
+                <Input
+                  disableUnderline
+                  name="strain-catalog-search"
+                  id="strain-search-filter"
+                />
+              }>
+              <option value="id">Strain ID</option>
+              <option value="descriptor">Descriptor</option>
+              <option value="summary">Summary</option>
+            </Select>
+          </FormControl>
+        </Grid>
       </Paper>
     </form>
   )

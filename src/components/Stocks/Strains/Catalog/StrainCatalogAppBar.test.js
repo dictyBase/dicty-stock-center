@@ -17,7 +17,7 @@ describe("Stocks/Strains/Catalog/StrainCatalogAppBar", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(AppBar)).toHaveLength(1)
       expect(wrapper.find(Toolbar)).toHaveLength(1)
-      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(4)
       expect(wrapper.find(StrainCatalogAppBarLeftMenu)).toHaveLength(1)
       expect(wrapper.find(StrainCatalogAppBarSearch)).toHaveLength(1)
       expect(wrapper.find(StrainCatalogAppBarRightMenu)).toHaveLength(1)

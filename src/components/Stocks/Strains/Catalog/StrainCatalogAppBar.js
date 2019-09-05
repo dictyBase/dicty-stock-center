@@ -28,8 +28,10 @@ const StrainCatalogAppBar = () => {
         <Grid container justify="flex-start">
           <StrainCatalogAppBarLeftMenu />
         </Grid>
-        <Grid container justify="center">
-          <StrainCatalogAppBarSearch />
+        <Grid container justify="center" alignItems="center">
+          <Grid item xs={12}>
+            <StrainCatalogAppBarSearch />
+          </Grid>
         </Grid>
         <Grid container justify="flex-end">
           <StrainCatalogAppBarRightMenu />
