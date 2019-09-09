@@ -63,7 +63,7 @@ const StrainCatalogAppBarSearch = () => {
   const handleSubmit = event => {
     event.preventDefault()
     setQuery(GET_STRAINS_FILTER)
-    setVariables({ cursor: 0, filter: `id~${searchValue}` })
+    setVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
   }
 
   const handleFilterChange = event => {
@@ -97,7 +97,7 @@ const StrainCatalogAppBarSearch = () => {
                 />
               }>
               <option value="id">Strain ID</option>
-              <option value="descriptor">Descriptor</option>
+              <option value="label">Descriptor</option>
               <option value="summary">Summary</option>
             </Select>
           </FormControl>

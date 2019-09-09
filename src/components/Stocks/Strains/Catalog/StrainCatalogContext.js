@@ -10,7 +10,7 @@ export const StrainCatalogContext = createContext()
  * components.
  */
 
-export const StrainCatalogProvider = ({ children }) => {
+export const StrainCatalogProvider = ({ children }: any) => {
   const [query, setQuery] = useState(GET_STRAIN_LIST)
   const [variables, setVariables] = useState({ cursor: 0 })
   const [filter, setFilter] = useState("id")
