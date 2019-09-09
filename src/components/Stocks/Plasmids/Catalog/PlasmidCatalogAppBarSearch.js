@@ -111,7 +111,7 @@ const PlasmidCatalogAppBarSearch = () => {
                 />
               }>
               <option value="id">Plasmid ID</option>
-              <option value="name">Name</option>
+              <option value="plasmid_name">Name</option>
               <option value="summary">Summary</option>
             </Select>
           </FormControl>
