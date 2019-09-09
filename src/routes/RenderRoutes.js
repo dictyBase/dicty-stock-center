@@ -74,10 +74,10 @@ const StrainDetailsContainer = Loadable({
 })
 
 // plasmid routes
-const PlasmidCatalogContainer = Loadable({
+const PlasmidCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/Catalog/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */
+      "components/Stocks/Plasmids/Catalog/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
@@ -155,7 +155,7 @@ const RenderRoutes = () => (
     <Route exact path="/strains" component={StrainCatalogWrapper} />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
-    <Route exact path="/plasmids" component={PlasmidCatalogContainer} />
+    <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />

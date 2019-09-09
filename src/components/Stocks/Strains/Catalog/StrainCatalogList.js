@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import StrainCatalogListItem from "./StrainCatalogListItem"
+import { useStrainCatalogState } from "./StrainCatalogContext"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -47,6 +48,11 @@ type Props = {
  */
 
 const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
+  const {
+    checkedItems,
+    setCheckedItems,
+    handleCheckAllChange,
+  } = useStrainCatalogState()
   const classes = useStyles()
 
   const loadMoreItems = () =>
@@ -87,7 +93,12 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
 
   return (
     <Paper className={classes.catalogPaper}>
-      <CatalogListHeader stockType="strain" />
+      <CatalogListHeader
+        checkedItems={checkedItems}
+        setCheckedItems={setCheckedItems}
+        handleCheckAllChange={handleCheckAllChange}
+        stockType="strain"
+      />
       <AutoSizer>
         {({ height, width }) => (
           <InfiniteLoader

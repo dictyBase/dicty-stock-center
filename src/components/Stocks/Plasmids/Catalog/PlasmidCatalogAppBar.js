@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
-import PlasmidCatalogAppBarLeftMenu from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarLeftMenu"
-import PlasmidCatalogAppBarSearch from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarSearch"
-import PlasmidCatalogAppBarRightMenu from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarRightMenu"
+import PlasmidCatalogAppBarLeftMenu from "./PlasmidCatalogAppBarLeftMenu"
+import PlasmidCatalogAppBarSearch from "./PlasmidCatalogAppBarSearch"
+import PlasmidCatalogAppBarRightMenu from "./PlasmidCatalogAppBarRightMenu"
 
 const useStyles = makeStyles(theme => ({
   appBar: {

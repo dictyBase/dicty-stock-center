@@ -9,7 +9,6 @@ import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
-import { useStrainCatalogState } from "components/Stocks/Strains/Catalog/StrainCatalogContext"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -27,6 +26,16 @@ const useStyles = makeStyles({
 })
 
 type Props = {
+  checkedItems: Array<{
+    id: string,
+    label?: string,
+    name?: string,
+    summary: string,
+  }>,
+  /** Function for controlling checked items array */
+  setCheckedItems: Function,
+  /** Function for handling the "check all" box */
+  handleCheckAllChange: Function,
   /** Type of stock (strain or plasmid) */
   stockType: string,
 }
@@ -36,12 +45,12 @@ type Props = {
  * descriptor, summary, etc) at the top of the catalog page.
  */
 
-const CatalogListHeader = ({ stockType }: Props) => {
-  const {
-    checkedItems,
-    setCheckedItems,
-    handleCheckAllChange,
-  } = useStrainCatalogState()
+const CatalogListHeader = ({
+  stockType,
+  checkedItems,
+  setCheckedItems,
+  handleCheckAllChange,
+}: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

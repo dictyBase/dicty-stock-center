@@ -12,6 +12,7 @@ import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
+import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 import { removeItem } from "actions/cart"
 
 const useStyles = makeStyles({
@@ -67,9 +68,10 @@ export const PlasmidCatalogListItem = ({
   removeItem,
 }: Props) => {
   const [hover, setHover] = useState(false)
+  const { handleCheckboxChange, checkedItems } = usePlasmidCatalogState()
   const classes = useStyles()
-  const { item, handleCheckboxChange, checkedItems } = data
 
+  const { item } = data
   const plasmid = item[index]
 
   const toggleHover = () => {

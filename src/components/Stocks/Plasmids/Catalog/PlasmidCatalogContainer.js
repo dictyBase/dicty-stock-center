@@ -1,15 +1,15 @@
 // @flow
 import React from "react"
-import { Helmet } from "react-helmet"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import PlasmidCatalogList from "components/Stocks/Plasmids/Catalog/PlasmidCatalogList"
-import PlasmidCatalogAppBar from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBar"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import PlasmidCatalogList from "./PlasmidCatalogList"
+import PlasmidCatalogAppBar from "./PlasmidCatalogAppBar"
+import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 
 export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
@@ -42,23 +42,16 @@ const useStyles = makeStyles({
  */
 
 export const PlasmidCatalogContainer = () => {
+  const { query, variables } = usePlasmidCatalogState()
   const classes = useStyles()
 
   return (
-    <Query query={GET_PLASMID_LIST} variables={{ cursor: 0 }}>
+    <Query query={query} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
-        if (error) return <GraphQLErrorPage error={error} />
 
         return (
           <Grid container spacing={2} className={classes.layout}>
-            <Helmet>
-              <title>Plasmid Catalog - Dicty Stock Center</title>
-              <meta
-                name="description"
-                content={"Dicty Stock Center plasmid catalog"}
-              />
-            </Helmet>
             <Grid item xs={12}>
               <StockDetailsHeader title="Plasmid Catalog" />
             </Grid>
@@ -66,11 +59,16 @@ export const PlasmidCatalogContainer = () => {
               <PlasmidCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
-              <PlasmidCatalogList
-                data={data.listPlasmids.plasmids}
-                fetchMore={fetchMore}
-                cursor={data.listPlasmids.nextCursor}
-              />
+              {error ? (
+                <GraphQLErrorPage error={error} />
+              ) : (
+                <PlasmidCatalogList
+                  data={data.listPlasmids.plasmids}
+                  fetchMore={fetchMore}
+                  cursor={data.listPlasmids.nextCursor}
+                  filter={variables.filter}
+                />
+              )}
             </Grid>
           </Grid>
         )

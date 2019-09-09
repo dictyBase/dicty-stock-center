@@ -11,6 +11,7 @@ import PlasmidCatalogList from "./PlasmidCatalogList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
 import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()
@@ -49,59 +50,63 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
-          <PlasmidCatalogContainer {...props} />
-        </Provider>
-      </MockedProvider>,
+      <PlasmidCatalogProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Provider store={store}>
+            <PlasmidCatalogContainer {...props} />
+          </Provider>
+        </MockedProvider>
+      </PlasmidCatalogProvider>,
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
-    // it("always renders initial components", () => {
-    //   expect(wrapper.find(Query)).toHaveLength(1)
-    // })
-    // it("renders Loading component first", () => {
-    //   expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
-    // })
-    // it("renders expected components after receiving data", async () => {
-    //   await wait()
-    //   wrapper.update()
-    //   expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
-    //   expect(wrapper.find(PlasmidCatalogList)).toHaveLength(1)
-    // })
+    it("always renders initial components", () => {
+      expect(wrapper.find(Query)).toHaveLength(1)
+    })
+    it("renders Loading component first", () => {
+      expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
+    })
+    it("renders expected components after receiving data", async () => {
+      await wait()
+      wrapper.update()
+      expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
+      expect(wrapper.find(PlasmidCatalogList)).toHaveLength(1)
+    })
   })
-  // describe("error handling", () => {
-  //   const mocks = [
-  //     {
-  //       request: {
-  //         query: GET_PLASMID_LIST,
-  //         variables: {
-  //           cursor: 0,
-  //         },
-  //       },
-  //       result: {
-  //         errors: [
-  //           {
-  //             message: "Plasmids not found",
-  //             path: [],
-  //             extensions: { code: "NotFound" },
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   ]
-  //   const wrapper = mount(
-  //     <MockedProvider mocks={mocks} addTypename={false}>
-  //       <Provider store={store}>
-  //         <PlasmidCatalogContainer {...props} />
-  //       </Provider>
-  //     </MockedProvider>,
-  //   )
-  //   it("handles errors as expected", async () => {
-  //     await wait()
-  //     wrapper.update()
-  //     expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
-  //   })
-  // })
+  describe("error handling", () => {
+    const mocks = [
+      {
+        request: {
+          query: GET_PLASMID_LIST,
+          variables: {
+            cursor: 0,
+          },
+        },
+        result: {
+          errors: [
+            {
+              message: "Plasmids not found",
+              path: [],
+              extensions: { code: "NotFound" },
+            },
+          ],
+        },
+      },
+    ]
+    const wrapper = mount(
+      <PlasmidCatalogProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Provider store={store}>
+            <PlasmidCatalogContainer {...props} />
+          </Provider>
+        </MockedProvider>
+      </PlasmidCatalogProvider>,
+    )
+    it("handles errors as expected", async () => {
+      await wait()
+      wrapper.update()
+      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
+    })
+  })
 })
