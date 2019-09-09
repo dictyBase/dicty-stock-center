@@ -70,11 +70,18 @@ const StrainCatalogAppBarSearch = () => {
     setFilter(event.target.value)
   }
 
+  const clearSearch = () => {
+    setSearchValue("")
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <Paper className={classes.root}>
         <Grid container alignItems="center">
-          <IconButton className={classes.iconButton} aria-label="menu">
+          <IconButton
+            className={classes.iconButton}
+            aria-label="Strain catalog search icon"
+            title="Search strain catalog">
             <FontAwesomeIcon icon="search" />
           </IconButton>
           <InputBase
@@ -84,6 +91,13 @@ const StrainCatalogAppBarSearch = () => {
             onChange={handleChange}
             value={searchValue}
           />
+          <IconButton
+            className={classes.iconButton}
+            title="Clear search box"
+            aria-label="clear search box"
+            onClick={clearSearch}>
+            <FontAwesomeIcon icon="times" />
+          </IconButton>
           <FormControl>
             <Select
               native

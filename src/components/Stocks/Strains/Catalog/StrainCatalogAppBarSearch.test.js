@@ -18,8 +18,8 @@ describe("Stocks/Strains/Catalog/StrainCatalogAppBarSearch", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
+      expect(wrapper.find(IconButton)).toHaveLength(2)
+      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
       expect(wrapper.find(FormControl)).toHaveLength(1)
       expect(wrapper.find(Select)).toHaveLength(1)
     })
