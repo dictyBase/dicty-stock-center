@@ -13,7 +13,7 @@ export const StrainCatalogContext = createContext()
 export const StrainCatalogProvider = ({ children }: any) => {
   const [query, setQuery] = useState(GET_STRAIN_LIST)
   const [variables, setVariables] = useState({ cursor: 0 })
-  const [filter, setFilter] = useState("id")
+  const [filter, setFilter] = useState("label")
   const [checkedItems, setCheckedItems] = useState([])
   const [cartDialogOpen, setCartDialogOpen] = useState(false)
   const [searchValue, setSearchValue] = useState("")

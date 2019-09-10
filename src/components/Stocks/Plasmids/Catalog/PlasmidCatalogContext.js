@@ -13,7 +13,7 @@ export const PlasmidCatalogContext = createContext()
 export const PlasmidCatalogProvider = ({ children }: any) => {
   const [query, setQuery] = useState(GET_PLASMID_LIST)
   const [variables, setVariables] = useState({ cursor: 0 })
-  const [filter, setFilter] = useState("id")
+  const [filter, setFilter] = useState("plasmid_name")
   const [checkedItems, setCheckedItems] = useState([])
   const [cartDialogOpen, setCartDialogOpen] = useState(false)
   const [searchValue, setSearchValue] = useState("")

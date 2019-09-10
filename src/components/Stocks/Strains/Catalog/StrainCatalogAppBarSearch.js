@@ -128,9 +128,9 @@ const StrainCatalogAppBarSearch = () => {
                   }}
                 />
               }>
-              <option value="id">Strain ID</option>
               <option value="label">Descriptor</option>
               <option value="summary">Summary</option>
+              <option value="id">Strain ID</option>
             </Select>
           </FormControl>
         </Grid>
