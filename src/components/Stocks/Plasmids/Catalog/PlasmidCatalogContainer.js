@@ -51,7 +51,7 @@ export const PlasmidCatalogContainer = () => {
         if (loading) return <StockDetailsLoader />
 
         return (
-          <Grid container spacing={2} className={classes.layout}>
+          <Grid container spacing={0} className={classes.layout}>
             <Grid item xs={12}>
               <StockDetailsHeader title="Plasmid Catalog" />
             </Grid>
