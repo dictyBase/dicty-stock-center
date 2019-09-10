@@ -11,7 +11,7 @@ import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 
 const GET_MORE_PLASMIDS_LIST = gql`
-  query MorePlasmidsList($cursor: Int!) {
+  query MorePlasmidsList($cursor: Int!, $filter: String) {
     listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
       nextCursor
       plasmids {

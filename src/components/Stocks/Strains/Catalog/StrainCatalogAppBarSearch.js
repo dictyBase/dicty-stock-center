@@ -45,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     display: "inline-block",
     height: "30px",
     verticalAlign: "middle",
+    paddingRight: "4px",
   },
 }))
 
