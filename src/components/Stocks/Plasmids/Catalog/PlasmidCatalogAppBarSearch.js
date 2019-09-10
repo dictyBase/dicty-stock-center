@@ -38,6 +38,14 @@ const useStyles = makeStyles(theme => ({
   iconButton: {
     padding: 10,
   },
+  separator: {
+    borderLeftColor: "#bfbfbf",
+    borderLeftStyle: "solid",
+    borderLeftWidth: "1px",
+    display: "inline-block",
+    height: "30px",
+    verticalAlign: "middle",
+  },
 }))
 
 /**
@@ -82,7 +90,7 @@ const PlasmidCatalogAppBarSearch = () => {
             className={classes.iconButton}
             aria-label="Plasmid catalog search icon"
             title="Search plasmid catalog">
-            <FontAwesomeIcon icon="search" />
+            <FontAwesomeIcon icon="search" size="sm" />
           </IconButton>
           <InputBase
             className={classes.input}
@@ -96,8 +104,9 @@ const PlasmidCatalogAppBarSearch = () => {
             title="Clear search box"
             aria-label="clear search box"
             onClick={clearSearch}>
-            <FontAwesomeIcon icon="times" />
+            <FontAwesomeIcon icon="times" size="sm" />
           </IconButton>
+          <div className={classes.separator} />
           <FormControl>
             <Select
               native
