@@ -1,7 +1,8 @@
 // @flow
-import React, { useState } from "react"
+import React, { useState, memo } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import { areEqual } from "react-window"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
@@ -60,108 +61,105 @@ type Props = {
  * row of data in the plasmid catalog.
  */
 
-export const PlasmidCatalogListItem = ({
-  index,
-  style,
-  data,
-  cartItems,
-  removeItem,
-}: Props) => {
-  const [hover, setHover] = useState(false)
-  const { handleCheckboxChange, checkedItems } = usePlasmidCatalogState()
-  const classes = useStyles()
+export const PlasmidCatalogListItem = memo(
+  ({ index, style, data, cartItems, removeItem }: Props) => {
+    const [hover, setHover] = useState(false)
+    const { handleCheckboxChange, checkedItems } = usePlasmidCatalogState()
+    const classes = useStyles()
 
-  const { item } = data
-  const plasmid = item[index]
+    const { item } = data
+    const plasmid = item[index]
 
-  const toggleHover = () => {
-    setHover(!hover)
-  }
+    const toggleHover = () => {
+      setHover(!hover)
+    }
 
-  // if item is checked, then return true for checkbox
-  const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
+    // if item is checked, then return true for checkbox
+    const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
 
-  // check if hovered item is already in cart
-  const selectedCartItems = cartItems.some(item => item.id === plasmid.id)
+    // check if hovered item is already in cart
+    const selectedCartItems = cartItems.some(item => item.id === plasmid.id)
 
-  const handleRemoveItemClick = () => {
-    removeItem(plasmid.id)
-    setHover(false)
-  }
+    const handleRemoveItemClick = () => {
+      removeItem(plasmid.id)
+      setHover(false)
+    }
 
-  return (
-    <ListItem
-      key={plasmid.id}
-      className={classes.row}
-      style={style}
-      onMouseEnter={toggleHover}
-      onMouseLeave={toggleHover}>
-      <Grid container spacing={0} alignItems="center">
-        <Hidden smDown>
-          <Grid item md={1}>
-            <Checkbox
-              checked={checkedItemsLookup(plasmid.id)}
-              onChange={handleCheckboxChange(
-                plasmid.id,
-                plasmid.name,
-                plasmid.summary,
-              )}
-              color="default"
-              value={plasmid.id}
-              inputProps={{
-                "aria-label": "Plasmid catalog checkbox",
-              }}
-            />
-          </Grid>
-        </Hidden>
-        <Grid item xs={8} md={2} className={classes.item}>
-          <Typography noWrap>
-            <Link className={classes.link} to={`/plasmids/${plasmid.id}`}>
-              {characterConverter(plasmid.name)}
-            </Link>
-          </Typography>
-        </Grid>
-        <Hidden smDown>
-          <Grid item md={7} className={classes.item}>
-            <Typography noWrap>{plasmid.summary}</Typography>
-          </Grid>
-        </Hidden>
-        <Hidden lgDown>
-          <Grid item xl={1}>
-            <Typography noWrap>{plasmid.id}</Typography>
-          </Grid>
-        </Hidden>
-        <Grid item xs={4} md={2} lg={2} xl={1}>
-          <Grid container justify="center">
-            {hover && (
-              <span>
-                <AddToCartButton
-                  data={[
-                    {
-                      id: plasmid.id,
-                      label: plasmid.name,
-                      summary: plasmid.summary,
-                    },
-                  ]}
-                  setHover={setHover}
-                  stockType="plasmid"
-                />
-                {selectedCartItems && (
-                  <IconButton
-                    size="medium"
-                    color="secondary"
-                    onClick={handleRemoveItemClick}>
-                    <FontAwesomeIcon icon="trash" />
-                  </IconButton>
+    return (
+      <ListItem
+        key={plasmid.id}
+        className={classes.row}
+        style={style}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}>
+        <Grid container spacing={0} alignItems="center">
+          <Hidden smDown>
+            <Grid item md={1}>
+              <Checkbox
+                checked={checkedItemsLookup(plasmid.id)}
+                onChange={handleCheckboxChange(
+                  plasmid.id,
+                  plasmid.name,
+                  plasmid.summary,
                 )}
-              </span>
-            )}
+                color="default"
+                value={plasmid.id}
+                inputProps={{
+                  "aria-label": "Plasmid catalog checkbox",
+                }}
+              />
+            </Grid>
+          </Hidden>
+          <Grid item xs={8} md={2} className={classes.item}>
+            <Typography noWrap>
+              <Link className={classes.link} to={`/plasmids/${plasmid.id}`}>
+                {characterConverter(plasmid.name)}
+              </Link>
+            </Typography>
+          </Grid>
+          <Hidden smDown>
+            <Grid item md={7} className={classes.item}>
+              <Typography noWrap>{plasmid.summary}</Typography>
+            </Grid>
+          </Hidden>
+          <Hidden lgDown>
+            <Grid item xl={1}>
+              <Typography noWrap>{plasmid.id}</Typography>
+            </Grid>
+          </Hidden>
+          <Grid item xs={4} md={2} lg={2} xl={1}>
+            <Grid container justify="center">
+              {hover && (
+                <span>
+                  <AddToCartButton
+                    data={[
+                      {
+                        id: plasmid.id,
+                        label: plasmid.name,
+                        summary: plasmid.summary,
+                      },
+                    ]}
+                    setHover={setHover}
+                    stockType="plasmid"
+                  />
+                  {selectedCartItems && (
+                    <IconButton
+                      size="medium"
+                      color="secondary"
+                      onClick={handleRemoveItemClick}>
+                      <FontAwesomeIcon icon="trash" />
+                    </IconButton>
+                  )}
+                </span>
+              )}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </ListItem>
-  )
-}
+      </ListItem>
+    )
+  },
+  areEqual,
+)
 
 const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
