@@ -47,6 +47,11 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: "middle",
     paddingRight: "4px",
   },
+  select: {
+    "&:focus": {
+      backgroundColor: "#fff",
+    },
+  },
 }))
 
 /**
@@ -118,6 +123,9 @@ const StrainCatalogAppBarSearch = () => {
                   disableUnderline
                   name="strain-catalog-search"
                   id="strain-search-filter"
+                  classes={{
+                    input: classes.select,
+                  }}
                 />
               }>
               <option value="id">Strain ID</option>
