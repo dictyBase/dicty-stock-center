@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import PlasmidCatalogAppBar from "./PlasmidCatalogAppBar"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
@@ -60,7 +60,7 @@ export const PlasmidCatalogContainer = () => {
             </Grid>
             <Grid item xs={12}>
               {error ? (
-                <GraphQLErrorPage error={error} />
+                <CatalogErrorMessage error={error} />
               ) : (
                 <PlasmidCatalogList
                   data={data.listPlasmids.plasmids}

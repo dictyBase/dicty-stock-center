@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import StrainCatalogList from "./StrainCatalogList"
 import StrainCatalogAppBar from "./StrainCatalogAppBar"
 import { useStrainCatalogState } from "./StrainCatalogContext"
@@ -60,7 +60,7 @@ export const StrainCatalogContainer = () => {
             </Grid>
             <Grid item xs={12}>
               {error ? (
-                <GraphQLErrorPage error={error} />
+                <CatalogErrorMessage error={error} />
               ) : (
                 <StrainCatalogList
                   data={data.listStrains.strains}

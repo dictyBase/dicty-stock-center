@@ -10,7 +10,7 @@ import StrainCatalogContainer, {
 import StrainCatalogList from "./StrainCatalogList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import { StrainCatalogProvider } from "./StrainCatalogContext"
 import { Query } from "react-apollo"
 
@@ -106,7 +106,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     it("handles errors as expected", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
+      expect(wrapper.find(CatalogErrorMessage)).toHaveLength(1)
     })
   })
 })
