@@ -67,6 +67,13 @@ const StrainCatalogAppBarSearch = () => {
     setSearchValue,
     filter,
     setFilter,
+  }: {
+    setQuery: Function,
+    setVariables: Function,
+    searchValue: string,
+    setSearchValue: Function,
+    filter: string,
+    setFilter: Function,
   } = useStrainCatalogState()
   const classes = useStyles()
 

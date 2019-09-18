@@ -42,7 +42,15 @@ const useStyles = makeStyles({
  */
 
 export const StrainCatalogContainer = () => {
-  const { query, variables, setQuery } = useStrainCatalogState()
+  const {
+    query,
+    variables,
+    setQuery,
+  }: {
+    query: string,
+    variables: Object,
+    setQuery: Function,
+  } = useStrainCatalogState()
   const classes = useStyles()
 
   let content

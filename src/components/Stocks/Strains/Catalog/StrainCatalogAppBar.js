@@ -29,7 +29,13 @@ const useStyles = makeStyles(theme => ({
  */
 
 const StrainCatalogAppBar = () => {
-  const { helpDialogOpen, setHelpDialogOpen } = useStrainCatalogState()
+  const {
+    helpDialogOpen,
+    setHelpDialogOpen,
+  }: {
+    helpDialogOpen: boolean,
+    setHelpDialogOpen: Function,
+  } = useStrainCatalogState()
   const classes = useStyles()
 
   const handleClick = () => {

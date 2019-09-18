@@ -67,6 +67,13 @@ const PlasmidCatalogAppBarSearch = () => {
     setSearchValue,
     filter,
     setFilter,
+  }: {
+    setQuery: Function,
+    setVariables: Function,
+    searchValue: string,
+    setSearchValue: Function,
+    filter: string,
+    setFilter: Function,
   } = usePlasmidCatalogState()
   const classes = useStyles()
 

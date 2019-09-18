@@ -52,6 +52,10 @@ const PlasmidCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
     checkedItems,
     setCheckedItems,
     handleCheckAllChange,
+  }: {
+    checkedItems: Array<Object>,
+    setCheckedItems: Function,
+    handleCheckAllChange: Function,
   } = usePlasmidCatalogState()
   const classes = useStyles()
 

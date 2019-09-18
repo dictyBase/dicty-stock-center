@@ -64,7 +64,13 @@ export const StrainCatalogListItem = memo<*>(
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
     const [hover, setHover] = useState(false)
-    const { handleCheckboxChange, checkedItems } = useStrainCatalogState()
+    const {
+      handleCheckboxChange,
+      checkedItems,
+    }: {
+      handleCheckboxChange: Function,
+      checkedItems: Array<Object>,
+    } = useStrainCatalogState()
     const classes = useStyles()
 
     const { item } = data

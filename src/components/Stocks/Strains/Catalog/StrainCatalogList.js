@@ -52,6 +52,10 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
     checkedItems,
     setCheckedItems,
     handleCheckAllChange,
+  }: {
+    checkedItems: Array<Object>,
+    setCheckedItems: Function,
+    handleCheckAllChange: Function,
   } = useStrainCatalogState()
   const classes = useStyles()
 

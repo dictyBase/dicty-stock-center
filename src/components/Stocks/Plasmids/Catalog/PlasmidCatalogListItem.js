@@ -64,7 +64,13 @@ type Props = {
 export const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     const [hover, setHover] = useState(false)
-    const { handleCheckboxChange, checkedItems } = usePlasmidCatalogState()
+    const {
+      handleCheckboxChange,
+      checkedItems,
+    }: {
+      handleCheckboxChange: Function,
+      checkedItems: Array<Object>,
+    } = usePlasmidCatalogState()
     const classes = useStyles()
 
     const { item } = data

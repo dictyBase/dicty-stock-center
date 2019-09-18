@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState } from "react"
 import { GET_STRAIN_LIST } from "./StrainCatalogContainer"
 
-export const StrainCatalogContext = createContext()
+export const StrainCatalogContext: Object = createContext()
 
 /**
  * StrainCatalogProvider contains "global" state used for the Strain
@@ -11,15 +11,17 @@ export const StrainCatalogContext = createContext()
  */
 
 export const StrainCatalogProvider = ({ children }: any) => {
-  const [query, setQuery] = useState(GET_STRAIN_LIST)
-  const [variables, setVariables] = useState({ cursor: 0 })
-  const [filter, setFilter] = useState("label")
-  const [checkedItems, setCheckedItems] = useState([])
-  const [cartDialogOpen, setCartDialogOpen] = useState(false)
-  const [searchValue, setSearchValue] = useState("")
-  const [helpDialogOpen, setHelpDialogOpen] = useState(false)
+  const [query, setQuery] = useState<string>(GET_STRAIN_LIST)
+  const [variables, setVariables] = useState<Object>({ cursor: 0 })
+  const [filter, setFilter] = useState<string>("label")
+  const [checkedItems, setCheckedItems] = useState<Array<Object>>([])
+  const [cartDialogOpen, setCartDialogOpen] = useState<boolean>(false)
+  const [searchValue, setSearchValue] = useState<string>("")
+  const [helpDialogOpen, setHelpDialogOpen] = useState<boolean>(false)
 
-  const handleCheckboxChange = (id, label, summary) => event => {
+  const handleCheckboxChange = (id: string, label: string, summary: string) => (
+    event: SyntheticEvent<>,
+  ) => {
     // if checkbox is already checked, remove that item from state
     if (checkedItems.some(item => item.id === id)) {
       setCheckedItems(checkedItems.filter(item => item.id !== id))

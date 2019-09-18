@@ -29,7 +29,13 @@ const useStyles = makeStyles(theme => ({
  */
 
 const PlasmidCatalogAppBar = () => {
-  const { helpDialogOpen, setHelpDialogOpen } = usePlasmidCatalogState()
+  const {
+    helpDialogOpen,
+    setHelpDialogOpen,
+  }: {
+    helpDialogOpen: boolean,
+    setHelpDialogOpen: Function,
+  } = usePlasmidCatalogState()
   const classes = useStyles()
 
   const handleClick = () => {

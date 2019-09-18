@@ -42,7 +42,15 @@ const useStyles = makeStyles({
  */
 
 export const PlasmidCatalogContainer = () => {
-  const { query, variables, setQuery } = usePlasmidCatalogState()
+  const {
+    query,
+    variables,
+    setQuery,
+  }: {
+    query: string,
+    variables: Object,
+    setQuery: Function,
+  } = usePlasmidCatalogState()
   const classes = useStyles()
 
   let content
