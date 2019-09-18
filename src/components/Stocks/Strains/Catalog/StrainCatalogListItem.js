@@ -59,7 +59,7 @@ type Props = {
  * row of data in the strain catalog.
  */
 
-export const StrainCatalogListItem = memo(
+export const StrainCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
@@ -69,10 +69,6 @@ export const StrainCatalogListItem = memo(
 
     const { item } = data
     const strain = item[index]
-
-    const toggleHover = () => {
-      setHover(!hover)
-    }
 
     // if item is checked, then return true for checkbox
     const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
@@ -90,8 +86,8 @@ export const StrainCatalogListItem = memo(
         key={strain.id}
         className={classes.row}
         style={style}
-        onMouseEnter={toggleHover}
-        onMouseLeave={toggleHover}>
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}>
         <Grid container spacing={0} alignItems="center">
           <Hidden smDown>
             <Grid item md={1}>

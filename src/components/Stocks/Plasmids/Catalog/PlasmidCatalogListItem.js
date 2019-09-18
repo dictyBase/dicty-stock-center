@@ -61,7 +61,7 @@ type Props = {
  * row of data in the plasmid catalog.
  */
 
-export const PlasmidCatalogListItem = memo(
+export const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     const [hover, setHover] = useState(false)
     const { handleCheckboxChange, checkedItems } = usePlasmidCatalogState()
@@ -69,10 +69,6 @@ export const PlasmidCatalogListItem = memo(
 
     const { item } = data
     const plasmid = item[index]
-
-    const toggleHover = () => {
-      setHover(!hover)
-    }
 
     // if item is checked, then return true for checkbox
     const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
@@ -90,8 +86,8 @@ export const PlasmidCatalogListItem = memo(
         key={plasmid.id}
         className={classes.row}
         style={style}
-        onMouseEnter={toggleHover}
-        onMouseLeave={toggleHover}>
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}>
         <Grid container spacing={0} alignItems="center">
           <Hidden smDown>
             <Grid item md={1}>
