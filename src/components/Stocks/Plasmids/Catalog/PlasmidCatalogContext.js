@@ -17,6 +17,7 @@ export const PlasmidCatalogProvider = ({ children }: any) => {
   const [checkedItems, setCheckedItems] = useState([])
   const [cartDialogOpen, setCartDialogOpen] = useState(false)
   const [searchValue, setSearchValue] = useState("")
+  const [helpDialogOpen, setHelpDialogOpen] = useState(false)
 
   const handleCheckboxChange = (id, label, summary) => event => {
     // if checkbox is already checked, remove that item from state
@@ -50,6 +51,8 @@ export const PlasmidCatalogProvider = ({ children }: any) => {
         handleCheckAllChange,
         searchValue,
         setSearchValue,
+        helpDialogOpen,
+        setHelpDialogOpen,
       }}>
       {children}
     </PlasmidCatalogContext.Provider>

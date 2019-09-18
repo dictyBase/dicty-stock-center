@@ -14,9 +14,9 @@ describe("Stocks/Strains/Catalog/StrainCatalogAppBarRightMenu", () => {
     })
     it("always renders initial components", () => {
       expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(4)
+      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(3)
       expect(wrapper.find(Menu)).toHaveLength(1)
-      expect(wrapper.find(MenuItem)).toHaveLength(3)
+      expect(wrapper.find(MenuItem)).toHaveLength(2)
     })
   })
 })

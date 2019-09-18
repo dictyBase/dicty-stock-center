@@ -39,7 +39,9 @@ const StrainCatalogAppBarLeftMenu = () => {
       <IconButton
         size="small"
         className={classes.icon}
-        onClick={handleIconClick}>
+        onClick={handleIconClick}
+        title="Filter options"
+        aria-label="Filter options for the strain catalog page">
         <FontAwesomeIcon icon="cog" />
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleItemClick}>

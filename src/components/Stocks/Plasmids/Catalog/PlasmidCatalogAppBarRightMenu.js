@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
-import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles(theme => ({
@@ -48,11 +47,6 @@ const PlasmidCatalogAppBarRightMenu = () => {
         <MenuItem onClick={handleClose} className={classes.menuItem}>
           <FontAwesomeIcon icon="download" size="sm" />
           &nbsp; Download CSV
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose} className={classes.menuItem}>
-          <FontAwesomeIcon icon="info-circle" size="sm" />
-          &nbsp; Help
         </MenuItem>
       </Menu>
     </>
