@@ -42,13 +42,29 @@ const useStyles = makeStyles({
  */
 
 export const PlasmidCatalogContainer = () => {
-  const { query, variables } = usePlasmidCatalogState()
+  const { query, variables, setQuery } = usePlasmidCatalogState()
   const classes = useStyles()
+
+  let content
 
   return (
     <Query query={query} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
+
+        if (error) {
+          content = <CatalogErrorMessage error={error} />
+          setQuery(GET_PLASMID_LIST)
+        } else {
+          content = (
+            <PlasmidCatalogList
+              data={data.listPlasmids.plasmids}
+              fetchMore={fetchMore}
+              cursor={data.listPlasmids.nextCursor}
+              filter={variables.filter}
+            />
+          )
+        }
 
         return (
           <Grid container spacing={0} className={classes.layout}>
@@ -59,16 +75,7 @@ export const PlasmidCatalogContainer = () => {
               <PlasmidCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
-              {error ? (
-                <CatalogErrorMessage error={error} />
-              ) : (
-                <PlasmidCatalogList
-                  data={data.listPlasmids.plasmids}
-                  fetchMore={fetchMore}
-                  cursor={data.listPlasmids.nextCursor}
-                  filter={variables.filter}
-                />
-              )}
+              {content}
             </Grid>
           </Grid>
         )

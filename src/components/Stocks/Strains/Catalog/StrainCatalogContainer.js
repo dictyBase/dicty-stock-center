@@ -42,13 +42,29 @@ const useStyles = makeStyles({
  */
 
 export const StrainCatalogContainer = () => {
-  const { query, variables } = useStrainCatalogState()
+  const { query, variables, setQuery } = useStrainCatalogState()
   const classes = useStyles()
+
+  let content
 
   return (
     <Query query={query} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
+
+        if (error) {
+          content = <CatalogErrorMessage error={error} />
+          setQuery(GET_STRAIN_LIST)
+        } else {
+          content = (
+            <StrainCatalogList
+              data={data.listStrains.strains}
+              fetchMore={fetchMore}
+              cursor={data.listStrains.nextCursor}
+              filter={variables.filter}
+            />
+          )
+        }
 
         return (
           <Grid container className={classes.layout}>
@@ -59,16 +75,7 @@ export const StrainCatalogContainer = () => {
               <StrainCatalogAppBar />
             </Grid>
             <Grid item xs={12}>
-              {error ? (
-                <CatalogErrorMessage error={error} />
-              ) : (
-                <StrainCatalogList
-                  data={data.listStrains.strains}
-                  fetchMore={fetchMore}
-                  cursor={data.listStrains.nextCursor}
-                  filter={variables.filter}
-                />
-              )}
+              {content}
             </Grid>
           </Grid>
         )
