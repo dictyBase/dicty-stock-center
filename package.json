@@ -41,7 +41,7 @@
     "bowser": "^1.9.3",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",
-    "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#8.0.0",
+    "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#9.0.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#2.0.0",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#1.2.0",
     "dicty-components-redux": "github:dictybase-playground/dicty-components-redux#v2.3.0",
