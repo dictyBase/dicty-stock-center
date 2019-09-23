@@ -4,10 +4,10 @@ import LinkList from "../LinkList"
 import { PanelGray } from "styles"
 
 const materials = [
-  { name: "Strain Catalog", to: "/strains", routerAware: true },
-  { name: "Plasmid Catalog", to: "/plasmids", routerAware: true },
+  { name: "Strain Catalog", to: "", routerAware: true },
+  { name: "Plasmid Catalog", to: "", routerAware: true },
   { name: "Bacterial Strains", to: "", routerAware: true },
-  { name: "Other Materials", to: "", routerAware: true }
+  { name: "Other Materials", to: "", routerAware: true },
 ]
 
 /**
