@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: "#fff",
-    paddingLeft: "10px",
+    paddingLeft: "20px",
     paddingRight: "10px",
   },
 }))
@@ -53,6 +53,7 @@ const PlasmidCatalogAppBar = () => {
             <PlasmidCatalogAppBarSearch />
           </Grid>
           <Grid container justify="flex-end">
+            <PlasmidCatalogAppBarRightMenu />
             <IconButton
               size="small"
               className={classes.icon}
@@ -61,7 +62,6 @@ const PlasmidCatalogAppBar = () => {
               aria-label="Learn more about the plasmid catalog page">
               <FontAwesomeIcon icon="question-circle" />
             </IconButton>
-            <PlasmidCatalogAppBarRightMenu />
           </Grid>
         </Toolbar>
       </AppBar>

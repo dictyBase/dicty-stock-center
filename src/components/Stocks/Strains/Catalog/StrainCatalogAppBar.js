@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: "#fff",
-    paddingLeft: "10px",
+    paddingLeft: "20px",
     paddingRight: "10px",
   },
 }))
@@ -55,6 +55,7 @@ const StrainCatalogAppBar = () => {
             </Grid>
           </Grid>
           <Grid container justify="flex-end">
+            <StrainCatalogAppBarRightMenu />
             <IconButton
               size="small"
               className={classes.icon}
@@ -63,7 +64,6 @@ const StrainCatalogAppBar = () => {
               aria-label="Learn more about the strain catalog page">
               <FontAwesomeIcon icon="question-circle" />
             </IconButton>
-            <StrainCatalogAppBarRightMenu />
           </Grid>
         </Toolbar>
       </AppBar>
