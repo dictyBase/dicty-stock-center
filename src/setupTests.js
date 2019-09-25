@@ -5,6 +5,7 @@ import "jest-enzyme"
 global.console = {
   log: jest.fn(),
   error: jest.fn(),
+  warn: jest.fn(),
 }
 
 configure({ adapter: new Adapter() })
