@@ -10,7 +10,7 @@ jobs:
       - name: Audit live URL
         uses: docker://dictybase/lighthouse-audit:latest
         with:
-          url: "https://eric.dictybase.dev/"
+          url: "https://eric.dictybase.dev/stockcenter"
       - name: Upload results as an artifact
         uses: actions/upload-artifact@master
         with:
