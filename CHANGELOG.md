@@ -1,6 +1,4 @@
-# [2.1.0](https://github.com/dictyBase/Dicty-Stock-Center/compare/2.0.10...2.1.0) (2018-10-19)
+# Change Log
 
-
-### Features
-
-* update color scheme of homepage ([981e728](https://github.com/dictyBase/Dicty-Stock-Center/commit/981e728))
+This project adheres to [Semantic Versioning](http://semver.org/).  
+Every release is documented on the GitHub [Releases](https://github.com/dictyBase/Dicty-Stock-Center/releases) page.
