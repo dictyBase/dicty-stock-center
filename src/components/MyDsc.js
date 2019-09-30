@@ -5,7 +5,6 @@ import PanelWrapper from "components/common/PanelWrapper"
 import { Link } from "react-router-dom"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import type { MapStateToProps } from "react-redux"
 
 const styles = theme => ({
   container: {
@@ -99,6 +98,8 @@ export const MyDsc = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
+const mapStateToProps = ({ auth }) => ({ auth })
 
-export default connect(mapStateToProps)(withStyles(styles)(MyDsc))
+export default connect<*, *, *, *, *, *>(mapStateToProps)(
+  withStyles(styles)(MyDsc),
+)

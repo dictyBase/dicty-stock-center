@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
 import styles from "./shoppingCartStyles"
-import type { MapStateToProps } from "react-redux"
 
 type Props = {
   items: Array<{
@@ -35,7 +34,7 @@ export const ShoppingCartPage = (props: Props) => {
       </Helmet>
       <Grid container justify="center">
         <Grid item>
-          <h1 className={classes.header}>Shopping Cart</h1>
+          <h2 className={classes.header}>Shopping Cart</h2>
         </Grid>
       </Grid>
       {items.length > 0 ? (
@@ -47,8 +46,10 @@ export const ShoppingCartPage = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+const mapStateToProps = state => ({
   items: state.cart.addedItems,
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(ShoppingCartPage))
+export default connect<*, *, *, *, *, *>(mapStateToProps)(
+  withStyles(styles)(ShoppingCartPage),
+)

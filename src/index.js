@@ -4,7 +4,10 @@ import { render } from "react-dom"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "react-apollo"
-import ApolloClient from "apollo-boost"
+import { ApolloClient } from "apollo-client"
+import { InMemoryCache } from "apollo-cache-inmemory"
+import { createHttpLink } from "apollo-link-http"
+import { createPersistedQueryLink } from "apollo-link-persisted-queries"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { hydrateAll, hydrateStore } from "dicty-components-redux"
 import configureStore from "store"
@@ -20,8 +23,15 @@ const initialState = hydrateAll(
 )
 const store = configureStore(initialState)
 
+// set up automatic persisted queries
+// https://www.apollographql.com/docs/apollo-server/performance/apq/
+const link = createPersistedQueryLink().concat(
+  createHttpLink({ uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql` }),
+)
+
 export const client = new ApolloClient({
-  uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql`,
+  link: link,
+  cache: new InMemoryCache(),
 })
 
 const setGoogleAnalytics = async (location, action) => {
@@ -29,7 +39,7 @@ const setGoogleAnalytics = async (location, action) => {
     const module = await import("react-ga")
     let ReactGA = module.default
     ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID)
-    ReactGA.set({ page: window.location.pathname })
+    ReactGA.set({ page: window.location.pathname, anonymizeIp: true })
     ReactGA.pageview(window.location.pathname)
   } catch (e) {
     console.error("could not load react-ga module", JSON.stringify(e))

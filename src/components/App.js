@@ -9,8 +9,13 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faArrowCircleLeft,
   faArrowCircleRight,
+  faBars,
+  faCaretDown,
+  faCartPlus,
   faCheckCircle,
+  faCog,
   faDownload,
+  faEllipsisV,
   faEnvelope,
   faExternalLinkAlt,
   faExclamationCircle,
@@ -19,11 +24,14 @@ import {
   faPaperPlane,
   faPencilAlt,
   faPlus,
+  faQuestionCircle,
+  faSearch,
   faShare,
   faShoppingCart,
   faSignInAlt,
   faSignOutAlt,
   faSpinner,
+  faTimes,
   faTrash,
   faTruck,
   faUser,
@@ -46,8 +54,13 @@ import { appStyles as styles, navTheme } from "./appStyles"
 library.add(
   faArrowCircleLeft,
   faArrowCircleRight,
+  faBars,
+  faCaretDown,
+  faCartPlus,
   faCheckCircle,
+  faCog,
   faDownload,
+  faEllipsisV,
   faEnvelope,
   faExclamationCircle,
   faExternalLinkAlt,
@@ -56,11 +69,14 @@ library.add(
   faPaperPlane,
   faPencilAlt,
   faPlus,
+  faQuestionCircle,
+  faSearch,
   faShare,
   faShoppingCart,
   faSignInAlt,
   faSignOutAlt,
   faSpinner,
+  faTimes,
   faTrash,
   faTruck,
   faUser,
@@ -149,8 +165,8 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
   footer,
 })
 
-export default withRouter(
-  connect(
+export default withRouter<*>(
+  connect<*, *, *, *, *, *>(
     mapStateToProps,
     { fetchNavbarAndFooter },
   )(withStyles(styles)(App)),

@@ -5,13 +5,12 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import PlasmidDetailsList from "./PlasmidDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import styles from "./plasmidStyles"
 
 export const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
@@ -34,9 +33,19 @@ export const GET_PLASMID = gql`
   }
 `
 
+const useStyles = makeStyles({
+  layout: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+})
+
 type Props = {
-  classes: Object,
-  title: string,
+  /** React Router object */
   match: Object,
 }
 
@@ -45,8 +54,8 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const PlasmidDetailsContainer = (props: Props) => {
-  const { classes, match } = props
+export const PlasmidDetailsContainer = ({ match }: Props) => {
+  const classes = useStyles()
 
   return (
     <Query query={GET_PLASMID} variables={{ id: match.params.id }}>
@@ -84,4 +93,4 @@ export const PlasmidDetailsContainer = (props: Props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(PlasmidDetailsContainer))
+export default withRouter<*>(PlasmidDetailsContainer)

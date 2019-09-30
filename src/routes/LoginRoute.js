@@ -2,7 +2,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Route, Redirect } from "react-router-dom"
-import type { MapStateToProps } from "react-redux"
 
 /**
  * This is a protected route that redirects an authenticated user away from the /login route.
@@ -10,7 +9,7 @@ import type { MapStateToProps } from "react-redux"
  */
 
 // function uses same API as <Route />
-const LoginRoute = ({ component: Component, ...rest }) => (
+const LoginRoute = ({ component: Component, ...rest }: any) => (
   // renders a <Route /> and passes all props
   <Route
     {...rest}
@@ -20,7 +19,7 @@ const LoginRoute = ({ component: Component, ...rest }) => (
         <Redirect
           to={{
             pathname: "/",
-            state: { error: "You must be logged in to view this page!" }
+            state: { error: "You must be logged in to view this page!" },
           }}
         />
       ) : (
@@ -30,6 +29,6 @@ const LoginRoute = ({ component: Component, ...rest }) => (
   />
 )
 
-const mapStateToProps: MapStateToProps<*, *, *> = ({ auth }) => ({ auth })
+const mapStateToProps = ({ auth }) => ({ auth })
 
-export default connect(mapStateToProps)(LoginRoute)
+export default connect<*, *, *, *, *, *>(mapStateToProps)(LoginRoute)

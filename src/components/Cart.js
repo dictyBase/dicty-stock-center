@@ -5,16 +5,11 @@ import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import type { MapStateToProps } from "react-redux"
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     margin: "auto",
-    width: "75%",
-
-    [theme.breakpoints.up("xl")]: {
-      width: "1270px",
-    },
+    width: "80%",
   },
   link: {
     color: "#004080",
@@ -48,8 +43,10 @@ export const Cart = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+const mapStateToProps = state => ({
   items: state.cart.addedItems,
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Cart))
+export default connect<*, *, *, *, *, *>(mapStateToProps)(
+  withStyles(styles)(Cart),
+)

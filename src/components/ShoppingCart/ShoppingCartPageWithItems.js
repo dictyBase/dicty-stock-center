@@ -22,7 +22,7 @@ const ShoppingCartPageWithItems = props => {
           <Button
             component={Link}
             to="/strains"
-            color="primary"
+            color="default"
             variant="contained"
             size="large"
             className={classes.continueBtn}>

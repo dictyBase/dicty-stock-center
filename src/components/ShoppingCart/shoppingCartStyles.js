@@ -27,18 +27,14 @@ const styles = theme => ({
     textAlign: "center",
   },
   continueBtn: {
-    backgroundColor: "#5cb85c",
     marginBottom: "10px",
     marginRight: "10px",
-    "&:hover": {
-      backgroundColor: "#449d44",
-    },
   },
   checkoutBtn: {
     marginBottom: "10px",
     backgroundColor: "#004080",
     "&:hover": {
-      backgroundColor: "#0073e6",
+      backgroundColor: "#0059b3",
     },
   },
   buttons: {

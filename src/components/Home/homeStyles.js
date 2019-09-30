@@ -25,11 +25,11 @@ const styles = (theme: Object) => ({
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "75%",
+    width: "80%",
     lineHeight: 1.6,
 
     [theme.breakpoints.up("xl")]: {
-      width: "1270px",
+      width: "1350px",
     },
   },
   header: {

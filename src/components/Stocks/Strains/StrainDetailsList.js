@@ -3,12 +3,28 @@ import React, { Fragment } from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import styles from "./strainStyles"
+
+const useStyles = makeStyles({
+  header: {
+    textAlign: "center",
+    backgroundColor: "#0059b3",
+    color: "#fff",
+  },
+  link: {
+    color: "#004080",
+    textDecoration: "none",
+  },
+  detailsPaper: {
+    width: "100%",
+    overflowX: "auto",
+    paddingBottom: "10px",
+  },
+})
 
 type Props = {
   data: {
@@ -29,9 +45,9 @@ type Props = {
     },
     depositor: string,
     plasmid: string,
-    publications: {
+    publications: Array<{
       id: string,
-    },
+    }>,
     dbxrefs: Array<string>,
     genes: Array<string>,
     phenotypes: {
@@ -52,16 +68,14 @@ type Props = {
       },
     },
   },
-  /** Material-UI styling */
-  classes: Object,
 }
 
 /**
  * StrainDetailsList is the main component for displaying individual strain data.
  */
 
-const StrainDetailsList = (props: Props) => {
-  const { data, classes } = props
+const StrainDetailsList = ({ data }: Props) => {
+  const classes = useStyles()
 
   // set parent display in variable
   let parent
@@ -170,4 +184,4 @@ const StrainDetailsList = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(StrainDetailsList)
+export default StrainDetailsList

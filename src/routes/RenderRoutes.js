@@ -5,8 +5,6 @@ import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/Loader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-// import InfoPage from "components/InfoPage/InfoPage"
-// import EditInfoPage from "components/InfoPage/EditInfoPage"
 
 // homepage route
 const Homepage = Loadable({
@@ -60,10 +58,10 @@ const EditInfoPage = Loadable({
 })
 
 // strain routes
-const StrainCatalogContainer = Loadable({
+const StrainCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/StrainCatalogContainer" /* webpackChunkName: "StrainCatalogContainer" */
+      "components/Stocks/Strains/Catalog/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
@@ -76,10 +74,10 @@ const StrainDetailsContainer = Loadable({
 })
 
 // plasmid routes
-const PlasmidCatalogContainer = Loadable({
+const PlasmidCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/PlasmidCatalogContainer" /* webpackChunkName: "PlasmidCatalogContainer" */
+      "components/Stocks/Plasmids/Catalog/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
@@ -154,10 +152,10 @@ const RenderRoutes = () => (
     <Route exact path="/order/checkout" component={OrderForm} />
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
-    <Route exact path="/strains" component={StrainCatalogContainer} />
+    <Route exact path="/strains" component={StrainCatalogWrapper} />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
-    <Route exact path="/plasmids" component={PlasmidCatalogContainer} />
+    <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
     <Route exact path="/contact" component={Contact} />

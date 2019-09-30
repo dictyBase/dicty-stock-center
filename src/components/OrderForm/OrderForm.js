@@ -14,7 +14,6 @@ import initialValues from "./initialValues"
 import validationSchema from "./validationSchema"
 import styles from "./formStyles"
 import { removeItem } from "actions/cart"
-import type { MapStateToProps } from "react-redux"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
@@ -102,7 +101,7 @@ export const OrderForm = (props: Props) => {
   )
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+const mapStateToProps = state => ({
   items: state.cart.addedItems,
 })
 
@@ -112,7 +111,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(
+export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   mapDispatchToProps,
 )(withStyles(styles)(OrderForm))
