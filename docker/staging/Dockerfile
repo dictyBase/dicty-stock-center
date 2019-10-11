@@ -14,6 +14,8 @@ ENV REACT_APP_GA_TRACKING_ID ${ga_tracking_id:-UA-16352781-8}
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+ENV NODE_PATH=src
+
 # copy only necessary files
 COPY package*.json ./
 COPY .babelrc ./
