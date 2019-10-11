@@ -7,6 +7,4 @@ export const status = (response: Object): Promise<any> => {
   return Promise.reject(new Error(response.statusText))
 }
 
-export const json = (response: Object) => {
-  return response.json()
-}
+export const json = (response: Object) => response.json()

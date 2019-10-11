@@ -1,12 +1,12 @@
 import React from "react"
 import { mount } from "enzyme"
 import { StrainCatalogListItem } from "./StrainCatalogListItem"
-import { Link, BrowserRouter } from "react-router-dom"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import ListItem from "@material-ui/core/ListItem"
-import Checkbox from "@material-ui/core/Checkbox"
-import Hidden from "@material-ui/core/Hidden"
+import { BrowserRouter } from "react-router-dom"
+// import Grid from "@material-ui/core/Grid"
+// import Typography from "@material-ui/core/Typography"
+// import ListItem from "@material-ui/core/ListItem"
+// import Checkbox from "@material-ui/core/Checkbox"
+// import Hidden from "@material-ui/core/Hidden"
 import { StrainCatalogProvider } from "./StrainCatalogContext"
 
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {

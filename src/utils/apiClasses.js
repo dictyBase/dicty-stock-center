@@ -70,9 +70,7 @@ export class AuthenticatedUser extends JsonAPI {
 
   // gets the first and last name of logged in user
   getFullName() {
-    return `${this.json.data.attributes.first_name} ${
-      this.json.data.attributes.last_name
-    }`
+    return `${this.json.data.attributes.first_name} ${this.json.data.attributes.last_name}`
   }
 
   // gets capitalized version of user's role
@@ -164,15 +162,13 @@ export class RolesPermissionsAPI extends JsonAPI {
         return true
       }
 
-      const validPermissions = item => {
-        return (
-          item.attributes.permission === "admin" ||
-          (item.attributes.permission === perm &&
-            item.attributes.resource === resource) ||
-          (item.attributes.permission === perm &&
-            item.attributes.resource === MAIN_RESOURCE)
-        )
-      }
+      const validPermissions = item =>
+        item.attributes.permission === "admin" ||
+        (item.attributes.permission === perm &&
+          item.attributes.resource === resource) ||
+        (item.attributes.permission === perm &&
+          item.attributes.resource === MAIN_RESOURCE)
+
       const filteredPerms = this.json.permissions.filter(validPermissions)
 
       // check if array is empty
