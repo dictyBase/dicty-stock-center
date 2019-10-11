@@ -7,6 +7,7 @@ import { hydrateAll, hydrateStore } from "dicty-components-redux"
 import App from "components/App"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
+import "typeface-roboto"
 
 // load state from localStorage(if any) to set the
 // initial state for the store
