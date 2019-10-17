@@ -38,8 +38,9 @@ const Logout = Loadable({
     import("components/authentication/Logout" /* webpackChunkName: "Logout" */),
   loading: Loader,
 })
-const MyDsc = Loadable({
-  loader: () => import("components/MyDsc" /* webpackChunkName: "MyDsc" */),
+const MyDscPage = Loadable({
+  loader: () =>
+    import("components/MyDsc/MyDscPage" /* webpackChunkName: "MyDsc" */),
   loading: Loader,
 })
 
@@ -140,7 +141,7 @@ const RenderRoutes = () => (
     <Route exact path="/:provider/callback" component={OauthCallback} />
     <Route exact path="/load/auth" component={AuthLoader} />
     <PrivateRoute exact path="/logout" component={Logout} />
-    <PrivateRoute exact path="/mydsc" component={MyDsc} />
+    <PrivateRoute exact path="/mydsc" component={MyDscPage} />
     {/* infopage routes */}
     <Route exact path="/information/:name" component={InfoPage} />
     <PrivateRoute
