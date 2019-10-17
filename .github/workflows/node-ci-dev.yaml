@@ -73,35 +73,35 @@ jobs:
         env:
           MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
           MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
-  # snapshots:
-  #   needs: sleep
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: set up node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 10.x
-  #     - name: check out code
-  #       uses: actions/checkout@v1
-  #     - name: generate snapshots
-  #       run: |
-  #         npm i nightwatch chromedriver geckodriver
-  #         npm run nightwatch
-  #     - name: upload snapshots as artifact
-  #       uses: actions/upload-artifact@master
-  #       with:
-  #         name: snapshots
-  #         path: "./nightwatch/reports"
-  #     - name: upload snapshots to minio
-  #       uses: docker://dictybase/file-uploader:latest
-  #       with:
-  #         args: "minio --folder ./nightwatch/reports --minio-bucket snapshots"
-  #       env:
-  #         MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
-  #         MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
-  #     - name: add snapshots to github issue
-  #       uses: docker://dictybase/snapshot-issue-creator:latest
-  #       env:
-  #         GH_TOKEN: ${{ secrets.GH_TOKEN}}
-  #         BUCKET_PATH: https://ericstorage.dictybase.dev/snapshots
-  #         FILE_PATH: "./nightwatch/reports"
+  snapshots:
+    needs: sleep
+    runs-on: ubuntu-18.04
+    steps:
+      - name: set up node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: check out code
+        uses: actions/checkout@v1
+      - name: generate snapshots
+        run: |
+          npm i nightwatch chromedriver
+          npm run nightwatch
+      - name: upload snapshots as artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: snapshots
+          path: "./nightwatch/reports"
+      - name: upload snapshots to minio
+        uses: docker://dictybase/file-uploader:latest
+        with:
+          args: "minio --folder ./nightwatch/reports --minio-bucket snapshots"
+        env:
+          MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
+          MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
+      - name: add snapshots to github issue
+        uses: docker://dictybase/snapshot-issue-creator:latest
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN}}
+          BUCKET_PATH: https://ericstorage.dictybase.dev/snapshots
+          FILE_PATH: "./nightwatch/reports"
