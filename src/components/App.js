@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react"
+import React, { useEffect } from "react"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
@@ -98,64 +98,34 @@ type Props = {
   classes: Object,
 }
 
-export class App extends Component<Props> {
-  componentDidMount() {
-    const { fetchNavbarAndFooter } = this.props
+export const App = (props: Props) => {
+  const { auth, cart, navbar, footer, fetchNavbarAndFooter, classes } = props
+  let headerContent = headerItems
+  if (auth.isAuthenticated) {
+    headerContent = loggedHeaderItems
+  }
+  // if any errors, fall back to old link setup
+  const navbarContent = !navbar.links ? navItems : navbar.links
+  const footerContent = !footer.links ? footerItems : footer.links
+
+  useEffect(() => {
     fetchNavbarAndFooter()
-  }
+  }, [fetchNavbarAndFooter])
 
-  render() {
-    const { auth, cart, navbar, footer, classes } = this.props
-
-    // if any errors, fall back to old link setup
-    if (!navbar.links || !footer.links) {
-      return (
-        <div className={classes.body}>
-          {auth.isAuthenticated ? (
-            <Header items={loggedHeaderItems}>
-              {items => items.map(generateLinks)}
-            </Header>
-          ) : (
-            <Header items={headerItems}>
-              {items => items.map(generateLinks)}
-            </Header>
-          )}
-          <Navbar items={navItems} theme={navTheme} />
-          <br />
-          <main className={classes.main}>
-            <Cart cart={cart} />
-            <ErrorBoundary>
-              <RenderRoutes {...this.props} />
-            </ErrorBoundary>
-          </main>
-          <Footer items={footerItems} />
-        </div>
-      )
-    }
-
-    return (
-      <div className={classes.body}>
-        {auth.isAuthenticated ? (
-          <Header items={loggedHeaderItems}>
-            {items => items.map(generateLinks)}
-          </Header>
-        ) : (
-          <Header items={headerItems}>
-            {items => items.map(generateLinks)}
-          </Header>
-        )}
-        <Navbar items={navbar.links} theme={navTheme} />
-        <br />
-        <main className={classes.main}>
-          <Cart cart={cart} />
-          <ErrorBoundary>
-            <RenderRoutes {...this.props} />
-          </ErrorBoundary>
-        </main>
-        <Footer items={footer.links} />
-      </div>
-    )
-  }
+  return (
+    <div className={classes.body}>
+      <Header items={headerContent}>{items => items.map(generateLinks)}</Header>
+      <Navbar items={navbarContent} theme={navTheme} />
+      <br />
+      <main className={classes.main}>
+        <Cart cart={cart} />
+        <ErrorBoundary>
+          <RenderRoutes {...props} />
+        </ErrorBoundary>
+      </main>
+      <Footer items={footerContent} />
+    </div>
+  )
 }
 
 const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
