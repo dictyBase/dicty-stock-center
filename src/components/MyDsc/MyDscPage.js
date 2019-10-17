@@ -28,10 +28,10 @@ export const MyDscPage = (props: Props) => {
   return (
     <Grid container justify="center" className={classes.container}>
       <Grid item xs={12}>
-        <MyDscBreadcrumbs />
+        <MyDscHeader />
       </Grid>
       <Grid item xs={12}>
-        <MyDscHeader />
+        <MyDscBreadcrumbs />
       </Grid>
       <Grid item xs={8}>
         <MyDscMainContent data={data} provider={provider} />
