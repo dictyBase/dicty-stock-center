@@ -93,6 +93,8 @@ const PlasmidCatalogAppBarSearch = () => {
 
   const clearSearch = () => {
     setSearchValue("")
+    setQuery(GET_PLASMIDS_FILTER)
+    setVariables({ cursor: 0, filter: "" })
   }
 
   return (

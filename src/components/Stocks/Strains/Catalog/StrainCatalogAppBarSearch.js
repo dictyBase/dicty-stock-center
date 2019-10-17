@@ -93,6 +93,8 @@ const StrainCatalogAppBarSearch = () => {
 
   const clearSearch = () => {
     setSearchValue("")
+    setQuery(GET_STRAINS_FILTER)
+    setVariables({ cursor: 0, filter: "" })
   }
 
   return (
