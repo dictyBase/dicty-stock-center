@@ -1,12 +1,13 @@
 import "utils/polyfills" // necessary for IE11
 import React from "react"
-import { render } from "react-dom"
+import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "react-apollo"
 import { ApolloClient } from "apollo-client"
 import { InMemoryCache } from "apollo-cache-inmemory"
 import { createHttpLink } from "apollo-link-http"
+import { persistCache } from "apollo-cache-persist"
 import { createPersistedQueryLink } from "apollo-link-persisted-queries"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { hydrateAll, hydrateStore } from "dicty-components-redux"
@@ -29,9 +30,14 @@ const link = createPersistedQueryLink().concat(
   createHttpLink({ uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql` }),
 )
 
+// Use an InMemoryCache, but keep it synced to localStorage
+const cache = new InMemoryCache()
+const storage = window.localStorage
+const waitOnCache = persistCache({ cache, storage })
+
 export const client = new ApolloClient({
-  link: link,
-  cache: new InMemoryCache(),
+  link,
+  cache,
 })
 
 const setGoogleAnalytics = async (location, action) => {
@@ -52,29 +58,19 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-const renderApp = Component => {
-  // Render the React application to the DOM
-  render(
+// Wait for the cache to sync before starting the app
+waitOnCache.then(() => {
+  ReactDOM.render(
     <ApolloProvider client={client}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <>
             <CssBaseline />
-            <Component />
+            <App />
           </>
         </ConnectedRouter>
       </Provider>
     </ApolloProvider>,
     document.getElementById("root"),
   )
-}
-
-// First render
-renderApp(App)
-
-// Webpack HMR
-if (module.hot) {
-  module.hot.accept("components/App", () => {
-    renderApp(App)
-  })
-}
+})
