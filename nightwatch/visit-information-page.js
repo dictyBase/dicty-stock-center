@@ -1,12 +1,37 @@
 module.exports = {
-  "browse information pages": browser => {
+  "inspect homepage": browser => {
     browser
-      .url(browser.launchUrl)
-      .waitForElementVisible("h1", 1000)
-      .click('a[href="/information/orders"]')
-    browser.assert
-      .urlContains("information/orders")
-      .saveScreenshot("./nightwatch/snapshots/info-page-snapshot.png")
-      .end()
+      .url("https://eric.dictybase.dev/stockcenter/information/order")
+      .waitForElementVisible("body", 1000)
+
+    const date = new Date().toJSON().slice(0, 10)
+    const viewports = [
+      {
+        name: "phone",
+        width: 360,
+      },
+      {
+        name: "tablet",
+        width: 768,
+      },
+      {
+        name: "laptop",
+        width: 1024,
+      },
+      {
+        name: "tv",
+        width: 1920,
+      },
+    ]
+
+    viewports.forEach(item => {
+      browser
+        .resizeWindow(item.width, 2000)
+        .saveScreenshot(
+          `./nightwatch/reports/dsc-infopage-${item.name}-chrome-${date}.png`,
+        )
+    })
+
+    browser.end()
   },
 }

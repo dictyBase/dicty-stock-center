@@ -1,32 +1,37 @@
 module.exports = {
-  "get to login page": browser => {
+  "inspect homepage": browser => {
     browser
-      // Load the page at the launch URL
-      .url(browser.launchUrl)
-      // wait for page to load
-      .waitForElementVisible("h1", 1000)
-      // click on the login link
-      .click('a[href="/login"]')
-      // wait for page to load
-      .waitForElementVisible("h1", 1000)
-      .getText("h1", function(res) {
-        this.assert.equal(res.value, "Log in")
-      })
-      .getText("button", function(res) {
-        this.assert.equal(res.value, "  SIGN IN WITH ORCID")
-      })
-      .getText("button:nth-of-type(2)", function(res) {
-        this.assert.equal(res.value, "  SIGN IN WITH GOOGLE")
-      })
-      .getText("button:nth-of-type(3)", function(res) {
-        this.assert.equal(res.value, "  SIGN IN WITH LINKEDIN")
-      })
-      .getText("button:nth-of-type(4)", function(res) {
-        this.assert.equal(res.value, "  SIGN IN WITH FACEBOOK")
-      })
-    browser.assert
-      .urlContains("login")
-      .saveScreenshot("./nightwatch/snapshots/login-snapshot.png")
-      .end()
+      .url("https://eric.dictybase.dev/stockcenter/login")
+      .waitForElementVisible("body", 1000)
+
+    const date = new Date().toJSON().slice(0, 10)
+    const viewports = [
+      {
+        name: "phone",
+        width: 360,
+      },
+      {
+        name: "tablet",
+        width: 768,
+      },
+      {
+        name: "laptop",
+        width: 1024,
+      },
+      {
+        name: "tv",
+        width: 1920,
+      },
+    ]
+
+    viewports.forEach(item => {
+      browser
+        .resizeWindow(item.width, 2000)
+        .saveScreenshot(
+          `./nightwatch/reports/dsc-login-${item.name}-chrome-${date}.png`,
+        )
+    })
+
+    browser.end()
   },
 }
