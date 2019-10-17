@@ -39,22 +39,7 @@ export const fetchFooter = () => async (dispatch: Function) => {
     const res = await fetch(footerJson)
     const json = await res.json()
     if (res.ok) {
-      const footerArr = json.data.map(item => {
-        const menuItemsArr = item.attributes.items.map(c => ({
-          description: c.label,
-          link: c.link,
-        }))
-
-        return [
-          {
-            header: {
-              description: item.attributes.display,
-            },
-            items: menuItemsArr,
-          },
-        ]
-      })
-
+      const footerArr = footerDataFormatter(json)
       return dispatch(fetchFooterSuccess(footerArr))
     }
     dispatch(fetchFooterFailure(res.body))
@@ -63,5 +48,22 @@ export const fetchFooter = () => async (dispatch: Function) => {
     return dispatch(fetchFooterFailure(error.toString()))
   }
 }
+
+const footerDataFormatter = json =>
+  json.data.map(item => {
+    const menuItemsArr = item.attributes.items.map(c => ({
+      description: c.label,
+      link: c.link,
+    }))
+
+    return [
+      {
+        header: {
+          description: item.attributes.display,
+        },
+        items: menuItemsArr,
+      },
+    ]
+  })
 
 export default fetchFooter
