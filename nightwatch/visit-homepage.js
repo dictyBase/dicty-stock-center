@@ -1,3 +1,22 @@
+const viewports = [
+  {
+    name: "phone",
+    width: 360,
+  },
+  {
+    name: "tablet",
+    width: 768,
+  },
+  {
+    name: "laptop",
+    width: 1024,
+  },
+  {
+    name: "tv",
+    width: 1920,
+  },
+]
+
 module.exports = {
   "inspect homepage": browser => {
     browser
@@ -8,25 +27,6 @@ module.exports = {
         this.assert.equal(res.value, "Welcome to Dicty Stock Center (DSC)")
       })
     const date = new Date().toJSON().slice(0, 10)
-    const viewports = [
-      {
-        name: "phone",
-        width: 360,
-      },
-      {
-        name: "tablet",
-        width: 768,
-      },
-      {
-        name: "laptop",
-        width: 1024,
-      },
-      {
-        name: "tv",
-        width: 1920,
-      },
-    ]
-
     viewports.forEach(item => {
       browser
         .resizeWindow(item.width, 2000)
@@ -34,7 +34,6 @@ module.exports = {
           `./nightwatch/reports/dsc-homepage-${item.name}-chrome-${date}.png`,
         )
     })
-
     browser.end()
   },
 }
