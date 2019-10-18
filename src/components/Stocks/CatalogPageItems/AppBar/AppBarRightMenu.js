@@ -5,8 +5,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useAppBarState } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
-import HelpDialog from "components/Stocks/CatalogPageItems/HelpDialog"
+import AppBarHelp from "./AppBarHelp"
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -16,12 +15,9 @@ const useStyles = makeStyles(theme => ({
   menuItem: {
     fontSize: "0.8rem",
   },
-  helpIcon: {
-    color: "#fff",
-    paddingLeft: "20px",
-    paddingRight: "10px",
-  },
 }))
+
+const dropdownItems = ["Download PDF", "Download CSV"]
 
 /**
  * AppBarRightMenu contains the icon and display logic
@@ -29,26 +25,13 @@ const useStyles = makeStyles(theme => ({
  */
 
 const AppBarRightMenu = () => {
-  const {
-    helpDialogOpen,
-    setHelpDialogOpen,
-  }: {
-    helpDialogOpen: boolean,
-    setHelpDialogOpen: Function,
-  } = useAppBarState()
   const [anchorEl, setAnchorEl] = useState(null)
   const classes = useStyles()
-
   const open = Boolean(anchorEl)
-
-  const handleHelpClick = () => {
-    setHelpDialogOpen(!helpDialogOpen)
-  }
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
-
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -64,27 +47,14 @@ const AppBarRightMenu = () => {
         <FontAwesomeIcon icon="ellipsis-v" />
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleClose} className={classes.menuItem}>
-          <FontAwesomeIcon icon="download" size="sm" />
-          &nbsp; Download PDF
-        </MenuItem>
-        <MenuItem onClick={handleClose} className={classes.menuItem}>
-          <FontAwesomeIcon icon="download" size="sm" />
-          &nbsp; Download CSV
-        </MenuItem>
+        {dropdownItems.map(item => (
+          <MenuItem onClick={handleClose} className={classes.menuItem}>
+            <FontAwesomeIcon icon="download" size="sm" />
+            &nbsp; {item}
+          </MenuItem>
+        ))}
       </Menu>
-      <IconButton
-        size="small"
-        className={classes.helpIcon}
-        onClick={handleHelpClick}
-        title="Help"
-        aria-label="Learn more about the strain catalog page">
-        <FontAwesomeIcon icon="question-circle" />
-      </IconButton>
-      <HelpDialog
-        helpDialogOpen={helpDialogOpen}
-        setHelpDialogOpen={setHelpDialogOpen}
-      />
+      <AppBarHelp />
     </>
   )
 }
