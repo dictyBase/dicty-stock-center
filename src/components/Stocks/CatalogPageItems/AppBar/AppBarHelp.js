@@ -14,18 +14,17 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type HelpDialogType = {
+  helpDialogOpen: boolean,
+  setHelpDialogOpen: Function,
+}
+
 /**
  * AppBarHelp handles the display of the appbar help feature.
  */
 
 const AppBarHelp = () => {
-  const {
-    helpDialogOpen,
-    setHelpDialogOpen,
-  }: {
-    helpDialogOpen: boolean,
-    setHelpDialogOpen: Function,
-  } = useAppBarState()
+  const { helpDialogOpen, setHelpDialogOpen }: HelpDialogType = useAppBarState()
   const classes = useStyles()
 
   const handleClick = () => {
@@ -38,8 +37,8 @@ const AppBarHelp = () => {
         size="small"
         className={classes.helpIcon}
         onClick={handleClick}
-        title="Help"
-        aria-label="Learn more about the strain catalog page">
+        title="Catalog Help"
+        aria-label="Learn more about the stock catalog page">
         <FontAwesomeIcon icon="question-circle" />
       </IconButton>
       <HelpDialog
