@@ -44,11 +44,11 @@ const useStyles = makeStyles({
 export const PlasmidCatalogContainer = () => {
   const {
     query,
-    variables,
+    queryVariables,
     setQuery,
   }: {
     query: string,
-    variables: Object,
+    queryVariables: Object,
     setQuery: Function,
   } = usePlasmidCatalogState()
   const classes = useStyles()
@@ -56,7 +56,7 @@ export const PlasmidCatalogContainer = () => {
   let content
 
   return (
-    <Query query={query} variables={variables}>
+    <Query query={query} variables={queryVariables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
 
@@ -69,7 +69,7 @@ export const PlasmidCatalogContainer = () => {
               data={data.listPlasmids.plasmids}
               fetchMore={fetchMore}
               cursor={data.listPlasmids.nextCursor}
-              filter={variables.filter}
+              filter={queryVariables.filter}
             />
           )
         }

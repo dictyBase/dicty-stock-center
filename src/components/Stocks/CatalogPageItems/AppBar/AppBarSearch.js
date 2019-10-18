@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import gql from "graphql-tag"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
@@ -10,21 +9,7 @@ import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
-
-export const GET_PLASMIDS_FILTER = gql`
-  query PlasmidListFilter($cursor: Int!, $filter: String!) {
-    listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
-      nextCursor
-      plasmids {
-        id
-        name
-        summary
-        in_stock
-      }
-    }
-  }
-`
+import { useAppBarState } from "./AppBarContext"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,27 +39,37 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  query: string,
+  dropdownItems: Array<{
+    value: string,
+    name: string,
+  }>,
+  setQuery: Function,
+  setQueryVariables: Function,
+}
+
 /**
- * PlasmidCatalogAppBarSearch contains the search box on the catalog
- * page.
+ * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const PlasmidCatalogAppBarSearch = () => {
+const AppBarSearch = ({
+  query,
+  dropdownItems,
+  setQuery,
+  setQueryVariables,
+}: Props) => {
   const {
-    setQuery,
-    setVariables,
     searchValue,
     setSearchValue,
     filter,
     setFilter,
   }: {
-    setQuery: Function,
-    setVariables: Function,
     searchValue: string,
     setSearchValue: Function,
     filter: string,
     setFilter: Function,
-  } = usePlasmidCatalogState()
+  } = useAppBarState()
   const classes = useStyles()
 
   const handleChange = event => {
@@ -83,8 +78,8 @@ const PlasmidCatalogAppBarSearch = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    setQuery(GET_PLASMIDS_FILTER)
-    setVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
+    setQuery(query)
+    setQueryVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
   }
 
   const handleFilterChange = event => {
@@ -93,8 +88,8 @@ const PlasmidCatalogAppBarSearch = () => {
 
   const clearSearch = () => {
     setSearchValue("")
-    setQuery(GET_PLASMIDS_FILTER)
-    setVariables({ cursor: 0, filter: "" })
+    setQuery(query)
+    setQueryVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
   }
 
   return (
@@ -103,8 +98,8 @@ const PlasmidCatalogAppBarSearch = () => {
         <Grid container alignItems="center">
           <IconButton
             className={classes.iconButton}
-            aria-label="Plasmid catalog search icon"
-            title="Search plasmid catalog">
+            aria-label="Catalog search icon"
+            title="Search catalog">
             <FontAwesomeIcon icon="search" size="sm" />
           </IconButton>
           <InputBase
@@ -130,16 +125,18 @@ const PlasmidCatalogAppBarSearch = () => {
               input={
                 <Input
                   disableUnderline
-                  name="plasmid-catalog-search"
-                  id="plasmid-search-filter"
+                  name="catalog-search"
+                  id="search-filter"
                   classes={{
                     input: classes.select,
                   }}
                 />
               }>
-              <option value="plasmid_name">Name</option>
-              <option value="summary">Summary</option>
-              <option value="id">Plasmid ID</option>
+              {dropdownItems.map(item => (
+                <option value={item.value} key={item.value}>
+                  {item.name}
+                </option>
+              ))}
             </Select>
           </FormControl>
         </Grid>
@@ -148,4 +145,4 @@ const PlasmidCatalogAppBarSearch = () => {
   )
 }
 
-export default PlasmidCatalogAppBarSearch
+export default AppBarSearch

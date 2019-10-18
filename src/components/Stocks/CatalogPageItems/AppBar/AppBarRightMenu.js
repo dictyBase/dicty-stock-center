@@ -5,6 +5,8 @@ import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useAppBarState } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
+import HelpDialog from "components/Stocks/CatalogPageItems/HelpDialog"
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -14,6 +16,11 @@ const useStyles = makeStyles(theme => ({
   menuItem: {
     fontSize: "0.8rem",
   },
+  helpIcon: {
+    color: "#fff",
+    paddingLeft: "20px",
+    paddingRight: "10px",
+  },
 }))
 
 /**
@@ -22,9 +29,21 @@ const useStyles = makeStyles(theme => ({
  */
 
 const AppBarRightMenu = () => {
+  const {
+    helpDialogOpen,
+    setHelpDialogOpen,
+  }: {
+    helpDialogOpen: boolean,
+    setHelpDialogOpen: Function,
+  } = useAppBarState()
   const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
   const classes = useStyles()
+
+  const open = Boolean(anchorEl)
+
+  const handleHelpClick = () => {
+    setHelpDialogOpen(!helpDialogOpen)
+  }
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
@@ -54,6 +73,18 @@ const AppBarRightMenu = () => {
           &nbsp; Download CSV
         </MenuItem>
       </Menu>
+      <IconButton
+        size="small"
+        className={classes.helpIcon}
+        onClick={handleHelpClick}
+        title="Help"
+        aria-label="Learn more about the strain catalog page">
+        <FontAwesomeIcon icon="question-circle" />
+      </IconButton>
+      <HelpDialog
+        helpDialogOpen={helpDialogOpen}
+        setHelpDialogOpen={setHelpDialogOpen}
+      />
     </>
   )
 }

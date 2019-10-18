@@ -12,12 +12,11 @@ export const PlasmidCatalogContext: Object = createContext()
 
 export const PlasmidCatalogProvider = ({ children }: any) => {
   const [query, setQuery] = useState<string>(GET_PLASMID_LIST)
-  const [variables, setVariables] = useState<Object>({ cursor: 0 })
-  const [filter, setFilter] = useState<string>("plasmid_name")
+  const [queryVariables, setQueryVariables] = useState<Object>({
+    cursor: 0,
+  })
   const [checkedItems, setCheckedItems] = useState<Array<Object>>([])
   const [cartDialogOpen, setCartDialogOpen] = useState<boolean>(false)
-  const [searchValue, setSearchValue] = useState<string>("")
-  const [helpDialogOpen, setHelpDialogOpen] = useState<boolean>(false)
 
   const handleCheckboxChange = (id: string, label: string, summary: string) => (
     event: SyntheticEvent<>,
@@ -41,20 +40,14 @@ export const PlasmidCatalogProvider = ({ children }: any) => {
       value={{
         query,
         setQuery,
-        variables,
-        setVariables,
-        filter,
-        setFilter,
+        queryVariables,
+        setQueryVariables,
         checkedItems,
         setCheckedItems,
         cartDialogOpen,
         setCartDialogOpen,
         handleCheckboxChange,
         handleCheckAllChange,
-        searchValue,
-        setSearchValue,
-        helpDialogOpen,
-        setHelpDialogOpen,
       }}>
       {children}
     </PlasmidCatalogContext.Provider>

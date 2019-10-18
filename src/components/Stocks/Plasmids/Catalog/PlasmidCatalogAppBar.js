@@ -1,25 +1,48 @@
 // @flow
 import React from "react"
+import gql from "graphql-tag"
 import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PlasmidCatalogAppBarLeftMenu from "./PlasmidCatalogAppBarLeftMenu"
-import PlasmidCatalogAppBarSearch from "./PlasmidCatalogAppBarSearch"
-import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
-import HelpDialog from "components/Stocks/CatalogPageItems/HelpDialog"
+import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
+import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
+import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
+
+export const GET_PLASMIDS_FILTER = gql`
+  query PlasmidListFilter($cursor: Int!, $filter: String!) {
+    listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
+      nextCursor
+      plasmids {
+        id
+        name
+        summary
+        in_stock
+      }
+    }
+  }
+`
+
+const dropdownItems = [
+  {
+    value: "id",
+    name: "Plasmid ID",
+  },
+  {
+    value: "plasmid_name",
+    name: "Name",
+  },
+  {
+    value: "summary",
+    name: "Summary",
+  },
+]
 
 const useStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "#0059b3",
-  },
-  icon: {
-    color: "#fff",
-    paddingLeft: "20px",
-    paddingRight: "10px",
   },
 }))
 
@@ -29,47 +52,30 @@ const useStyles = makeStyles(theme => ({
  */
 
 const PlasmidCatalogAppBar = () => {
-  const {
-    helpDialogOpen,
-    setHelpDialogOpen,
-  }: {
-    helpDialogOpen: boolean,
-    setHelpDialogOpen: Function,
-  } = usePlasmidCatalogState()
+  const { setQuery, setQueryVariables } = usePlasmidCatalogState()
   const classes = useStyles()
 
-  const handleClick = () => {
-    setHelpDialogOpen(!helpDialogOpen)
-  }
-
   return (
-    <>
+    <AppBarProvider>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Grid container justify="flex-start">
             <PlasmidCatalogAppBarLeftMenu />
           </Grid>
           <Grid container justify="center">
-            <PlasmidCatalogAppBarSearch />
+            <AppBarSearch
+              query={GET_PLASMIDS_FILTER}
+              dropdownItems={dropdownItems}
+              setQuery={setQuery}
+              setQueryVariables={setQueryVariables}
+            />
           </Grid>
           <Grid container justify="flex-end">
             <AppBarRightMenu />
-            <IconButton
-              size="small"
-              className={classes.icon}
-              onClick={handleClick}
-              title="Help"
-              aria-label="Learn more about the plasmid catalog page">
-              <FontAwesomeIcon icon="question-circle" />
-            </IconButton>
           </Grid>
         </Toolbar>
       </AppBar>
-      <HelpDialog
-        helpDialogOpen={helpDialogOpen}
-        setHelpDialogOpen={setHelpDialogOpen}
-      />
-    </>
+    </AppBarProvider>
   )
 }
 

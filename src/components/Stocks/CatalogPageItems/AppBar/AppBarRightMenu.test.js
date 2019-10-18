@@ -1,22 +1,29 @@
 import React from "react"
-import { shallow } from "enzyme"
-import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
+import { mount } from "enzyme"
+import AppBarRightMenu from "./AppBarRightMenu"
 import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { AppBarProvider } from "./AppBarContext"
 
 describe("Stocks/CatalogPageItems/AppBar/AppBarRightMenu", () => {
   describe("initial render", () => {
-    const wrapper = shallow(<AppBarRightMenu />)
+    const props = {
+      dropdownItems: [],
+      query: "test query",
+      setQuery: jest.fn(),
+      setQueryVariables: jest.fn(),
+    }
+    const wrapper = mount(
+      <AppBarProvider>
+        <AppBarRightMenu {...props} />
+      </AppBarProvider>,
+    )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(3)
+      expect(wrapper.find(IconButton)).toHaveLength(2)
       expect(wrapper.find(Menu)).toHaveLength(1)
-      expect(wrapper.find(MenuItem)).toHaveLength(2)
     })
   })
 })

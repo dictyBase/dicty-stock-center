@@ -12,12 +12,11 @@ export const StrainCatalogContext: Object = createContext()
 
 export const StrainCatalogProvider = ({ children }: any) => {
   const [query, setQuery] = useState<string>(GET_STRAIN_LIST)
-  const [variables, setVariables] = useState<Object>({ cursor: 0 })
-  const [filter, setFilter] = useState<string>("label")
+  const [queryVariables, setQueryVariables] = useState<Object>({
+    cursor: 0,
+  })
   const [checkedItems, setCheckedItems] = useState<Array<Object>>([])
   const [cartDialogOpen, setCartDialogOpen] = useState<boolean>(false)
-  const [searchValue, setSearchValue] = useState<string>("")
-  const [helpDialogOpen, setHelpDialogOpen] = useState<boolean>(false)
 
   const handleCheckboxChange = (id: string, label: string, summary: string) => (
     event: SyntheticEvent<>,
@@ -41,20 +40,14 @@ export const StrainCatalogProvider = ({ children }: any) => {
       value={{
         query,
         setQuery,
-        variables,
-        setVariables,
-        filter,
-        setFilter,
-        checkedItems,
-        setCheckedItems,
+        queryVariables,
+        setQueryVariables,
         cartDialogOpen,
         setCartDialogOpen,
+        checkedItems,
+        setCheckedItems,
         handleCheckboxChange,
         handleCheckAllChange,
-        searchValue,
-        setSearchValue,
-        helpDialogOpen,
-        setHelpDialogOpen,
       }}>
       {children}
     </StrainCatalogContext.Provider>

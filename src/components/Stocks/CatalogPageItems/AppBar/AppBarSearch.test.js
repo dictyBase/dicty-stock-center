@@ -1,18 +1,24 @@
 import React from "react"
 import { mount } from "enzyme"
-import StrainCatalogAppBarSearch from "components/Stocks/Strains/Catalog/StrainCatalogAppBarSearch"
+import AppBarSearch from "./AppBarSearch"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StrainCatalogProvider } from "./StrainCatalogContext"
+import { AppBarProvider } from "./AppBarContext"
 
-describe("Stocks/Strains/Catalog/StrainCatalogAppBarSearch", () => {
+describe("Stocks/Strains/Catalog/AppBarSearch", () => {
   describe("initial render", () => {
+    const props = {
+      dropdownItems: [],
+      query: "test query",
+      setQuery: jest.fn(),
+      setQueryVariables: jest.fn(),
+    }
     const wrapper = mount(
-      <StrainCatalogProvider>
-        <StrainCatalogAppBarSearch />
-      </StrainCatalogProvider>,
+      <AppBarProvider>
+        <AppBarSearch {...props} />
+      </AppBarProvider>,
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

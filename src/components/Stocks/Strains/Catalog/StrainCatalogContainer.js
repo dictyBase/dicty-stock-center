@@ -44,11 +44,11 @@ const useStyles = makeStyles({
 export const StrainCatalogContainer = () => {
   const {
     query,
-    variables,
+    queryVariables,
     setQuery,
   }: {
     query: string,
-    variables: Object,
+    queryVariables: Object,
     setQuery: Function,
   } = useStrainCatalogState()
   const classes = useStyles()
@@ -56,7 +56,7 @@ export const StrainCatalogContainer = () => {
   let content
 
   return (
-    <Query query={query} variables={variables}>
+    <Query query={query} variables={queryVariables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <StockDetailsLoader />
 
@@ -69,7 +69,7 @@ export const StrainCatalogContainer = () => {
               data={data.listStrains.strains}
               fetchMore={fetchMore}
               cursor={data.listStrains.nextCursor}
-              filter={variables.filter}
+              filter={queryVariables.filter}
             />
           )
         }
