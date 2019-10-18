@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import PlasmidCatalogAppBarLeftMenu from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarLeftMenu"
 import PlasmidCatalogAppBarSearch from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarSearch"
-import PlasmidCatalogAppBarRightMenu from "components/Stocks/Plasmids/Catalog/PlasmidCatalogAppBarRightMenu"
+import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
 
 describe("Stocks/Plasmids/Catalog/PlasmidCatalogAppBar", () => {
@@ -23,7 +23,7 @@ describe("Stocks/Plasmids/Catalog/PlasmidCatalogAppBar", () => {
       expect(wrapper.find(Toolbar)).toHaveLength(1)
       expect(wrapper.find(PlasmidCatalogAppBarLeftMenu)).toHaveLength(1)
       expect(wrapper.find(PlasmidCatalogAppBarSearch)).toHaveLength(1)
-      expect(wrapper.find(PlasmidCatalogAppBarRightMenu)).toHaveLength(1)
+      expect(wrapper.find(AppBarRightMenu)).toHaveLength(1)
     })
   })
 })

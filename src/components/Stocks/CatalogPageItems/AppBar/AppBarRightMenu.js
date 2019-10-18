@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 /**
- * StrainCatalogAppBarRightMenu contains the icon and display logic
+ * AppBarRightMenu contains the icon and display logic
  * for the right menu in the app bar.
  */
 
-const StrainCatalogAppBarRightMenu = () => {
+const AppBarRightMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const classes = useStyles()
@@ -41,7 +41,7 @@ const StrainCatalogAppBarRightMenu = () => {
         className={classes.icon}
         onClick={handleClick}
         title="More options"
-        aria-label="More options for strain catalog page">
+        aria-label="More options for stock catalog page">
         <FontAwesomeIcon icon="ellipsis-v" />
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
@@ -58,4 +58,4 @@ const StrainCatalogAppBarRightMenu = () => {
   )
 }
 
-export default StrainCatalogAppBarRightMenu
+export default AppBarRightMenu

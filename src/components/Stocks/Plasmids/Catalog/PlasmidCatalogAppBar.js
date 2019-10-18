@@ -8,9 +8,9 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PlasmidCatalogAppBarLeftMenu from "./PlasmidCatalogAppBarLeftMenu"
 import PlasmidCatalogAppBarSearch from "./PlasmidCatalogAppBarSearch"
-import PlasmidCatalogAppBarRightMenu from "./PlasmidCatalogAppBarRightMenu"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 import HelpDialog from "components/Stocks/CatalogPageItems/HelpDialog"
+import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -53,7 +53,7 @@ const PlasmidCatalogAppBar = () => {
             <PlasmidCatalogAppBarSearch />
           </Grid>
           <Grid container justify="flex-end">
-            <PlasmidCatalogAppBarRightMenu />
+            <AppBarRightMenu />
             <IconButton
               size="small"
               className={classes.icon}

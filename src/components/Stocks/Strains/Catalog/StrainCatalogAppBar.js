@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import StrainCatalogAppBarLeftMenu from "./StrainCatalogAppBarLeftMenu"
 import StrainCatalogAppBarSearch from "./StrainCatalogAppBarSearch"
-import StrainCatalogAppBarRightMenu from "./StrainCatalogAppBarRightMenu"
+import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { useStrainCatalogState } from "./StrainCatalogContext"
 import HelpDialog from "components/Stocks/CatalogPageItems/HelpDialog"
 
@@ -55,7 +55,7 @@ const StrainCatalogAppBar = () => {
             </Grid>
           </Grid>
           <Grid container justify="flex-end">
-            <StrainCatalogAppBarRightMenu />
+            <AppBarRightMenu />
             <IconButton
               size="small"
               className={classes.icon}
