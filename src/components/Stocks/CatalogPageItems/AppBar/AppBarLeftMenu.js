@@ -16,12 +16,18 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  dropdownItems: Array<{
+    name: string,
+  }>,
+}
+
 /**
- * PlasmidCatalogAppBarLeftMenu handles everything related to the
+ * AppBarLeftMenu handles everything related to the
  * left side of the app bar.
  */
 
-const PlasmidCatalogAppBarLeftMenu = () => {
+const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const classes = useStyles()
@@ -39,22 +45,23 @@ const PlasmidCatalogAppBarLeftMenu = () => {
       <IconButton
         size="small"
         className={classes.icon}
-        onClick={handleIconClick}>
+        onClick={handleIconClick}
+        title="Filter options"
+        aria-label="Filter options for stock catalog page">
         <FontAwesomeIcon icon="cog" />
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleItemClick}>
-        <MenuItem onClick={handleItemClick} className={classes.menuItem}>
-          All Plasmids &nbsp; <FontAwesomeIcon icon="check-circle" size="sm" />
-        </MenuItem>
-        <MenuItem onClick={handleItemClick} className={classes.menuItem}>
-          Available Plasmids
-        </MenuItem>
-        <MenuItem onClick={handleItemClick} className={classes.menuItem}>
-          Unavailable Plasmids
-        </MenuItem>
+        {dropdownItems.map(item => (
+          <MenuItem
+            onClick={handleItemClick}
+            className={classes.menuItem}
+            key={item.name}>
+            {item.name}
+          </MenuItem>
+        ))}
       </Menu>
     </>
   )
 }
 
-export default PlasmidCatalogAppBarLeftMenu
+export default AppBarLeftMenu

@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
-import StrainCatalogAppBarLeftMenu from "./StrainCatalogAppBarLeftMenu"
+import AppBarLeftMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarLeftMenu"
 import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
@@ -25,7 +25,22 @@ export const GET_STRAINS_FILTER = gql`
   }
 `
 
-const dropdownItems = [
+const leftDropdownItems = [
+  {
+    name: "All Strains",
+  },
+  {
+    name: "GWDI Strains",
+  },
+  {
+    name: "Available Strains",
+  },
+  {
+    name: "Unavailable Strains",
+  },
+]
+
+const rightDropdownItems = [
   {
     value: "id",
     name: "Strain ID",
@@ -60,13 +75,13 @@ const StrainCatalogAppBar = () => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Grid container justify="flex-start">
-            <StrainCatalogAppBarLeftMenu />
+            <AppBarLeftMenu dropdownItems={leftDropdownItems} />
           </Grid>
           <Grid container justify="center" alignItems="center">
             <Grid item xs={12}>
               <AppBarSearch
                 query={GET_STRAINS_FILTER}
-                dropdownItems={dropdownItems}
+                dropdownItems={rightDropdownItems}
                 setQuery={setQuery}
                 setQueryVariables={setQueryVariables}
               />

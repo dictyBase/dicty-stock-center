@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
-import PlasmidCatalogAppBarLeftMenu from "./PlasmidCatalogAppBarLeftMenu"
+import AppBarLeftMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarLeftMenu"
 import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
@@ -25,7 +25,19 @@ export const GET_PLASMIDS_FILTER = gql`
   }
 `
 
-const dropdownItems = [
+const leftDropdownItems = [
+  {
+    name: "All Plasmids",
+  },
+  {
+    name: "Available Plasmids",
+  },
+  {
+    name: "Unavailable Plasmids",
+  },
+]
+
+const rightDropdownItems = [
   {
     value: "id",
     name: "Plasmid ID",
@@ -60,12 +72,12 @@ const PlasmidCatalogAppBar = () => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Grid container justify="flex-start">
-            <PlasmidCatalogAppBarLeftMenu />
+            <AppBarLeftMenu dropdownItems={leftDropdownItems} />
           </Grid>
           <Grid container justify="center">
             <AppBarSearch
               query={GET_PLASMIDS_FILTER}
-              dropdownItems={dropdownItems}
+              dropdownItems={rightDropdownItems}
               setQuery={setQuery}
               setQueryVariables={setQueryVariables}
             />
