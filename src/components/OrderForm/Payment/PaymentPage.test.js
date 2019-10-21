@@ -14,7 +14,6 @@ import PaymentInfoBox from "./PaymentInfoBox"
 describe("OrderForm/Payment/PaymentPage", () => {
   const setPageNumSpy = sinon.spy()
   const props = {
-    classes: {},
     values: {
       payerFirstName: "john",
       payerLastName: "doe",
@@ -36,12 +35,12 @@ describe("OrderForm/Payment/PaymentPage", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(10)
-      expect(wrapper.dive().find(PanelWrapper)).toHaveLength(2)
-      expect(wrapper.dive().find(PaymentAddress)).toHaveLength(1)
-      expect(wrapper.dive().find(PaymentMethod)).toHaveLength(1)
-      expect(wrapper.dive().find(PaymentInfoBox)).toHaveLength(1)
-      expect(wrapper.dive().find(Button)).toHaveLength(2)
+      expect(wrapper.find(Grid)).toHaveLength(10)
+      expect(wrapper.find(PanelWrapper)).toHaveLength(2)
+      expect(wrapper.find(PaymentAddress)).toHaveLength(1)
+      expect(wrapper.find(PaymentMethod)).toHaveLength(1)
+      expect(wrapper.find(PaymentInfoBox)).toHaveLength(1)
+      expect(wrapper.find(Button)).toHaveLength(2)
     })
   })
   describe("clicking previous button", () => {

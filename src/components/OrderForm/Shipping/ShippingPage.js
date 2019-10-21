@@ -1,7 +1,6 @@
 // @flow
 import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
 import DialogContent from "@material-ui/core/DialogContent"
@@ -12,11 +11,9 @@ import PanelWrapper from "components/common/PanelWrapper"
 import ShippingAddress from "./ShippingAddress"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
-import styles from "../formStyles"
+import useStyles from "../formStyles"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Values from Formik */
   values: Object,
   /** Current order form page number */
@@ -31,7 +28,8 @@ type Props = {
 
 const ShippingPage = (props: Props) => {
   const [modalOpen, setModalOpen] = useState(false)
-  const { classes, values, pageNum, setPageNum } = props
+  const classes = useStyles()
+  const { values, pageNum, setPageNum } = props
 
   const validationChecker = () => {
     const fields = [
@@ -106,4 +104,4 @@ const ShippingPage = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(ShippingPage)
+export default ShippingPage

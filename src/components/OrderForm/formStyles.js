@@ -1,5 +1,7 @@
 // @flow
-const styles = (theme: Object) => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles({
   layout: {
     width: "80%",
     marginLeft: "auto",
@@ -58,6 +60,23 @@ const styles = (theme: Object) => ({
   selectBox: {
     marginTop: "8px",
   },
+  alertBox: {
+    padding: "15px",
+    marginBottom: "20px",
+    border: "1px solid transparent",
+    borderRadius: "4px",
+    color: "#3c763d",
+    backgroundColor: "#dff0d8",
+    borderColor: "#d6e9c6",
+    textAlign: "center",
+  },
+  btn: {
+    marginBottom: "10px",
+    backgroundColor: "#004080",
+    "&:hover": {
+      backgroundColor: "#0073e6",
+    },
+  },
 })
 
-export default styles
+export default useStyles

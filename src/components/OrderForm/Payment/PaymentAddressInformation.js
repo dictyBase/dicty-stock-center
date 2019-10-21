@@ -1,17 +1,14 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Select from "@material-ui/core/Select"
 import OutlinedInput from "@material-ui/core/OutlinedInput"
 import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "../TextField"
 import countryList from "../countryList"
-import styles from "../formStyles"
+import useStyles from "../formStyles"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Function to manually set Formik field values */
   setFieldValue: Function,
   /** Values from Formik */
@@ -23,7 +20,8 @@ type Props = {
  */
 
 const PaymentAddressInformation = (props: Props) => {
-  const { classes, values, setFieldValue } = props
+  const { values, setFieldValue } = props
+  const classes = useStyles()
 
   return (
     <>
@@ -87,4 +85,4 @@ const PaymentAddressInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PaymentAddressInformation)
+export default PaymentAddressInformation

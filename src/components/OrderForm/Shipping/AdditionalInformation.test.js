@@ -5,19 +5,14 @@ import Grid from "@material-ui/core/Grid"
 import TextField from "../TextField"
 
 describe("OrderForm/Shipping/AdditionalInformation", () => {
-  const props = {
-    classes: {
-      innerForm: "innerForm",
-    },
-  }
-  const wrapper = shallow(<AdditionalInformation {...props} />)
+  const wrapper = shallow(<AdditionalInformation />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(3)
-      expect(wrapper.dive().find(TextField)).toHaveLength(1)
+      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(TextField)).toHaveLength(1)
     })
   })
 })

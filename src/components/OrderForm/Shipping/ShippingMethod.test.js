@@ -11,10 +11,6 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
   const handleChangeSpy = sinon.spy()
   const setFieldValueSpy = sinon.spy()
   const props = {
-    classes: {
-      requiredText: "requiredText",
-      innerForm: "innerForm",
-    },
     handleChange: handleChangeSpy,
     setFieldValue: setFieldValueSpy,
   }
@@ -24,10 +20,10 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(3)
-      expect(wrapper.dive().find(TextField)).toHaveLength(1)
-      expect(wrapper.dive().find(RadioGroup)).toHaveLength(1)
-      expect(wrapper.dive().find(FormControlLabel)).toHaveLength(4)
+      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(TextField)).toHaveLength(1)
+      expect(wrapper.find(RadioGroup)).toHaveLength(1)
+      expect(wrapper.find(FormControlLabel)).toHaveLength(4)
     })
   })
   describe("radio button interactions", () => {

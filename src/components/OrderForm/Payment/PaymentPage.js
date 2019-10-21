@@ -1,7 +1,6 @@
 // @flow
 import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
 import Button from "@material-ui/core/Button"
@@ -14,11 +13,9 @@ import PanelWrapper from "components/common/PanelWrapper"
 import PaymentAddress from "./PaymentAddress"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
-import styles from "../formStyles"
+import useStyles from "../formStyles"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Function to manually set Formik field values */
   setFieldValue: Function,
   /** Values from Formik */
@@ -36,7 +33,8 @@ type Props = {
 const PaymentPage = (props: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const { classes, setFieldValue, values, pageNum, setPageNum } = props
+  const classes = useStyles()
+  const { setFieldValue, values, pageNum, setPageNum } = props
 
   const validationChecker = () => {
     const fields = [
@@ -148,4 +146,4 @@ const PaymentPage = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PaymentPage)
+export default PaymentPage

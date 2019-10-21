@@ -6,21 +6,15 @@ import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("OrderForm/OrderConfirmation", () => {
-  const props = {
-    classes: {
-      alertBox: "alertBox",
-      btn: "btn",
-    },
-  }
-  const wrapper = shallow(<OrderConfirmation {...props} />)
+  const wrapper = shallow(<OrderConfirmation />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(5)
-      expect(wrapper.dive().find(Button)).toHaveLength(1)
-      expect(wrapper.dive().find(FontAwesomeIcon)).toHaveLength(2)
+      expect(wrapper.find(Grid)).toHaveLength(5)
+      expect(wrapper.find(Button)).toHaveLength(1)
+      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
     })
   })
 })

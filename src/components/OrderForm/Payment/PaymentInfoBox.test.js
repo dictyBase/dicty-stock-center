@@ -4,18 +4,13 @@ import PaymentInfoBox from "./PaymentInfoBox"
 import Grid from "@material-ui/core/Grid"
 
 describe("OrderForm/Payment/PaymentInfoBox", () => {
-  const props = {
-    classes: {
-      panelBlue: "panelBlue",
-    },
-  }
-  const wrapper = shallow(<PaymentInfoBox {...props} />)
+  const wrapper = shallow(<PaymentInfoBox />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(3)
     })
   })
 })

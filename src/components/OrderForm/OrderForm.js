@@ -5,14 +5,13 @@ import { Form, Formik } from "formik"
 import gql from "graphql-tag"
 import { useMutation } from "@apollo/react-hooks"
 import { Helmet } from "react-helmet"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
 import initialValues from "./initialValues"
 import validationSchema from "./validationSchema"
-import styles from "./formStyles"
+import useStyles from "./formStyles"
 import { removeItem } from "actions/cart"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
@@ -26,8 +25,6 @@ const POST_ORDER = gql`
 `
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Action to remove items from the cart */
   removeItem: Function,
   /** Items currently in the cart */
@@ -45,8 +42,8 @@ type Props = {
  * OrderForm is the main component used for the checkout process.
  */
 
-export const OrderForm = (props: Props) => {
-  const { classes, items, removeItem } = props
+export const OrderForm = ({ items, removeItem, history }: Props) => {
+  const classes = useStyles()
   const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
   const [createOrder] = useMutation(POST_ORDER)
@@ -79,7 +76,6 @@ export const OrderForm = (props: Props) => {
                 },
               },
             })
-            const { history } = props
             history.push("/order/submitted")
             items.forEach(item => removeItem(item.id))
           }}
@@ -111,4 +107,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(OrderForm))
+)(OrderForm)

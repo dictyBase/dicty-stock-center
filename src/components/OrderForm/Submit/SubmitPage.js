@@ -1,15 +1,12 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
-import styles from "../formStyles"
+import useStyles from "../formStyles"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Formik value to indicate if form is being submitted */
   isSubmitting: boolean,
   /** Current order form page number */
@@ -23,7 +20,8 @@ type Props = {
  */
 
 export const SubmitPage = (props: Props) => {
-  const { classes, pageNum, setPageNum, isSubmitting } = props
+  const classes = useStyles()
+  const { pageNum, setPageNum, isSubmitting } = props
 
   return (
     <Grid container spacing={2} className={classes.innerForm}>
@@ -71,4 +69,4 @@ export const SubmitPage = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(SubmitPage)
+export default SubmitPage

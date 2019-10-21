@@ -1,21 +1,15 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import TextField from "../TextField"
-import styles from "../formStyles"
-
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
+import useStyles from "../formStyles"
 
 /**
  * AdditionalInformation contains a text area for entering any optional comments.
  */
 
-const AdditionalInformation = (props: Props) => {
-  const { classes } = props
+const AdditionalInformation = () => {
+  const classes = useStyles()
 
   return (
     <Grid
@@ -39,4 +33,4 @@ const AdditionalInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(AdditionalInformation)
+export default AdditionalInformation

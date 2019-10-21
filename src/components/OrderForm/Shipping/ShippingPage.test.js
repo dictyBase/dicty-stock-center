@@ -12,7 +12,6 @@ import AdditionalInformation from "./AdditionalInformation"
 describe("OrderForm/Shipping/ShippingPage", () => {
   const setPageNumSpy = sinon.spy()
   const props = {
-    classes: {},
     values: {
       firstName: "john",
       lastName: "doe",
@@ -34,17 +33,17 @@ describe("OrderForm/Shipping/ShippingPage", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(8)
-      expect(wrapper.dive().find(PanelWrapper)).toHaveLength(3)
-      expect(wrapper.dive().find(ShippingAddress)).toHaveLength(1)
-      expect(wrapper.dive().find(ShippingMethod)).toHaveLength(1)
-      expect(wrapper.dive().find(AdditionalInformation)).toHaveLength(1)
-      expect(wrapper.dive().find(Button)).toHaveLength(1)
+      expect(wrapper.find(Grid)).toHaveLength(8)
+      expect(wrapper.find(PanelWrapper)).toHaveLength(3)
+      expect(wrapper.find(ShippingAddress)).toHaveLength(1)
+      expect(wrapper.find(ShippingMethod)).toHaveLength(1)
+      expect(wrapper.find(AdditionalInformation)).toHaveLength(1)
+      expect(wrapper.find(Button)).toHaveLength(1)
     })
   })
   describe("clicking continue button", () => {
     it("should update page number on click", () => {
-      const btn = wrapper.dive().find(Button)
+      const btn = wrapper.find(Button)
       btn.simulate("click")
       expect(setPageNumSpy.calledOnce).toBe(true)
     })

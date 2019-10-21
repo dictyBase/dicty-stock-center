@@ -1,21 +1,15 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
 import { Grid } from "@material-ui/core"
 import TextField from "../TextField"
-import styles from "../formStyles"
-
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
+import useStyles from "../formStyles"
 
 /**
  * PaymentOrganizationInformation contains text fields for organization and lab/group.
  */
 
 const PaymentOrganizationInformation = (props: Props) => {
-  const { classes } = props
+  const classes = useStyles()
 
   return (
     <>
@@ -35,4 +29,4 @@ const PaymentOrganizationInformation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PaymentOrganizationInformation)
+export default PaymentOrganizationInformation

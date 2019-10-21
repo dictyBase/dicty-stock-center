@@ -1,20 +1,14 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
-import styles from "../formStyles"
-
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
+import useStyles from "../formStyles"
 
 /**
  * PaymentInfoBox contains general information about making a payment.
  */
 
-const PaymentInfoBox = (props: Props) => {
-  const { classes } = props
+const PaymentInfoBox = () => {
+  const classes = useStyles()
 
   return (
     <Grid container>
@@ -55,4 +49,4 @@ const PaymentInfoBox = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PaymentInfoBox)
+export default PaymentInfoBox

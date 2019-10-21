@@ -7,21 +7,16 @@ import AddressInformation from "./AddressInformation"
 import ContactInformation from "./ContactInformation"
 
 describe("OrderForm/Shipping/ShippingAddress", () => {
-  const props = {
-    classes: {
-      innerForm: "innerForm",
-    },
-  }
-  const wrapper = shallow(<ShippingAddress {...props} />)
+  const wrapper = shallow(<ShippingAddress />)
   describe("initial render", () => {
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(PersonalInformation)).toHaveLength(1)
-      expect(wrapper.dive().find(OrganizationInformation)).toHaveLength(1)
-      expect(wrapper.dive().find(AddressInformation)).toHaveLength(1)
-      expect(wrapper.dive().find(ContactInformation)).toHaveLength(1)
+      expect(wrapper.find(PersonalInformation)).toHaveLength(1)
+      expect(wrapper.find(OrganizationInformation)).toHaveLength(1)
+      expect(wrapper.find(AddressInformation)).toHaveLength(1)
+      expect(wrapper.find(ContactInformation)).toHaveLength(1)
     })
   })
 })

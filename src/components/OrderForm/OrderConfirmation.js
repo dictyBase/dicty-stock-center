@@ -1,42 +1,17 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
-const styles = theme => ({
-  alertBox: {
-    padding: "15px",
-    marginBottom: "20px",
-    border: "1px solid transparent",
-    borderRadius: "4px",
-    color: "#3c763d",
-    backgroundColor: "#dff0d8",
-    borderColor: "#d6e9c6",
-    textAlign: "center",
-  },
-  btn: {
-    marginBottom: "10px",
-    backgroundColor: "#004080",
-    "&:hover": {
-      backgroundColor: "#0073e6",
-    },
-  },
-})
-
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
+import useStyles from "./formStyles"
 
 /**
  * Displays notification that the user's order was submitted successfully.
  */
 
-export const OrderConfirmation = (props: Props) => {
-  const { classes } = props
+export const OrderConfirmation = () => {
+  const classes = useStyles()
 
   return (
     <Grid container wrap="wrap" justify="center">
@@ -71,4 +46,4 @@ export const OrderConfirmation = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(OrderConfirmation)
+export default OrderConfirmation

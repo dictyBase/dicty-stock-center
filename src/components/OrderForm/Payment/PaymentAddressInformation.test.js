@@ -7,9 +7,6 @@ import TextField from "../TextField"
 
 describe("OrderForm/Shipping/PaymentAddressInformation", () => {
   const props = {
-    classes: {
-      requiredText: "requiredText",
-    },
     values: {
       country: "Iceland",
     },
@@ -20,9 +17,9 @@ describe("OrderForm/Shipping/PaymentAddressInformation", () => {
       expect(wrapper).toHaveLength(1)
     })
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(Grid)).toHaveLength(12)
-      expect(wrapper.dive().find(TextField)).toHaveLength(5)
-      expect(wrapper.dive().find(Select)).toHaveLength(1)
+      expect(wrapper.find(Grid)).toHaveLength(12)
+      expect(wrapper.find(TextField)).toHaveLength(5)
+      expect(wrapper.find(Select)).toHaveLength(1)
     })
   })
 })

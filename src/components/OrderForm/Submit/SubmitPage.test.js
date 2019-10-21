@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 describe("OrderForm/Submit/SubmitPage", () => {
   const setPageNumSpy = sinon.spy()
   const props = {
-    classes: {},
     items: data,
     setPageNum: setPageNumSpy,
   }

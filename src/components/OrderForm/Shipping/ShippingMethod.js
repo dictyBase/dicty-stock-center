@@ -1,16 +1,13 @@
 // @flow
 import React, { useState } from "react"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import TextField from "../TextField"
-import styles from "../formStyles"
+import useStyles from "../formStyles"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** Function for handling radio button selection */
   handleChange: Function,
   /** Function to manually set Formik field values */
@@ -24,7 +21,8 @@ type Props = {
 const ShippingMethod = (props: Props) => {
   const [shipAccountNum, setShipAccountNum] = useState(true)
   const [prepaidNotice, setPrepaidNotice] = useState(false)
-  const { classes, handleChange, setFieldValue } = props
+  const classes = useStyles()
+  const { handleChange, setFieldValue } = props
 
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
@@ -99,4 +97,4 @@ const ShippingMethod = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(ShippingMethod)
+export default ShippingMethod
