@@ -23,7 +23,7 @@ type Props = {
  */
 
 export const SubmitPage = (props: Props) => {
-  const { classes, pageNum, setPageNum } = props
+  const { classes, pageNum, setPageNum, isSubmitting } = props
 
   return (
     <Grid container spacing={2} className={classes.innerForm}>
@@ -59,7 +59,7 @@ export const SubmitPage = (props: Props) => {
               type="submit"
               size="large"
               className={classes.submitBtn}
-              disabled={props.isSubmitting}>
+              disabled={isSubmitting}>
               Submit Order &nbsp;
               <FontAwesomeIcon icon="check-circle" />
             </Button>

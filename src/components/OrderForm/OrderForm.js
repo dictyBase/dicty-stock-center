@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 import { Form, Formik } from "formik"
 import gql from "graphql-tag"
-import { Mutation } from "react-apollo"
+import { useMutation } from "@apollo/react-hooks"
 import { Helmet } from "react-helmet"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
@@ -46,9 +46,10 @@ type Props = {
  */
 
 export const OrderForm = (props: Props) => {
-  const [pageNum, setPageNum] = useState(0)
   const { classes, items, removeItem } = props
+  const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
+  const [createOrder] = useMutation(POST_ORDER)
 
   return (
     <Grid container spacing={2} className={classes.layout}>
@@ -57,45 +58,41 @@ export const OrderForm = (props: Props) => {
         <meta name="description" content="Order form for Dicty Stock Center" />
       </Helmet>
       <Grid item xs={12}>
-        <Mutation mutation={POST_ORDER}>
-          {(createOrder, { loading, error }) => (
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={async (values, actions) => {
-                actions.setSubmitting(false)
-                await createOrder({
-                  variables: {
-                    input: {
-                      courier: values.shippingAccount,
-                      courier_account: values.shippingAccountNumber,
-                      comments: values.comments,
-                      payment: values.paymentMethod,
-                      purchase_order_num: values.purchaseOrderNum,
-                      status: "IN_PREPARATION",
-                      consumer: values.email,
-                      payer: values.payerEmail,
-                      purchaser: values.email,
-                      items: items.map(item => item.id),
-                    },
-                  },
-                })
-                items.forEach(item => removeItem(item.id))
-                const { history } = props
-                history.push("/order/submitted")
-              }}
-              render={props => (
-                <Form>
-                  <PageComponent
-                    {...props}
-                    pageNum={pageNum}
-                    setPageNum={setPageNum}
-                  />
-                </Form>
-              )}
-            />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={async (values, actions) => {
+            actions.setSubmitting(false)
+            await createOrder({
+              variables: {
+                input: {
+                  courier: values.shippingAccount,
+                  courier_account: values.shippingAccountNumber,
+                  comments: values.comments,
+                  payment: values.paymentMethod,
+                  purchase_order_num: values.purchaseOrderNum,
+                  status: "IN_PREPARATION",
+                  consumer: values.email,
+                  payer: values.payerEmail,
+                  purchaser: values.email,
+                  items: items.map(item => item.id),
+                },
+              },
+            })
+            items.forEach(item => removeItem(item.id))
+            const { history } = props
+            history.push("/order/submitted")
+          }}
+          render={props => (
+            <Form>
+              <PageComponent
+                {...props}
+                pageNum={pageNum}
+                setPageNum={setPageNum}
+              />
+            </Form>
           )}
-        </Mutation>
+        />
       </Grid>
     </Grid>
   )

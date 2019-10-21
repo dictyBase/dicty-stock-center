@@ -48,7 +48,10 @@ const AppBarRightMenu = () => {
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
         {dropdownItems.map(item => (
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <MenuItem
+            key={item}
+            onClick={handleClose}
+            className={classes.menuItem}>
             <FontAwesomeIcon icon="download" size="sm" />
             &nbsp; {item}
           </MenuItem>

@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import { MockedProvider } from "react-apollo/test-utils"
+import { MockedProvider } from "@apollo/react-testing"
 import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import configureMockStore from "redux-mock-store"
@@ -11,7 +11,6 @@ import PlasmidDetailsList from "./PlasmidDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import { Query } from "react-apollo"
 
 const mockStore = configureMockStore()
 const store = mockStore({})
@@ -68,9 +67,6 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
-    })
-    it("always renders initial components", () => {
-      expect(wrapper.find(Query)).toHaveLength(1)
     })
     it("renders Loading component first", () => {
       expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)

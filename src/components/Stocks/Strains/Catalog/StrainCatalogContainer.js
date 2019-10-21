@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import gql from "graphql-tag"
-import { Query } from "react-apollo"
+import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
@@ -52,43 +52,40 @@ export const StrainCatalogContainer = () => {
     setQuery: Function,
   } = useStrainCatalogState()
   const classes = useStyles()
+  const { loading, error, data, fetchMore } = useQuery(query, {
+    variables: queryVariables,
+  })
 
   let content
 
+  if (loading) return <StockDetailsLoader />
+
+  if (error) {
+    content = <CatalogErrorMessage error={error} />
+    setQuery(GET_STRAIN_LIST)
+  } else {
+    content = (
+      <StrainCatalogList
+        data={data.listStrains.strains}
+        fetchMore={fetchMore}
+        cursor={data.listStrains.nextCursor}
+        filter={queryVariables.filter}
+      />
+    )
+  }
+
   return (
-    <Query query={query} variables={queryVariables}>
-      {({ loading, error, data, fetchMore }) => {
-        if (loading) return <StockDetailsLoader />
-
-        if (error) {
-          content = <CatalogErrorMessage error={error} />
-          setQuery(GET_STRAIN_LIST)
-        } else {
-          content = (
-            <StrainCatalogList
-              data={data.listStrains.strains}
-              fetchMore={fetchMore}
-              cursor={data.listStrains.nextCursor}
-              filter={queryVariables.filter}
-            />
-          )
-        }
-
-        return (
-          <Grid container className={classes.layout}>
-            <Grid item xs={12}>
-              <StockDetailsHeader title="Strain Catalog" />
-            </Grid>
-            <Grid item xs={12}>
-              <StrainCatalogAppBar />
-            </Grid>
-            <Grid item xs={12}>
-              {content}
-            </Grid>
-          </Grid>
-        )
-      }}
-    </Query>
+    <Grid container className={classes.layout}>
+      <Grid item xs={12}>
+        <StockDetailsHeader title="Strain Catalog" />
+      </Grid>
+      <Grid item xs={12}>
+        <StrainCatalogAppBar />
+      </Grid>
+      <Grid item xs={12}>
+        {content}
+      </Grid>
+    </Grid>
   )
 }
 

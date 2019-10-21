@@ -60,7 +60,7 @@ type Props = {
 
 export const ShoppingCartItems = ({ items, removeItem }: Props) => {
   const classes = useStyles()
-
+  console.log(items)
   // get the total fee for combined items in cart
   const total = items
     .map(item => Number(item.fee))

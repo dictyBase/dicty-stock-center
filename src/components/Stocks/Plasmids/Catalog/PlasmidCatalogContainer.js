@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import gql from "graphql-tag"
-import { Query } from "react-apollo"
+import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
@@ -52,43 +52,40 @@ export const PlasmidCatalogContainer = () => {
     setQuery: Function,
   } = usePlasmidCatalogState()
   const classes = useStyles()
+  const { loading, error, data, fetchMore } = useQuery(query, {
+    variables: queryVariables,
+  })
 
   let content
 
+  if (loading) return <StockDetailsLoader />
+
+  if (error) {
+    content = <CatalogErrorMessage error={error} />
+    setQuery(GET_PLASMID_LIST)
+  } else {
+    content = (
+      <PlasmidCatalogList
+        data={data.listPlasmids.plasmids}
+        fetchMore={fetchMore}
+        cursor={data.listPlasmids.nextCursor}
+        filter={queryVariables.filter}
+      />
+    )
+  }
+
   return (
-    <Query query={query} variables={queryVariables}>
-      {({ loading, error, data, fetchMore }) => {
-        if (loading) return <StockDetailsLoader />
-
-        if (error) {
-          content = <CatalogErrorMessage error={error} />
-          setQuery(GET_PLASMID_LIST)
-        } else {
-          content = (
-            <PlasmidCatalogList
-              data={data.listPlasmids.plasmids}
-              fetchMore={fetchMore}
-              cursor={data.listPlasmids.nextCursor}
-              filter={queryVariables.filter}
-            />
-          )
-        }
-
-        return (
-          <Grid container spacing={0} className={classes.layout}>
-            <Grid item xs={12}>
-              <StockDetailsHeader title="Plasmid Catalog" />
-            </Grid>
-            <Grid item xs={12}>
-              <PlasmidCatalogAppBar />
-            </Grid>
-            <Grid item xs={12}>
-              {content}
-            </Grid>
-          </Grid>
-        )
-      }}
-    </Query>
+    <Grid container spacing={0} className={classes.layout}>
+      <Grid item xs={12}>
+        <StockDetailsHeader title="Plasmid Catalog" />
+      </Grid>
+      <Grid item xs={12}>
+        <PlasmidCatalogAppBar />
+      </Grid>
+      <Grid item xs={12}>
+        {content}
+      </Grid>
+    </Grid>
   )
 }
 
