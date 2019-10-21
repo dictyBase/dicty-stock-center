@@ -1,5 +1,7 @@
 // @flow
-const styles = (theme: Object) => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     overflowX: "auto",
@@ -29,6 +31,6 @@ const styles = (theme: Object) => ({
     color: "#fff",
     fontWeight: "600",
   },
-})
+}))
 
-export default styles
+export default useStyles

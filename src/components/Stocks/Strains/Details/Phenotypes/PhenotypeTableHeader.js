@@ -1,11 +1,10 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
 import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import TableCell from "@material-ui/core/TableCell"
 import TableSortLabel from "@material-ui/core/TableSortLabel"
-import styles from "./PhenotypeTableStyles"
+import useStyles from "./phenotypeStyles"
 
 const columnData = [
   {
@@ -19,8 +18,6 @@ const columnData = [
 ]
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** The order to sort the column */
   order: any,
   /** The item to be ordered by */
@@ -34,7 +31,8 @@ type Props = {
  */
 
 const PhenotypeTableHeader = (props: Props) => {
-  const { classes, order, orderBy, onRequestSort } = props
+  const classes = useStyles()
+  const { order, orderBy, onRequestSort } = props
 
   const createSortHandler = property => event => {
     onRequestSort(event, property)
@@ -62,4 +60,4 @@ const PhenotypeTableHeader = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PhenotypeTableHeader)
+export default PhenotypeTableHeader

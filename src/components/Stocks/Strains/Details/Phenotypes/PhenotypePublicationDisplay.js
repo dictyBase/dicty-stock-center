@@ -20,8 +20,7 @@ type Props = {
  * PhenotypePublicationDisplay handles the display of the phenotype reference table cell.
  */
 
-const PhenotypePublicationDisplay = (props: Props) => {
-  const { data } = props
+const PhenotypePublicationDisplay = ({ data }: Props) => {
   const lastNames = data.authors.map(item => item.last_name)
 
   return (
