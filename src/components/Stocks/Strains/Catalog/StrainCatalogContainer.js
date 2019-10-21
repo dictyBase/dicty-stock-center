@@ -9,7 +9,7 @@ import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogError
 import StrainCatalogList from "./StrainCatalogList"
 import StrainCatalogAppBar from "./StrainCatalogAppBar"
 import { useStrainCatalogState } from "./StrainCatalogContext"
-import useStyles from "./strainCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {

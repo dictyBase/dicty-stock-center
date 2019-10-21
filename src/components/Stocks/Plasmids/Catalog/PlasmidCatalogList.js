@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
-import useStyles from "./plasmidCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 const GET_MORE_PLASMIDS_LIST = gql`
   query MorePlasmidsList($cursor: Int!, $filter: String) {

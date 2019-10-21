@@ -9,7 +9,7 @@ import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
-import useStyles from "./plasmidCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 export const GET_PLASMIDS_FILTER = gql`
   query PlasmidListFilter($cursor: Int!, $filter: String!) {

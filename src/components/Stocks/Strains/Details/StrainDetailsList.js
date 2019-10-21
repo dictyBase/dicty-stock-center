@@ -7,7 +7,7 @@ import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import useStyles from "./strainDetailsStyles"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 type Props = {
   data: {

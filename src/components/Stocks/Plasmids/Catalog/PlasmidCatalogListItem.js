@@ -14,7 +14,7 @@ import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 import { removeItem } from "actions/cart"
-import useStyles from "./plasmidCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 type Props = {
   index: number,

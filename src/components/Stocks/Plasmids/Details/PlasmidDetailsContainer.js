@@ -10,7 +10,7 @@ import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsH
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import useStyles from "./plasmidDetailsStyles"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 export const GET_PLASMID = gql`
   query Plasmid($id: ID!) {

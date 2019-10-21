@@ -9,7 +9,7 @@ import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogError
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import PlasmidCatalogAppBar from "./PlasmidCatalogAppBar"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
-import useStyles from "./plasmidCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {

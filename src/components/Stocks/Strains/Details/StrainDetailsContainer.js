@@ -12,7 +12,7 @@ import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsL
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import useStyles from "./strainDetailsStyles"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {

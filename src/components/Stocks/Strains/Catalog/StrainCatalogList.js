@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useStrainCatalogState } from "./StrainCatalogContext"
-import useStyles from "./strainCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {

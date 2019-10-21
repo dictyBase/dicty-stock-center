@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
-import useStyles from "./plasmidDetailsStyles"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 type Props = {
   data: {

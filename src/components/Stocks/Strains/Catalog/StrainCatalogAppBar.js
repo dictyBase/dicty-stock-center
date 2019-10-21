@@ -9,7 +9,7 @@ import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
 import { useStrainCatalogState } from "./StrainCatalogContext"
-import useStyles from "./strainCatalogStyles"
+import useStyles from "components/Stocks/CatalogPageItems/catalogStyles"
 
 export const GET_STRAINS_FILTER = gql`
   query StrainListFilter($cursor: Int!, $filter: String!) {
