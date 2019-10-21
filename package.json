@@ -122,7 +122,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && CI=true npm run test",
+      "pre-commit": "lint-staged && CI=true npm run test-coverage",
       "post-commit": "npm run local-ci-eric"
     }
   },
