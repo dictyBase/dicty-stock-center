@@ -5,12 +5,12 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import { makeStyles } from "@material-ui/styles"
 import PlasmidDetailsList from "./PlasmidDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import useStyles from "./plasmidDetailsStyles"
 
 export const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
@@ -32,17 +32,6 @@ export const GET_PLASMID = gql`
     }
   }
 `
-
-const useStyles = makeStyles({
-  layout: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    "& a": {
-      textDecoration: "none",
-    },
-  },
-})
 
 type Props = {
   /** React Router object */

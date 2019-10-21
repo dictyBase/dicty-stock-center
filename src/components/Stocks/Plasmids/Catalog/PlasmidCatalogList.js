@@ -4,11 +4,11 @@ import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
-import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
+import useStyles from "./plasmidCatalogStyles"
 
 const GET_MORE_PLASMIDS_LIST = gql`
   query MorePlasmidsList($cursor: Int!, $filter: String) {
@@ -23,13 +23,6 @@ const GET_MORE_PLASMIDS_LIST = gql`
     }
   }
 `
-
-const useStyles = makeStyles({
-  catalogPaper: {
-    height: 600,
-    width: "100%",
-  },
-})
 
 type Props = {
   data: Array<{

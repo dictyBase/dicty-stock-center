@@ -3,7 +3,6 @@ import React, { useState, memo } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { areEqual } from "react-window"
-import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
@@ -15,30 +14,7 @@ import { useStrainCatalogState } from "./StrainCatalogContext"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
-
-const useStyles = makeStyles({
-  listHeaders: {
-    position: "sticky",
-    top: 0,
-  },
-  row: {
-    borderBottom: "1px solid rgba(224, 224, 224, 1)",
-
-    "&:hover": {
-      backgroundColor: "#eeeeee",
-      boxShadow:
-        "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
-      zIndex: 1,
-    },
-  },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
-  item: {
-    paddingRight: "10px",
-  },
-})
+import useStyles from "./strainCatalogStyles"
 
 type Props = {
   index: number,

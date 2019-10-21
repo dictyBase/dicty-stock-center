@@ -3,13 +3,13 @@ import React from "react"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import PlasmidCatalogAppBar from "./PlasmidCatalogAppBar"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
+import useStyles from "./plasmidCatalogStyles"
 
 export const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
@@ -24,17 +24,6 @@ export const GET_PLASMID_LIST = gql`
     }
   }
 `
-
-const useStyles = makeStyles({
-  layout: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    "& a": {
-      textDecoration: "none",
-    },
-  },
-})
 
 /**
  * PlasmidCatalogContainer is the main component for the plasmid catalog page.

@@ -3,13 +3,13 @@ import React from "react"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import { makeStyles } from "@material-ui/styles"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import StrainCatalogList from "./StrainCatalogList"
 import StrainCatalogAppBar from "./StrainCatalogAppBar"
 import { useStrainCatalogState } from "./StrainCatalogContext"
+import useStyles from "./strainCatalogStyles"
 
 export const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
@@ -24,17 +24,6 @@ export const GET_STRAIN_LIST = gql`
     }
   }
 `
-
-const useStyles = makeStyles({
-  layout: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    "& a": {
-      textDecoration: "none",
-    },
-  },
-})
 
 /**
  * StrainCatalogContainer is the main component for the strain catalog page.

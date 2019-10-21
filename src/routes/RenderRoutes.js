@@ -69,7 +69,7 @@ const StrainCatalogWrapper = Loadable({
 const StrainDetailsContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
+      "components/Stocks/Strains/Details/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
     ),
   loading: StockDetailsLoader,
 })
@@ -85,7 +85,7 @@ const PlasmidCatalogWrapper = Loadable({
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
+      "components/Stocks/Plasmids/Details/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
     ),
   loading: StockDetailsLoader,
 })

@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import { makeStyles } from "@material-ui/styles"
 import StrainDetailsList from "./StrainDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
@@ -13,6 +12,7 @@ import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsL
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
+import useStyles from "./strainDetailsStyles"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {
@@ -63,17 +63,6 @@ export const GET_STRAIN = gql`
         }
       }
  */
-
-const useStyles = makeStyles({
-  layout: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    "& a": {
-      textDecoration: "none",
-    },
-  },
-})
 
 type Props = {
   /** React Router data */

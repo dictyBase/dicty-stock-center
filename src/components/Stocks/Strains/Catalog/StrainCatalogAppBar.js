@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import gql from "graphql-tag"
-import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
@@ -10,6 +9,7 @@ import AppBarSearch from "components/Stocks/CatalogPageItems/AppBar/AppBarSearch
 import AppBarRightMenu from "components/Stocks/CatalogPageItems/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/CatalogPageItems/AppBar/AppBarContext"
 import { useStrainCatalogState } from "./StrainCatalogContext"
+import useStyles from "./strainCatalogStyles"
 
 export const GET_STRAINS_FILTER = gql`
   query StrainListFilter($cursor: Int!, $filter: String!) {
@@ -54,12 +54,6 @@ const rightDropdownItems = [
     name: "Summary",
   },
 ]
-
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    backgroundColor: "#0059b3",
-  },
-}))
 
 /**
  * StrainCatalogAppBar is the main display component for the app bar

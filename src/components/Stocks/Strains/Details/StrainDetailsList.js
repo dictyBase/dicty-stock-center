@@ -3,28 +3,11 @@ import React, { Fragment } from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
-import { makeStyles } from "@material-ui/styles"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
-
-const useStyles = makeStyles({
-  header: {
-    textAlign: "center",
-    backgroundColor: "#0059b3",
-    color: "#fff",
-  },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
-  detailsPaper: {
-    width: "100%",
-    overflowX: "auto",
-    paddingBottom: "10px",
-  },
-})
+import useStyles from "./strainDetailsStyles"
 
 type Props = {
   data: {

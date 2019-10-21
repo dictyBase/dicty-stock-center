@@ -4,11 +4,11 @@ import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
-import { makeStyles } from "@material-ui/styles"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/CatalogPageItems/CatalogListHeader"
 import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useStrainCatalogState } from "./StrainCatalogContext"
+import useStyles from "./strainCatalogStyles"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -23,13 +23,6 @@ const GET_MORE_STRAINS_LIST = gql`
     }
   }
 `
-
-const useStyles = makeStyles({
-  catalogPaper: {
-    height: 600,
-    width: "100%",
-  },
-})
 
 type Props = {
   data: Array<{
