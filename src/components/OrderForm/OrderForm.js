@@ -79,9 +79,9 @@ export const OrderForm = (props: Props) => {
                 },
               },
             })
-            items.forEach(item => removeItem(item.id))
             const { history } = props
             history.push("/order/submitted")
+            items.forEach(item => removeItem(item.id))
           }}
           render={props => (
             <Form>
