@@ -1,13 +1,13 @@
 // @flow
 import React, { Fragment } from "react"
 import { Link } from "react-router-dom"
-import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import StockDetailsCardHeader from "components/Stocks/DetailsPageItems/StockDetailsCardHeader"
 
 type Props = {
   data: {
@@ -148,11 +148,7 @@ const StrainDetailsList = ({ data }: Props) => {
 
   return (
     <Fragment>
-      <Grid container>
-        <Grid item xs={12} className={classes.header}>
-          <h3>Strain Details</h3>
-        </Grid>
-      </Grid>
+      <StockDetailsCardHeader type="Strain" />
       <Paper className={classes.detailsPaper}>
         {rows.map(item => (
           <ItemDisplay key={item.id}>

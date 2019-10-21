@@ -7,6 +7,7 @@ import ItemDisplay from "components/Stocks/DetailsPageItems/ItemDisplay"
 import LeftDisplay from "components/Stocks/DetailsPageItems/LeftDisplay"
 import RightDisplay from "components/Stocks/DetailsPageItems/RightDisplay"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import StockDetailsCardHeader from "components/Stocks/DetailsPageItems/StockDetailsCardHeader"
 
 type Props = {
   data: {
@@ -111,11 +112,7 @@ const PlasmidDetailsList = ({ data }: Props) => {
 
   return (
     <Fragment>
-      <Grid container>
-        <Grid item xs={12} className={classes.header}>
-          <h3>Plasmid Details</h3>
-        </Grid>
-      </Grid>
+      <StockDetailsCardHeader type="Plasmid" />
       <Paper className={classes.detailsPaper}>
         {doubleDataRows.map(item => (
           <ItemDisplay key={item.id}>
