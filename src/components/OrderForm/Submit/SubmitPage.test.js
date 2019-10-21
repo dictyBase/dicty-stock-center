@@ -15,9 +15,6 @@ describe("OrderForm/Submit/SubmitPage", () => {
   }
   const wrapper = shallow(<SubmitPage {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(9)
       expect(wrapper.find(Button)).toHaveLength(2)

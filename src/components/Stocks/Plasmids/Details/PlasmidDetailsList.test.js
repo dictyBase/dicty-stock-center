@@ -10,9 +10,6 @@ import { data } from "./mockPlasmidData"
 describe("Stocks/Plasmids/PlasmidDetailsList", () => {
   const wrapper = shallow(<PlasmidDetailsList data={data} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(6)
       expect(wrapper.find(ItemDisplay)).toHaveLength(7)

@@ -23,9 +23,6 @@ describe("MyDsc/MyDscPage", () => {
       },
     }
     const wrapper = shallow(<MyDscPage {...props} />)
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(MyDscBreadcrumbs)).toHaveLength(1)
       expect(wrapper.find(MyDscHeader)).toHaveLength(1)

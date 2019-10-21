@@ -19,8 +19,7 @@ type Props = {
  * AddressInformation contains text fields for entering a user address.
  */
 
-const AddressInformation = (props: Props) => {
-  const { values, setFieldValue } = props
+const AddressInformation = ({ values, setFieldValue }: Props) => {
   const classes = useStyles()
 
   return (

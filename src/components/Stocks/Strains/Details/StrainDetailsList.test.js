@@ -10,9 +10,6 @@ import { data } from "./mockStrainData"
 describe("Stocks/Strains/StrainDetailsList", () => {
   const wrapper = shallow(<StrainDetailsList data={data} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)
       expect(wrapper.find(ItemDisplay)).toHaveLength(8)

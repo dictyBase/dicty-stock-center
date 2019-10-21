@@ -9,9 +9,6 @@ import PaymentContactInformation from "./PaymentContactInformation"
 describe("OrderForm/Payment/PaymentAddress", () => {
   const wrapper = shallow(<PaymentAddress />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(PaymentPersonalInformation)).toHaveLength(1)
       expect(wrapper.find(PaymentOrganizationInformation)).toHaveLength(1)

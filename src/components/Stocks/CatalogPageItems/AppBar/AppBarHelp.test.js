@@ -18,9 +18,6 @@ describe("Stocks/CatalogPageItems/AppBar/AppBarHelp", () => {
         <AppBarHelp {...props} />
       </AppBarProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(IconButton)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)

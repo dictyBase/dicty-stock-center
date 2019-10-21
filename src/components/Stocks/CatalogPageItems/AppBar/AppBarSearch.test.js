@@ -20,9 +20,6 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
         <AppBarSearch {...props} />
       </AppBarProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(IconButton)).toHaveLength(2)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)

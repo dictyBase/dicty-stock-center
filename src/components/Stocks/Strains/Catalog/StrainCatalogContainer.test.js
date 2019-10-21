@@ -17,9 +17,6 @@ const mockStore = configureMockStore()
 const store = mockStore({})
 
 describe("Stocks/Strains/StrainCatalogContainer", () => {
-  const props = {
-    classes: {},
-  }
   describe("initial render", () => {
     const mocks = [
       {
@@ -51,14 +48,11 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       <StrainCatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
-            <StrainCatalogContainer {...props} />
+            <StrainCatalogContainer />
           </Provider>
         </MockedProvider>
       </StrainCatalogProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("renders Loading component first", () => {
       expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
     })
@@ -94,7 +88,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       <StrainCatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
-            <StrainCatalogContainer {...props} />
+            <StrainCatalogContainer />
           </Provider>
         </MockedProvider>
       </StrainCatalogProvider>,

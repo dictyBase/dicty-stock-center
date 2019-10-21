@@ -17,9 +17,6 @@ const mockStore = configureMockStore()
 const store = mockStore({})
 
 describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
-  const props = {
-    classes: {},
-  }
   describe("initial render", () => {
     const mocks = [
       {
@@ -52,14 +49,11 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       <PlasmidCatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
-            <PlasmidCatalogContainer {...props} />
+            <PlasmidCatalogContainer />
           </Provider>
         </MockedProvider>
       </PlasmidCatalogProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("renders Loading component first", () => {
       expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
     })
@@ -94,7 +88,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       <PlasmidCatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
-            <PlasmidCatalogContainer {...props} />
+            <PlasmidCatalogContainer />
           </Provider>
         </MockedProvider>
       </PlasmidCatalogProvider>,

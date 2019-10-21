@@ -22,9 +22,6 @@ describe("Stocks/CatalogPageItems/CatalogListHeader", () => {
         <CatalogListHeader {...props} />
       </StrainCatalogProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(List)).toHaveLength(1)
       expect(wrapper.find(ListItem)).toHaveLength(1)

@@ -17,9 +17,6 @@ describe("Stocks/Plasmids/PlasmidCatalogList", () => {
     </PlasmidCatalogProvider>,
   )
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Paper)).toHaveLength(1)
       expect(wrapper.find(CatalogListHeader)).toHaveLength(1)

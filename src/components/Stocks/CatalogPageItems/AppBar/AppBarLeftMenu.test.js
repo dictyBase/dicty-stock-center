@@ -10,9 +10,6 @@ describe("Stocks/CatalogPageItems/AppBar/AppBarLeftMenu", () => {
       dropdownItems: [],
     }
     const wrapper = shallow(<AppBarLeftMenu {...props} />)
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(IconButton)).toHaveLength(1)
       expect(wrapper.find(Menu)).toHaveLength(1)

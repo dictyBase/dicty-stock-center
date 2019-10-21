@@ -7,9 +7,6 @@ import TextField from "../TextField"
 describe("OrderForm/Payment/PaymentPersonalInformation", () => {
   const wrapper = shallow(<PaymentPersonalInformation />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(6)
       expect(wrapper.find(TextField)).toHaveLength(3)

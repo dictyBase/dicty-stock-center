@@ -15,9 +15,6 @@ describe("OrderForm/Payment/PaymentMethod", () => {
   }
   const wrapper = shallow(<PaymentMethod {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(3)
       expect(wrapper.find(RadioGroup)).toHaveLength(1)

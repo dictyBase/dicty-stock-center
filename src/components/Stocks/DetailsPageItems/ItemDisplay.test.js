@@ -6,9 +6,6 @@ import Grid from "@material-ui/core/Grid"
 describe("Stock/ItemDisplay", () => {
   const wrapper = shallow(<ItemDisplay />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.dive().find(Grid)).toHaveLength(1)
     })

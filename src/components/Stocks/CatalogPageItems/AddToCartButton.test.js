@@ -24,9 +24,6 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
   }
   const wrapper = shallow(<AddToCartButton {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("renders expected initial components", () => {
       expect(wrapper.find(IconButton)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)

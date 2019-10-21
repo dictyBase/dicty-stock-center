@@ -19,9 +19,6 @@ describe("layout/App", () => {
   }
   const wrapper = shallow(<App {...props} />)
   describe("initial render without authentication", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find("div")).toHaveLength(1)
       expect(wrapper.find(Header)).toHaveLength(1)

@@ -13,9 +13,6 @@ describe("OrderForm/Shipping/AddressInformation", () => {
   }
   const wrapper = shallow(<AddressInformation {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(12)
       expect(wrapper.find(TextField)).toHaveLength(5)

@@ -53,9 +53,6 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
         </Provider>
       </MockedProvider>,
     )
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("renders Loading component first", () => {
       expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
     })

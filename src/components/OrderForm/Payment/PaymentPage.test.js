@@ -31,9 +31,6 @@ describe("OrderForm/Payment/PaymentPage", () => {
   }
   const wrapper = shallow(<PaymentPage {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(10)
       expect(wrapper.find(PanelWrapper)).toHaveLength(2)

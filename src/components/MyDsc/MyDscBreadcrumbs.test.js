@@ -6,9 +6,6 @@ import MyDscBreadcrumbs from "./MyDscBreadcrumbs"
 describe("MyDsc/MyDscBreadcrumbs", () => {
   describe("initial render", () => {
     const wrapper = shallow(<MyDscBreadcrumbs />)
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find("ol")).toHaveLength(1)
       expect(wrapper.find("li")).toHaveLength(2)

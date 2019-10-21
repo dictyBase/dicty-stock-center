@@ -29,9 +29,6 @@ describe("OrderForm/Shipping/ShippingPage", () => {
   }
   const wrapper = shallow(<ShippingPage {...props} />)
   describe("initial render", () => {
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(8)
       expect(wrapper.find(PanelWrapper)).toHaveLength(3)
