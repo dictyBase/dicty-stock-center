@@ -1,4 +1,4 @@
 ```js
-import { item } from "./mockPhenotypeData"
-;<PhenotypeTableRow item={item} />
+import { data } from "./mockPhenotypeData"
+;<PhenotypeTableRow item={data[0]} />
 ```

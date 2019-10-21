@@ -94,37 +94,3 @@ export const data = [
     },
   },
 ]
-
-export const item = {
-  phenotype: "decreased sporulation",
-  note: "",
-  publication: {
-    id: "11130075",
-    authors: [
-      {
-        last_name: "Grimson",
-      },
-      {
-        last_name: "Coates",
-      },
-      {
-        last_name: "Reynolds",
-      },
-      {
-        last_name: "Shipman",
-      },
-      {
-        last_name: "Blanton",
-      },
-      {
-        last_name: "Harwood",
-      },
-    ],
-    pub_date: "2000-12-01T00:00:00.000Z",
-    title:
-      "Adherens junctions and beta-catenin-mediated cell signalling in a non-metazoan organism.",
-    journal: "Nature",
-    volume: "408",
-    pages: "727-731",
-  },
-}

@@ -30,14 +30,10 @@ const links = [
  * MiscLinks displays misc links on the left side of the homepage.
  */
 
-const MiscLinks = (props: Props) => {
-  const { classes } = props
-
-  return (
-    <div className={classes.panelBlue}>
-      <LinkList list={links} />
-    </div>
-  )
-}
+const MiscLinks = ({ classes }: Props) => (
+  <div className={classes.panelBlue}>
+    <LinkList list={links} />
+  </div>
+)
 
 export default withStyles(styles)(MiscLinks)

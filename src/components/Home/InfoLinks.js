@@ -29,14 +29,10 @@ const links = [
  * InfoLinks displays all of the info page links on the homepage.
  */
 
-const InfoLinks = (props: Props) => {
-  const { classes } = props
-
-  return (
-    <div className={classes.panelBlue}>
-      <LinkList list={links} />
-    </div>
-  )
-}
+const InfoLinks = ({ classes }: Props) => (
+  <div className={classes.panelBlue}>
+    <LinkList list={links} />
+  </div>
+)
 
 export default withStyles(styles)(InfoLinks)

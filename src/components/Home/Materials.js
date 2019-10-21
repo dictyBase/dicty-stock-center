@@ -26,14 +26,10 @@ const materials = [
  * Materials displays links to catalogs/materials on the homepage.
  */
 
-const Materials = (props: Props) => {
-  const { classes } = props
-
-  return (
-    <div className={classes.panelGray}>
-      <LinkList list={materials} />
-    </div>
-  )
-}
+const Materials = ({ classes }: Props) => (
+  <div className={classes.panelGray}>
+    <LinkList list={materials} />
+  </div>
+)
 
 export default withStyles(styles)(Materials)

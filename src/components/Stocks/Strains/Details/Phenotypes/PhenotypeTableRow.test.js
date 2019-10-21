@@ -1,14 +1,14 @@
 import React from "react"
 import { shallow } from "enzyme"
 import PhenotypeTableRow from "./PhenotypeTableRow"
-import { item } from "./mockPhenotypeData"
+import { data } from "./mockPhenotypeData"
 import TableCell from "@material-ui/core/TableCell"
 import TableRow from "@material-ui/core/TableRow"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 
 describe("Strains/Details/Phenotypes/PhenotypeTableRow", () => {
   const props = {
-    item,
+    item: data[0],
   }
   const wrapper = shallow(<PhenotypeTableRow {...props} />)
   describe("initial render", () => {
