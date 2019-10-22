@@ -5,10 +5,8 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
-import FormControl from "@material-ui/core/FormControl"
-import Select from "@material-ui/core/Select"
-import Input from "@material-ui/core/Input"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import AppBarSearchFilter from "./AppBarSearchFilter"
 import { useAppBarState } from "./AppBarContext"
 
 const useStyles = makeStyles(theme => ({
@@ -32,11 +30,6 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: "middle",
     paddingRight: "4px",
   },
-  select: {
-    "&:focus": {
-      backgroundColor: "#fff",
-    },
-  },
 }))
 
 type Props = {
@@ -49,6 +42,12 @@ type Props = {
   setQueryVariables: Function,
 }
 
+type AppBarState = {
+  searchValue: string,
+  setSearchValue: Function,
+  filter: string,
+}
+
 /**
  * AppBarSearch is the search box found on a stock catalog page.
  */
@@ -59,17 +58,7 @@ const AppBarSearch = ({
   setQuery,
   setQueryVariables,
 }: Props) => {
-  const {
-    searchValue,
-    setSearchValue,
-    filter,
-    setFilter,
-  }: {
-    searchValue: string,
-    setSearchValue: Function,
-    filter: string,
-    setFilter: Function,
-  } = useAppBarState()
+  const { searchValue, setSearchValue, filter }: AppBarState = useAppBarState()
   const classes = useStyles()
 
   const handleChange = event => {
@@ -80,10 +69,6 @@ const AppBarSearch = ({
     event.preventDefault()
     setQuery(query)
     setQueryVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
-  }
-
-  const handleFilterChange = event => {
-    setFilter(event.target.value)
   }
 
   const clearSearch = () => {
@@ -117,28 +102,7 @@ const AppBarSearch = ({
             <FontAwesomeIcon icon="times" size="sm" />
           </IconButton>
           <div className={classes.separator} />
-          <FormControl>
-            <Select
-              native
-              value={filter}
-              onChange={handleFilterChange}
-              input={
-                <Input
-                  disableUnderline
-                  name="catalog-search"
-                  id="search-filter"
-                  classes={{
-                    input: classes.select,
-                  }}
-                />
-              }>
-              {dropdownItems.map(item => (
-                <option value={item.value} key={item.value}>
-                  {item.name}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
+          <AppBarSearchFilter dropdownItems={dropdownItems} />
         </Grid>
       </Paper>
     </form>
