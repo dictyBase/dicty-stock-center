@@ -33,7 +33,7 @@ type Props = {
  * Homepage is the main homepage component for DSC.
  */
 
-const Homepage = ({ fullName, user, classes }: Props) => (
+export const Homepage = ({ fullName, user, classes }: Props) => (
   <div className={classes.container}>
     <Helmet>
       <title>Dicty Stock Center</title>
