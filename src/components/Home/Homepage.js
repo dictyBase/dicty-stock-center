@@ -15,6 +15,7 @@ import Materials from "./Materials"
 import Intro from "./Intro"
 import About from "./About"
 import BrowserWarning from "./BrowserWarning"
+import HomepageColumn from "./HomepageColumn"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { AuthenticatedUser } from "utils/apiClasses"
 import styles from "./homeStyles"
@@ -32,76 +33,43 @@ type Props = {
  * Homepage is the main homepage component for DSC.
  */
 
-const Homepage = (props: Props) => {
-  const { fullName, user, classes } = props
-
-  return (
-    <div className={classes.container}>
-      <Helmet>
-        <title>Dicty Stock Center</title>
-        <meta
-          name="description"
-          content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
-        />
-      </Helmet>
-      {user && (
-        <span>
-          <h3>Hello, {`${fullName}!`}</h3>
-        </span>
-      )}
-      {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
-      <Grid container justify="space-between" spacing={3}>
-        <Grid item>
-          <h1 className={classes.header}>
-            Welcome to Dicty Stock Center (DSC)
-          </h1>
-        </Grid>
-        <Grid item xs={12}>
-          <Intro />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container direction="column">
-            <Grid item>
-              <About />
-            </Grid>
-            <Grid item>
-              <MiscLinks />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container direction="column">
-            <Grid item>
-              <InfoLinks />
-            </Grid>
-            <Grid item>
-              <Availability />
-            </Grid>
-            <Grid item>
-              <OtherMaterials />
-            </Grid>
-            <Grid item>
-              <StandardOperatingProcedures />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container justify="center" direction="column">
-            <Grid item xs={12}>
-              <Slideshow />
-            </Grid>
-            <Grid item xs={12}>
-              <Materials />
-            </Grid>
-            <Grid item xs={12}>
-              <Downloads />
-            </Grid>
-          </Grid>
-        </Grid>
+const Homepage = ({ fullName, user, classes }: Props) => (
+  <div className={classes.container}>
+    <Helmet>
+      <title>Dicty Stock Center</title>
+      <meta
+        name="description"
+        content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
+      />
+    </Helmet>
+    {user && (
+      <span>
+        <h3>Hello, {`${fullName}!`}</h3>
+      </span>
+    )}
+    {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
+    <Grid container justify="space-between" spacing={3}>
+      <Grid item>
+        <h1 className={classes.header}>Welcome to Dicty Stock Center (DSC)</h1>
       </Grid>
-    </div>
-  )
-}
+      <Grid item xs={12}>
+        <Intro />
+      </Grid>
+      <HomepageColumn components={[<About />, <MiscLinks />]} />
+      <HomepageColumn
+        components={[
+          <InfoLinks />,
+          <Availability />,
+          <OtherMaterials />,
+          <StandardOperatingProcedures />,
+        ]}
+      />
+      <HomepageColumn
+        components={[<Slideshow />, <Materials />, <Downloads />]}
+      />
+    </Grid>
+  </div>
+)
 
 const mapStateToProps = state => {
   if (state.auth.user) {
