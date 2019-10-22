@@ -1,18 +1,25 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import AppBarLeftMenu from "./AppBarLeftMenu"
-import IconButton from "@material-ui/core/IconButton"
-import Menu from "@material-ui/core/Menu"
+import Paper from "@material-ui/core/Paper"
+import FormControl from "@material-ui/core/FormControl"
+import Select from "@material-ui/core/Select"
+import { AppBarProvider } from "./AppBarContext"
 
 describe("Stocks/CatalogPageItems/AppBar/AppBarLeftMenu", () => {
   describe("initial render", () => {
     const props = {
       dropdownItems: [],
     }
-    const wrapper = shallow(<AppBarLeftMenu {...props} />)
+    const wrapper = mount(
+      <AppBarProvider>
+        <AppBarLeftMenu {...props} />
+      </AppBarProvider>,
+    )
     it("always renders initial components", () => {
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(Menu)).toHaveLength(1)
+      expect(wrapper.find(Paper)).toHaveLength(1)
+      expect(wrapper.find(FormControl)).toHaveLength(1)
+      expect(wrapper.find(Select)).toHaveLength(1)
     })
   })
 })

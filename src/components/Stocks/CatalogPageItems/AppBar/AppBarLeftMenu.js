@@ -1,25 +1,33 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import IconButton from "@material-ui/core/IconButton"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Paper from "@material-ui/core/Paper"
+import FormControl from "@material-ui/core/FormControl"
+import Select from "@material-ui/core/Select"
+import Input from "@material-ui/core/Input"
+import { useAppBarState } from "./AppBarContext"
 
 const useStyles = makeStyles(theme => ({
-  icon: {
-    color: "#fff",
-    paddingRight: "5px",
+  root: {
+    padding: "2px 4px",
   },
-  menuItem: {
-    fontSize: "0.8rem",
+  select: {
+    "&:focus": {
+      backgroundColor: "#fff",
+    },
   },
 }))
 
 type Props = {
   dropdownItems: Array<{
+    value: string,
     name: string,
   }>,
+}
+
+type AppBarState = {
+  filter: string,
+  setFilter: Function,
 }
 
 /**
@@ -28,39 +36,38 @@ type Props = {
  */
 
 const AppBarLeftMenu = ({ dropdownItems }: Props) => {
-  const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
+  const { filter, setFilter }: AppBarState = useAppBarState()
   const classes = useStyles()
 
-  const handleIconClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleItemClick = () => {
-    setAnchorEl(null)
+  const handleFilterChange = event => {
+    setFilter(event.target.value)
   }
 
   return (
-    <>
-      <IconButton
-        size="small"
-        className={classes.icon}
-        onClick={handleIconClick}
-        title="Filter options"
-        aria-label="Filter options for stock catalog page">
-        <FontAwesomeIcon icon="cog" />
-      </IconButton>
-      <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleItemClick}>
-        {dropdownItems.map(item => (
-          <MenuItem
-            onClick={handleItemClick}
-            className={classes.menuItem}
-            key={item.name}>
-            {item.name}
-          </MenuItem>
-        ))}
-      </Menu>
-    </>
+    <Paper className={classes.root}>
+      <FormControl>
+        <Select
+          native
+          value={filter}
+          onChange={handleFilterChange}
+          input={
+            <Input
+              disableUnderline
+              name="catalog-search"
+              id="search-filter"
+              classes={{
+                input: classes.select,
+              }}
+            />
+          }>
+          {dropdownItems.map(item => (
+            <option value={item.value} key={item.value}>
+              {item.name}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+    </Paper>
   )
 }
 
