@@ -20,7 +20,7 @@ const viewports = [
 const date = new Date().toJSON().slice(0, 10)
 
 const test = (browser, url, page) => {
-  return browser.url(url).waitForElementVisible("body", 1000)
+  browser.url(url).waitForElementVisible("body", 1000)
   viewports.forEach(item => {
     browser
       .resizeWindow(item.width, 2000)
