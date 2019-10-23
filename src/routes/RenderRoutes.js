@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom"
 import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
-import Loader from "components/Loader"
+import Loader from "components/common/Loader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 
 // homepage route

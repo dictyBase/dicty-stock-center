@@ -1,10 +1,9 @@
 import React from "react"
 import { shallow, mount } from "enzyme"
 import sinon from "sinon"
-import "../../setupTests"
 import { InfoPage } from "./InfoPage"
 import InfoPageView from "./InfoPageView"
-import Loader from "components/Loader"
+import Loader from "components/common/Loader"
 
 describe("InfoPage/InfoPage", () => {
   let props

@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from "react"
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
-import Loader from "components/Loader"
+import Loader from "components/common/Loader"
 import InfoPageView from "./InfoPageView"
 import ErrorPage from "components/Errors/ErrorPage"
 import { fetchInfoPage } from "actions/page"
