@@ -13,3 +13,4 @@ static-server
 .env.production.local
 nightwatch/reports
 nightwatch/snapshots
+.vscode
