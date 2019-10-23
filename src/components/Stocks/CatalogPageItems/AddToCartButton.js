@@ -9,7 +9,7 @@ import { addToCart } from "actions/cart"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
-    color: "#004080",
+    color: "#228B22",
   },
 }))
 
