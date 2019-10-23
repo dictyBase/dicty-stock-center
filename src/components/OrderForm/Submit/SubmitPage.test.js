@@ -3,7 +3,6 @@ import { shallow } from "enzyme"
 import sinon from "sinon"
 import { SubmitPage } from "./SubmitPage"
 import { data } from "./mockSubmitData"
-import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -16,7 +15,6 @@ describe("OrderForm/Submit/SubmitPage", () => {
   const wrapper = shallow(<SubmitPage {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(9)
       expect(wrapper.find(Button)).toHaveLength(2)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(3)
     })

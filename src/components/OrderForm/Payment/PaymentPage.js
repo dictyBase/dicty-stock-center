@@ -81,7 +81,6 @@ const PaymentPage = (props: Props) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <div className={classes.header}>Please enter payment information</div>
         <FormControlLabel
           control={
             <Checkbox

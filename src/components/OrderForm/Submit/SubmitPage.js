@@ -19,15 +19,11 @@ type Props = {
  * SubmitPage is the final page the user sees before submitting the order.
  */
 
-export const SubmitPage = (props: Props) => {
+export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
   const classes = useStyles()
-  const { pageNum, setPageNum, isSubmitting } = props
 
   return (
     <Grid container spacing={2} className={classes.innerForm}>
-      <Grid item xs={12}>
-        <div className={classes.header}>Please review your order</div>
-      </Grid>
       <Grid item xs={12}>
         <div className={classes.submitPage}>
           <h1>

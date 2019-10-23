@@ -58,9 +58,6 @@ const ShippingPage = (props: Props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <div className={classes.header}>Please enter shipping information</div>
-      </Grid>
       <Grid item xs={6}>
         <PanelWrapper title="Shipping Address">
           <ShippingAddress {...props} />

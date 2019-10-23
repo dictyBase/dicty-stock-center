@@ -13,6 +13,7 @@ import initialValues from "./initialValues"
 import validationSchema from "./validationSchema"
 import useStyles from "./formStyles"
 import { removeItem } from "actions/cart"
+import OrderFormStepper from "./OrderFormStepper"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
@@ -55,6 +56,10 @@ export const OrderForm = ({ items, removeItem, history }: Props) => {
         <meta name="description" content="Order form for Dicty Stock Center" />
       </Helmet>
       <Grid item xs={12}>
+        <center>
+          <h1>Checkout</h1>
+        </center>
+        <OrderFormStepper pageNum={pageNum} />
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
