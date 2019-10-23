@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper"
 import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AppBarSearchFilter from "./AppBarSearchFilter"
+import AppBarDropdown from "./AppBarDropdown"
 import { useAppBarState } from "./AppBarContext"
 
 const useStyles = makeStyles(theme => ({
@@ -102,7 +102,7 @@ const AppBarSearch = ({
             <FontAwesomeIcon icon="times" size="sm" />
           </IconButton>
           <div className={classes.separator} />
-          <AppBarSearchFilter dropdownItems={dropdownItems} />
+          <AppBarDropdown dropdownItems={dropdownItems} />
         </Grid>
       </Paper>
     </form>

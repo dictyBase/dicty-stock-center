@@ -27,14 +27,14 @@ type AppBarState = {
 }
 
 /**
- * AppBarSearchFilter is the dropdown search filter in the catalog app bar.
+ * AppBarDropdown is a reusable dropdown menu component for the catalog appbars.
  */
 
-const AppBarSearchFilter = ({ dropdownItems }: Props) => {
+const AppBarDropdown = ({ dropdownItems }: Props) => {
   const { filter, setFilter }: AppBarState = useAppBarState()
   const classes = useStyles()
 
-  const handleFilterChange = event => {
+  const handleChange = event => {
     setFilter(event.target.value)
   }
 
@@ -43,7 +43,7 @@ const AppBarSearchFilter = ({ dropdownItems }: Props) => {
       <Select
         native
         value={filter}
-        onChange={handleFilterChange}
+        onChange={handleChange}
         input={
           <Input
             disableUnderline
@@ -64,4 +64,4 @@ const AppBarSearchFilter = ({ dropdownItems }: Props) => {
   )
 }
 
-export default AppBarSearchFilter
+export default AppBarDropdown
