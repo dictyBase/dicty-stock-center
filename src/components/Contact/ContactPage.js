@@ -1,10 +1,11 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import ContactForm from "./ContactForm"
 
-const styles = theme => ({
+const useStyles = makeStyles({
   header: {
     marginTop: "25px",
     marginBottom: "25px",
@@ -23,17 +24,12 @@ const styles = theme => ({
   },
 })
 
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
-
 /**
- * DSC contact form
+ * DSC contact page
  */
 
-const Contact = (props: Props) => {
-  const { classes } = props
+const Contact = () => {
+  const classes = useStyles()
 
   return (
     <>
@@ -51,23 +47,11 @@ const Contact = (props: Props) => {
           </div>
         </Grid>
         <Grid item xs={12}>
-          <center>
-            <p>
-              For questions, comments, or suggestions, please send us an
-              email&nbsp;
-              <a
-                href="mailto:dictystocks@northwestern.edu?Subject=Question"
-                target="_top">
-                (dictystocks@northwestern.edu)
-              </a>
-              .
-            </p>
-            <p>We will be adding a working contact form soon.</p>
-          </center>
+          <ContactForm />
         </Grid>
       </Grid>
     </>
   )
 }
 
-export default withStyles(styles)(Contact)
+export default Contact

@@ -107,8 +107,11 @@ const OrderConfirmation = Loadable({
 })
 
 // misc routes
-const Contact = Loadable({
-  loader: () => import("components/Contact" /* webpackChunkName: "Contact" */),
+const ContactPage = Loadable({
+  loader: () =>
+    import(
+      "components/Contact/ContactPage" /* webpackChunkName: "ContactPage" */
+    ),
   loading: Loader,
 })
 const ErrorPage = Loadable({
@@ -159,7 +162,7 @@ const RenderRoutes = () => (
     <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
-    <Route exact path="/contact" component={Contact} />
+    <Route exact path="/contact" component={ContactPage} />
     <Route exact path="/error" component={ErrorPage} />
     <Route exact path="/cart" component={ShoppingCartPage} />
     <Route exact path="*" component={PageNotReady} />
