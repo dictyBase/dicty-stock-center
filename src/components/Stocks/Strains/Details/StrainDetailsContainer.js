@@ -37,14 +37,14 @@ export const GET_STRAIN = gql`
       genotypes
       mutagenesis_method
       genetic_modification
+      names
+      characteristics
     }
   }
 `
 
 /**
  * query will still need these from annotations:
- *       names
-      characteristics
       phenotypes {
         phenotype
         note
