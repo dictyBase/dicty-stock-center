@@ -98,7 +98,7 @@ const StrainDetailsList = ({ data }: Props) => {
     {
       id: 1,
       leftTitle: "Strain Names",
-      leftData: [], // data.names.join(", "),
+      leftData: data.names.join(", "),
       rightTitle: "Systematic Name",
       rightData: data.systematic_name,
     },
@@ -107,7 +107,7 @@ const StrainDetailsList = ({ data }: Props) => {
       leftTitle: "Strain Summary",
       leftData: data.summary,
       rightTitle: "Strain Characteristics",
-      rightData: [], // data.characteristics.join(", "),
+      rightData: data.characteristics.join(", "),
     },
     {
       id: 3,
