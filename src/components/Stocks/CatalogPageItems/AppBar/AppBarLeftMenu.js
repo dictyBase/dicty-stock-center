@@ -39,7 +39,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const { filter, setFilter }: AppBarState = useAppBarState()
   const classes = useStyles()
 
-  const handleFilterChange = event => {
+  const handleChange = event => {
     setFilter(event.target.value)
   }
 
@@ -48,18 +48,18 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
       <FormControl>
         <Select
           native
-          value={filter}
-          onChange={handleFilterChange}
+          onChange={handleChange}
           input={
             <Input
               disableUnderline
-              name="catalog-search"
-              id="search-filter"
+              name="stock-catalog"
+              id="catalog-filter"
               classes={{
                 input: classes.select,
               }}
             />
-          }>
+          }
+          value={filter}>
           {dropdownItems.map(item => (
             <option value={item.value} key={item.value}>
               {item.name}

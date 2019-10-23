@@ -25,17 +25,23 @@ export const GET_STRAINS_FILTER = gql`
   }
 `
 
+/** Need to update values */
+
 const leftDropdownItems = [
   {
+    value: "all",
     name: "All Strains",
   },
   {
+    value: "gwdi",
     name: "GWDI Strains",
   },
   {
+    value: "in_stock===true",
     name: "Available Strains",
   },
   {
+    value: "in_stock===false",
     name: "Unavailable Strains",
   },
 ]
