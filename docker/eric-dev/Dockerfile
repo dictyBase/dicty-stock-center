@@ -25,8 +25,8 @@ ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.js
 
 RUN npm run build
 
-FROM dictybase/static-server:1.0.0
+FROM dictybase/static-server:develop-09ee139
 RUN mkdir /www
 WORKDIR /www
 COPY --from=0 /usr/src/app/build ./
-ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www", "--vf", "/static", "--sub-url", "/stockcenter"]
+ENTRYPOINT ["/usr/local/bin/app", "run", "-f", "/www", "--sub-url", "/stockcenter"]
