@@ -1,19 +1,10 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
+import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 import useStyles from "../formStyles"
-
-type Props = {
-  /** Formik value to indicate if form is being submitted */
-  isSubmitting: boolean,
-  /** Current order form page number */
-  pageNum: number,
-  /** Function to set the page number */
-  setPageNum: Function,
-}
+import { Props } from "./types"
 
 /**
  * SubmitPage is the final page the user sees before submitting the order.
@@ -26,9 +17,6 @@ export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
     <Grid container spacing={2} className={classes.innerForm}>
       <Grid item xs={12}>
         <div className={classes.submitPage}>
-          <h1>
-            <FontAwesomeIcon icon="truck" /> Items
-          </h1>
           <Grid container justify="center">
             <ShoppingCartItems />
           </Grid>
@@ -36,30 +24,11 @@ export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
         <br />
         <br />
         <br />
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={2} />
-          <Grid item xs={4}>
-            <Button
-              color="primary"
-              size="large"
-              className={classes.previousBtn}
-              onClick={() => setPageNum(pageNum - 1)}>
-              <FontAwesomeIcon icon="arrow-circle-left" />
-              &nbsp; Back
-            </Button>
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              type="submit"
-              size="large"
-              className={classes.submitBtn}
-              disabled={isSubmitting}>
-              Submit Order &nbsp;
-              <FontAwesomeIcon icon="check-circle" />
-            </Button>
-          </Grid>
-          <Grid item xs={2} />
-        </Grid>
+        <SubmitPageBottomButtons
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          isSubmitting={isSubmitting}
+        />
       </Grid>
     </Grid>
   )
