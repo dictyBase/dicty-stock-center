@@ -8,10 +8,68 @@ import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
-import ShippingAddress from "./ShippingAddress"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
+import AddressFields from "../AddressFields"
 import useStyles from "../formStyles"
+
+const addressFields = [
+  {
+    name: "firstName",
+    field: "First Name",
+    required: true,
+  },
+  {
+    name: "lastName",
+    field: "Last Name",
+    required: true,
+  },
+  {
+    name: "email",
+    field: "Email",
+    required: true,
+  },
+  {
+    name: "organization",
+    field: "Organization",
+    required: true,
+  },
+  {
+    name: "lab",
+    field: "Lab/Group",
+    required: true,
+  },
+  {
+    name: "phone",
+    field: "Phone Number",
+    required: true,
+  },
+  {
+    name: "address1",
+    field: "Address",
+    required: true,
+  },
+  {
+    name: "address2",
+    field: "Address",
+    required: false,
+  },
+  {
+    name: "city",
+    field: "City",
+    required: true,
+  },
+  {
+    name: "state",
+    field: "State/Province",
+    required: false,
+  },
+  {
+    name: "zip",
+    field: "Zip Code",
+    required: true,
+  },
+]
 
 type Props = {
   /** Values from Formik */
@@ -60,7 +118,12 @@ const ShippingPage = (props: Props) => {
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <PanelWrapper title="Shipping Address">
-          <ShippingAddress {...props} />
+          <AddressFields
+            fields={addressFields}
+            countryName="country"
+            countryValue={values.country}
+            {...props}
+          />
         </PanelWrapper>
       </Grid>
       <Grid item xs={12} md={6}>

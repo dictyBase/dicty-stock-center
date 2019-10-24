@@ -5,7 +5,6 @@ import PaymentPage from "./PaymentPage"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import PanelWrapper from "components/common/PanelWrapper"
-import PaymentAddress from "./PaymentAddress"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 
@@ -34,7 +33,6 @@ describe("OrderForm/Payment/PaymentPage", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(10)
       expect(wrapper.find(PanelWrapper)).toHaveLength(2)
-      expect(wrapper.find(PaymentAddress)).toHaveLength(1)
       expect(wrapper.find(PaymentMethod)).toHaveLength(1)
       expect(wrapper.find(PaymentInfoBox)).toHaveLength(1)
       expect(wrapper.find(Button)).toHaveLength(2)

@@ -10,10 +10,68 @@ import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
-import PaymentAddress from "./PaymentAddress"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
+import AddressFields from "../AddressFields"
 import useStyles from "../formStyles"
+
+const fields = [
+  {
+    name: "payerFirstName",
+    field: "First Name",
+    required: true,
+  },
+  {
+    name: "payerLastName",
+    field: "Last Name",
+    required: true,
+  },
+  {
+    name: "payerEmail",
+    field: "Email",
+    required: true,
+  },
+  {
+    name: "payerOrganization",
+    field: "Organization",
+    required: true,
+  },
+  {
+    name: "payerLab",
+    field: "Lab/Group",
+    required: true,
+  },
+  {
+    name: "payerPhone",
+    field: "Phone Number",
+    required: true,
+  },
+  {
+    name: "payerAddress1",
+    field: "Address",
+    required: true,
+  },
+  {
+    name: "payerAddress2",
+    field: "Address",
+    required: false,
+  },
+  {
+    name: "payerCity",
+    field: "City",
+    required: true,
+  },
+  {
+    name: "payerState",
+    field: "State/Province",
+    required: false,
+  },
+  {
+    name: "payerZip",
+    field: "Zip Code",
+    required: true,
+  },
+]
 
 type Props = {
   /** Function to manually set Formik field values */
@@ -94,7 +152,12 @@ const PaymentPage = (props: Props) => {
       </Grid>
       <Grid item xs={12} md={6}>
         <PanelWrapper title="Payment Address">
-          <PaymentAddress {...props} />
+          <AddressFields
+            fields={fields}
+            countryName="payerCountry"
+            countryValue={values.payerCountry}
+            {...props}
+          />
         </PanelWrapper>
       </Grid>
       <Grid item xs={12} md={6}>

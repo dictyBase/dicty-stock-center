@@ -4,7 +4,6 @@ import sinon from "sinon"
 import ShippingPage from "./ShippingPage"
 import Button from "@material-ui/core/Button"
 import PanelWrapper from "components/common/PanelWrapper"
-import ShippingAddress from "./ShippingAddress"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
 
@@ -30,7 +29,6 @@ describe("OrderForm/Shipping/ShippingPage", () => {
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(PanelWrapper)).toHaveLength(3)
-      expect(wrapper.find(ShippingAddress)).toHaveLength(1)
       expect(wrapper.find(ShippingMethod)).toHaveLength(1)
       expect(wrapper.find(AdditionalInformation)).toHaveLength(1)
       expect(wrapper.find(Button)).toHaveLength(1)

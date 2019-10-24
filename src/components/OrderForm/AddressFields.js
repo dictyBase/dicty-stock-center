@@ -1,37 +1,9 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import TextField from "../TextField"
-import CountryDropdown from "../CountryDropdown"
-import useStyles from "../formStyles"
-
-const fields = [
-  {
-    name: "payerAddress1",
-    field: "Address",
-    required: true,
-  },
-  {
-    name: "payerAddress2",
-    field: "Address",
-    required: false,
-  },
-  {
-    name: "payerCity",
-    field: "City",
-    required: true,
-  },
-  {
-    name: "payerState",
-    field: "State/Province",
-    required: false,
-  },
-  {
-    name: "payerZip",
-    field: "Zip Code",
-    required: true,
-  },
-]
+import TextField from "./TextField"
+import CountryDropdown from "./CountryDropdown"
+import useStyles from "./formStyles"
 
 type Props = {
   /** Function to manually set Formik field values */
@@ -41,14 +13,23 @@ type Props = {
 }
 
 /**
- * PaymentAddressInformation contains text fields for entering a payer address.
+ * AddressFields contains text fields for entering a user address.
  */
 
-const PaymentAddressInformation = ({ values, setFieldValue }: Props) => {
+const AddressFields = ({
+  fields,
+  countryValue,
+  countryName,
+  setFieldValue,
+}: Props) => {
   const classes = useStyles()
 
   return (
-    <>
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      className={classes.innerForm}>
       {fields.map((item, index) => (
         <>
           <Grid item xs={12} md={3}>
@@ -65,13 +46,13 @@ const PaymentAddressInformation = ({ values, setFieldValue }: Props) => {
       </Grid>
       <Grid item xs={12} md={8} className={classes.selectBox}>
         <CountryDropdown
-          value={values.payerCountry}
-          name="payerCountry"
+          value={countryValue}
+          name={countryName}
           setFieldValue={setFieldValue}
         />
       </Grid>
-    </>
+    </Grid>
   )
 }
 
-export default PaymentAddressInformation
+export default AddressFields
