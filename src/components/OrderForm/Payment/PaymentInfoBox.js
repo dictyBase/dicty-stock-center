@@ -25,24 +25,22 @@ const PaymentInfoBox = () => {
         <p>
           <strong>PO: </strong>
           Add PO number if available or send ASAP to&nbsp;
-          <u>
-            <a href="mailto:dictystocks@northwestern.edu" target="_top">
-              dictystocks@northwestern.edu
-            </a>
-          </u>
+          <a
+            href="mailto:dictystocks@northwestern.edu"
+            target="_top"
+            className={classes.link}>
+            dictystocks@northwestern.edu
+          </a>
         </p>
-      </Grid>
-      <Grid item xs={12} className={classes.panelBlue}>
         <p>
           For full payment information please click&nbsp;
-          <u>
-            <a
-              href="/information/payment"
-              target="_blank"
-              rel="noopener noreferrer">
-              here
-            </a>
-          </u>
+          <a
+            className={classes.link}
+            href="/information/payment"
+            target="_blank"
+            rel="noopener noreferrer">
+            here.
+          </a>
         </p>
       </Grid>
     </Grid>

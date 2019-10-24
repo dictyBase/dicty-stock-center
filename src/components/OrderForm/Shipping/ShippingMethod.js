@@ -41,10 +41,10 @@ const ShippingMethod = (props: Props) => {
       justify="center"
       alignItems="center"
       className={classes.innerForm}>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Shipping Account:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <RadioGroup
           aria-label="Shipping Account"
           name="shippingAccount"

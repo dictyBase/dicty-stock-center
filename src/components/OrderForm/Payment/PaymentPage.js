@@ -92,12 +92,12 @@ const PaymentPage = (props: Props) => {
           label="Same as shipping (click here if payer address is the same as shipping address)"
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <PanelWrapper title="Payment Address">
           <PaymentAddress {...props} />
         </PanelWrapper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <PanelWrapper title="Payment Method">

@@ -18,10 +18,9 @@ type Props = {
  * PaymentMethod contains radio buttons and a text field for listing payment method information.
  */
 
-const PaymentMethod = (props: Props) => {
+const PaymentMethod = ({ handleChange, setFieldValue }: Props) => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
   const classes = useStyles()
-  const { handleChange, setFieldValue } = props
 
   return (
     <Grid
@@ -29,10 +28,10 @@ const PaymentMethod = (props: Props) => {
       justify="center"
       alignItems="center"
       className={classes.innerForm}>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Payment Method:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <RadioGroup
           aria-label="Payment Method"
           name="paymentMethod"

@@ -7,7 +7,7 @@ describe("OrderForm/Payment/PaymentInfoBox", () => {
   const wrapper = shallow(<PaymentInfoBox />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(2)
     })
   })
 })

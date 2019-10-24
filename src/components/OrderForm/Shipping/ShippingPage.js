@@ -58,12 +58,12 @@ const ShippingPage = (props: Props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <PanelWrapper title="Shipping Address">
           <ShippingAddress {...props} />
         </PanelWrapper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <PanelWrapper title="Shipping Method">

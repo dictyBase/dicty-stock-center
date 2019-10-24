@@ -13,16 +13,16 @@ const OrganizationInformation = () => {
 
   return (
     <>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Organization:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="organization" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Lab/Group:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="lab" />
       </Grid>
     </>

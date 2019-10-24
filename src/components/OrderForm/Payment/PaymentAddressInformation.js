@@ -24,40 +24,40 @@ const PaymentAddressInformation = ({ values, setFieldValue }: Props) => {
 
   return (
     <>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Address:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="payerAddress1" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         Address:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="payerAddress2" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> City:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="payerCity" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         State/Province:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="payerState" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Zip Code:
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <TextField type="text" name="payerZip" />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Country:
       </Grid>
-      <Grid item xs={8} className={classes.selectBox}>
+      <Grid item xs={12} md={8} className={classes.selectBox}>
         <Select
           name="country"
           label="Country"
