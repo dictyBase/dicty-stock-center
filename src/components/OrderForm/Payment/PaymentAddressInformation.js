@@ -1,12 +1,37 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import Select from "@material-ui/core/Select"
-import OutlinedInput from "@material-ui/core/OutlinedInput"
-import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "../TextField"
-import countryList from "../countryList"
+import CountryDropdown from "../CountryDropdown"
 import useStyles from "../formStyles"
+
+const fields = [
+  {
+    name: "payerAddress1",
+    field: "Address",
+    required: true,
+  },
+  {
+    name: "payerAddress2",
+    field: "Address",
+    required: false,
+  },
+  {
+    name: "payerCity",
+    field: "City",
+    required: true,
+  },
+  {
+    name: "payerState",
+    field: "State/Province",
+    required: false,
+  },
+  {
+    name: "payerZip",
+    field: "Zip Code",
+    required: true,
+  },
+]
 
 type Props = {
   /** Function to manually set Formik field values */
@@ -16,7 +41,7 @@ type Props = {
 }
 
 /**
- * AddressInformation contains text fields for entering a user address.
+ * PaymentAddressInformation contains text fields for entering a payer address.
  */
 
 const PaymentAddressInformation = ({ values, setFieldValue }: Props) => {
@@ -24,61 +49,26 @@ const PaymentAddressInformation = ({ values, setFieldValue }: Props) => {
 
   return (
     <>
-      <Grid item xs={12} md={3}>
-        <span className={classes.requiredText}>*</span> Address:
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <TextField type="text" name="payerAddress1" />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        Address:
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <TextField type="text" name="payerAddress2" />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        <span className={classes.requiredText}>*</span> City:
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <TextField type="text" name="payerCity" />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        State/Province:
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <TextField type="text" name="payerState" />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        <span className={classes.requiredText}>*</span> Zip Code:
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <TextField type="text" name="payerZip" />
-      </Grid>
+      {fields.map((item, index) => (
+        <>
+          <Grid item xs={12} md={3}>
+            {item.required && <span className={classes.requiredText}>*</span>}{" "}
+            {item.field}:
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <TextField type="text" name={item.name} />
+          </Grid>
+        </>
+      ))}
       <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Country:
       </Grid>
       <Grid item xs={12} md={8} className={classes.selectBox}>
-        <Select
-          name="country"
-          label="Country"
-          fullWidth
+        <CountryDropdown
           value={values.payerCountry}
-          onChange={e => setFieldValue("payerCountry", e.target.value)}
-          input={
-            <OutlinedInput
-              name="payerCountry"
-              id="country"
-              fullWidth
-              labelWidth={0}
-            />
-          }>
-          {countryList &&
-            countryList.map(item => (
-              <MenuItem key={countryList.indexOf(item)} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-        </Select>
+          name="payerCountry"
+          setFieldValue={setFieldValue}
+        />
       </Grid>
     </>
   )
