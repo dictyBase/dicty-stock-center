@@ -1,16 +1,18 @@
 import React from "react"
 import { shallow } from "enzyme"
-import ShippingPageLeftColumn from "./ShippingPageLeftColumn"
+import LeftColumn from "./LeftColumn"
 import PanelWrapper from "components/common/PanelWrapper"
-import AddressFields from "../AddressFields"
+import AddressFields from "./AddressFields"
 
-describe("OrderForm/Shipping/ShippingPageLeftColumn", () => {
+describe("OrderForm/LeftColumn", () => {
   const props = {
+    page: "Shipping",
+    countryName: "country",
     values: {
-      country: "usa",
+      country: "Iceland",
     },
   }
-  const wrapper = shallow(<ShippingPageLeftColumn {...props} />)
+  const wrapper = shallow(<LeftColumn {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(PanelWrapper)).toHaveLength(1)

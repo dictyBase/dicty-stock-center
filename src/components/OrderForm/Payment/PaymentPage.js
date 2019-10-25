@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
-import PaymentPageLeftColumn from "./PaymentPageLeftColumn"
+import LeftColumn from "../LeftColumn"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
 
 type Props = {
@@ -52,7 +52,7 @@ const PaymentPage = (props: Props) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <PaymentPageLeftColumn {...props} />
+        <LeftColumn page="Payment" countryName="payerCountry" {...props} />
       </Grid>
       <Grid item xs={12} md={6}>
         <PaymentPageRightColumn {...props} />

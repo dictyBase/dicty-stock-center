@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import ShippingPageLeftColumn from "./ShippingPageLeftColumn"
+import LeftColumn from "../LeftColumn"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
 
 /**
@@ -11,7 +11,7 @@ import ShippingPageRightColumn from "./ShippingPageRightColumn"
 const ShippingPage = props => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={6}>
-      <ShippingPageLeftColumn {...props} />
+      <LeftColumn page="Shipping" countryName="country" {...props} />
     </Grid>
     <Grid item xs={12} md={6}>
       <Grid container direction="column" spacing={2}>
