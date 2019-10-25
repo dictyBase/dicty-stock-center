@@ -3,6 +3,7 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import BackButton from "../BackButton"
 import useStyles from "../formStyles"
 import { Props } from "./types"
 
@@ -22,14 +23,7 @@ const SubmitPageBottomButtons = ({
     <Grid container justify="center" spacing={2}>
       <Grid item xs={2} />
       <Grid item xs={4}>
-        <Button
-          color="primary"
-          size="large"
-          className={classes.previousBtn}
-          onClick={() => setPageNum(pageNum - 1)}>
-          <FontAwesomeIcon icon="arrow-circle-left" />
-          &nbsp; Back
-        </Button>
+        <BackButton pageNum={pageNum} setPageNum={setPageNum} />
       </Grid>
       <Grid item xs={4}>
         <Button

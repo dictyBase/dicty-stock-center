@@ -1,14 +1,12 @@
 // @flow
 import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 import ContinueButton from "../ContinueButton"
+import BackButton from "../BackButton"
 import requiredFieldsGenerator from "../utils/requiredFields"
-import useStyles from "../formStyles"
 
 type Props = {
   /** Values from Formik */
@@ -24,9 +22,8 @@ type Props = {
  */
 
 const PaymentPageRightColumn = (props: Props) => {
-  const classes = useStyles()
   const { values, pageNum, setPageNum } = props
-  console.log(requiredFieldsGenerator(values, "payment"))
+
   return (
     <Fragment>
       <Grid item xs={12}>
@@ -38,17 +35,10 @@ const PaymentPageRightColumn = (props: Props) => {
         <PaymentInfoBox />
       </Grid>
       <Grid container justify="center" spacing={2}>
-        <Grid item xs={6}>
-          <Button
-            color="primary"
-            size="large"
-            className={classes.previousBtn}
-            onClick={() => setPageNum(pageNum - 1)}>
-            <FontAwesomeIcon icon="arrow-circle-left" />
-            &nbsp; Back
-          </Button>
+        <Grid item xs={12} sm={6}>
+          <BackButton pageNum={pageNum} setPageNum={setPageNum} />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <ContinueButton
             fields={requiredFieldsGenerator(values, "payment")}
             pageNum={pageNum}
