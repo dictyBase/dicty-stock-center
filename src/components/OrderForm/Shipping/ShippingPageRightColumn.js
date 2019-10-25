@@ -19,7 +19,7 @@ type Props = {
 }
 
 /**
- * ShippingPageRightColumn is the display component for when the user is entering shipping information.
+ * ShippingPageRightColumn displays the right column of the shipping page.
  */
 
 const ShippingPageRightColumn = (props: Props) => {

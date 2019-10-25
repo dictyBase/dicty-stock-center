@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import TextField from "./TextField"
 import CountryDropdown from "./CountryDropdown"
@@ -37,7 +37,7 @@ const AddressFields = ({
       alignItems="center"
       className={classes.innerForm}>
       {fields.map((item, index) => (
-        <>
+        <Fragment key={index}>
           <Grid item xs={12} md={3}>
             {item.required && <span className={classes.requiredText}>*</span>}{" "}
             {item.field}:
@@ -45,7 +45,7 @@ const AddressFields = ({
           <Grid item xs={12} md={8}>
             <TextField type="text" name={item.name} />
           </Grid>
-        </>
+        </Fragment>
       ))}
       <Grid item xs={12} md={3}>
         <span className={classes.requiredText}>*</span> Country:
