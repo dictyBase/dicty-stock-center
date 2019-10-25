@@ -17,7 +17,7 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
   const wrapper = shallow(<ShippingMethod {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(2)
       expect(wrapper.find(TextField)).toHaveLength(1)
       expect(wrapper.find(RadioGroup)).toHaveLength(1)
       expect(wrapper.find(FormControlLabel)).toHaveLength(4)
@@ -26,10 +26,7 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
   describe("radio button interactions", () => {
     it("sets field value when clicking prepaid shipping label", () => {
       // click prepaid label button
-      const label = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .last()
+      const label = wrapper.find(FormControlLabel).last()
       label.simulate("change")
       expect(setFieldValueSpy.calledOnce).toBe(true)
     })
@@ -37,24 +34,15 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
       // reset spy
       setFieldValueSpy.resetHistory()
       // click fedex button
-      const fedex = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .first()
+      const fedex = wrapper.find(FormControlLabel).first()
       fedex.simulate("change")
       expect(setFieldValueSpy.notCalled).toBe(true)
       // click UPS button
-      const ups = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .at(1)
+      const ups = wrapper.find(FormControlLabel).at(1)
       ups.simulate("change")
       expect(setFieldValueSpy.notCalled).toBe(true)
       // click DHL button
-      const dhl = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .at(2)
+      const dhl = wrapper.find(FormControlLabel).at(2)
       dhl.simulate("change")
       expect(setFieldValueSpy.notCalled).toBe(true)
     })

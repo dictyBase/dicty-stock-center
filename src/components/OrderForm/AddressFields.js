@@ -3,6 +3,7 @@ import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import TextField from "./TextField"
 import CountryDropdown from "./CountryDropdown"
+import RequiredTextLabel from "./RequiredTextLabel"
 import useStyles from "./formStyles"
 
 type Props = {
@@ -47,9 +48,7 @@ const AddressFields = ({
           </Grid>
         </Fragment>
       ))}
-      <Grid item xs={12} md={3}>
-        <span className={classes.requiredText}>*</span> Country:
-      </Grid>
+      <RequiredTextLabel title="Country" />
       <Grid item xs={12} md={8} className={classes.selectBox}>
         <CountryDropdown
           value={countryValue}

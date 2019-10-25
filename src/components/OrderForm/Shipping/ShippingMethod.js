@@ -5,6 +5,7 @@ import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import TextField from "../TextField"
+import RequiredTextLabel from "../RequiredTextLabel"
 import useStyles from "../formStyles"
 
 type Props = {
@@ -41,9 +42,7 @@ const ShippingMethod = (props: Props) => {
       justify="center"
       alignItems="center"
       className={classes.innerForm}>
-      <Grid item xs={12} md={3}>
-        <span className={classes.requiredText}>*</span> Shipping Account:
-      </Grid>
+      <RequiredTextLabel title="Shipping Account" />
       <Grid item xs={12} md={8}>
         <RadioGroup
           aria-label="Shipping Account"

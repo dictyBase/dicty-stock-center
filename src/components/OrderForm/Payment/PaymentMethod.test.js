@@ -16,7 +16,7 @@ describe("OrderForm/Payment/PaymentMethod", () => {
   const wrapper = shallow(<PaymentMethod {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(3)
+      expect(wrapper.find(Grid)).toHaveLength(2)
       expect(wrapper.find(RadioGroup)).toHaveLength(1)
       expect(wrapper.find(FormControlLabel)).toHaveLength(3)
     })
@@ -24,17 +24,11 @@ describe("OrderForm/Payment/PaymentMethod", () => {
   describe("radio button interactions", () => {
     it("sets field value when clicking first two radio buttons", () => {
       // click credit card button
-      const cc = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .first()
+      const cc = wrapper.find(FormControlLabel).first()
       cc.simulate("change")
       expect(setFieldValueSpy.calledOnce).toBe(true)
       // click wire transfer button
-      const wire = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .at(1)
+      const wire = wrapper.find(FormControlLabel).at(1)
       wire.simulate("change")
       expect(setFieldValueSpy.calledTwice).toBe(true)
     })
@@ -42,10 +36,7 @@ describe("OrderForm/Payment/PaymentMethod", () => {
       // reset spy
       setFieldValueSpy.resetHistory()
       // click wire transfer button
-      const po = wrapper
-        .dive()
-        .find(FormControlLabel)
-        .at(2)
+      const po = wrapper.find(FormControlLabel).at(2)
       po.simulate("change")
       expect(setFieldValueSpy.notCalled).toBe(true)
     })
