@@ -22,7 +22,7 @@ const BackButton = ({ pageNum, setPageNum }: Props) => {
     <Button
       color="primary"
       size="large"
-      className={classes.BackBtn}
+      className={classes.backBtn}
       onClick={() => setPageNum(pageNum - 1)}>
       <FontAwesomeIcon icon="arrow-circle-left" />
       &nbsp; Back

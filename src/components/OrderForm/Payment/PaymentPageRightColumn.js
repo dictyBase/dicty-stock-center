@@ -1,11 +1,11 @@
 // @flow
 import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
-import PanelWrapper from "components/common/PanelWrapper"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 import ContinueButton from "../ContinueButton"
 import BackButton from "../BackButton"
+import OrderFormPanel from "../OrderFormPanel"
 import requiredFieldsGenerator from "../utils/requiredFields"
 
 type Props = {
@@ -26,11 +26,10 @@ const PaymentPageRightColumn = (props: Props) => {
 
   return (
     <Fragment>
-      <Grid item xs={12}>
-        <PanelWrapper title="Payment Method">
-          <PaymentMethod {...props} />
-        </PanelWrapper>
-      </Grid>
+      <OrderFormPanel
+        title="Payment Method"
+        component={<PaymentMethod {...props} />}
+      />
       <Grid item xs={12}>
         <PaymentInfoBox />
       </Grid>

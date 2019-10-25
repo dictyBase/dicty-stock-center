@@ -41,7 +41,7 @@ const useStyles = makeStyles({
       backgroundColor: "#0073e6",
     },
   },
-  previousBtn: {
+  backBtn: {
     width: "100%",
     color: "#fff",
     backgroundColor: "#5cb85c",

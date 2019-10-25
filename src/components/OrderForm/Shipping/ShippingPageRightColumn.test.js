@@ -1,9 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
-import PanelWrapper from "components/common/PanelWrapper"
-import ShippingMethod from "./ShippingMethod"
-import AdditionalInformation from "./AdditionalInformation"
+import OrderFormPanel from "../OrderFormPanel"
 import ContinueButton from "../ContinueButton"
 
 describe("OrderForm/Shipping/ShippingPageRightColumn", () => {
@@ -27,9 +25,7 @@ describe("OrderForm/Shipping/ShippingPageRightColumn", () => {
   const wrapper = shallow(<ShippingPageRightColumn {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(PanelWrapper)).toHaveLength(2)
-      expect(wrapper.find(ShippingMethod)).toHaveLength(1)
-      expect(wrapper.find(AdditionalInformation)).toHaveLength(1)
+      expect(wrapper.find(OrderFormPanel)).toHaveLength(2)
       expect(wrapper.find(ContinueButton)).toHaveLength(1)
     })
   })

@@ -1,10 +1,10 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import PanelWrapper from "components/common/PanelWrapper"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
 import ContinueButton from "../ContinueButton"
+import OrderFormPanel from "../OrderFormPanel"
 import requiredFieldsGenerator from "../utils/requiredFields"
 
 type Props = {
@@ -25,16 +25,14 @@ const ShippingPageRightColumn = (props: Props) => {
 
   return (
     <>
-      <Grid item xs={12}>
-        <PanelWrapper title="Shipping Method">
-          <ShippingMethod {...props} />
-        </PanelWrapper>
-      </Grid>
-      <Grid item xs={12}>
-        <PanelWrapper title="Additional Information">
-          <AdditionalInformation {...props} />
-        </PanelWrapper>
-      </Grid>
+      <OrderFormPanel
+        title="Shipping Method"
+        component={<ShippingMethod {...props} />}
+      />
+      <OrderFormPanel
+        title="Additional Information"
+        component={<AdditionalInformation {...props} />}
+      />
       <Grid item xs={12}>
         <ContinueButton
           fields={requiredFieldsGenerator(values, "shipping")}
