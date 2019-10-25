@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,6 +7,7 @@ import PanelWrapper from "components/common/PanelWrapper"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 import ContinueButton from "../ContinueButton"
+import requiredFieldsGenerator from "../utils/requiredFields"
 import useStyles from "../formStyles"
 
 type Props = {
@@ -25,23 +26,9 @@ type Props = {
 const PaymentPageRightColumn = (props: Props) => {
   const classes = useStyles()
   const { values, pageNum, setPageNum } = props
-
-  const fields = [
-    values.payerFirstName,
-    values.payerLastName,
-    values.payerEmail,
-    values.payerOrganization,
-    values.payerLab,
-    values.payerAddress1,
-    values.payerCity,
-    values.payerZip,
-    values.payerCountry,
-    values.payerPhone,
-    values.purchaseOrderNum,
-  ]
-
+  console.log(requiredFieldsGenerator(values, "payment"))
   return (
-    <>
+    <Fragment>
       <Grid item xs={12}>
         <PanelWrapper title="Payment Method">
           <PaymentMethod {...props} />
@@ -63,13 +50,13 @@ const PaymentPageRightColumn = (props: Props) => {
         </Grid>
         <Grid item xs={6}>
           <ContinueButton
-            fields={fields}
+            fields={requiredFieldsGenerator(values, "payment")}
             pageNum={pageNum}
             setPageNum={setPageNum}
           />
         </Grid>
       </Grid>
-    </>
+    </Fragment>
   )
 }
 

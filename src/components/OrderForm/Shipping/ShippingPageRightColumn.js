@@ -5,6 +5,7 @@ import PanelWrapper from "components/common/PanelWrapper"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
 import ContinueButton from "../ContinueButton"
+import requiredFieldsGenerator from "../utils/requiredFields"
 
 type Props = {
   /** Values from Formik */
@@ -22,20 +23,6 @@ type Props = {
 const ShippingPageRightColumn = (props: Props) => {
   const { values, pageNum, setPageNum } = props
 
-  const fields = [
-    values.firstName,
-    values.lastName,
-    values.email,
-    values.organization,
-    values.lab,
-    values.address1,
-    values.city,
-    values.zip,
-    values.country,
-    values.phone,
-    values.shippingAccountNumber,
-  ]
-
   return (
     <>
       <Grid item xs={12}>
@@ -50,7 +37,7 @@ const ShippingPageRightColumn = (props: Props) => {
       </Grid>
       <Grid item xs={12}>
         <ContinueButton
-          fields={fields}
+          fields={requiredFieldsGenerator(values, "shipping")}
           pageNum={pageNum}
           setPageNum={setPageNum}
         />
