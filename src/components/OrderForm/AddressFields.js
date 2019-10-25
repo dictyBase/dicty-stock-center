@@ -8,8 +8,14 @@ import useStyles from "./formStyles"
 type Props = {
   /** Function to manually set Formik field values */
   setFieldValue: Function,
-  /** Values from Formik */
-  values: Object,
+  /** Array of fields to display */
+  fields: Array<{
+    field: string,
+    name: string,
+    required: boolean,
+  }>,
+  countryValue: string,
+  countryName: string,
 }
 
 /**
