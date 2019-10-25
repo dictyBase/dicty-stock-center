@@ -1,13 +1,10 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PanelWrapper from "components/common/PanelWrapper"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
-import ValidationDialog from "../ValidationDialog"
-import useStyles from "../formStyles"
+import ContinueButton from "../ContinueButton"
 
 type Props = {
   /** Values from Formik */
@@ -23,34 +20,21 @@ type Props = {
  */
 
 const ShippingPageRightColumn = (props: Props) => {
-  const [modalOpen, setModalOpen] = useState(false)
-  const classes = useStyles()
   const { values, pageNum, setPageNum } = props
 
-  const validationChecker = () => {
-    const fields = [
-      values.firstName,
-      values.lastName,
-      values.email,
-      values.organization,
-      values.lab,
-      values.address1,
-      values.city,
-      values.zip,
-      values.country,
-      values.phone,
-      values.shippingAccountNumber,
-    ]
-    if (fields.includes("")) {
-      setModalOpen(true)
-      setPageNum(0)
-    }
-  }
-
-  const handleContinueClick = () => {
-    setPageNum(pageNum + 1)
-    validationChecker()
-  }
+  const fields = [
+    values.firstName,
+    values.lastName,
+    values.email,
+    values.organization,
+    values.lab,
+    values.address1,
+    values.city,
+    values.zip,
+    values.country,
+    values.phone,
+    values.shippingAccountNumber,
+  ]
 
   return (
     <>
@@ -65,16 +49,11 @@ const ShippingPageRightColumn = (props: Props) => {
         </PanelWrapper>
       </Grid>
       <Grid item xs={12}>
-        <Button
-          size="large"
-          className={classes.continueBtn}
-          onClick={handleContinueClick}>
-          Continue &nbsp;
-          <FontAwesomeIcon icon="arrow-circle-right" />
-        </Button>
-        {modalOpen && (
-          <ValidationDialog modalOpen={modalOpen} setModalOpen={setModalOpen} />
-        )}
+        <ContinueButton
+          fields={fields}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+        />
       </Grid>
     </>
   )
