@@ -3,7 +3,7 @@ import React from "react"
 import Select from "@material-ui/core/Select"
 import OutlinedInput from "@material-ui/core/OutlinedInput"
 import MenuItem from "@material-ui/core/MenuItem"
-import countryList from "./countryList"
+import countryList from "./utils/countryList"
 
 type Props = {
   /** Function to manually set Formik field values */

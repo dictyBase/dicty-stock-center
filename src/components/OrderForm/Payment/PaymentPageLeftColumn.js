@@ -2,64 +2,7 @@
 import React from "react"
 import PanelWrapper from "components/common/PanelWrapper"
 import AddressFields from "../AddressFields"
-
-const fields = [
-  {
-    name: "payerFirstName",
-    field: "First Name",
-    required: true,
-  },
-  {
-    name: "payerLastName",
-    field: "Last Name",
-    required: true,
-  },
-  {
-    name: "payerEmail",
-    field: "Email",
-    required: true,
-  },
-  {
-    name: "payerOrganization",
-    field: "Organization",
-    required: true,
-  },
-  {
-    name: "payerLab",
-    field: "Lab/Group",
-    required: true,
-  },
-  {
-    name: "payerPhone",
-    field: "Phone Number",
-    required: true,
-  },
-  {
-    name: "payerAddress1",
-    field: "Address",
-    required: true,
-  },
-  {
-    name: "payerAddress2",
-    field: "Address",
-    required: false,
-  },
-  {
-    name: "payerCity",
-    field: "City",
-    required: true,
-  },
-  {
-    name: "payerState",
-    field: "State/Province",
-    required: false,
-  },
-  {
-    name: "payerZip",
-    field: "Zip Code",
-    required: true,
-  },
-]
+import addressFieldsGenerator from "../utils/addressFields"
 
 type Props = {
   /** Values from Formik */
@@ -73,7 +16,7 @@ type Props = {
 const PaymentPageLeftColumn = (props: Props) => (
   <PanelWrapper title="Payment Address">
     <AddressFields
-      fields={fields}
+      fields={addressFieldsGenerator("payment")}
       countryName="payerCountry"
       countryValue={props.values.payerCountry}
       {...props}
