@@ -29,7 +29,7 @@ const PaymentMethodRadioGroup = ({
   return (
     <RadioGroup
       aria-label="Payment Method"
-      name="PaymentMethodRadioGroup"
+      name="paymentMethod"
       onChange={handleChange}
       row>
       <FormControlLabel

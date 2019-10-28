@@ -83,8 +83,8 @@ export const OrderForm = ({ items, removeItem, history }: Props) => {
             })
             history.push("/order/submitted")
             items.forEach(item => removeItem(item.id))
-          }}
-          render={props => (
+          }}>
+          {props => (
             <Form>
               <PageComponent
                 {...props}
@@ -93,7 +93,7 @@ export const OrderForm = ({ items, removeItem, history }: Props) => {
               />
             </Form>
           )}
-        />
+        </Formik>
       </Grid>
     </Grid>
   )
