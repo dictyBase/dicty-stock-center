@@ -29,9 +29,6 @@ const AppBarRightMenu = () => {
   const classes = useStyles()
   const open = Boolean(anchorEl)
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -41,7 +38,7 @@ const AppBarRightMenu = () => {
       <IconButton
         size="small"
         className={classes.icon}
-        onClick={handleClick}
+        onClick={event => setAnchorEl(event.currentTarget)}
         title="More options"
         aria-label="More options for stock catalog page">
         <FontAwesomeIcon icon="ellipsis-v" />
