@@ -7,6 +7,22 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import TextField from "../TextField"
 import RequiredTextLabel from "../RequiredTextLabel"
 import useStyles from "../formStyles"
+import ShippingMethodPrepaidNotice from "./ShippingMethodPrepaidNotice"
+
+const carriers = [
+  {
+    value: "fedex",
+    label: "FedEx",
+  },
+  {
+    value: "ups",
+    label: "UPS",
+  },
+  {
+    value: "dhl",
+    label: "DHL",
+  },
+]
 
 type Props = {
   /** Function for handling radio button selection */
@@ -49,24 +65,15 @@ const ShippingMethod = (props: Props) => {
           name="shippingAccount"
           onChange={handleChange}
           row>
-          <FormControlLabel
-            value="fedex"
-            control={<Radio />}
-            label="FedEx"
-            onChange={handleShipAccountChange}
-          />
-          <FormControlLabel
-            value="ups"
-            control={<Radio />}
-            label="UPS"
-            onChange={handleShipAccountChange}
-          />
-          <FormControlLabel
-            value="dhl"
-            control={<Radio />}
-            label="DHL"
-            onChange={handleShipAccountChange}
-          />
+          {carriers.map(item => (
+            <FormControlLabel
+              key={item.value}
+              value={item.value}
+              control={<Radio />}
+              label={item.label}
+              onChange={handleShipAccountChange}
+            />
+          ))}
           <FormControlLabel
             value="prepaid"
             control={<Radio />}
@@ -81,16 +88,7 @@ const ShippingMethod = (props: Props) => {
             placeholder="Shipping Account Number"
           />
         )}
-        {prepaidNotice && (
-          <div className={classes.panelBlue}>
-            If using a prepaid shipping label, please send ASAP to{" "}
-            <u>
-              <a href="mailto:dictystocks@northwestern.edu" target="_top">
-                dictystocks@northwestern.edu
-              </a>
-            </u>
-          </div>
-        )}
+        {prepaidNotice && <ShippingMethodPrepaidNotice />}
       </Grid>
     </Grid>
   )
