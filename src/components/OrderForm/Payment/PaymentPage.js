@@ -6,6 +6,21 @@ import Checkbox from "@material-ui/core/Checkbox"
 import LeftColumn from "../LeftColumn"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
 
+const paymentAddressFields = [
+  "payerFirstName",
+  "payerLastName",
+  "payerEmail",
+  "payerOrganization",
+  "payerLab",
+  "payerAddress1",
+  "payerAddress2",
+  "payerCity",
+  "payerState",
+  "payerZip",
+  "payerCountry",
+  "payerPhone",
+]
+
 type Props = {
   /** Function to manually set Formik field values */
   setFieldValue: Function,
@@ -23,18 +38,13 @@ const PaymentPage = (props: Props) => {
 
   const handleChange = () => {
     toggleCheckbox(!checkbox)
-    setFieldValue("payerFirstName", values.firstName)
-    setFieldValue("payerLastName", values.lastName)
-    setFieldValue("payerEmail", values.email)
-    setFieldValue("payerOrganization", values.organization)
-    setFieldValue("payerLab", values.lab)
-    setFieldValue("payerAddress1", values.address1)
-    setFieldValue("payerAddress2", values.address2)
-    setFieldValue("payerCity", values.city)
-    setFieldValue("payerState", values.state)
-    setFieldValue("payerZip", values.zip)
-    setFieldValue("payerCountry", values.country)
-    setFieldValue("payerPhone", values.phone)
+    paymentAddressFields.forEach(item => {
+      // convert "payerFirstName" to "firstName",  etc
+      const convertedVal = item.replace("payer", "")
+      const newVal =
+        convertedVal.charAt(0).toLowerCase() + convertedVal.slice(1)
+      setFieldValue(item, values[newVal])
+    })
   }
 
   return (
