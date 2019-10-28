@@ -35,7 +35,7 @@ const ShippingMethod = (props: Props) => {
     setPrepaidNotice(true)
     setFieldValue("shippingAccountNumber", "sending prepaid shipping label")
   }
-  console.log(props)
+
   return (
     <Grid
       container
