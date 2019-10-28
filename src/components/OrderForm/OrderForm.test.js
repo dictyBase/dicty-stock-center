@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
 import { OrderForm } from "./OrderForm"
 import { Helmet } from "react-helmet"
-// import { Form, Formik } from "formik"
+import { Form, Formik } from "formik"
 
 describe("OrderForm/OrderForm", () => {
   const props = {
@@ -16,12 +16,11 @@ describe("OrderForm/OrderForm", () => {
       <OrderForm {...props} />
     </MockedProvider>,
   )
-  // const mutation = wrapper.find(Mutation).dive()
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Helmet)).toHaveLength(1)
-      // expect(mutation.find(Formik)).toHaveLength(1)
-      // expect(mutation.find(Form)).toHaveLength(1)
+      expect(wrapper.find(Formik)).toHaveLength(1)
+      expect(wrapper.find(Form)).toHaveLength(1)
     })
   })
 })
