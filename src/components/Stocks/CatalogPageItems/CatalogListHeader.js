@@ -59,6 +59,7 @@ const CatalogListHeader = ({
   if (checkedItemsLength > 0) {
     content = (
       <>
+        {checkedItemsLength} items selected
         <AddToCartButton
           data={checkedItems}
           setCheckedItems={setCheckedItems}
