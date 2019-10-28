@@ -27,9 +27,9 @@ const styles = theme => ({
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "75%",
+    width: "90%",
     "@media (min-width: 1300px)": {
-      width: "1270px",
+      width: "80%",
     },
   },
   label: {
