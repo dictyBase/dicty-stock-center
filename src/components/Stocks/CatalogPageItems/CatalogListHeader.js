@@ -9,6 +9,8 @@ import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
+import StrainCatalogListHeader from "components/Stocks/Strains/Catalog/StrainCatalogListHeader"
+import PlasmidCatalogListHeader from "components/Stocks/Plasmids/Catalog/PlasmidCatalogListHeader"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -78,43 +80,9 @@ const CatalogListHeader = ({
   } else {
     content =
       stockType === "strain" ? (
-        <>
-          <Grid item xs={12} md={3}>
-            Strain Descriptor
-          </Grid>
-          <Hidden smDown>
-            <Grid item md={6}>
-              Strain Summary
-            </Grid>
-          </Hidden>
-          <Hidden lgDown>
-            <Grid item xl={1}>
-              Strain ID
-            </Grid>
-          </Hidden>
-          <Hidden smDown>
-            <Grid item xs={4} md={1}></Grid>
-          </Hidden>
-        </>
+        <StrainCatalogListHeader />
       ) : (
-        <>
-          <Grid item xs={12} md={2}>
-            Plasmid Name
-          </Grid>
-          <Hidden smDown>
-            <Grid item md={7}>
-              Description
-            </Grid>
-          </Hidden>
-          <Hidden lgDown>
-            <Grid item xl={1}>
-              Plasmid ID
-            </Grid>
-          </Hidden>
-          <Hidden smDown>
-            <Grid item xs={4} md={1}></Grid>
-          </Hidden>
-        </>
+        <PlasmidCatalogListHeader />
       )
   }
 
