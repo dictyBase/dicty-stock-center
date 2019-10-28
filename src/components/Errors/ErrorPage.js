@@ -2,11 +2,10 @@
 import React from "react"
 import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import sadDicty from "static/sad-dicty.png"
+import ServerError from "./ServerError"
+import OtherError from "./OtherError"
 import styles from "./errorStyles"
+import NotFoundError from "components/Stocks/CatalogPageItems/NotFoundError"
 
 type Props = {
   /** Material-UI styling */
@@ -21,11 +20,9 @@ type Props = {
  * General error handling page. It displays different messages based on HTTP status code.
  */
 
-export const ErrorPage = (props: Props) => {
-  const { auth, page, classes } = props
-
+export const ErrorPage = ({ auth, page, classes }: Props) => {
   let errorStatus = 0
-  let errorMsg
+  let errorMsg = ""
 
   if (auth.error) {
     errorStatus = auth.error.status
@@ -38,107 +35,18 @@ export const ErrorPage = (props: Props) => {
   }
 
   if (errorStatus >= 500) {
-    return (
-      <Grid container className={classes.mainGrid} justify="center">
-        <Grid item xs={10} md={8}>
-          <div className={classes.error500}>
-            <h2>Sorry! There was a server error.</h2>
-            <p>
-              If the problem persists, please email us at{" "}
-              <a
-                className={classes.link500}
-                href="mailto:dictybase@northwestern.edu">
-                dictybase@northwestern.edu
-              </a>
-              .
-            </p>
-            <a href="/">
-              <Button
-                className={classes.backButton}
-                size="small"
-                variant="contained"
-                color="default">
-                Back to homepage
-              </Button>
-            </a>
-          </div>
-        </Grid>
-      </Grid>
-    )
+    return <ServerError />
   }
 
   if (errorStatus === 404) {
-    return (
-      <Grid container className={classes.mainGrid} justify="center">
-        <Grid item xs={10} md={8}>
-          <div className={classes.error400}>
-            <img src={sadDicty} alt="Sad Dicty -- Item Not Found" />
-            <h3>Item Not Found</h3>
-            <div className={classes.list}>
-              <ul>
-                <li>This is probably an invalid ID. Try a different one.</li>
-                <li>You might be coming here from an outdated link.</li>
-              </ul>
-            </div>
-            <p>
-              {" "}
-              If problems persist, email us at{" "}
-              <a
-                className={classes.link}
-                href="mailto:dictybase@northwestern.edu">
-                dictybase@northwestern.edu
-              </a>
-              .
-            </p>
-            <a href="/">
-              <Button
-                className={classes.backButton}
-                size="small"
-                variant="contained"
-                color="primary">
-                Back to homepage
-              </Button>
-            </a>
-          </div>
-        </Grid>
-      </Grid>
-    )
+    return <NotFoundError error={errorMsg} />
   }
 
-  return (
-    <Grid container className={classes.mainGrid} justify="center">
-      <Grid item xs={10} md={8}>
-        <div className={classes.error400}>
-          <img src={sadDicty} alt="Sad Dicty -- HTTP Error" />
-          <h1>
-            <FontAwesomeIcon icon="exclamation-circle" /> {errorStatus} Error
-          </h1>
-          <h3>{errorMsg}</h3>
-          <p>
-            If the problem persists, please email us at{" "}
-            <a
-              className={classes.link}
-              href="mailto:dictybase@northwestern.edu">
-              dictybase@northwestern.edu
-            </a>
-            .
-          </p>
-          <a href="/">
-            <Button
-              className={classes.backButton}
-              size="small"
-              variant="contained"
-              color="primary">
-              Back to Homepage
-            </Button>
-          </a>
-        </div>
-      </Grid>
-    </Grid>
-  )
+  return <OtherError />
 }
 
 const mapStateToProps = ({ auth, page }) => ({ auth, page })
 
-// $FlowFixMe
-export default connect(mapStateToProps)(withStyles(styles)(ErrorPage))
+export default connect<*, *, *, *, *, *>(mapStateToProps)(
+  withStyles(styles)(ErrorPage),
+)
