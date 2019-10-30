@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import styles from "./homeStyles"
 
-const GET_STOCK_TOTALS = gql`
+export const GET_STOCK_TOTALS = gql`
   query StockList($cursor: Int!) {
     listPlasmids(input: { cursor: $cursor, limit: 30000 }) {
       totalCount
@@ -28,7 +28,7 @@ type Props = {
  * Availability fetches and displays the current availability of strains and plasmids.
  */
 
-const Availability = ({ classes }: Props) => {
+export const Availability = ({ classes }: Props) => {
   const { loading, error, data } = useQuery(GET_STOCK_TOTALS, {
     variables: {
       cursor: 0,
