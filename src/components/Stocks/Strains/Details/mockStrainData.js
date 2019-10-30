@@ -19,6 +19,7 @@ export const data = {
   dbxrefs: ["11130075"],
   publications: [{ id: "123456789" }],
   genes: ["aarA"],
+  in_stock: true,
 }
 
 export const strainWithPhenotype = {

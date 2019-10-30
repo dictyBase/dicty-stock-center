@@ -5,30 +5,23 @@ import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
-import Grid from "@material-ui/core/Grid"
-import PlasmidDetailsContainer, { GET_PLASMID } from "./PlasmidDetailsContainer"
+import { PlasmidDetailsContainer, GET_PLASMID } from "./PlasmidDetailsContainer"
 import PlasmidDetailsList from "./PlasmidDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { data } from "./mockPlasmidData"
 
 const mockStore = configureMockStore()
 const store = mockStore({})
 
-/**
- * Need to figure out why there is a "no more mocked responses for the query" error on receiving data
- * https://github.com/apollographql/react-apollo/issues/617
- */
-
 describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
-  console.error = jest.fn()
   const props = {
     match: {
       params: {
         id: "DBP385",
       },
     },
-    classes: {},
   }
   describe("initial render", () => {
     const mocks = [
@@ -39,19 +32,7 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
         },
         result: {
           data: {
-            plasmid: {
-              id: props.match.params.id,
-              name: "p9124",
-              summary: "this is a plasmid",
-              depositor: "artv@test.com",
-              dbxrefs: [],
-              genes: [],
-              image_map: "",
-              sequence: "",
-              keywords: [""],
-              genbank_accession: "",
-              in_stock: true,
-            },
+            plasmid: data,
           },
         },
       },
@@ -68,10 +49,9 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
     it("renders Loading component first", () => {
       expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
     })
-    xit("renders expected components after receiving data", async () => {
+    it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(Grid)).toHaveLength(3)
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsList)).toHaveLength(1)
     })

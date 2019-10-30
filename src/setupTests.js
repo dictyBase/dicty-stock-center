@@ -5,6 +5,9 @@ import { sprintf } from "sprintf-js"
 
 global.console = {
   log: (msg, args) => {
+    if (typeof msg !== "string") {
+      return
+    }
     const str = sprintf(msg, args)
     process.stderr.write(str + "\n")
   },
