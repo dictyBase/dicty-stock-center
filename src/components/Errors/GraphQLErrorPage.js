@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import GraphQLNetworkError from "./GraphQLNetworkError"
 import ServerError from "./ServerError"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
@@ -20,7 +19,7 @@ const GraphQLErrorPage = ({ error }: Props) => {
 
   if (error.networkError) {
     console.error(error.networkError)
-    return <GraphQLNetworkError />
+    return <ServerError />
   }
 
   const errorCode = error.graphQLErrors[0].extensions.code

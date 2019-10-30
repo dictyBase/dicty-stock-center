@@ -1,7 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
 import GraphQLErrorPage from "./GraphQLErrorPage"
-import GraphQLNetworkError from "./GraphQLNetworkError"
 import ServerError from "./ServerError"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
@@ -55,7 +54,7 @@ describe("Errors/GraphQLErrorPage", () => {
   describe("error handling", () => {
     it("renders correct component for network errors", () => {
       const wrapper = shallow(<GraphQLErrorPage {...networkErrProps} />)
-      expect(wrapper.find(GraphQLNetworkError)).toHaveLength(1)
+      expect(wrapper.find(ServerError)).toHaveLength(1)
     })
     it("renders correct component for unavailable errors", () => {
       const wrapper = shallow(<GraphQLErrorPage {...unavailableErrProps} />)
