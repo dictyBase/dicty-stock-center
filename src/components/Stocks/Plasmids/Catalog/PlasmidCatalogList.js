@@ -40,7 +40,12 @@ type Props = {
  * (via react-window) and handles the checkbox state.
  */
 
-const PlasmidCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
+export const PlasmidCatalogList = ({
+  data,
+  fetchMore,
+  cursor,
+  filter,
+}: Props) => {
   const {
     checkedItems,
     setCheckedItems,
