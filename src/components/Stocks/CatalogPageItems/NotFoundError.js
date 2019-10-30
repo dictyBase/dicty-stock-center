@@ -3,6 +3,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
+import ErrorMessage from "components/Errors/ErrorMessage"
 
 const useStyles = makeStyles({
   mainGrid: {
@@ -40,15 +41,7 @@ const NotFoundError = ({ error }: Props) => {
         <Grid item xs={12} className={classes.body}>
           <h1>{error}</h1>
           <p>Please check your query and try again.</p>
-          <p>
-            If you believe there is an issue, email us at{" "}
-            <a
-              className={classes.link}
-              href="mailto:dictybase@northwestern.edu">
-              dictybase@northwestern.edu
-            </a>
-            .
-          </p>
+          <ErrorMessage />
         </Grid>
       </Grid>
     </Paper>
