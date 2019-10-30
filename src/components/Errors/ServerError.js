@@ -2,7 +2,8 @@
 import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
+import BackToHomepageButton from "components/common/BackToHomepageButton"
+import ErrorMessage from "./ErrorMessage"
 import styles from "./errorStyles"
 
 type Props = {
@@ -19,24 +20,8 @@ const ServerError = ({ classes }: Props) => (
     <Grid item xs={10} md={8}>
       <div className={classes.error500}>
         <h2>Sorry! There was a server error.</h2>
-        <p>
-          If the problem persists, please email us at{" "}
-          <a
-            className={classes.link500}
-            href="mailto:dictybase@northwestern.edu">
-            dictybase@northwestern.edu
-          </a>
-          .
-        </p>
-        <a href="/">
-          <Button
-            className={classes.backButton}
-            size="small"
-            variant="contained"
-            color="default">
-            Back to homepage
-          </Button>
-        </a>
+        <ErrorMessage />
+        <BackToHomepageButton />
       </div>
     </Grid>
   </Grid>

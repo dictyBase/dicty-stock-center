@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import OtherError from "./OtherError"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
+import BackToHomepageButton from "components/common/BackToHomepageButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("Errors/OtherError", () => {
@@ -10,7 +10,7 @@ describe("Errors/OtherError", () => {
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)
-      expect(wrapper.find(Button)).toHaveLength(1)
+      expect(wrapper.find(BackToHomepageButton)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
     })
     it("displays error header", () => {

@@ -2,7 +2,8 @@
 import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
+import BackToHomepageButton from "components/common/BackToHomepageButton"
+import ErrorMessage from "./ErrorMessage"
 import sadDicty from "static/sad-dicty.png"
 import styles from "./errorStyles"
 
@@ -29,22 +30,8 @@ const NotFoundError = ({ classes, error }: Props) => (
             <li>You might be coming here from an outdated link.</li>
           </ul>
         </div>
-        <p>
-          If the problem persists, please email us at{" "}
-          <a className={classes.link} href="mailto:dictybase@northwestern.edu">
-            dictybase@northwestern.edu
-          </a>
-          .
-        </p>
-        <a href="/">
-          <Button
-            className={classes.backButton}
-            size="small"
-            variant="contained"
-            color="primary">
-            Back to Homepage
-          </Button>
-        </a>
+        <ErrorMessage />
+        <BackToHomepageButton />
       </div>
     </Grid>
   </Grid>

@@ -20,16 +20,6 @@ const styles = theme => ({
     color: "#e0e0e0",
     textDecoration: "none",
   },
-  backButton: {
-    width: "25%",
-    padding: "20px",
-    textTransform: "none",
-    backgroundColor: "#15317e",
-    color: "#e3e3e3",
-    "&:hover": {
-      backgroundColor: "#1a3d9e",
-    },
-  },
   mainGrid: {
     marginTop: "40px",
   },
