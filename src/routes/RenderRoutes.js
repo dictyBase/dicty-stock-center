@@ -5,7 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import StrainDetailsMockup from "components/Stocks/Strains/Details/StrainDetailsMockup"
+import StrainDetailsMockup from "components/Stocks/Strains/Details/Mockup/StrainDetailsMockup"
 
 // homepage route
 const Homepage = Loadable({
