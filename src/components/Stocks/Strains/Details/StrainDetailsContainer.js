@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withRouter } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
@@ -104,6 +104,9 @@ export const StrainDetailsContainer = ({ match }: Props) => {
       </Helmet>
       <Grid item xs={12}>
         <StockDetailsHeader title={title} />
+        <center>
+          <Link to="/details-mockup">View new details page mockup</Link>
+        </center>
       </Grid>
       <Grid item xs={12}>
         {/* {data.strain.phenotypes.length > 0 && (

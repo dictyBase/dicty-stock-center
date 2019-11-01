@@ -1,5 +1,6 @@
 // @flow
 import React from "react"
+import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
@@ -90,10 +91,24 @@ const LeftCard = () => {
   return (
     <>
       <Grid item xs={12} className={classes.header}>
-        <Typography variant="h4">{data.label}</Typography>
-        <Typography variant="h6" color="textSecondary">
-          <em>{data.id}</em>
-        </Typography>
+        <Grid container alignItems="center">
+          <Grid item xs={1} className={classes.backButton}>
+            <IconButton
+              component={Link}
+              to="/strains"
+              title="Back to strain catalog"
+              aria-label="strain catalog">
+              <FontAwesomeIcon icon="arrow-circle-left" size="lg" />
+            </IconButton>
+          </Grid>
+          <Grid item xs={10}>
+            <Typography variant="h4">{data.label}</Typography>
+            <Typography variant="h6" color="textSecondary">
+              <em>{data.id}</em>
+            </Typography>
+          </Grid>
+          <Grid item xs={1}></Grid>
+        </Grid>
       </Grid>
       <Grid item xs={10} className={classes.header}>
         <Card className={classes.leftCard} raised>
@@ -116,20 +131,9 @@ const LeftCard = () => {
               ))}
             </List>
           </Grid>
-          <CardActions disableSpacing className={classes.cardHeader}>
-            <IconButton
-              title="Visit previous strain in catalog"
-              className={classes.prevStrain}
-              aria-label="previous strain">
-              <FontAwesomeIcon icon="arrow-circle-left" size="lg" />
-            </IconButton>
-            <IconButton
-              title="Visit next strain in catalog"
-              className={classes.nextStrain}
-              aria-label="next strain">
-              <FontAwesomeIcon icon="arrow-circle-right" size="lg" />
-            </IconButton>
-          </CardActions>
+          <CardActions
+            disableSpacing
+            className={classes.cardBottom}></CardActions>
         </Card>
       </Grid>
     </>

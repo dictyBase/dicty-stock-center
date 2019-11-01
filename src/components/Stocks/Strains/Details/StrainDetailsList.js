@@ -159,7 +159,6 @@ const StrainDetailsList = ({ data }: Props) => {
           </ItemDisplay>
         ))}
       </Paper>
-      <Link to="/details-mockup">View mockup</Link>
     </Fragment>
   )
 }

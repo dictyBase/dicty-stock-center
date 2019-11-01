@@ -8,8 +8,16 @@ const useStyles = makeStyles({
   header: {
     textAlign: "center",
   },
+  backButton: {
+    textAlign: "left",
+  },
   cardHeader: {
-    backgroundColor: "#e6f2ff",
+    backgroundColor: "#0059b3",
+    color: "#fff",
+  },
+  cardBottom: {
+    backgroundColor: "#0059b3",
+    height: "5px",
   },
   leftCard: {},
   details: {
@@ -37,9 +45,12 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   textField: {},
-  prevStrain: {},
+  prevStrain: {
+    color: "#fff !important",
+  },
   nextStrain: {
     marginLeft: "auto !important",
+    color: "#fff !important",
   },
   rightCardBottom: {
     marginTop: "10px",
