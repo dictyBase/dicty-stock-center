@@ -4,11 +4,12 @@ import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
+import CardActions from "@material-ui/core/CardActions"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import IconButton from "@material-ui/core/IconButton"
-import CardActions from "@material-ui/core/CardActions"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Item from "./Item"
 import { data } from "../mockStrainData"
 import useStyles from "./styles"
 
@@ -21,7 +22,7 @@ const rows = [
   {
     id: 1,
     title: "Strain Names",
-    content: data.names,
+    content: data.names.join(", "),
   },
   {
     id: 2,
@@ -36,7 +37,7 @@ const rows = [
   {
     id: 4,
     title: "Strain Characteristics",
-    content: data.characteristics,
+    content: data.characteristics.join(", "),
   },
   {
     id: 5,
@@ -66,7 +67,7 @@ const rows = [
   {
     id: 10,
     title: "Genotypes",
-    content: data.genotypes,
+    content: data.genotypes.join(", "),
   },
   {
     id: 11,
@@ -98,7 +99,7 @@ const LeftCard = () => {
               to="/strains"
               title="Back to strain catalog"
               aria-label="strain catalog">
-              <FontAwesomeIcon icon="arrow-circle-left" size="lg" />
+              <FontAwesomeIcon icon="arrow-circle-left" size="2x" />
             </IconButton>
           </Grid>
           <Grid item xs={10}>
@@ -120,14 +121,7 @@ const LeftCard = () => {
                 </Grid>
               </ListItem>
               {rows.map(data => (
-                <ListItem key={data.id} className={classes.details} divider>
-                  <Grid item xs={3} className={classes.listTitle}>
-                    <Typography variant="body2">{data.title}</Typography>
-                  </Grid>
-                  <Grid item xs={9} className={classes.listContent}>
-                    <Typography variant="body1">{data.content}</Typography>
-                  </Grid>
-                </ListItem>
+                <Item data={data} key={data.id} />
               ))}
             </List>
           </Grid>
