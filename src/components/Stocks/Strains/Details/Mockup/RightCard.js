@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton"
 // import CardActions from "@material-ui/core/CardActions"
 import TextField from "@material-ui/core/TextField"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import RightCardBottom from "./RightCardBottom"
 import useStyles from "./styles"
 
 const RightCard = () => {
@@ -45,6 +46,7 @@ const RightCard = () => {
           </IconButton>
         </div>
       </Card>
+      <RightCardBottom />
     </Grid>
   )
 }

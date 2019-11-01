@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     margin: "auto",
   },
   header: {
-    textAlign: "center",
+    // textAlign: "center",
   },
   leftCard: {},
   details: {
@@ -30,6 +30,13 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   textField: {},
+  prevStrain: {},
+  nextStrain: {
+    marginLeft: "auto !important",
+  },
+  rightCardBottom: {
+    marginTop: "10px",
+  },
 })
 
 export default useStyles
