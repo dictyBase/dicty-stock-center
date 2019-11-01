@@ -8,7 +8,9 @@ const useStyles = makeStyles({
   header: {
     textAlign: "center",
   },
-  cardHeader: {},
+  cardHeader: {
+    backgroundColor: "#e6f2ff",
+  },
   leftCard: {},
   details: {
     // "&:hover": {
@@ -22,6 +24,7 @@ const useStyles = makeStyles({
   },
   list: {
     width: "100%",
+    padding: "0px !important",
   },
   listTitle: {},
   listContent: {},

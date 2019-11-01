@@ -99,8 +99,8 @@ const LeftCard = () => {
         <Card className={classes.leftCard} raised>
           <Grid container>
             <List className={classes.list}>
-              <ListItem divider>
-                <Grid item xs={12} className={classes.cardHeader}>
+              <ListItem divider className={classes.cardHeader}>
+                <Grid item xs={12}>
                   <Typography variant="h6">Strain Details</Typography>
                 </Grid>
               </ListItem>
@@ -116,7 +116,7 @@ const LeftCard = () => {
               ))}
             </List>
           </Grid>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing className={classes.cardHeader}>
             <IconButton
               title="Visit previous strain in catalog"
               className={classes.prevStrain}
