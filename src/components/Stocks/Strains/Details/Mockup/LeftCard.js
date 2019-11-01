@@ -3,11 +3,9 @@ import React from "react"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
+import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import IconButton from "@material-ui/core/IconButton"
-import CardHeader from "@material-ui/core/CardHeader"
-// import CardMedia from "@material-ui/core/CardMedia"
-// import CardContent from "@material-ui/core/CardContent"
 import CardActions from "@material-ui/core/CardActions"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../mockStrainData"
@@ -90,36 +88,51 @@ const LeftCard = () => {
   const classes = useStyles()
 
   return (
-    <Grid item xs={10} className={classes.header}>
-      <Card className={classes.leftCard} raised>
-        <CardHeader
-          title={`Strain Details for ${data.label}`}
-          subheader={data.id}
-        />
-        <Grid container>
-          {rows.map(data => (
-            <ListItem key={data.id} className={classes.details}>
-              <Grid item xs={3} className={classes.listTitle}>
-                <Typography color="textPrimary">
-                  <strong>{data.title}</strong>
-                </Typography>
-              </Grid>
-              <Grid item xs={9} className={classes.listContent}>
-                <Typography>{data.content}</Typography>
-              </Grid>
-            </ListItem>
-          ))}
-        </Grid>
-        <CardActions disableSpacing>
-          <IconButton className={classes.prevStrain} aria-label="add to cart">
-            <FontAwesomeIcon icon="arrow-circle-left" size="lg" />
-          </IconButton>
-          <IconButton className={classes.nextStrain} aria-label="add to cart">
-            <FontAwesomeIcon icon="arrow-circle-right" size="lg" />
-          </IconButton>
-        </CardActions>
-      </Card>
-    </Grid>
+    <>
+      <Grid item xs={12} className={classes.header}>
+        <Typography variant="h4">{data.label}</Typography>
+        <Typography variant="h6" color="textSecondary">
+          <em>{data.id}</em>
+        </Typography>
+      </Grid>
+      <Grid item xs={10} className={classes.header}>
+        <Card className={classes.leftCard} raised>
+          <Grid container>
+            <List className={classes.list}>
+              <ListItem divider>
+                <Grid item xs={12} className={classes.cardHeader}>
+                  <Typography variant="h6">Strain Details</Typography>
+                </Grid>
+              </ListItem>
+              {rows.map(data => (
+                <ListItem key={data.id} className={classes.details} divider>
+                  <Grid item xs={3} className={classes.listTitle}>
+                    <Typography variant="body2">{data.title}</Typography>
+                  </Grid>
+                  <Grid item xs={9} className={classes.listContent}>
+                    <Typography variant="body1">{data.content}</Typography>
+                  </Grid>
+                </ListItem>
+              ))}
+            </List>
+          </Grid>
+          <CardActions disableSpacing>
+            <IconButton
+              title="Visit previous strain in catalog"
+              className={classes.prevStrain}
+              aria-label="previous strain">
+              <FontAwesomeIcon icon="arrow-circle-left" size="lg" />
+            </IconButton>
+            <IconButton
+              title="Visit next strain in catalog"
+              className={classes.nextStrain}
+              aria-label="next strain">
+              <FontAwesomeIcon icon="arrow-circle-right" size="lg" />
+            </IconButton>
+          </CardActions>
+        </Card>
+      </Grid>
+    </>
   )
 }
 

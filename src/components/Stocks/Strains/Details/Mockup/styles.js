@@ -6,18 +6,22 @@ const useStyles = makeStyles({
     margin: "auto",
   },
   header: {
-    // textAlign: "center",
+    textAlign: "center",
   },
+  cardHeader: {},
   leftCard: {},
   details: {
-    "&:hover": {
-      boxShadow:
-        "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
-      zIndex: 1,
-    },
+    // "&:hover": {
+    //   boxShadow:
+    //     "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
+    //   zIndex: 1,
+    // },
     "&:nth-child(odd)": {
-      backgroundColor: "#eeeeee",
+      backgroundColor: "#F4F6F8",
     },
+  },
+  list: {
+    width: "100%",
   },
   listTitle: {},
   listContent: {},
