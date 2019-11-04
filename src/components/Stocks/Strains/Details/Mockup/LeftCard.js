@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import IconButton from "@material-ui/core/IconButton"
@@ -125,9 +124,6 @@ const LeftCard = () => {
               ))}
             </List>
           </Grid>
-          <CardActions
-            disableSpacing
-            className={classes.cardBottom}></CardActions>
         </Card>
       </Grid>
     </>
