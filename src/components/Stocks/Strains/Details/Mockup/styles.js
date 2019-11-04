@@ -42,16 +42,19 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   quantity: {
-    display: "inline-flex",
-    justifyContent: "center",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
-  textField: {},
-  prevStrain: {
-    color: "#fff !important",
+  textField: {
+    width: "55px",
+    // height: "29px",
   },
-  nextStrain: {
-    marginLeft: "auto !important",
-    color: "#fff !important",
+  minusBtn: {
+    height: "29px",
+  },
+  plusBtn: {
+    height: "29px",
   },
   rightCardBottom: {
     marginTop: "10px",

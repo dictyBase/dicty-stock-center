@@ -1,39 +1,54 @@
 // @flow
-import React from "react"
+import React, { useState } from "react"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import IconButton from "@material-ui/core/IconButton"
-// import CardHeader from "@material-ui/core/CardHeader"
-// import CardMedia from "@material-ui/core/CardMedia"
-// import CardContent from "@material-ui/core/CardContent"
-// import CardActions from "@material-ui/core/CardActions"
+import Divider from "@material-ui/core/Divider"
 import TextField from "@material-ui/core/TextField"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import RightCardBottom from "./RightCardBottom"
 import useStyles from "./styles"
 
 const RightCard = () => {
+  const [quantity, setQuantity] = useState(1)
   const classes = useStyles()
+
+  const handleMinusClick = () => {
+    quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)
+  }
+
+  const handlePlusClick = () => {
+    quantity === 12 ? setQuantity(12) : setQuantity(quantity + 1)
+    // need to add snackbar or something to say no more than 12 items allowed
+  }
 
   return (
     <Grid item xs={2}>
       <Card raised className={classes.rightCard}>
         <Typography variant="h6">Available</Typography>
+        <Divider />
         <div className={classes.quantity}>
-          <IconButton className={classes.button} aria-label="minus">
+          <IconButton
+            className={classes.minusBtn}
+            onClick={handleMinusClick}
+            aria-label="minus"
+            size="small">
             <FontAwesomeIcon icon="minus" size="sm" />
           </IconButton>
           <TextField
             id="outlined-quantity"
-            label="Quantity"
-            className={classes.textField}
-            value={1}
+            value={quantity}
             onChange={() => {}}
-            margin="normal"
+            margin="dense"
             variant="outlined"
+            inputProps={{ className: classes.textField }}
           />
-          <IconButton className={classes.button} aria-label="plus">
+          <IconButton
+            className={classes.plusBtn}
+            onClick={handlePlusClick}
+            size="small"
+            aria-label="plus">
             <FontAwesomeIcon icon="plus" size="sm" />
           </IconButton>
         </div>
