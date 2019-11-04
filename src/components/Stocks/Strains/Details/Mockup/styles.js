@@ -45,19 +45,11 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
-  },
-  textField: {
-    width: "55px",
-    // height: "29px",
-  },
-  minusBtn: {
-    height: "29px",
-  },
-  plusBtn: {
-    height: "29px",
+    padding: "16px",
   },
   rightCardBottom: {
-    marginTop: "10px",
+    marginTop: "16px",
+    padding: "16px",
   },
 })
 

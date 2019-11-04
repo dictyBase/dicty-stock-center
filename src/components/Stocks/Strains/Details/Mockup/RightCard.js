@@ -1,26 +1,24 @@
 // @flow
 import React, { useState } from "react"
+import MenuItem from "@material-ui/core/MenuItem"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
-import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
 import TextField from "@material-ui/core/TextField"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import RightCardBottom from "./RightCardBottom"
+import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import useStyles from "./styles"
+import { data } from "../mockStrainData"
+
+const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 const RightCard = () => {
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(values[0])
   const classes = useStyles()
 
-  const handleMinusClick = () => {
-    quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)
-  }
-
-  const handlePlusClick = () => {
-    quantity === 12 ? setQuantity(12) : setQuantity(quantity + 1)
-    // need to add snackbar or something to say no more than 12 items allowed
+  const handleChange = event => {
+    setQuantity(event.target.value)
   }
 
   return (
@@ -29,36 +27,33 @@ const RightCard = () => {
         <Typography variant="h6">Available</Typography>
         <Divider />
         <div className={classes.quantity}>
-          <IconButton
-            className={classes.minusBtn}
-            onClick={handleMinusClick}
-            aria-label="minus"
-            size="small">
-            <FontAwesomeIcon icon="minus" size="sm" />
-          </IconButton>
           <TextField
             id="outlined-quantity"
+            select
+            label="Quantity"
             value={quantity}
-            onChange={() => {}}
+            onChange={handleChange}
             margin="dense"
             variant="outlined"
-            inputProps={{ className: classes.textField }}
+            defaultValue={1}
+            inputProps={{ className: classes.textField }}>
+            {values.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <AddToCartButton
+            data={[
+              {
+                id: data.id,
+                label: data.label,
+                summary: data.summary,
+              },
+            ]}
+            setHover={() => {}}
+            stockType="strain"
           />
-          <IconButton
-            className={classes.plusBtn}
-            onClick={handlePlusClick}
-            size="small"
-            aria-label="plus">
-            <FontAwesomeIcon icon="plus" size="sm" />
-          </IconButton>
-        </div>
-        <div>
-          <IconButton
-            className={classes.button}
-            color="primary"
-            aria-label="add to cart">
-            <FontAwesomeIcon icon="cart-plus" size="sm" />
-          </IconButton>
         </div>
       </Card>
       <RightCardBottom />
