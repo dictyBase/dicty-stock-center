@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   backButton: {
+    marginTop: "10px",
     textAlign: "left",
   },
   cardHeader: {

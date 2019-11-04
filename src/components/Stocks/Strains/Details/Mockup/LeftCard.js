@@ -98,7 +98,7 @@ const LeftCard = () => {
               to="/strains"
               title="Back to strain catalog"
               aria-label="strain catalog">
-              <FontAwesomeIcon icon="arrow-circle-left" size="2x" />
+              <FontAwesomeIcon icon="arrow-left" size="lg" />
             </IconButton>
           </Grid>
           <Grid item xs={10}>

@@ -9,6 +9,7 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faArrowCircleLeft,
   faArrowCircleRight,
+  faArrowLeft,
   faBars,
   faCaretDown,
   faCartPlus,
@@ -55,6 +56,7 @@ import { appStyles as styles, navTheme } from "./appStyles"
 library.add(
   faArrowCircleLeft,
   faArrowCircleRight,
+  faArrowLeft,
   faBars,
   faCaretDown,
   faCartPlus,
