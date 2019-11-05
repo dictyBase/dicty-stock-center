@@ -44,9 +44,12 @@ const useStyles = makeStyles(({ palette }) => ({
     textAlign: "center",
   },
   options: {
-    padding: "16px",
+    paddingBottom: "8px",
     display: "flex",
     justifyContent: "center",
+  },
+  secondaryText: {
+    paddingTop: "8px",
   },
   link: {
     textDecoration: "none",

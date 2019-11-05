@@ -10,19 +10,26 @@ import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 const strains = ["test1", "abc2", "nfy0", "aarA-", "lmno4"]
 
-const MoreStrainsCard = () => {
+type Props = {
+  gene: string,
+}
+
+const MoreStrainsCard = ({ gene }: Props) => {
   const classes = useStyles()
 
   return (
     <Card raised className={classes.moreStrainsCard}>
       <Typography variant="h6" className={classes.cardHeader}>
-        More Strains
+        Related Strains
       </Typography>
       <Divider />
+      <Typography className={classes.secondaryText} variant="body1">
+        Strains involving gene xyz {gene}
+      </Typography>
       <div className={classes.options}>
         <List>
           {strains.map(item => (
-            <ListItem key={item}>
+            <ListItem disableGutters dense key={item}>
               <Typography variant="body1">
                 <Link className={classes.link} to={`/strains/${item}`}>
                   {item}
