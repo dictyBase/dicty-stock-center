@@ -12,6 +12,7 @@ import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
+import StrainDetailsRightColumn from "./StrainDetailsRightColumn"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {
@@ -106,12 +107,11 @@ export const StrainDetailsContainer = ({ match }: Props) => {
         id={data.strain.id}
         name={data.strain.label}
       />
-      <Grid item xs={12}>
-        {/* {data.strain.phenotypes.length > 0 && (
+      {/* {data.strain.phenotypes.length > 0 && (
                 <PhenotypeTable data={data.strain.phenotypes} />
               )} */}
-        <StrainDetailsLeftCard data={data.strain} />
-      </Grid>
+      <StrainDetailsLeftCard data={data.strain} />
+      <StrainDetailsRightColumn data={data.strain} />
     </Grid>
   )
 }

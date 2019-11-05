@@ -5,7 +5,6 @@ import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
-import StrainDetailsMockup from "components/Stocks/Strains/Details/Mockup/StrainDetailsMockup"
 
 // homepage route
 const Homepage = Loadable({
@@ -166,7 +165,6 @@ const RenderRoutes = () => (
     <Route exact path="/contact" component={ContactPage} />
     <Route exact path="/error" component={ErrorPage} />
     <Route exact path="/cart" component={ShoppingCartPage} />
-    <Route exact path="/details-mockup" component={StrainDetailsMockup} />
     <Route exact path="*" component={PageNotReady} />
   </Switch>
 )

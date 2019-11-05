@@ -6,15 +6,15 @@ import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import useStyles from "./styles"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 const strains = ["test1", "abc2", "nfy0", "aarA-", "lmno4"]
 
-const RightCard = () => {
+const MoreStrainsCard = () => {
   const classes = useStyles()
 
   return (
-    <Card raised className={classes.rightCardBottom}>
+    <Card raised className={classes.moreStrainsCard}>
       <Typography variant="h6">More Strains</Typography>
       <Divider />
       <div className={classes.options}>
@@ -34,4 +34,4 @@ const RightCard = () => {
   )
 }
 
-export default RightCard
+export default MoreStrainsCard

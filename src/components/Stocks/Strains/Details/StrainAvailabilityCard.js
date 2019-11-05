@@ -6,12 +6,11 @@ import Card from "@material-ui/core/Card"
 import Divider from "@material-ui/core/Divider"
 import TextField from "@material-ui/core/TextField"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
-import useStyles from "./styles"
-import { data } from "../mockStrainData"
+import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-const RightCardTop = () => {
+const StrainAvailabilityCard = ({ data }) => {
   const [quantity, setQuantity] = useState(values[0])
   const classes = useStyles()
 
@@ -20,7 +19,7 @@ const RightCardTop = () => {
   }
 
   return (
-    <Card raised className={classes.rightCard}>
+    <Card raised className={classes.availabilityCard}>
       <Typography variant="h6">Available</Typography>
       <Divider />
       <div className={classes.quantity}>
@@ -55,4 +54,4 @@ const RightCardTop = () => {
   )
 }
 
-export default RightCardTop
+export default StrainAvailabilityCard

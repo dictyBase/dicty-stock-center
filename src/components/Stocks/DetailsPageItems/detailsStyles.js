@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   },
   listTitle: {},
   listContent: {},
-  rightCard: {
+  availabilityCard: {
     padding: "5px",
     textAlign: "center",
   },
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: "16px",
   },
-  rightCardBottom: {
+  moreStrainsCard: {
     marginTop: "16px",
     padding: "5px",
     textAlign: "center",
