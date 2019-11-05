@@ -15,7 +15,9 @@ const MoreStrainsCard = () => {
 
   return (
     <Card raised className={classes.moreStrainsCard}>
-      <Typography variant="h6">More Strains</Typography>
+      <Typography variant="h6" className={classes.cardHeader}>
+        More Strains
+      </Typography>
       <Divider />
       <div className={classes.options}>
         <List>

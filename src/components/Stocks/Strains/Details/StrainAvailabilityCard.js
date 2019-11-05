@@ -1,10 +1,12 @@
 // @flow
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import MenuItem from "@material-ui/core/MenuItem"
 import Typography from "@material-ui/core/Typography"
 import Card from "@material-ui/core/Card"
 import Divider from "@material-ui/core/Divider"
 import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -53,6 +55,18 @@ const StrainAvailabilityCard = ({ data }) => {
           stockType="strain"
         />
       </div>
+      <Divider />
+      <Button
+        component={Link}
+        to="/order/checkout"
+        variant="outlined"
+        classes={{
+          root: classes.checkoutBtn,
+        }}
+        fullWidth
+        startIcon={<FontAwesomeIcon icon="arrow-right" size="xs" />}>
+        Go to checkout page
+      </Button>
     </Card>
   )
 }

@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette }) => ({
   listTitle: {},
   listContent: {},
   availabilityCard: {
-    padding: "5px",
+    paddingTop: "5px",
     textAlign: "center",
   },
   quantity: {
@@ -39,7 +39,8 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   moreStrainsCard: {
     marginTop: "16px",
-    padding: "5px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
     textAlign: "center",
   },
   options: {
@@ -50,6 +51,11 @@ const useStyles = makeStyles(({ palette }) => ({
   link: {
     textDecoration: "none",
     color: palette.primary.main,
+  },
+  checkoutBtn: {
+    textTransform: "none !important",
+    borderStyle: "none !important",
+    borderRadius: "0px !important",
   },
 }))
 
