@@ -8,7 +8,7 @@ import PlasmidCatalogContainer, {
   GET_PLASMID_LIST,
 } from "./PlasmidCatalogContainer"
 import PlasmidCatalogList from "./PlasmidCatalogList"
-import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import CatalogHeader from "components/Stocks/CatalogPageItems/CatalogHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
@@ -60,7 +60,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
+      expect(wrapper.find(CatalogHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidCatalogList)).toHaveLength(1)
     })
   })

@@ -1,18 +1,17 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import StrainDetailsList from "./StrainDetailsList"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
-import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 
 export const GET_STRAIN = gql`
   query Strain($id: ID!) {
@@ -94,7 +93,7 @@ export const StrainDetailsContainer = ({ match }: Props) => {
   // }
 
   return (
-    <Grid container spacing={2} className={classes.layout}>
+    <Grid container className={classes.root} spacing={2} justify="center">
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta
@@ -102,23 +101,16 @@ export const StrainDetailsContainer = ({ match }: Props) => {
           content={`Dicty Stock Center strain details page for ${label}`}
         />
       </Helmet>
-      <Grid item xs={12}>
-        <StockDetailsHeader title={title} />
-        <center>
-          <Link to="/details-mockup">View new details page mockup</Link>
-        </center>
-      </Grid>
+      <StockDetailsHeader
+        stockType="strain"
+        id={data.strain.id}
+        name={data.strain.label}
+      />
       <Grid item xs={12}>
         {/* {data.strain.phenotypes.length > 0 && (
                 <PhenotypeTable data={data.strain.phenotypes} />
               )} */}
-        <StrainDetailsList data={data.strain} />
-        <ShoppingButtons
-          type="strain"
-          id={data.strain.id}
-          name={data.strain.label}
-          inStock={data.strain.in_stock}
-        />
+        <StrainDetailsLeftCard data={data.strain} />
       </Grid>
     </Grid>
   )

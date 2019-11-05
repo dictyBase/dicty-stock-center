@@ -8,7 +8,7 @@ import StrainCatalogContainer, {
   GET_STRAIN_LIST,
 } from "./StrainCatalogContainer"
 import StrainCatalogList from "./StrainCatalogList"
-import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import CatalogHeader from "components/Stocks/CatalogPageItems/CatalogHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import { StrainCatalogProvider } from "./StrainCatalogContext"
@@ -60,7 +60,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       await wait()
       wrapper.update()
 
-      expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
+      expect(wrapper.find(CatalogHeader)).toHaveLength(1)
       expect(wrapper.find(StrainCatalogList)).toHaveLength(1)
     })
   })

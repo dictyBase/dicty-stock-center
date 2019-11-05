@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
 import { StrainDetailsContainer, GET_STRAIN } from "./StrainDetailsContainer"
-import StrainDetailsList from "./StrainDetailsList"
+import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
@@ -53,7 +53,7 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       await wait()
       wrapper.update()
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(StrainDetailsList)).toHaveLength(1)
+      expect(wrapper.find(StrainDetailsLeftCard)).toHaveLength(1)
     })
   })
   describe("error handling", () => {

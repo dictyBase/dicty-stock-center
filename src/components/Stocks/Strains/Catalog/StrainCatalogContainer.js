@@ -3,7 +3,7 @@ import React from "react"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
+import CatalogHeader from "components/Stocks/CatalogPageItems/CatalogHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import CatalogErrorMessage from "components/Stocks/CatalogPageItems/CatalogErrorMessage"
 import StrainCatalogList from "./StrainCatalogList"
@@ -66,7 +66,7 @@ export const StrainCatalogContainer = () => {
   return (
     <Grid container className={classes.layout}>
       <Grid item xs={12}>
-        <StockDetailsHeader title="Strain Catalog" />
+        <CatalogHeader title="Strain Catalog" />
       </Grid>
       <Grid item xs={12}>
         <StrainCatalogAppBar />
