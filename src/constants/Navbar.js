@@ -102,8 +102,24 @@ const navItems = [
         href: "/stockcenter/information/order",
       },
       {
+        name: "Deposit Information",
+        href: "/stockcenter/information/deposit",
+      },
+      {
+        name: "Payment Information",
+        href: "/stockcenter/information/payment",
+      },
+      {
         name: "FAQ",
         href: "/stockcenter/information/faq",
+      },
+      {
+        name: "Strain Catalog",
+        href: "/stockcenter/strains",
+      },
+      {
+        name: "Plasmid Catalog",
+        href: "/stockcenter/plasmids",
       },
     ],
   },
