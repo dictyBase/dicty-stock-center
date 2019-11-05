@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider"
 import TextField from "@material-ui/core/TextField"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
@@ -20,7 +21,9 @@ const StrainAvailabilityCard = ({ data }) => {
 
   return (
     <Card raised className={classes.availabilityCard}>
-      <Typography variant="h6">Available</Typography>
+      <Typography variant="h6" className={classes.cardHeader}>
+        <FontAwesomeIcon icon="check" /> Available
+      </Typography>
       <Divider />
       <div className={classes.quantity}>
         <TextField

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   root: {
     width: "80%",
     margin: "auto",
@@ -13,12 +13,7 @@ const useStyles = makeStyles({
     textAlign: "left",
   },
   cardHeader: {
-    backgroundColor: "#0059b3",
-    color: "#fff",
-  },
-  cardBottom: {
-    backgroundColor: "#0059b3",
-    height: "5px",
+    color: "#002f5e",
   },
   leftCard: {},
   details: {
@@ -54,7 +49,8 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: "none",
+    color: palette.primary.main,
   },
-})
+}))
 
 export default useStyles
