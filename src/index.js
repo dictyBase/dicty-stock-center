@@ -2,6 +2,7 @@ import "utils/polyfills" // necessary for IE11
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "@apollo/react-hooks"
 import { ApolloClient } from "apollo-client"
@@ -58,16 +59,24 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#004080",
+    },
+  },
+})
+
 // Wait for the cache to sync before starting the app
 waitOnCache.then(() => {
   ReactDOM.render(
     <ApolloProvider client={client}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <>
+          <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <App />
-          </>
+          </MuiThemeProvider>
         </ConnectedRouter>
       </Provider>
     </ApolloProvider>,

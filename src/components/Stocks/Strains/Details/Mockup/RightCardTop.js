@@ -32,7 +32,6 @@ const RightCardTop = () => {
           onChange={handleChange}
           margin="dense"
           variant="outlined"
-          defaultValue={1}
           inputProps={{ className: classes.textField }}>
           {values.map(option => (
             <MenuItem key={option} value={option}>

@@ -20,7 +20,7 @@ const RightCard = () => {
       <div className={classes.options}>
         <List>
           {strains.map(item => (
-            <ListItem>
+            <ListItem key={item}>
               <Typography variant="body1">
                 <Link className={classes.link} to={`/strains/${item}`}>
                   {item}
