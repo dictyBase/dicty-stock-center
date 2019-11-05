@@ -22,11 +22,6 @@ const useStyles = makeStyles({
   },
   leftCard: {},
   details: {
-    // "&:hover": {
-    //   boxShadow:
-    //     "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
-    //   zIndex: 1,
-    // },
     "&:nth-child(odd)": {
       backgroundColor: "#F4F6F8",
     },
@@ -49,7 +44,16 @@ const useStyles = makeStyles({
   },
   rightCardBottom: {
     marginTop: "16px",
+    padding: "5px",
+    textAlign: "center",
+  },
+  options: {
     padding: "16px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  link: {
+    textDecoration: "none",
   },
 })
 
