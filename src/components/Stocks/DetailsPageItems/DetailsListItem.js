@@ -3,9 +3,9 @@ import React from "react"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem"
-import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import useStyles from "./detailsStyles"
 
-const StrainDetailsListItem = ({ data }) => {
+const DetailsListItem = ({ data }) => {
   const classes = useStyles()
 
   return (
@@ -20,4 +20,4 @@ const StrainDetailsListItem = ({ data }) => {
   )
 }
 
-export default StrainDetailsListItem
+export default DetailsListItem

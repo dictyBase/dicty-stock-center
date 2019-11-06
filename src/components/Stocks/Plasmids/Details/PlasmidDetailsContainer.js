@@ -5,9 +5,9 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import PlasmidDetailsList from "./PlasmidDetailsList"
+import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
+import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
-import ShoppingButtons from "components/Stocks/DetailsPageItems/ShoppingButtons"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
@@ -55,7 +55,7 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
   const title = `Plasmid Details for ${data.plasmid.id}`
 
   return (
-    <Grid container spacing={2} className={classes.layout}>
+    <Grid container spacing={2} className={classes.root}>
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta
@@ -63,18 +63,13 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
           content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
         />
       </Helmet>
-      <Grid item xs={12}>
-        <StockDetailsHeader title={title} />
-      </Grid>
-      <Grid item xs={12}>
-        <PlasmidDetailsList data={data.plasmid} />
-        <ShoppingButtons
-          type="plasmid"
-          id={data.plasmid.id}
-          name={data.plasmid.name}
-          inStock={data.plasmid.in_stock}
-        />
-      </Grid>
+      <StockDetailsHeader
+        stockType="plasmid"
+        id={data.plasmid.id}
+        name={data.plasmid.name}
+      />
+      <PlasmidDetailsLeftCard data={data.plasmid} />
+      <PlasmidDetailsRightColumn data={data.plasmid} />
     </Grid>
   )
 }

@@ -8,7 +8,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Chip from "@material-ui/core/Chip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import StrainDetailsListItem from "./StrainDetailsListItem"
+import DetailsListItem from "components/Stocks/DetailsPageItems/DetailsListItem"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 
@@ -178,7 +178,7 @@ const StrainDetailsLeftCard = ({ data }: Props) => {
               </Grid>
             </ListItem>
             {rows.map(data => (
-              <StrainDetailsListItem data={data} key={data.id} />
+              <DetailsListItem data={data} key={data.id} />
             ))}
           </List>
         </Grid>

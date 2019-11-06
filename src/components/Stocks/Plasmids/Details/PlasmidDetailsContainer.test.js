@@ -6,7 +6,8 @@ import { BrowserRouter } from "react-router-dom"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
 import { PlasmidDetailsContainer, GET_PLASMID } from "./PlasmidDetailsContainer"
-import PlasmidDetailsList from "./PlasmidDetailsList"
+import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
+import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import StockDetailsHeader from "components/Stocks/DetailsPageItems/StockDetailsHeader"
 import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
@@ -53,7 +54,8 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       await wait()
       wrapper.update()
       expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(PlasmidDetailsList)).toHaveLength(1)
+      expect(wrapper.find(PlasmidDetailsLeftCard)).toHaveLength(1)
+      expect(wrapper.find(PlasmidDetailsRightColumn)).toHaveLength(1)
     })
   })
   describe("error handling", () => {
