@@ -18,7 +18,7 @@ jobs:
         env:
           CI: true
       - name: npm run flow
-          run: npm run flow
+        run: npm run flow
       - name: upload coverage to codecov
         uses: codecov/codecov-action@v1.0.2
         with:
