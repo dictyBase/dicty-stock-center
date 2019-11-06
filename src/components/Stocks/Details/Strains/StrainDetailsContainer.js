@@ -5,8 +5,8 @@ import { withRouter } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
-import StockDetailsHeader from "components/Stocks/Details/common/StockDetailsHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 // import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
@@ -82,7 +82,7 @@ export const StrainDetailsContainer = ({ match }: Props) => {
 
   let title
 
-  if (loading) return <StockDetailsLoader />
+  if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
   const label = characterConverter(data.strain.label)
@@ -102,7 +102,7 @@ export const StrainDetailsContainer = ({ match }: Props) => {
           content={`Dicty Stock Center strain details page for ${label}`}
         />
       </Helmet>
-      <StockDetailsHeader
+      <DetailsHeader
         stockType="strain"
         id={data.strain.id}
         name={data.strain.label}

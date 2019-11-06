@@ -7,8 +7,8 @@ import configureMockStore from "redux-mock-store"
 import wait from "waait"
 import { StrainDetailsContainer, GET_STRAIN } from "./StrainDetailsContainer"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
-import StockDetailsHeader from "components/Stocks/Details/common/StockDetailsHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { data } from "./mockStrainData"
 
@@ -47,12 +47,12 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       </MockedProvider>,
     )
     it("renders Loading component first", () => {
-      expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
+      expect(wrapper.find(DetailsLoader)).toHaveLength(1)
     })
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
+      expect(wrapper.find(DetailsHeader)).toHaveLength(1)
       expect(wrapper.find(StrainDetailsLeftCard)).toHaveLength(1)
     })
   })

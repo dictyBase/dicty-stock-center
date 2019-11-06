@@ -7,8 +7,8 @@ import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
 import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
-import StockDetailsHeader from "components/Stocks/Details/common/StockDetailsHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import useStyles from "components/Stocks/Details/styles"
 
@@ -49,7 +49,7 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
     variables: { id: match.params.id },
   })
 
-  if (loading) return <StockDetailsLoader />
+  if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
   const title = `Plasmid Details for ${data.plasmid.id}`
@@ -63,7 +63,7 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
           content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
         />
       </Helmet>
-      <StockDetailsHeader
+      <DetailsHeader
         stockType="plasmid"
         id={data.plasmid.id}
         name={data.plasmid.name}

@@ -4,7 +4,7 @@ import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 
 // homepage route
 const Homepage = Loadable({
@@ -64,14 +64,14 @@ const StrainCatalogWrapper = Loadable({
     import(
       "components/Stocks/Catalogs/Strains/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
     ),
-  loading: StockDetailsLoader,
+  loading: DetailsLoader,
 })
 const StrainDetailsContainer = Loadable({
   loader: () =>
     import(
       "components/Stocks/Details/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
     ),
-  loading: StockDetailsLoader,
+  loading: DetailsLoader,
 })
 
 // plasmid routes
@@ -80,14 +80,14 @@ const PlasmidCatalogWrapper = Loadable({
     import(
       "components/Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
     ),
-  loading: StockDetailsLoader,
+  loading: DetailsLoader,
 })
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
     import(
       "components/Stocks/Details/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
     ),
-  loading: StockDetailsLoader,
+  loading: DetailsLoader,
 })
 
 // order form routes

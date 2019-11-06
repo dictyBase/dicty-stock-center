@@ -5,7 +5,16 @@ import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem"
 import useStyles from "../styles"
 
-const DetailsListItem = ({ data }) => {
+type Props = {
+  data: {
+    /** Type of content to display (i.e. Strain Descriptor, Genotypes, etc.) */
+    title: string,
+    /** The actual data for that field */
+    content: string,
+  },
+}
+
+const DetailsListItem = ({ data }: Props) => {
   const classes = useStyles()
 
   return (

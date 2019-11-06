@@ -1,31 +1,21 @@
 import React from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
-import createStyles from "@material-ui/core/styles/createStyles"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
 
-const styles = (theme: Theme) =>
-  createStyles({
-    layout: {
-      width: "90%",
-      margin: "auto",
-    },
-  })
-
-type Props = {
-  /** Material-UI styling */
-  classes: {
-    layout: string,
+const useStyles = makeStyles({
+  layout: {
+    width: "80%",
+    margn: "auto",
   },
-}
+})
 
 /**
- * StockDetailsLoader is the loading screen displayed while fetching stock data.
+ * DetailsLoader is the loading screen displayed while fetching stock data.
  */
 
-const StockDetailsLoader = (props: Props) => {
-  const { classes } = props
+const DetailsLoader = () => {
+  const classes = useStyles()
 
   return (
     <Grid container spacing={2} className={classes.layout}>
@@ -48,4 +38,4 @@ const StockDetailsLoader = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(StockDetailsLoader)
+export default DetailsLoader

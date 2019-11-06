@@ -9,7 +9,7 @@ import StrainCatalogContainer, {
 } from "./StrainCatalogContainer"
 import StrainCatalogList from "./StrainCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import { StrainCatalogProvider } from "./StrainCatalogContext"
 
@@ -54,7 +54,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       </StrainCatalogProvider>,
     )
     it("renders Loading component first", () => {
-      expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
+      expect(wrapper.find(DetailsLoader)).toHaveLength(1)
     })
     it("renders expected components after receiving data", async () => {
       await wait()

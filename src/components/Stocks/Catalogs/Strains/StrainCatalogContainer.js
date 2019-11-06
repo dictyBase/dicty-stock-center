@@ -4,7 +4,7 @@ import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import StrainCatalogList from "./StrainCatalogList"
 import StrainCatalogAppBar from "./StrainCatalogAppBar"
@@ -47,7 +47,7 @@ export const StrainCatalogContainer = () => {
 
   let content
 
-  if (loading) return <StockDetailsLoader />
+  if (loading) return <DetailsLoader />
 
   if (error) {
     content = <CatalogErrorMessage error={error} />

@@ -8,8 +8,8 @@ import wait from "waait"
 import { PlasmidDetailsContainer, GET_PLASMID } from "./PlasmidDetailsContainer"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
 import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
-import StockDetailsHeader from "components/Stocks/Details/common/StockDetailsHeader"
-import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
+import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
+import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { data } from "./mockPlasmidData"
 
@@ -48,12 +48,12 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       </MockedProvider>,
     )
     it("renders Loading component first", () => {
-      expect(wrapper.find(StockDetailsLoader)).toHaveLength(1)
+      expect(wrapper.find(DetailsLoader)).toHaveLength(1)
     })
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find(StockDetailsHeader)).toHaveLength(1)
+      expect(wrapper.find(DetailsHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsLeftCard)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsRightColumn)).toHaveLength(1)
     })

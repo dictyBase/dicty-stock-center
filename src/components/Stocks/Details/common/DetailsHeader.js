@@ -17,10 +17,10 @@ type Props = {
 }
 
 /**
- * StockDetailsHeader is the header at the top of every stock details page.
+ * DetailsHeader is the header at the top of every stock details page.
  */
 
-const StockDetailsHeader = ({ name, id, stockType }: Props) => {
+const DetailsHeader = ({ name, id, stockType }: Props) => {
   const classes = useStyles()
   return (
     <Grid item xs={12} className={classes.header}>
@@ -46,4 +46,4 @@ const StockDetailsHeader = ({ name, id, stockType }: Props) => {
   )
 }
 
-export default StockDetailsHeader
+export default DetailsHeader
