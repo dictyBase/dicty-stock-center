@@ -64,8 +64,12 @@ const StrainAvailabilityCard = ({ data }: StrainDetailsProps) => {
         classes={{
           root: classes.checkoutBtn,
         }}
-        fullWidth
-        startIcon={<FontAwesomeIcon icon="arrow-right" size="xs" />}>
+        fullWidth>
+        <FontAwesomeIcon
+          icon="arrow-right"
+          size="sm"
+          className={classes.arrowIcon}
+        />
         Go to checkout page
       </Button>
     </Card>

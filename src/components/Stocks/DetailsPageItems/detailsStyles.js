@@ -60,6 +60,9 @@ const useStyles = makeStyles(({ palette }) => ({
     borderStyle: "none !important",
     borderRadius: "0px !important",
   },
+  arrowIcon: {
+    marginRight: "8px",
+  },
 }))
 
 export default useStyles
