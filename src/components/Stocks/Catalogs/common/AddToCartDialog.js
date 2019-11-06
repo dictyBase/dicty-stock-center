@@ -98,8 +98,8 @@ export const AddToCartDialog = ({
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        {data.map(item => (
-          <DialogContentText key={item.id}>
+        {data.map((item, index) => (
+          <DialogContentText key={index}>
             <strong>
               <Link className={classes.link} to={`/strains/${item.id}`}>
                 {item.label}

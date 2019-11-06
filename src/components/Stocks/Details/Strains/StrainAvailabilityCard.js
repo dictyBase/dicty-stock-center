@@ -12,7 +12,7 @@ import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
-const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const values = [...Array(13).keys()].slice(1)
 
 const StrainAvailabilityCard = ({ data }: StrainDetailsProps) => {
   const [quantity, setQuantity] = useState(values[0])
@@ -45,13 +45,11 @@ const StrainAvailabilityCard = ({ data }: StrainDetailsProps) => {
           ))}
         </TextField>
         <AddToCartButton
-          data={[
-            {
-              id: data.id,
-              label: data.label,
-              summary: data.summary,
-            },
-          ]}
+          data={Array(quantity).fill({
+            id: data.id,
+            label: data.label,
+            summary: data.summary,
+          })}
           setHover={() => {}}
           stockType="strain"
         />
