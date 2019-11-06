@@ -20,7 +20,7 @@ type Props = {
   /** Function to add to checked items array */
   setCheckedItems: Function,
   /** Boolean for whether item added dialog is open */
-  dialogOpen: Boolean,
+  dialogOpen: boolean,
   /** Function that toggles whether dialog is open */
   setDialogOpen: Function,
 }

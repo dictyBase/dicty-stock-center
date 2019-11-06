@@ -29,9 +29,9 @@ const requiredPaymentFields = [
 
 const requiredFieldsGenerator = (values: Object, page: string) => {
   if (page === "shipping") {
-    return requiredShippingFields.map(item => values[item])
+    return requiredShippingFields.map<string>(item => values[item])
   }
-  return requiredPaymentFields.map(item => values[item])
+  return requiredPaymentFields.map<string>(item => values[item])
 }
 
 export default requiredFieldsGenerator

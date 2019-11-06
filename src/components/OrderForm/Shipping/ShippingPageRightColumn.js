@@ -14,6 +14,8 @@ type Props = {
   pageNum: number,
   /** Function to set the page number */
   setPageNum: Function,
+  handleChange: Function,
+  setFieldValue: Function,
 }
 
 /**
@@ -21,13 +23,18 @@ type Props = {
  */
 
 const ShippingPageRightColumn = (props: Props) => {
-  const { values, pageNum, setPageNum } = props
+  const { values, pageNum, setPageNum, handleChange, setFieldValue } = props
 
   return (
     <>
       <OrderFormPanel
         title="Shipping Method"
-        component={<ShippingMethod {...props} />}
+        component={
+          <ShippingMethod
+            handleChange={handleChange}
+            setFieldValue={setFieldValue}
+          />
+        }
       />
       <OrderFormPanel
         title="Additional Information"

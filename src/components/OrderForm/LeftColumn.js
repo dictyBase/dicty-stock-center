@@ -9,6 +9,7 @@ type Props = {
   values: Object,
   page: string,
   countryName: string,
+  setFieldValue: Function,
 }
 
 /**

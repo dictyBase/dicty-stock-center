@@ -8,7 +8,7 @@ import ShippingPageRightColumn from "./ShippingPageRightColumn"
  * ShippingPage is the display component for when the user is entering shipping information.
  */
 
-const ShippingPage = props => (
+const ShippingPage = (props: any) => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={6}>
       <LeftColumn page="Shipping" countryName="country" {...props} />

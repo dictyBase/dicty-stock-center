@@ -15,6 +15,8 @@ type Props = {
   pageNum: number,
   /** Function to set the page number */
   setPageNum: Function,
+  handleChange: Function,
+  setFieldValue: Function,
 }
 
 /**
@@ -22,13 +24,18 @@ type Props = {
  */
 
 const PaymentPageRightColumn = (props: Props) => {
-  const { values, pageNum, setPageNum } = props
+  const { values, pageNum, setPageNum, handleChange, setFieldValue } = props
 
   return (
     <Fragment>
       <OrderFormPanel
         title="Payment Method"
-        component={<PaymentMethod {...props} />}
+        component={
+          <PaymentMethod
+            handleChange={handleChange}
+            setFieldValue={setFieldValue}
+          />
+        }
       />
       <Grid item xs={12}>
         <PaymentInfoBox />

@@ -3,7 +3,11 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import useStyles from "./formStyles"
 
-const RequiredTextLabel = ({ title }) => {
+type Props = {
+  title: string,
+}
+
+const RequiredTextLabel = ({ title }: Props) => {
   const classes = useStyles()
 
   return (
