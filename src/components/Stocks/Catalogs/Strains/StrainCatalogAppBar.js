@@ -78,14 +78,12 @@ const StrainCatalogAppBar = () => {
             <AppBarLeftMenu dropdownItems={leftDropdownItems} />
           </Grid>
           <Grid container justify="center" alignItems="center">
-            <Grid item xs={12}>
-              <AppBarSearch
-                query={GET_STRAINS_FILTER}
-                dropdownItems={rightDropdownItems}
-                setQuery={setQuery}
-                setQueryVariables={setQueryVariables}
-              />
-            </Grid>
+            <AppBarSearch
+              query={GET_STRAINS_FILTER}
+              dropdownItems={rightDropdownItems}
+              setQuery={setQuery}
+              setQueryVariables={setQueryVariables}
+            />
           </Grid>
           <Grid container justify="flex-end">
             <AppBarRightMenu />

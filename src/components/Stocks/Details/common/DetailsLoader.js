@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 const useStyles = makeStyles({
   layout: {
     width: "80%",
-    margn: "auto",
+    margin: "auto",
   },
 })
 
