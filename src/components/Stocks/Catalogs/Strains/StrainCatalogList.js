@@ -9,6 +9,7 @@ import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHead
 import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useStrainCatalogState } from "./StrainCatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
+import { CartItem } from "components/Stocks/Catalogs/types/cart"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -25,11 +26,7 @@ const GET_MORE_STRAINS_LIST = gql`
 `
 
 type Props = {
-  data: Array<{
-    label: string,
-    id: string,
-    summary: string,
-  }>,
+  data: Array<CartItem>,
   fetchMore: Function,
   cursor: number,
   filter: string,
