@@ -23,37 +23,39 @@ type Props = {
  * PaymentPageRightColumn displays the right column of the Payment page.
  */
 
-const PaymentPageRightColumn = (props: Props) => {
-  const { values, pageNum, setPageNum, handleChange, setFieldValue } = props
-
-  return (
-    <Fragment>
-      <OrderFormPanel
-        title="Payment Method"
-        component={
-          <PaymentMethod
-            handleChange={handleChange}
-            setFieldValue={setFieldValue}
-          />
-        }
-      />
-      <Grid item xs={12}>
-        <PaymentInfoBox />
+const PaymentPageRightColumn = ({
+  values,
+  pageNum,
+  setPageNum,
+  handleChange,
+  setFieldValue,
+}: Props) => (
+  <Fragment>
+    <OrderFormPanel
+      title="Payment Method"
+      component={
+        <PaymentMethod
+          handleChange={handleChange}
+          setFieldValue={setFieldValue}
+        />
+      }
+    />
+    <Grid item xs={12}>
+      <PaymentInfoBox />
+    </Grid>
+    <Grid container justify="center" spacing={2}>
+      <Grid item xs={12} sm={6}>
+        <BackButton pageNum={pageNum} setPageNum={setPageNum} />
       </Grid>
-      <Grid container justify="center" spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <BackButton pageNum={pageNum} setPageNum={setPageNum} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <ContinueButton
-            fields={requiredFieldsGenerator(values, "payment")}
-            pageNum={pageNum}
-            setPageNum={setPageNum}
-          />
-        </Grid>
+      <Grid item xs={12} sm={6}>
+        <ContinueButton
+          fields={requiredFieldsGenerator(values, "payment")}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+        />
       </Grid>
-    </Fragment>
-  )
-}
+    </Grid>
+  </Fragment>
+)
 
 export default PaymentPageRightColumn
