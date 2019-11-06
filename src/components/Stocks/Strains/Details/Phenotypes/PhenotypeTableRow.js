@@ -9,33 +9,13 @@ import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 import useStyles from "./phenotypeStyles"
 import logo from "static/dicty-login.png"
-
-type Props = {
-  /** Phenotype data */
-  item: {
-    phenotype: string,
-    note: string,
-    assay: string,
-    environment: string,
-    publication: {
-      authors: Array<{
-        last_name: string,
-      }>,
-      pub_date: string,
-      title: string,
-      journal: string,
-      volume: string,
-      pages: string,
-      id: string,
-    },
-  },
-}
+import { PhenotypeProps } from "components/Stocks/types/Props"
 
 /**
  * PhenotypeTableRow is the display for a row of phenotype table data.
  */
 
-const PhenotypeTableRow = ({ item }: Props) => {
+const PhenotypeTableRow = ({ item }: PhenotypeProps) => {
   const classes = useStyles()
 
   return (

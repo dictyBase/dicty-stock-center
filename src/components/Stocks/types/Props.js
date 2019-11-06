@@ -1,3 +1,21 @@
+type PhenotypeData = {
+  phenotype: string,
+  note: string,
+  assay: string,
+  environment: string,
+  publication: {
+    authors: Array<{
+      last_name: string,
+    }>,
+    pub_date: string,
+    title: string,
+    journal: string,
+    volume: string,
+    pages: string,
+    id: string,
+  },
+}
+
 export type StrainDetailsProps = {
   data: {
     id: string,
@@ -22,23 +40,7 @@ export type StrainDetailsProps = {
     }>,
     dbxrefs: Array<string>,
     genes: Array<string>,
-    phenotypes: {
-      phenotype: string,
-      note: string,
-      assay: string,
-      environment: string,
-      publication: {
-        authors: Array<{
-          last_name: string,
-        }>,
-        pub_date: string,
-        title: string,
-        journal: string,
-        volume: string,
-        pages: string,
-        id: string,
-      },
-    },
+    phenotypes: Array<PhenotypeData>,
   },
 }
 
@@ -58,4 +60,9 @@ export type PlasmidDetailsProps = {
     keywords: Array<string>,
     genbank_accession: string,
   },
+}
+
+export type PhenotypeProps = {
+  /** Phenotype data */
+  item: PhenotypeData,
 }
