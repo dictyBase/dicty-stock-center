@@ -1,13 +1,13 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Chip from "@material-ui/core/Chip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import LeftCardHeader from "components/Stocks/Details/common/LeftCardHeader"
 import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/Details/styles"
@@ -130,9 +130,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
         <Grid container>
           <List className={classes.list}>
             <ListItem divider className={classes.cardHeader}>
-              <Grid item xs={12}>
-                <Typography variant="h6">Strain Details</Typography>
-              </Grid>
+              <LeftCardHeader stockType="Strain" />
             </ListItem>
             {rows.map(data => (
               <DetailsListItem data={data} key={data.id} />

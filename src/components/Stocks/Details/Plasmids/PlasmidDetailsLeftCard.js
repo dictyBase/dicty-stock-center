@@ -1,12 +1,12 @@
 // @flow
 import React from "react"
-import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Chip from "@material-ui/core/Chip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import LeftCardHeader from "components/Stocks/Details/common/LeftCardHeader"
 import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
 import useStyles from "components/Stocks/Details/styles"
 import { PlasmidDetailsProps } from "components/Stocks/Details/types/props"
@@ -102,9 +102,7 @@ const PlasmidDetailsLeftCard = ({ data }: PlasmidDetailsProps) => {
         <Grid container>
           <List className={classes.list}>
             <ListItem divider className={classes.cardHeader}>
-              <Grid item xs={12}>
-                <Typography variant="h6">Plasmid Details</Typography>
-              </Grid>
+              <LeftCardHeader stockType="Plasmid" />
             </ListItem>
             {rows.map(data => (
               <DetailsListItem data={data} key={data.id} />

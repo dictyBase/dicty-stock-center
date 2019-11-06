@@ -1,3 +1,0 @@
-```js
-<StockDetailsCardHeader type="Plasmid" />
-```
