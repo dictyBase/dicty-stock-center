@@ -28,12 +28,15 @@ export const GET_PLASMIDS_FILTER = gql`
 const leftDropdownItems = [
   {
     name: "All Plasmids",
+    value: "all",
   },
   {
     name: "Available Plasmids",
+    value: "in_stock===true",
   },
   {
     name: "Unavailable Plasmids",
+    value: "in_stock===false",
   },
 ]
 

@@ -1,14 +1,11 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-// import StrainAvailabilityCard from "./StrainAvailabilityCard"
-// import MoreStrainsCard from "./MoreStrainsCard"
 
-const StrainDetailsRightColumn = ({ data }) => (
+const PlasmidDetailsRightColumn = ({ data }) => (
   <Grid item xs={2}>
-    {/* <StrainAvailabilityCard data={data} />
-    <MoreStrainsCard data={data} /> */}
+    cards go here...
   </Grid>
 )
 
-export default StrainDetailsRightColumn
+export default PlasmidDetailsRightColumn

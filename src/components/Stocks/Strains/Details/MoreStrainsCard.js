@@ -11,10 +11,10 @@ import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 const strains = ["test1", "abc2", "nfy0", "aarA-", "lmno4"]
 
 type Props = {
-  gene: string,
+  genes: Array<string>,
 }
 
-const MoreStrainsCard = ({ gene }: Props) => {
+const MoreStrainsCard = ({ genes }: Props) => {
   const classes = useStyles()
 
   return (
@@ -24,7 +24,7 @@ const MoreStrainsCard = ({ gene }: Props) => {
       </Typography>
       <Divider />
       <Typography className={classes.secondaryText} variant="body1">
-        Strains involving gene xyz {gene}
+        Strains involving gene xyz {genes}
       </Typography>
       <div className={classes.options}>
         <List>
