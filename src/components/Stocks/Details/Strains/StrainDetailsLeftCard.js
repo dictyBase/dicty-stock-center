@@ -9,6 +9,7 @@ import Chip from "@material-ui/core/Chip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import LeftCardHeader from "components/Stocks/Details/common/LeftCardHeader"
 import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
+import LinkChip from "components/Stocks/Details/common/LinkChip"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/Details/styles"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
@@ -25,30 +26,12 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   }
 
   const publications = data.publications.map(ref => (
-    <Chip
-      key={ref.id}
-      label={ref.id}
-      component="a"
-      href={`/publication/${ref.id}`}
-      clickable
-      deleteIcon={<FontAwesomeIcon icon="external-link-alt" />}
-      onDelete={() => {}}
-    />
+    <LinkChip key={ref.id} item={ref.id} />
   ))
 
   const genes =
     data.genes[0] !== ""
-      ? data.genes.map(gene => (
-          <Chip
-            key={gene}
-            label={gene}
-            component="a"
-            href={`/gene/${gene}`}
-            clickable
-            deleteIcon={<FontAwesomeIcon icon="external-link-alt" />}
-            onDelete={() => {}}
-          />
-        ))
+      ? data.genes.map(gene => <LinkChip key={gene} item={gene} />)
       : ""
 
   const rows = [
