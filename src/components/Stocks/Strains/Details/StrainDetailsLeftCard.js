@@ -148,7 +148,7 @@ const StrainDetailsLeftCard = ({ data }: Props) => {
     {
       id: 10,
       title: "Genotypes",
-      content: data.genotypes.join(", "),
+      content: data.genotypes[0].replace(/,/g, ", "),
     },
     {
       id: 11,
