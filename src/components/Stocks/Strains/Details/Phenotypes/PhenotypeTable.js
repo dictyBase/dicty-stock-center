@@ -1,33 +1,16 @@
 // @flow
-import React, { Fragment, useState } from "react"
+import React, { useState } from "react"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import PhenotypeTableHeader from "./PhenotypeTableHeader"
 import PhenotypeTableRow from "./PhenotypeTableRow"
 import useStyles from "./phenotypeStyles"
+import { PhenotypeData } from "components/Stocks/types/Props"
 
 type Props = {
   /** Phenotype data */
-  data: Array<{
-    phenotype: string,
-    note: string,
-    assay: string,
-    environment: string,
-    publication: {
-      authors: Array<{
-        last_name: string,
-      }>,
-      pub_date: string,
-      title: string,
-      journal: string,
-      volume: string,
-      pages: string,
-      id: string,
-    },
-  }>,
+  data: Array<PhenotypeData>,
 }
 
 // helper function for table sorting

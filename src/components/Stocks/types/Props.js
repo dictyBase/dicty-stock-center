@@ -1,19 +1,21 @@
-type PhenotypeData = {
+export type PublicationData = {
+  authors: Array<{
+    last_name: string,
+  }>,
+  pub_date: string,
+  title: string,
+  journal: string,
+  volume: string,
+  pages: string,
+  id: string,
+}
+
+export type PhenotypeData = {
   phenotype: string,
   note: string,
   assay: string,
   environment: string,
-  publication: {
-    authors: Array<{
-      last_name: string,
-    }>,
-    pub_date: string,
-    title: string,
-    journal: string,
-    volume: string,
-    pages: string,
-    id: string,
-  },
+  publication: PublicationData,
 }
 
 export type StrainDetailsProps = {

@@ -1,19 +1,10 @@
 // @flow
 import React, { Fragment } from "react"
+import { PublicationData } from "components/Stocks/types/Props"
 
 type Props = {
   /** Publication data */
-  data: {
-    authors: Array<{
-      last_name: string,
-    }>,
-    id: string,
-    pub_date: string,
-    title: string,
-    journal: string,
-    volume: string,
-    pages: string,
-  },
+  data: PublicationData,
 }
 
 /**
