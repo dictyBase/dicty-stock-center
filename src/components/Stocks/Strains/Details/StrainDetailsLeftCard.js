@@ -11,52 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DetailsListItem from "components/Stocks/DetailsPageItems/DetailsListItem"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import { StrainDetailsProps } from "components/Stocks/types/Props"
 
-type Props = {
-  data: {
-    id: string,
-    label: string,
-    names: Array<string>,
-    systematic_name: string,
-    characteristics: Array<string>,
-    summary: string,
-    editable_summary?: string,
-    genetic_modification: string,
-    genotypes: Array<string>,
-    mutagenesis_method: string,
-    species: string,
-    parent: {
-      id: string,
-      label: string,
-    },
-    depositor: string,
-    plasmid: string,
-    publications: Array<{
-      id: string,
-    }>,
-    dbxrefs: Array<string>,
-    genes: Array<string>,
-    phenotypes: {
-      phenotype: string,
-      note: string,
-      assay: string,
-      environment: string,
-      publication: {
-        authors: Array<{
-          last_name: string,
-        }>,
-        pub_date: string,
-        title: string,
-        journal: string,
-        volume: string,
-        pages: string,
-        id: string,
-      },
-    },
-  },
-}
-
-const StrainDetailsLeftCard = ({ data }: Props) => {
+const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   const classes = useStyles()
 
   // set parent display in variable

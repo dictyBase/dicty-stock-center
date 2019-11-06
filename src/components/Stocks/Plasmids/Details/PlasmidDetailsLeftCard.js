@@ -9,26 +9,9 @@ import Chip from "@material-ui/core/Chip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DetailsListItem from "components/Stocks/DetailsPageItems/DetailsListItem"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
+import { PlasmidDetailsProps } from "components/Stocks/types/Props"
 
-type Props = {
-  data: {
-    id: string,
-    name: string,
-    summary: string,
-    depositor: string,
-    publications: Array<{
-      id: string,
-    }>,
-    dbxrefs: Array<string>,
-    genes: Array<string>,
-    image_map: string,
-    sequence: string,
-    keywords: Array<string>,
-    genbank_accession: string,
-  },
-}
-
-const PlasmidDetailsLeftCard = ({ data }: Props) => {
+const PlasmidDetailsLeftCard = ({ data }: PlasmidDetailsProps) => {
   const classes = useStyles()
 
   let imageMap

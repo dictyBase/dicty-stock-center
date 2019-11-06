@@ -10,10 +10,11 @@ import Button from "@material-ui/core/Button"
 import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
 import useStyles from "components/Stocks/DetailsPageItems/detailsStyles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { StrainDetailsProps } from "components/Stocks/types/Props"
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-const StrainAvailabilityCard = ({ data }) => {
+const StrainAvailabilityCard = ({ data }: StrainDetailsProps) => {
   const [quantity, setQuantity] = useState(values[0])
   const classes = useStyles()
 
