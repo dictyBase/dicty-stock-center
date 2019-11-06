@@ -1,10 +1,5 @@
 // @flow
 import { dsctypes } from "constants/dsctypes"
-import {
-  fetchBySlugResource,
-  fetchByIdResource,
-  fetchHeaderConfig,
-} from "utils/fetchResources"
 import { push } from "connected-react-router"
 
 const {
@@ -18,10 +13,16 @@ const {
   FETCH_PAGE_FAILURE,
 } = dsctypes
 
+const server = process.env.REACT_APP_API_SERVER
+
 export const fetchInfoPage = (slug: string) => ({
   types: [FETCH_PAGE_REQUEST, FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE],
-  url: `${fetchBySlugResource}/${slug}`,
-  config: fetchHeaderConfig,
+  url: `${server}/contents/slug/${slug}`,
+  config: {
+    headers: {
+      "content-type": "application/vnd.api+json",
+    },
+  },
 })
 
 export const doEdit = (content: Object) => ({
@@ -44,7 +45,7 @@ export const editInline = (content: Object) => (dispatch: Function) => {
 
 export const saveEditing = (id: string, body: Object) => ({
   types: [SAVE_PAGE_REQUEST, SAVE_PAGE_SUCCESS, SAVE_PAGE_FAILURE],
-  url: `${fetchByIdResource}/${id}`,
+  url: `${server}/contents/${id}`,
   config: {
     method: "PATCH",
     body: JSON.stringify(body),
@@ -53,7 +54,7 @@ export const saveEditing = (id: string, body: Object) => ({
 
 export const saveInlineEditing = (id: string, body: Object) => ({
   types: [SAVE_PAGE_REQUEST, SAVE_INLINE_PAGE_SUCCESS, SAVE_PAGE_FAILURE],
-  url: `${fetchByIdResource}/${id}`,
+  url: `${server}/contents/${id}`,
   config: {
     method: "PATCH",
     body: JSON.stringify(body),

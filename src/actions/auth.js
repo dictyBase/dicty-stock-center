@@ -2,13 +2,6 @@
 import { dsctypes } from "constants/dsctypes"
 import querystring from "querystring"
 import oauthConfig from "utils/oauthConfig"
-import {
-  oauthEndpointResource,
-  fetchUserByIdResource,
-  fetchRoleByIdResource,
-  fetchHeaderConfig,
-} from "utils/fetchResources"
-// import history from "utils/routerHistory"
 import { push } from "connected-react-router"
 
 const {
@@ -33,6 +26,14 @@ const {
 type oauthArg = { query: string, provider: string, url: string }
 type receiveLoginArg = { user: Object, token: string }
 
+const authServer = process.env.REACT_APP_AUTH_SERVER
+const apiServer = process.env.REACT_APP_API_SERVER
+const fetchHeaderConfig = {
+  headers: {
+    "content-type": "application/vnd.api+json",
+  },
+}
+
 const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
   const parsed = querystring.parse(query.replace("?", ""))
   let body = `client_id=${oauthConfig[provider].clientId}&redirect_url=${url}`
@@ -43,7 +44,7 @@ const makeOauthConfig = ({ query, provider, url }: oauthArg) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: body,
   }
-  const endpoint = `${oauthEndpointResource}/${provider}`
+  const endpoint = `${authServer}/tokens/${provider}`
   return { config, endpoint }
 }
 
@@ -186,10 +187,7 @@ export const logoutUser = () => (dispatch: Function) => {
 export const fetchUserInfo = (userId: string) => async (dispatch: Function) => {
   try {
     dispatch(fetchUserRequest())
-    const res = await fetch(
-      `${fetchUserByIdResource}/${userId}`,
-      fetchHeaderConfig,
-    )
+    const res = await fetch(`${apiServer}/users/${userId}`, fetchHeaderConfig)
     const contentType = res.headers.get("content-type")
     if (contentType && contentType.includes("application/vnd.api+json")) {
       const json = await res.json()
@@ -225,7 +223,7 @@ export const fetchRoleInfo = (userId: string) => async (dispatch: Function) => {
   try {
     dispatch(fetchRoleRequest())
     const res = await fetch(
-      `${fetchUserByIdResource}/${userId}/roles`,
+      `${apiServer}/users/${userId}/roles`,
       fetchHeaderConfig,
     )
     const contentType = res.headers.get("content-type")
@@ -262,7 +260,7 @@ export const fetchNonAuthRoleInfo = (userId: string) => ({
     FETCH_NON_AUTH_ROLE_SUCCESS,
     FETCH_NON_AUTH_ROLE_FAILURE,
   ],
-  url: `${fetchUserByIdResource}/${userId}/roles`,
+  url: `${apiServer}/users/${userId}/roles`,
   config: fetchHeaderConfig,
 })
 
@@ -272,7 +270,7 @@ export const fetchPermissionInfo = (roleId: string) => ({
     FETCH_PERMISSION_SUCCESS,
     FETCH_PERMISSION_FAILURE,
   ],
-  url: `${fetchRoleByIdResource}/${roleId}/permissions`,
+  url: `${apiServer}/roles/${roleId}/permissions`,
   config: fetchHeaderConfig,
 })
 
