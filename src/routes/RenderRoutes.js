@@ -4,7 +4,7 @@ import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
-import StockDetailsLoader from "components/Stocks/DetailsPageItems/StockDetailsLoader"
+import StockDetailsLoader from "components/Stocks/Details/common/StockDetailsLoader"
 
 // homepage route
 const Homepage = Loadable({
@@ -62,14 +62,14 @@ const EditInfoPage = Loadable({
 const StrainCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/Catalog/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
+      "components/Stocks/Catalogs/Strains/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
 const StrainDetailsContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Strains/Details/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
+      "components/Stocks/Details/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
     ),
   loading: StockDetailsLoader,
 })
@@ -78,14 +78,14 @@ const StrainDetailsContainer = Loadable({
 const PlasmidCatalogWrapper = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/Catalog/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
+      "components/Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
     ),
   loading: StockDetailsLoader,
 })
 const PlasmidDetailsContainer = Loadable({
   loader: () =>
     import(
-      "components/Stocks/Plasmids/Details/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
+      "components/Stocks/Details/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
     ),
   loading: StockDetailsLoader,
 })

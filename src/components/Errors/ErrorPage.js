@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles"
 import ServerError from "./ServerError"
 import OtherError from "./OtherError"
 import styles from "./errorStyles"
-import NotFoundError from "components/Stocks/CatalogPageItems/NotFoundError"
+import NotFoundError from "components/Stocks/Catalogs/common/NotFoundError"
 
 type Props = {
   /** Material-UI styling */
