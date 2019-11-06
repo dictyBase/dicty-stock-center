@@ -1,40 +1,9 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
-import { makeStyles } from "@material-ui/styles"
-import IconButton from "@material-ui/core/IconButton"
-import Button from "@material-ui/core/Button"
-import DialogTitle from "@material-ui/core/DialogTitle"
 import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
-import DialogContent from "@material-ui/core/DialogContent"
-import DialogContentText from "@material-ui/core/DialogContentText"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { addToCart } from "actions/cart"
-
-const useStyles = makeStyles(theme => ({
-  dialogTitle: {
-    backgroundColor: "#0059b3",
-    color: "#fff",
-    margin: 0,
-    padding: "16px",
-  },
-  closeButton: {
-    position: "absolute",
-    right: "8px",
-    top: "8px",
-    color: "#fff",
-  },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
-  cartDialogButton: {
-    backgroundColor: "#0059b3",
-    color: "#fff",
-  },
-}))
+import DialogTitleDisplay from "components/common/DialogTitleDisplay"
+import AddToCartDialogContent from "./AddToCartDialogContent"
+import AddToCartDialogActions from "./AddToCartDialogActions"
 
 type Props = {
   /** Strain data */
@@ -54,8 +23,6 @@ type Props = {
   dialogOpen: Boolean,
   /** Function that toggles whether dialog is open */
   setDialogOpen: Function,
-  /** React Router history object */
-  history: Object,
 }
 
 /**
@@ -69,17 +36,10 @@ export const AddToCartDialog = ({
   setDialogOpen,
   setHover,
   setCheckedItems,
-  history,
 }: Props) => {
-  const classes = useStyles()
-
   const handleClose = () => {
     setDialogOpen(false)
     setHover ? setHover(false) : setCheckedItems([])
-  }
-
-  const handleViewCart = () => {
-    history.push("/cart")
   }
 
   return (
@@ -88,47 +48,15 @@ export const AddToCartDialog = ({
       fullWidth
       aria-labelledby="cart-dialog-title"
       open={dialogOpen}>
-      <DialogTitle className={classes.dialogTitle} id="cart-dialog-title">
-        Added to Cart
-        <IconButton
-          aria-label="close-dialog"
-          className={classes.closeButton}
-          onClick={handleClose}>
-          <FontAwesomeIcon icon="times" />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        {data.map((item, index) => (
-          <DialogContentText key={index}>
-            <strong>
-              <Link className={classes.link} to={`/strains/${item.id}`}>
-                {item.label}
-              </Link>
-            </strong>
-            <br />
-            <em>{item.summary}</em>
-            <br />
-            {item.id}
-          </DialogContentText>
-        ))}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} variant="outlined" color="default">
-          Continue Shopping
-        </Button>
-        <Button
-          className={classes.cartDialogButton}
-          onClick={handleViewCart}
-          variant="contained"
-          color="primary">
-          View Cart
-        </Button>
-      </DialogActions>
+      <DialogTitleDisplay title="Added to Cart" handleClose={handleClose} />
+      <AddToCartDialogContent data={data} />
+      <AddToCartDialogActions
+        setDialogOpen={setDialogOpen}
+        setHover={setHover}
+        setCheckedItems={setCheckedItems}
+      />
     </Dialog>
   )
 }
 
-export default connect<*, *, *, *, *, *>(
-  null,
-  { addToCart },
-)(withRouter<*>(AddToCartDialog))
+export default AddToCartDialog
