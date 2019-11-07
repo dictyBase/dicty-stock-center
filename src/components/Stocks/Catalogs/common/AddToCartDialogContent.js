@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
 
