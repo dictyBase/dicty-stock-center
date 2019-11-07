@@ -115,6 +115,11 @@
     "sprintf-js": "^1.1.2",
     "waait": "^1.0.5"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.{js,jsx,ts,tsx}"
+    ]
+  },
   "lint-staged": {
     "*.{js,jsx,json,css}": [
       "prettier --no-semi --trailing-comma all --jsx-bracket-same-line true --write",
