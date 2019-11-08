@@ -22,6 +22,7 @@ type Props = {
 
 const DetailsHeader = ({ name, id, stockType }: Props) => {
   const classes = useStyles()
+
   return (
     <Grid item xs={12} className={classes.header}>
       <Grid container alignItems="center">
@@ -37,7 +38,15 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
         <Grid item xs={10}>
           <Typography variant="h4">{name}</Typography>
           <Typography variant="h6" color="textSecondary">
-            <em>{id}</em>
+            <em>{id}</em>{" "}
+            <IconButton
+              onClick={() => {
+                navigator.clipboard.writeText(id)
+              }}
+              title="Copy ID to clipboard"
+              aria-label="copy icon">
+              <FontAwesomeIcon icon="copy" size="sm" />
+            </IconButton>{" "}
           </Typography>
         </Grid>
         <Grid item xs={1}></Grid>

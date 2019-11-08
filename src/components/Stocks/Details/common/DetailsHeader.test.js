@@ -15,8 +15,8 @@ describe("Stocks/Details/common/DetailsHeader", () => {
   describe("initial render", () => {
     it("always renders one Typography component", () => {
       expect(wrapper.find(Typography)).toHaveLength(2)
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
+      expect(wrapper.find(IconButton)).toHaveLength(2)
+      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
     })
   })
 })
