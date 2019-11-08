@@ -45,7 +45,7 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
               }}
               title="Copy ID to clipboard"
               aria-label="copy icon">
-              <FontAwesomeIcon icon="copy" size="sm" />
+              <FontAwesomeIcon icon="copy" size="xs" />
             </IconButton>{" "}
           </Typography>
         </Grid>
