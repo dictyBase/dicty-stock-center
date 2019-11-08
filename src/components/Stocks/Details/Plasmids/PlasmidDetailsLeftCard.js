@@ -1,7 +1,8 @@
 // @flow
 import React from "react"
 import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
-import LinkChip from "components/Stocks/Details/common/LinkChip"
+import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
+import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import { PlasmidDetailsProps } from "components/Stocks/Details/types/props"
 
 const plasmidRowGenerator = (data, imageMap, publications, genes) => [
@@ -59,17 +60,12 @@ const PlasmidDetailsLeftCard = ({ data }: PlasmidDetailsProps) => {
     ""
   )
 
-  const publications = data.publications.map(ref => (
-    <LinkChip key={ref.id} item={ref.id} route="publication" />
-  ))
-
-  // if not an array with an empty string, display links
-  const genes =
-    data.genes[0] !== ""
-      ? data.genes.map(gene => <LinkChip key={gene} item={gene} route="gene" />)
-      : ""
-
-  const rows = plasmidRowGenerator(data, imageMap, publications, genes)
+  const rows = plasmidRowGenerator(
+    data,
+    imageMap,
+    <PublicationsDisplay publications={data.publications} />,
+    <GenesDisplay genes={data.genes} />,
+  )
 
   return <LeftCardDisplay rows={rows} stockType="Plasmid" />
 }

@@ -2,7 +2,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
-import LinkChip from "components/Stocks/Details/common/LinkChip"
+import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
+import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
@@ -86,17 +87,12 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     "N/A"
   )
 
-  const publications = data.publications.map(ref => (
-    <LinkChip key={ref.id} item={ref.id} route="publication" />
-  ))
-
-  // if not an array with an empty string, display links
-  const genes =
-    data.genes[0] !== ""
-      ? data.genes.map(gene => <LinkChip key={gene} item={gene} route="gene" />)
-      : ""
-
-  const rows = strainRowsGenerator(data, parent, publications, genes)
+  const rows = strainRowsGenerator(
+    data,
+    parent,
+    <PublicationsDisplay publications={data.publications} />,
+    <GenesDisplay genes={data.genes} />,
+  )
 
   return <LeftCardDisplay rows={rows} stockType="Strain" />
 }
