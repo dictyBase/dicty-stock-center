@@ -23,7 +23,7 @@ const DetailsListItem = ({ data }: Props) => {
         <Typography variant="body2">{data.title}</Typography>
       </Grid>
       <Grid item xs={9} className={classes.listContent}>
-        {data.content}
+        <Typography variant="body1">{data.content}</Typography>
       </Grid>
     </ListItem>
   )
