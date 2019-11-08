@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 type Props = {
   /** The item to link to */
   item: string,
+  /** The subroute to use (i.e. publication, gene) */
+  route: string,
 }
 
-const LinkChip = ({ item }: Props) => (
+const LinkChip = ({ item, route }: Props) => (
   <Chip
     label={item}
     component="a"
-    href={`/publication/${item}`}
+    href={`/${route}/${item}`}
     clickable
     deleteIcon={<FontAwesomeIcon icon="external-link-alt" />}
     onDelete={() => {}}

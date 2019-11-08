@@ -87,13 +87,13 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   )
 
   const publications = data.publications.map(ref => (
-    <LinkChip key={ref.id} item={ref.id} />
+    <LinkChip key={ref.id} item={ref.id} route="publication" />
   ))
 
   // if not an array with an empty string, display links
   const genes =
     data.genes[0] !== ""
-      ? data.genes.map(gene => <LinkChip key={gene} item={gene} />)
+      ? data.genes.map(gene => <LinkChip key={gene} item={gene} route="gene" />)
       : ""
 
   const rows = strainRowsGenerator(data, parent, publications, genes)
