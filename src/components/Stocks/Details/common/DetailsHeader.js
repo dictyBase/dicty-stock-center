@@ -36,8 +36,10 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
             <FontAwesomeIcon icon="arrow-left" size="lg" />
           </IconButton>
         </Grid>
-        <Grid item xs={12} sm={10}>
-          <Typography variant="h4">{name}</Typography>
+        <Grid item xs={12} sm={10} zeroMinWidth>
+          <Typography variant="h4" noWrap>
+            {name}
+          </Typography>
           <Typography variant="h6" color="textSecondary">
             <em>{id}</em>
             <DetailsHeaderCopyIcon id={id} />
