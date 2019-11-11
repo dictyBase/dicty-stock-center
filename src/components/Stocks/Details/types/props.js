@@ -43,6 +43,7 @@ export type StrainDetailsProps = {
     dbxrefs: Array<string>,
     genes: Array<string>,
     phenotypes: Array<PhenotypeData>,
+    in_stock: boolean,
   },
 }
 

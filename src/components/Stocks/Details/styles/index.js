@@ -44,6 +44,10 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     alignItems: "center",
     padding: "16px",
   },
+  unavailableText: {
+    padding: "16px",
+    textAlign: "justify",
+  },
   moreStrainsCard: {
     marginTop: "16px",
     paddingTop: "5px",
@@ -88,6 +92,9 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   closeIcon: {
     fontSize: "0.9rem",
+  },
+  unavailableIcon: {
+    marginRight: spacing(2),
   },
 }))
 
