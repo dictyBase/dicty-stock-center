@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles"
+import { green } from "@material-ui/core/colors"
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
     width: "80%",
     margin: "auto",
@@ -62,6 +63,24 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   arrowIcon: {
     marginRight: "8px",
+  },
+  id: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  snackbar: {
+    width: "400px",
+    backgroundColor: green[600],
+    fontSize: "0.8rem",
+    display: "flex",
+    alignItems: "center",
+  },
+  checkIcon: {
+    fontSize: "0.8rem",
+    marginRight: spacing(1),
+  },
+  closeIcon: {
+    fontSize: "0.9rem",
   },
 }))
 

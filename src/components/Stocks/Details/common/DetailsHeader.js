@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import DetailsHeaderCopyIcon from "./DetailsHeaderCopyIcon"
 import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
@@ -38,15 +39,8 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
         <Grid item xs={10}>
           <Typography variant="h4">{name}</Typography>
           <Typography variant="h6" color="textSecondary">
-            <em>{id}</em>{" "}
-            <IconButton
-              onClick={() => {
-                navigator.clipboard.writeText(id)
-              }}
-              title="Copy ID to clipboard"
-              aria-label="copy icon">
-              <FontAwesomeIcon icon="copy" size="xs" />
-            </IconButton>{" "}
+            <em>{id}</em>
+            <DetailsHeaderCopyIcon id={id} />
           </Typography>
         </Grid>
         <Grid item xs={1}></Grid>
