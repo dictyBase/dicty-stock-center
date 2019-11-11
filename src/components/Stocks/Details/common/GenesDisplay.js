@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import LinkChip from "components/Stocks/Details/common/LinkChip"
+import LinkTag from "components/Stocks/Details/common/LinkTag"
 
 type Props = {
   genes: Array<string>,
@@ -9,7 +9,7 @@ type Props = {
 const GenesDisplay = ({ genes }: Props) =>
   // if not an array with an empty string, display links
   genes[0] !== ""
-    ? genes.map<any>(gene => <LinkChip key={gene} item={gene} route="gene" />)
+    ? genes.map<any>(gene => <LinkTag key={gene} item={gene} route="gene" />)
     : ""
 
 export default GenesDisplay

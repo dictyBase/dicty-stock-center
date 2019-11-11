@@ -1,14 +1,16 @@
 // @flow
 import React from "react"
-import LinkChip from "components/Stocks/Details/common/LinkChip"
+import LinkTag from "components/Stocks/Details/common/LinkTag"
 
 type Props = {
-  publications: Array<{}>,
+  publications: Array<{
+    id: string,
+  }>,
 }
 
 const PublicationsDisplay = ({ publications }: Props) =>
-  publications.map(item => (
-    <LinkChip key={item.id} item={item.id} route="publication" />
+  publications.map<any>(item => (
+    <LinkTag key={item.id} item={item.id} route="publication" />
   ))
 
 export default PublicationsDisplay
