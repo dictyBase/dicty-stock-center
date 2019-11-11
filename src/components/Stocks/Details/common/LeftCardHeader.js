@@ -7,18 +7,26 @@ import useStyles from "components/Stocks/Details/styles"
 type Props = {
   /** Type of stock */
   stockType: string,
+  species: string,
 }
 
 /** LeftCardHeader displays the header at the top of the left card on the details
  * page.
  */
 
-const LeftCardHeader = ({ stockType }: Props) => {
+const LeftCardHeader = ({ stockType, species }: Props) => {
   const classes = useStyles()
 
   return (
     <Grid item xs={12} className={classes.cardHeader}>
-      <Typography variant="h6">{stockType} Details</Typography>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h6">{stockType} Details</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body1">{species}</Typography>
+        </Grid>
+      </Grid>
     </Grid>
   )
 }

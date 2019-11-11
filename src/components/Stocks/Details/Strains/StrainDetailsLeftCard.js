@@ -65,16 +65,11 @@ const strainRowsGenerator = (data, parent, publications, genes) => [
   },
   {
     id: 11,
-    title: "Species",
-    content: data.species,
-  },
-  {
-    id: 12,
     title: "Depositor",
     content: data.depositor,
   },
   {
-    id: 13,
+    id: 12,
     title: "Reference(s)",
     content: publications,
   },
@@ -94,7 +89,9 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  return <LeftCardDisplay rows={rows} stockType="Strain" />
+  return (
+    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
+  )
 }
 
 export default StrainDetailsLeftCard

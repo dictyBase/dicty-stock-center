@@ -15,9 +15,10 @@ type Props = {
     content: any,
   }>,
   stockType: string,
+  species: string,
 }
 
-const LeftCardDisplay = ({ rows, stockType }: Props) => {
+const LeftCardDisplay = ({ rows, stockType, species }: Props) => {
   const classes = useStyles()
 
   return (
@@ -26,7 +27,7 @@ const LeftCardDisplay = ({ rows, stockType }: Props) => {
         <Grid container>
           <List className={classes.list}>
             <ListItem divider className={classes.cardHeader}>
-              <LeftCardHeader stockType={stockType} />
+              <LeftCardHeader stockType={stockType} species={species} />
             </ListItem>
             {rows.map(data => (
               <DetailsListItem data={data} key={data.id} />
