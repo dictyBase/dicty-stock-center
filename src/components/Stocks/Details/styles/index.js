@@ -3,7 +3,7 @@ import { green } from "@material-ui/core/colors"
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
-    width: "80%",
+    width: "90%",
     margin: "auto",
   },
   header: {
@@ -21,13 +21,19 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     "&:nth-child(odd)": {
       backgroundColor: "#F4F6F8",
     },
+    "@media (max-width: 420px)": {
+      display: "block !important",
+    },
+  },
+  listItem: {
+    "@media (max-width: 420px)": {
+      marginBottom: "10px",
+    },
   },
   list: {
     width: "100%",
     padding: "0px !important",
   },
-  listTitle: {},
-  listContent: {},
   availabilityCard: {
     paddingTop: "5px",
     textAlign: "center",
@@ -60,6 +66,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     textTransform: "none !important",
     borderStyle: "none !important",
     borderRadius: "0px !important",
+    fontSize: "0.75rem !important",
   },
   arrowIcon: {
     marginRight: "8px",

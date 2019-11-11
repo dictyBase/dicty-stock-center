@@ -27,7 +27,7 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
   return (
     <Grid item xs={12} className={classes.header}>
       <Grid container alignItems="center">
-        <Grid item xs={1} className={classes.backButton}>
+        <Grid item xs={12} sm={1} className={classes.backButton}>
           <IconButton
             component={Link}
             to={`/${stockType}s`}
@@ -36,14 +36,14 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
             <FontAwesomeIcon icon="arrow-left" size="lg" />
           </IconButton>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={12} sm={10}>
           <Typography variant="h4">{name}</Typography>
           <Typography variant="h6" color="textSecondary">
             <em>{id}</em>
             <DetailsHeaderCopyIcon id={id} />
           </Typography>
         </Grid>
-        <Grid item xs={1}></Grid>
+        <Grid item xs={12} sm={1}></Grid>
       </Grid>
     </Grid>
   )

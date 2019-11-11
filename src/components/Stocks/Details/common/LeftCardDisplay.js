@@ -22,7 +22,7 @@ const LeftCardDisplay = ({ rows, stockType, species }: Props) => {
   const classes = useStyles()
 
   return (
-    <Grid item xs={10} className={classes.header}>
+    <Grid item xs={12} md={10} className={classes.header}>
       <Card className={classes.leftCard} raised>
         <Grid container>
           <List className={classes.list}>

@@ -19,10 +19,10 @@ const DetailsListItem = ({ data }: Props) => {
 
   return (
     <ListItem className={classes.details} divider>
-      <Grid item xs={3} className={classes.listTitle}>
+      <Grid item xs={12} sm={3} className={classes.listItem}>
         <Typography variant="body2">{data.title}</Typography>
       </Grid>
-      <Grid item xs={9} className={classes.listContent}>
+      <Grid item xs={12} sm={9}>
         <Typography variant="body1">{data.content}</Typography>
       </Grid>
     </ListItem>
