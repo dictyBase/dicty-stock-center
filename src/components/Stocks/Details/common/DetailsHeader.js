@@ -29,9 +29,9 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
         <Grid item xs={1} className={classes.backButton}>
           <IconButton
             component={Link}
-            to="/strains"
-            title="Back to strain catalog"
-            aria-label="strain catalog">
+            to={`/${stockType}s`}
+            title={`Back to ${stockType} catalog`}
+            aria-label="back to catalog page">
             <FontAwesomeIcon icon="arrow-left" size="lg" />
           </IconButton>
         </Grid>
