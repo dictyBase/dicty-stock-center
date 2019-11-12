@@ -10,9 +10,7 @@ jobs:
           node-version: 10.x
       - name: check out code
         uses: actions/checkout@v1
-      - name: run eslint
-        run: |
-          npm ci
-          npm run eslint
-        env:
-          CI: true
+      - name: eslint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
