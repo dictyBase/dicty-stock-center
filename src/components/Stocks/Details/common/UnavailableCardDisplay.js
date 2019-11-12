@@ -4,9 +4,8 @@ import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
-const UnavailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
+const UnavailableCardDisplay = () => {
   const classes = useStyles()
 
   return (
@@ -30,4 +29,4 @@ const UnavailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
   )
 }
 
-export default UnavailableStrainCardDisplay
+export default UnavailableCardDisplay

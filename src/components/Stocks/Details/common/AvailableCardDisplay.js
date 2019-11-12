@@ -9,11 +9,15 @@ import Button from "@material-ui/core/Button"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
 const values = [...Array(13).keys()].slice(1)
 
-const AvailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
+/**
+ * AvailableCardDisplay is used on stock details pages if the
+ * item is currently available for ordering.
+ */
+
+const AvailableCardDisplay = ({ cartData, stockType }) => {
   const [quantity, setQuantity] = useState(values[0])
   const classes = useStyles()
 
@@ -44,13 +48,9 @@ const AvailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
           ))}
         </TextField>
         <AddToCartButton
-          data={Array(quantity).fill({
-            id: data.id,
-            label: data.label,
-            summary: data.summary,
-          })}
+          data={Array(quantity).fill(cartData)}
           setHover={() => {}}
-          stockType="strain"
+          stockType={stockType}
         />
       </div>
       <Divider />
@@ -73,4 +73,4 @@ const AvailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
   )
 }
 
-export default AvailableStrainCardDisplay
+export default AvailableCardDisplay
