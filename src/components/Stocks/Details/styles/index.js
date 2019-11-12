@@ -86,11 +86,13 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     justifyContent: "center",
   },
   snackbar: {
-    width: "400px",
+    width: "300px",
     backgroundColor: green[600],
     fontSize: "0.8rem",
     display: "flex",
     alignItems: "center",
+    paddingTop: "0px",
+    paddingBottom: "0px",
   },
   checkIcon: {
     fontSize: "0.8rem",
@@ -101,6 +103,13 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   unavailableIcon: {
     marginRight: spacing(2),
+  },
+  copyIcon: {
+    fontSize: "0.8rem",
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "rgba(0, 0, 0, 0.87)",
+    },
   },
 }))
 
