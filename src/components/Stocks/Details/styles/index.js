@@ -22,7 +22,6 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   cardHeader: {
     color: "#002f5e",
   },
-  leftCard: {},
   details: {
     "&:nth-child(odd)": {
       backgroundColor: "#F4F6F8",
@@ -76,7 +75,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     textTransform: "none !important",
     borderStyle: "none !important",
     borderRadius: "0px !important",
-    fontSize: "0.75rem !important",
+    fontSize: "0.9rem !important",
   },
   arrowIcon: {
     marginRight: "8px",

@@ -56,7 +56,7 @@ const AvailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
       <Divider />
       <Button
         component={Link}
-        to="/order/checkout"
+        to="/cart"
         variant="outlined"
         classes={{
           root: classes.checkoutBtn,
@@ -67,7 +67,7 @@ const AvailableStrainCardDisplay = ({ data }: StrainDetailsProps) => {
           size="sm"
           className={classes.arrowIcon}
         />
-        Go to checkout page
+        Go to cart
       </Button>
     </div>
   )
