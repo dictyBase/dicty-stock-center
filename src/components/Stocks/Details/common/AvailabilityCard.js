@@ -9,7 +9,7 @@ const AvailabilityCard = ({ data, stockType }) => {
   const classes = useStyles()
 
   let label
-  stockType === "strain" ? (label = data.label) : (label = data.summary)
+  stockType === "strain" ? (label = data.label) : (label = data.name)
 
   const cartData = {
     id: data.id,

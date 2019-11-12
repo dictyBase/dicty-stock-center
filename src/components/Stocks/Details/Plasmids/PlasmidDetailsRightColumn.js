@@ -1,11 +1,12 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
+import AvailabilityCard from "components/Stocks/Details/common/AvailabilityCard"
 import { PlasmidDetailsProps } from "components/Stocks/Details/types/props"
 
 const PlasmidDetailsRightColumn = ({ data }: PlasmidDetailsProps) => (
   <Grid item xs={2}>
-    cards go here...
+    <AvailabilityCard data={data} stockType="plasmid" />
   </Grid>
 )
 
