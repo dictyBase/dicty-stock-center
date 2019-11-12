@@ -1,6 +1,6 @@
 import * as actions from "actions/page"
 import { dsctypes } from "constants/dsctypes"
-import nock from "nock"
+// import nock from "nock"
 import configureMockStore from "redux-mock-store"
 import thunk from "redux-thunk"
 
@@ -16,8 +16,8 @@ describe("page actions", () => {
       const expectedAction = {
         type: EDIT_PAGE,
         payload: {
-          content
-        }
+          content,
+        },
       }
       expect(actions.doEdit(content)).toEqual(expectedAction)
     })

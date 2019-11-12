@@ -3,7 +3,7 @@ import { shallow } from "enzyme"
 import sinon from "sinon"
 import { InfoPageView, mapStateToProps } from "./InfoPageView"
 import Authorization from "components/authentication/Authorization"
-import ErrorNotification from "components/authentication/ErrorNotification"
+// import ErrorNotification from "components/authentication/ErrorNotification"
 import { Editor } from "draft-js"
 
 describe("InfoPage/InfoPageView", () => {

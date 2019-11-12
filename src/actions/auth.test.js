@@ -15,18 +15,18 @@ const {
   FETCH_ROLE_REQUEST,
   FETCH_ROLE_SUCCESS,
   FETCH_ROLE_FAILURE,
-  FETCH_NON_AUTH_ROLE_REQUEST,
-  FETCH_NON_AUTH_ROLE_SUCCESS,
-  FETCH_NON_AUTH_ROLE_FAILURE,
-  FETCH_PERMISSION_REQUEST,
-  FETCH_PERMISSION_SUCCESS,
-  FETCH_PERMISSION_FAILURE
+  // FETCH_NON_AUTH_ROLE_REQUEST,
+  // FETCH_NON_AUTH_ROLE_SUCCESS,
+  // FETCH_NON_AUTH_ROLE_FAILURE,
+  // FETCH_PERMISSION_REQUEST,
+  // FETCH_PERMISSION_SUCCESS,
+  // FETCH_PERMISSION_FAILURE
 } = dsctypes
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-const server = process.env.REACT_APP_API_SERVER || "http://localhost:8080"
+// const server = process.env.REACT_APP_API_SERVER || "http://localhost:8080"
 
 const user = {
   data: {
@@ -40,15 +40,15 @@ const user = {
       group: "Bio",
       address: {
         first: "N Lake Shore",
-        second: ""
+        second: "",
       },
       city: "Chicago",
       state: "IL",
       zip: "60601",
       country: "USA",
-      phone: ""
-    }
-  }
+      phone: "",
+    },
+  },
 }
 
 describe("auth actions", () => {
@@ -59,8 +59,8 @@ describe("auth actions", () => {
         type: LOGIN_REQUEST,
         payload: {
           isFetching: true,
-          provider: provider
-        }
+          provider: provider,
+        },
       }
       expect(actions.requestLogin(provider)).toEqual(expectedAction)
     })
@@ -73,8 +73,8 @@ describe("auth actions", () => {
         payload: {
           isFetching: false,
           token: token,
-          user: user
-        }
+          user: user,
+        },
       }
       expect(actions.receiveLogin({ user, token })).toEqual(expectedAction)
     })
@@ -86,8 +86,8 @@ describe("auth actions", () => {
         type: LOGIN_FAILURE,
         payload: {
           isFetching: false,
-          error: error
-        }
+          error: error,
+        },
       }
       expect(actions.loginError(error)).toEqual(expectedAction)
     })
@@ -97,8 +97,8 @@ describe("auth actions", () => {
       const expectedAction = {
         type: FETCH_USER_REQUEST,
         payload: {
-          isFetching: true
-        }
+          isFetching: true,
+        },
       }
       expect(actions.fetchUserRequest()).toEqual(expectedAction)
     })
@@ -110,8 +110,8 @@ describe("auth actions", () => {
         type: FETCH_USER_SUCCESS,
         payload: {
           isFetching: false,
-          json: json
-        }
+          json: json,
+        },
       }
       expect(actions.fetchUserSuccess(json)).toEqual(expectedAction)
     })
@@ -122,8 +122,8 @@ describe("auth actions", () => {
       const expectedAction = {
         type: FETCH_USER_FAILURE,
         payload: {
-          error: error
-        }
+          error: error,
+        },
       }
       expect(actions.fetchUserFailure(error)).toEqual(expectedAction)
     })
@@ -133,8 +133,8 @@ describe("auth actions", () => {
       const expectedAction = {
         type: FETCH_ROLE_REQUEST,
         payload: {
-          isFetching: true
-        }
+          isFetching: true,
+        },
       }
       expect(actions.fetchRoleRequest()).toEqual(expectedAction)
     })
@@ -146,8 +146,8 @@ describe("auth actions", () => {
         type: FETCH_ROLE_SUCCESS,
         payload: {
           isFetching: false,
-          json: json
-        }
+          json: json,
+        },
       }
       expect(actions.fetchRoleSuccess(json)).toEqual(expectedAction)
     })
@@ -158,8 +158,8 @@ describe("auth actions", () => {
       const expectedAction = {
         type: FETCH_ROLE_FAILURE,
         payload: {
-          error: error
-        }
+          error: error,
+        },
       }
       expect(actions.fetchRoleFailure(error)).toEqual(expectedAction)
     })
@@ -174,7 +174,7 @@ describe("auth async actions", () => {
   describe("logout request", () => {
     it("should log the user out", async () => {
       const expectedActions = [
-        { type: LOGOUT_SUCCESS, payload: { isFetching: false } }
+        { type: LOGOUT_SUCCESS, payload: { isFetching: false } },
       ]
       const store = mockStore({})
 
