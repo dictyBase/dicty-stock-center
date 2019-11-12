@@ -10,6 +10,13 @@ jobs:
           node-version: 10.x
       - name: check out code
         uses: actions/checkout@v1
+      - name: cache npm dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: npm install and test
         run: |
           mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
