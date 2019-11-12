@@ -18,7 +18,7 @@ type Props = {
  */
 
 const LeftColumn = (props: Props) => {
-  const { page, countryName, values } = props
+  const { page, countryName, setFieldValue, values } = props
 
   return (
     <PanelWrapper title={`${page} Address`}>
@@ -26,7 +26,7 @@ const LeftColumn = (props: Props) => {
         fields={addressFieldsGenerator(page.toLowerCase())}
         countryName={countryName}
         countryValue={values[countryName]}
-        {...props}
+        setFieldValue={setFieldValue}
       />
     </PanelWrapper>
   )

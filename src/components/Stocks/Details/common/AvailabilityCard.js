@@ -5,7 +5,19 @@ import useStyles from "components/Stocks/Details/styles"
 import AvailableCardDisplay from "./AvailableCardDisplay"
 import UnavailableCardDisplay from "./UnavailableCardDisplay"
 
-const AvailabilityCard = ({ data, stockType }) => {
+type Props = {
+  /** Stock data */
+  data: Object,
+  /** strain or plasmid */
+  stockType: string,
+}
+
+/**
+ * AvailabilityCard handles the display of stock availability on any
+ * details page.
+ */
+
+const AvailabilityCard = ({ data, stockType }: Props) => {
   const classes = useStyles()
 
   let label

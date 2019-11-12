@@ -12,12 +12,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const values = [...Array(13).keys()].slice(1)
 
+type Props = {
+  cartData: {
+    id: string,
+    label: string,
+    summary: string,
+  },
+  stockType: string,
+}
+
 /**
  * AvailableCardDisplay is used on stock details pages if the
  * item is currently available for ordering.
  */
 
-const AvailableCardDisplay = ({ cartData, stockType }) => {
+const AvailableCardDisplay = ({ cartData, stockType }: Props) => {
   const [quantity, setQuantity] = useState(values[0])
   const classes = useStyles()
 

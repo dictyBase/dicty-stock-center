@@ -68,7 +68,12 @@ const PaymentPage = (props: Props) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <LeftColumn page="Payment" countryName="payerCountry" {...props} />
+        <LeftColumn
+          page="Payment"
+          countryName="payerCountry"
+          values={values}
+          setFieldValue={setFieldValue}
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <PaymentPageRightColumn {...props} />

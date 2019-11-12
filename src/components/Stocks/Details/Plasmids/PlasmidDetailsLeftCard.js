@@ -67,7 +67,7 @@ const PlasmidDetailsLeftCard = ({ data }: PlasmidDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  return <LeftCardDisplay rows={rows} stockType="Plasmid" />
+  return <LeftCardDisplay rows={rows} stockType="Plasmid" species="" />
 }
 
 export default PlasmidDetailsLeftCard
