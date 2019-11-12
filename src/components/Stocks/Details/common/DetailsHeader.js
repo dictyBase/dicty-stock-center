@@ -3,7 +3,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
-import IconButton from "@material-ui/core/IconButton"
+import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DetailsHeaderCopyIcon from "./DetailsHeaderCopyIcon"
 import useStyles from "components/Stocks/Details/styles"
@@ -27,16 +27,18 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
   return (
     <Grid item xs={12} className={classes.header}>
       <Grid container alignItems="center">
-        <Grid item xs={12} sm={1} className={classes.backButton}>
-          <IconButton
+        <Grid item xs={12} sm={2} className={classes.backButton}>
+          <Button
+            className={classes.backButton}
             component={Link}
             to={`/${stockType}s`}
             title={`Back to ${stockType} catalog`}
-            aria-label="back to catalog page">
-            <FontAwesomeIcon icon="arrow-left" size="lg" />
-          </IconButton>
+            aria-label="back to catalog page"
+            startIcon={<FontAwesomeIcon icon="arrow-left" size="lg" />}>
+            {stockType} Catalog
+          </Button>
         </Grid>
-        <Grid item xs={12} sm={10} zeroMinWidth>
+        <Grid item xs={12} sm={8} zeroMinWidth>
           <Typography variant="h4" noWrap>
             {name}
           </Typography>
@@ -45,7 +47,7 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
             <DetailsHeaderCopyIcon id={id} />
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={1}></Grid>
+        <Grid item xs={12} sm={2}></Grid>
       </Grid>
     </Grid>
   )
