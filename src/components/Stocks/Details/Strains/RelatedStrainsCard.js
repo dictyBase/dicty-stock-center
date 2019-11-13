@@ -14,7 +14,7 @@ type Props = {
   genes: Array<string>,
 }
 
-const MoreStrainsCard = ({ genes }: Props) => {
+const RelatedStrainsCard = ({ genes }: Props) => {
   const classes = useStyles()
 
   return (
@@ -43,4 +43,4 @@ const MoreStrainsCard = ({ genes }: Props) => {
   )
 }
 
-export default MoreStrainsCard
+export default RelatedStrainsCard
