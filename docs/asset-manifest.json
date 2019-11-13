@@ -1,8 +1,8 @@
 {
   "files": {
-    "build/0.65447d2a.js": "/build/0.65447d2a.js",
-    "main.js": "/build/main.d7329424.js",
-    "runtime~main.js": "/build/bundle.7b491809.js",
+    "build/0.d4021b62.js": "/build/0.d4021b62.js",
+    "main.js": "/build/main.bf5fc096.js",
+    "runtime-main.js": "/build/bundle.105de5e2.js",
     "index.html": "/index.html",
     "static/media/academicons.ttf?v=1.8.6": "/static/media/academicons.1afcbd6a.ttf",
     "static/media/academicons.woff?v=1.8.6": "/static/media/academicons.2552b354.woff",
@@ -39,5 +39,10 @@
     "static/media/roboto-latin-900italic.woff2": "/static/media/roboto-latin-900italic.ebf6d164.woff2",
     "static/media/sad-dicty.png": "/static/media/sad-dicty.98bec487.png",
     "static/media/tipB-mutant-DG1036.png": "/static/media/tipB-mutant-DG1036.1ce27107.png"
-  }
+  },
+  "entrypoints": [
+    "build/bundle.105de5e2.js",
+    "build/0.d4021b62.js",
+    "build/main.bf5fc096.js"
+  ]
 }

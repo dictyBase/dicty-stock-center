@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { ApolloProvider } from "react-apollo"
+import React from "react"
+import { ApolloProvider } from "@apollo/react-hooks"
 import ApolloClient from "apollo-boost"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
@@ -17,14 +17,12 @@ let store = createStore(createRootReducer(history))
  * This is a wrapper component used for all styleguidist documentation.
  */
 
-export default class Wrapper extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <BrowserRouter>{this.props.children}</BrowserRouter>
-        </Provider>
-      </ApolloProvider>
-    )
-  }
-}
+const Wrapper = ({ children }) => (
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </Provider>
+  </ApolloProvider>
+)
+
+export default Wrapper
