@@ -24,7 +24,8 @@
     "local-ci-eric": "IMAGE_TAG=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||' -e 's~/~-~')-$(git rev-parse --short HEAD) skaffold run -p ericdev",
     "local-ci-sidd": "IMAGE_TAG=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||' -e 's~/~-~')-$(git rev-parse --short HEAD) skaffold run -p devsidd",
     "cypress:open": "cypress open",
-    "cypress:run": "percy exec -- cypress run"
+    "cypress:run": "percy exec -- cypress run",
+    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "repository": {
     "type": "git",
@@ -116,8 +117,8 @@
     "sinon": "^7.5.0",
     "source-map-explorer": "^2.1.0",
     "sprintf-js": "^1.1.2",
-    "waait": "^1.0.5",
-    "wait-on": "^3.3.0"
+    "start-server-and-test": "^1.10.6",
+    "waait": "^1.0.5"
   },
   "jest": {
     "collectCoverageFrom": [
