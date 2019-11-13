@@ -10,28 +10,28 @@ describe("DSC snapshots", () => {
   })
   it("visits the strain catalog", () => {
     cy.visit("/strains")
-    cy.contains("HL206")
+    // cy.contains("HL206")
     cy.percySnapshot("strain catalog", {
       widths: [360, 768, 1024],
     })
   })
   it("visits a strain details page", () => {
     cy.visit("/strains/DBS0351367")
-    cy.contains("Extrachromosomal")
+    // cy.contains("Extrachromosomal")
     cy.percySnapshot("strain details", {
       widths: [360, 768, 1024],
     })
   })
   it("visits the plasmid catalog", () => {
     cy.visit("/plasmids")
-    cy.contains("pSigK")
+    // cy.contains("pSigK")
     cy.percySnapshot("plasmid catalog", {
       widths: [360, 768, 1024],
     })
   })
   it("visits a plasmid details page", () => {
     cy.visit("/plasmids/DBP0001070")
-    cy.contains("overexpression")
+    // cy.contains("overexpression")
     cy.percySnapshot("plasmid details", {
       widths: [360, 768, 1024],
     })
