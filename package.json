@@ -116,7 +116,8 @@
     "sinon": "^7.5.0",
     "source-map-explorer": "^2.1.0",
     "sprintf-js": "^1.1.2",
-    "waait": "^1.0.5"
+    "waait": "^1.0.5",
+    "wait-on": "^3.3.0"
   },
   "jest": {
     "collectCoverageFrom": [

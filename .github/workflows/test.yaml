@@ -54,6 +54,8 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: run cypress and percy tests
-        run: npm run cypress:run
+        run: |
+          npm start && wait-on http://localhost:3000
+          npm run cypress:run
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}

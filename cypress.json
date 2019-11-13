@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://eric.dictybase.dev/stockcenter",
+  "baseUrl": "http://localhost:3000",
   "video": false
 }
