@@ -28,3 +28,32 @@ jobs:
         uses: codecov/codecov-action@v1.0.2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+  percy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: set up node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: check out code
+        uses: actions/checkout@v1
+      - name: cache cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+      - name: cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+      - name: install dependencies
+        run: npm ci
+      - name: run cypress and percy tests
+        run: npm run cypress:run
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
