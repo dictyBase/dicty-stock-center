@@ -23,7 +23,8 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "local-ci-eric": "IMAGE_TAG=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||' -e 's~/~-~')-$(git rev-parse --short HEAD) skaffold run -p ericdev",
     "local-ci-sidd": "IMAGE_TAG=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||' -e 's~/~-~')-$(git rev-parse --short HEAD) skaffold run -p devsidd",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "percy exec -- cypress run"
   },
   "repository": {
     "type": "git",
