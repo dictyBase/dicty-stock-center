@@ -52,10 +52,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
       - name: install dependencies
-        run: npm ci
+        run: |
+          mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
+          npm ci
       - name: run cypress and percy tests
         run: |
           npm start && wait-on http://localhost:3000
           npm run cypress:run
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          CI: true

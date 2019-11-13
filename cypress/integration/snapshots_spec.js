@@ -10,7 +10,7 @@ describe("DSC snapshots", () => {
   })
   it("visits the strain catalog", () => {
     cy.visit("/strains")
-    cy.contains("DBS0351367")
+    cy.contains("HL206")
     cy.percySnapshot("strain catalog", {
       widths: [360, 768, 1024],
     })
@@ -24,7 +24,7 @@ describe("DSC snapshots", () => {
   })
   it("visits the plasmid catalog", () => {
     cy.visit("/plasmids")
-    cy.contains("DBP0001070")
+    cy.contains("pSigK")
     cy.percySnapshot("plasmid catalog", {
       widths: [360, 768, 1024],
     })
