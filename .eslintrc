@@ -1,5 +1,5 @@
 {
-  "extends": "react-app",
+  "extends": ["react-app", "plugin:cypress/recommended"],
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
