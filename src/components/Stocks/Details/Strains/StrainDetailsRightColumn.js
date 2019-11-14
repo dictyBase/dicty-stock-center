@@ -6,7 +6,7 @@ import RelatedStrainsCard from "./RelatedStrainsCard"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
 const StrainDetailsRightColumn = ({ data }: StrainDetailsProps) => (
-  <Grid item xs={12} md={2}>
+  <Grid item xs={12} md={3} lg={2}>
     <AvailabilityCard data={data} stockType="strain" />
     <RelatedStrainsCard genes={data.genes} />
   </Grid>
