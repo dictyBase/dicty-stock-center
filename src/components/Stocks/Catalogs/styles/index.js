@@ -6,9 +6,8 @@ const useStyles = makeStyles({
     backgroundColor: "#0059b3 !important",
   },
   layout: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    width: "95%",
+    margin: "auto",
     "& a": {
       textDecoration: "none",
     },

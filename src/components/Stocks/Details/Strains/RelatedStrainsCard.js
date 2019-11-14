@@ -24,7 +24,7 @@ const RelatedStrainsCard = ({ genes }: Props) => {
       </Typography>
       <Divider />
       <Typography className={classes.secondaryText} variant="body1">
-        Strains involving gene xyz {genes}
+        Strains associated with gene xyz {genes}
       </Typography>
       <div className={classes.options}>
         <List>

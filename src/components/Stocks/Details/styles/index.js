@@ -55,8 +55,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   moreStrainsCard: {
     marginTop: "16px",
-    paddingTop: "5px",
-    paddingBottom: "5px",
+    padding: "5px",
     textAlign: "center",
   },
   options: {

@@ -24,7 +24,7 @@ const RelatedPlasmidsCard = ({ genes }: Props) => {
       </Typography>
       <Divider />
       <Typography className={classes.secondaryText} variant="body1">
-        Plasmids involving gene xyz {genes}
+        Plasmids associated with gene xyz {genes}
       </Typography>
       <div className={classes.options}>
         <List>

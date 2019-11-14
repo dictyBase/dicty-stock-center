@@ -10,21 +10,21 @@ import Hidden from "@material-ui/core/Hidden"
 
 const StrainCatalogListHeader = () => (
   <>
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} sm={4} md={3}>
       Strain Descriptor
     </Grid>
-    <Hidden smDown>
-      <Grid item md={6}>
+    <Hidden xsDown>
+      <Grid item sm={6}>
         Strain Summary
       </Grid>
     </Hidden>
-    <Hidden lgDown>
-      <Grid item xl={1}>
+    <Hidden mdDown>
+      <Grid item lg={1}>
         Strain ID
       </Grid>
     </Hidden>
     <Hidden smDown>
-      <Grid item xs={4} md={1}></Grid>
+      <Grid item xs={4} sm={2} md={2} lg={1}></Grid>
     </Hidden>
   </>
 )

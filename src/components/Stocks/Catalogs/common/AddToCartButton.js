@@ -85,7 +85,4 @@ export const AddToCartButton = ({
   )
 }
 
-export default connect<*, *, *, *, *, *>(
-  null,
-  { addToCart },
-)(AddToCartButton)
+export default connect<*, *, *, *, *, *>(null, { addToCart })(AddToCartButton)

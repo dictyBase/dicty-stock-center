@@ -88,24 +88,24 @@ export const StrainCatalogListItem = memo<*>(
               />
             </Grid>
           </Hidden>
-          <Grid item xs={8} md={3} className={classes.item}>
+          <Grid item xs={8} sm={4} md={3} className={classes.item}>
             <Typography noWrap>
               <Link className={classes.link} to={`/strains/${strain.id}`}>
                 {characterConverter(strain.label)}
               </Link>
             </Typography>
           </Grid>
-          <Hidden smDown>
-            <Grid item md={6} className={classes.item}>
+          <Hidden xsDown>
+            <Grid item sm={6} className={classes.item}>
               <Typography noWrap>{strain.summary}</Typography>
             </Grid>
           </Hidden>
-          <Hidden lgDown>
-            <Grid item xl={1}>
+          <Hidden mdDown>
+            <Grid item lg={1}>
               <Typography noWrap>{strain.id}</Typography>
             </Grid>
           </Hidden>
-          <Grid item xs={4} md={2} lg={2} xl={1}>
+          <Grid item xs={4} sm={2} md={2} lg={1}>
             <Grid container justify="center">
               {hover && (
                 <span>
@@ -143,7 +143,6 @@ const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { removeItem },
-)(StrainCatalogListItem)
+export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
+  StrainCatalogListItem,
+)

@@ -88,24 +88,24 @@ export const PlasmidCatalogListItem = memo<*>(
               />
             </Grid>
           </Hidden>
-          <Grid item xs={8} md={2} className={classes.item}>
+          <Grid item xs={8} sm={3} md={2} className={classes.item}>
             <Typography noWrap>
               <Link className={classes.link} to={`/plasmids/${plasmid.id}`}>
                 {characterConverter(plasmid.name)}
               </Link>
             </Typography>
           </Grid>
-          <Hidden smDown>
-            <Grid item md={7} className={classes.item}>
+          <Hidden xsDown>
+            <Grid item sm={7} className={classes.item}>
               <Typography noWrap>{plasmid.summary}</Typography>
             </Grid>
           </Hidden>
-          <Hidden lgDown>
-            <Grid item xl={1}>
+          <Hidden mdDown>
+            <Grid item lg={1}>
               <Typography noWrap>{plasmid.id}</Typography>
             </Grid>
           </Hidden>
-          <Grid item xs={4} md={2} lg={2} xl={1}>
+          <Grid item xs={4} sm={2} md={2} lg={1}>
             <Grid container justify="center">
               {hover && (
                 <span>
@@ -143,7 +143,6 @@ const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { removeItem },
-)(PlasmidCatalogListItem)
+export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
+  PlasmidCatalogListItem,
+)
