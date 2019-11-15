@@ -1,7 +1,7 @@
 name: Flow
 on: pull_request
 jobs:
-  eslint:
+  flow:
     runs-on: ubuntu-18.04
     steps:
       - name: set up node.js

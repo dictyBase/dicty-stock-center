@@ -6,14 +6,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node: ["10", "12"]
     steps:
       - name: set up node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 10.x
       - name: check out code
         uses: actions/checkout@v1
       - name: cache npm dependencies
