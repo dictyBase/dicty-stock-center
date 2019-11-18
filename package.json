@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "/stockcenter",
   "engines": {
-    "node": "10.16.0"
+    "node": "10.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,7 +17,6 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "nightwatch": "nightwatch -e chrome",
     "cz": "git-cz",
     "semantic-release": "semantic-release",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
