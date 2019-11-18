@@ -29,7 +29,6 @@ type Props = {
   data: Array<CartItem>,
   fetchMore: Function,
   cursor: number,
-  filter: string,
 }
 
 /**
@@ -37,29 +36,28 @@ type Props = {
  * (via react-window) and handles the checkbox state.
  */
 
-export const PlasmidCatalogList = ({
-  data,
-  fetchMore,
-  cursor,
-  filter,
-}: Props) => {
-  const {
-    checkedItems,
-    setCheckedItems,
-    handleCheckAllChange,
-  }: {
-    checkedItems: Array<Object>,
-    setCheckedItems: Function,
-    handleCheckAllChange: Function,
-  } = usePlasmidCatalogState()
+export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
+  const [{ queryVariables, checkedItems }, dispatch] = usePlasmidCatalogState()
   const classes = useStyles()
+
+  const resetCheckedItems = () =>
+    dispatch({
+      type: "SET_CHECKED_ITEMS",
+      payload: [],
+    })
+
+  const handleCheckAllChange = () => {
+    if (checkedItems.length > 0) {
+      resetCheckedItems()
+    }
+  }
 
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_PLASMIDS_LIST,
       variables: {
         cursor: cursor,
-        filter: filter,
+        filter: queryVariables.filter,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return previousResult
@@ -95,7 +93,7 @@ export const PlasmidCatalogList = ({
       <CatalogListHeader
         stockType="plasmid"
         checkedItems={checkedItems}
-        setCheckedItems={setCheckedItems}
+        setCheckedItems={resetCheckedItems}
         handleCheckAllChange={handleCheckAllChange}
       />
       <AutoSizer>

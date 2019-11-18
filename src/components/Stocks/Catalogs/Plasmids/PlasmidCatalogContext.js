@@ -1,8 +1,57 @@
 // @flow
-import React, { createContext, useContext, useState } from "react"
-import { GET_PLASMID_LIST } from "./PlasmidCatalogContainer"
+import React, { createContext, useContext, useMemo, useReducer } from "react"
+import gql from "graphql-tag"
 
 export const PlasmidCatalogContext: Object = createContext()
+
+export const GET_PLASMID_LIST = gql`
+  query PlasmidList($cursor: Int!) {
+    listPlasmids(input: { cursor: $cursor, limit: 10 }) {
+      nextCursor
+      plasmids {
+        id
+        name
+        summary
+        in_stock
+      }
+    }
+  }
+`
+
+const plasmidCatalogReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_QUERY":
+      return {
+        ...state,
+        query: action.payload,
+      }
+    case "SET_QUERY_VARIABLES":
+      return {
+        ...state,
+        queryVariables: action.payload,
+      }
+    case "SET_CHECKED_ITEMS":
+      return {
+        ...state,
+        checkedItems: action.payload,
+      }
+    case "SET_CART_DIALOG_OPEN": {
+      return {
+        ...state,
+        cartDialogOpen: action.payload,
+      }
+    }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  query: GET_PLASMID_LIST,
+  queryVariables: { cursor: 0 },
+  checkedItems: [],
+  cartDialogOpen: false,
+}
 
 /**
  * PlasmidCatalogProvider contains "global" state used for the Plasmid
@@ -11,44 +60,11 @@ export const PlasmidCatalogContext: Object = createContext()
  */
 
 export const PlasmidCatalogProvider = ({ children }: any) => {
-  const [query, setQuery] = useState<string>(GET_PLASMID_LIST)
-  const [queryVariables, setQueryVariables] = useState<Object>({
-    cursor: 0,
-  })
-  const [checkedItems, setCheckedItems] = useState<Array<Object>>([])
-  const [cartDialogOpen, setCartDialogOpen] = useState<boolean>(false)
-
-  const handleCheckboxChange = (id: string, label: string, summary: string) => (
-    event: SyntheticEvent<>,
-  ) => {
-    // if checkbox is already checked, remove that item from state
-    if (checkedItems.some(item => item.id === id)) {
-      setCheckedItems(checkedItems.filter(item => item.id !== id))
-    } else {
-      setCheckedItems([...checkedItems, { id, label, summary }])
-    }
-  }
-
-  const handleCheckAllChange = () => {
-    if (checkedItems.length > 0) {
-      setCheckedItems([])
-    }
-  }
+  const [state, dispatch] = useReducer(plasmidCatalogReducer, initialState)
+  const value = useMemo(() => [state, dispatch], [state])
 
   return (
-    <PlasmidCatalogContext.Provider
-      value={{
-        query,
-        setQuery,
-        queryVariables,
-        setQueryVariables,
-        checkedItems,
-        setCheckedItems,
-        cartDialogOpen,
-        setCartDialogOpen,
-        handleCheckboxChange,
-        handleCheckAllChange,
-      }}>
+    <PlasmidCatalogContext.Provider value={value}>
       {children}
     </PlasmidCatalogContext.Provider>
   )

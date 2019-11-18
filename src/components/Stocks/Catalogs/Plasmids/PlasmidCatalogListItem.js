@@ -40,13 +40,7 @@ type Props = {
 export const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     const [hover, setHover] = useState(false)
-    const {
-      handleCheckboxChange,
-      checkedItems,
-    }: {
-      handleCheckboxChange: Function,
-      checkedItems: Array<Object>,
-    } = usePlasmidCatalogState()
+    const [{ checkedItems }, dispatch] = usePlasmidCatalogState()
     const classes = useStyles()
 
     const { item } = data
@@ -61,6 +55,25 @@ export const PlasmidCatalogListItem = memo<*>(
     const handleRemoveItemClick = () => {
       removeItem(plasmid.id)
       setHover(false)
+    }
+
+    const handleCheckboxChange = (
+      id: string,
+      label: string,
+      summary: string,
+    ) => (event: SyntheticEvent<>) => {
+      // if checkbox is already checked, remove that item from state
+      if (checkedItems.some(item => item.id === id)) {
+        dispatch({
+          type: "SET_CHECKED_ITEMS",
+          payload: checkedItems.filter(item => item.id !== id),
+        })
+      } else {
+        dispatch({
+          type: "SET_CHECKED_ITEMS",
+          payload: [...checkedItems, { id, label, summary }],
+        })
+      }
     }
 
     return (

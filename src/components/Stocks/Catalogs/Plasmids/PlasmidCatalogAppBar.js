@@ -61,7 +61,8 @@ const rightDropdownItems = [
  */
 
 const PlasmidCatalogAppBar = () => {
-  const { setQuery, setQueryVariables } = usePlasmidCatalogState()
+  // eslint-disable-next-line
+  const [state, dispatch] = usePlasmidCatalogState()
   const classes = useStyles()
 
   return (
@@ -75,8 +76,7 @@ const PlasmidCatalogAppBar = () => {
             <AppBarSearch
               query={GET_PLASMIDS_FILTER}
               dropdownItems={rightDropdownItems}
-              setQuery={setQuery}
-              setQueryVariables={setQueryVariables}
+              dispatch={dispatch}
             />
           </Grid>
           <Grid container justify="flex-end">
