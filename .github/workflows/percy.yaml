@@ -1,7 +1,10 @@
-name: Testing
-on: pull_request
+name: Visual testing
+on:
+  pull_request:
+    tags-ignore:
+      - dependencies
 jobs:
-  test:
+  percy:
     runs-on: ubuntu-18.04
     steps:
       - name: set up node.js
@@ -10,6 +13,13 @@ jobs:
           node-version: 10.x
       - name: check out code
         uses: actions/checkout@v1
+      - name: cache cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
       - name: cache npm dependencies
         uses: actions/cache@v1
         with:
@@ -17,14 +27,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: npm install and test
+      - name: install dependencies
         run: |
           mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
           npm ci
-          npm test -- --coverage
+      - name: run cypress and percy tests
+        run: npm run cypress:ci
         env:
-          CI: true
-      - name: upload coverage to codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
