@@ -67,7 +67,8 @@ const rightDropdownItems = [
  */
 
 const StrainCatalogAppBar = () => {
-  const { setQuery, setQueryVariables } = useStrainCatalogState()
+  // eslint-disable-next-line
+  const [state, dispatch] = useStrainCatalogState()
   const classes = useStyles()
 
   return (
@@ -81,8 +82,7 @@ const StrainCatalogAppBar = () => {
             <AppBarSearch
               query={GET_STRAINS_FILTER}
               dropdownItems={rightDropdownItems}
-              setQuery={setQuery}
-              setQueryVariables={setQueryVariables}
+              dispatch={dispatch}
             />
           </Grid>
           <Grid container justify="flex-end">

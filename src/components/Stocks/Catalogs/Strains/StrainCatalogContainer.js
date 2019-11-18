@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
@@ -11,39 +10,17 @@ import StrainCatalogAppBar from "./StrainCatalogAppBar"
 import { useStrainCatalogState } from "./StrainCatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
-export const GET_STRAIN_LIST = gql`
-  query StrainList($cursor: Int!) {
-    listStrains(input: { cursor: $cursor, limit: 10 }) {
-      nextCursor
-      strains {
-        id
-        label
-        summary
-        in_stock
-      }
-    }
-  }
-`
-
 /**
  * StrainCatalogContainer is the main component for the strain catalog page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
 export const StrainCatalogContainer = () => {
-  const {
-    query,
-    queryVariables,
-    setQuery,
-  }: {
-    query: string,
-    queryVariables: Object,
-    setQuery: Function,
-  } = useStrainCatalogState()
-  const classes = useStyles()
+  const [{ query, queryVariables }] = useStrainCatalogState()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
+  const classes = useStyles()
 
   let content
 
@@ -51,14 +28,12 @@ export const StrainCatalogContainer = () => {
 
   if (error) {
     content = <CatalogErrorMessage error={error} />
-    setQuery(GET_STRAIN_LIST)
   } else {
     content = (
       <StrainCatalogList
         data={data.listStrains.strains}
         fetchMore={fetchMore}
         cursor={data.listStrains.nextCursor}
-        filter={queryVariables.filter}
       />
     )
   }

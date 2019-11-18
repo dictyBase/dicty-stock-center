@@ -1,8 +1,57 @@
 // @flow
-import React, { createContext, useContext, useState } from "react"
-import { GET_STRAIN_LIST } from "./StrainCatalogContainer"
+import React, { createContext, useContext, useMemo, useReducer } from "react"
+import gql from "graphql-tag"
 
 export const StrainCatalogContext: Object = createContext()
+
+export const GET_STRAIN_LIST = gql`
+  query StrainList($cursor: Int!) {
+    listStrains(input: { cursor: $cursor, limit: 10 }) {
+      nextCursor
+      strains {
+        id
+        label
+        summary
+        in_stock
+      }
+    }
+  }
+`
+
+const strainCatalogReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_QUERY":
+      return {
+        ...state,
+        query: action.payload,
+      }
+    case "SET_QUERY_VARIABLES":
+      return {
+        ...state,
+        queryVariables: action.payload,
+      }
+    case "SET_CHECKED_ITEMS":
+      return {
+        ...state,
+        checkedItems: action.payload,
+      }
+    case "SET_CART_DIALOG_OPEN": {
+      return {
+        ...state,
+        cartDialogOpen: action.payload,
+      }
+    }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  query: GET_STRAIN_LIST,
+  queryVariables: { cursor: 0 },
+  checkedItems: [],
+  cartDialogOpen: false,
+}
 
 /**
  * StrainCatalogProvider contains "global" state used for the Strain
@@ -11,44 +60,11 @@ export const StrainCatalogContext: Object = createContext()
  */
 
 export const StrainCatalogProvider = ({ children }: any) => {
-  const [query, setQuery] = useState<string>(GET_STRAIN_LIST)
-  const [queryVariables, setQueryVariables] = useState<Object>({
-    cursor: 0,
-  })
-  const [checkedItems, setCheckedItems] = useState<Array<Object>>([])
-  const [cartDialogOpen, setCartDialogOpen] = useState<boolean>(false)
-
-  const handleCheckboxChange = (id: string, label: string, summary: string) => (
-    event: SyntheticEvent<>,
-  ) => {
-    // if checkbox is already checked, remove that item from state
-    if (checkedItems.some(item => item.id === id)) {
-      setCheckedItems(checkedItems.filter(item => item.id !== id))
-    } else {
-      setCheckedItems([...checkedItems, { id, label, summary }])
-    }
-  }
-
-  const handleCheckAllChange = () => {
-    if (checkedItems.length > 0) {
-      setCheckedItems([])
-    }
-  }
+  const [state, dispatch] = useReducer(strainCatalogReducer, initialState)
+  const value = useMemo(() => [state, dispatch], [state])
 
   return (
-    <StrainCatalogContext.Provider
-      value={{
-        query,
-        setQuery,
-        queryVariables,
-        setQueryVariables,
-        cartDialogOpen,
-        setCartDialogOpen,
-        checkedItems,
-        setCheckedItems,
-        handleCheckboxChange,
-        handleCheckAllChange,
-      }}>
+    <StrainCatalogContext.Provider value={value}>
       {children}
     </StrainCatalogContext.Provider>
   )

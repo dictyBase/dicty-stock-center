@@ -38,8 +38,7 @@ type Props = {
     value: string,
     name: string,
   }>,
-  setQuery: Function,
-  setQueryVariables: Function,
+  dispatch: Function,
 }
 
 type AppBarState = {
@@ -52,12 +51,7 @@ type AppBarState = {
  * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const AppBarSearch = ({
-  query,
-  dropdownItems,
-  setQuery,
-  setQueryVariables,
-}: Props) => {
+const AppBarSearch = ({ query, dropdownItems, dispatch }: Props) => {
   const { searchValue, setSearchValue, filter }: AppBarState = useAppBarState()
   const classes = useStyles()
 
@@ -67,14 +61,26 @@ const AppBarSearch = ({
 
   const handleSubmit = event => {
     event.preventDefault()
-    setQuery(query)
-    setQueryVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
+    dispatch({
+      type: "SET_QUERY",
+      payload: query,
+    })
+    dispatch({
+      type: "SET_QUERY_VARIABLES",
+      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
+    })
   }
 
   const clearSearch = () => {
     setSearchValue("")
-    setQuery(query)
-    setQueryVariables({ cursor: 0, filter: `${filter}~${searchValue}` })
+    dispatch({
+      type: "SET_QUERY",
+      payload: query,
+    })
+    dispatch({
+      type: "SET_QUERY_VARIABLES",
+      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
+    })
   }
 
   return (

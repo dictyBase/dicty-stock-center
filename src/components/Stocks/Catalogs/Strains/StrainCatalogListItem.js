@@ -40,13 +40,7 @@ export const StrainCatalogListItem = memo<*>(
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
     const [hover, setHover] = useState(false)
-    const {
-      handleCheckboxChange,
-      checkedItems,
-    }: {
-      handleCheckboxChange: Function,
-      checkedItems: Array<Object>,
-    } = useStrainCatalogState()
+    const [{ checkedItems }, dispatch] = useStrainCatalogState()
     const classes = useStyles()
 
     const { item } = data
@@ -61,6 +55,25 @@ export const StrainCatalogListItem = memo<*>(
     const handleRemoveItemClick = () => {
       removeItem(strain.id)
       setHover(false)
+    }
+
+    const handleCheckboxChange = (
+      id: string,
+      label: string,
+      summary: string,
+    ) => (event: SyntheticEvent<>) => {
+      // if checkbox is already checked, remove that item from state
+      if (checkedItems.some(item => item.id === id)) {
+        dispatch({
+          type: "SET_CHECKED_ITEMS",
+          payload: checkedItems.filter(item => item.id !== id),
+        })
+      } else {
+        dispatch({
+          type: "SET_CHECKED_ITEMS",
+          payload: [...checkedItems, { id, label, summary }],
+        })
+      }
     }
 
     return (

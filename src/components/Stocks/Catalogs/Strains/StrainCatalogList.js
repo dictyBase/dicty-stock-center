@@ -29,7 +29,6 @@ type Props = {
   data: Array<CartItem>,
   fetchMore: Function,
   cursor: number,
-  filter: string,
 }
 
 /**
@@ -37,24 +36,28 @@ type Props = {
  * (via react-window) and handles the checkbox state.
  */
 
-const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
-  const {
-    checkedItems,
-    setCheckedItems,
-    handleCheckAllChange,
-  }: {
-    checkedItems: Array<Object>,
-    setCheckedItems: Function,
-    handleCheckAllChange: Function,
-  } = useStrainCatalogState()
+const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
+  const [{ queryVariables, checkedItems }, dispatch] = useStrainCatalogState()
   const classes = useStyles()
+
+  const resetCheckedItems = () =>
+    dispatch({
+      type: "SET_CHECKED_ITEMS",
+      payload: [],
+    })
+
+  const handleCheckAllChange = () => {
+    if (checkedItems.length > 0) {
+      resetCheckedItems()
+    }
+  }
 
   const loadMoreItems = () =>
     fetchMore({
       query: GET_MORE_STRAINS_LIST,
       variables: {
         cursor: cursor,
-        filter: filter,
+        filter: queryVariables.filter,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return previousResult
@@ -89,7 +92,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor, filter }: Props) => {
     <Paper className={classes.catalogPaper}>
       <CatalogListHeader
         checkedItems={checkedItems}
-        setCheckedItems={setCheckedItems}
+        setCheckedItems={resetCheckedItems}
         handleCheckAllChange={handleCheckAllChange}
         stockType="strain"
       />
