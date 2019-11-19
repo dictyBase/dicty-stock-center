@@ -4,14 +4,15 @@ import { MockedProvider } from "@apollo/react-testing"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
-import PlasmidCatalogContainer, {
-  GET_PLASMID_LIST,
-} from "./PlasmidCatalogContainer"
+import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
+import {
+  PlasmidCatalogProvider,
+  GET_PLASMID_LIST,
+} from "./PlasmidCatalogContext"
 
 const mockStore = configureMockStore()
 const store = mockStore({})

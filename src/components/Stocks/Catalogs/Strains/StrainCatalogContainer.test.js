@@ -4,14 +4,12 @@ import { MockedProvider } from "@apollo/react-testing"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"
 import wait from "waait"
-import StrainCatalogContainer, {
-  GET_STRAIN_LIST,
-} from "./StrainCatalogContainer"
+import StrainCatalogContainer from "./StrainCatalogContainer"
 import StrainCatalogList from "./StrainCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { StrainCatalogProvider } from "./StrainCatalogContext"
+import { StrainCatalogProvider, GET_STRAIN_LIST } from "./StrainCatalogContext"
 
 const mockStore = configureMockStore()
 const store = mockStore({})
