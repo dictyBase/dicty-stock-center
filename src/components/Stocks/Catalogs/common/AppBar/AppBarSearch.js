@@ -51,6 +51,18 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
   const [{ searchValue, filter }, dispatch] = useAppBarState()
   const classes = useStyles()
 
+  const resetQueryVariables = () =>
+    catalogDispatch({
+      type: catalogTypes.SET_QUERY_VARIABLES,
+      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
+    })
+
+  const resetQuery = () =>
+    catalogDispatch({
+      type: catalogTypes.SET_QUERY,
+      payload: query,
+    })
+
   const handleChange = event => {
     dispatch({
       type: appBarTypes.SET_SEARCH_VALUE,
@@ -60,14 +72,8 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    catalogDispatch({
-      type: catalogTypes.SET_QUERY,
-      payload: query,
-    })
-    catalogDispatch({
-      type: catalogTypes.SET_QUERY_VARIABLES,
-      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
-    })
+    resetQuery()
+    resetQueryVariables()
   }
 
   const clearSearch = () => {
@@ -75,14 +81,8 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
       type: appBarTypes.SET_SEARCH_VALUE,
       payload: "",
     })
-    catalogDispatch({
-      type: catalogTypes.SET_QUERY,
-      payload: query,
-    })
-    catalogDispatch({
-      type: catalogTypes.SET_QUERY_VARIABLES,
-      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
-    })
+    resetQuery()
+    resetQueryVariables()
   }
 
   return (
