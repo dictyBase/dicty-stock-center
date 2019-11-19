@@ -45,7 +45,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
+      <CatalogProvider query={GET_PLASMID_LIST}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />
@@ -84,7 +84,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
+      <CatalogProvider query={GET_PLASMID_LIST}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />

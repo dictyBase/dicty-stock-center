@@ -44,7 +44,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
+      <CatalogProvider query={GET_STRAIN_LIST}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
@@ -84,7 +84,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
+      <CatalogProvider query={GET_STRAIN_LIST}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
