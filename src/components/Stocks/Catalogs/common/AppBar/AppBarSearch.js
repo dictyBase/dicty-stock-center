@@ -8,6 +8,8 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
 import { useAppBarState } from "./AppBarContext"
+import { appBarTypes } from "constants/appBar"
+import { catalogTypes } from "constants/catalogs"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,7 +53,7 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
 
   const handleChange = event => {
     dispatch({
-      type: "SET_SEARCH_VALUE",
+      type: appBarTypes.SET_SEARCH_VALUE,
       payload: event.target.value,
     })
   }
@@ -59,26 +61,26 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
   const handleSubmit = event => {
     event.preventDefault()
     catalogDispatch({
-      type: "SET_QUERY",
+      type: catalogTypes.SET_QUERY,
       payload: query,
     })
     catalogDispatch({
-      type: "SET_QUERY_VARIABLES",
+      type: catalogTypes.SET_QUERY_VARIABLES,
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })
   }
 
   const clearSearch = () => {
     dispatch({
-      type: "SET_SEARCH_VALUE",
+      type: appBarTypes.SET_SEARCH_VALUE,
       payload: "",
     })
     catalogDispatch({
-      type: "SET_QUERY",
+      type: catalogTypes.SET_QUERY,
       payload: query,
     })
     catalogDispatch({
-      type: "SET_QUERY_VARIABLES",
+      type: catalogTypes.SET_QUERY_VARIABLES,
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })
   }

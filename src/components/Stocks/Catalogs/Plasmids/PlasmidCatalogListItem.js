@@ -14,6 +14,7 @@ import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 import { removeItem } from "actions/cart"
+import { catalogTypes } from "constants/catalogs"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 type Props = {
@@ -65,12 +66,12 @@ export const PlasmidCatalogListItem = memo<*>(
       // if checkbox is already checked, remove that item from state
       if (checkedItems.some(item => item.id === id)) {
         dispatch({
-          type: "SET_CHECKED_ITEMS",
+          type: catalogTypes.SET_CHECKED_ITEMS,
           payload: checkedItems.filter(item => item.id !== id),
         })
       } else {
         dispatch({
-          type: "SET_CHECKED_ITEMS",
+          type: catalogTypes.SET_CHECKED_ITEMS,
           payload: [...checkedItems, { id, label, summary }],
         })
       }

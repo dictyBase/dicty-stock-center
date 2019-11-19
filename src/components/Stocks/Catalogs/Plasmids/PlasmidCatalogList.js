@@ -10,6 +10,7 @@ import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
+import { catalogTypes } from "constants/catalogs"
 
 const GET_MORE_PLASMIDS_LIST = gql`
   query MorePlasmidsList($cursor: Int!, $filter: String) {
@@ -42,7 +43,7 @@ export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   const resetCheckedItems = () =>
     dispatch({
-      type: "SET_CHECKED_ITEMS",
+      type: catalogTypes.SET_CHECKED_ITEMS,
       payload: [],
     })
 

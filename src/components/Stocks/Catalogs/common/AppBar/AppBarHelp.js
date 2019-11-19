@@ -5,6 +5,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useAppBarState } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
 import HelpDialog from "components/Stocks/Catalogs/common/HelpDialog"
+import { appBarTypes } from "constants/appBar"
 
 const useStyles = makeStyles(theme => ({
   helpIcon: {
@@ -24,7 +25,7 @@ const AppBarHelp = () => {
 
   const handleClick = () => {
     dispatch({
-      type: "SET_HELP_DIALOG_OPEN",
+      type: appBarTypes.SET_HELP_DIALOG_OPEN,
       payload: !helpDialogOpen,
     })
   }

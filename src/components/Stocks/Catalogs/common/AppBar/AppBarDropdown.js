@@ -5,6 +5,7 @@ import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
 import { useAppBarState } from "./AppBarContext"
+import { appBarTypes } from "constants/appBar"
 
 const useStyles = makeStyles({
   select: {
@@ -31,7 +32,7 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
 
   const handleChange = event => {
     dispatch({
-      type: "SET_FILTER",
+      type: appBarTypes.SET_FILTER,
       payload: event.target.value,
     })
   }

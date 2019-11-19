@@ -10,6 +10,7 @@ import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useStrainCatalogState } from "./StrainCatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
+import { catalogTypes } from "constants/catalogs"
 
 const GET_MORE_STRAINS_LIST = gql`
   query MoreStrainsList($cursor: Int!, $filter: String) {
@@ -42,7 +43,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   const resetCheckedItems = () =>
     dispatch({
-      type: "SET_CHECKED_ITEMS",
+      type: catalogTypes.SET_CHECKED_ITEMS,
       payload: [],
     })
 
