@@ -5,16 +5,16 @@ import { data } from "./mockStrainCatalogData"
 import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHeader"
-import { StrainCatalogProvider } from "./StrainCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Strains/StrainCatalogList", () => {
   const props = {
     data: data,
   }
   const wrapper = mount(
-    <StrainCatalogProvider>
+    <CatalogProvider>
       <StrainCatalogList {...props} />
-    </StrainCatalogProvider>,
+    </CatalogProvider>,
   )
   describe("initial render", () => {
     it("always renders initial components", () => {

@@ -6,14 +6,14 @@ import Toolbar from "@material-ui/core/Toolbar"
 import AppBarLeftMenu from "components/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "components/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
-import { StrainCatalogProvider } from "./StrainCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Strains/Catalog/StrainCatalogAppBar", () => {
   describe("initial render", () => {
     const wrapper = mount(
-      <StrainCatalogProvider>
+      <CatalogProvider>
         <StrainCatalogAppBar />
-      </StrainCatalogProvider>,
+      </CatalogProvider>,
     )
     it("always renders initial components", () => {
       expect(wrapper.find(AppBar)).toHaveLength(1)

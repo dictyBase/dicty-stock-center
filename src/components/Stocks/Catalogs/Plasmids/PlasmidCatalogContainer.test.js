@@ -9,10 +9,8 @@ import PlasmidCatalogList from "./PlasmidCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import {
-  PlasmidCatalogProvider,
-  GET_PLASMID_LIST,
-} from "./PlasmidCatalogContext"
+import { GET_PLASMID_LIST } from "./PlasmidCatalogWrapper"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const mockStore = configureMockStore()
 const store = mockStore({})
@@ -47,13 +45,13 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <PlasmidCatalogProvider>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />
           </Provider>
         </MockedProvider>
-      </PlasmidCatalogProvider>,
+      </CatalogProvider>,
     )
     it("renders Loading component first", () => {
       expect(wrapper.find(DetailsLoader)).toHaveLength(1)
@@ -86,13 +84,13 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <PlasmidCatalogProvider>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />
           </Provider>
         </MockedProvider>
-      </PlasmidCatalogProvider>,
+      </CatalogProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

@@ -8,7 +8,7 @@ import AppBarLeftMenu from "components/Stocks/Catalogs/common/AppBar/AppBarLeftM
 import AppBarSearch from "components/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
-import { useStrainCatalogState } from "./StrainCatalogContext"
+import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 export const GET_STRAINS_FILTER = gql`
@@ -68,7 +68,7 @@ const rightDropdownItems = [
 
 const StrainCatalogAppBar = () => {
   // eslint-disable-next-line
-  const [state, dispatch] = useStrainCatalogState()
+  const [state, dispatch] = useCatalogState()
   const classes = useStyles()
 
   return (

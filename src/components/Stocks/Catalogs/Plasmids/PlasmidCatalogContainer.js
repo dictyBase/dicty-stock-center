@@ -7,7 +7,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import PlasmidCatalogAppBar from "./PlasmidCatalogAppBar"
-import { usePlasmidCatalogState } from "./PlasmidCatalogContext"
+import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 /**
@@ -16,7 +16,7 @@ import useStyles from "components/Stocks/Catalogs/styles"
  */
 
 export const PlasmidCatalogContainer = () => {
-  const [{ query, queryVariables }] = usePlasmidCatalogState()
+  const [{ query, queryVariables }] = useCatalogState()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })

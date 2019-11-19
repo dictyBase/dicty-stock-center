@@ -7,7 +7,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import StrainCatalogList from "./StrainCatalogList"
 import StrainCatalogAppBar from "./StrainCatalogAppBar"
-import { useStrainCatalogState } from "./StrainCatalogContext"
+import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 /**
@@ -16,7 +16,7 @@ import useStyles from "components/Stocks/Catalogs/styles"
  */
 
 export const StrainCatalogContainer = () => {
-  const [{ query, queryVariables }] = useStrainCatalogState()
+  const [{ query, queryVariables }] = useCatalogState()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })

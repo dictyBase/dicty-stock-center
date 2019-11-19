@@ -9,7 +9,8 @@ import StrainCatalogList from "./StrainCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { StrainCatalogProvider, GET_STRAIN_LIST } from "./StrainCatalogContext"
+import { GET_STRAIN_LIST } from "./StrainCatalogWrapper"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const mockStore = configureMockStore()
 const store = mockStore({})
@@ -43,13 +44,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <StrainCatalogProvider>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
           </Provider>
         </MockedProvider>
-      </StrainCatalogProvider>,
+      </CatalogProvider>,
     )
     it("renders Loading component first", () => {
       expect(wrapper.find(DetailsLoader)).toHaveLength(1)
@@ -83,13 +84,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <StrainCatalogProvider>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
           </Provider>
         </MockedProvider>
-      </StrainCatalogProvider>,
+      </CatalogProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom"
 // import ListItem from "@material-ui/core/ListItem"
 // import Checkbox from "@material-ui/core/Checkbox"
 // import Hidden from "@material-ui/core/Hidden"
-import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 // import IconButton from "@material-ui/core/IconButton"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import AddToCartButton from "components/Stocks/CatalogPageItems/AddToCartButton"
@@ -31,11 +31,11 @@ describe("Stocks/Plasmids/Catalog/PlasmidCatalogListItem", () => {
       style: {},
     }
     const wrapper = mount(
-      <PlasmidCatalogProvider>
+      <CatalogProvider>
         <BrowserRouter>
           <PlasmidCatalogListItem {...props} />
         </BrowserRouter>
-      </PlasmidCatalogProvider>,
+      </CatalogProvider>,
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

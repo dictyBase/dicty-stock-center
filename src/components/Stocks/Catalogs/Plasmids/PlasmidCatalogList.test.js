@@ -5,16 +5,16 @@ import { data } from "./mockPlasmidCatalogData"
 import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHeader"
-import { PlasmidCatalogProvider } from "./PlasmidCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Plasmids/PlasmidCatalogList", () => {
   const props = {
     data: data,
   }
   const wrapper = mount(
-    <PlasmidCatalogProvider>
+    <CatalogProvider>
       <PlasmidCatalogList {...props} />
-    </PlasmidCatalogProvider>,
+    </CatalogProvider>,
   )
   describe("initial render", () => {
     it("always renders initial components", () => {

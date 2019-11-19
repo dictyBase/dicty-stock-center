@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom"
 // import ListItem from "@material-ui/core/ListItem"
 // import Checkbox from "@material-ui/core/Checkbox"
 // import Hidden from "@material-ui/core/Hidden"
-import { StrainCatalogProvider } from "./StrainCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
   describe("initial render", () => {
@@ -28,11 +28,11 @@ describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
       style: {},
     }
     const wrapper = mount(
-      <StrainCatalogProvider>
+      <CatalogProvider>
         <BrowserRouter>
           <StrainCatalogListItem {...props} />
         </BrowserRouter>
-      </StrainCatalogProvider>,
+      </CatalogProvider>,
     )
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)

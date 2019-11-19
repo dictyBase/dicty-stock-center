@@ -8,7 +8,7 @@ import ListItem from "@material-ui/core/ListItem"
 // import IconButton from "@material-ui/core/IconButton"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
-import { StrainCatalogProvider } from "components/Stocks/Catalogs/Strains/StrainCatalogContext"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render without checked items", () => {
@@ -17,9 +17,9 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
       stockType: "strain",
     }
     const wrapper = mount(
-      <StrainCatalogProvider>
+      <CatalogProvider>
         <CatalogListHeader {...props} />
-      </StrainCatalogProvider>,
+      </CatalogProvider>,
     )
     it("always renders initial components", () => {
       expect(wrapper.find(List)).toHaveLength(1)
@@ -45,9 +45,9 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   //     stockType: "strain",
   //   }
   //   const wrapper = mount(
-  //     <StrainCatalogProvider>
+  //     <CatalogProvider>
   //       <CatalogListHeader {...props} />
-  //     </StrainCatalogProvider>,
+  //     </CatalogProvider>,
   //   )
   //   it("renders without crashing", () => {
   //     expect(wrapper).toHaveLength(1)
