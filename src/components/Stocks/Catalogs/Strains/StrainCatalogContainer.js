@@ -22,21 +22,18 @@ export const StrainCatalogContainer = () => {
   })
   const classes = useStyles()
 
-  let content
-
   if (loading) return <DetailsLoader />
 
-  if (error) {
-    content = <CatalogErrorMessage error={error} />
-  } else {
-    content = (
-      <StrainCatalogList
-        data={data.listStrains.strains}
-        fetchMore={fetchMore}
-        cursor={data.listStrains.nextCursor}
-      />
-    )
-  }
+  // use conditional so both error and data appear below search bar
+  const content = error ? (
+    <CatalogErrorMessage error={error} />
+  ) : (
+    <StrainCatalogList
+      data={data.listStrains.strains}
+      fetchMore={fetchMore}
+      cursor={data.listStrains.nextCursor}
+    />
+  )
 
   return (
     <Grid container className={classes.layout}>

@@ -22,21 +22,17 @@ export const PlasmidCatalogContainer = () => {
   })
   const classes = useStyles()
 
-  let content
-
   if (loading) return <DetailsLoader />
 
-  if (error) {
-    content = <CatalogErrorMessage error={error} />
-  } else {
-    content = (
-      <PlasmidCatalogList
-        data={data.listPlasmids.plasmids}
-        fetchMore={fetchMore}
-        cursor={data.listPlasmids.nextCursor}
-      />
-    )
-  }
+  const content = error ? (
+    <CatalogErrorMessage error={error} />
+  ) : (
+    <PlasmidCatalogList
+      data={data.listPlasmids.plasmids}
+      fetchMore={fetchMore}
+      cursor={data.listPlasmids.nextCursor}
+    />
+  )
 
   return (
     <Grid container spacing={0} className={classes.layout}>
