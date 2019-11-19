@@ -5,7 +5,7 @@ import AppBarDropdown from "./AppBarDropdown"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AppBarProvider } from "./AppBarContext"
-import InputBase from "@material-ui/core/InputBase"
+// import InputBase from "@material-ui/core/InputBase"
 import sinon from "sinon"
 
 describe("Stocks/Strains/Catalog/AppBarSearch", () => {
