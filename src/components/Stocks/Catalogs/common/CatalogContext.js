@@ -4,7 +4,7 @@ import { catalogTypes } from "constants/catalogs"
 
 export const CatalogContext: Object = createContext()
 
-const catalogReducer = (state, action) => {
+export const catalogReducer = (state: Object, action: Object) => {
   switch (action.type) {
     case catalogTypes.SET_QUERY:
       return {

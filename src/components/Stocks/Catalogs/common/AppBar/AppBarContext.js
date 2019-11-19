@@ -4,7 +4,7 @@ import { appBarTypes } from "constants/appBar"
 
 export const AppBarContext: Object = createContext()
 
-const appBarReducer = (state, action) => {
+export const appBarReducer = (state: Object, action: Object) => {
   switch (action.type) {
     case appBarTypes.SET_FILTER:
       return {
