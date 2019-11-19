@@ -82,7 +82,7 @@ const StrainCatalogAppBar = () => {
             <AppBarSearch
               query={GET_STRAINS_FILTER}
               dropdownItems={rightDropdownItems}
-              dispatch={dispatch}
+              catalogDispatch={dispatch}
             />
           </Grid>
           <Grid container justify="flex-end">

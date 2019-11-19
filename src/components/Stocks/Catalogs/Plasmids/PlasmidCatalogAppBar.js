@@ -76,7 +76,7 @@ const PlasmidCatalogAppBar = () => {
             <AppBarSearch
               query={GET_PLASMIDS_FILTER}
               dropdownItems={rightDropdownItems}
-              dispatch={dispatch}
+              catalogDispatch={dispatch}
             />
           </Grid>
           <Grid container justify="flex-end">

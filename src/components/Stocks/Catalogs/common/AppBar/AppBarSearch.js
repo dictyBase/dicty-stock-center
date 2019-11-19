@@ -38,46 +38,46 @@ type Props = {
     value: string,
     name: string,
   }>,
-  dispatch: Function,
-}
-
-type AppBarState = {
-  searchValue: string,
-  setSearchValue: Function,
-  filter: string,
+  catalogDispatch: Function,
 }
 
 /**
  * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const AppBarSearch = ({ query, dropdownItems, dispatch }: Props) => {
-  const { searchValue, setSearchValue, filter }: AppBarState = useAppBarState()
+const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
+  const [{ searchValue, filter }, dispatch] = useAppBarState()
   const classes = useStyles()
 
   const handleChange = event => {
-    setSearchValue(event.target.value)
+    dispatch({
+      type: "SET_SEARCH_VALUE",
+      payload: event.target.value,
+    })
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-    dispatch({
+    catalogDispatch({
       type: "SET_QUERY",
       payload: query,
     })
-    dispatch({
+    catalogDispatch({
       type: "SET_QUERY_VARIABLES",
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })
   }
 
   const clearSearch = () => {
-    setSearchValue("")
     dispatch({
+      type: "SET_SEARCH_VALUE",
+      payload: "",
+    })
+    catalogDispatch({
       type: "SET_QUERY",
       payload: query,
     })
-    dispatch({
+    catalogDispatch({
       type: "SET_QUERY_VARIABLES",
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })

@@ -14,21 +14,19 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type HelpDialogType = {
-  helpDialogOpen: boolean,
-  setHelpDialogOpen: Function,
-}
-
 /**
  * AppBarHelp handles the display of the appbar help feature.
  */
 
 const AppBarHelp = () => {
-  const { helpDialogOpen, setHelpDialogOpen }: HelpDialogType = useAppBarState()
+  const [{ helpDialogOpen }, dispatch] = useAppBarState()
   const classes = useStyles()
 
   const handleClick = () => {
-    setHelpDialogOpen(!helpDialogOpen)
+    dispatch({
+      type: "SET_HELP_DIALOG_OPEN",
+      payload: !helpDialogOpen,
+    })
   }
 
   return (
@@ -41,10 +39,7 @@ const AppBarHelp = () => {
         aria-label="Learn more about the stock catalog page">
         <FontAwesomeIcon icon="question-circle" />
       </IconButton>
-      <HelpDialog
-        helpDialogOpen={helpDialogOpen}
-        setHelpDialogOpen={setHelpDialogOpen}
-      />
+      <HelpDialog />
     </>
   )
 }

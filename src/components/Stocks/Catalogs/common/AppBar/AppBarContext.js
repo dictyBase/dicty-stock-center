@@ -1,7 +1,35 @@
 // @flow
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useReducer, useMemo } from "react"
 
 export const AppBarContext: Object = createContext()
+
+const appBarReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_FILTER":
+      return {
+        ...state,
+        filter: action.payload,
+      }
+    case "SET_SEARCH_VALUE":
+      return {
+        ...state,
+        searchValue: action.payload,
+      }
+    case "SET_HELP_DIALOG_OPEN":
+      return {
+        ...state,
+        helpDialogOpen: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  filter: "id",
+  searchValue: "",
+  helpDialogOpen: false,
+}
 
 /**
  * AppBarProvider contains "global" state used for the App Bar on catalog pages.
@@ -9,22 +37,11 @@ export const AppBarContext: Object = createContext()
  */
 
 export const AppBarProvider = ({ children }: any) => {
-  const [filter, setFilter] = useState<string>("id")
-  const [searchValue, setSearchValue] = useState<string>("")
-  const [helpDialogOpen, setHelpDialogOpen] = useState<boolean>(false)
+  const [state, dispatch] = useReducer(appBarReducer, initialState)
+  const value = useMemo(() => [state, dispatch], [state])
 
   return (
-    <AppBarContext.Provider
-      value={{
-        filter,
-        setFilter,
-        searchValue,
-        setSearchValue,
-        helpDialogOpen,
-        setHelpDialogOpen,
-      }}>
-      {children}
-    </AppBarContext.Provider>
+    <AppBarContext.Provider value={value}>{children}</AppBarContext.Provider>
   )
 }
 

@@ -5,20 +5,21 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"
 import HelpDialogContent from "./HelpDialogContent"
-
-type Props = {
-  helpDialogOpen: boolean,
-  setHelpDialogOpen: Function,
-}
+import { useAppBarState } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
 
 /**
  * HelpDialog is the dialog box that appears when the user clicks
  * the help icon in the catalog app bar.
  */
 
-export const HelpDialog = ({ helpDialogOpen, setHelpDialogOpen }: Props) => {
+export const HelpDialog = () => {
+  const [{ helpDialogOpen }, dispatch] = useAppBarState()
+
   const handleClose = () => {
-    setHelpDialogOpen(false)
+    dispatch({
+      type: "SET_HELP_DIALOG_OPEN",
+      payload: false,
+    })
   }
 
   return (

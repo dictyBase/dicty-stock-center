@@ -21,21 +21,19 @@ type Props = {
   }>,
 }
 
-type AppBarState = {
-  filter: string,
-  setFilter: Function,
-}
-
 /**
  * AppBarDropdown is a reusable dropdown menu component for the catalog appbars.
  */
 
 const AppBarDropdown = ({ dropdownItems }: Props) => {
-  const { filter, setFilter }: AppBarState = useAppBarState()
+  const [{ filter }, dispatch] = useAppBarState()
   const classes = useStyles()
 
   const handleChange = event => {
-    setFilter(event.target.value)
+    dispatch({
+      type: "SET_FILTER",
+      payload: event.target.value,
+    })
   }
 
   return (
