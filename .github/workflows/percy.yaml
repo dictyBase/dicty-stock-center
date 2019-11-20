@@ -1,8 +1,9 @@
 name: Visual testing
 on:
   pull_request:
-    tags-ignore:
-      - dependencies
+    # only run when src files have changed
+    paths:
+      - "src/**"
 jobs:
   percy:
     runs-on: ubuntu-18.04
