@@ -109,6 +109,9 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
       color: "rgba(0, 0, 0, 0.87)",
     },
   },
+  detailsItem: {
+    fontWeight: 420,
+  },
 }))
 
 export default useStyles

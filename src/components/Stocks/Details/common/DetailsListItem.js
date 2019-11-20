@@ -20,7 +20,9 @@ const DetailsListItem = ({ data }: Props) => {
   return (
     <ListItem className={classes.details} divider>
       <Grid item xs={12} sm={3} className={classes.listItem}>
-        <Typography variant="body2">{data.title}</Typography>
+        <Typography variant="body2" className={classes.detailsItem}>
+          {data.title}
+        </Typography>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Typography variant="body1">{data.content}</Typography>
