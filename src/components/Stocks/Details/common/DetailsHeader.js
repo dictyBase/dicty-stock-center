@@ -24,6 +24,9 @@ type Props = {
 const DetailsHeader = ({ name, id, stockType }: Props) => {
   const classes = useStyles()
 
+  const capitalizedStockType =
+    stockType.charAt(0).toUpperCase() + stockType.slice(1)
+
   return (
     <Grid item xs={12} className={classes.header}>
       <Grid container alignItems="center">
@@ -35,7 +38,7 @@ const DetailsHeader = ({ name, id, stockType }: Props) => {
             title={`Back to ${stockType} catalog`}
             aria-label="back to catalog page"
             startIcon={<FontAwesomeIcon icon="arrow-left" size="lg" />}>
-            {stockType} Catalog
+            {capitalizedStockType} Catalog
           </Button>
         </Grid>
         <Grid item xs={12} sm={8} zeroMinWidth>

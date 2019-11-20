@@ -12,7 +12,6 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   backButton: {
     marginTop: "10px",
     textAlign: "left",
-    textTransform: "capitalize",
     color: "#5f6368",
     "&:hover": {
       backgroundColor: "transparent",
@@ -111,6 +110,10 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   detailsItem: {
     fontWeight: 420,
+  },
+  relatedItem: {
+    display: "flex",
+    justifyContent: "center !important",
   },
 }))
 
