@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
+import strainOrPlasmid from "components/Stocks/utils/strainOrPlasmid"
 
 const useStyles = makeStyles(({ palette }) => ({
   link: {
@@ -36,7 +37,9 @@ export const AddToCartDialogContent = ({ data }: Props) => {
       {data.map((item, index) => (
         <DialogContentText key={index}>
           <strong>
-            <Link className={classes.link} to={`/strains/${item.id}`}>
+            <Link
+              className={classes.link}
+              to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
               {item.label}
             </Link>
           </strong>
