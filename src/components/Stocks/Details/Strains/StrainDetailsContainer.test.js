@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
 import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
-import configureMockStore from "redux-mock-store"
+import configureStore from "redux-mock-store"
 import wait from "waait"
 import { StrainDetailsContainer, GET_STRAIN } from "./StrainDetailsContainer"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
@@ -12,8 +12,20 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { data } from "./mockStrainData"
 
-const mockStore = configureMockStore()
-const store = mockStore({})
+const mockStore = configureStore()
+const store = mockStore({
+  cart: {
+    addedItems: [],
+  },
+})
+
+// https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
+  useParams: () => ({
+    id: "DBS0236123",
+  }),
+}))
 
 describe("Stocks/Strains/StrainDetailsContainer", () => {
   const props = {

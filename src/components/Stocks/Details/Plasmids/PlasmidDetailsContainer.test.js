@@ -14,22 +14,27 @@ import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { data } from "./mockPlasmidData"
 
 const mockStore = configureMockStore()
-const store = mockStore({})
+const store = mockStore({
+  cart: {
+    addedItems: [],
+  },
+})
+
+// https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
+  useParams: () => ({
+    id: "DBS0236123",
+  }),
+}))
 
 describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
-  const props = {
-    match: {
-      params: {
-        id: "DBP385",
-      },
-    },
-  }
   describe("initial render", () => {
     const mocks = [
       {
         request: {
           query: GET_PLASMID,
-          variables: { id: props.match.params.id },
+          variables: { id: "DBS0236123" },
         },
         result: {
           data: {
@@ -42,7 +47,7 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       <MockedProvider mocks={mocks} addTypename={false}>
         <Provider store={store}>
           <BrowserRouter>
-            <PlasmidDetailsContainer {...props} />
+            <PlasmidDetailsContainer />
           </BrowserRouter>
         </Provider>
       </MockedProvider>,
@@ -82,7 +87,7 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       <Provider store={store}>
         <BrowserRouter>
           <MockedProvider mocks={mocks} addTypename={false}>
-            <PlasmidDetailsContainer {...props} />
+            <PlasmidDetailsContainer />
           </MockedProvider>
         </BrowserRouter>
       </Provider>,

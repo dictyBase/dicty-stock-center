@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withRouter } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
@@ -44,9 +44,10 @@ type Props = {
  */
 
 export const PlasmidDetailsContainer = ({ match }: Props) => {
+  const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_PLASMID, {
-    variables: { id: match.params.id },
+    variables: { id },
   })
 
   if (loading) return <DetailsLoader />
@@ -74,4 +75,4 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
   )
 }
 
-export default withRouter<*, *>(PlasmidDetailsContainer)
+export default PlasmidDetailsContainer

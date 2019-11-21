@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { Helmet } from "react-helmet"
-import { withRouter } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
@@ -75,9 +75,10 @@ type Props = {
  */
 
 export const StrainDetailsContainer = ({ match }: Props) => {
+  const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STRAIN, {
-    variables: { id: match.params.id },
+    variables: { id },
   })
 
   let title
@@ -116,4 +117,4 @@ export const StrainDetailsContainer = ({ match }: Props) => {
   )
 }
 
-export default withRouter<*, *>(StrainDetailsContainer)
+export default StrainDetailsContainer
