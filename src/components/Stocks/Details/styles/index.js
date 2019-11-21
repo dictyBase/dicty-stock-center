@@ -124,6 +124,12 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   removeBtn: {
     marginTop: "5px",
   },
+  quantity: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    padding: "16px",
+  },
 }))
 
 export default useStyles

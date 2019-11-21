@@ -157,6 +157,11 @@ const RenderRoutes = () => (
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
     <Route exact path="/strains" component={StrainCatalogWrapper} />
+    <Route
+      exact
+      path="/strains/quantity/:id"
+      component={StrainDetailsContainer}
+    />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
