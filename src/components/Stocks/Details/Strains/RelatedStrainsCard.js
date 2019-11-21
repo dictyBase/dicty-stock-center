@@ -61,9 +61,7 @@ const RelatedStrainsCard = ({ species }: Props) => {
             </ListItem>
           ))}
           <br />
-          <Button color="primary" variant="outlined">
-            View More
-          </Button>
+          <Button variant="outlined">View More</Button>
         </List>
       </div>
     </Card>
