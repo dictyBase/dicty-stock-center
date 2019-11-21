@@ -70,7 +70,6 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     color: palette.primary.main,
   },
   checkoutBtn: {
-    textTransform: "none !important",
     borderStyle: "none !important",
     borderRadius: "0px !important",
     fontSize: "0.9rem !important",
@@ -114,6 +113,16 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   relatedItem: {
     display: "flex",
     justifyContent: "center !important",
+  },
+  addToCartBtn: {
+    backgroundColor: green[600],
+    color: "#fff",
+    paddingLeft: "16px",
+    paddingRight: "16px",
+    "&:hover": {
+      backgroundColor: green[700],
+      color: "#fff",
+    },
   },
 }))
 

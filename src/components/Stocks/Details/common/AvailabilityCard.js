@@ -20,19 +20,19 @@ type Props = {
 const AvailabilityCard = ({ data, stockType }: Props) => {
   const classes = useStyles()
 
-  let label
-  stockType === "strain" ? (label = data.label) : (label = data.name)
+  const label = stockType === "strain" ? data.label : data.name
 
   const cartData = {
     id: data.id,
-    label: label,
+    name: label,
     summary: data.summary,
+    type: stockType,
   }
 
   return (
     <Card raised className={classes.availabilityCard}>
       {data.in_stock ? (
-        <AvailableCardDisplay cartData={cartData} stockType={stockType} />
+        <AvailableCardDisplay cartData={cartData} />
       ) : (
         <UnavailableCardDisplay data={data} />
       )}
