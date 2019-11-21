@@ -127,7 +127,7 @@ export const PlasmidCatalogListItem = memo<*>(
                     data={[
                       {
                         id: plasmid.id,
-                        label: plasmid.name,
+                        name: plasmid.name,
                         summary: plasmid.summary,
                       },
                     ]}

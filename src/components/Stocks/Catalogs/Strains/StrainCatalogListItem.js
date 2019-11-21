@@ -127,7 +127,7 @@ export const StrainCatalogListItem = memo<*>(
                     data={[
                       {
                         id: strain.id,
-                        label: strain.label,
+                        name: strain.label,
                         summary: strain.summary,
                       },
                     ]}

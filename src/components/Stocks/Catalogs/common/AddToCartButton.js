@@ -3,13 +3,14 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
+import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
 import { addToCart } from "actions/cart"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
-    color: "#228B22",
+    color: green[600],
   },
 }))
 
@@ -21,7 +22,7 @@ type Props = {
     /** Strain ID number */
     id: string,
     /** Strain label (name) */
-    label: string,
+    name: string,
     /** Strain summary */
     summary: string,
   }>,
@@ -53,7 +54,7 @@ export const AddToCartButton = ({
       addToCart({
         type: stockType,
         id: item.id,
-        name: item.label,
+        name: item.name,
         summary: item.summary,
       })
     })

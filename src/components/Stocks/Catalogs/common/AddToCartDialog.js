@@ -11,7 +11,7 @@ type Props = {
     /** Strain ID number */
     id: string,
     /** Strain label (name) */
-    label: string,
+    name: string,
     /** Strain summary */
     summary: string,
   }>,

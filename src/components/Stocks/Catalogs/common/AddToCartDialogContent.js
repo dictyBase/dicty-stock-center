@@ -19,7 +19,7 @@ type Props = {
     /** ID number */
     id: string,
     /** Label/name */
-    label: string,
+    name: string,
     /** Summary/description */
     summary: string,
   }>,
@@ -40,7 +40,7 @@ export const AddToCartDialogContent = ({ data }: Props) => {
             <Link
               className={classes.link}
               to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
-              {item.label}
+              {item.name}
             </Link>
           </strong>
           <br />
