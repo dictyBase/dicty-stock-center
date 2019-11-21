@@ -147,9 +147,8 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
   footer,
 })
 
-export default withRouter<*>(
-  connect<*, *, *, *, *, *>(
-    mapStateToProps,
-    { fetchNavbarAndFooter },
-  )(withStyles(styles)(App)),
+export default withRouter<*, *>(
+  connect<*, *, *, *, *, *>(mapStateToProps, { fetchNavbarAndFooter })(
+    withStyles(styles)(App),
+  ),
 )

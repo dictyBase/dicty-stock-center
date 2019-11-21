@@ -74,4 +74,4 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
   )
 }
 
-export default withRouter<*>(PlasmidDetailsContainer)
+export default withRouter<*, *>(PlasmidDetailsContainer)

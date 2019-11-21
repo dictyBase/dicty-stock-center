@@ -47,6 +47,7 @@ declare var module: {
   },
 }
 
+// eslint-disable-next-line
 class process {
   static env: {
     REACT_APP_API_SERVER: string,
