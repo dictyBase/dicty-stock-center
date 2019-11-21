@@ -42,10 +42,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     paddingTop: "5px",
     textAlign: "center",
   },
-  quantity: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+  cartBtnRow: {
     padding: "16px",
   },
   unavailableText: {
@@ -123,6 +120,9 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
       backgroundColor: green[700],
       color: "#fff",
     },
+  },
+  removeBtn: {
+    marginTop: "5px",
   },
 }))
 

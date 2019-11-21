@@ -1,5 +1,6 @@
 // @flow
 import React from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
@@ -7,6 +8,7 @@ import Button from "@material-ui/core/Button"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
+import RemoveFromCartButton from "./RemoveFromCartButton"
 
 type Props = {
   cartData: {
@@ -23,7 +25,9 @@ type Props = {
  */
 
 const AvailableCardDisplay = ({ cartData }: Props) => {
+  const items = useSelector(state => state.cart.addedItems)
   const classes = useStyles()
+  const itemInCart = items.some(item => item.id === cartData.id)
 
   return (
     <div>
@@ -31,8 +35,16 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
         <FontAwesomeIcon icon="check" /> Available
       </Typography>
       <Divider />
-      <div className={classes.quantity}>
-        <AddToCartButton cartData={cartData} />
+      <div className={classes.cartBtnRow}>
+        {itemInCart ? (
+          <div>
+            <span className={classes.cartNotification}>Item in cart</span>
+            <br />
+            <RemoveFromCartButton id={cartData.id} />
+          </div>
+        ) : (
+          <AddToCartButton cartData={cartData} />
+        )}
       </div>
       <Divider />
       <Button

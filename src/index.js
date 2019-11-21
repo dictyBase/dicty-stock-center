@@ -64,6 +64,9 @@ const theme = createMuiTheme({
     primary: {
       main: "#004080",
     },
+    secondary: {
+      main: "rgb(220, 0, 78)",
+    },
   },
   typography: {
     button: {

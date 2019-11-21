@@ -2,41 +2,40 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import Button from "@material-ui/core/Button"
-import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { addToCart } from "actions/cart"
+import { removeItem } from "actions/cart"
+import useStyles from "../styles"
 
 type Props = {
-  cartData: {
-    id: string,
-    name: string,
-    summary: string,
-    type: string,
-  },
+  /** Stock ID */
+  id: string,
 }
 
 /**
  * AddToCartButton is the button shown on stock details pages.
  */
 
-const AddToCartButton = ({ cartData }: Props) => {
+const RemoveFromCartButton = ({ id }: Props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(addToCart(cartData))
+    dispatch(removeItem(id))
   }
 
   return (
     <>
       <Button
-        className={classes.addToCartBtn}
+        color="secondary"
+        variant="contained"
+        size="small"
         onClick={handleClick}
-        startIcon={<FontAwesomeIcon icon="cart-plus" size="sm" />}>
-        Add to Cart
+        className={classes.removeBtn}
+        startIcon={<FontAwesomeIcon icon="trash" size="sm" />}>
+        Remove
       </Button>
     </>
   )
 }
 
-export default AddToCartButton
+export default RemoveFromCartButton
