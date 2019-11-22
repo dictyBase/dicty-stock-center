@@ -121,7 +121,7 @@ type State = {
 
 /** Displays the info page data that was fetched from the InfoPage component */
 
-export class InfoPageView extends Component<Props, State> {
+class InfoPageView extends Component<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -224,7 +224,8 @@ export const mapStateToProps = (state: authState) => ({
   isAuthenticated: state.auth.isAuthenticated,
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { editPage, fetchUserInfo },
-)(withStyles(styles)(InfoPageView))
+export { InfoPageView }
+export default connect<*, *, *, *, *, *>(mapStateToProps, {
+  editPage,
+  fetchUserInfo,
+})(withStyles(styles)(InfoPageView))

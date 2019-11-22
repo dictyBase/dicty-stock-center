@@ -21,7 +21,7 @@ type Props = {
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-export class Login extends Component<Props> {
+class Login extends Component<Props> {
   handleClick = (name: string) => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
@@ -71,4 +71,5 @@ export class Login extends Component<Props> {
 
 const mapStateToProps = ({ auth }) => ({ auth })
 
+export { Login }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(Login)

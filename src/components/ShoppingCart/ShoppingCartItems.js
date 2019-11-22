@@ -58,7 +58,7 @@ type Props = {
  * ShoppingCartItems lists all of the items in the user's cart.
  */
 
-export const ShoppingCartItems = ({ items, removeItem }: Props) => {
+const ShoppingCartItems = ({ items, removeItem }: Props) => {
   const classes = useStyles()
 
   // get the total fee for combined items in cart
@@ -145,6 +145,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
+export { ShoppingCartItems }
 export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   mapDispatchToProps,

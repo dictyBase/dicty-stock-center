@@ -8,11 +8,11 @@ const {
   SAVE_PAGE_FAILURE,
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
-  FETCH_PAGE_FAILURE
+  FETCH_PAGE_FAILURE,
 } = dsctypes
 
 const initialState = {
-  content: null
+  content: null,
 }
 
 describe("page reducer", () => {
@@ -27,12 +27,12 @@ describe("page reducer", () => {
         {
           type: EDIT_PAGE,
           payload: {
-            content: "data"
-          }
-        }
-      )
+            content: "data",
+          },
+        },
+      ),
     ).toEqual({
-      content: "data"
+      content: "data",
     })
   })
 
@@ -43,12 +43,12 @@ describe("page reducer", () => {
         {
           type: SAVE_PAGE_REQUEST,
           payload: {
-            isFetching: true
-          }
-        }
-      )
+            isFetching: true,
+          },
+        },
+      ),
     ).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
@@ -58,11 +58,11 @@ describe("page reducer", () => {
         {},
         {
           type: SAVE_PAGE_SUCCESS,
-          isFetching: false
-        }
-      )
+          isFetching: false,
+        },
+      ),
     ).toEqual({
-      isFetching: false
+      isFetching: false,
     })
   })
 
@@ -74,13 +74,13 @@ describe("page reducer", () => {
           type: SAVE_PAGE_FAILURE,
           payload: {
             isFetching: false,
-            error: "404"
-          }
-        }
-      )
+            error: "404",
+          },
+        },
+      ),
     ).toEqual({
       isFetching: false,
-      error: "404"
+      error: "404",
     })
   })
 
@@ -90,11 +90,11 @@ describe("page reducer", () => {
         {},
         {
           type: FETCH_PAGE_REQUEST,
-          isFetching: true
-        }
-      )
+          isFetching: true,
+        },
+      ),
     ).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
@@ -102,9 +102,9 @@ describe("page reducer", () => {
     const slugName = {
       data: {
         attributes: {
-          slug: "slug"
-        }
-      }
+          slug: "slug",
+        },
+      },
     }
     expect(
       reducer(
@@ -117,16 +117,16 @@ describe("page reducer", () => {
             json: {
               data: {
                 attributes: {
-                  slug: "slug"
-                }
-              }
-            }
-          }
-        }
-      )
+                  slug: "slug",
+                },
+              },
+            },
+          },
+        },
+      ),
     ).toEqual({
       isFetching: false,
-      slug: slugName
+      slug: slugName,
     })
   })
 
@@ -138,13 +138,13 @@ describe("page reducer", () => {
           type: FETCH_PAGE_FAILURE,
           payload: {
             isFetching: false,
-            error: "404"
-          }
-        }
-      )
+            error: "404",
+          },
+        },
+      ),
     ).toEqual({
       isFetching: false,
-      error: "404"
+      error: "404",
     })
   })
 })

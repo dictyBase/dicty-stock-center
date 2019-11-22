@@ -2,9 +2,9 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react"
 import { catalogTypes } from "constants/catalogs"
 
-export const CatalogContext: Object = createContext()
+const CatalogContext: Object = createContext()
 
-export const catalogReducer = (state: Object, action: Object) => {
+const catalogReducer = (state: Object, action: Object) => {
   switch (action.type) {
     case catalogTypes.SET_QUERY:
       return {
@@ -38,7 +38,7 @@ export const catalogReducer = (state: Object, action: Object) => {
  * components.
  */
 
-export const CatalogProvider = ({ query, children }: any) => {
+const CatalogProvider = ({ query, children }: any) => {
   const [state, dispatch] = useReducer(catalogReducer, {
     query: query,
     queryVariables: { cursor: 0 },
@@ -52,4 +52,6 @@ export const CatalogProvider = ({ query, children }: any) => {
   )
 }
 
-export const useCatalogState = () => useContext(CatalogContext)
+const useCatalogState = () => useContext(CatalogContext)
+
+export { CatalogContext, catalogReducer, CatalogProvider, useCatalogState }

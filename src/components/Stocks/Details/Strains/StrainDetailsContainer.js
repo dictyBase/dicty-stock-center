@@ -14,7 +14,7 @@ import useStyles from "components/Stocks/Details/styles"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import StrainDetailsRightColumn from "./StrainDetailsRightColumn"
 
-export const GET_STRAIN = gql`
+const GET_STRAIN = gql`
   query Strain($id: ID!) {
     strain(id: $id) {
       id
@@ -74,7 +74,7 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const StrainDetailsContainer = ({ match }: Props) => {
+const StrainDetailsContainer = ({ match }: Props) => {
   const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STRAIN, {
@@ -117,4 +117,5 @@ export const StrainDetailsContainer = ({ match }: Props) => {
   )
 }
 
+export { GET_STRAIN, StrainDetailsContainer }
 export default StrainDetailsContainer

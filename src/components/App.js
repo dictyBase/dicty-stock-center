@@ -110,12 +110,9 @@ type Props = {
   classes: Object,
 }
 
-export const App = (props: Props) => {
+const App = (props: Props) => {
   const { auth, cart, navbar, footer, fetchNavbarAndFooter, classes } = props
-  let headerContent = headerItems
-  if (auth.isAuthenticated) {
-    headerContent = loggedHeaderItems
-  }
+  const headerContent = auth.isAuthenticated ? loggedHeaderItems : headerItems
   // if any errors, fall back to old link setup
   const navbarContent = !navbar.links ? navItems : navbar.links
   const footerContent = !footer.links ? footerItems : footer.links
@@ -147,6 +144,7 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
   footer,
 })
 
+export { App }
 export default withRouter<*, *>(
   connect<*, *, *, *, *, *>(mapStateToProps, { fetchNavbarAndFooter })(
     withStyles(styles)(App),

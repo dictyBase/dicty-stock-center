@@ -23,7 +23,7 @@ type Props = {
  * Fetches the data for the desired info page
  */
 
-export class InfoPage extends Component<Props> {
+class InfoPage extends Component<Props> {
   // set defaultProps to prevent console warnings
   static defaultProps = {
     page: {
@@ -74,7 +74,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { fetchInfoPage },
-)(InfoPage)
+export { InfoPage }
+export default connect<*, *, *, *, *, *>(mapStateToProps, { fetchInfoPage })(
+  InfoPage,
+)

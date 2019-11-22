@@ -16,7 +16,7 @@ type Props = {
  * Personalized component that displays the user's login information (ID, email, name, provider)
  */
 
-export const MyDscPage = (props: Props) => {
+const MyDscPage = (props: Props) => {
   const {
     auth: {
       user: { data },
@@ -42,4 +42,5 @@ export const MyDscPage = (props: Props) => {
 
 const mapStateToProps = ({ auth }) => ({ auth })
 
+export { MyDscPage }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(MyDscPage)

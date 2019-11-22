@@ -33,7 +33,7 @@ const fetchFooterFailure = error => ({
 })
 
 // fetch footer function that fetches data using async/await
-export const fetchFooter = () => async (dispatch: Function) => {
+const fetchFooter = () => async (dispatch: Function) => {
   try {
     dispatch(fetchFooterRequest())
     const res = await fetch(footerJson)

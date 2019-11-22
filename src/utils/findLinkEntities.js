@@ -2,7 +2,7 @@
 export default function findLinkEntities(
   contentBlock: Object,
   callback: Function,
-  contentState: Function
+  contentState: Function,
 ) {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity()

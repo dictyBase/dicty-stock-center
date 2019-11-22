@@ -53,7 +53,7 @@ const createErrorObj = (err: number, msg: string) => ({
   title: msg,
 })
 
-export const requestLogin = (provider: string) => ({
+const requestLogin = (provider: string) => ({
   type: LOGIN_REQUEST,
   payload: {
     isFetching: true,
@@ -61,7 +61,7 @@ export const requestLogin = (provider: string) => ({
   },
 })
 
-export const receiveLogin = ({ user, token }: receiveLoginArg) => ({
+const receiveLogin = ({ user, token }: receiveLoginArg) => ({
   type: LOGIN_SUCCESS,
   payload: {
     isFetching: false,
@@ -70,7 +70,7 @@ export const receiveLogin = ({ user, token }: receiveLoginArg) => ({
   },
 })
 
-export const loginError = (error: Object) => ({
+const loginError = (error: Object) => ({
   type: LOGIN_FAILURE,
   payload: {
     isFetching: false,
@@ -85,14 +85,14 @@ const receiveLogout = () => ({
   },
 })
 
-export const fetchUserRequest = () => ({
+const fetchUserRequest = () => ({
   type: FETCH_USER_REQUEST,
   payload: {
     isFetching: true,
   },
 })
 
-export const fetchUserSuccess = (json: Object) => ({
+const fetchUserSuccess = (json: Object) => ({
   type: FETCH_USER_SUCCESS,
   payload: {
     isFetching: false,
@@ -100,21 +100,21 @@ export const fetchUserSuccess = (json: Object) => ({
   },
 })
 
-export const fetchUserFailure = (error: Object) => ({
+const fetchUserFailure = (error: Object) => ({
   type: FETCH_USER_FAILURE,
   payload: {
     error: error,
   },
 })
 
-export const fetchRoleRequest = () => ({
+const fetchRoleRequest = () => ({
   type: FETCH_ROLE_REQUEST,
   payload: {
     isFetching: true,
   },
 })
 
-export const fetchRoleSuccess = (json: Object) => ({
+const fetchRoleSuccess = (json: Object) => ({
   type: FETCH_ROLE_SUCCESS,
   payload: {
     isFetching: false,
@@ -122,7 +122,7 @@ export const fetchRoleSuccess = (json: Object) => ({
   },
 })
 
-export const fetchRoleFailure = (error: Object) => ({
+const fetchRoleFailure = (error: Object) => ({
   type: FETCH_ROLE_FAILURE,
   payload: {
     error: error,
@@ -131,7 +131,7 @@ export const fetchRoleFailure = (error: Object) => ({
 
 // Calls the API to get a token and
 // dispatch actions along the way
-export const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
+const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
   dispatch: Function,
 ) => {
   const { config, endpoint } = makeOauthConfig({ query, provider, url })
@@ -177,14 +177,14 @@ export const oAuthLogin = ({ query, provider, url }: oauthArg) => async (
 }
 
 // Logs the user out
-export const logoutUser = () => (dispatch: Function) => {
+const logoutUser = () => (dispatch: Function) => {
   dispatch(receiveLogout())
 }
 
 // fetch user function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
 // this is used to get a non-authenticated user's information
-export const fetchUserInfo = (userId: string) => async (dispatch: Function) => {
+const fetchUserInfo = (userId: string) => async (dispatch: Function) => {
   try {
     dispatch(fetchUserRequest())
     const res = await fetch(`${apiServer}/users/${userId}`, fetchHeaderConfig)
@@ -219,7 +219,7 @@ export const fetchUserInfo = (userId: string) => async (dispatch: Function) => {
 
 // fetch roles function that fetches data using async/await
 // checks if header is correct, then either grabs data or displays error
-export const fetchRoleInfo = (userId: string) => async (dispatch: Function) => {
+const fetchRoleInfo = (userId: string) => async (dispatch: Function) => {
   try {
     dispatch(fetchRoleRequest())
     const res = await fetch(
@@ -254,7 +254,7 @@ export const fetchRoleInfo = (userId: string) => async (dispatch: Function) => {
   }
 }
 
-export const fetchNonAuthRoleInfo = (userId: string) => ({
+const fetchNonAuthRoleInfo = (userId: string) => ({
   types: [
     FETCH_NON_AUTH_ROLE_REQUEST,
     FETCH_NON_AUTH_ROLE_SUCCESS,
@@ -264,7 +264,7 @@ export const fetchNonAuthRoleInfo = (userId: string) => ({
   config: fetchHeaderConfig,
 })
 
-export const fetchPermissionInfo = (roleId: string) => ({
+const fetchPermissionInfo = (roleId: string) => ({
   types: [
     FETCH_PERMISSION_REQUEST,
     FETCH_PERMISSION_SUCCESS,
@@ -283,4 +283,22 @@ const printError = (res, json) => {
     Title: ${json.errors[0].title}
     Detail: ${json.errors[0].detail}`,
   )
+}
+
+export {
+  requestLogin,
+  receiveLogin,
+  loginError,
+  fetchUserRequest,
+  fetchUserSuccess,
+  fetchUserFailure,
+  fetchRoleRequest,
+  fetchRoleSuccess,
+  fetchRoleFailure,
+  oAuthLogin,
+  logoutUser,
+  fetchUserInfo,
+  fetchRoleInfo,
+  fetchNonAuthRoleInfo,
+  fetchPermissionInfo,
 }

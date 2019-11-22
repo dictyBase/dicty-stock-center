@@ -38,7 +38,7 @@ type Props = {
  * row of data in the plasmid catalog.
  */
 
-export const PlasmidCatalogListItem = memo<*>(
+const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     const [hover, setHover] = useState(false)
     const [{ checkedItems }, dispatch] = useCatalogState()
@@ -157,6 +157,7 @@ const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 
+export { PlasmidCatalogListItem }
 export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
   PlasmidCatalogListItem,
 )

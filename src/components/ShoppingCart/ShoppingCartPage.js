@@ -20,7 +20,7 @@ type Props = {
 /** ShoppingCartPage displays different UIs based on whether
  *  there are currently items in the cart. **/
 
-export const ShoppingCartPage = (props: Props) => {
+const ShoppingCartPage = (props: Props) => {
   const { items, classes } = props
 
   return (
@@ -50,6 +50,7 @@ const mapStateToProps = state => ({
   items: state.cart.addedItems,
 })
 
+export { ShoppingCartPage }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(
   withStyles(styles)(ShoppingCartPage),
 )

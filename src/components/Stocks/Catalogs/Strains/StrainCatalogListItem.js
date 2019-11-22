@@ -36,7 +36,7 @@ type Props = {
  * row of data in the strain catalog.
  */
 
-export const StrainCatalogListItem = memo<*>(
+const StrainCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: Props) => {
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
@@ -157,6 +157,7 @@ const mapStateToProps = state => ({
   cartItems: state.cart.addedItems,
 })
 
+export { StrainCatalogListItem }
 export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
   StrainCatalogListItem,
 )

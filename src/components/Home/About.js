@@ -23,7 +23,7 @@ type Props = {
  * About fetches and displays the About page content.
  */
 
-export class About extends Component<Props> {
+class About extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
@@ -67,7 +67,7 @@ const mapStateToProps = state => ({
   page: state.page[slugName],
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { fetchInfoPage },
-)(About)
+export { About }
+export default connect<*, *, *, *, *, *>(mapStateToProps, { fetchInfoPage })(
+  About,
+)

@@ -4,7 +4,7 @@ import { dsctypes } from "constants/dsctypes"
 const { ADD_TO_CART, REMOVE_FROM_CART } = dsctypes
 
 const initialState = {
-  addedItems: []
+  addedItems: [],
 }
 
 describe("cart reducer", () => {
@@ -18,33 +18,33 @@ describe("cart reducer", () => {
         type: ADD_TO_CART,
         payload: {
           item: {
-            id: "999"
-          }
-        }
-      })
+            id: "999",
+          },
+        },
+      }),
     ).toEqual({
       addedItems: [
         {
-          id: "999"
-        }
-      ]
+          id: "999",
+        },
+      ],
     })
   })
 
   it("should handle REMOVE_FROM_CART", () => {
     const state = {
-      addedItems: ["9", "99", "999"]
+      addedItems: ["9", "99", "999"],
     }
     const expected = {
-      addedItems: ["9", "99"]
+      addedItems: ["9", "99"],
     }
     expect(
       reducer(state, {
         type: REMOVE_FROM_CART,
         payload: {
-          removeIndex: 2
-        }
-      })
+          removeIndex: 2,
+        },
+      }),
     ).toEqual(expected)
   })
 })

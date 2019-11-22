@@ -36,7 +36,7 @@ const cache = new InMemoryCache()
 const storage = window.localStorage
 const waitOnCache = persistCache({ cache, storage })
 
-export const client = new ApolloClient({
+const client = new ApolloClient({
   link,
   cache,
 })
@@ -91,3 +91,5 @@ waitOnCache.then(() => {
     document.getElementById("root"),
   )
 })
+
+export { client }

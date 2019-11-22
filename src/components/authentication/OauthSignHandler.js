@@ -27,7 +27,4 @@ class OauthSignHandler extends Component<Props> {
   }
 }
 
-export default connect<*, *, *, *, *, *>(
-  null,
-  { oAuthLogin },
-)(OauthSignHandler)
+export default connect<*, *, *, *, *, *>(null, { oAuthLogin })(OauthSignHandler)

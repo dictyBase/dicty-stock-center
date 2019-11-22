@@ -2,9 +2,9 @@
 import React, { createContext, useContext, useReducer, useMemo } from "react"
 import { appBarTypes } from "constants/appBar"
 
-export const AppBarContext: Object = createContext()
+const AppBarContext: Object = createContext()
 
-export const appBarReducer = (state: Object, action: Object) => {
+const appBarReducer = (state: Object, action: Object) => {
   switch (action.type) {
     case appBarTypes.SET_FILTER:
       return {
@@ -37,7 +37,7 @@ const initialState = {
  * This removes the need for prop drilling through multiple components.
  */
 
-export const AppBarProvider = ({ children }: any) => {
+const AppBarProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(appBarReducer, initialState)
   const value = useMemo(() => [state, dispatch], [state])
 
@@ -46,4 +46,6 @@ export const AppBarProvider = ({ children }: any) => {
   )
 }
 
-export const useAppBarState = () => useContext(AppBarContext)
+const useAppBarState = () => useContext(AppBarContext)
+
+export { AppBarContext, appBarReducer, AppBarProvider, useAppBarState }

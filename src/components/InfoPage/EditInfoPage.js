@@ -123,7 +123,7 @@ type State = {
  * Allows editing of the info page components (i.e. Deposit, Payment, Order)
  */
 
-export class EditInfoPage extends Component<Props, State> {
+class EditInfoPage extends Component<Props, State> {
   constructor(props: any) {
     super(props)
 
@@ -219,7 +219,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { saveEditing, cancelEditing },
-)(withStyles(styles)(EditInfoPage))
+export { EditInfoPage }
+export default connect<*, *, *, *, *, *>(mapStateToProps, {
+  saveEditing,
+  cancelEditing,
+})(withStyles(styles)(EditInfoPage))

@@ -277,7 +277,8 @@ export class InlineEditor extends Component<Props, State> {
   }
 }
 
-export default connect<*, *, *, *, *, *>(
-  null,
-  { editInline, saveInlineEditing, fetchInfoPage },
-)(withStyles(styles)(InlineEditor))
+export default connect<*, *, *, *, *, *>(null, {
+  editInline,
+  saveInlineEditing,
+  fetchInfoPage,
+})(withStyles(styles)(InlineEditor))

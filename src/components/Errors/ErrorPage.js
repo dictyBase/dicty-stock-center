@@ -20,7 +20,7 @@ type Props = {
  * General error handling page. It displays different messages based on HTTP status code.
  */
 
-export const ErrorPage = ({ auth, page, classes }: Props) => {
+const ErrorPage = ({ auth, page, classes }: Props) => {
   let errorStatus = 0
   let errorMsg = ""
 
@@ -47,6 +47,7 @@ export const ErrorPage = ({ auth, page, classes }: Props) => {
 
 const mapStateToProps = ({ auth, page }) => ({ auth, page })
 
+export { ErrorPage }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(
   withStyles(styles)(ErrorPage),
 )

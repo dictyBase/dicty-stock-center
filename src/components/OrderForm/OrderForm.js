@@ -43,7 +43,7 @@ type Props = {
  * OrderForm is the main component used for the checkout process.
  */
 
-export const OrderForm = ({ items, removeItem, history }: Props) => {
+const OrderForm = ({ items, removeItem, history }: Props) => {
   const classes = useStyles()
   const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
@@ -109,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
+export { OrderForm }
 export default connect<*, *, *, *, *, *>(
   mapStateToProps,
   mapDispatchToProps,

@@ -9,15 +9,15 @@ describe("cart actions", () => {
   describe("add item to cart", () => {
     it("should create an action to add an item to the cart", () => {
       const item = {
-        type: "strain"
+        type: "strain",
       }
       const fee = STRAIN_FEE
       const expectedAction = {
         type: ADD_TO_CART,
         payload: {
           fee: fee,
-          item
-        }
+          item,
+        },
       }
       expect(actions.addItem(item)).toEqual(expectedAction)
     })

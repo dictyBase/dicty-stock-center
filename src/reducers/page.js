@@ -9,11 +9,11 @@ const {
   SAVE_INLINE_PAGE_SUCCESS,
   FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS,
-  FETCH_PAGE_FAILURE
+  FETCH_PAGE_FAILURE,
 } = dsctypes
 
 const initialState = {
-  content: null
+  content: null,
 }
 
 const pageReducer = (state: Object = initialState, action: Object) => {
@@ -21,46 +21,46 @@ const pageReducer = (state: Object = initialState, action: Object) => {
     case FETCH_PAGE_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case FETCH_PAGE_SUCCESS:
       const slugName = action.payload.json.data.attributes.slug
       return {
         ...state,
         isFetching: false,
-        [slugName]: action.payload.json
+        [slugName]: action.payload.json,
       }
     case FETCH_PAGE_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     case EDIT_PAGE:
       return {
         ...state,
-        content: action.payload.content
+        content: action.payload.content,
       }
     case SAVE_PAGE_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case SAVE_PAGE_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
       }
     case SAVE_PAGE_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.payload.error
+        error: action.payload.error,
       }
     case SAVE_INLINE_PAGE_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
       }
     default:
       return state

@@ -11,7 +11,7 @@ import { AppBarProvider } from "components/Stocks/Catalogs/common/AppBar/AppBarC
 import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
-export const GET_STRAINS_FILTER = gql`
+const GET_STRAINS_FILTER = gql`
   query StrainListFilter($cursor: Int!, $filter: String!) {
     listStrains(input: { cursor: $cursor, limit: 10, filter: $filter }) {
       nextCursor
@@ -94,4 +94,5 @@ const StrainCatalogAppBar = () => {
   )
 }
 
+export { GET_STRAINS_FILTER }
 export default StrainCatalogAppBar

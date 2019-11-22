@@ -33,7 +33,7 @@ type Props = {
  * Homepage is the main homepage component for DSC.
  */
 
-export const Homepage = ({ fullName, user, classes }: Props) => (
+const Homepage = ({ fullName, user, classes }: Props) => (
   <div className={classes.container}>
     <Helmet>
       <title>Dicty Stock Center</title>
@@ -82,6 +82,7 @@ const mapStateToProps = state => {
   return {}
 }
 
+export { Homepage }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(
   withStyles(styles)(Homepage),
 )

@@ -29,7 +29,7 @@ type Props = {
  * It has a cart icon with the current number of added items next to it.
  */
 
-export const Cart = (props: Props) => {
+const Cart = (props: Props) => {
   const { items, classes } = props
 
   return (
@@ -47,6 +47,7 @@ const mapStateToProps = state => ({
   items: state.cart.addedItems,
 })
 
+export { Cart }
 export default connect<*, *, *, *, *, *>(mapStateToProps)(
   withStyles(styles)(Cart),
 )

@@ -27,7 +27,7 @@ type Props = {
  * OtherMaterials fetches and displays the Other Materials page content.
  */
 
-export class OtherMaterials extends Component<Props> {
+class OtherMaterials extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
   page: state.page[slugName],
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { fetchInfoPage },
-)(withStyles(styles)(OtherMaterials))
+export { OtherMaterials }
+export default connect<*, *, *, *, *, *>(mapStateToProps, { fetchInfoPage })(
+  withStyles(styles)(OtherMaterials),
+)

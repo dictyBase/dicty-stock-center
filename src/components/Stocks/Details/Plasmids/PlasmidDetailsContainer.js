@@ -12,7 +12,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import useStyles from "components/Stocks/Details/styles"
 
-export const GET_PLASMID = gql`
+const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
     plasmid(id: $id) {
       id
@@ -43,7 +43,7 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-export const PlasmidDetailsContainer = ({ match }: Props) => {
+const PlasmidDetailsContainer = ({ match }: Props) => {
   const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_PLASMID, {
@@ -75,4 +75,5 @@ export const PlasmidDetailsContainer = ({ match }: Props) => {
   )
 }
 
+export { GET_PLASMID, PlasmidDetailsContainer }
 export default PlasmidDetailsContainer

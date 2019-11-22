@@ -1,4 +1,4 @@
-import { redirectUrlGenerator } from "./oauthConfig"
+import redirectUrlGenerator from "./redirectUrlGenerator"
 
 describe("redirectUrlGenerator function", () => {
   beforeEach(() => {
@@ -12,7 +12,6 @@ describe("redirectUrlGenerator function", () => {
 
   it("should handle empty string properly", () => {
     process.env.REACT_APP_BASENAME = ""
-
     expect(redirectUrlGenerator("google")).toEqual(
       "http://localhost:3000/google/callback",
     )
@@ -20,7 +19,6 @@ describe("redirectUrlGenerator function", () => {
 
   it("should handle / properly", () => {
     process.env.REACT_APP_BASENAME = "/"
-
     expect(redirectUrlGenerator("google")).toEqual(
       "http://localhost:3000/google/callback",
     )
@@ -28,7 +26,6 @@ describe("redirectUrlGenerator function", () => {
 
   it("should set correct url for /stockcenter basename", () => {
     process.env.REACT_APP_BASENAME = "/stockcenter"
-
     expect(redirectUrlGenerator("google")).toEqual(
       "http://localhost:3000/stockcenter/google/callback",
     )
@@ -36,7 +33,6 @@ describe("redirectUrlGenerator function", () => {
 
   it("should set correct url for stockcenter basename", () => {
     process.env.REACT_APP_BASENAME = "stockcenter"
-
     expect(redirectUrlGenerator("google")).toEqual(
       "http://localhost:3000/stockcenter/google/callback",
     )

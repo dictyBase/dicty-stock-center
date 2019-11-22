@@ -11,7 +11,7 @@ import { AppBarProvider } from "components/Stocks/Catalogs/common/AppBar/AppBarC
 import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
-export const GET_PLASMIDS_FILTER = gql`
+const GET_PLASMIDS_FILTER = gql`
   query PlasmidListFilter($cursor: Int!, $filter: String!) {
     listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
       nextCursor
@@ -88,4 +88,5 @@ const PlasmidCatalogAppBar = () => {
   )
 }
 
+export { GET_PLASMIDS_FILTER }
 export default PlasmidCatalogAppBar

@@ -23,7 +23,7 @@ const slugName = "dsc-intro"
  * Intro fetches and displays the Intro page content.
  */
 
-export class Intro extends Component<Props> {
+class Intro extends Component<Props> {
   static defaultProps = {
     page: {
       data: {
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
   page: state.page[slugName],
 })
 
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  { fetchInfoPage },
-)(Intro)
+export { Intro }
+export default connect<*, *, *, *, *, *>(mapStateToProps, { fetchInfoPage })(
+  Intro,
+)
