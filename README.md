@@ -9,7 +9,7 @@
 [![devDependency Status](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop?type=dev)  
 [![Technical debt](https://badgen.net/codeclimate/tech-debt/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center/trends/technical_debt)
 [![Issues](https://badgen.net/codeclimate/issues/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center/issues)
-[![Maintainability percentage](https://badgen.net/codeclimate/maintainability-percentage/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center)
+[![Maintainability](https://badgen.net/codeclimate/maintainability/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dictyBase/Dicty-Stock-Center)](https://dependabot.com)  
 ![Issues](https://badgen.net/github/issues/dictyBase/Dicty-Stock-Center)
 ![Open Issues](https://badgen.net/github/open-issues/dictyBase/Dicty-Stock-Center)
