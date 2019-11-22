@@ -17,7 +17,7 @@ describe("Stocks/CatalogTableItems/AddToCartButton", () => {
     data: [
       {
         id: "DBS123456",
-        label: "test1",
+        name: "test1",
         summary: "this is a test summary",
       },
     ],

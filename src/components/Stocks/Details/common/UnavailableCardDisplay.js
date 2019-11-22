@@ -1,8 +1,8 @@
 // @flow
 import React from "react"
+import useStyles from "components/Stocks/Details/styles"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
-import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const UnavailableCardDisplay = () => {
