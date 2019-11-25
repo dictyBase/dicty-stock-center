@@ -44,7 +44,7 @@
     "apollo-link-persisted-queries": "^0.2.2",
     "bowser": "^1.9.3",
     "classnames": "^2.2.6",
-    "connected-react-router": "^6.6.0",
+    "connected-react-router": "^6.6.1",
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#10.1.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#3.0.1",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#2.0.0",
