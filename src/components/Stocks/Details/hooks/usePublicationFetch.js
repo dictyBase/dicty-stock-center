@@ -1,6 +1,20 @@
+// @flow
 import React from "react"
 
-const usePublicationFetch = publications => {
+type publicationType = Array<{
+  /** DOI link for publication */
+  doi: string,
+  /** Pubmed ID, used for linking to our publication page */
+  id: string,
+}>
+
+/**
+ * usePublicationFetch is a hook specifically designed
+ * for returning the APA style format for an array of
+ * publications.
+ */
+
+const usePublicationFetch = (publications: publicationType) => {
   const [data, setData] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState(null)

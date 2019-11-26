@@ -38,6 +38,7 @@ export type StrainDetailsProps = {
     depositor: string,
     plasmid: string,
     publications: Array<{
+      doi: string,
       id: string,
     }>,
     dbxrefs: Array<string>,

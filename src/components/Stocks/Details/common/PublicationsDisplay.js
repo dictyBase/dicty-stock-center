@@ -7,11 +7,12 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   publications: Array<{
-    id: string,
+    /** DOI link for publication */
     doi: string,
+    /** Pubmed ID, used for linking to our publication page */
+    id: string,
   }>,
 }
-
 /**
  * PublicationsDisplay handles the appearance of the reference(s) section on
  * a stock details page.
