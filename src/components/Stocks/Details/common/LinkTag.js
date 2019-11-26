@@ -8,6 +8,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
   root: {
     backgroundColor: palette.grey[200],
     borderRadius: "16px",
+    lineHeight: 1.5,
     "&:hover, &.Mui-focusVisible": {
       "& $icon": {
         color: palette.primary.dark,

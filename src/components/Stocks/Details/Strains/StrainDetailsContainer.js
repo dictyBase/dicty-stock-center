@@ -30,6 +30,7 @@ const GET_STRAIN = gql`
       dbxrefs
       publications {
         id
+        doi
       }
       genes
       in_stock
