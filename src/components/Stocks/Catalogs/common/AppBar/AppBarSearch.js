@@ -12,10 +12,7 @@ import { appBarTypes } from "constants/appBar"
 import { catalogTypes } from "constants/catalogs"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    padding: "2px 4px",
-    minWidth: 400,
-  },
+  root: {},
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,

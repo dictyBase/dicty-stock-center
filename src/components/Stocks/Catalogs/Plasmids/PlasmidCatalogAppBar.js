@@ -4,6 +4,7 @@ import gql from "graphql-tag"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Grid from "@material-ui/core/Grid"
+import Hidden from "@material-ui/core/Hidden"
 import AppBarLeftMenu from "components/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "components/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
@@ -43,7 +44,7 @@ const leftDropdownItems = [
 const rightDropdownItems = [
   {
     value: "id",
-    name: "Plasmid ID",
+    name: "ID",
   },
   {
     value: "plasmid_name",
@@ -61,26 +62,37 @@ const rightDropdownItems = [
  */
 
 const PlasmidCatalogAppBar = () => {
-  // eslint-disable-next-line
-  const [state, dispatch] = useCatalogState()
+  const [, dispatch] = useCatalogState()
   const classes = useStyles()
 
   return (
     <AppBarProvider>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Grid container justify="flex-start">
-            <AppBarLeftMenu dropdownItems={leftDropdownItems} />
-          </Grid>
-          <Grid container justify="center">
-            <AppBarSearch
-              query={GET_PLASMIDS_FILTER}
-              dropdownItems={rightDropdownItems}
-              catalogDispatch={dispatch}
-            />
-          </Grid>
-          <Grid container justify="flex-end">
-            <AppBarRightMenu />
+          <Grid container alignItems="center">
+            <Hidden smDown>
+              <Grid item xs={4}>
+                <Grid container justify="flex-start">
+                  <AppBarLeftMenu dropdownItems={leftDropdownItems} />
+                </Grid>
+              </Grid>
+            </Hidden>
+            <Grid item xs={12} md={4}>
+              <Grid container justify="center">
+                <AppBarSearch
+                  query={GET_PLASMIDS_FILTER}
+                  dropdownItems={rightDropdownItems}
+                  catalogDispatch={dispatch}
+                />
+              </Grid>
+            </Grid>
+            <Hidden smDown>
+              <Grid item xs={4}>
+                <Grid container justify="flex-end">
+                  <AppBarRightMenu />
+                </Grid>
+              </Grid>
+            </Hidden>
           </Grid>
         </Toolbar>
       </AppBar>
