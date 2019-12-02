@@ -53,8 +53,8 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
             }}
           />
         }>
-        {dropdownItems.map(item => (
-          <option value={item.value} key={item.value}>
+        {dropdownItems.map((item, index) => (
+          <option value={item.value} key={index}>
             {item.name}
           </option>
         ))}
