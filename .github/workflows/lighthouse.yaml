@@ -11,9 +11,13 @@ jobs:
           node-version: 10.x
       - name: check out code
         uses: actions/checkout@v1
+      - name: set up app
+        run: |
+          cp package.json package-dev.json && rm package.json
+          jq 'del(.homepage)' package-dev.json > package.json && rm package-dev.json
+          mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
       - name: run build
         run: |
-          mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
           npm ci
           npm run build
       - name: run Lighthouse CI
