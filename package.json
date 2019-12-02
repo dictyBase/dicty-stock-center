@@ -91,7 +91,7 @@
     "babel-jest": "^24.9.0",
     "babel-preset-react-app": "^9.0.2",
     "commitizen": "^4.0.3",
-    "cypress": "^3.6.1",
+    "cypress": "^3.7.0",
     "cz-conventional-changelog": "^3.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
