@@ -19,6 +19,7 @@ jobs:
       - name: run build
         run: |
           npm ci
+          npm i -g serve
           npm run build
       - name: run Lighthouse CI
         run: |

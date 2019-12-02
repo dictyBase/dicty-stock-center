@@ -5,11 +5,11 @@
         "categories:performance": [
           "error",
           {
-            "minScore": 0.9
+            "minScore": 0.85
           }
         ],
         "categories:accessibility": [
-          "error",
+          "warn",
           {
             "minScore": 0.8
           }
@@ -21,12 +21,16 @@
           }
         ],
         "categories:seo": [
-          "error",
+          "warn",
           {
-            "minScore": 0.9
+            "minScore": 0.8
           }
         ]
       }
+    },
+    "collect": {
+      "startServerCommand": "serve -s build",
+      "url": ["http://localhost:5000/"]
     },
     "upload": {
       "target": "temporary-public-storage"
