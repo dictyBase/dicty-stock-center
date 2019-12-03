@@ -7,6 +7,7 @@ import useStyles from "components/Stocks/Details/styles"
 type Props = {
   /** Type of stock */
   stockType: string,
+  /** Strain species */
   species: string,
 }
 

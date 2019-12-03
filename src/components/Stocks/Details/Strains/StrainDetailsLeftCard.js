@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
+import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
@@ -89,9 +89,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  return (
-    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
-  )
+  return <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
 }
 
 export default StrainDetailsLeftCard
