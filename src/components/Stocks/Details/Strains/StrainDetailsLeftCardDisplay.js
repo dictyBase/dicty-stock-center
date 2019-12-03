@@ -44,6 +44,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
                 value={value}
                 handleChange={handleChange}
                 species={species}
+                phenotypeLength={3}
               />
             </ListItem>
             <TabPanel value={value} index={0}>

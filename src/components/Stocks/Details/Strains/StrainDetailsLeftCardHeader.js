@@ -19,6 +19,8 @@ type Props = {
   value: any,
   /** Function for handling tab changes */
   handleChange: Function,
+  /** Number of phenotypes */
+  phenotypeLength: number,
 }
 
 /** StrainDetailsLeftCardHeader displays the header at the top of the left card
@@ -29,6 +31,7 @@ const StrainDetailsLeftCardHeader = ({
   species,
   value,
   handleChange,
+  phenotypeLength,
 }: Props) => {
   const classes = useStyles()
 
@@ -42,7 +45,7 @@ const StrainDetailsLeftCardHeader = ({
             onChange={handleChange}
             aria-label="strain details tabs">
             <Tab label="Strain Details" {...a11yProps(0)} />
-            <Tab label="Phenotype Details" {...a11yProps(1)} />
+            <Tab label={`Phenotypes (${phenotypeLength})`} {...a11yProps(1)} />
           </Tabs>
         </Grid>
         <Grid item>
