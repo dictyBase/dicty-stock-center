@@ -6,6 +6,7 @@ import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
+import { data as phenotypes } from "./Phenotypes/mockPhenotypeData"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
 const strainRowsGenerator = (data, parent, publications, genes) => [
@@ -96,7 +97,12 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   const content = tabRoute ? (
     <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
   ) : (
-    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
+    <LeftCardDisplay
+      rows={rows}
+      stockType="Strain"
+      species={data.species}
+      phenotypes={phenotypes}
+    />
   )
 
   return content

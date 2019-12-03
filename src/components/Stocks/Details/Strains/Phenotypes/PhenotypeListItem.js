@@ -8,7 +8,7 @@ import useStyles from "./phenotypeStyles"
 import { PhenotypeData } from "components/Stocks/Details/types/props"
 
 type Props = {
-  data: Array<PhenotypeData>,
+  data: PhenotypeData,
 }
 
 /**
@@ -19,40 +19,40 @@ type Props = {
 const PhenotypeListItem = ({ data }: Props) => {
   const classes = useStyles()
 
-  return data.map<*>((item, index) => (
-    <ListItem key={index} className={classes.row}>
+  return (
+    <ListItem className={classes.row}>
       <Grid container spacing={0} alignItems="center">
         <Grid item xs={3} className={classes.item}>
-          <Typography variant="body2">{item.phenotype}</Typography>
+          <Typography variant="body2">{data.phenotype}</Typography>
         </Grid>
         <Grid item xs={3} className={classes.item}>
-          <Typography variant="body2">{item.note}</Typography>
+          <Typography variant="body2">{data.note}</Typography>
         </Grid>
         <Grid item xs={3} className={classes.item}>
           <Typography variant="body2">
-            {item.assay && (
+            {data.assay && (
               <Fragment>
                 <strong>Assay: </strong>
-                {item.assay}
+                {data.assay}
                 <br />
               </Fragment>
             )}
-            {item.environment && (
+            {data.environment && (
               <Fragment>
                 <strong>Environment: </strong>
-                {item.environment}
+                {data.environment}
               </Fragment>
             )}
           </Typography>
         </Grid>
         <Grid item xs={3} className={classes.item}>
           <Typography variant="body2">
-            <PublicationsDisplay publications={[item.publication]} />
+            <PublicationsDisplay publications={[data.publication]} />
           </Typography>
         </Grid>
       </Grid>
     </ListItem>
-  ))
+  )
 }
 
 export default PhenotypeListItem

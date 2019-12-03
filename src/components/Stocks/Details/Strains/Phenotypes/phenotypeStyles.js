@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
   paper: {
-    minHeight: 600,
+    // minHeight: 600,
     width: "100%",
   },
   row: {

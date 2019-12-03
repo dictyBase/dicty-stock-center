@@ -20,7 +20,9 @@ const PhenotypeList = () => {
   return (
     <Paper className={classes.paper}>
       <PhenotypeListListHeader />
-      <PhenotypeListItem data={data} />
+      {data.map((item, index) => (
+        <PhenotypeListItem key={index} data={item} />
+      ))}
     </Paper>
   )
 }

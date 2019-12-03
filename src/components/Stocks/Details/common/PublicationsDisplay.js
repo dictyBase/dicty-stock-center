@@ -30,8 +30,8 @@ const PublicationsDisplay = ({ publications }: Props) => {
     return "Error fetching publication data"
   }
 
-  return data.map<any>(item => (
-    <React.Fragment key={item.id}>
+  return data.map<any>((item, index) => (
+    <React.Fragment key={index}>
       {item.data}
       <a
         className={classes.link}
