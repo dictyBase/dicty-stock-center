@@ -80,6 +80,7 @@ const strainRowsGenerator = (data, parent, publications, genes) => [
 const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   const location = useLocation()
   const tabRoute = location.pathname.includes("tabs")
+  const phenoRoute = location.pathname.includes("phenotype")
 
   const parent = data.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
@@ -94,16 +95,25 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  const content = tabRoute ? (
-    <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
-  ) : (
-    <LeftCardDisplay
-      rows={rows}
-      stockType="Strain"
-      species={data.species}
-      phenotypes={phenotypes}
-    />
+  let content = (
+    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
   )
+
+  if (tabRoute) {
+    content = (
+      <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
+    )
+  }
+  if (phenoRoute) {
+    content = (
+      <LeftCardDisplay
+        rows={rows}
+        stockType="Strain"
+        species={data.species}
+        phenotypes={phenotypes}
+      />
+    )
+  }
 
   return content
 }

@@ -163,6 +163,11 @@ const RenderRoutes = () => (
       component={StrainDetailsContainer}
     />
     <Route exact path="/strains/tabs/:id" component={StrainDetailsContainer} />
+    <Route
+      exact
+      path="/strains/phenotype/:id"
+      component={StrainDetailsContainer}
+    />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
