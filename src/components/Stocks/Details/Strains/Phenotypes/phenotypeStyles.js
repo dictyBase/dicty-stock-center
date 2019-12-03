@@ -10,11 +10,8 @@ const useStyles = makeStyles({
     borderBottom: "1px solid rgba(224, 224, 224, 1)",
     paddingLeft: "8px",
     paddingRight: "8px",
-    "&:hover": {
-      backgroundColor: "#eeeeee",
-      boxShadow:
-        "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
-      zIndex: 1,
+    "&:nth-child(odd)": {
+      backgroundColor: "#F4F6F8",
     },
   },
   item: {
