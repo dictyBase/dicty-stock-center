@@ -4,8 +4,9 @@ import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
 import StrainDetailsLeftCardHeader from "components/Stocks/Details/Strains/StrainDetailsLeftCardHeader"
+import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
+import PhenotypeList from "./Phenotypes/PhenotypeList"
 import useStyles from "components/Stocks/Details/styles"
 import TabPanel from "components/common/TabPanel"
 
@@ -51,7 +52,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
               ))}
             </TabPanel>
             <TabPanel value={value} index={1}>
-              phenotype data goes here
+              <PhenotypeList />
             </TabPanel>
           </List>
         </Grid>

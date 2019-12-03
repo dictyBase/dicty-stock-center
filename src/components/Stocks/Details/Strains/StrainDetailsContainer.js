@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
-// import PhenotypeTable from "components/Stocks/Strains/Phenotypes/PhenotypeTable"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useStyles from "components/Stocks/Details/styles"
@@ -52,15 +51,8 @@ const GET_STRAIN = gql`
         assay
         environment
         publication {
-          authors {
-            last_name
-          }
-          id
-          pub_date
-          title
-          journal
-          volume
-          pages
+         doi
+         id
         }
       }
  */
