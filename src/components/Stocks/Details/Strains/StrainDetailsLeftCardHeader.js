@@ -16,7 +16,7 @@ type Props = {
   /** Strain species */
   species: string,
   /** Tab value */
-  value: any,
+  value: number,
   /** Function for handling tab changes */
   handleChange: Function,
   /** Number of phenotypes */

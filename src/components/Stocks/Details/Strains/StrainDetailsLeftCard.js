@@ -1,6 +1,7 @@
 // @flow
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
@@ -76,6 +77,9 @@ const strainRowsGenerator = (data, parent, publications, genes) => [
 ]
 
 const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
+  const location = useLocation()
+  const tabRoute = location.pathname.includes("tabs")
+
   const parent = data.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
   ) : (
@@ -89,7 +93,13 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  return <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
+  const content = tabRoute ? (
+    <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
+  ) : (
+    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
+  )
+
+  return content
 }
 
 export default StrainDetailsLeftCard

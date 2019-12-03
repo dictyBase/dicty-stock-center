@@ -57,17 +57,12 @@ const GET_STRAIN = gql`
       }
  */
 
-type Props = {
-  /** React Router data */
-  match: Object,
-}
-
 /**
  * StrainDetailsContainer is the main component for an individual strain details page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-const StrainDetailsContainer = ({ match }: Props) => {
+const StrainDetailsContainer = () => {
   const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STRAIN, {
