@@ -1,5 +1,6 @@
 import React from "react"
-import { mount } from "enzyme"
+import { createMount } from "@material-ui/core/test-utils"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import CatalogAppBar from "./CatalogAppBar"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -9,11 +10,23 @@ import AppBarRightMenu from "components/Stocks/Catalogs/common/AppBar/AppBarRigh
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Catalogs/common/CatalogAppBar", () => {
-  describe("initial render", () => {
-    const wrapper = mount(
-      <CatalogProvider>
-        <CatalogAppBar />
-      </CatalogProvider>,
+  describe("initial render on large device", () => {
+    // need to create custom theme to view components nested below Hidden components
+    // https://github.com/airbnb/enzyme/issues/2179#issuecomment-529320192
+    const theme = createMuiTheme({
+      props: { MuiWithWidth: { initialWidth: "lg" } },
+    })
+    const props = {
+      leftDropdownItems: [],
+      rightDropdownItems: [],
+      query: "",
+    }
+    const wrapper = createMount()(
+      <ThemeProvider theme={theme}>
+        <CatalogProvider>
+          <CatalogAppBar {...props} />
+        </CatalogProvider>
+      </ThemeProvider>,
     )
     it("always renders initial components", () => {
       expect(wrapper.find(AppBar)).toHaveLength(1)
