@@ -69,17 +69,13 @@ const StrainDetailsContainer = () => {
     variables: { id },
   })
 
-  let title
-
   if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
   const label = characterConverter(data.strain.label)
-
+  let title = `Strain Details for ${label}`
   // if (data.strain.phenotypes.length > 0) {
   //   title = `Phenotype and Strain Details for ${data.strain.label}`
-  // } else {
-  title = `Strain Details for ${label}`
   // }
 
   return (
@@ -96,9 +92,6 @@ const StrainDetailsContainer = () => {
         id={data.strain.id}
         name={data.strain.label}
       />
-      {/* {data.strain.phenotypes.length > 0 && (
-                <PhenotypeTable data={data.strain.phenotypes} />
-              )} */}
       <StrainDetailsLeftCard data={data.strain} />
       <StrainDetailsRightColumn data={data.strain} />
     </Grid>
