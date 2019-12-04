@@ -13,7 +13,7 @@ describe("Stocks/Details/Strains/Phenotypes/PhenotypeListItem", () => {
       expect(wrapper.find(Grid).exists()).toBe(true)
     })
     it("should have two divs when both assay and environment are present", () => {
-      expect(wrapper.find("div")).toHaveLength(2)
+      expect(wrapper.find("span")).toHaveLength(2)
     })
   })
 })

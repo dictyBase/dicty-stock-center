@@ -31,17 +31,17 @@ const PhenotypeListItem = ({ data }: Props) => {
         <Grid item xs={3} className={classes.item}>
           <Typography variant="body2">
             {data.assay && (
-              <div>
+              <span>
                 <strong>Assay: </strong>
                 {data.assay}
                 <br />
-              </div>
+              </span>
             )}
             {data.environment && (
-              <div>
+              <span>
                 <strong>Environment: </strong>
                 {data.environment}
-              </div>
+              </span>
             )}
           </Typography>
         </Grid>
