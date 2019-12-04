@@ -1,4 +1,4 @@
-type listItemProps = {
+export type listItemProps = {
   index: number,
   style: Object,
   data: {
@@ -11,5 +11,3 @@ type listItemProps = {
   cartItems: Array<Object>,
   removeItem: Function,
 }
-
-export { listItemProps }
