@@ -5,7 +5,6 @@ import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
-import Mockups from "components/Mockups"
 
 // homepage route
 const Homepage = Loadable({
@@ -158,23 +157,11 @@ const RenderRoutes = () => (
     <Route exact path="/order/submitted" component={OrderConfirmation} />
     {/* strain routes */}
     <Route exact path="/strains" component={StrainCatalogWrapper} />
-    <Route
-      exact
-      path="/strains/quantity/:id"
-      component={StrainDetailsContainer}
-    />
-    <Route exact path="/strains/tabs/:id" component={StrainDetailsContainer} />
-    <Route
-      exact
-      path="/strains/phenotype/:id"
-      component={StrainDetailsContainer}
-    />
     <Route exact path="/strains/:id" component={StrainDetailsContainer} />
     {/* plasmid routes */}
     <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
     <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
     {/* misc routes */}
-    <Route exact path="/mockups" component={Mockups} />
     <Route exact path="/contact" component={ContactPage} />
     <Route exact path="/error" component={ErrorPage} />
     <Route exact path="/cart" component={ShoppingCartPage} />

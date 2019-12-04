@@ -6,7 +6,6 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import LeftCardHeader from "components/Stocks/Details/common/LeftCardHeader"
 import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
-import PhenotypeList from "components/Stocks/Details/Strains/Phenotypes/PhenotypeList"
 import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
@@ -17,7 +16,6 @@ type Props = {
   }>,
   stockType: string,
   species: string,
-  phenotypes?: Array<Object>,
 }
 
 /**
@@ -25,19 +23,11 @@ type Props = {
  * on the left side of the page.
  */
 
-const LeftCardDisplay = ({ rows, stockType, species, phenotypes }: Props) => {
+const LeftCardDisplay = ({ rows, stockType, species }: Props) => {
   const classes = useStyles()
 
   return (
     <Grid item xs={12} md={9} lg={10} className={classes.header}>
-      {phenotypes && (
-        <>
-          <Card className={classes.leftCard} raised>
-            <PhenotypeList />
-          </Card>
-          <br />
-        </>
-      )}
       <Card className={classes.leftCard} raised>
         <Grid container>
           <List className={classes.list}>

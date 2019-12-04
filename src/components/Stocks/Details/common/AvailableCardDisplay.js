@@ -1,7 +1,6 @@
 // @flow
 import React, { useState } from "react"
-import { useSelector } from "react-redux"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import Button from "@material-ui/core/Button"
@@ -10,8 +9,6 @@ import TextField from "@material-ui/core/TextField"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CatalogCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
-import AddToCartButton from "./AddToCartButton"
-import RemoveFromCartButton from "./RemoveFromCartButton"
 
 const values = [...Array(13).keys()].slice(1)
 
@@ -37,52 +34,13 @@ type Props = {
 
 const AvailableCardDisplay = ({ cartData }: Props) => {
   const [quantity, setQuantity] = useState(values[0])
-  const location = useLocation()
-  const items = useSelector(state => state.cart.addedItems)
   const classes = useStyles()
-  const itemInCart = items.some(item => item.id === cartData.id)
-  const qtyRoute = location.pathname.includes("quantity")
+  // const items = useSelector(state => state.cart.addedItems)
+  // const itemInCart = items.some(item => item.id === cartData.id)
 
   const handleChange = event => {
     setQuantity(event.target.value)
   }
-
-  const content = qtyRoute ? (
-    <div className={classes.quantity}>
-      <TextField
-        id="outlined-quantity"
-        select
-        label="Quantity"
-        value={quantity}
-        onChange={handleChange}
-        margin="dense"
-        variant="outlined"
-        inputProps={{ className: classes.textField }}>
-        {values.map(option => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-      <CatalogCartButton
-        data={Array(quantity).fill(cartData)}
-        setHover={() => {}}
-        stockType={cartData.type}
-      />
-    </div>
-  ) : (
-    <div className={classes.cartBtnRow}>
-      {itemInCart ? (
-        <div>
-          <span className={classes.cartNotification}>Item in cart</span>
-          <br />
-          <RemoveFromCartButton id={cartData.id} />
-        </div>
-      ) : (
-        <AddToCartButton cartData={cartData} />
-      )}
-    </div>
-  )
 
   return (
     <div>
@@ -90,7 +48,28 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
         <FontAwesomeIcon icon="check" /> Available
       </Typography>
       <Divider />
-      {content}
+      <div className={classes.quantity}>
+        <TextField
+          id="outlined-quantity"
+          select
+          label="Quantity"
+          value={quantity}
+          onChange={handleChange}
+          margin="dense"
+          variant="outlined"
+          inputProps={{ className: classes.textField }}>
+          {values.map(option => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
+        <CatalogCartButton
+          data={Array(quantity).fill(cartData)}
+          setHover={() => {}}
+          stockType={cartData.type}
+        />
+      </div>
       <Divider />
       <Button
         component={Link}

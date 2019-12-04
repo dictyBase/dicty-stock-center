@@ -1,12 +1,10 @@
 // @flow
 import React from "react"
-import { Link, useLocation } from "react-router-dom"
-import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
+import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { data as phenotypes } from "./Phenotypes/mockPhenotypeData"
 import { StrainDetailsProps } from "components/Stocks/Details/types/props"
 
 const strainRowsGenerator = (data, parent, publications, genes) => [
@@ -78,10 +76,6 @@ const strainRowsGenerator = (data, parent, publications, genes) => [
 ]
 
 const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
-  const location = useLocation()
-  const tabRoute = location.pathname.includes("tabs")
-  const phenoRoute = location.pathname.includes("phenotype")
-
   const parent = data.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
   ) : (
@@ -95,27 +89,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  let content = (
-    <LeftCardDisplay rows={rows} stockType="Strain" species={data.species} />
-  )
-
-  if (tabRoute) {
-    content = (
-      <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
-    )
-  }
-  if (phenoRoute) {
-    content = (
-      <LeftCardDisplay
-        rows={rows}
-        stockType="Strain"
-        species={data.species}
-        phenotypes={phenotypes}
-      />
-    )
-  }
-
-  return content
+  return <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
 }
 
 export default StrainDetailsLeftCard
