@@ -28,14 +28,12 @@ const AddToCartButton = ({ cartData }: Props) => {
   }
 
   return (
-    <>
-      <Button
-        className={classes.addToCartBtn}
-        onClick={handleClick}
-        startIcon={<FontAwesomeIcon icon="cart-plus" size="sm" />}>
-        Add to Cart
-      </Button>
-    </>
+    <Button
+      className={classes.addToCartBtn}
+      onClick={handleClick}
+      startIcon={<FontAwesomeIcon icon="cart-plus" size="sm" />}>
+      Add to Cart
+    </Button>
   )
 }
 

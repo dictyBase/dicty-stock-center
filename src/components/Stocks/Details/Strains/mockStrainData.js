@@ -17,7 +17,7 @@ export const data = {
   depositor: "Adrian Harwood",
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11130075"],
-  publications: [{ id: "123456789", doi: "doi:123" }],
+  publications: [{ id: "11130075", doi: "10.1038/35047099" }],
   genes: ["aarA"],
   in_stock: true,
 }

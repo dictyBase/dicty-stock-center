@@ -6,11 +6,11 @@ import ListItem from "@material-ui/core/ListItem"
 import useStyles from "./phenotypeStyles"
 
 /**
- * PhenotypeListListHeader contains the list of headers at the
+ * PhenotypeListHeader contains the list of headers at the
  * top of the phenotype display.
  */
 
-const PhenotypeListListHeader = () => {
+const PhenotypeListHeader = () => {
   const classes = useStyles()
 
   return (
@@ -35,4 +35,4 @@ const PhenotypeListListHeader = () => {
   )
 }
 
-export default PhenotypeListListHeader
+export default PhenotypeListHeader
