@@ -1,3 +1,3 @@
 ```js
-<DetailsLoader genes={["gflB", "sadA"]} />
+<GenesDisplay genes={["gflB", "sadA"]} />
 ```

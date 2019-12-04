@@ -1,4 +1,4 @@
-```js
+```jsx
 const rows = [
   {
     id: 0,
@@ -16,5 +16,9 @@ const rows = [
     content: "myoB with S332A substitution expressed in myoB null",
   },
 ]
-<DetailsLoader rows={rows} stockType="strain" species="Dictyostelium discoideum" />
+;<LeftCardDisplay
+  rows={rows}
+  stockType="Strain"
+  species="Dictyostelium discoideum"
+/>
 ```
