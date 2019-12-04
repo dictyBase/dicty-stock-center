@@ -8,10 +8,7 @@ coverage
 clientConfig.js
 client/
 .env.development.local
-build/
-static-server
 .env.production.local
-nightwatch/reports
-nightwatch/snapshots
+/build
 .vscode
-cypress/integration/examples
+
