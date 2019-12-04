@@ -44,8 +44,18 @@ const StrainDetailsLeftCardHeader = ({
             value={value}
             onChange={handleChange}
             aria-label="strain details tabs">
-            <Tab label="Strain Details" {...a11yProps(0)} />
-            <Tab label={`Phenotypes (${phenotypeLength})`} {...a11yProps(1)} />
+            <Tab
+              label={<Typography variant="body1">Strain Details</Typography>}
+              {...a11yProps(0)}
+            />
+            <Tab
+              label={
+                <Typography variant="body1">
+                  Phenotypes ({phenotypeLength})
+                </Typography>
+              }
+              {...a11yProps(1)}
+            />
           </Tabs>
         </Grid>
         <Grid item>
