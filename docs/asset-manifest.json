@@ -1,7 +1,7 @@
 {
   "files": {
-    "build/0.d4021b62.js": "/build/0.d4021b62.js",
-    "main.js": "/build/main.bf5fc096.js",
+    "build/0.e33c53aa.js": "/build/0.e33c53aa.js",
+    "main.js": "/build/main.d55eccee.js",
     "runtime-main.js": "/build/bundle.105de5e2.js",
     "index.html": "/index.html",
     "static/media/academicons.ttf?v=1.8.6": "/static/media/academicons.1afcbd6a.ttf",
@@ -9,7 +9,6 @@
     "static/media/academicons.svg?v=1.8.6": "/static/media/academicons.406b38d2.svg",
     "static/media/academicons.eot?v=1.8.6": "/static/media/academicons.ea3755c3.eot",
     "static/media/ctr9-mutant-DG1071.png": "/static/media/ctr9-mutant-DG1071.80438bc3.png",
-    "static/media/dicty-login.png": "/static/media/dicty-login.6d6d89a5.png",
     "static/media/gbqA-mutant-DG1120.png": "/static/media/gbqA-mutant-DG1120.bc6a07ad.png",
     "static/media/ggtA-mutant-DG1109.png": "/static/media/ggtA-mutant-DG1109.ed3694f1.png",
     "static/media/logo.png": "/static/media/logo.4eeedc37.png",
@@ -42,7 +41,7 @@
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/0.d4021b62.js",
-    "build/main.bf5fc096.js"
+    "build/0.e33c53aa.js",
+    "build/main.d55eccee.js"
   ]
 }
