@@ -5,7 +5,7 @@ import gql from "graphql-tag"
 import StrainCatalogContainer from "./StrainCatalogContainer"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
-export const GET_STRAIN_LIST = gql`
+const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!) {
     listStrains(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
@@ -34,4 +34,5 @@ export const StrainCatalogWrapper = () => (
   </CatalogProvider>
 )
 
+export { GET_STRAIN_LIST }
 export default StrainCatalogWrapper

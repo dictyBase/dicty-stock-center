@@ -5,7 +5,7 @@ import gql from "graphql-tag"
 import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
-export const GET_PLASMID_LIST = gql`
+const GET_PLASMID_LIST = gql`
   query PlasmidList($cursor: Int!) {
     listPlasmids(input: { cursor: $cursor, limit: 10 }) {
       nextCursor
@@ -34,4 +34,5 @@ export const PlasmidCatalogWrapper = () => (
   </CatalogProvider>
 )
 
+export { GET_PLASMID_LIST }
 export default PlasmidCatalogWrapper

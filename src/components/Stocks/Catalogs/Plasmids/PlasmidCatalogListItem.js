@@ -21,8 +21,6 @@ type Props = {
   index: number,
   style: Object,
   data: {
-    handleCheckboxChange: Function,
-    checkedItems: Array<Object>,
     item: Array<{
       name: string,
       id: string,
