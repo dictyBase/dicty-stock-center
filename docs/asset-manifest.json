@@ -1,14 +1,14 @@
 {
   "files": {
-    "build/0.66a9ee55.js": "/build/0.66a9ee55.js",
-    "main.js": "/build/main.9cc9a46b.js",
+    "build/0.7ba9e33e.js": "/build/0.7ba9e33e.js",
+    "main.js": "/build/main.1ee0c6a0.js",
     "runtime-main.js": "/build/bundle.105de5e2.js",
     "index.html": "/index.html",
     "static/media/sad-dicty.png": "/static/media/sad-dicty.98bec487.png"
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/0.66a9ee55.js",
-    "build/main.9cc9a46b.js"
+    "build/0.7ba9e33e.js",
+    "build/main.1ee0c6a0.js"
   ]
 }

@@ -6,6 +6,9 @@ import { Provider } from "react-redux"
 import { createStore } from "redux"
 import createRootReducer from "reducers"
 import history from "utils/routerHistory"
+import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { AppBarProvider } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
+import { GET_STRAIN_LIST } from "components/Stocks/Catalogs/Strains/StrainCatalogWrapper"
 
 const client = new ApolloClient({
   uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql`,
@@ -20,7 +23,11 @@ let store = createStore(createRootReducer(history))
 const Wrapper = ({ children }) => (
   <ApolloProvider client={client}>
     <Provider store={store}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <CatalogProvider query={GET_STRAIN_LIST}>
+        <AppBarProvider>
+          <BrowserRouter>{children}</BrowserRouter>
+        </AppBarProvider>
+      </CatalogProvider>
     </Provider>
   </ApolloProvider>
 )

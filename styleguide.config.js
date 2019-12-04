@@ -14,10 +14,10 @@ module.exports = {
     "src/components/authentication/Authorization.js",
   ],
   sections: [
-    // {
-    //   name: "Catalog Pages",
-    //   components: "src/components/Stocks/Catalogs/**/*.js",
-    // },
+    {
+      name: "Catalog Pages",
+      components: "src/components/Stocks/Catalogs/**/*.js",
+    },
     {
       name: "Details Pages",
       components: "src/components/Stocks/Details/**/*.js",
