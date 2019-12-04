@@ -15,21 +15,8 @@ import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
 import { catalogTypes } from "constants/catalogs"
+import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
-
-type Props = {
-  index: number,
-  style: Object,
-  data: {
-    item: Array<{
-      label: string,
-      id: string,
-      summary: string,
-    }>,
-  },
-  cartItems: Array<Object>,
-  removeItem: Function,
-}
 
 /**
  * StrainCatalogListItem handles the display of an individual
@@ -37,7 +24,7 @@ type Props = {
  */
 
 const StrainCatalogListItem = memo<*>(
-  ({ index, style, data, cartItems, removeItem }: Props) => {
+  ({ index, style, data, cartItems, removeItem }: listItemProps) => {
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
     const [hover, setHover] = useState(false)

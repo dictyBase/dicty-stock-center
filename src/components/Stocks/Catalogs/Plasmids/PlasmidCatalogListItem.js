@@ -15,21 +15,8 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
 import { removeItem } from "actions/cart"
 import { catalogTypes } from "constants/catalogs"
+import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
-
-type Props = {
-  index: number,
-  style: Object,
-  data: {
-    item: Array<{
-      name: string,
-      id: string,
-      summary: string,
-    }>,
-  },
-  cartItems: Array<Object>,
-  removeItem: Function,
-}
 
 /**
  * PlasmidCatalogListItem handles the display of an individual
@@ -37,7 +24,7 @@ type Props = {
  */
 
 const PlasmidCatalogListItem = memo<*>(
-  ({ index, style, data, cartItems, removeItem }: Props) => {
+  ({ index, style, data, cartItems, removeItem }: listItemProps) => {
     const [hover, setHover] = useState(false)
     const [{ checkedItems }, dispatch] = useCatalogState()
     const classes = useStyles()
