@@ -21,6 +21,7 @@ const GET_PLASMID = gql`
       depositor
       publications {
         id
+        doi
       }
       dbxrefs
       genes
@@ -32,18 +33,12 @@ const GET_PLASMID = gql`
     }
   }
 `
-
-type Props = {
-  /** React Router object */
-  match: Object,
-}
-
 /**
  * PlasmidDetailsContainer is the main component for an individual plasmid details page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
-const PlasmidDetailsContainer = ({ match }: Props) => {
+const PlasmidDetailsContainer = () => {
   const { id } = useParams()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_PLASMID, {
