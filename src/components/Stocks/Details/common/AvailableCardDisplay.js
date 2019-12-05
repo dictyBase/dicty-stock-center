@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import CatalogCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
+import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 
 const values = [...Array(13).keys()].slice(1)
 
@@ -31,7 +31,7 @@ type Props = {
  */
 
 const AvailableCardDisplay = ({ cartData }: Props) => {
-  const [quantity, setQuantity] = useState(values[0])
+  const [quantity, setQuantity] = React.useState(values[0])
   const classes = useStyles()
   // const items = useSelector(state => state.cart.addedItems)
   // const itemInCart = items.some(item => item.id === cartData.id)
@@ -62,7 +62,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
             </MenuItem>
           ))}
         </TextField>
-        <CatalogCartButton
+        <AddToCartButton
           data={Array(quantity).fill(cartData)}
           setHover={() => {}}
           stockType={cartData.type}
