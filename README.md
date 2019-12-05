@@ -71,7 +71,7 @@ of the necessary environmental variables can be found [here](.env.development).
 
 ## Further Documentation
 
-More documentation can be found in the [docs](./docs) folder, including mockups,
+More documentation can be found in the [documentation](./documentation) folder, including mockups,
 wireframes and Redux shape of state diagrams.
 
 ## Active Developers
