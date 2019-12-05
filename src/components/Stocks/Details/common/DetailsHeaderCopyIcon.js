@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DetailsHeaderSnackbar from "./DetailsHeaderSnackbar"
@@ -16,7 +16,7 @@ type Props = {
  */
 
 const DetailsHeaderCopyIcon = ({ id }: Props) => {
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false)
   const classes = useStyles()
 
   const handleClick = () => {

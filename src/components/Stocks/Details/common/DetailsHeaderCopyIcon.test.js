@@ -16,4 +16,18 @@ describe("Stocks/Details/common/DetailsHeaderCopyIcon", () => {
       expect(wrapper.find(DetailsHeaderSnackbar)).toHaveLength(0)
     })
   })
+
+  describe("button clicking", () => {
+    // set up mocks
+    global.navigator.clipboard = {
+      writeText: jest.fn(() => Promise.resolve()),
+    }
+    global.window.setTimeout = jest.fn()
+    it("should write to clipboard on click", () => {
+      wrapper.find(IconButton).simulate("click")
+      wrapper.update()
+      expect(global.navigator.clipboard.writeText).toHaveBeenCalled()
+      expect(global.window.setTimeout).toHaveBeenCalled()
+    })
+  })
 })
