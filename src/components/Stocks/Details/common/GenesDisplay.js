@@ -3,6 +3,7 @@ import React from "react"
 import LinkTag from "components/Stocks/Details/common/LinkTag"
 
 type Props = {
+  /** List of gene IDs */
   genes: Array<string>,
 }
 

@@ -14,18 +14,16 @@ const values = [...Array(13).keys()].slice(1)
 
 type Props = {
   cartData: {
+    /** Stock ID */
     id: string,
+    /** Stock name (label/descriptor) */
     name: string,
+    /** Stock summary */
     summary: string,
+    /** Strain or plasmid */
     type: string,
   },
 }
-
-/**
- * This contains dense logic in order to display different content based
- * on the current route. Once we decide on the display, this will be cleaned
- * up.
- */
 
 /**
  * AvailableCardDisplay is used on stock details pages if the
