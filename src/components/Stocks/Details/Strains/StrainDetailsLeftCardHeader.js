@@ -1,16 +1,42 @@
 // @flow
 import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
-import useStyles from "components/Stocks/Details/styles"
 
 // accessibility helper function
 const a11yProps = index => ({
   id: `strain-details-tab-${index}`,
   "aria-controls": `strain-details-tabpanel-${index}`,
 })
+
+const useStyles = makeStyles(() => ({
+  root: {
+    border: "1px solid #d4d4d4",
+    borderBottom: "none",
+    "&:not(:first-of-type)": {
+      marginLeft: -1,
+    },
+    background: "#f7f7f7",
+    color: "#002f5e",
+    opacity: 1,
+  },
+  selected: {
+    borderBottomWidth: 0,
+    background: "#ffffff",
+    "& $wrapper": {
+      opacity: 1,
+    },
+  },
+  wrapper: {
+    opacity: 0.7,
+  },
+  indicator: {
+    display: "none",
+  },
+}))
 
 type Props = {
   /** Strain species */
@@ -35,20 +61,28 @@ const StrainDetailsLeftCardHeader = ({
 }: Props) => {
   const classes = useStyles()
 
+  const tabStyles = {
+    root: classes.root,
+    selected: classes.selected,
+    wrapper: classes.wrapper,
+  }
+
   return (
-    <Grid item xs={12} className={classes.cardHeader}>
+    <Grid item xs={12}>
       <Grid container justify="space-between" alignItems="center">
         <Grid item>
           <Tabs
-            indicatorColor="primary"
+            classes={{ indicator: classes.indicator }}
             value={value}
             onChange={handleChange}
             aria-label="strain details tabs">
             <Tab
+              classes={tabStyles}
               label={<Typography variant="body1">Strain Details</Typography>}
               {...a11yProps(0)}
             />
             <Tab
+              classes={tabStyles}
               label={
                 <Typography variant="body1">
                   Phenotypes ({phenotypeLength})
