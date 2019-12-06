@@ -42,6 +42,7 @@ module.exports = {
     {
       sectionDepth: 1,
       name: "Details Pages",
+      content: "src/components/Stocks/Details/README.md",
       sections: [
         {
           name: "Common",
@@ -58,32 +59,10 @@ module.exports = {
       ],
     },
     {
-      name: "Basic Components",
-      components: "src/components/common/*.js",
-    },
-    {
-      name: "Contact Page",
-      components: "src/components/Contact/*.js",
-    },
-    // {
-    //   name: "Error Displays",
-    //   components: "src/components/Errors/*.js",
-    // },
-    {
-      name: "Homepage Components",
-      components: "src/components/Home/*.js",
-    },
-    {
-      name: "Info Pages",
-      components: "src/components/InfoPage/*.js",
-    },
-    {
-      name: "MyDsc",
-      components: "src/components/MyDsc/*.js",
-    },
-    {
       sectionDepth: 1,
       name: "Order Form",
+      description:
+        "This contains all components related to the DSC order form. Sections are separated by page (Payment, Shipping, Submit) as well as common/shared components used within multiple pages.",
       sections: [
         {
           name: "Common",
@@ -104,8 +83,43 @@ module.exports = {
       ],
     },
     {
+      name: "Basic Components",
+      components: "src/components/common/*.js",
+      description:
+        "This contains a list of components commonly used throughout the entire DSC application.",
+    },
+    {
+      name: "Contact Page",
+      components: "src/components/Contact/*.js",
+      description:
+        "All components used for the contact form, which is not yet built.",
+    },
+    // {
+    //   name: "Error Displays",
+    //   components: "src/components/Errors/*.js",
+    //   description: "All components designed for handling errors."
+    // },
+    {
+      name: "Homepage Components",
+      components: "src/components/Home/*.js",
+      description: "All components specific to the homepage.",
+    },
+    {
+      name: "Info Pages",
+      components: "src/components/InfoPage/*.js",
+      description:
+        "Components related to the display of information pages, currently using Draft.js but will be switched to use our custom built Slate editor.",
+    },
+    {
+      name: "MyDSC",
+      components: "src/components/MyDsc/*.js",
+      description: "All components related to the not-yet-ready MyDSC.",
+    },
+    {
       name: "Shopping Cart Page",
       components: "src/components/ShoppingCart/*.js",
+      description:
+        "Components used on the shopping cart page before entering the order form.",
     },
   ],
   styleguideComponents: {
@@ -130,6 +144,17 @@ module.exports = {
     },
     fontFamily: {
       base: "Roboto, sans-serif",
+    },
+    fontSize: {
+      base: 14,
+      text: 16,
+      small: 13,
+      h1: 40,
+      h2: 24,
+      h3: 18,
+      h4: 18,
+      h5: 16,
+      h6: 16,
     },
   },
   ribbon: {
