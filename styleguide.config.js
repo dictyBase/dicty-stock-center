@@ -52,6 +52,56 @@ module.exports = {
         },
       ],
     },
+    {
+      name: "Basic Components",
+      components: "src/components/common/*.js",
+    },
+    {
+      name: "Contact Page",
+      components: "src/components/Contact/*.js",
+    },
+    // {
+    //   name: "Error Displays",
+    //   components: "src/components/Errors/*.js",
+    // },
+    {
+      name: "Homepage Components",
+      components: "src/components/Home/*.js",
+    },
+    {
+      name: "Info Pages",
+      components: "src/components/InfoPage/*.js",
+    },
+    {
+      name: "MyDsc",
+      components: "src/components/MyDsc/*.js",
+    },
+    {
+      sectionDepth: 1,
+      name: "Order Form",
+      sections: [
+        {
+          name: "Common",
+          components: "src/components/OrderForm/*.js",
+        },
+        {
+          name: "Payment",
+          components: "src/components/OrderForm/Payment/*.js",
+        },
+        {
+          name: "Shipping ",
+          components: "src/components/OrderForm/Shipping/*.js",
+        },
+        {
+          name: "Submit",
+          components: "src/components/OrderForm/Submit/*.js",
+        },
+      ],
+    },
+    {
+      name: "Shopping Cart Page",
+      components: "src/components/ShoppingCart/*.js",
+    },
   ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, "src/styleguide/Wrapper"),
