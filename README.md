@@ -36,9 +36,15 @@ All dictyBase development is now done with cloud native development in mind. It 
 that you have your own [Kubernetes](https://kubernetes.io/) cluster running. Documentation
 for the cloud deployment process can be found [here](https://github.com/dictyBase/Migration/tree/master/deployment).
 
-The general idea is that after every git commit a new Docker image is built based on that commit,
-pushed to Docker Hub, then the corresponding Helm chart is upgraded with that image tag
-inside your cluster.
+The general workflow is to cut a `feature` or `hotfix` branch (see [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow))
+then open a pull request when it is ready to merge into `develop`. We have a CI
+pipeline set up with GitHub Actions that will run unit tests, Flow type checking,
+ESLint and other tasks for every pull request. When those checks pass, the branch
+can then be merged into `develop`.
+
+Every merge into `develop` will trigger a workflow that builds a new Docker image
+based on that commit, pushes it to Docker Hub, then upgrades the corresponding pod
+in your cluster.
 
 ## Local Development
 
@@ -53,8 +59,6 @@ login providers.
   configuration parameters for every new provider in that file.
 
 After setting up the login providers, you can run `npm install` and `npm start` as usual.
-There are also [husky](https://github.com/typicode/husky) scripts set up to run unit tests
-on `pre-commit` and run [Skaffold](https://github.com/GoogleContainerTools/skaffold) on `post-commit`.
 
 ## Backend Requirements
 
@@ -71,8 +75,12 @@ of the necessary environmental variables can be found [here](.env.development).
 
 ## Further Documentation
 
-More documentation can be found in the [documentation](./documentation) folder, including mockups,
-wireframes and Redux shape of state diagrams.
+It is recommended to start a local styleguide server (`npm run styleguide`) to see
+documentation for all of the app's components. This will provide descriptions, demos
+and a list of props for each component.
+
+More documentation can be found in the [documentation](./documentation) folder,
+including mockups, wireframes and Redux shape of state diagrams.
 
 ## Active Developers
 
