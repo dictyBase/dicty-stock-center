@@ -17,8 +17,13 @@ module.exports = {
   ],
   sections: [
     {
+      name: "Introduction",
+      content: "src/README.md",
+    },
+    {
       sectionDepth: 1,
       name: "Catalog Pages",
+      content: "src/components/Stocks/Catalogs/README.md",
       sections: [
         {
           name: "Common",
