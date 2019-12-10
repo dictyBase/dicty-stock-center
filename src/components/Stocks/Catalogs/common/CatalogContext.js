@@ -52,6 +52,6 @@ const CatalogProvider = ({ query, children }: any) => {
   )
 }
 
-const useCatalogState = () => useContext(CatalogContext)
+const useCatalogStore = () => useContext(CatalogContext)
 
-export { CatalogContext, catalogReducer, CatalogProvider, useCatalogState }
+export { CatalogContext, catalogReducer, CatalogProvider, useCatalogStore }

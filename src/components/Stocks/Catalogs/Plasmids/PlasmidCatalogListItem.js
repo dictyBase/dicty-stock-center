@@ -12,7 +12,7 @@ import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import { removeItem } from "actions/cart"
 import { catalogTypes } from "constants/catalogs"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
@@ -26,7 +26,7 @@ import useStyles from "components/Stocks/Catalogs/styles"
 const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data, cartItems, removeItem }: listItemProps) => {
     const [hover, setHover] = useState(false)
-    const [{ checkedItems }, dispatch] = useCatalogState()
+    const [{ checkedItems }, dispatch] = useCatalogStore()
     const classes = useStyles()
 
     const { item } = data

@@ -7,7 +7,7 @@ import InfiniteLoader from "react-window-infinite-loader"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHeader"
 import StrainCatalogListItem from "./StrainCatalogListItem"
-import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
 import { catalogTypes } from "constants/catalogs"
@@ -38,7 +38,7 @@ type Props = {
  */
 
 const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
-  const [{ queryVariables, checkedItems }, dispatch] = useCatalogState()
+  const [{ queryVariables, checkedItems }, dispatch] = useCatalogStore()
   const classes = useStyles()
 
   const resetCheckedItems = () =>

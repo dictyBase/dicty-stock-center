@@ -10,7 +10,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
@@ -28,7 +28,7 @@ const StrainCatalogListItem = memo<*>(
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
     const [hover, setHover] = useState(false)
-    const [{ checkedItems }, dispatch] = useCatalogState()
+    const [{ checkedItems }, dispatch] = useCatalogStore()
     const classes = useStyles()
 
     const { item } = data

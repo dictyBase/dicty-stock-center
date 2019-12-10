@@ -8,7 +8,7 @@ import AppBarLeftMenu from "components/Stocks/Catalogs/common/AppBar/AppBarLeftM
 import AppBarSearch from "components/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "components/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
 import { AppBarProvider } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
-import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 type Props = {
@@ -33,7 +33,7 @@ const CatalogAppBar = ({
   rightDropdownItems,
   query,
 }: Props) => {
-  const [, dispatch] = useCatalogState()
+  const [, dispatch] = useCatalogStore()
   const classes = useStyles()
 
   return (

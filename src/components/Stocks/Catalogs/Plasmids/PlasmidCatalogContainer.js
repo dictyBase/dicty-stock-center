@@ -8,7 +8,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import CatalogAppBar from "components/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
-import { useCatalogState } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 const GET_PLASMIDS_FILTER = gql`
@@ -61,7 +61,7 @@ const rightDropdownItems = [
  */
 
 export const PlasmidCatalogContainer = () => {
-  const [{ query, queryVariables }] = useCatalogState()
+  const [{ query, queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
