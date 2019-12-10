@@ -1,172 +1,133 @@
-import React from "react"
+import React, { lazy, Suspense } from "react"
 import { Route, Switch } from "react-router-dom"
-import Loadable from "react-loadable"
 import PrivateRoute from "./PrivateRoute"
 import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
-import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 
-// homepage route
-const Homepage = Loadable({
-  loader: () =>
-    import("components/Home/Homepage" /* webpackChunkName: "Homepage" */),
-  loading: Loader,
-})
+const Homepage = lazy(() =>
+  import(/* webpackChunkName: "Homepage" */ "components/Home/Homepage"),
+)
 
 // authentication routes
-const Login = Loadable({
-  loader: () =>
-    import("components/authentication/Login" /* webpackChunkName: "Login" */),
-  loading: Loader,
-})
-const OauthCallback = Loadable({
-  loader: () =>
-    import(
-      "components/authentication/OauthCallback" /* webpackChunkName: "OauthCallback" */
-    ),
-  loading: Loader,
-})
-const AuthLoader = Loadable({
-  loader: () =>
-    import(
-      "components/authentication/AuthLoader" /* webpackChunkName: "AuthLoader" */
-    ),
-  loading: Loader,
-})
-const Logout = Loadable({
-  loader: () =>
-    import("components/authentication/Logout" /* webpackChunkName: "Logout" */),
-  loading: Loader,
-})
-const MyDscPage = Loadable({
-  loader: () =>
-    import("components/MyDsc/MyDscPage" /* webpackChunkName: "MyDsc" */),
-  loading: Loader,
-})
+const Login = lazy(() =>
+  import(/* webpackChunkName: "Login" */ "components/authentication/Login"),
+)
+const OauthCallback = lazy(() =>
+  import(
+    /* webpackChunkName: "OauthCallback" */ "components/authentication/OauthCallback"
+  ),
+)
+const AuthLoader = lazy(() =>
+  import(
+    /* webpackChunkName: "AuthLoader" */ "components/authentication/AuthLoader"
+  ),
+)
+const Logout = lazy(() =>
+  import(/* webpackChunkName: "Logout" */ "components/authentication/Logout"),
+)
+const MyDscPage = lazy(() =>
+  import(/* webpackChunkName: "MyDscPage" */ "components/MyDsc/MyDscPage"),
+)
 
 // infopage routes
-const InfoPage = Loadable({
-  loader: () =>
-    import("components/InfoPage/InfoPage" /* webpackChunkName: "InfoPage" */),
-  loading: Loader,
-})
-const EditInfoPage = Loadable({
-  loader: () =>
-    import(
-      "components/InfoPage/EditInfoPage" /* webpackChunkName: "EditInfoPage" */
-    ),
-  loading: Loader,
-})
+const InfoPage = lazy(() =>
+  import(/* webpackChunkName: "InfoPage" */ "components/InfoPage/InfoPage"),
+)
+const EditInfoPage = lazy(() =>
+  import(
+    /* webpackChunkName: "EditInfoPage" */ "components/InfoPage/EditInfoPage"
+  ),
+)
 
 // strain routes
-const StrainCatalogWrapper = Loadable({
-  loader: () =>
-    import(
-      "components/Stocks/Catalogs/Strains/StrainCatalogWrapper" /* webpackChunkName: "StrainCatalogWrapper" */
-    ),
-  loading: DetailsLoader,
-})
-const StrainDetailsContainer = Loadable({
-  loader: () =>
-    import(
-      "components/Stocks/Details/Strains/StrainDetailsContainer" /* webpackChunkName: "StrainDetailsContainer" */
-    ),
-  loading: DetailsLoader,
-})
+const StrainCatalogWrapper = lazy(() =>
+  import(
+    /* webpackChunkName: "StrainCatalogWrapper" */ "components/Stocks/Catalogs/Strains/StrainCatalogWrapper"
+  ),
+)
+const StrainDetailsContainer = lazy(() =>
+  import(
+    /* webpackChunkName: "StrainDetailsContainer" */ "components/Stocks/Details/Strains/StrainDetailsContainer"
+  ),
+)
 
 // plasmid routes
-const PlasmidCatalogWrapper = Loadable({
-  loader: () =>
-    import(
-      "components/Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper" /* webpackChunkName: "PlasmidCatalogWrapper" */
-    ),
-  loading: DetailsLoader,
-})
-const PlasmidDetailsContainer = Loadable({
-  loader: () =>
-    import(
-      "components/Stocks/Details/Plasmids/PlasmidDetailsContainer" /* webpackChunkName: "PlasmidDetailsContainer" */
-    ),
-  loading: DetailsLoader,
-})
+const PlasmidCatalogWrapper = lazy(() =>
+  import(
+    /* webpackChunkName: "PlasmidCatalogWrapper" */ "components/Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper"
+  ),
+)
+const PlasmidDetailsContainer = lazy(() =>
+  import(
+    /* webpackChunkName: "PlasmidDetailsContainer" */ "components/Stocks/Details/Plasmids/PlasmidDetailsContainer"
+  ),
+)
 
 // order form routes
-const OrderForm = Loadable({
-  loader: () =>
-    import(
-      "components/OrderForm/OrderForm" /* webpackChunkName: "OrderForm" */
-    ),
-  loading: Loader,
-})
-const OrderConfirmation = Loadable({
-  loader: () =>
-    import(
-      "components/OrderForm/OrderConfirmation" /* webpackChunkName: "OrderConfirmation" */
-    ),
-  loading: Loader,
-})
+const OrderForm = lazy(() =>
+  import(/* webpackChunkName: "OrderForm" */ "components/OrderForm/OrderForm"),
+)
+const OrderConfirmation = lazy(() =>
+  import(
+    /* webpackChunkName: "OrderConfirmation" */ "components/OrderForm/OrderConfirmation"
+  ),
+)
 
 // misc routes
-const ContactPage = Loadable({
-  loader: () =>
-    import(
-      "components/Contact/ContactPage" /* webpackChunkName: "ContactPage" */
-    ),
-  loading: Loader,
-})
-const ErrorPage = Loadable({
-  loader: () =>
-    import("components/Errors/ErrorPage" /* webpackChunkName: "ErrorPage" */),
-  loading: Loader,
-})
-const ShoppingCartPage = Loadable({
-  loader: () =>
-    import(
-      "components/ShoppingCart/ShoppingCartPage" /* webpackChunkName: "ShoppingCartPage" */
-    ),
-  loading: Loader,
-})
+const ContactPage = lazy(() =>
+  import(
+    /* webpackChunkName: "ContactPage" */ "components/Contact/ContactPage"
+  ),
+)
+const ErrorPage = lazy(() =>
+  import(/* webpackChunkName: "ErrorPage" */ "components/Errors/ErrorPage"),
+)
+const ShoppingCartPage = lazy(() =>
+  import(
+    /* webpackChunkName: "ShoppingCartPage" */ "components/ShoppingCart/ShoppingCartPage"
+  ),
+)
 
 // custom 404 route
-const PageNotReady = Loadable({
-  loader: () =>
-    import(
-      "components/Errors/PageNotReady" /* webpackChunkName: "PageNotReady" */
-    ),
-  loading: Loader,
-})
+const PageNotReady = lazy(() =>
+  import(
+    /* webpackChunkName: "PageNotReady" */ "components/Errors/PageNotReady"
+  ),
+)
 
 const RenderRoutes = () => (
-  <Switch>
-    <Route exact path="/" component={Homepage} />
-    {/* authentication routes */}
-    <LoginRoute exact path="/login" component={Login} />
-    <Route exact path="/:provider/callback" component={OauthCallback} />
-    <Route exact path="/load/auth" component={AuthLoader} />
-    <PrivateRoute exact path="/logout" component={Logout} />
-    <PrivateRoute exact path="/mydsc" component={MyDscPage} />
-    {/* infopage routes */}
-    <Route exact path="/information/:name" component={InfoPage} />
-    <PrivateRoute
-      exact
-      path="/information/:name/edit"
-      component={EditInfoPage}
-    />
-    {/* order form routes */}
-    <Route exact path="/order/checkout" component={OrderForm} />
-    <Route exact path="/order/submitted" component={OrderConfirmation} />
-    {/* strain routes */}
-    <Route exact path="/strains" component={StrainCatalogWrapper} />
-    <Route exact path="/strains/:id" component={StrainDetailsContainer} />
-    {/* plasmid routes */}
-    <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
-    <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
-    {/* misc routes */}
-    <Route exact path="/contact" component={ContactPage} />
-    <Route exact path="/error" component={ErrorPage} />
-    <Route exact path="/cart" component={ShoppingCartPage} />
-    <Route exact path="*" component={PageNotReady} />
-  </Switch>
+  <Suspense fallback={<Loader />}>
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+      {/* authentication routes */}
+      <LoginRoute exact path="/login" component={Login} />
+      <Route exact path="/:provider/callback" component={OauthCallback} />
+      <Route exact path="/load/auth" component={AuthLoader} />
+      <PrivateRoute exact path="/logout" component={Logout} />
+      <PrivateRoute exact path="/mydsc" component={MyDscPage} />
+      {/* infopage routes */}
+      <Route exact path="/information/:name" component={InfoPage} />
+      <PrivateRoute
+        exact
+        path="/information/:name/edit"
+        component={EditInfoPage}
+      />
+      {/* order form routes */}
+      <Route exact path="/order/checkout" component={OrderForm} />
+      <Route exact path="/order/submitted" component={OrderConfirmation} />
+      {/* strain routes */}
+      <Route exact path="/strains" component={StrainCatalogWrapper} />
+      <Route exact path="/strains/:id" component={StrainDetailsContainer} />
+      {/* plasmid routes */}
+      <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
+      <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
+      {/* misc routes */}
+      <Route exact path="/contact" component={ContactPage} />
+      <Route exact path="/error" component={ErrorPage} />
+      <Route exact path="/cart" component={ShoppingCartPage} />
+      <Route exact path="*" component={PageNotReady} />
+    </Switch>
+  </Suspense>
 )
 
 export default RenderRoutes
