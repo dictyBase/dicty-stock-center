@@ -9,7 +9,7 @@ import PlasmidCatalogList from "./PlasmidCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { GET_PLASMID_LIST } from "./PlasmidCatalogWrapper"
+import { GET_PLASMID_LIST } from "components/Stocks/Catalogs/queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const mockStore = configureMockStore()
@@ -23,6 +23,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           query: GET_PLASMID_LIST,
           variables: {
             cursor: 0,
+            filter: "",
           },
         },
         result: {
@@ -45,7 +46,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider query={GET_PLASMID_LIST}>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />
@@ -70,6 +71,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           query: GET_PLASMID_LIST,
           variables: {
             cursor: 0,
+            filter: "",
           },
         },
         result: {
@@ -84,7 +86,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider query={GET_PLASMID_LIST}>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <PlasmidCatalogContainer />

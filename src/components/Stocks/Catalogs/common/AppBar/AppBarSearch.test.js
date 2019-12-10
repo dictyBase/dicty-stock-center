@@ -43,7 +43,7 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
       catalogDispatchSpy.resetHistory()
       const clearBtn = wrapper.find(IconButton).at(1)
       clearBtn.simulate("click")
-      expect(catalogDispatchSpy.calledTwice).toBe(true)
+      expect(catalogDispatchSpy.calledOnce).toBe(true)
     })
   })
 
@@ -65,7 +65,7 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
       form.simulate("submit", {
         preventDefault: jest.fn(),
       })
-      expect(catalogDispatchSpy.calledTwice).toBe(true)
+      expect(catalogDispatchSpy.calledOnce).toBe(true)
     })
   })
 })

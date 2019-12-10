@@ -9,7 +9,7 @@ import StrainCatalogList from "./StrainCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { GET_STRAIN_LIST } from "./StrainCatalogWrapper"
+import { GET_STRAIN_LIST } from "components/Stocks/Catalogs/queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const mockStore = configureMockStore()
@@ -23,6 +23,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           query: GET_STRAIN_LIST,
           variables: {
             cursor: 0,
+            filter: "",
           },
         },
         result: {
@@ -44,7 +45,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider query={GET_STRAIN_LIST}>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
@@ -70,6 +71,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           query: GET_STRAIN_LIST,
           variables: {
             cursor: 0,
+            filter: "",
           },
         },
         result: {
@@ -84,7 +86,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider query={GET_STRAIN_LIST}>
+      <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Provider store={store}>
             <StrainCatalogContainer />
