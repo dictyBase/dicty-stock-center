@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "components/Stocks/Catalogs/hooks/useCheckboxes"
+import useCartItems from "components/Stocks/Catalogs/hooks/useCartItems"
 import { removeItem } from "actions/cart"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
@@ -26,18 +27,16 @@ const PlasmidCatalogListItem = memo<*>(
   ({ index, style, data }: listItemProps) => {
     const { item } = data
     const plasmid = item[index]
-    // need to keep hover state localized, otherwise
-    // it will hover for every item at the same time
-    const [hover, setHover] = useState(false)
-    const {
-      handleCheckboxChange,
-      checkedItemsLookup,
-      selectedCartItems,
-    } = useCheckboxes({
+    const cartData = {
       id: plasmid.id,
       name: plasmid.name,
       summary: plasmid.summary,
-    })
+    }
+    // need to keep hover state localized, otherwise
+    // it will hover for every item at the same time
+    const [hover, setHover] = useState(false)
+    const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
+    const { itemIsInCart } = useCartItems(plasmid.id)
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -57,7 +56,7 @@ const PlasmidCatalogListItem = memo<*>(
           <Hidden smDown>
             <Grid item md={1}>
               <Checkbox
-                checked={checkedItemsLookup(plasmid.id)}
+                checked={itemIsChecked}
                 onChange={handleCheckboxChange}
                 color="default"
                 value={plasmid.id}
@@ -89,17 +88,11 @@ const PlasmidCatalogListItem = memo<*>(
               {hover && (
                 <span>
                   <AddToCartButton
-                    data={[
-                      {
-                        id: plasmid.id,
-                        name: plasmid.name,
-                        summary: plasmid.summary,
-                      },
-                    ]}
+                    data={[cartData]}
                     setHover={setHover}
                     stockType="plasmid"
                   />
-                  {selectedCartItems && (
+                  {itemIsInCart && (
                     <IconButton
                       size="medium"
                       color="secondary"

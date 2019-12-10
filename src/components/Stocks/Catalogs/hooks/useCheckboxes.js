@@ -1,5 +1,4 @@
 // @flow
-import { useSelector } from "react-redux"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import { catalogTypes } from "constants/catalogs"
 
@@ -18,14 +17,9 @@ type cartDataType = {
 
 const useCheckboxes = (cartData: cartDataType) => {
   const [{ checkedItems }, dispatch] = useCatalogStore()
-  const cartItems = useSelector(state => state.cart.addedItems)
 
   // if item is checked, then return true for checkbox
-  const checkedItemsLookup = (id: string) =>
-    checkedItems.some(item => item.id === cartData.id)
-
-  // check if hovered item is already in cart
-  const selectedCartItems = cartItems.some(item => item.id === cartData.id)
+  const itemIsChecked = checkedItems.some(item => item.id === cartData.id)
 
   const handleCheckboxChange = () => {
     // if checkbox is already checked, remove that item from state
@@ -42,7 +36,7 @@ const useCheckboxes = (cartData: cartDataType) => {
     }
   }
 
-  return { checkedItemsLookup, selectedCartItems, handleCheckboxChange }
+  return { itemIsChecked, handleCheckboxChange }
 }
 
 export default useCheckboxes

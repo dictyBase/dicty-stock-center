@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useCheckboxes from "components/Stocks/Catalogs/hooks/useCheckboxes"
+import useCartItems from "components/Stocks/Catalogs/hooks/useCartItems"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
@@ -26,18 +27,16 @@ const StrainCatalogListItem = memo<*>(
   ({ index, style, data }: listItemProps) => {
     const { item } = data
     const strain = item[index]
-    // need to keep hover state localized, otherwise
-    // it will hover for every item at the same time
-    const [hover, setHover] = useState(false)
-    const {
-      handleCheckboxChange,
-      checkedItemsLookup,
-      selectedCartItems,
-    } = useCheckboxes({
+    const cartData = {
       id: strain.id,
       name: strain.label,
       summary: strain.summary,
-    })
+    }
+    // need to keep hover state localized, otherwise
+    // it will hover for every item at the same time
+    const [hover, setHover] = useState(false)
+    const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
+    const { itemIsInCart } = useCartItems(strain.id)
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -57,7 +56,7 @@ const StrainCatalogListItem = memo<*>(
           <Hidden smDown>
             <Grid item md={1}>
               <Checkbox
-                checked={checkedItemsLookup(strain.id)}
+                checked={itemIsChecked}
                 onChange={handleCheckboxChange}
                 color="default"
                 value={strain.id}
@@ -89,17 +88,11 @@ const StrainCatalogListItem = memo<*>(
               {hover && (
                 <span>
                   <AddToCartButton
-                    data={[
-                      {
-                        id: strain.id,
-                        name: strain.label,
-                        summary: strain.summary,
-                      },
-                    ]}
+                    data={[cartData]}
                     setHover={setHover}
                     stockType="strain"
                   />
-                  {selectedCartItems && (
+                  {itemIsInCart && (
                     <IconButton
                       size="medium"
                       color="secondary"
