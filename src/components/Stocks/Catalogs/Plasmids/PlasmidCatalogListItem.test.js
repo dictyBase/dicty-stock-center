@@ -8,7 +8,6 @@ import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContex
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import Checkbox from "@material-ui/core/Checkbox"
 
 const mockStore = configureMockStore()
 const store = mockStore({
@@ -45,7 +44,6 @@ describe("Stocks/Plasmids/Catalog/PlasmidCatalogListItem", () => {
     )
     it("always renders initial components", () => {
       expect(wrapper.find(ListItem)).toHaveLength(1)
-      expect(wrapper.find(Checkbox)).toHaveLength(1)
       expect(wrapper.find(Grid).exists()).toBe(true)
       expect(wrapper.find(Typography).exists()).toBe(true)
     })
