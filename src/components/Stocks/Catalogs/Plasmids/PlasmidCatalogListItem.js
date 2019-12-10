@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, memo } from "react"
-import { connect } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { areEqual } from "react-window"
 import Grid from "@material-ui/core/Grid"
@@ -12,9 +12,8 @@ import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
+import useCheckboxes from "components/Stocks/Catalogs/hooks/useCheckboxes"
 import { removeItem } from "actions/cart"
-import { catalogTypes } from "constants/catalogs"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -24,42 +23,27 @@ import useStyles from "components/Stocks/Catalogs/styles"
  */
 
 const PlasmidCatalogListItem = memo<*>(
-  ({ index, style, data, cartItems, removeItem }: listItemProps) => {
-    const [hover, setHover] = useState(false)
-    const [{ checkedItems }, dispatch] = useCatalogStore()
-    const classes = useStyles()
-
+  ({ index, style, data }: listItemProps) => {
     const { item } = data
     const plasmid = item[index]
-
-    // if item is checked, then return true for checkbox
-    const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
-
-    // check if hovered item is already in cart
-    const selectedCartItems = cartItems.some(item => item.id === plasmid.id)
+    // need to keep hover state localized, otherwise
+    // it will hover for every item at the same time
+    const [hover, setHover] = useState(false)
+    const {
+      handleCheckboxChange,
+      checkedItemsLookup,
+      selectedCartItems,
+    } = useCheckboxes({
+      id: plasmid.id,
+      name: plasmid.name,
+      summary: plasmid.summary,
+    })
+    const classes = useStyles()
+    const dispatch = useDispatch()
 
     const handleRemoveItemClick = () => {
-      removeItem(plasmid.id)
+      dispatch(removeItem(plasmid.id))
       setHover(false)
-    }
-
-    const handleCheckboxChange = (
-      id: string,
-      label: string,
-      summary: string,
-    ) => (event: SyntheticEvent<>) => {
-      // if checkbox is already checked, remove that item from state
-      if (checkedItems.some(item => item.id === id)) {
-        dispatch({
-          type: catalogTypes.SET_CHECKED_ITEMS,
-          payload: checkedItems.filter(item => item.id !== id),
-        })
-      } else {
-        dispatch({
-          type: catalogTypes.SET_CHECKED_ITEMS,
-          payload: [...checkedItems, { id, label, summary }],
-        })
-      }
     }
 
     return (
@@ -74,11 +58,7 @@ const PlasmidCatalogListItem = memo<*>(
             <Grid item md={1}>
               <Checkbox
                 checked={checkedItemsLookup(plasmid.id)}
-                onChange={handleCheckboxChange(
-                  plasmid.id,
-                  plasmid.name,
-                  plasmid.summary,
-                )}
+                onChange={handleCheckboxChange}
                 color="default"
                 value={plasmid.id}
                 inputProps={{
@@ -137,12 +117,5 @@ const PlasmidCatalogListItem = memo<*>(
   },
   areEqual,
 )
-
-const mapStateToProps = state => ({
-  cartItems: state.cart.addedItems,
-})
-
 export { PlasmidCatalogListItem }
-export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
-  PlasmidCatalogListItem,
-)
+export default PlasmidCatalogListItem

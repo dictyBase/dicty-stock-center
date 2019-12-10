@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, memo } from "react"
-import { connect } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { areEqual } from "react-window"
 import Grid from "@material-ui/core/Grid"
@@ -10,11 +10,10 @@ import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
+import useCheckboxes from "components/Stocks/Catalogs/hooks/useCheckboxes"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
 import { removeItem } from "actions/cart"
-import { catalogTypes } from "constants/catalogs"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -24,44 +23,27 @@ import useStyles from "components/Stocks/Catalogs/styles"
  */
 
 const StrainCatalogListItem = memo<*>(
-  ({ index, style, data, cartItems, removeItem }: listItemProps) => {
+  ({ index, style, data }: listItemProps) => {
+    const { item } = data
+    const strain = item[index]
     // need to keep hover state localized, otherwise
     // it will hover for every item at the same time
     const [hover, setHover] = useState(false)
-    const [{ checkedItems }, dispatch] = useCatalogStore()
+    const {
+      handleCheckboxChange,
+      checkedItemsLookup,
+      selectedCartItems,
+    } = useCheckboxes({
+      id: strain.id,
+      name: strain.label,
+      summary: strain.summary,
+    })
     const classes = useStyles()
-
-    const { item } = data
-    const strain = item[index]
-
-    // if item is checked, then return true for checkbox
-    const checkedItemsLookup = id => checkedItems.some(item => item.id === id)
-
-    // check if hovered item is already in cart
-    const selectedCartItems = cartItems.some(item => item.id === strain.id)
+    const dispatch = useDispatch()
 
     const handleRemoveItemClick = () => {
-      removeItem(strain.id)
+      dispatch(removeItem(strain.id))
       setHover(false)
-    }
-
-    const handleCheckboxChange = (
-      id: string,
-      label: string,
-      summary: string,
-    ) => (event: SyntheticEvent<>) => {
-      // if checkbox is already checked, remove that item from state
-      if (checkedItems.some(item => item.id === id)) {
-        dispatch({
-          type: catalogTypes.SET_CHECKED_ITEMS,
-          payload: checkedItems.filter(item => item.id !== id),
-        })
-      } else {
-        dispatch({
-          type: catalogTypes.SET_CHECKED_ITEMS,
-          payload: [...checkedItems, { id, label, summary }],
-        })
-      }
     }
 
     return (
@@ -76,11 +58,7 @@ const StrainCatalogListItem = memo<*>(
             <Grid item md={1}>
               <Checkbox
                 checked={checkedItemsLookup(strain.id)}
-                onChange={handleCheckboxChange(
-                  strain.id,
-                  strain.label,
-                  strain.summary,
-                )}
+                onChange={handleCheckboxChange}
                 color="default"
                 value={strain.id}
                 inputProps={{
@@ -140,11 +118,5 @@ const StrainCatalogListItem = memo<*>(
   areEqual,
 )
 
-const mapStateToProps = state => ({
-  cartItems: state.cart.addedItems,
-})
-
 export { StrainCatalogListItem }
-export default connect<*, *, *, *, *, *>(mapStateToProps, { removeItem })(
-  StrainCatalogListItem,
-)
+export default StrainCatalogListItem
