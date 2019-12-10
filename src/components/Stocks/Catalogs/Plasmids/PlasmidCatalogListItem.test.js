@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import { PlasmidCatalogListItem } from "./PlasmidCatalogListItem"
+import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"

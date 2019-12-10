@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import { StrainCatalogListItem } from "./StrainCatalogListItem"
+import StrainCatalogListItem from "./StrainCatalogListItem"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import configureMockStore from "redux-mock-store"

@@ -118,5 +118,4 @@ const StrainCatalogListItem = memo<*>(
   areEqual,
 )
 
-export { StrainCatalogListItem }
 export default StrainCatalogListItem

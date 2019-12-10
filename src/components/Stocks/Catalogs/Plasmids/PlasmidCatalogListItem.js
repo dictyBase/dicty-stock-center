@@ -117,5 +117,5 @@ const PlasmidCatalogListItem = memo<*>(
   },
   areEqual,
 )
-export { PlasmidCatalogListItem }
+
 export default PlasmidCatalogListItem
