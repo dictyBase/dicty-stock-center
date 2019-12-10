@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
 import Grid from "@material-ui/core/Grid"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
@@ -9,21 +8,8 @@ import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorM
 import CatalogAppBar from "components/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
+import { GET_PLASMID_LIST } from "components/Stocks/Catalogs/queries/queries"
 import useStyles from "components/Stocks/Catalogs/styles"
-
-const GET_PLASMIDS_FILTER = gql`
-  query PlasmidListFilter($cursor: Int!, $filter: String!) {
-    listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
-      nextCursor
-      plasmids {
-        id
-        name
-        summary
-        in_stock
-      }
-    }
-  }
-`
 
 const leftDropdownItems = [
   {
@@ -61,8 +47,8 @@ const rightDropdownItems = [
  */
 
 export const PlasmidCatalogContainer = () => {
-  const [{ query, queryVariables }] = useCatalogStore()
-  const { loading, error, data, fetchMore } = useQuery(query, {
+  const [{ queryVariables }] = useCatalogStore()
+  const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
     variables: queryVariables,
   })
   const classes = useStyles()
@@ -88,7 +74,6 @@ export const PlasmidCatalogContainer = () => {
         <CatalogAppBar
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
-          query={GET_PLASMIDS_FILTER}
         />
       </Grid>
       <Grid item xs={12}>
@@ -98,5 +83,4 @@ export const PlasmidCatalogContainer = () => {
   )
 }
 
-export { GET_PLASMIDS_FILTER }
 export default PlasmidCatalogContainer

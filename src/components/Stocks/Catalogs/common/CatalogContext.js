@@ -4,13 +4,14 @@ import { catalogTypes } from "constants/catalogs"
 
 const CatalogContext: Object = createContext()
 
+const initialState = {
+  queryVariables: { cursor: 0, filter: "" },
+  checkedItems: [],
+  cartDialogOpen: false,
+}
+
 const catalogReducer = (state: Object, action: Object) => {
   switch (action.type) {
-    case catalogTypes.SET_QUERY:
-      return {
-        ...state,
-        query: action.payload,
-      }
     case catalogTypes.SET_QUERY_VARIABLES:
       return {
         ...state,
@@ -38,13 +39,8 @@ const catalogReducer = (state: Object, action: Object) => {
  * components.
  */
 
-const CatalogProvider = ({ query, children }: any) => {
-  const [state, dispatch] = useReducer(catalogReducer, {
-    query: query,
-    queryVariables: { cursor: 0 },
-    checkedItems: [],
-    cartDialogOpen: false,
-  })
+const CatalogProvider = ({ children }: any) => {
+  const [state, dispatch] = useReducer(catalogReducer, initialState)
   const value = useMemo(() => [state, dispatch], [state])
 
   return (

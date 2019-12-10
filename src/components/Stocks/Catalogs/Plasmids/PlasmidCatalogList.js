@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
@@ -10,21 +9,8 @@ import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
+import { GET_PLASMID_LIST } from "components/Stocks/Catalogs/queries/queries"
 import { catalogTypes } from "constants/catalogs"
-
-const GET_MORE_PLASMIDS_LIST = gql`
-  query MorePlasmidsList($cursor: Int!, $filter: String) {
-    listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
-      nextCursor
-      plasmids {
-        id
-        name
-        summary
-        in_stock
-      }
-    }
-  }
-`
 
 type Props = {
   data: Array<CartItem>,
@@ -55,7 +41,7 @@ export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   const loadMoreItems = () =>
     fetchMore({
-      query: GET_MORE_PLASMIDS_LIST,
+      query: GET_PLASMID_LIST,
       variables: {
         cursor: cursor,
         filter: queryVariables.filter,

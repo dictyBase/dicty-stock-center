@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
 import Grid from "@material-ui/core/Grid"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
@@ -9,21 +8,8 @@ import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorM
 import CatalogAppBar from "components/Stocks/Catalogs/common/CatalogAppBar"
 import StrainCatalogList from "./StrainCatalogList"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
+import { GET_STRAIN_LIST } from "components/Stocks/Catalogs/queries/queries"
 import useStyles from "components/Stocks/Catalogs/styles"
-
-const GET_STRAINS_FILTER = gql`
-  query StrainListFilter($cursor: Int!, $filter: String!) {
-    listStrains(input: { cursor: $cursor, limit: 10, filter: $filter }) {
-      nextCursor
-      strains {
-        id
-        label
-        summary
-        in_stock
-      }
-    }
-  }
-`
 
 /** Need to update values */
 
@@ -67,8 +53,8 @@ const rightDropdownItems = [
  */
 
 export const StrainCatalogContainer = () => {
-  const [{ query, queryVariables }] = useCatalogStore()
-  const { loading, error, data, fetchMore } = useQuery(query, {
+  const [{ queryVariables }] = useCatalogStore()
+  const { loading, error, data, fetchMore } = useQuery(GET_STRAIN_LIST, {
     variables: queryVariables,
   })
   const classes = useStyles()
@@ -95,7 +81,6 @@ export const StrainCatalogContainer = () => {
         <CatalogAppBar
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
-          query={GET_STRAINS_FILTER}
         />
       </Grid>
       <Grid item xs={12}>
@@ -105,5 +90,4 @@ export const StrainCatalogContainer = () => {
   )
 }
 
-export { GET_STRAINS_FILTER }
 export default StrainCatalogContainer

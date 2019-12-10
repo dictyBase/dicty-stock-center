@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import gql from "graphql-tag"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
@@ -10,21 +9,8 @@ import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
+import { GET_STRAIN_LIST } from "components/Stocks/Catalogs/queries/queries"
 import { catalogTypes } from "constants/catalogs"
-
-const GET_MORE_STRAINS_LIST = gql`
-  query MoreStrainsList($cursor: Int!, $filter: String) {
-    listStrains(input: { cursor: $cursor, limit: 10, filter: $filter }) {
-      nextCursor
-      strains {
-        id
-        label
-        summary
-        in_stock
-      }
-    }
-  }
-`
 
 type Props = {
   data: Array<CartItem>,
@@ -55,7 +41,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   const loadMoreItems = () =>
     fetchMore({
-      query: GET_MORE_STRAINS_LIST,
+      query: GET_STRAIN_LIST,
       variables: {
         cursor: cursor,
         filter: queryVariables.filter,

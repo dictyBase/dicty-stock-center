@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  query: string,
+  queryVariables: Object,
   dropdownItems: Array<{
     value: string,
     name: string,
@@ -44,7 +44,11 @@ type Props = {
  * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
+const AppBarSearch = ({
+  queryVariables,
+  dropdownItems,
+  catalogDispatch,
+}: Props) => {
   const [{ searchValue, filter }, dispatch] = useAppBarState()
   const classes = useStyles()
 
@@ -52,12 +56,6 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
     catalogDispatch({
       type: catalogTypes.SET_QUERY_VARIABLES,
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
-    })
-
-  const resetQuery = () =>
-    catalogDispatch({
-      type: catalogTypes.SET_QUERY,
-      payload: query,
     })
 
   const handleChange = event => {
@@ -69,7 +67,6 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    resetQuery()
     resetQueryVariables()
   }
 
@@ -78,7 +75,6 @@ const AppBarSearch = ({ query, dropdownItems, catalogDispatch }: Props) => {
       type: appBarTypes.SET_SEARCH_VALUE,
       payload: "",
     })
-    resetQuery()
     resetQueryVariables()
   }
 

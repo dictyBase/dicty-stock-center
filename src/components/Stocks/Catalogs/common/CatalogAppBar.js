@@ -19,8 +19,6 @@ type Props = {
   }>,
   /** List of items to display in right dropdown menu */
   rightDropdownItems: Array<{ name: string, value: string }>,
-  /** GQL query */
-  query: string,
 }
 
 /**
@@ -28,12 +26,8 @@ type Props = {
  * at the top of the catalog page.
  */
 
-const CatalogAppBar = ({
-  leftDropdownItems,
-  rightDropdownItems,
-  query,
-}: Props) => {
-  const [, dispatch] = useCatalogStore()
+const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
+  const [{ queryVariables }, dispatch] = useCatalogStore()
   const classes = useStyles()
 
   return (
@@ -51,7 +45,7 @@ const CatalogAppBar = ({
             <Grid item xs={12} md={4}>
               <Grid container justify="center">
                 <AppBarSearch
-                  query={query}
+                  queryVariables={queryVariables}
                   dropdownItems={rightDropdownItems}
                   catalogDispatch={dispatch}
                 />
