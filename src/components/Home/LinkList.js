@@ -1,34 +1,28 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
-
-const useStyles = makeStyles({
-  list: {
-    margin: 0,
-    padding: 0,
-    listStyle: "none",
-  },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
-})
+import useStyles from "./homeStyles"
 
 type Props = {
   /** List of links in array form */
-  list: Array<Object>,
+  list: Array<{
+    name: string,
+    to: string,
+    routerAware: boolean,
+  }>,
+  /** Color of panel background, either gray or blue */
+  bgColor: string,
 }
 
 /**
  * Generates a list of links based on a passed in array
  */
 
-const LinkList = ({ list }: Props) => {
+const LinkList = ({ list, bgColor }: Props) => {
   const classes = useStyles()
 
   return (
-    <div>
+    <div className={bgColor === "gray" ? classes.panelGray : classes.panelBlue}>
       <ul className={classes.list}>
         {list.map((link, index) => (
           <li key={index}>

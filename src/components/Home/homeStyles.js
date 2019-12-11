@@ -44,6 +44,11 @@ const useStyles = makeStyles(theme => ({
     color: "#004080",
     textDecoration: "none",
   },
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+  },
 }))
 
 export default useStyles

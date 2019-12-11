@@ -4,19 +4,22 @@ import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import bowser from "bowser"
-import MiscLinks from "./MiscLinks"
-import InfoLinks from "./InfoLinks"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
-import Downloads from "./Downloads"
 import Slideshow from "./Slideshow"
-import Materials from "./Materials"
 import Intro from "./Intro"
 import About from "./About"
 import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
+import LinkList from "./LinkList"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { AuthenticatedUser } from "utils/apiClasses"
+import {
+  downloadLinks,
+  infoLinks,
+  materialsLinks,
+  miscLinks,
+} from "constants/linkLists"
 import useStyles from "./homeStyles"
 
 type Props = {
@@ -57,17 +60,23 @@ const Homepage = ({ fullName, user }: Props) => {
         <Grid item xs={12}>
           <Intro />
         </Grid>
-        <HomepageColumn components={[<About />, <MiscLinks />]} />
+        <HomepageColumn
+          components={[<About />, <LinkList list={miscLinks} bgColor="blue" />]}
+        />
         <HomepageColumn
           components={[
-            <InfoLinks />,
+            <LinkList list={infoLinks} bgColor="blue" />,
             <Availability />,
             <OtherMaterials />,
             <StandardOperatingProcedures />,
           ]}
         />
         <HomepageColumn
-          components={[<Slideshow />, <Materials />, <Downloads />]}
+          components={[
+            <Slideshow />,
+            <LinkList list={materialsLinks} bgColor="gray" />,
+            <LinkList list={downloadLinks} bgColor="gray" />,
+          ]}
         />
       </Grid>
     </div>

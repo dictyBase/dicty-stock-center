@@ -45,5 +45,5 @@ const Availability = () => {
   )
 }
 
-export { GET_STOCK_TOTALS, Availability }
+export { Availability }
 export default Availability

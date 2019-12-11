@@ -36,21 +36,6 @@ const useStyles = makeStyles(theme => ({
     margin: "0 auto",
     display: "table",
   },
-  gridContainer: {
-    marginTop: "33px",
-  },
-  paper: {
-    paddingTop: "10px",
-    paddingBottom: "10px",
-    backgroundColor: "#eff8fb",
-    borderRadius: "15px",
-    marginBottom: "10px",
-    maxHeight: "500px",
-    overflow: "auto",
-    [theme.breakpoints.down("md")]: {
-      height: "350px",
-    },
-  },
 }))
 
 export default useStyles
