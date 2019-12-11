@@ -1,15 +1,11 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
-import { withStyles } from "@material-ui/core/styles"
 import ServerError from "./ServerError"
 import OtherError from "./OtherError"
-import styles from "./errorStyles"
 import NotFoundError from "components/Stocks/Catalogs/common/NotFoundError"
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** the object that contains auth data from current state */
   auth: Object,
   /** the object that contains page data from current state */
@@ -20,7 +16,7 @@ type Props = {
  * General error handling page. It displays different messages based on HTTP status code.
  */
 
-const ErrorPage = ({ auth, page, classes }: Props) => {
+const ErrorPage = ({ auth, page }: Props) => {
   let errorStatus = 0
   let errorMsg = ""
 
@@ -48,6 +44,4 @@ const ErrorPage = ({ auth, page, classes }: Props) => {
 const mapStateToProps = ({ auth, page }) => ({ auth, page })
 
 export { ErrorPage }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(
-  withStyles(styles)(ErrorPage),
-)
+export default connect<*, *, *, *, *, *>(mapStateToProps)(ErrorPage)

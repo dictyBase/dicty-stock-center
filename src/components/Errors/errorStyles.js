@@ -1,4 +1,6 @@
-const styles = theme => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(theme => ({
   error400: {
     backgroundColor: "#eff8fb",
     textAlign: "center",
@@ -49,6 +51,6 @@ const styles = theme => ({
       height: "350px",
     },
   },
-})
+}))
 
-export default styles
+export default useStyles

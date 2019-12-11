@@ -8,7 +8,7 @@ describe("Errors/NotFoundError", () => {
   const props = {
     error: "Strain not found",
   }
-  const wrapper = shallow(<NotFoundError {...props} />).dive()
+  const wrapper = shallow(<NotFoundError {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)

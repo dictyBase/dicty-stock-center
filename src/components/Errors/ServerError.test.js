@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import BackToHomepageButton from "components/common/BackToHomepageButton"
 
 describe("Errors/ServerError", () => {
-  const wrapper = shallow(<ServerError />).dive()
+  const wrapper = shallow(<ServerError />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)

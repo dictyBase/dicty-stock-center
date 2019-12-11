@@ -6,7 +6,7 @@ import BackToHomepageButton from "components/common/BackToHomepageButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("Errors/OtherError", () => {
-  const wrapper = shallow(<OtherError />).dive()
+  const wrapper = shallow(<OtherError />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)

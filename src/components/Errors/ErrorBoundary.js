@@ -3,7 +3,24 @@ import React, { Component } from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
 import sadDicty from "static/sad-dicty.png"
-import styles from "./errorStyles"
+
+const styles = theme => ({
+  gridContainer: {
+    marginTop: "33px",
+  },
+  paper: {
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    backgroundColor: "#eff8fb",
+    borderRadius: "15px",
+    marginBottom: "10px",
+    maxHeight: "500px",
+    overflow: "auto",
+    [theme.breakpoints.down("md")]: {
+      height: "350px",
+    },
+  },
+})
 
 type Props = {
   /** Material-UI styling */
