@@ -5,11 +5,12 @@ import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import configureStore from "redux-mock-store"
 import wait from "waait"
-import { StrainDetailsContainer, GET_STRAIN } from "./StrainDetailsContainer"
+import { StrainDetailsContainer } from "./StrainDetailsContainer"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { GET_STRAIN } from "queries/queries"
 import { data } from "./mockStrainData"
 
 const mockStore = configureStore()

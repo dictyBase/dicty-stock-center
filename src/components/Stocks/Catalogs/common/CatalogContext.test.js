@@ -1,6 +1,6 @@
 import { catalogReducer } from "./CatalogContext"
 import { catalogTypes } from "constants/catalogs"
-import { GET_PLASMID_LIST, GET_STRAIN_LIST } from "queries/queries"
+import { GET_PLASMID_LIST } from "queries/queries"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {
@@ -12,20 +12,6 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
     }
     it("returns initial state if no changes", () => {
       expect(catalogReducer(initialState, {})).toEqual(initialState)
-    })
-
-    it("should handle SET_QUERY", () => {
-      const action = {
-        type: catalogTypes.SET_QUERY,
-        payload: GET_STRAIN_LIST,
-      }
-      const expectedState = {
-        query: GET_STRAIN_LIST,
-        queryVariables: { cursor: 0 },
-        checkedItems: [],
-        cartDialogOpen: false,
-      }
-      expect(catalogReducer(initialState, action)).toEqual(expectedState)
     })
 
     it("should handle SET_QUERY_VARIABLES", () => {
