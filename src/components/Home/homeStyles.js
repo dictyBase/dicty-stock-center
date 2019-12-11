@@ -1,5 +1,7 @@
 // @flow
-const styles = (theme: Object) => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(theme => ({
   panelGray: {
     backgroundColor: "#f2f2f2",
     border: "1px solid #f2f2f2",
@@ -42,6 +44,6 @@ const styles = (theme: Object) => ({
     color: "#004080",
     textDecoration: "none",
   },
-})
+}))
 
-export default styles
+export default useStyles

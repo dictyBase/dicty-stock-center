@@ -1,22 +1,13 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
-import styles from "./homeStyles"
-
-type Props = {
-  /** Material-UI styling */
-  classes: {
-    panelGray: string,
-    sopLink: string,
-  },
-}
+import useStyles from "./homeStyles"
 
 /**
  * StandardOperatingProcedures displays the SOP link (Box PDF).
  */
 
-const StandardOperatingProcedures = (props: Props) => {
-  const { classes } = props
+const StandardOperatingProcedures = () => {
+  const classes = useStyles()
 
   return (
     <div className={classes.panelGray}>
@@ -31,4 +22,4 @@ const StandardOperatingProcedures = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(StandardOperatingProcedures)
+export default StandardOperatingProcedures

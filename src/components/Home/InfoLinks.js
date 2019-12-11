@@ -1,15 +1,7 @@
 // @flow
 import React from "react"
 import LinkList from "../LinkList"
-import { withStyles } from "@material-ui/core/styles"
-import styles from "./homeStyles"
-
-type Props = {
-  /** Material-UI styling */
-  classes: {
-    panelBlue: string,
-  },
-}
+import useStyles from "./homeStyles"
 
 const links = [
   { name: "Order Information", to: "/information/order", routerAware: true },
@@ -29,10 +21,14 @@ const links = [
  * InfoLinks displays all of the info page links on the homepage.
  */
 
-const InfoLinks = ({ classes }: Props) => (
-  <div className={classes.panelBlue}>
-    <LinkList list={links} />
-  </div>
-)
+const InfoLinks = () => {
+  const classes = useStyles()
 
-export default withStyles(styles)(InfoLinks)
+  return (
+    <div className={classes.panelBlue}>
+      <LinkList list={links} />
+    </div>
+  )
+}
+
+export default InfoLinks

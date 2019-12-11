@@ -1,12 +1,11 @@
 // @flow
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import InlineEditor from "components/InlineEditor"
 import { fetchInfoPage } from "actions/page"
-import styles from "./homeStyles"
+import useStyles from "./homeStyles"
 
 const slugName = "dsc-other-materials"
 
@@ -19,50 +18,45 @@ type Props = {
   page: Object,
   /** Checks if data is currently being fetched */
   isFetching: boolean,
-  /** Material-UI styling */
-  classes: Object,
 }
 
 /**
  * OtherMaterials fetches and displays the Other Materials page content.
  */
 
-class OtherMaterials extends Component<Props> {
-  static defaultProps = {
-    page: {
-      data: {
-        attributes: {},
-      },
-    },
-  }
-  componentDidMount() {
-    this.props.fetchInfoPage(slugName)
-  }
-  render() {
-    const { isFetching, page, classes } = this.props
+const OtherMaterials = ({ auth, fetchInfoPage, isFetching, page }: Props) => {
+  const classes = useStyles()
 
-    if (!isFetching && page.data.attributes.content) {
-      return (
-        <div className={classes.panelBlue}>
-          <InlineEditor
-            auth={this.props.auth}
-            page={this.props.page}
-            slug={slugName}
-          />
-        </div>
-      )
-    }
+  React.useEffect(() => {
+    fetchInfoPage(slugName)
+  }, [fetchInfoPage])
+
+  if (!isFetching && page.data.attributes.content) {
     return (
-      <Grid container justify="center">
-        <Grid item xs={12}>
-          <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-            <Skeleton count={6} />
-            &nbsp;
-          </SkeletonTheme>
-        </Grid>
-      </Grid>
+      <div className={classes.panelBlue}>
+        <InlineEditor auth={auth} page={page} slug={slugName} />
+      </div>
     )
   }
+
+  return (
+    <Grid container justify="center">
+      <Grid item xs={12}>
+        <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+          <Skeleton count={6} />
+          &nbsp;
+        </SkeletonTheme>
+      </Grid>
+    </Grid>
+  )
+}
+
+OtherMaterials.defaultProps = {
+  page: {
+    data: {
+      attributes: {},
+    },
+  },
 }
 
 const mapStateToProps = state => ({
@@ -73,5 +67,5 @@ const mapStateToProps = state => ({
 
 export { OtherMaterials }
 export default connect<*, *, *, *, *, *>(mapStateToProps, { fetchInfoPage })(
-  withStyles(styles)(OtherMaterials),
+  OtherMaterials,
 )

@@ -1,8 +1,7 @@
 // @flow
 import React from "react"
 import LinkList from "../LinkList"
-import { withStyles } from "@material-ui/core/styles"
-import styles from "./homeStyles"
+import useStyles from "./homeStyles"
 
 const downloadLinks = [
   {
@@ -31,19 +30,12 @@ const downloadLinks = [
   },
 ]
 
-type Props = {
-  /** Material-UI styling */
-  classes: {
-    panelGray: string,
-  },
-}
-
 /**
  * Downloads displays download links on the homepage.
  */
 
-const Downloads = (props: Props) => {
-  const { classes } = props
+const Downloads = () => {
+  const classes = useStyles()
 
   return (
     <div className={classes.panelGray}>
@@ -53,4 +45,4 @@ const Downloads = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(Downloads)
+export default Downloads

@@ -1,6 +1,5 @@
 import React from "react"
 import { shallow, mount } from "enzyme"
-import sinon from "sinon"
 import { OtherMaterials } from "./OtherMaterials"
 import InlineEditor from "components/InlineEditor"
 import Grid from "@material-ui/core/Grid"
@@ -25,6 +24,7 @@ describe("Home/OtherMaterials", () => {
     mountedOtherMaterialsPage = undefined
   })
   describe("initial render", () => {
+    const fetchInfoPageSpy = jest.fn()
     beforeEach(() => {
       props = {
         page: {
@@ -34,10 +34,7 @@ describe("Home/OtherMaterials", () => {
             },
           },
         },
-        classes: {
-          panelBlue: "panelBlue",
-        },
-        fetchInfoPage: () => {},
+        fetchInfoPage: fetchInfoPageSpy,
         isFetching: true,
       }
     })
@@ -45,12 +42,9 @@ describe("Home/OtherMaterials", () => {
     it("always renders two Grid components", () => {
       expect(otherMaterialsPage().find(Grid).length).toBe(2)
     })
-    it("calls componentDidMount", () => {
-      sinon.spy(OtherMaterials.prototype, "componentDidMount")
+    it("calls fetchInfoPage", () => {
       otherMaterialsPage()
-      expect(OtherMaterials.prototype.componentDidMount.calledOnce).toEqual(
-        true,
-      )
+      expect(fetchInfoPageSpy).toHaveBeenCalled()
     })
   })
 
@@ -63,9 +57,6 @@ describe("Home/OtherMaterials", () => {
               content: "page content",
             },
           },
-        },
-        classes: {
-          panelBlue: "panelBlue",
         },
         fetchInfoPage: () => {},
         isFetching: false,

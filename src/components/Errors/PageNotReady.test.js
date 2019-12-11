@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("Errors/PageNotReady", () => {
-  const wrapper = shallow(<PageNotReady />).dive()
+  const wrapper = shallow(<PageNotReady />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(2)

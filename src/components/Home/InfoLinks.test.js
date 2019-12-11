@@ -7,7 +7,7 @@ describe("Home/InfoLinks", () => {
   const wrapper = shallow(<InfoLinks />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.dive().find(LinkList)).toHaveLength(1)
+      expect(wrapper.find(LinkList)).toHaveLength(1)
     })
   })
 })
