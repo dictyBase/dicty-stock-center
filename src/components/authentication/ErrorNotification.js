@@ -1,9 +1,9 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import SnackbarContent from "@material-ui/core/SnackbarContent"
 
-const styles = theme => ({
+const useStyles = makeStyles({
   snackbar: {
     backgroundColor: "#cc0000",
   },
@@ -12,14 +12,12 @@ const styles = theme => ({
 type Props = {
   /** The error message to display */
   error: string,
-  /** Material-UI styling */
-  classes: Object,
 }
 
 /** Notification snackbar-style message if user hits some type of error */
 
-const ErrorNotification = (props: Props) => {
-  const { error, classes } = props
+const ErrorNotification = ({ error }: Props) => {
+  const classes = useStyles()
 
   return (
     <center>
@@ -30,4 +28,4 @@ const ErrorNotification = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(ErrorNotification)
+export default ErrorNotification

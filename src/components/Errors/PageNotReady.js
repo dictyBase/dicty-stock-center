@@ -1,13 +1,13 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import sadDicty from "static/sad-dicty.png"
 
-const styles = theme => ({
+const useStyles = makeStyles({
   container: {
     backgroundColor: "#eff8fb",
     textAlign: "center",
@@ -33,17 +33,12 @@ const styles = theme => ({
   },
 })
 
-type Props = {
-  /** Material-UI styling */
-  classes: Object,
-}
-
 /**
  * Fallback component for non-existent routes -- "Page Not Ready"/"Under Construction"
  */
 
-const PageNotReady = (props: Props) => {
-  const { classes } = props
+const PageNotReady = () => {
+  const classes = useStyles()
 
   return (
     <Grid container className={classes.mainGrid} justify="center">
@@ -73,4 +68,4 @@ const PageNotReady = (props: Props) => {
   )
 }
 
-export default withStyles(styles)(PageNotReady)
+export default PageNotReady

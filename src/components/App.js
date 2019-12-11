@@ -2,7 +2,6 @@
 import React, { useEffect } from "react"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
-import { withStyles } from "@material-ui/core/styles"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 
@@ -17,7 +16,7 @@ import {
 import Cart from "./Cart"
 import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
-import { appStyles as styles, navTheme } from "./appStyles"
+import { useStyles, navTheme } from "./appStyles"
 // eslint-disable-next-line
 import library from "utils/icons"
 
@@ -32,12 +31,11 @@ type Props = {
   footer: Object,
   /** Action creator to fetch navbar and footer content */
   fetchNavbarAndFooter: Function,
-  /** Material-UI styling */
-  classes: Object,
 }
 
 const App = (props: Props) => {
-  const { auth, cart, navbar, footer, fetchNavbarAndFooter, classes } = props
+  const { auth, cart, navbar, footer, fetchNavbarAndFooter } = props
+  const classes = useStyles()
   const headerContent = auth.isAuthenticated ? loggedHeaderItems : headerItems
   // if any errors, fall back to old link setup
   const navbarContent = !navbar.links ? navItems : navbar.links
@@ -72,7 +70,5 @@ const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
 
 export { App }
 export default withRouter<*, *>(
-  connect<*, *, *, *, *, *>(mapStateToProps, { fetchNavbarAndFooter })(
-    withStyles(styles)(App),
-  ),
+  connect<*, *, *, *, *, *>(mapStateToProps, { fetchNavbarAndFooter })(App),
 )

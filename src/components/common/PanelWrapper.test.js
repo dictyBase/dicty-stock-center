@@ -8,7 +8,7 @@ describe("PanelWrapper", () => {
     title: "Shipping Address Information",
   }
   const wrapper = shallow(<PanelWrapper {...props}>Example panel</PanelWrapper>)
-  const panel = wrapper.dive().find(ExpansionPanel)
+  const panel = wrapper.find(ExpansionPanel)
 
   it("always renders one ExpansionPanel component", () => {
     expect(panel.length).toBe(1)

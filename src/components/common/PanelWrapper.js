@@ -1,12 +1,12 @@
 // @flow
 import React from "react"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import ExpansionPanel from "@material-ui/core/ExpansionPanel"
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"
 import Typography from "@material-ui/core/Typography"
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
   },
@@ -26,11 +26,9 @@ const styles = theme => ({
   innerContent: {
     width: "100%",
   },
-})
+}))
 
 type Props = {
-  /** Material-UI styling */
-  classes: Object,
   /** The title to display for the panel */
   title: string,
   /** Children passed to component */
@@ -42,19 +40,23 @@ type Props = {
  * It is used for every panel on the gene summary page.
  */
 
-const PanelWrapper = ({ classes, title, children }: Props) => (
-  <div className={classes.root}>
-    <ExpansionPanel defaultExpanded>
-      <ExpansionPanelSummary className={classes.summary}>
-        <Typography className={classes.heading} component={"div"}>
-          <h3>{title}</h3>
-        </Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails className={classes.details}>
-        <div className={classes.innerContent}>{children}</div>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
-  </div>
-)
+const PanelWrapper = ({ title, children }: Props) => {
+  const classes = useStyles()
 
-export default withStyles(styles)(PanelWrapper)
+  return (
+    <div className={classes.root}>
+      <ExpansionPanel defaultExpanded>
+        <ExpansionPanelSummary className={classes.summary}>
+          <Typography className={classes.heading} component={"div"}>
+            <h3>{title}</h3>
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.details}>
+          <div className={classes.innerContent}>{children}</div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    </div>
+  )
+}
+
+export default PanelWrapper
