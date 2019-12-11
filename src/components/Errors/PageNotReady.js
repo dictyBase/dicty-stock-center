@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import sadDicty from "images/sad-dicty.png"
+import sadDicty from "static/sad-dicty.png"
 
 const styles = theme => ({
   container: {

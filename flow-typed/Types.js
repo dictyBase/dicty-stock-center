@@ -50,11 +50,6 @@ declare module "draft-js-static-toolbar-plugin/lib/plugin.css" {
   declare module.exports: any
 }
 
-// images
-declare module "images/sad-dicty.png" {
-  declare module.exports: any
-}
-
 // declaration for hot reloading
 declare var module: {
   hot: {
