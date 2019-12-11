@@ -1,7 +1,6 @@
 import { catalogReducer } from "./CatalogContext"
 import { catalogTypes } from "constants/catalogs"
-import { GET_PLASMID_LIST } from "../Plasmids/PlasmidCatalogWrapper"
-import { GET_STRAIN_LIST } from "../Strains/StrainCatalogWrapper"
+import { GET_PLASMID_LIST, GET_STRAIN_LIST } from "queries/queries"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {

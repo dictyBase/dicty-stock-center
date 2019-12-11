@@ -9,7 +9,7 @@ import PlasmidCatalogList from "./PlasmidCatalogList"
 import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { GET_PLASMID_LIST } from "components/Stocks/Catalogs/queries/queries"
+import { GET_PLASMID_LIST } from "queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const mockStore = configureMockStore()

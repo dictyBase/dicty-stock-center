@@ -2,7 +2,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
-import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
@@ -10,29 +9,9 @@ import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { GET_PLASMID } from "queries/queries"
 import useStyles from "components/Stocks/Details/styles"
 
-const GET_PLASMID = gql`
-  query Plasmid($id: ID!) {
-    plasmid(id: $id) {
-      id
-      name
-      summary
-      depositor
-      publications {
-        id
-        doi
-      }
-      dbxrefs
-      genes
-      image_map
-      sequence
-      keywords
-      genbank_accession
-      in_stock
-    }
-  }
-`
 /**
  * PlasmidDetailsContainer is the main component for an individual plasmid details page.
  * It is responsible for fetching the data and passing it down to more specific components.
@@ -70,5 +49,5 @@ const PlasmidDetailsContainer = () => {
   )
 }
 
-export { GET_PLASMID, PlasmidDetailsContainer }
+export { PlasmidDetailsContainer }
 export default PlasmidDetailsContainer

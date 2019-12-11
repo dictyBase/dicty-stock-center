@@ -1,7 +1,6 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Card from "@material-ui/core/Card"
 import Button from "@material-ui/core/Button"
@@ -9,18 +8,8 @@ import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
+import { GET_RELATED_STRAINS } from "queries/queries"
 import useStyles from "components/Stocks/Details/styles"
-
-const GET_RELATED_STRAINS = gql`
-  query StrainList($filter: String!) {
-    listStrains(input: { limit: 10, filter: $filter }) {
-      strains {
-        id
-        label
-      }
-    }
-  }
-`
 
 type Props = {
   species: string,

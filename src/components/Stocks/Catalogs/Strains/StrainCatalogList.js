@@ -9,7 +9,7 @@ import StrainCatalogListItem from "./StrainCatalogListItem"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
-import { GET_STRAIN_LIST } from "components/Stocks/Catalogs/queries/queries"
+import { GET_STRAIN_LIST } from "queries/queries"
 import { catalogTypes } from "constants/catalogs"
 
 type Props = {

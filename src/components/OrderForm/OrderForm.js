@@ -2,7 +2,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import { Form, Formik } from "formik"
-import gql from "graphql-tag"
 import { useMutation } from "@apollo/react-hooks"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
@@ -13,17 +12,10 @@ import initialValues from "./utils/initialValues"
 import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
 import { removeItem } from "actions/cart"
+import { POST_ORDER } from "queries/queries"
 import OrderFormStepper from "./OrderFormStepper"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
-
-const POST_ORDER = gql`
-  mutation CreateOrder($input: CreateOrderInput!) {
-    createOrder(input: $input) {
-      id
-    }
-  }
-`
 
 type Props = {
   /** Action to remove items from the cart */

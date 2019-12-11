@@ -2,60 +2,16 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
-import gql from "graphql-tag"
 import { useQuery } from "@apollo/react-hooks"
 import Grid from "@material-ui/core/Grid"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
-import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import characterConverter from "components/Stocks/utils/characterConverter"
-import useStyles from "components/Stocks/Details/styles"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import StrainDetailsRightColumn from "./StrainDetailsRightColumn"
-
-const GET_STRAIN = gql`
-  query Strain($id: ID!) {
-    strain(id: $id) {
-      id
-      label
-      summary
-      species
-      parent {
-        id
-        label
-      }
-      depositor
-      plasmid
-      dbxrefs
-      publications {
-        id
-        doi
-      }
-      genes
-      in_stock
-      systematic_name
-      genotypes
-      mutagenesis_method
-      genetic_modification
-      names
-      characteristics
-    }
-  }
-`
-
-/**
- * query will still need these from annotations:
-      phenotypes {
-        phenotype
-        note
-        assay
-        environment
-        publication {
-         doi
-         id
-        }
-      }
- */
+import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { GET_STRAIN } from "queries/queries"
+import characterConverter from "components/Stocks/utils/characterConverter"
+import useStyles from "components/Stocks/Details/styles"
 
 /**
  * StrainDetailsContainer is the main component for an individual strain details page.
@@ -98,5 +54,5 @@ const StrainDetailsContainer = () => {
   )
 }
 
-export { GET_STRAIN, StrainDetailsContainer }
+export { StrainDetailsContainer }
 export default StrainDetailsContainer

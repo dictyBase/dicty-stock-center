@@ -1,20 +1,9 @@
 // @flow
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import { GET_STOCK_TOTALS } from "queries/queries"
 import useStyles from "./homeStyles"
-
-const GET_STOCK_TOTALS = gql`
-  query StockList($cursor: Int!) {
-    listPlasmids(input: { cursor: $cursor, limit: 30000 }) {
-      totalCount
-    }
-    listStrains(input: { cursor: $cursor, limit: 30000 }) {
-      totalCount
-    }
-  }
-`
 
 /**
  * Availability fetches and displays the current availability of strains and plasmids.
