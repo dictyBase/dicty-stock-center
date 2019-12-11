@@ -2,7 +2,7 @@
 import React from "react"
 import Skeleton from "react-loading-skeleton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import usePublicationFetch from "../hooks/usePublicationFetch"
+import useDOI from "hooks/useDOI"
 import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
  */
 
 const PublicationsDisplay = ({ publications }: Props) => {
-  const { data, loading, error } = usePublicationFetch(publications)
+  const { data, loading, error } = useDOI(publications)
   const classes = useStyles()
 
   if (loading) {

@@ -1,4 +1,13 @@
-// components
+// misc imports
+declare module "hooks/useCartItems" {
+  declare module.exports: any
+}
+declare module "hooks/useCheckboxes" {
+  declare module.exports: any
+}
+declare module "hooks/useDOI" {
+  declare module.exports: any
+}
 declare module "utils/oauthConfig" {
   declare module.exports: any
 }

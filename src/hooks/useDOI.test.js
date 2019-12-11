@@ -1,4 +1,4 @@
-import usePublicationFetch from "./usePublicationFetch"
+import useDOI from "./useDOI"
 import { renderHook, cleanup } from "react-hooks-testing-library"
 
 const publications = [
@@ -8,7 +8,7 @@ const publications = [
   },
 ]
 
-describe("Stocks/Details/common/hooks/usePublicationFetch", () => {
+describe("hooks/useDOI", () => {
   beforeEach(() => {
     global.fetch = jest.fn().mockImplementation(
       () =>
@@ -25,14 +25,14 @@ describe("Stocks/Details/common/hooks/usePublicationFetch", () => {
   it("renders with expected values when first fetching", () => {
     const {
       result: { current },
-    } = renderHook(() => usePublicationFetch(publications))
+    } = renderHook(() => useDOI(publications))
     expect(current.error).toEqual(null)
     expect(current.data).toEqual([])
     expect(current.loading).toEqual(true)
   })
 
   it("fetches with correct doi url", () => {
-    renderHook(() => usePublicationFetch(publications))
+    renderHook(() => useDOI(publications))
     expect(fetch).toBeCalledWith(`https://doi.org/${publications[0].doi}`, {
       headers: new Headers({
         Accept: "text/x-bibliography; style=apa-no-doi-no-issue",
@@ -41,9 +41,7 @@ describe("Stocks/Details/common/hooks/usePublicationFetch", () => {
   })
 
   it("resolves the promise correctly", async () => {
-    let { result, waitForNextUpdate } = renderHook(() =>
-      usePublicationFetch(publications),
-    )
+    let { result, waitForNextUpdate } = renderHook(() => useDOI(publications))
     await waitForNextUpdate()
     expect(result.current.loading).toEqual(false)
     expect(result.current.error).toEqual(null)
@@ -61,9 +59,7 @@ describe("Stocks/Details/common/hooks/usePublicationFetch", () => {
         error: "this is a test error",
       }),
     )
-    let { result, waitForNextUpdate } = renderHook(() =>
-      usePublicationFetch(publications),
-    )
+    let { result, waitForNextUpdate } = renderHook(() => useDOI(publications))
     await waitForNextUpdate()
     expect(result.current.error).toEqual({
       error: "this is a test error",

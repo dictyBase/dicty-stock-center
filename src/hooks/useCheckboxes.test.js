@@ -13,7 +13,7 @@ const cartData = {
   summary: "a test strain summary",
 }
 
-describe("Stocks/Catalogs/hooks/useCheckboxes", () => {
+describe("hooks/useCheckboxes", () => {
   afterEach(() => cleanup)
 
   it("handles unchecked item correctly", () => {

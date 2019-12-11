@@ -9,12 +9,12 @@ type publicationType = Array<{
 }>
 
 /**
- * usePublicationFetch is a hook specifically designed
+ * useDOI is a hook specifically designed
  * for returning the APA style format for an array of
- * publications.
+ * publications using their DOI links.
  */
 
-const usePublicationFetch = (publications: publicationType) => {
+const useDOI = (publications: publicationType) => {
   const [data, setData] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState(null)
@@ -62,4 +62,4 @@ const usePublicationFetch = (publications: publicationType) => {
   return { data, loading, error }
 }
 
-export default usePublicationFetch
+export default useDOI

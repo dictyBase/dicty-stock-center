@@ -2,9 +2,9 @@ import React from "react"
 import { shallow } from "enzyme"
 import PublicationsDisplay from "./PublicationsDisplay"
 import Skeleton from "react-loading-skeleton"
-import * as PublicationHook from "../hooks/usePublicationFetch"
+import * as PublicationHook from "hooks/useDOI"
 
-jest.mock("../hooks/usePublicationFetch")
+jest.mock("hooks/useDOI")
 
 describe("Stocks/Details/common/PublicationsDisplay", () => {
   const props = {
