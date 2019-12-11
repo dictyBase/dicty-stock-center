@@ -8,6 +8,9 @@ declare module "utils/clientConfig" {
 declare module "utils/headerItems" {
   declare module.exports: any
 }
+declare module "utils/icons" {
+  declare module.exports: any
+}
 declare module "utils/routerHistory" {
   declare module.exports: any
 }

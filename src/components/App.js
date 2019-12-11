@@ -5,44 +5,7 @@ import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
-import { library } from "@fortawesome/fontawesome-svg-core"
-import {
-  faArrowCircleLeft,
-  faArrowCircleRight,
-  faArrowLeft,
-  faArrowRight,
-  faBars,
-  faCaretDown,
-  faCartPlus,
-  faCheck,
-  faCheckCircle,
-  faCog,
-  faCopy,
-  faDownload,
-  faEllipsisV,
-  faEnvelope,
-  faExternalLinkAlt,
-  faExclamationCircle,
-  faHome,
-  faInfoCircle,
-  faMinus,
-  faPaperPlane,
-  faPencilAlt,
-  faPlus,
-  faQuestionCircle,
-  faSearch,
-  faShare,
-  faShoppingCart,
-  faSignInAlt,
-  faSignOutAlt,
-  faSpinner,
-  faTimes,
-  faTimesCircle,
-  faTrash,
-  faTruck,
-  faUser,
-  faWrench,
-} from "@fortawesome/free-solid-svg-icons"
+
 import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
@@ -55,45 +18,8 @@ import Cart from "./Cart"
 import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { appStyles as styles, navTheme } from "./appStyles"
-
-// define fontawesome icons used in the app
-library.add(
-  faArrowCircleLeft,
-  faArrowCircleRight,
-  faArrowLeft,
-  faArrowRight,
-  faBars,
-  faCaretDown,
-  faCartPlus,
-  faCheck,
-  faCheckCircle,
-  faCog,
-  faCopy,
-  faDownload,
-  faEllipsisV,
-  faEnvelope,
-  faExclamationCircle,
-  faExternalLinkAlt,
-  faHome,
-  faInfoCircle,
-  faMinus,
-  faPaperPlane,
-  faPencilAlt,
-  faPlus,
-  faQuestionCircle,
-  faSearch,
-  faShare,
-  faShoppingCart,
-  faSignInAlt,
-  faSignOutAlt,
-  faSpinner,
-  faTimes,
-  faTimesCircle,
-  faTrash,
-  faTruck,
-  faUser,
-  faWrench,
-)
+// eslint-disable-next-line
+import library from "utils/icons"
 
 type Props = {
   /** Object representing auth part of state */
