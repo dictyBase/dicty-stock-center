@@ -23,7 +23,7 @@ const useCheckboxes = (cartData: cartDataType) => {
 
   const handleCheckboxChange = () => {
     // if checkbox is already checked, remove that item from state
-    if (checkedItems.some(item => item.id === cartData.id)) {
+    if (itemIsChecked) {
       dispatch({
         type: catalogTypes.SET_CHECKED_ITEMS,
         payload: checkedItems.filter(item => item.id !== cartData.id),
