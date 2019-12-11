@@ -7,10 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("ShoppingCart/ShoppingCartPageNoItems", () => {
   describe("initial render", () => {
-    const props = {
-      classes: {},
-    }
-    const wrapper = shallow(<ShoppingCartPageNoItems {...props} />).dive()
+    const wrapper = shallow(<ShoppingCartPageNoItems />)
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })

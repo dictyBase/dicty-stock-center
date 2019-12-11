@@ -1,14 +1,14 @@
+// @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartItems from "./ShoppingCartItems"
-import styles from "./shoppingCartStyles"
+import useStyles from "./shoppingCartStyles"
 
-const ShoppingCartPageWithItems = props => {
-  const { classes } = props
+const ShoppingCartPageWithItems = () => {
+  const classes = useStyles()
 
   return (
     <>
@@ -43,4 +43,4 @@ const ShoppingCartPageWithItems = props => {
   )
 }
 
-export default withStyles(styles)(ShoppingCartPageWithItems)
+export default ShoppingCartPageWithItems

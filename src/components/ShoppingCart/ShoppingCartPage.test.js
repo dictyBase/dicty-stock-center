@@ -8,7 +8,6 @@ import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
 describe("ShoppingCart/ShoppingCartPage", () => {
   describe("initial render with items", () => {
     const props = {
-      classes: {},
       items: [
         {
           id: "DBS123",
@@ -34,7 +33,6 @@ describe("ShoppingCart/ShoppingCartPage", () => {
   })
   describe("initial render without items", () => {
     const props = {
-      classes: {},
       items: [],
     }
     const wrapper = shallow(<ShoppingCartPage {...props} />)

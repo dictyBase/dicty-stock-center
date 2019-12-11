@@ -8,10 +8,7 @@ import ShoppingCartItems from "./ShoppingCartItems"
 
 describe("ShoppingCart/ShoppingCartPageWithItems", () => {
   describe("initial render", () => {
-    const props = {
-      classes: {},
-    }
-    const wrapper = shallow(<ShoppingCartPageWithItems {...props} />).dive()
+    const wrapper = shallow(<ShoppingCartPageWithItems />)
     it("renders without crashing", () => {
       expect(wrapper).toHaveLength(1)
     })

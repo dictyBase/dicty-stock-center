@@ -1,12 +1,12 @@
+// @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "./shoppingCartStyles"
+import useStyles from "./shoppingCartStyles"
 
-const ShoppingCartPageNoItems = props => {
-  const { classes } = props
+const ShoppingCartPageNoItems = () => {
+  const classes = useStyles()
 
   return (
     <Grid container justify="center">
@@ -39,4 +39,4 @@ const ShoppingCartPageNoItems = props => {
   )
 }
 
-export default withStyles(styles)(ShoppingCartPageNoItems)
+export default ShoppingCartPageNoItems

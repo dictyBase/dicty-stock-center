@@ -2,11 +2,10 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
-import styles from "./shoppingCartStyles"
+import useStyles from "./shoppingCartStyles"
 
 type Props = {
   items: Array<{
@@ -14,14 +13,13 @@ type Props = {
     id: string,
     name: string,
   }>,
-  classes: Object,
 }
 
 /** ShoppingCartPage displays different UIs based on whether
  *  there are currently items in the cart. **/
 
-const ShoppingCartPage = (props: Props) => {
-  const { items, classes } = props
+const ShoppingCartPage = ({ items }: Props) => {
+  const classes = useStyles()
 
   return (
     <div className={classes.container}>
@@ -51,6 +49,4 @@ const mapStateToProps = state => ({
 })
 
 export { ShoppingCartPage }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(
-  withStyles(styles)(ShoppingCartPage),
-)
+export default connect<*, *, *, *, *, *>(mapStateToProps)(ShoppingCartPage)
