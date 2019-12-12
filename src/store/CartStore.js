@@ -13,7 +13,7 @@ const cartReducer = (state: Object, action: Object) => {
     case cartTypes.ADD_TO_CART:
       return {
         addedItems: [
-          ...state,
+          ...state.addedItems,
           {
             id: action.payload.item.id,
             name: action.payload.item.name,
@@ -25,10 +25,11 @@ const cartReducer = (state: Object, action: Object) => {
     case cartTypes.REMOVE_FROM_CART:
       return {
         addedItems: [
-          ...state.slice(0, action.payload.removeIndex),
-          ...state.slice(action.payload.removeIndex + 1),
+          ...state.addedItems.slice(0, action.payload.removeIndex),
+          ...state.addedItems.slice(action.payload.removeIndex + 1),
         ],
       }
+    // add modal here
     default:
       return state
   }
