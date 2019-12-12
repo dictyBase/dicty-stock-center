@@ -10,12 +10,12 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  /** The title of the page (generally stock ID) */
+  /** The title of the page (either Strain Catalog or Plasmid Catalog) */
   title: string,
 }
 
 /**
- * StockDetailsHeader is the header at the top of every stock details page.
+ * CatalogHeader is the header at the top of every stock catalog page.
  */
 
 const CatalogHeader = ({ title }: Props) => {
