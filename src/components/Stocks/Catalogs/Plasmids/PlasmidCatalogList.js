@@ -10,7 +10,7 @@ import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContex
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
 import { GET_PLASMID_LIST } from "queries/queries"
-import { catalogTypes } from "constants/catalogs"
+import useCheckboxes from "hooks/useCheckboxes"
 
 type Props = {
   data: Array<CartItem>,
@@ -24,20 +24,9 @@ type Props = {
  */
 
 export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
-  const [{ queryVariables, checkedItems }, dispatch] = useCatalogStore()
+  const [{ queryVariables, checkedItems }] = useCatalogStore()
+  const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
   const classes = useStyles()
-
-  const resetCheckedItems = () =>
-    dispatch({
-      type: catalogTypes.SET_CHECKED_ITEMS,
-      payload: [],
-    })
-
-  const handleCheckAllChange = () => {
-    if (checkedItems.length > 0) {
-      resetCheckedItems()
-    }
-  }
 
   const loadMoreItems = () =>
     fetchMore({

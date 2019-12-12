@@ -18,6 +18,18 @@ type cartDataType = {
 const useCheckboxes = (cartData: cartDataType) => {
   const [{ checkedItems }, dispatch] = useCatalogStore()
 
+  const resetCheckedItems = () =>
+    dispatch({
+      type: catalogTypes.SET_CHECKED_ITEMS,
+      payload: [],
+    })
+
+  const handleCheckAllChange = () => {
+    if (checkedItems.length > 0) {
+      resetCheckedItems()
+    }
+  }
+
   // if item is checked, then return true for checkbox
   const itemIsChecked = checkedItems.some(item => item.id === cartData.id)
 
@@ -36,7 +48,12 @@ const useCheckboxes = (cartData: cartDataType) => {
     }
   }
 
-  return { itemIsChecked, handleCheckboxChange }
+  return {
+    itemIsChecked,
+    handleCheckboxChange,
+    resetCheckedItems,
+    handleCheckAllChange,
+  }
 }
 
 export default useCheckboxes
