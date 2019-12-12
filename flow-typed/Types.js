@@ -8,6 +8,9 @@ declare module "hooks/useCheckboxes" {
 declare module "hooks/useDOI" {
   declare module.exports: any
 }
+declare module "hooks/useHover" {
+  declare module.exports: any
+}
 declare module "utils/oauthConfig" {
   declare module.exports: any
 }

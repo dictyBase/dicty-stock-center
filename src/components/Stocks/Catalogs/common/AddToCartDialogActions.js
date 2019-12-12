@@ -13,8 +13,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  /** Function to set hovering of list item */
-  setHover: Function,
   /** Function to add to checked items array */
   setCheckedItems: Function,
   /** Function that toggles whether dialog is open */
@@ -28,14 +26,13 @@ type Props = {
 
 export const AddToCartDialogActions = ({
   setDialogOpen,
-  setHover,
   setCheckedItems,
 }: Props) => {
   const classes = useStyles()
 
   const handleClose = () => {
     setDialogOpen(false)
-    setHover ? setHover(false) : setCheckedItems([])
+    setCheckedItems && setCheckedItems([])
   }
 
   return (

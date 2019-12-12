@@ -26,8 +26,6 @@ type Props = {
     /** Strain summary */
     summary: string,
   }>,
-  /** Function to set hovering of list item */
-  setHover?: Function,
   /** Function to add to checked items array */
   setCheckedItems?: Function,
   /** Type of stock (strain or plasmid) */
@@ -42,7 +40,6 @@ type Props = {
 export const AddToCartButton = ({
   data,
   addToCart,
-  setHover,
   setCheckedItems,
   stockType,
 }: Props) => {
@@ -79,7 +76,6 @@ export const AddToCartButton = ({
         data={data}
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
-        setHover={setHover}
         setCheckedItems={setCheckedItems}
       />
     </>

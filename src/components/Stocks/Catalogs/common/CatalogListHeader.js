@@ -45,7 +45,12 @@ const CatalogListHeader = ({ stockType }: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
-  let content
+  let content =
+    stockType === "strain" ? (
+      <StrainCatalogListHeader />
+    ) : (
+      <PlasmidCatalogListHeader />
+    )
 
   if (checkedItemsLength > 0) {
     content = (
@@ -66,13 +71,6 @@ const CatalogListHeader = ({ stockType }: Props) => {
         </IconButton>
       </>
     )
-  } else {
-    content =
-      stockType === "strain" ? (
-        <StrainCatalogListHeader />
-      ) : (
-        <PlasmidCatalogListHeader />
-      )
   }
 
   return (

@@ -15,8 +15,6 @@ type Props = {
     /** Strain summary */
     summary: string,
   }>,
-  /** Function to set hovering of list item */
-  setHover: Function,
   /** Function to add to checked items array */
   setCheckedItems: Function,
   /** Boolean for whether item added dialog is open */
@@ -34,12 +32,11 @@ export const AddToCartDialog = ({
   data,
   dialogOpen,
   setDialogOpen,
-  setHover,
   setCheckedItems,
 }: Props) => {
   const handleClose = () => {
     setDialogOpen(false)
-    setHover ? setHover(false) : setCheckedItems([])
+    setCheckedItems && setCheckedItems([])
   }
 
   return (
@@ -52,7 +49,6 @@ export const AddToCartDialog = ({
       <AddToCartDialogContent data={data} />
       <AddToCartDialogActions
         setDialogOpen={setDialogOpen}
-        setHover={setHover}
         setCheckedItems={setCheckedItems}
       />
     </Dialog>
