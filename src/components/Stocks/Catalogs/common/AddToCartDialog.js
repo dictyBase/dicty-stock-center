@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
+import useToggle from "hooks/useToggle"
 
 type Props = {
   /** Strain data */
@@ -17,10 +18,6 @@ type Props = {
   }>,
   /** Function to add to checked items array */
   setCheckedItems: Function,
-  /** Boolean for whether item added dialog is open */
-  dialogOpen: boolean,
-  /** Function that toggles whether dialog is open */
-  setDialogOpen: Function,
 }
 
 /**
@@ -28,14 +25,11 @@ type Props = {
  * is added to the cart.
  */
 
-export const AddToCartDialog = ({
-  data,
-  dialogOpen,
-  setDialogOpen,
-  setCheckedItems,
-}: Props) => {
+export const AddToCartDialog = ({ data, setCheckedItems }: Props) => {
+  const { value, setFalse } = useToggle(true)
+
   const handleClose = () => {
-    setDialogOpen(false)
+    setFalse()
     setCheckedItems && setCheckedItems([])
   }
 
@@ -44,13 +38,10 @@ export const AddToCartDialog = ({
       onClose={handleClose}
       fullWidth
       aria-labelledby="cart-dialog-title"
-      open={dialogOpen}>
+      open={value}>
       <DialogTitleDisplay title="Added to Cart" handleClose={handleClose} />
       <AddToCartDialogContent data={data} />
-      <AddToCartDialogActions
-        setDialogOpen={setDialogOpen}
-        setCheckedItems={setCheckedItems}
-      />
+      <AddToCartDialogActions setCheckedItems={setCheckedItems} />
     </Dialog>
   )
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
 import Button from "@material-ui/core/Button"
 import DialogActions from "@material-ui/core/DialogActions"
+import useToggle from "hooks/useToggle"
 
 const useStyles = makeStyles(theme => ({
   cartDialogButton: {
@@ -15,8 +16,6 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   /** Function to add to checked items array */
   setCheckedItems: Function,
-  /** Function that toggles whether dialog is open */
-  setDialogOpen: Function,
 }
 
 /**
@@ -24,14 +23,12 @@ type Props = {
  * of the cart dialog box.
  */
 
-export const AddToCartDialogActions = ({
-  setDialogOpen,
-  setCheckedItems,
-}: Props) => {
+export const AddToCartDialogActions = ({ setCheckedItems }: Props) => {
+  const { setFalse } = useToggle(false)
   const classes = useStyles()
 
   const handleClose = () => {
-    setDialogOpen(false)
+    setFalse()
     setCheckedItems && setCheckedItems([])
   }
 

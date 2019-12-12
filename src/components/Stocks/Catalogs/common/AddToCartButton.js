@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
@@ -7,6 +7,7 @@ import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
 import { addToCart } from "actions/cart"
+import useToggle from "hooks/useToggle"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
@@ -43,7 +44,7 @@ export const AddToCartButton = ({
   setCheckedItems,
   stockType,
 }: Props) => {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const { value, setTrue } = useToggle(false)
   const classes = useStyles()
 
   const handleClick = data => {
@@ -55,7 +56,7 @@ export const AddToCartButton = ({
         summary: item.summary,
       })
     })
-    setDialogOpen(true)
+    setTrue()
   }
 
   return (
@@ -72,12 +73,9 @@ export const AddToCartButton = ({
           <FontAwesomeIcon icon="cart-plus" />
         </IconButton>
       </strong>
-      <AddToCartDialog
-        data={data}
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
-        setCheckedItems={setCheckedItems}
-      />
+      {value && (
+        <AddToCartDialog data={data} setCheckedItems={setCheckedItems} />
+      )}
     </>
   )
 }
