@@ -8,6 +8,7 @@ import { Navbar } from "dicty-components-navbar"
 import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
+import { CartProvider } from "store/CartStore"
 import {
   headerItems,
   loggedHeaderItems,
@@ -23,8 +24,6 @@ import library from "utils/icons"
 type Props = {
   /** Object representing auth part of state */
   auth: Object,
-  /** Object representing cart part of state */
-  cart: Object,
   /** Object representing navbar part of state */
   navbar: Object,
   /** Object representing footer part of state */
@@ -34,7 +33,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
-  const { auth, cart, navbar, footer, fetchNavbarAndFooter } = props
+  const { auth, navbar, footer, fetchNavbarAndFooter } = props
   const classes = useStyles()
   const headerContent = auth.isAuthenticated ? loggedHeaderItems : headerItems
   // if any errors, fall back to old link setup
@@ -50,20 +49,21 @@ const App = (props: Props) => {
       <Header items={headerContent}>{items => items.map(generateLinks)}</Header>
       <Navbar items={navbarContent} theme={navTheme} />
       <br />
-      <main className={classes.main}>
-        <Cart cart={cart} />
-        <ErrorBoundary>
-          <RenderRoutes {...props} />
-        </ErrorBoundary>
-      </main>
+      <CartProvider>
+        <main className={classes.main}>
+          <Cart />
+          <ErrorBoundary>
+            <RenderRoutes {...props} />
+          </ErrorBoundary>
+        </main>
+      </CartProvider>
       <Footer items={footerContent} />
     </div>
   )
 }
 
-const mapStateToProps = ({ auth, cart, navbar, footer }) => ({
+const mapStateToProps = ({ auth, navbar, footer }) => ({
   auth,
-  cart,
   navbar,
   footer,
 })

@@ -1,10 +1,10 @@
 // @flow
 import React from "react"
 import { Link } from "react-router-dom"
-import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useCartStore } from "store/CartStore"
 
 const useStyles = makeStyles({
   container: {
@@ -17,33 +17,25 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
-  /** List of added items in the cart */
-  items: Array<Object>,
-}
-
 /**
  * This is the cart component that displays between the Navbar and body content on every page.
  * It has a cart icon with the current number of added items next to it.
  */
 
-const Cart = ({ items }: Props) => {
+const Cart = () => {
+  const [{ addedItems }] = useCartStore()
   const classes = useStyles()
 
   return (
     <Grid container justify="flex-end" className={classes.container}>
       <Grid item>
         <Link className={classes.link} to="/cart">
-          <FontAwesomeIcon icon="shopping-cart" size="2x" /> ({items.length})
+          <FontAwesomeIcon icon="shopping-cart" size="2x" /> (
+          {addedItems.length})
         </Link>
       </Grid>
     </Grid>
   )
 }
 
-const mapStateToProps = state => ({
-  items: state.cart.addedItems,
-})
-
-export { Cart }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(Cart)
+export default Cart
