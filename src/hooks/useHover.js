@@ -6,7 +6,7 @@ import React from "react"
  */
 
 const useHover = () => {
-  const [hover, setHover] = React.useState(false)
+  const [hover, setHover] = React.useState<boolean, Function>(false)
 
   const bind = {
     onMouseEnter: () => setHover(true),

@@ -6,7 +6,7 @@ import React from "react"
  */
 
 const useToggle = (initialValue: boolean) => {
-  const [value, setValue] = React.useState(initialValue)
+  const [value, setValue] = React.useState<boolean, Function>(initialValue)
 
   return {
     value,
