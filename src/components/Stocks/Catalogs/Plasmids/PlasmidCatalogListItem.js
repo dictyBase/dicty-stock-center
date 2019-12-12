@@ -42,7 +42,6 @@ const PlasmidCatalogListItem = memo<*>(
 
     const handleRemoveItemClick = () => {
       dispatch(removeItem(plasmid.id))
-      setHover(false)
     }
 
     return (

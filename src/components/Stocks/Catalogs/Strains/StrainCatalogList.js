@@ -10,7 +10,6 @@ import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContex
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
 import { GET_STRAIN_LIST } from "queries/queries"
-import useCheckboxes from "hooks/useCheckboxes"
 
 type Props = {
   data: Array<CartItem>,
@@ -24,8 +23,7 @@ type Props = {
  */
 
 const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
-  const [{ queryVariables, checkedItems }] = useCatalogStore()
-  const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
+  const [{ queryVariables }] = useCatalogStore()
   const classes = useStyles()
 
   const loadMoreItems = () =>
@@ -66,12 +64,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
 
   return (
     <Paper className={classes.catalogPaper}>
-      <CatalogListHeader
-        checkedItems={checkedItems}
-        setCheckedItems={resetCheckedItems}
-        handleCheckAllChange={handleCheckAllChange}
-        stockType="strain"
-      />
+      <CatalogListHeader stockType="strain" />
       <AutoSizer>
         {({ height, width }) => (
           <InfiniteLoader

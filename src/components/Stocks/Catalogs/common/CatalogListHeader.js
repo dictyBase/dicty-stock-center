@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
 import StrainCatalogListHeader from "components/Stocks/Catalogs/Strains/StrainCatalogListHeader"
 import PlasmidCatalogListHeader from "components/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
+import useCheckboxes from "hooks/useCheckboxes"
+import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -28,16 +30,6 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  checkedItems: Array<{
-    id: string,
-    label?: string,
-    name?: string,
-    summary: string,
-  }>,
-  /** Function for controlling checked items array */
-  setCheckedItems: Function,
-  /** Function for handling the "check all" box */
-  handleCheckAllChange: Function,
   /** Type of stock (strain or plasmid) */
   stockType: string,
 }
@@ -47,12 +39,9 @@ type Props = {
  * descriptor, summary, etc) at the top of the catalog page.
  */
 
-const CatalogListHeader = ({
-  stockType,
-  checkedItems,
-  setCheckedItems,
-  handleCheckAllChange,
-}: Props) => {
+const CatalogListHeader = ({ stockType }: Props) => {
+  const [{ checkedItems }] = useCatalogStore()
+  const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
@@ -64,7 +53,7 @@ const CatalogListHeader = ({
         {checkedItemsLength} items selected
         <AddToCartButton
           data={checkedItems}
-          setCheckedItems={setCheckedItems}
+          setCheckedItems={resetCheckedItems}
           stockType={stockType}
         />
         <IconButton

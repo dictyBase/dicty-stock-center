@@ -42,7 +42,6 @@ const StrainCatalogListItem = memo<*>(
 
     const handleRemoveItemClick = () => {
       dispatch(removeItem(strain.id))
-      setHover(false)
     }
 
     return (
