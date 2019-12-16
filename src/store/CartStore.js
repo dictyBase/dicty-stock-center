@@ -1,6 +1,21 @@
 // @flow
 import React, { createContext, useContext, useReducer } from "react"
 import { cartTypes } from "constants/cart"
+import { fees } from "constants/fees"
+
+const { ADD_TO_CART, REMOVE_FROM_CART } = cartTypes
+const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
+
+const getFee = item => {
+  switch (item) {
+    case "strain":
+      return STRAIN_FEE
+    case "plasmid":
+      return PLASMID_FEE
+    default:
+      return OTHER_FEE
+  }
+}
 
 const CartContext: Object = createContext()
 
@@ -49,6 +64,38 @@ const CartProvider = ({ children }: any) => {
   )
 }
 
-const useCartStore = () => useContext(CartContext)
+const useCartStore = () => {
+  const context = useContext(CartContext)
+  if (!context) {
+    throw new Error("useCartStore must be used within a CartProvider")
+  }
+  return context
+}
 
-export { CartContext, cartReducer, CartProvider, useCartStore }
+const addToCart = (dispatch, item) =>
+  // must pass dispatch manually since this is a helper function, not a
+  // React component or custom hook
+  dispatch({
+    type: ADD_TO_CART,
+    payload: {
+      fee: getFee(item.type),
+      item,
+    },
+  })
+
+const removeFromCart = (dispatch, addedItems, id) =>
+  dispatch({
+    type: REMOVE_FROM_CART,
+    payload: {
+      removeIndex: addedItems.map(item => item.id).indexOf(id),
+    },
+  })
+
+export {
+  CartContext,
+  cartReducer,
+  CartProvider,
+  useCartStore,
+  addToCart,
+  removeFromCart,
+}
