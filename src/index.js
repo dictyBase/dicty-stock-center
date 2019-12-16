@@ -21,7 +21,6 @@ import "typeface-roboto"
 // initial state for the store
 const initialState = hydrateAll(
   hydrateStore({ key: "auth", namespace: "auth" }),
-  hydrateStore({ key: "cart", namespace: "shoppingCart" }),
 )
 const store = configureStore(initialState)
 

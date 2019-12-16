@@ -27,12 +27,6 @@ const permArg = {
   key: "auth",
   namespace: "auth",
 }
-const cartArg = {
-  save_action: dsctypes.ADD_TO_CART,
-  remove_action: dsctypes.REMOVE_FROM_CART,
-  key: "cart",
-  namespace: "shoppingCart",
-}
 
 const enhancer = composeWithDevTools(
   applyMiddleware(
@@ -42,7 +36,6 @@ const enhancer = composeWithDevTools(
     manageStateStorage(authArg),
     manageStateStorage(roleArg),
     manageStateStorage(permArg),
-    manageStateStorage(cartArg),
   ),
 )
 
