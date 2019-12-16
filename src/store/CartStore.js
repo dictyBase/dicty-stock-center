@@ -23,7 +23,24 @@ const initialState = {
   addedItems: [],
 }
 
-const cartReducer = (state: Object, action: Object) => {
+type CartItem = {
+  id: string,
+  name: string,
+  summary: string,
+  type: string,
+}
+
+const cartReducer = (
+  state: Object,
+  action: {
+    type: string,
+    payload: {
+      item: CartItem,
+      fee: string,
+      removeIndex: number,
+    },
+  },
+) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
       return {
@@ -72,7 +89,7 @@ const useCartStore = () => {
   return context
 }
 
-const addToCart = (dispatch, item) =>
+const addToCart = (dispatch: Function, item: CartItem) =>
   // must pass dispatch manually since this is a helper function, not a
   // React component or custom hook
   dispatch({
@@ -83,7 +100,11 @@ const addToCart = (dispatch, item) =>
     },
   })
 
-const removeFromCart = (dispatch, addedItems, id) =>
+const removeFromCart = (
+  dispatch: Function,
+  addedItems: Array<CartItem>,
+  id: string,
+) =>
   dispatch({
     type: REMOVE_FROM_CART,
     payload: {
