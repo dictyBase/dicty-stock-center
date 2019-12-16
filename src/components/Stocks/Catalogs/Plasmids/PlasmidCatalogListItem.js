@@ -1,6 +1,5 @@
 // @flow
 import React from "react"
-import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
@@ -14,7 +13,7 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "hooks/useCheckboxes"
 import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
-import { removeItem } from "actions/cart"
+import { removeFromCart, useCartStore } from "store/CartStore"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -34,10 +33,10 @@ const PlasmidCatalogListItem = ({ index, style, data }: listItemProps) => {
   const { itemIsInCart } = useCartItems(plasmid.id)
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
-  const dispatch = useDispatch()
+  const [{ addedItems }, dispatch] = useCartStore()
 
   const handleRemoveItemClick = () => {
-    dispatch(removeItem(plasmid.id))
+    dispatch(removeFromCart(dispatch, addedItems, plasmid.id))
     setHover(false)
   }
 

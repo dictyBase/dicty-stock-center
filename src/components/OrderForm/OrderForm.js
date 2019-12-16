@@ -1,6 +1,5 @@
 // @flow
 import React, { useState } from "react"
-import { connect } from "react-redux"
 import { Form, Formik } from "formik"
 import { useMutation } from "@apollo/react-hooks"
 import { Helmet } from "react-helmet"
@@ -11,22 +10,13 @@ import SubmitPage from "./Submit/SubmitPage"
 import initialValues from "./utils/initialValues"
 import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
-import { removeItem } from "actions/cart"
+import { removeFromCart, useCartStore } from "store/CartStore"
 import { POST_ORDER } from "queries/queries"
 import OrderFormStepper from "./OrderFormStepper"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
 type Props = {
-  /** Action to remove items from the cart */
-  removeItem: Function,
-  /** Items currently in the cart */
-  items: Array<{
-    /** ID of item */
-    id: string,
-    /** Name of item */
-    name: string,
-  }>,
   /** React Router History */
   history: Object,
 }
@@ -35,8 +25,9 @@ type Props = {
  * OrderForm is the main component used for the checkout process.
  */
 
-const OrderForm = ({ items, removeItem, history }: Props) => {
+const OrderForm = ({ history }: Props) => {
   const classes = useStyles()
+  const [{ addedItems }, dispatch] = useCartStore()
   const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
   const [createOrder] = useMutation(POST_ORDER)
@@ -69,12 +60,14 @@ const OrderForm = ({ items, removeItem, history }: Props) => {
                   consumer: values.email,
                   payer: values.payerEmail,
                   purchaser: values.email,
-                  items: items.map(item => item.id),
+                  items: addedItems.map(item => item.id),
                 },
               },
             })
             history.push("/order/submitted")
-            items.forEach(item => removeItem(item.id))
+            addedItems.forEach(item =>
+              removeFromCart(dispatch, addedItems, item.id),
+            )
           }}>
           {props => (
             <Form>
@@ -91,18 +84,4 @@ const OrderForm = ({ items, removeItem, history }: Props) => {
   )
 }
 
-const mapStateToProps = state => ({
-  items: state.cart.addedItems,
-})
-
-const mapDispatchToProps = dispatch => ({
-  removeItem: id => {
-    dispatch(removeItem(id))
-  },
-})
-
-export { OrderForm }
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(OrderForm)
+export default OrderForm

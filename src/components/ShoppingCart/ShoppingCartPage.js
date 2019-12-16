@@ -1,24 +1,17 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
 import useStyles from "./shoppingCartStyles"
-
-type Props = {
-  items: Array<{
-    fee: string,
-    id: string,
-    name: string,
-  }>,
-}
+import { useCartStore } from "store/CartStore"
 
 /** ShoppingCartPage displays different UIs based on whether
  *  there are currently items in the cart. **/
 
-const ShoppingCartPage = ({ items }: Props) => {
+const ShoppingCartPage = () => {
+  const [{ addedItems }] = useCartStore()
   const classes = useStyles()
 
   return (
@@ -35,7 +28,7 @@ const ShoppingCartPage = ({ items }: Props) => {
           <h2 className={classes.header}>Shopping Cart</h2>
         </Grid>
       </Grid>
-      {items.length > 0 ? (
+      {addedItems.length > 0 ? (
         <ShoppingCartPageWithItems />
       ) : (
         <ShoppingCartPageNoItems />
@@ -44,9 +37,4 @@ const ShoppingCartPage = ({ items }: Props) => {
   )
 }
 
-const mapStateToProps = state => ({
-  items: state.cart.addedItems,
-})
-
-export { ShoppingCartPage }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(ShoppingCartPage)
+export default ShoppingCartPage

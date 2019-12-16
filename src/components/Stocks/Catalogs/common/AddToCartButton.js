@@ -1,13 +1,12 @@
 // @flow
 import React from "react"
-import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
 import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
-import { addToCart } from "actions/cart"
 import useToggle from "hooks/useToggle"
+import { addToCart, useCartStore } from "store/CartStore"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
@@ -16,8 +15,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  /** Action for adding an item to the shopping cart */
-  addToCart: Function,
   /** Strain data */
   data: Array<{
     /** Strain ID number */
@@ -40,16 +37,16 @@ type Props = {
 
 export const AddToCartButton = ({
   data,
-  addToCart,
   setCheckedItems,
   stockType,
 }: Props) => {
+  const [, dispatch] = useCartStore()
   const { value, setTrue } = useToggle(false)
   const classes = useStyles()
 
   const handleClick = data => {
     data.forEach(item => {
-      addToCart({
+      addToCart(dispatch, {
         type: stockType,
         id: item.id,
         name: item.name,
@@ -80,4 +77,4 @@ export const AddToCartButton = ({
   )
 }
 
-export default connect<*, *, *, *, *, *>(null, { addToCart })(AddToCartButton)
+export default AddToCartButton

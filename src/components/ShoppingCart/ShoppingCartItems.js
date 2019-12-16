@@ -1,6 +1,5 @@
 // @flow
 import React, { Fragment } from "react"
-import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
@@ -10,7 +9,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { removeItem } from "actions/cart"
+import { removeFromCart, useCartStore } from "store/CartStore"
 
 const useStyles = makeStyles({
   layout: {
@@ -44,25 +43,16 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
-  items: Array<{
-    id: string,
-    name: string,
-    summary: string,
-    fee: string,
-  }>,
-  removeItem: Function,
-}
-
 /**
  * ShoppingCartItems lists all of the items in the user's cart.
  */
 
-const ShoppingCartItems = ({ items, removeItem }: Props) => {
+const ShoppingCartItems = () => {
+  const [{ addedItems }, dispatch] = useCartStore()
   const classes = useStyles()
 
   // get the total fee for combined items in cart
-  const total = items
+  const total = addedItems
     .map(item => Number(item.fee))
     .reduce((acc, val) => acc + val)
 
@@ -73,7 +63,7 @@ const ShoppingCartItems = ({ items, removeItem }: Props) => {
       </Grid>
       <Grid item xs={12}>
         <List>
-          {items.map((item, index) => {
+          {addedItems.map((item, index) => {
             let stock = "strains"
             if (item.id.substring(0, 3) === "DBP") {
               stock = "plasmids"
@@ -106,7 +96,9 @@ const ShoppingCartItems = ({ items, removeItem }: Props) => {
                         variant="contained"
                         color="secondary"
                         className={classes.trashBtn}
-                        onClick={() => removeItem(item.id)}>
+                        onClick={() =>
+                          removeFromCart(dispatch, addedItems, item.id)
+                        }>
                         <FontAwesomeIcon icon="trash" />
                       </Button>
                     </Grid>
@@ -135,18 +127,4 @@ const ShoppingCartItems = ({ items, removeItem }: Props) => {
   )
 }
 
-const mapStateToProps = state => ({
-  items: state.cart.addedItems,
-})
-
-const mapDispatchToProps = dispatch => ({
-  removeItem: id => {
-    dispatch(removeItem(id))
-  },
-})
-
-export { ShoppingCartItems }
-export default connect<*, *, *, *, *, *>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ShoppingCartItems)
+export default ShoppingCartItems
