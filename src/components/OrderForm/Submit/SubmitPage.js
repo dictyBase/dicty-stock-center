@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
+import ShoppingCartItemList from "components/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 import useStyles from "../formStyles"
 import { Props } from "./types"
@@ -18,7 +18,7 @@ export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
       <Grid item xs={12}>
         <div className={classes.submitPage}>
           <Grid container justify="center">
-            <ShoppingCartItems />
+            <ShoppingCartItemList />
           </Grid>
         </div>
         <br />

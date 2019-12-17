@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ShoppingCartItems from "./ShoppingCartItems"
+import ShoppingCartItemList from "./ShoppingCartItemList"
 import useStyles from "./shoppingCartStyles"
 
 const ShoppingCartPageWithItems = () => {
@@ -14,7 +14,7 @@ const ShoppingCartPageWithItems = () => {
     <>
       <Grid container justify="center">
         <Grid item xs={12}>
-          <ShoppingCartItems />
+          <ShoppingCartItemList />
         </Grid>
       </Grid>
       <Grid container justify="center">

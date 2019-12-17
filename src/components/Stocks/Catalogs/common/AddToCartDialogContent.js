@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
-import strainOrPlasmid from "components/Stocks/utils/strainOrPlasmid"
+import strainOrPlasmid from "utils/strainOrPlasmid"
 
 const useStyles = makeStyles(({ palette }) => ({
   link: {

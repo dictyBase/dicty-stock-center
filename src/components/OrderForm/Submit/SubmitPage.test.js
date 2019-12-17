@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import SubmitPage from "./SubmitPage"
-import ShoppingCartItems from "components/ShoppingCart/ShoppingCartItems"
+import ShoppingCartItemList from "components/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 
 describe("OrderForm/Submit/SubmitPage", () => {
@@ -12,7 +12,7 @@ describe("OrderForm/Submit/SubmitPage", () => {
   const wrapper = shallow(<SubmitPage {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(ShoppingCartItems)).toHaveLength(1)
+      expect(wrapper.find(ShoppingCartItemList)).toHaveLength(1)
       expect(wrapper.find(SubmitPageBottomButtons)).toHaveLength(1)
     })
   })

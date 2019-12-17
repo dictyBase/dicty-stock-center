@@ -3,10 +3,10 @@ import { mount } from "enzyme"
 import { BrowserRouter } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
-import ShoppingCartItems from "./ShoppingCartItems"
+import ShoppingCartItemList from "./ShoppingCartItemList"
 import { CartContext, cartReducer } from "./CartStore"
 
-describe("ShoppingCart/ShoppingCartItems", () => {
+describe("ShoppingCart/ShoppingCartItemList", () => {
   describe("initial render with both strains and plasmids", () => {
     const MockProvider = () => {
       const [state, dispatch] = React.useReducer(cartReducer, {
@@ -26,7 +26,7 @@ describe("ShoppingCart/ShoppingCartItems", () => {
       return (
         <CartContext.Provider value={[state, dispatch]}>
           <BrowserRouter>
-            <ShoppingCartItems />
+            <ShoppingCartItemList />
           </BrowserRouter>
         </CartContext.Provider>
       )

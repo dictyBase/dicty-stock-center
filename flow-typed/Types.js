@@ -41,6 +41,9 @@ declare module "utils/findLinkEntities" {
 declare module "utils/redirectUrlGenerator" {
   declare module.exports: any
 }
+declare module "utils/strainOrPlasmid" {
+  declare module.exports: any
+}
 declare module "middlewares/storage" {
   declare module.exports: any
 }

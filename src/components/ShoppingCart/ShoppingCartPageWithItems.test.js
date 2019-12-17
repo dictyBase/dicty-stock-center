@@ -4,7 +4,7 @@ import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ShoppingCartItems from "./ShoppingCartItems"
+import ShoppingCartItemList from "./ShoppingCartItemList"
 
 describe("ShoppingCart/ShoppingCartPageWithItems", () => {
   describe("initial render", () => {
@@ -14,7 +14,7 @@ describe("ShoppingCart/ShoppingCartPageWithItems", () => {
     })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(4)
-      expect(wrapper.find(ShoppingCartItems)).toHaveLength(1)
+      expect(wrapper.find(ShoppingCartItemList)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
       expect(wrapper.find(Button)).toHaveLength(2)
     })
