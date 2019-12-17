@@ -1,10 +1,12 @@
 import React from "react"
-import { shallow } from "enzyme"
-import { AddToCartDialog } from "./AddToCartDialog"
+import { mount } from "enzyme"
+import { BrowserRouter } from "react-router-dom"
+import AddToCartDialog from "./AddToCartDialog"
 import Dialog from "@material-ui/core/Dialog"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
+import { CartProvider } from "store/CartStore"
 
 describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
   describe("initial render with one item in cart", () => {
@@ -16,15 +18,15 @@ describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
           summary: "test summary",
         },
       ],
-      setHover: jest.fn(),
       setCheckedItems: jest.fn(),
-      dialogOpen: false,
-      history: {},
     }
-    const wrapper = shallow(<AddToCartDialog {...props} />)
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
+    const wrapper = mount(
+      <CartProvider>
+        <BrowserRouter>
+          <AddToCartDialog {...props} />
+        </BrowserRouter>
+      </CartProvider>,
+    )
     it("always renders initial components", () => {
       expect(wrapper.find(Dialog)).toHaveLength(1)
       expect(wrapper.find(DialogTitleDisplay)).toHaveLength(1)

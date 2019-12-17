@@ -7,7 +7,7 @@ import DialogActions from "@material-ui/core/DialogActions"
 describe("Stocks/Catalogs/common/AddToCartDialogActions", () => {
   describe("initial render", () => {
     const props = {
-      setCheckedItems: jest.fn(),
+      handleClose: jest.fn(),
     }
     const wrapper = shallow(<AddToCartDialogActions {...props} />)
 
@@ -17,18 +17,18 @@ describe("Stocks/Catalogs/common/AddToCartDialogActions", () => {
     })
   })
   describe("button clicking", () => {
-    const setCheckedItemsSpy = jest.fn()
+    const handleCloseSpy = jest.fn()
 
-    it("calls correct functions when setCheckedItems is passed as prop", () => {
+    it("calls correct functions when handleCloseSpy is passed as prop", () => {
       const props = {
-        setCheckedItems: setCheckedItemsSpy,
+        handleClose: handleCloseSpy,
       }
       const wrapper = shallow(<AddToCartDialogActions {...props} />)
       wrapper
         .find(Button)
         .first()
         .simulate("click")
-      expect(setCheckedItemsSpy).toHaveBeenCalled()
+      expect(handleCloseSpy).toHaveBeenCalled()
     })
   })
 })
