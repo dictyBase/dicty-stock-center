@@ -36,7 +36,7 @@ const PlasmidCatalogListItem = ({ index, style, data }: listItemProps) => {
   const [{ addedItems }, dispatch] = useCartStore()
 
   const handleRemoveItemClick = () => {
-    dispatch(removeFromCart(dispatch, addedItems, plasmid.id))
+    removeFromCart(dispatch, addedItems, plasmid.id)
     setHover(false)
   }
 

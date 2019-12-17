@@ -36,7 +36,7 @@ const StrainCatalogListItem = ({ index, style, data }: listItemProps) => {
   const [{ addedItems }, dispatch] = useCartStore()
 
   const handleRemoveItemClick = () => {
-    dispatch(removeFromCart(dispatch, addedItems, strain.id))
+    removeFromCart(dispatch, addedItems, strain.id)
     setHover(false)
   }
 
