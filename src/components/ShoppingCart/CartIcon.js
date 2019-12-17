@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useCartStore } from "store/CartStore"
+import { useCartStore } from "./CartStore"
 
 const useStyles = makeStyles({
   container: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
  * It has a cart icon with the current number of added items next to it.
  */
 
-const Cart = () => {
+const CartIcon = () => {
   const [{ addedItems }] = useCartStore()
   const classes = useStyles()
 
@@ -38,4 +38,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default CartIcon

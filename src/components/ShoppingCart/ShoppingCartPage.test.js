@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import ShoppingCartPage from "./ShoppingCartPage"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
-import { CartContext, cartReducer } from "store/CartStore"
+import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/ShoppingCartPage", () => {
   const MockProvider = ({ items }) => {

@@ -4,22 +4,20 @@ import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
-
 import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 import {
   headerItems,
   loggedHeaderItems,
   generateLinks,
 } from "utils/headerItems"
-import Cart from "./Cart"
+import "utils/icons" // fontawesome library
+import CartIcon from "components/ShoppingCart/CartIcon"
 import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { useStyles, navTheme } from "./appStyles"
-// eslint-disable-next-line
-import library from "utils/icons"
 
 type Props = {
   /** Object representing auth part of state */
@@ -51,7 +49,7 @@ const App = (props: Props) => {
       <br />
       <CartProvider>
         <main className={classes.main}>
-          <Cart />
+          <CartIcon />
           <ErrorBoundary>
             <RenderRoutes {...props} />
           </ErrorBoundary>

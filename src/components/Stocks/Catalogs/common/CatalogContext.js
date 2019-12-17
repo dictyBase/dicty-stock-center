@@ -7,7 +7,6 @@ const CatalogContext: Object = createContext()
 const initialState = {
   queryVariables: { cursor: 0, filter: "" },
   checkedItems: [],
-  cartDialogOpen: false,
 }
 
 const catalogReducer = (state: Object, action: Object) => {
@@ -22,12 +21,6 @@ const catalogReducer = (state: Object, action: Object) => {
         ...state,
         checkedItems: action.payload,
       }
-    case catalogTypes.SET_CART_DIALOG_OPEN: {
-      return {
-        ...state,
-        cartDialogOpen: action.payload,
-      }
-    }
     default:
       return state
   }

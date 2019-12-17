@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
-import { addToCart, useCartStore } from "store/CartStore"
+import { addToCart, useCartStore } from "components/ShoppingCart/CartStore"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {

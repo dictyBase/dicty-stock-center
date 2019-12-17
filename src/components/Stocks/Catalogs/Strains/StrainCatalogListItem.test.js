@@ -6,7 +6,7 @@ import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContex
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
   describe("initial render", () => {

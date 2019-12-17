@@ -6,7 +6,7 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
   describe("initial render with one item in cart", () => {

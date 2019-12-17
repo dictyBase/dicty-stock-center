@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { removeFromCart, useCartStore } from "store/CartStore"
+import { removeFromCart, useCartStore } from "./CartStore"
 
 const useStyles = makeStyles({
   layout: {

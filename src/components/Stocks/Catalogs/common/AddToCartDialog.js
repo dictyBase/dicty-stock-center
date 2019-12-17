@@ -4,7 +4,7 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
-import { useCartStore } from "store/CartStore"
+import { useCartStore } from "components/ShoppingCart/CartStore"
 import { cartTypes } from "constants/cart"
 
 type Props = {

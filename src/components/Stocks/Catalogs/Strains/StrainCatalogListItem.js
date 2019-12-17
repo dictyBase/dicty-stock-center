@@ -13,7 +13,7 @@ import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { removeFromCart, useCartStore } from "store/CartStore"
+import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 

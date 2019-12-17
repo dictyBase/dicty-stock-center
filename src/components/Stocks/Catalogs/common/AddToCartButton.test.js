@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import AddToCartButton from "./AddToCartButton"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/CatalogTableItems/AddToCartButton", () => {
   const props = {

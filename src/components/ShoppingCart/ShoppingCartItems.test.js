@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
 import ShoppingCartItems from "./ShoppingCartItems"
-import { CartContext, cartReducer } from "store/CartStore"
+import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/ShoppingCartItems", () => {
   describe("initial render with both strains and plasmids", () => {

@@ -10,7 +10,7 @@ import SubmitPage from "./Submit/SubmitPage"
 import initialValues from "./utils/initialValues"
 import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
-import { removeFromCart, useCartStore } from "store/CartStore"
+import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
 import { POST_ORDER } from "queries/queries"
 import OrderFormStepper from "./OrderFormStepper"
 

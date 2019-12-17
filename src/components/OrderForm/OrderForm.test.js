@@ -4,7 +4,7 @@ import { MockedProvider } from "@apollo/react-testing"
 import OrderForm from "./OrderForm"
 import { Helmet } from "react-helmet"
 import { Form, Formik } from "formik"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("OrderForm/OrderForm", () => {
   const wrapper = mount(

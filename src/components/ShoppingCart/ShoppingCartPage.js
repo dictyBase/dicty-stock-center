@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
 import useStyles from "./shoppingCartStyles"
-import { useCartStore } from "store/CartStore"
+import { useCartStore } from "./CartStore"
 
 /** ShoppingCartPage displays different UIs based on whether
  *  there are currently items in the cart. **/

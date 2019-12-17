@@ -13,7 +13,7 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "hooks/useCheckboxes"
 import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
-import { removeFromCart, useCartStore } from "store/CartStore"
+import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 

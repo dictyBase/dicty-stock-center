@@ -1,5 +1,5 @@
 // @flow
-import { useCartStore } from "store/CartStore"
+import { useCartStore } from "components/ShoppingCart/CartStore"
 
 /**
  * useCartItems is a hook for handling items currently in the cart.
