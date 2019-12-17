@@ -2,21 +2,11 @@ import React from "react"
 import { mount } from "enzyme"
 import StrainCatalogListItem from "./StrainCatalogListItem"
 import { BrowserRouter } from "react-router-dom"
-import { Provider } from "react-redux"
-import configureMockStore from "redux-mock-store"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-
-const mockStore = configureMockStore()
-const store = mockStore({
-  cart: {
-    addedItems: [
-      { id: "DBS1234", label: "test strain", summary: "test summary" },
-    ],
-  },
-})
+import { CartProvider } from "store/CartStore"
 
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
   describe("initial render", () => {
@@ -35,11 +25,11 @@ describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
     }
     const wrapper = mount(
       <CatalogProvider>
-        <Provider store={store}>
+        <CartProvider>
           <BrowserRouter>
             <StrainCatalogListItem {...props} />
           </BrowserRouter>
-        </Provider>
+        </CartProvider>
       </CatalogProvider>,
     )
     it("always renders initial components", () => {

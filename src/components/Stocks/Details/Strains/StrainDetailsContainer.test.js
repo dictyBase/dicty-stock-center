@@ -1,24 +1,16 @@
 import React from "react"
 import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
-import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
-import configureStore from "redux-mock-store"
 import wait from "waait"
 import { StrainDetailsContainer } from "./StrainDetailsContainer"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { CartProvider } from "store/CartStore"
 import { GET_STRAIN } from "queries/queries"
 import { data } from "./mockStrainData"
-
-const mockStore = configureStore()
-const store = mockStore({
-  cart: {
-    addedItems: [],
-  },
-})
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => ({
@@ -52,11 +44,11 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
     ]
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
+        <CartProvider>
           <BrowserRouter>
             <StrainDetailsContainer {...props} />
           </BrowserRouter>
-        </Provider>
+        </CartProvider>
       </MockedProvider>,
     )
     it("renders Loading component first", () => {
@@ -91,11 +83,11 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
     ]
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
+        <CartProvider>
           <BrowserRouter>
             <StrainDetailsContainer {...props} />
           </BrowserRouter>
-        </Provider>
+        </CartProvider>
       </MockedProvider>,
     )
     it("handles errors as expected", async () => {

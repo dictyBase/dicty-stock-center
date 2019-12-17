@@ -1,9 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
-import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
-import configureMockStore from "redux-mock-store"
 import wait from "waait"
 import { PlasmidDetailsContainer } from "./PlasmidDetailsContainer"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
@@ -11,15 +9,9 @@ import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
+import { CartProvider } from "store/CartStore"
 import { GET_PLASMID } from "queries/queries"
 import { data } from "./mockPlasmidData"
-
-const mockStore = configureMockStore()
-const store = mockStore({
-  cart: {
-    addedItems: [],
-  },
-})
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => ({
@@ -46,11 +38,11 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
     ]
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
+        <CartProvider>
           <BrowserRouter>
             <PlasmidDetailsContainer />
           </BrowserRouter>
-        </Provider>
+        </CartProvider>
       </MockedProvider>,
     )
     it("renders Loading component first", () => {
@@ -85,13 +77,13 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       },
     ]
     const wrapper = mount(
-      <Provider store={store}>
+      <CartProvider>
         <BrowserRouter>
           <MockedProvider mocks={mocks} addTypename={false}>
             <PlasmidDetailsContainer />
           </MockedProvider>
         </BrowserRouter>
-      </Provider>,
+      </CartProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

@@ -1,8 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
-import { Provider } from "react-redux"
-import configureMockStore from "redux-mock-store"
 import wait from "waait"
 import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
 import PlasmidCatalogList from "./PlasmidCatalogList"
@@ -11,9 +9,6 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import { GET_PLASMID_LIST } from "queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
-
-const mockStore = configureMockStore()
-const store = mockStore({})
 
 describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
   describe("initial render", () => {
@@ -48,9 +43,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     const wrapper = mount(
       <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
-          <Provider store={store}>
-            <PlasmidCatalogContainer />
-          </Provider>
+          <PlasmidCatalogContainer />
         </MockedProvider>
       </CatalogProvider>,
     )
@@ -88,9 +81,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     const wrapper = mount(
       <CatalogProvider>
         <MockedProvider mocks={mocks} addTypename={false}>
-          <Provider store={store}>
-            <PlasmidCatalogContainer />
-          </Provider>
+          <PlasmidCatalogContainer />
         </MockedProvider>
       </CatalogProvider>,
     )
