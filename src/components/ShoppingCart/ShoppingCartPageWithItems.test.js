@@ -9,9 +9,6 @@ import ShoppingCartItemList from "./ShoppingCartItemList"
 describe("ShoppingCart/ShoppingCartPageWithItems", () => {
   describe("initial render", () => {
     const wrapper = shallow(<ShoppingCartPageWithItems />)
-    it("renders without crashing", () => {
-      expect(wrapper).toHaveLength(1)
-    })
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toHaveLength(4)
       expect(wrapper.find(ShoppingCartItemList)).toHaveLength(1)
