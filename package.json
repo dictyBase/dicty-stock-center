@@ -122,7 +122,9 @@
     "collectCoverageFrom": [
       "src/components/**/*.{js,jsx,ts,tsx}",
       "src/hooks/**/*.{js,jsx,ts,tsx}",
-      "src/utils/**/*.{js,jsx,ts,tsx}",
+      "src/utils/apiClasses.js",
+      "src/utils/redirectUrlGenerator.js",
+      "src/utils/strainOrPlasmid.js",
       "!src/components/**/mock*.js",
       "!src/components/**/types.js",
       "!src/components/**/*Styles.js"
