@@ -121,7 +121,10 @@
   "jest": {
     "collectCoverageFrom": [
       "src/components/**/*.{js,jsx,ts,tsx}",
-      "src/hooks/**/*.{js,jsx,ts,tsx}"
+      "src/hooks/**/*.{js,jsx,ts,tsx}",
+      "!src/components/**/mock*.js",
+      "!src/components/**/types.js",
+      "!src/components/**/*Styles.js"
     ]
   },
   "lint-staged": {
