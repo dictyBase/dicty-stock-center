@@ -5,7 +5,6 @@ import IconButton from "@material-ui/core/IconButton"
 import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
-import useToggle from "hooks/useToggle"
 import { addToCart, useCartStore } from "store/CartStore"
 
 const useStyles = makeStyles(theme => ({
@@ -40,8 +39,7 @@ export const AddToCartButton = ({
   setCheckedItems,
   stockType,
 }: Props) => {
-  const [, dispatch] = useCartStore()
-  const { value, setTrue } = useToggle(false)
+  const [{ showCartDialog }, dispatch] = useCartStore()
   const classes = useStyles()
 
   const handleClick = data => {
@@ -53,7 +51,6 @@ export const AddToCartButton = ({
         summary: item.summary,
       })
     })
-    setTrue()
   }
 
   return (
@@ -70,7 +67,7 @@ export const AddToCartButton = ({
           <FontAwesomeIcon icon="cart-plus" />
         </IconButton>
       </strong>
-      {value && (
+      {showCartDialog && (
         <AddToCartDialog data={data} setCheckedItems={setCheckedItems} />
       )}
     </>

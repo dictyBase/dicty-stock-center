@@ -23,6 +23,7 @@ const CartContext: Object = createContext()
 
 const initialState = {
   addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
+  showCartDialog: false,
 }
 
 type CartItem = {
@@ -54,6 +55,7 @@ const cartReducer = (
       localStorage.setItem(storageKey, JSON.stringify(newItems))
       return {
         addedItems: newItems,
+        showCartDialog: true,
       }
     case cartTypes.REMOVE_FROM_CART:
       const updatedItems = [
@@ -63,7 +65,11 @@ const cartReducer = (
       return {
         addedItems: updatedItems,
       }
-    // add modal here
+    case cartTypes.HIDE_CART_DIALOG:
+      return {
+        ...state,
+        showCartDialog: false,
+      }
     default:
       return state
   }
