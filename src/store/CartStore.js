@@ -6,6 +6,8 @@ import { fees } from "constants/fees"
 const { ADD_TO_CART, REMOVE_FROM_CART } = cartTypes
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
+const storageKey = "dscCart"
+
 const getFee = item => {
   switch (item) {
     case "strain":
@@ -20,7 +22,7 @@ const getFee = item => {
 const CartContext: Object = createContext()
 
 const initialState = {
-  addedItems: [],
+  addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
 }
 
 type CartItem = {
@@ -37,29 +39,29 @@ const cartReducer = (
     payload: {
       item: CartItem,
       fee: string,
-      removeIndex: number,
+      id: string, // used to remove item
     },
   },
 ) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
+      const newItems = state.addedItems.concat({
+        id: action.payload.item.id,
+        name: action.payload.item.name,
+        summary: action.payload.item.summary,
+        fee: action.payload.fee,
+      })
+      localStorage.setItem(storageKey, JSON.stringify(newItems))
       return {
-        addedItems: [
-          ...state.addedItems,
-          {
-            id: action.payload.item.id,
-            name: action.payload.item.name,
-            summary: action.payload.item.summary,
-            fee: action.payload.fee,
-          },
-        ],
+        addedItems: newItems,
       }
     case cartTypes.REMOVE_FROM_CART:
+      const updatedItems = [
+        ...state.addedItems.filter(item => item.id !== action.payload.id),
+      ]
+      localStorage.setItem(storageKey, JSON.stringify(updatedItems))
       return {
-        addedItems: [
-          ...state.addedItems.slice(0, action.payload.removeIndex),
-          ...state.addedItems.slice(action.payload.removeIndex + 1),
-        ],
+        addedItems: updatedItems,
       }
     // add modal here
     default:
@@ -108,7 +110,7 @@ const removeFromCart = (
   dispatch({
     type: REMOVE_FROM_CART,
     payload: {
-      removeIndex: addedItems.map(item => item.id).indexOf(id),
+      id,
     },
   })
 
