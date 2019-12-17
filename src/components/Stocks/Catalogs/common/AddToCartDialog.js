@@ -44,7 +44,7 @@ export const AddToCartDialog = ({ data, setCheckedItems }: Props) => {
       open={true}>
       <DialogTitleDisplay title="Added to Cart" handleClose={handleClose} />
       <AddToCartDialogContent data={data} />
-      <AddToCartDialogActions setCheckedItems={setCheckedItems} />
+      <AddToCartDialogActions handleClose={handleClose} />
     </Dialog>
   )
 }
