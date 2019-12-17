@@ -9,7 +9,7 @@ import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 import { GET_PLASMID } from "queries/queries"
 import { data } from "./mockPlasmidData"
 

@@ -8,7 +8,7 @@ import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import { CartProvider } from "store/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 import { GET_STRAIN } from "queries/queries"
 import { data } from "./mockStrainData"
 
