@@ -1,4 +1,6 @@
-import { catalogReducer } from "./CatalogContext"
+import React from "react"
+import { renderHook } from "react-hooks-testing-library"
+import { catalogReducer, useCatalogStore } from "./CatalogContext"
 import { catalogTypes } from "constants/catalogs"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
@@ -40,5 +42,13 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
       }
       expect(catalogReducer(initialState, action)).toEqual(expectedState)
     })
+  })
+})
+
+describe("useCatalogStore", () => {
+  it("should throw error if not used in Provider", () => {
+    const wrapper = ({ children }) => <div>{children}</div>
+    const { result } = renderHook(() => useCatalogStore(), { wrapper })
+    expect(() => result.current).toThrow()
   })
 })

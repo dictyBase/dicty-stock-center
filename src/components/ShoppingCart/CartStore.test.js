@@ -1,4 +1,6 @@
-import { cartReducer } from "./CartStore"
+import React from "react"
+import { renderHook } from "react-hooks-testing-library"
+import { cartReducer, useCartStore, getFee } from "./CartStore"
 import { cartTypes } from "constants/cart"
 
 describe("cartReducer", () => {
@@ -59,5 +61,25 @@ describe("cartReducer", () => {
       addedItems: [],
       showCartDialog: false,
     })
+  })
+})
+
+describe("useCartStore", () => {
+  it("should throw error if not used in Provider", () => {
+    const wrapper = ({ children }) => <div>{children}</div>
+    const { result } = renderHook(() => useCartStore(), { wrapper })
+    expect(() => result.current).toThrow()
+  })
+})
+
+describe("getFee function", () => {
+  it("should return correct fee for strain", () => {
+    expect(getFee("strain")).toEqual("30.00")
+  })
+  it("should return correct fee for plasmid", () => {
+    expect(getFee("plasmid")).toEqual("15.00")
+  })
+  it("should return correct fee for other materials", () => {
+    expect(getFee("xyz")).toEqual("40.00")
   })
 })

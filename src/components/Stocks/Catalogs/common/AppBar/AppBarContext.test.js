@@ -1,4 +1,6 @@
-import { appBarReducer } from "./AppBarContext"
+import React from "react"
+import { renderHook } from "react-hooks-testing-library"
+import { appBarReducer, useAppBarStore } from "./AppBarContext"
 import { appBarTypes } from "constants/appBar"
 
 describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
@@ -65,5 +67,13 @@ describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
       }
       expect(appBarReducer(initialState, action)).toEqual(expectedState)
     })
+  })
+})
+
+describe("useAppBarStore", () => {
+  it("should throw error if not used in Provider", () => {
+    const wrapper = ({ children }) => <div>{children}</div>
+    const { result } = renderHook(() => useAppBarStore(), { wrapper })
+    expect(() => result.current).toThrow()
   })
 })
