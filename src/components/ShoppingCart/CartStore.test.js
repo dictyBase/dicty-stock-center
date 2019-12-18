@@ -1,6 +1,6 @@
 import React from "react"
 import { renderHook } from "react-hooks-testing-library"
-import { cartReducer, useCartStore, getFee } from "./CartStore"
+import { cartReducer, useCartStore } from "./CartStore"
 import { cartTypes } from "constants/cart"
 
 describe("cartReducer", () => {
@@ -18,7 +18,7 @@ describe("cartReducer", () => {
       cartReducer(state, {
         type: cartTypes.ADD_TO_CART,
         payload: {
-          item: newItem,
+          ...newItem,
           fee: "30.00",
         },
       }),
@@ -69,17 +69,5 @@ describe("useCartStore", () => {
     const wrapper = ({ children }) => <div>{children}</div>
     const { result } = renderHook(() => useCartStore(), { wrapper })
     expect(() => result.current).toThrow()
-  })
-})
-
-describe("getFee function", () => {
-  it("should return correct fee for strain", () => {
-    expect(getFee("strain")).toEqual("30.00")
-  })
-  it("should return correct fee for plasmid", () => {
-    expect(getFee("plasmid")).toEqual("15.00")
-  })
-  it("should return correct fee for other materials", () => {
-    expect(getFee("xyz")).toEqual("40.00")
   })
 })

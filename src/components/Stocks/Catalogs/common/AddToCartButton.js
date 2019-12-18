@@ -5,7 +5,8 @@ import IconButton from "@material-ui/core/IconButton"
 import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
-import { addToCart, useCartStore } from "components/ShoppingCart/CartStore"
+import { useCartStore } from "components/ShoppingCart/CartStore"
+import useCartItems from "hooks/useCartItems"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
@@ -25,8 +26,6 @@ type Props = {
   }>,
   /** Function to add to checked items array */
   setCheckedItems?: Function,
-  /** Type of stock (strain or plasmid) */
-  stockType: string,
 }
 
 /**
@@ -34,24 +33,10 @@ type Props = {
  * for purchase.
  */
 
-export const AddToCartButton = ({
-  data,
-  setCheckedItems,
-  stockType,
-}: Props) => {
-  const [{ showCartDialog }, dispatch] = useCartStore()
+export const AddToCartButton = ({ data, setCheckedItems }: Props) => {
+  const [{ showCartDialog }] = useCartStore()
+  const { addToCart } = useCartItems(data)
   const classes = useStyles()
-
-  const handleClick = data => {
-    data.forEach(item => {
-      addToCart(dispatch, {
-        type: stockType,
-        id: item.id,
-        name: item.name,
-        summary: item.summary,
-      })
-    })
-  }
 
   return (
     <>
@@ -59,9 +44,7 @@ export const AddToCartButton = ({
         <IconButton
           size="medium"
           className={classes.cartButton}
-          onClick={() => {
-            handleClick(data)
-          }}
+          onClick={() => addToCart()}
           title="Add to cart"
           aria-label="Add to shopping cart">
           <FontAwesomeIcon icon="cart-plus" />

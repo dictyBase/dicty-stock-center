@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { removeFromCart, useCartStore } from "./CartStore"
+import useCartItems from "hooks/useCartItems"
 import strainOrPlasmid from "utils/strainOrPlasmid"
 
 const useStyles = makeStyles({
@@ -35,7 +35,7 @@ type Props = {
  */
 
 const ShoppingCartItem = ({ item }: Props) => {
-  const [{ addedItems }, dispatch] = useCartStore()
+  const { removeFromCart } = useCartItems([item])
   const classes = useStyles()
 
   return (
@@ -65,7 +65,7 @@ const ShoppingCartItem = ({ item }: Props) => {
               variant="contained"
               color="secondary"
               className={classes.trashBtn}
-              onClick={() => removeFromCart(dispatch, addedItems, item.id)}>
+              onClick={() => removeFromCart()}>
               <FontAwesomeIcon icon="trash" />
             </Button>
           </Grid>

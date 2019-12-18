@@ -13,7 +13,6 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "hooks/useCheckboxes"
 import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
-import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -30,13 +29,12 @@ const PlasmidCatalogListItem = ({ index, style, data }: listItemProps) => {
     summary: plasmid.summary,
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
-  const { itemIsInCart } = useCartItems(plasmid.id)
+  const { itemIsInCart, removeFromCart } = useCartItems([plasmid])
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
-  const [{ addedItems }, dispatch] = useCartStore()
 
   const handleRemoveItemClick = () => {
-    removeFromCart(dispatch, addedItems, plasmid.id)
+    removeFromCart()
     setHover(false)
   }
 

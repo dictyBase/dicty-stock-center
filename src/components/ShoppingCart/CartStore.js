@@ -1,23 +1,8 @@
 // @flow
 import React, { createContext, useContext, useReducer } from "react"
 import { cartTypes } from "constants/cart"
-import { fees } from "constants/fees"
-
-const { ADD_TO_CART, REMOVE_FROM_CART } = cartTypes
-const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
 const storageKey = "dscCart"
-
-const getFee = (item: string) => {
-  switch (item) {
-    case "strain":
-      return STRAIN_FEE
-    case "plasmid":
-      return PLASMID_FEE
-    default:
-      return OTHER_FEE
-  }
-}
 
 const CartContext: Object = createContext()
 
@@ -38,7 +23,7 @@ const cartReducer = (
   action: {
     type: string,
     payload: {
-      item: CartItem,
+      ...CartItem,
       fee: string,
       id: string, // used to remove item
     },
@@ -47,9 +32,9 @@ const cartReducer = (
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
       const newItems = state.addedItems.concat({
-        id: action.payload.item.id,
-        name: action.payload.item.name,
-        summary: action.payload.item.summary,
+        id: action.payload.id,
+        name: action.payload.name,
+        summary: action.payload.summary,
         fee: action.payload.fee,
       })
       localStorage.setItem(storageKey, JSON.stringify(newItems))
@@ -97,35 +82,4 @@ const useCartStore = () => {
   return context
 }
 
-const addToCart = (dispatch: Function, item: CartItem) =>
-  // must pass dispatch manually since this is a helper function, not a
-  // React component or custom hook
-  dispatch({
-    type: ADD_TO_CART,
-    payload: {
-      fee: getFee(item.type),
-      item,
-    },
-  })
-
-const removeFromCart = (
-  dispatch: Function,
-  addedItems: Array<CartItem>,
-  id: string,
-) =>
-  dispatch({
-    type: REMOVE_FROM_CART,
-    payload: {
-      id,
-    },
-  })
-
-export {
-  CartContext,
-  cartReducer,
-  CartProvider,
-  useCartStore,
-  addToCart,
-  removeFromCart,
-  getFee,
-}
+export { CartContext, cartReducer, CartProvider, useCartStore }

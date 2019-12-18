@@ -13,7 +13,6 @@ import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
 import { listItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -30,13 +29,12 @@ const StrainCatalogListItem = ({ index, style, data }: listItemProps) => {
     summary: strain.summary,
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
-  const { itemIsInCart } = useCartItems(strain.id)
+  const { itemIsInCart, removeFromCart } = useCartItems([strain])
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
-  const [{ addedItems }, dispatch] = useCartStore()
 
   const handleRemoveItemClick = () => {
-    removeFromCart(dispatch, addedItems, strain.id)
+    removeFromCart(strain)
     setHover(false)
   }
 

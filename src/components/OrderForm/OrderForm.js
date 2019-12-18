@@ -10,7 +10,8 @@ import SubmitPage from "./Submit/SubmitPage"
 import initialValues from "./utils/initialValues"
 import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
-import { removeFromCart, useCartStore } from "components/ShoppingCart/CartStore"
+import { useCartStore } from "components/ShoppingCart/CartStore"
+import useCartItems from "hooks/useCartItems"
 import { POST_ORDER } from "queries/queries"
 import OrderFormStepper from "./OrderFormStepper"
 
@@ -27,7 +28,8 @@ type Props = {
 
 const OrderForm = ({ history }: Props) => {
   const classes = useStyles()
-  const [{ addedItems }, dispatch] = useCartStore()
+  const [{ addedItems }] = useCartStore()
+  const { removeFromCart } = useCartItems(addedItems)
   const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
   const [createOrder] = useMutation(POST_ORDER)
@@ -65,9 +67,7 @@ const OrderForm = ({ history }: Props) => {
               },
             })
             history.push("/order/submitted")
-            addedItems.forEach(item =>
-              removeFromCart(dispatch, addedItems, item.id),
-            )
+            removeFromCart(addedItems)
           }}>
           {props => (
             <Form>
