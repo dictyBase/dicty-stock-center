@@ -41,6 +41,12 @@ const CatalogProvider = ({ children }: any) => {
   )
 }
 
-const useCatalogStore = () => useContext(CatalogContext)
+const useCatalogStore = () => {
+  const context = useContext(CatalogContext)
+  if (!context) {
+    throw new Error("useCatalogStore must be used within a CatalogProvider")
+  }
+  return context
+}
 
 export { CatalogContext, catalogReducer, CatalogProvider, useCatalogStore }

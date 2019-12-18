@@ -3,7 +3,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useAppBarState } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
+import { useAppBarStore } from "components/Stocks/Catalogs/common/AppBar/AppBarContext"
 import HelpDialog from "components/Stocks/Catalogs/common/HelpDialog"
 import { appBarTypes } from "constants/appBar"
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
  */
 
 const AppBarHelp = () => {
-  const [{ helpDialogOpen }, dispatch] = useAppBarState()
+  const [{ helpDialogOpen }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const handleClick = () => {

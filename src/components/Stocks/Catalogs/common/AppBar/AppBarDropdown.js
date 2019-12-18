@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
-import { useAppBarState } from "./AppBarContext"
+import { useAppBarStore } from "./AppBarContext"
 import { appBarTypes } from "constants/appBar"
 
 const useStyles = makeStyles({
@@ -27,7 +27,7 @@ type Props = {
  */
 
 const AppBarDropdown = ({ dropdownItems }: Props) => {
-  const [{ filter }, dispatch] = useAppBarState()
+  const [{ filter }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const handleChange = event => {

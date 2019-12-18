@@ -7,7 +7,7 @@ import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
-import { useAppBarState } from "./AppBarContext"
+import { useAppBarStore } from "./AppBarContext"
 import { appBarTypes } from "constants/appBar"
 import { catalogTypes } from "constants/catalogs"
 
@@ -49,7 +49,7 @@ const AppBarSearch = ({
   dropdownItems,
   catalogDispatch,
 }: Props) => {
-  const [{ searchValue, filter }, dispatch] = useAppBarState()
+  const [{ searchValue, filter }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const resetQueryVariables = () =>

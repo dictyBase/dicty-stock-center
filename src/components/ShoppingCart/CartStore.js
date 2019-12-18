@@ -8,7 +8,7 @@ const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
 const storageKey = "dscCart"
 
-const getFee = item => {
+const getFee = (item: string) => {
   switch (item) {
     case "strain":
       return STRAIN_FEE
@@ -127,4 +127,5 @@ export {
   useCartStore,
   addToCart,
   removeFromCart,
+  getFee,
 }

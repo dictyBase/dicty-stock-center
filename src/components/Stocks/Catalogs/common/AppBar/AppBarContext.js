@@ -46,6 +46,12 @@ const AppBarProvider = ({ children }: any) => {
   )
 }
 
-const useAppBarState = () => useContext(AppBarContext)
+const useAppBarStore = () => {
+  const context = useContext(AppBarContext)
+  if (!context) {
+    throw new Error("useAppBarStore must be used within an AppBarProvider")
+  }
+  return context
+}
 
-export { AppBarContext, appBarReducer, AppBarProvider, useAppBarState }
+export { AppBarContext, appBarReducer, AppBarProvider, useAppBarStore }
