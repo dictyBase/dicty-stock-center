@@ -9,6 +9,7 @@ const CartContext: Object = createContext()
 const initialState = {
   addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
   showCartDialog: false,
+  maxItemsInCart: false,
 }
 
 type CartItem = {
@@ -31,6 +32,12 @@ const cartReducer = (
 ) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
+      if (state.addedItems.length >= 12) {
+        return {
+          ...state,
+          maxItemsInCart: true,
+        }
+      }
       const newItems = state.addedItems.concat({
         id: action.payload.id,
         name: action.payload.name,
@@ -41,6 +48,7 @@ const cartReducer = (
       return {
         addedItems: newItems,
         showCartDialog: true,
+        maxItemsInCart: false,
       }
     case cartTypes.REMOVE_FROM_CART:
       const updatedItems = [
