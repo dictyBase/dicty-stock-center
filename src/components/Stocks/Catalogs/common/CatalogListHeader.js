@@ -41,7 +41,7 @@ type Props = {
  */
 
 const CatalogListHeader = ({ stockType }: Props) => {
-  const [{ maxItemsInCart }] = useCartStore()
+  const [{ addedItems }] = useCartStore()
   const [{ checkedItems }] = useCatalogStore()
   const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
   const classes = useStyles()
@@ -56,7 +56,7 @@ const CatalogListHeader = ({ stockType }: Props) => {
 
   let cartButtonDisplay = true
 
-  if (checkedItemsLength <= 12 || maxItemsInCart) {
+  if (addedItems.length + checkedItemsLength > 12) {
     cartButtonDisplay = false
   }
 
