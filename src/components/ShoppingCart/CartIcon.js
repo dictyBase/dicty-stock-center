@@ -9,7 +9,7 @@ import { useCartStore } from "./CartStore"
 const useStyles = makeStyles(({ palette }) => ({
   container: {
     margin: "auto",
-    width: "80%",
+    width: "95%",
   },
   link: {
     color: "#004080",

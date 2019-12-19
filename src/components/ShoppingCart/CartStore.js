@@ -57,7 +57,6 @@ const cartReducer = (
         showCartDialog: true,
         maxItemsInCart: false,
       }
-
     case cartTypes.REMOVE_FROM_CART:
       const updatedItems = [
         ...state.addedItems.slice(0, action.payload.removeIndex),
