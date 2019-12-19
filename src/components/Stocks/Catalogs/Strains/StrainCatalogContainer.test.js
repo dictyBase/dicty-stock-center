@@ -9,6 +9,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import { GET_STRAIN_LIST } from "queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/Strains/StrainCatalogContainer", () => {
   describe("initial render", () => {
@@ -40,11 +41,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <StrainCatalogContainer />
-        </MockedProvider>
-      </CatalogProvider>,
+      <CartProvider>
+        <CatalogProvider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <StrainCatalogContainer />
+          </MockedProvider>
+        </CatalogProvider>
+      </CartProvider>,
     )
     it("renders Loading component first", () => {
       expect(wrapper.find(DetailsLoader)).toHaveLength(1)
@@ -79,11 +82,13 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <StrainCatalogContainer />
-        </MockedProvider>
-      </CatalogProvider>,
+      <CartProvider>
+        <CatalogProvider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <StrainCatalogContainer />
+          </MockedProvider>
+        </CatalogProvider>
+      </CartProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

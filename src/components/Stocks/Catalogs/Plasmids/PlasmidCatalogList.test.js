@@ -6,15 +6,18 @@ import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
 import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHeader"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/Plasmids/PlasmidCatalogList", () => {
   const props = {
     data: data,
   }
   const wrapper = mount(
-    <CatalogProvider>
-      <PlasmidCatalogList {...props} />
-    </CatalogProvider>,
+    <CartProvider>
+      <CatalogProvider>
+        <PlasmidCatalogList {...props} />
+      </CatalogProvider>
+    </CartProvider>,
   )
   describe("initial render", () => {
     it("always renders initial components", () => {

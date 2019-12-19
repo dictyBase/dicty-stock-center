@@ -9,6 +9,7 @@ import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
 import { GET_PLASMID_LIST } from "queries/queries"
 import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 
 describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
   describe("initial render", () => {
@@ -41,11 +42,13 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <PlasmidCatalogContainer />
-        </MockedProvider>
-      </CatalogProvider>,
+      <CartProvider>
+        <CatalogProvider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <PlasmidCatalogContainer />
+          </MockedProvider>
+        </CatalogProvider>
+      </CartProvider>,
     )
     it("renders Loading component first", () => {
       expect(wrapper.find(DetailsLoader)).toHaveLength(1)
@@ -79,11 +82,13 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
       },
     ]
     const wrapper = mount(
-      <CatalogProvider>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <PlasmidCatalogContainer />
-        </MockedProvider>
-      </CatalogProvider>,
+      <CartProvider>
+        <CatalogProvider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <PlasmidCatalogContainer />
+          </MockedProvider>
+        </CatalogProvider>
+      </CartProvider>,
     )
     it("handles errors as expected", async () => {
       await wait()

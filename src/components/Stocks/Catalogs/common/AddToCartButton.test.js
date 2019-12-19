@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import AddToCartButton from "./AddToCartButton"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { CartProvider, addToCart } from "components/ShoppingCart/CartStore"
+import { CartProvider } from "components/ShoppingCart/CartStore"
 import AddToCartDialog from "./AddToCartDialog"
 
 describe("Stocks/Catalogs/common/AddToCartButton", () => {
@@ -17,7 +17,6 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
       },
     ],
     setCheckedItems: jest.fn(),
-    stockType: "strain",
   }
   const wrapper = mount(
     <CartProvider>

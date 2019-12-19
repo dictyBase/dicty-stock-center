@@ -13,6 +13,7 @@ describe("cartReducer", () => {
     const state = {
       addedItems: [],
       showCartDialog: false,
+      maxItemsInCart: false,
     }
     expect(
       cartReducer(state, {
@@ -30,28 +31,32 @@ describe("cartReducer", () => {
         },
       ],
       showCartDialog: true,
+      maxItemsInCart: false,
     })
   })
   it("should remove an item from cart", () => {
     const state = {
       addedItems: [newItem],
       showCartDialog: false,
+      maxItemsInCart: false,
     }
     expect(
       cartReducer(state, {
         type: cartTypes.REMOVE_FROM_CART,
         payload: {
-          id: newItem.id,
+          removeIndex: 0,
         },
       }),
     ).toStrictEqual({
       addedItems: [],
+      maxItemsInCart: false,
     })
   })
   it("should hide cart dialog", () => {
     const state = {
       addedItems: [],
       showCartDialog: true,
+      maxItemsInCart: false,
     }
     expect(
       cartReducer(state, {
@@ -60,6 +65,7 @@ describe("cartReducer", () => {
     ).toStrictEqual({
       addedItems: [],
       showCartDialog: false,
+      maxItemsInCart: false,
     })
   })
 })
