@@ -6,14 +6,22 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import Hidden from "@material-ui/core/Hidden"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AddToCartButton from "./AddToCartButton"
+import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
 import StrainCatalogListHeader from "components/Stocks/Catalogs/Strains/StrainCatalogListHeader"
 import PlasmidCatalogListHeader from "components/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
 import useCheckboxes from "hooks/useCheckboxes"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
-import { useCartStore } from "components/ShoppingCart/CartStore"
+
+const headerSelector = (type: string) => {
+  switch (type) {
+    case "strain":
+      return <StrainCatalogListHeader />
+    case "plasmid":
+      return <PlasmidCatalogListHeader />
+    default:
+      return
+  }
+}
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -24,9 +32,6 @@ const useStyles = makeStyles({
   },
   list: {
     padding: 0,
-  },
-  button: {
-    color: "#004080",
   },
 })
 
@@ -41,45 +46,15 @@ type Props = {
  */
 
 const CatalogListHeader = ({ stockType }: Props) => {
-  const [{ addedItems }] = useCartStore()
   const [{ checkedItems }] = useCatalogStore()
-  const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
+  const { handleCheckAllChange } = useCheckboxes({})
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
-  let content =
-    stockType === "strain" ? (
-      <StrainCatalogListHeader />
-    ) : (
-      <PlasmidCatalogListHeader />
-    )
-
-  let cartButtonDisplay = true
-
-  if (addedItems.length + checkedItemsLength > 12) {
-    cartButtonDisplay = false
-  }
+  let content = headerSelector(stockType)
 
   if (checkedItemsLength > 0) {
-    content = (
-      <>
-        {checkedItemsLength} items selected
-        {cartButtonDisplay && (
-          <AddToCartButton
-            data={checkedItems}
-            setCheckedItems={resetCheckedItems}
-          />
-        )}
-        <IconButton
-          size="medium"
-          className={classes.button}
-          onClick={() => {}}
-          title="Download PDF"
-          aria-label="Download PDF">
-          <FontAwesomeIcon icon="download" />
-        </IconButton>
-      </>
-    )
+    content = <CatalogListHeaderButtons />
   }
 
   return (
