@@ -32,18 +32,18 @@ const cartReducer = (
 ) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
-      if (state.addedItems.length >= 12) {
-        return {
-          ...state,
-          maxItemsInCart: true,
-        }
-      }
       const newItems = state.addedItems.concat({
         id: action.payload.id,
         name: action.payload.name,
         summary: action.payload.summary,
         fee: action.payload.fee,
       })
+      if (newItems.length > 12) {
+        return {
+          ...state,
+          maxItemsInCart: true,
+        }
+      }
       localStorage.setItem(storageKey, JSON.stringify(newItems))
       return {
         addedItems: newItems,
