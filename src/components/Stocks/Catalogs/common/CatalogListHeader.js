@@ -13,14 +13,10 @@ import useCheckboxes from "hooks/useCheckboxes"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const headerSelector = (type: string) => {
-  switch (type) {
-    case "strain":
-      return <StrainCatalogListHeader />
-    case "plasmid":
-      return <PlasmidCatalogListHeader />
-    default:
-      return
+  if (type === "strain") {
+    return <StrainCatalogListHeader />
   }
+  return <PlasmidCatalogListHeader />
 }
 
 const useStyles = makeStyles({

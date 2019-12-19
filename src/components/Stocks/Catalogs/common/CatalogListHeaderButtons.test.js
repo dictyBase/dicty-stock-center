@@ -51,4 +51,28 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
       ).toContain("2 items selected")
     })
   })
+
+  describe("render with >12 items", () => {
+    const MockedComponent = () => {
+      const [state, dispatch] = React.useReducer(catalogReducer, {
+        checkedItems: new Array(13).fill({
+          id: "DBS123456",
+          name: "testarooni",
+          summary: "test1212",
+        }),
+      })
+
+      return (
+        <CartProvider>
+          <CatalogContext.Provider value={[state, dispatch]}>
+            <CatalogListHeaderButtons />
+          </CatalogContext.Provider>
+        </CartProvider>
+      )
+    }
+    const wrapper = mount(<MockedComponent />)
+    it("should not display cart button if combined items is more than 12", () => {
+      expect(wrapper.find(AddToCartButton)).toHaveLength(0)
+    })
+  })
 })

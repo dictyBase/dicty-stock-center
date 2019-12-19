@@ -4,7 +4,12 @@ import { BrowserRouter } from "react-router-dom"
 import AddToCartButton from "./AddToCartButton"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+import Tooltip from "@material-ui/core/Tooltip"
+import {
+  CartProvider,
+  CartContext,
+  cartReducer,
+} from "components/ShoppingCart/CartStore"
 import AddToCartDialog from "./AddToCartDialog"
 
 describe("Stocks/Catalogs/common/AddToCartButton", () => {
@@ -31,10 +36,34 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
     })
   })
-  describe("handles button clicking correctly", () => {
+  describe("button clicking", () => {
     it("should display AddToCartDialog on click", () => {
       wrapper.find(IconButton).simulate("click")
       expect(wrapper.find(AddToCartDialog)).toHaveLength(1)
+    })
+  })
+  describe("alternate button display", () => {
+    const MockedComponent = () => {
+      const [state, dispatch] = React.useReducer(cartReducer, {
+        addedItems: [],
+        maxItemsInCart: true,
+      })
+
+      return (
+        <CartProvider>
+          <CartContext.Provider value={[state, dispatch]}>
+            <AddToCartButton {...props} />
+          </CartContext.Provider>
+        </CartProvider>
+      )
+    }
+
+    const newWrapper = mount(<MockedComponent />)
+
+    it("should display expected components if cart is full", () => {
+      expect(newWrapper.find(Tooltip)).toHaveLength(1)
+      expect(newWrapper.find(IconButton)).toHaveLength(1)
+      expect(newWrapper.find(FontAwesomeIcon)).toHaveLength(2)
     })
   })
 })
