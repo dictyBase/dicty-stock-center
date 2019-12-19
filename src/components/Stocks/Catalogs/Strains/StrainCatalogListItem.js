@@ -34,7 +34,7 @@ const StrainCatalogListItem = ({ index, style, data }: listItemProps) => {
   const classes = useStyles()
 
   const handleRemoveItemClick = () => {
-    removeFromCart(strain)
+    removeFromCart()
     setHover(false)
   }
 

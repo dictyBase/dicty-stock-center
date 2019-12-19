@@ -65,7 +65,7 @@ const ShoppingCartItem = ({ item }: Props) => {
               variant="contained"
               color="secondary"
               className={classes.trashBtn}
-              onClick={() => removeFromCart()}>
+              onClick={removeFromCart}>
               <FontAwesomeIcon icon="trash" />
             </Button>
           </Grid>

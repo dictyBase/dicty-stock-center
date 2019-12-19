@@ -67,7 +67,7 @@ const OrderForm = ({ history }: Props) => {
               },
             })
             history.push("/order/submitted")
-            removeFromCart(addedItems)
+            removeFromCart()
           }}>
           {props => (
             <Form>
