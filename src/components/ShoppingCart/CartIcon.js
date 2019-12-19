@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCartStore } from "./CartStore"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   container: {
     margin: "auto",
     width: "80%",
@@ -15,7 +15,11 @@ const useStyles = makeStyles({
     color: "#004080",
     textDecoration: "none",
   },
-})
+  cartFull: {
+    fontSize: "0.7rem",
+    color: palette.secondary.main,
+  },
+}))
 
 /**
  * This is the cart component that displays between the Navbar and body content on every page.
@@ -23,7 +27,7 @@ const useStyles = makeStyles({
  */
 
 const CartIcon = () => {
-  const [{ addedItems }] = useCartStore()
+  const [{ addedItems, maxItemsInCart }] = useCartStore()
   const classes = useStyles()
 
   return (
@@ -31,7 +35,10 @@ const CartIcon = () => {
       <Grid item>
         <Link className={classes.link} to="/cart">
           <FontAwesomeIcon icon="shopping-cart" size="2x" /> (
-          {addedItems.length})
+          {addedItems.length}){" "}
+          {maxItemsInCart && (
+            <span className={classes.cartFull}>* cart full</span>
+          )}
         </Link>
       </Grid>
     </Grid>
