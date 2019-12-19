@@ -130,6 +130,9 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     alignItems: "center",
     padding: "16px",
   },
+  maxItems: {
+    color: palette.secondary.main,
+  },
 }))
 
 export default useStyles
