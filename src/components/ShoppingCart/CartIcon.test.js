@@ -9,8 +9,11 @@ import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/CartIcon", () => {
   const MockComponent = ({ items }) => {
+    let maxItems
+    items.length > 0 ? (maxItems = true) : (maxItems = false)
     const [state, dispatch] = React.useReducer(cartReducer, {
       addedItems: items,
+      maxItemsInCart: maxItems,
     })
     return (
       <CartContext.Provider value={[state, dispatch]}>
@@ -39,6 +42,9 @@ describe("ShoppingCart/CartIcon", () => {
       expect(wrapper.find(Link)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
       expect(wrapper.text()).toContain("(2)")
+    })
+    it("displays notice if cart is full", () => {
+      expect(wrapper.find("span").text()).toBe("* cart full")
     })
   })
   describe("initial render with no items in cart", () => {
