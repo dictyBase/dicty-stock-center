@@ -56,11 +56,12 @@ const CatalogListHeader = ({ stockType }: Props) => {
     content = (
       <>
         {checkedItemsLength} items selected
-        <AddToCartButton
-          data={checkedItems}
-          setCheckedItems={resetCheckedItems}
-          stockType={stockType}
-        />
+        {checkedItemsLength <= 12 && (
+          <AddToCartButton
+            data={checkedItems}
+            setCheckedItems={resetCheckedItems}
+          />
+        )}
         <IconButton
           size="medium"
           className={classes.button}
@@ -81,7 +82,7 @@ const CatalogListHeader = ({ stockType }: Props) => {
             <Grid item md={1}>
               {checkedItemsLength > 0 && (
                 <Checkbox
-                  indeterminate={checkedItemsLength > 0 ? true : false}
+                  indeterminate={true}
                   color="default"
                   value="selectAll"
                   onChange={handleCheckAllChange}
