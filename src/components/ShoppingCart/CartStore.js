@@ -26,7 +26,7 @@ const cartReducer = (
     payload: {
       ...CartItem,
       fee: string,
-      id: string, // used to remove item
+      removeIndex: number, // used to remove item
     },
   },
 ) => {
@@ -52,7 +52,8 @@ const cartReducer = (
       }
     case cartTypes.REMOVE_FROM_CART:
       const updatedItems = [
-        ...state.addedItems.filter(item => item.id !== action.payload.id),
+        ...state.addedItems.slice(0, action.payload.removeIndex),
+        ...state.addedItems.slice(action.payload.removeIndex + 1),
       ]
       localStorage.setItem(storageKey, JSON.stringify(updatedItems))
       return {

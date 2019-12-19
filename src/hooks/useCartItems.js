@@ -52,7 +52,8 @@ const useCartItems = (items: Array<CartItem>) => {
       dispatch({
         type: REMOVE_FROM_CART,
         payload: {
-          id: item.id,
+          // get new array of IDs then grab first index
+          removeIndex: addedItems.map(item => item.id).indexOf(item.id),
         },
       }),
     )
