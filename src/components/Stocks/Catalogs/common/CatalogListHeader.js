@@ -13,6 +13,7 @@ import StrainCatalogListHeader from "components/Stocks/Catalogs/Strains/StrainCa
 import PlasmidCatalogListHeader from "components/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
 import useCheckboxes from "hooks/useCheckboxes"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
+import { useCartStore } from "components/ShoppingCart/CartStore"
 
 const useStyles = makeStyles({
   listHeaders: {
@@ -40,6 +41,7 @@ type Props = {
  */
 
 const CatalogListHeader = ({ stockType }: Props) => {
+  const [{ maxItemsInCart }] = useCartStore()
   const [{ checkedItems }] = useCatalogStore()
   const { resetCheckedItems, handleCheckAllChange } = useCheckboxes({})
   const classes = useStyles()
@@ -52,11 +54,17 @@ const CatalogListHeader = ({ stockType }: Props) => {
       <PlasmidCatalogListHeader />
     )
 
+  let cartButtonDisplay = true
+
+  if (checkedItemsLength <= 12 || maxItemsInCart) {
+    cartButtonDisplay = false
+  }
+
   if (checkedItemsLength > 0) {
     content = (
       <>
         {checkedItemsLength} items selected
-        {checkedItemsLength <= 12 && (
+        {cartButtonDisplay && (
           <AddToCartButton
             data={checkedItems}
             setCheckedItems={resetCheckedItems}
