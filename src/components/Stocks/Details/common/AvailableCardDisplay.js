@@ -9,8 +9,7 @@ import TextField from "@material-ui/core/TextField"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
-
-const values = [...Array(13).keys()].slice(1)
+import { useCartStore } from "components/ShoppingCart/CartStore"
 
 type Props = {
   cartData: {
@@ -31,14 +30,39 @@ type Props = {
  */
 
 const AvailableCardDisplay = ({ cartData }: Props) => {
-  const [quantity, setQuantity] = React.useState(values[0])
+  const [{ addedItems, maxItemsInCart }] = useCartStore()
+  const values = [...Array(13 - addedItems.length).keys()].slice(1)
   const classes = useStyles()
-  // const items = useSelector(state => state.cart.addedItems)
-  // const itemInCart = items.some(item => item.id === cartData.id)
+  const [quantity, setQuantity] = React.useState(values[0])
 
   const handleChange = event => {
     setQuantity(event.target.value)
   }
+
+  let content
+
+  maxItemsInCart
+    ? (content = <div className={classes.maxItems}>Cart capacity is full</div>)
+    : (content = (
+        <>
+          <TextField
+            id="outlined-quantity"
+            select
+            label="Quantity"
+            value={quantity}
+            onChange={handleChange}
+            margin="dense"
+            variant="outlined"
+            inputProps={{ className: classes.textField }}>
+            {values.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <AddToCartButton data={Array(quantity).fill(cartData)} />
+        </>
+      ))
 
   return (
     <div>
@@ -46,28 +70,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
         <FontAwesomeIcon icon="check" /> Available
       </Typography>
       <Divider />
-      <div className={classes.quantity}>
-        <TextField
-          id="outlined-quantity"
-          select
-          label="Quantity"
-          value={quantity}
-          onChange={handleChange}
-          margin="dense"
-          variant="outlined"
-          inputProps={{ className: classes.textField }}>
-          {values.map(option => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </TextField>
-        <AddToCartButton
-          data={Array(quantity).fill(cartData)}
-          setHover={() => {}}
-          stockType={cartData.type}
-        />
-      </div>
+      <div className={classes.quantity}>{content}</div>
       <Divider />
       <Button
         component={Link}
