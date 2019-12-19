@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartDialog from "components/Stocks/Catalogs/common/AddToCartDialog"
 import { useCartStore } from "components/ShoppingCart/CartStore"
 import useCartItems from "hooks/useCartItems"
+import { AddToCartProps } from "../types/cart"
 
 const useStyles = makeStyles(theme => ({
   cartButton: {
@@ -15,26 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
-  /** Strain data */
-  data: Array<{
-    /** Strain ID number */
-    id: string,
-    /** Strain label (name) */
-    name: string,
-    /** Strain summary */
-    summary: string,
-  }>,
-  /** Function to add to checked items array */
-  setCheckedItems?: Function,
-}
-
 /**
  * AddToCartButton appears on the catalog page if the stock is available
  * for purchase.
  */
 
-export const AddToCartButton = ({ data, setCheckedItems }: Props) => {
+export const AddToCartButton = ({ data, setCheckedItems }: AddToCartProps) => {
   const [{ showCartDialog, maxItemsInCart }] = useCartStore()
   const { addToCart } = useCartItems(data)
   const classes = useStyles()
