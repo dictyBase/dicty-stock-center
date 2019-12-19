@@ -4,39 +4,14 @@
 
 - [Readme](/README.md)
 - Redux
-  - [Shape of the state](/docs/redux/state.md)
+  - [Shape of the state](./redux/state.md)
 - [Navigational flow](./navigational-flow.md)
 - [Component wireframe](./component-wireframe.md)
 - [Authentication/authorization](./auth.md)
 
-## Stock Components Outline
+The DSC app is in the process of being converted from Redux to Context/Hooks for
+state management. Currently there are four pieces of state still in Redux
+(`auth`, `page`, `footer`, `navbar`), but the end goal is to convert these into
+their own context providers. See this tree diagram:
 
-**/strains**
-
-StrainCatalogContainer
-
-- StockDetailsHeader
-- StrainDetailsList
-
-**/strains/:id**
-
-StrainDetailsContainer
-
-- StockDetailsHeader
-- PhenotypeTable _(if phenotypes in data)_
-- StrainDetailsList
-- ShoppingButtons
-
-**/plasmids**
-
-PlasmidCatalogContainer
-
-- StockDetailsHeader
-
-**_/plasmids/:id_**
-
-PlasmidDetailsContainer
-
-- StockDetailsHeader
-- PlasmidDetailsList
-- ShoppingButtons
+![context tree diagram](./images/DSC-provider-tree.png)

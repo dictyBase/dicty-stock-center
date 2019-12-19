@@ -12,8 +12,8 @@
 
 ## User login flow
 
-![user-login-flow](/docs/images/DSC-login-flow.png)
+![user-login-flow](./images/DSC-login-flow.png)
 
 ## User login flow for page editing
 
-![user-login-editing-flow](/docs/images/DSC-login-editing-flow.png)
+![user-login-editing-flow](./images/DSC-login-editing-flow.png)

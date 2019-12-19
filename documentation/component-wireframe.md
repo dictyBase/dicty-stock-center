@@ -4,4 +4,4 @@
 
 ### Component structure
 
-![homepage components 1](/docs/images/DSC-homepage-wireframe.png)
+![homepage components 1](./images/DSC-homepage-wireframe.png)

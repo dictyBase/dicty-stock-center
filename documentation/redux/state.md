@@ -35,15 +35,6 @@
           }
       }
   },
-  cart: {
-    addedItems: [
-      {
-        id: "DBS123456",
-        name: "test1",
-        fee: "$30.00"
-      }
-    ]
-  },
   footer: {
     isFetching: false,
     links: [
@@ -217,15 +208,6 @@
               self: "http://"
           }
       }
-  },
-    cart: {
-    addedItems: [
-      {
-        id: "DBS123456",
-        name: "test1",
-        fee: "$30.00"
-      }
-    ]
   },
   footer: {
     isFetching: false,
