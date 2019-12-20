@@ -1,7 +1,7 @@
 /**
  * Helper function that identifies if an ID is for a strain or plasmid
  */
-const strainOrPlasmid = id => {
+const strainOrPlasmid = (id: string) => {
   let type
   id.slice(0, 3) === "DBS" ? (type = "strains") : (type = "plasmids")
   return type

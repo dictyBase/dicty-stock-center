@@ -1,6 +1,5 @@
-// @flow
 const timeSince = (date: string) => {
-  let seconds = Math.floor((new Date() - new Date(date)) / 1000)
+  const seconds = Math.floor((+new Date() - +new Date(date)) / 1000)
 
   let interval = Math.floor(seconds / 31536000)
 

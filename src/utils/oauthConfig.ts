@@ -1,4 +1,3 @@
-// @flow
 import clientConfig from "utils/clientConfig"
 import redirectUrlGenerator from "utils/redirectUrlGenerator"
 
