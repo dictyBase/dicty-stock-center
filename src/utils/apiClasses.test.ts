@@ -18,7 +18,7 @@ describe("API Classes", () => {
           organization: "Northwestern University",
           group_name: "n/a",
           first_address: "750 N Lake Shore Drive",
-          second_address: "#11",
+          second_address: "",
           city: "Chicago",
           state: "IL",
           zipcode: "60611",
@@ -82,7 +82,7 @@ describe("API Classes", () => {
             organization: "Northwestern University",
             group_name: "n/a",
             first_address: "750 N Lake Shore Drive",
-            second_address: "#11",
+            second_address: "",
             city: "Chicago",
             state: "IL",
             zipcode: "60611",
@@ -127,6 +127,8 @@ describe("API Classes", () => {
     })
 
     describe("verifyToken()", () => {
+      let dateNowSpy
+
       afterAll(() => {
         // unlock time
         /*eslint-disable */
@@ -136,8 +138,7 @@ describe("API Classes", () => {
       })
 
       it("verifies token", () => {
-        /*eslint-disable */
-        let dateNowSpy = jest
+        dateNowSpy = jest
           .spyOn(Date, "now")
           .mockImplementation(() => 1487076708000) // 2017-02-14
 
@@ -145,8 +146,7 @@ describe("API Classes", () => {
         expect(token).toBe(true)
       })
       it("says token is invalid", () => {
-        /*eslint-disable */
-        let dateNowSpy = jest
+        dateNowSpy = jest
           .spyOn(Date, "now")
           .mockImplementation(() => 1932701199000) // 2031-03-31
 

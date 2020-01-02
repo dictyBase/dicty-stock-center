@@ -1,28 +1,51 @@
 // @flow
-import { MAIN_RESOURCE } from "constants/resources"
+import { MAIN_RESOURCE } from "../constants/resources"
 import jwtDecode from "jwt-decode"
 
-export class JsonAPI {
-  json: Object
-  links: Object
-  relationships: Object
-  constructor(json: Object) {
+interface Json {
+  data: {
+    attributes: {
+      first_name?: string
+      last_name?: string
+      updated_by?: string
+    }
+    id: string
+    relationships: object
+  }
+  isAuthenticated?: boolean
+  provider?: string
+  user?: object
+  token?: string
+  roles?: Array<{
+    attributes: {
+      role: string
+    }
+  }>
+  permissions?: Array<{
+    attributes: {
+      permission: string
+      resource: string
+    }
+  }>
+}
+
+class JsonAPI {
+  json: Json
+  constructor(json: Json) {
     this.json = json
   }
   getAttributes() {
-    return this.json.data.attributes
+    return this.json.data!.attributes
   }
   getId() {
-    return this.json.data.id
+    return this.json.data!.id
   }
   getRelationships() {
-    return this.json.data.relationships
+    return this.json.data!.relationships
   }
 }
 
-export class AuthAPI extends JsonAPI {
-  json: Object
-
+class AuthAPI extends JsonAPI {
   // checks if user is currently authenticated
   isAuthenticated() {
     if (this.json.isAuthenticated === true) {
@@ -42,12 +65,13 @@ export class AuthAPI extends JsonAPI {
     const token = this.json.token
 
     // decode token
-    const decodedToken = jwtDecode(token)
+    const decodedToken = jwtDecode(token as string)
 
     // get current time in plain UTC
     const currentTime = Date.now().valueOf() / 1000
 
     // check if current time is less than token expiration date
+    // @ts-ignore
     if (currentTime < decodedToken.exp) {
       return true
     }
@@ -65,9 +89,7 @@ export class AuthAPI extends JsonAPI {
   }
 }
 
-export class AuthenticatedUser extends JsonAPI {
-  json: Object
-
+class AuthenticatedUser extends JsonAPI {
   // gets the first and last name of logged in user
   getFullName() {
     return `${this.json.data.attributes.first_name} ${this.json.data.attributes.last_name}`
@@ -94,8 +116,6 @@ export class AuthenticatedUser extends JsonAPI {
   }
 
   // checks if user can overwrite current content
-  // this logic only allows overwriting for same user
-  // unless current user is Superuser
   canOverwrite = (id: string) => {
     if (id === this.json.data.id || this.getRoles() === "Superuser") {
       return true
@@ -104,9 +124,14 @@ export class AuthenticatedUser extends JsonAPI {
   }
 }
 
-export class RolesPermissionsAPI extends JsonAPI {
-  json: Object
+interface PermItem {
+  attributes: {
+    permission: string
+    resource: string
+  }
+}
 
+class RolesPermissionsAPI extends JsonAPI {
   // get full list of user's roles
   getRoles() {
     if (this.json.roles) {
@@ -162,13 +187,12 @@ export class RolesPermissionsAPI extends JsonAPI {
         return true
       }
 
-      const validPermissions = item =>
+      const validPermissions = (item: PermItem) =>
         item.attributes.permission === "admin" ||
         (item.attributes.permission === perm &&
           item.attributes.resource === resource) ||
         (item.attributes.permission === perm &&
           item.attributes.resource === MAIN_RESOURCE)
-
       const filteredPerms = this.json.permissions.filter(validPermissions)
 
       // check if array is empty
@@ -183,9 +207,7 @@ export class RolesPermissionsAPI extends JsonAPI {
   }
 }
 
-export class ContentAPI extends AuthenticatedUser {
-  json: Object
-
+class ContentAPI extends AuthenticatedUser {
   // gets the user ID for person who last updated this content
   getUser() {
     if (this.json.data) {
@@ -194,3 +216,5 @@ export class ContentAPI extends AuthenticatedUser {
     return null
   }
 }
+
+export { JsonAPI, AuthAPI, AuthenticatedUser, RolesPermissionsAPI, ContentAPI }
