@@ -4,16 +4,21 @@ module.exports = {
   pagePerSection: true,
   title: "Dicty Stock Center",
   webpackConfig: require("react-scripts/config/webpack.config")("development"),
+  propsParser: require("react-docgen-typescript").withCustomConfig(
+    "./tsconfig.json",
+  ).parse,
   ignore: [
     "**/*.test.{js,jsx,ts,tsx}",
-    "**/*Styles.js",
-    "**/mock*.js",
-    "**/types.js",
-    "src/**/styles/*.js",
-    "src/**/types/*.js",
-    "src/**/utils/*.js",
-    "src/**/hooks/*.js",
+    "**/*Styles.{js,jsx,ts,tsx}",
+    "**/mock*.{js,jsx,ts,tsx}",
+    "**/types.{js,jsx,ts,tsx}",
+    "src/**/styles/*.{js,jsx,ts,tsx}",
+    "src/**/types/*.{js,jsx,ts,tsx}",
+    "src/**/utils/*.{js,jsx,ts,tsx}",
+    "src/**/hooks/*.{js,jsx,ts,tsx}",
     "src/components/authentication/Authorization.js",
+    "src/**/*Context.{js,jsx,ts,tsx}",
+    "src/**/*Store.{js,jsx,ts,tsx}",
   ],
   sections: [
     {
