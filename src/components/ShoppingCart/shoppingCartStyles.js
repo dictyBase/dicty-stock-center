@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   continueBtn: {
     marginBottom: "10px",
     marginRight: "10px",
+    textTransform: "none",
   },
   checkoutBtn: {
     marginBottom: "10px",
@@ -38,6 +39,7 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: "#0059b3",
     },
+    textTransform: "none",
   },
   buttons: {
     textAlign: "center",

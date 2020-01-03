@@ -67,11 +67,11 @@ const theme = createMuiTheme({
       main: "rgb(220, 0, 78)",
     },
   },
-  typography: {
-    button: {
-      textTransform: "none",
-    },
-  },
+  // typography: {
+  //   button: {
+  //     textTransform: "none",
+  //   },
+  // },
 })
 
 // Wait for the cache to sync before starting the app

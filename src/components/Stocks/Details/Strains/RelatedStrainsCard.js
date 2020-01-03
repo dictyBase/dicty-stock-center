@@ -50,7 +50,9 @@ const RelatedStrainsCard = ({ species }: Props) => {
             </ListItem>
           ))}
           <br />
-          <Button variant="outlined">View More</Button>
+          <Button className={classes.viewMoreBtn} variant="outlined">
+            View More
+          </Button>
         </List>
       </div>
     </Card>

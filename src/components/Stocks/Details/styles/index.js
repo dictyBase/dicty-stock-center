@@ -17,6 +17,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
       backgroundColor: "transparent",
       color: "inherit",
     },
+    textTransform: "none",
   },
   cardHeader: {
     color: "#002f5e",
@@ -70,6 +71,10 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     borderStyle: "none !important",
     borderRadius: "0px !important",
     fontSize: "0.9rem !important",
+    textTransform: "none !important",
+  },
+  viewMoreBtn: {
+    textTransform: "none",
   },
   arrowIcon: {
     marginRight: "8px",

@@ -40,6 +40,7 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#0073e6",
     },
+    textTransform: "none",
   },
   backBtn: {
     width: "100%",
@@ -48,6 +49,7 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#449d44",
     },
+    textTransform: "none",
   },
   submitBtn: {
     width: "100%",
@@ -56,6 +58,7 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#0073e6",
     },
+    textTransform: "none",
   },
   selectBox: {
     marginTop: "8px",
@@ -76,6 +79,7 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#0073e6",
     },
+    textTransform: "none",
   },
   link: {
     textDecoration: "none",

@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
     background: "#f7f7f7",
     color: "#002f5e",
     opacity: 1,
+    textTransform: "none",
   },
   selected: {
     borderBottomWidth: 0,
