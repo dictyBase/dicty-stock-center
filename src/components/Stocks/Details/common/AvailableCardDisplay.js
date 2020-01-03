@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField"
 import useStyles from "components/Stocks/Details/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
+import CartCapacityFullMessage from "./CartCapacityFullMessage"
 import { useCartStore } from "components/ShoppingCart/CartStore"
 
 type Props = {
@@ -42,7 +43,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
   let content
 
   maxItemsInCart
-    ? (content = <div className={classes.maxItems}>Cart capacity is full</div>)
+    ? (content = <CartCapacityFullMessage />)
     : (content = (
         <>
           <TextField

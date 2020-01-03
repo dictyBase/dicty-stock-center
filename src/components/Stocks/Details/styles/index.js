@@ -133,6 +133,10 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   maxItems: {
     color: palette.secondary.main,
   },
+  moreInfoText: {
+    marginTop: "4px",
+    fontSize: "0.75rem",
+  },
 }))
 
 export default useStyles
