@@ -83,7 +83,7 @@
     "redux-thunk": "^2.3.0",
     "string.prototype.includes": "^1.0.0",
     "typeface-roboto": "0.0.75",
-    "typescript": "^3.7.4",
+    "typescript": "^3.7.5",
     "yup": "^0.28.0"
   },
   "devDependencies": {
