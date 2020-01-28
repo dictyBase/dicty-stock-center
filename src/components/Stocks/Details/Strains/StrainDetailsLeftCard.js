@@ -61,7 +61,7 @@ const strainRowsGenerator = (data, parent, publications, genes) => [
   {
     id: 10,
     title: "Genotypes",
-    content: data.genotypes[0].replace(/,/g, ", "),
+    content: data.genotypes,
   },
   {
     id: 11,
