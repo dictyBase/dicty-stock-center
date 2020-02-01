@@ -93,7 +93,7 @@
     "apollo-boost": "^0.4.7",
     "babel-cli": "^6.26.0",
     "babel-jest": "^24.9.0",
-    "babel-preset-react-app": "^9.1.0",
+    "babel-preset-react-app": "^9.1.1",
     "commitizen": "^4.0.3",
     "cypress": "^3.8.3",
     "cz-conventional-changelog": "^3.1.0",
