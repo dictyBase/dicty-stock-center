@@ -1,29 +1,46 @@
 // @flow
 import { useEffect } from "react"
-import { oAuthLogin } from "actions/auth"
-import { connect } from "react-redux"
+import { useMutation } from "@apollo/react-hooks"
+import { LOGIN } from "queries/queries"
+import oauthConfig from "utils/oauthConfig"
+import querystring from "querystring"
+import { useHistory } from "react-router-dom"
 
-type Props = {
-  oAuthLogin: Function,
-}
+const OauthSignHandler = () => {
+  const [login] = useMutation(LOGIN)
+  const history = useHistory()
 
-const OauthSignHandler = ({ oAuthLogin }: Props) => {
   useEffect(() => {
-    const onMessage = (event: SyntheticInputEvent<>) => {
+    const onMessage = async (event: SyntheticInputEvent<>) => {
       event.preventDefault()
       event.stopPropagation()
-      if (!event.data.provider) {
+      const provider = event.data.provider
+      if (!provider) {
         return
       }
-      oAuthLogin(event.data)
+      const parsed = querystring.parse(event.data.query.replace("?", ""))
+      await login({
+        variables: {
+          input: {
+            client_id: oauthConfig[provider].clientId,
+            redirect_url: event.data.url,
+            state: parsed.state,
+            code: parsed.code,
+            scopes: oauthConfig[provider].scopes[0],
+            provider: provider,
+          },
+        },
+      })
+      // need to add error handling
+      history.push("/load/auth")
     }
     window.addEventListener("message", onMessage, false)
     return () => {
       window.removeEventListener("message", onMessage)
     }
-  }, [oAuthLogin])
+  }, [history, login])
 
   return null
 }
 
-export default connect<*, *, *, *, *, *>(null, { oAuthLogin })(OauthSignHandler)
+export default OauthSignHandler

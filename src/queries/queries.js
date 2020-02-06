@@ -117,6 +117,20 @@ const GET_STRAIN = gql`
       }
  */
 
+const LOGIN = gql`
+  mutation Login($input: LoginInput!) {
+    login(input: $input) {
+      token
+      user {
+        id
+      }
+      identity {
+        id
+      }
+    }
+  }
+`
+
 const POST_ORDER = gql`
   mutation CreateOrder($input: CreateOrderInput!) {
     createOrder(input: $input) {
@@ -132,5 +146,6 @@ export {
   GET_RELATED_STRAINS,
   GET_STRAIN,
   GET_PLASMID,
+  LOGIN,
   POST_ORDER,
 }
