@@ -123,9 +123,14 @@ const LOGIN = gql`
       token
       user {
         id
-      }
-      identity {
-        id
+        first_name
+        last_name
+        roles {
+          role
+          permissions {
+            permission
+          }
+        }
       }
     }
   }
