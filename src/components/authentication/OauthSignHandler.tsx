@@ -1,17 +1,21 @@
-// @flow
 import { useEffect } from "react"
 import { useMutation } from "@apollo/react-hooks"
+import { useHistory } from "react-router-dom"
+import querystring from "querystring"
 import { LOGIN } from "queries/queries"
 import oauthConfig from "utils/oauthConfig"
-import querystring from "querystring"
-import { useHistory } from "react-router-dom"
+
+/**
+ * OauthSignHandler listens to an event message and attempts to login
+ * with the event data.
+ */
 
 const OauthSignHandler = () => {
   const [login] = useMutation(LOGIN)
   const history = useHistory()
 
   useEffect(() => {
-    const onMessage = async (event: SyntheticInputEvent<>) => {
+    const onMessage = async (event: MessageEvent) => {
       event.preventDefault()
       event.stopPropagation()
       const provider = event.data.provider
