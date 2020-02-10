@@ -100,7 +100,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-prettier": "^6.10.0",
-    "eslint-config-react-app": "^5.1.0",
+    "eslint-config-react-app": "^5.2.0",
     "eslint-plugin-cypress": "^2.9.0",
     "eslint-plugin-flowtype": "^3.13.0",
     "eslint-plugin-import": "^2.20.0",
