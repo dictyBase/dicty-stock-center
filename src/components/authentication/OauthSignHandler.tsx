@@ -18,19 +18,19 @@ const OauthSignHandler = () => {
     const onMessage = async (event: MessageEvent) => {
       event.preventDefault()
       event.stopPropagation()
-      const provider = event.data.provider
-      if (!provider) {
+      if (!event.data.provider) {
         return
       }
+      const provider = (oauthConfig as any)[event.data.provider]
       const parsed = querystring.parse(event.data.query.replace("?", ""))
       await login({
         variables: {
           input: {
-            client_id: oauthConfig[provider].clientId,
+            client_id: provider.clientId,
             redirect_url: event.data.url,
             state: parsed.state,
             code: parsed.code,
-            scopes: oauthConfig[provider].scopes[0],
+            scopes: provider.scopes[0],
             provider: provider,
           },
         },

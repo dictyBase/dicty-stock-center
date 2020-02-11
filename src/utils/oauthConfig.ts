@@ -1,7 +1,53 @@
 import clientConfig from "utils/clientConfig"
 import redirectUrlGenerator from "utils/redirectUrlGenerator"
 
-const oauthConfig = {
+interface Auth {
+  google: {
+    name: string
+    url: string
+    authorizationEndpoint: string
+    clientId: string
+    redirectUrl: string
+    requiredUrlParams: Array<Array<string>>
+    scopes: Array<string>
+    scopeDelimiter: string
+    optionalUrlParams: Array<Array<string>>
+    popupOptions: {
+      width: number
+      height: number
+    }
+  }
+  linkedin: {
+    name: string
+    url: string
+    authorizationEndpoint: string
+    clientId: string
+    redirectUrl: string
+    requiredUrlParams: Array<Array<string>>
+    scopes: Array<string>
+    scopeDelimiter: string
+    popupOptions: {
+      width: number
+      height: number
+    }
+  }
+  orcid: {
+    name: string
+    url: string
+    authorizationEndpoint: string
+    clientId: string
+    redirectUrl: string
+    requiredUrlParams: Array<Array<string>>
+    scopes: Array<string>
+    scopeDelimiter: string
+    popupOptions: {
+      width: number
+      height: number
+    }
+  }
+}
+
+const oauthConfig: Auth = {
   google: {
     name: "Google",
     url: "/auth/google",
