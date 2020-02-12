@@ -59,8 +59,13 @@ const authReducer = (state: AuthState, action: Action) => {
  */
 const AuthProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
-  const value = { state, dispatch }
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+
+  return (
+    // @ts-ignore
+    <AuthContext.Provider value={[state, dispatch]}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 /**
