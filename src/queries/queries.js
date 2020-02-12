@@ -117,6 +117,16 @@ const GET_STRAIN = gql`
       }
  */
 
+const GET_REFRESH_TOKEN = gql`
+  query GetRefreshToken($token: string!) {
+    getRefreshToken(token: $token) {
+      token
+    }
+  }
+`
+
+// MUTATIONS
+
 const LOGIN = gql`
   mutation Login($input: LoginInput!) {
     login(input: $input) {
@@ -136,6 +146,14 @@ const LOGIN = gql`
   }
 `
 
+const LOGOUT = gql`
+  mutation Logout {
+    logout {
+      success
+    }
+  }
+`
+
 const POST_ORDER = gql`
   mutation CreateOrder($input: CreateOrderInput!) {
     createOrder(input: $input) {
@@ -151,6 +169,8 @@ export {
   GET_RELATED_STRAINS,
   GET_STRAIN,
   GET_PLASMID,
+  GET_REFRESH_TOKEN,
   LOGIN,
+  LOGOUT,
   POST_ORDER,
 }
