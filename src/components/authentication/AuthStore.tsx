@@ -23,12 +23,7 @@ type Action =
   | { type: ActionType.LOGOUT }
   | { type: ActionType.UPDATE_TOKEN; payload: { token: string } }
 
-type IContextProps = {
-  state: AuthState
-  dispatch: React.Dispatch<Action>
-}
-
-const AuthContext = createContext({} as IContextProps)
+const AuthContext = createContext({} as any)
 
 const authReducer = (state: AuthState, action: Action) => {
   switch (action.type) {

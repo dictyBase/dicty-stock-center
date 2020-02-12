@@ -1,94 +1,39 @@
 import "utils/polyfills" // necessary for IE11
 import React from "react"
 import ReactDOM from "react-dom"
-import { Provider } from "react-redux"
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { ConnectedRouter } from "connected-react-router"
-import { ApolloProvider } from "@apollo/react-hooks"
-import { ApolloClient } from "apollo-client"
-import { InMemoryCache } from "apollo-cache-inmemory"
-import { createHttpLink } from "apollo-link-http"
-import { persistCache } from "apollo-cache-persist"
-import { createPersistedQueryLink } from "apollo-link-persisted-queries"
 import CssBaseline from "@material-ui/core/CssBaseline"
-import { hydrateAll, hydrateStore } from "dicty-components-redux"
-import configureStore from "store"
+import { AuthProvider } from "components/authentication/AuthStore"
 import history from "utils/routerHistory"
+import AppProviders from "components/AppProviders"
 import App from "components/App"
 import "typeface-roboto"
 
-// load state from localStorage(if any) to set the
-// initial state for the store
-const initialState = hydrateAll(
-  hydrateStore({ key: "auth", namespace: "auth" }),
-)
-const store = configureStore(initialState)
-
-// set up automatic persisted queries
-// https://www.apollographql.com/docs/apollo-server/performance/apq/
-const link = createPersistedQueryLink().concat(
-  createHttpLink({ uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql` }),
-)
-
-// Use an InMemoryCache, but keep it synced to localStorage
-const cache = new InMemoryCache()
-const storage = window.localStorage
-const waitOnCache = persistCache({ cache, storage })
-
-const client = new ApolloClient({
-  link,
-  cache,
-})
-
-const setGoogleAnalytics = async (location, action) => {
+const setGoogleAnalytics = async location => {
   try {
     const module = await import("react-ga")
+    const page = location.pathname || window.location.pathname
     let ReactGA = module.default
     ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID)
-    ReactGA.set({ page: window.location.pathname, anonymizeIp: true })
-    ReactGA.pageview(window.location.pathname)
+    ReactGA.set({ page: page, anonymizeIp: true })
+    ReactGA.pageview(page)
   } catch (e) {
     console.error("could not load react-ga module", JSON.stringify(e))
   }
 }
 
 if (process.env.NODE_ENV === "production") {
-  history.listen((location, action) => {
-    setGoogleAnalytics(location, action)
+  history.listen(location => {
+    setGoogleAnalytics(location)
   })
 }
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#004080",
-    },
-    secondary: {
-      main: "rgb(220, 0, 78)",
-    },
-  },
-  // typography: {
-  //   button: {
-  //     textTransform: "none",
-  //   },
-  // },
-})
-
-// Wait for the cache to sync before starting the app
-waitOnCache.then(() => {
-  ReactDOM.render(
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <App />
-          </MuiThemeProvider>
-        </ConnectedRouter>
-      </Provider>
-    </ApolloProvider>,
-    document.getElementById("root"),
-  )
-})
-
-export { client }
+// AuthProvider needs to be outermost so ApolloProvider can access its token
+ReactDOM.render(
+  <AuthProvider>
+    <AppProviders>
+      <CssBaseline />
+      <App />
+    </AppProviders>
+  </AuthProvider>,
+  document.getElementById("root"),
+)
