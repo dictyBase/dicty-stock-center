@@ -6,6 +6,7 @@ import { AuthProvider } from "components/authentication/AuthStore"
 import history from "utils/routerHistory"
 import AppProviders from "components/AppProviders"
 import App from "components/App"
+import "utils/icons" // fontawesome library
 import "typeface-roboto"
 
 const setGoogleAnalytics = async location => {

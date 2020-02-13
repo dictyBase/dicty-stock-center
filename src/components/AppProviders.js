@@ -13,7 +13,6 @@ import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
 import history from "utils/routerHistory"
 import configureStore from "store"
-import "utils/icons" // fontawesome library
 
 const store = configureStore({})
 
