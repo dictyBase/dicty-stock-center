@@ -10,16 +10,21 @@ type AuthState = {
   isAuthenticated: boolean
   token: string
   user: object
+  provider: string
 }
 
 const initialState = {
   isAuthenticated: false,
   token: "",
   user: {},
+  provider: "",
 }
 
 type Action =
-  | { type: ActionType.LOGIN; payload: { token: string; user: object } }
+  | {
+      type: ActionType.LOGIN
+      payload: { token: string; user: object; provider: string }
+    }
   | { type: ActionType.LOGOUT }
   | { type: ActionType.UPDATE_TOKEN; payload: { token: string } }
 
@@ -34,6 +39,7 @@ const authReducer = (state: AuthState, action: Action) => {
         isAuthenticated: token !== "" ? true : false,
         token,
         user: action.payload.user,
+        provider: action.payload.provider,
       }
     case ActionType.LOGOUT:
       return initialState
@@ -74,4 +80,4 @@ const useAuthStore = () => {
   return context
 }
 
-export { AuthContext, authReducer, AuthProvider, useAuthStore }
+export { AuthContext, authReducer, AuthProvider, useAuthStore, ActionType }

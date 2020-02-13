@@ -133,6 +133,7 @@ const LOGIN = gql`
       token
       user {
         id
+        email
         first_name
         last_name
         roles {
@@ -141,6 +142,9 @@ const LOGIN = gql`
             permission
           }
         }
+      }
+      identity {
+        provider
       }
     }
   }
