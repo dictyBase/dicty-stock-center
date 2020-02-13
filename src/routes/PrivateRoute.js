@@ -1,29 +1,30 @@
-// @flow
 import React from "react"
-import { connect } from "react-redux"
 import { Route, Redirect } from "react-router-dom"
+import { useAuthStore } from "components/authentication/AuthStore"
 
 // function uses same API as <Route />
-const PrivateRoute = ({ component: Component, ...rest }: any) => (
-  // renders a <Route /> and passes all props
-  <Route
-    {...rest}
-    render={props =>
-      // checks for authentication, then redirects if not logged in
-      rest.auth.isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { error: "You must be logged in to view this page!" },
-          }}
-        />
-      )
-    }
-  />
-)
+const PrivateRoute = ({ component: Component, ...rest }: any) => {
+  const [{ isAuthenticated }] = useAuthStore()
 
-const mapStateToProps = ({ auth }) => ({ auth })
+  return (
+    // renders a <Route /> and passes all props
+    <Route
+      {...rest}
+      render={props =>
+        // checks for authentication, then redirects if not logged in
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { error: "You must be logged in to view this page!" },
+            }}
+          />
+        )
+      }
+    />
+  )
+}
 
-export default connect<*, *, *, *, *, *>(mapStateToProps)(PrivateRoute)
+export default PrivateRoute
