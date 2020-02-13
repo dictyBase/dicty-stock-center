@@ -117,8 +117,39 @@ const GET_STRAIN = gql`
       }
  */
 
+const GET_CONTENT_BY_SLUG = gql`
+  query contentBySlug($slug: String!) {
+    contentBySlug(slug: $slug) {
+      id
+      content
+      name
+      slug
+      created_by {
+        email
+        roles {
+          role
+          permissions {
+            permission
+            resource
+          }
+        }
+      }
+      updated_by {
+        email
+        roles {
+          role
+          permissions {
+            permission
+            resource
+          }
+        }
+      }
+    }
+  }
+`
+
 const GET_REFRESH_TOKEN = gql`
-  query GetRefreshToken($token: string!) {
+  query GetRefreshToken($token: String!) {
     getRefreshToken(token: $token) {
       token
     }
@@ -166,6 +197,27 @@ const POST_ORDER = gql`
   }
 `
 
+const CREATE_CONTENT = gql`
+  mutation CreateContent($input: CreateContentInput!) {
+    createContent(input: $input) {
+      name
+      created_by
+      content
+      namespace
+    }
+  }
+`
+
+const UPDATE_CONTENT = gql`
+  mutation UpdateContent($input: UpdateContentInput!) {
+    updateContent(input: $input) {
+      id
+      updated_by
+      content
+    }
+  }
+`
+
 export {
   GET_STOCK_TOTALS,
   GET_STRAIN_LIST,
@@ -173,8 +225,11 @@ export {
   GET_RELATED_STRAINS,
   GET_STRAIN,
   GET_PLASMID,
+  GET_CONTENT_BY_SLUG,
   GET_REFRESH_TOKEN,
   LOGIN,
   LOGOUT,
   POST_ORDER,
+  CREATE_CONTENT,
+  UPDATE_CONTENT,
 }
