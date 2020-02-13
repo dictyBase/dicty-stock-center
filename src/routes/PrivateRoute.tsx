@@ -2,7 +2,10 @@ import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useAuthStore } from "components/authentication/AuthStore"
 
-// function uses same API as <Route />
+/**
+ * PrivateRoute redirects user from route if not authenticated.
+ * This uses the same API as <Route/>
+ */
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
   const [{ isAuthenticated }] = useAuthStore()
 
