@@ -1,28 +1,17 @@
-// @flow
 import React from "react"
-import { connect } from "react-redux"
 import Grid from "@material-ui/core/Grid"
 import MyDscBreadcrumbs from "./MyDscBreadcrumbs"
 import MyDscHeader from "./MyDscHeader"
 import MyDscMainContent from "./MyDscMainContent"
+import { useAuthStore } from "components/authentication/AuthStore"
 import useStyles from "./myDscStyles"
-
-type Props = {
-  /** the object that contains auth data from current state */
-  auth: Object,
-}
 
 /**
  * Personalized component that displays the user's login information (ID, email, name, provider)
  */
 
-const MyDscPage = (props: Props) => {
-  const {
-    auth: {
-      user: { data },
-      provider,
-    },
-  } = props
+const MyDscPage = () => {
+  const [{ user, provider }] = useAuthStore()
   const classes = useStyles()
 
   return (
@@ -34,13 +23,10 @@ const MyDscPage = (props: Props) => {
         <MyDscBreadcrumbs />
       </Grid>
       <Grid item xs={8}>
-        <MyDscMainContent data={data} provider={provider} />
+        <MyDscMainContent data={user} provider={provider} />
       </Grid>
     </Grid>
   )
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
-
-export { MyDscPage }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(MyDscPage)
+export default MyDscPage

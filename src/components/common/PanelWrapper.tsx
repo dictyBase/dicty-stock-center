@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import ExpansionPanel from "@material-ui/core/ExpansionPanel"
@@ -30,9 +29,9 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   /** The title to display for the panel */
-  title: string,
+  title: string
   /** Children passed to component */
-  children: any,
+  children: any
 }
 
 /**

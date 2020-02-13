@@ -3,8 +3,10 @@ import Adapter from "enzyme-adapter-react-16"
 import "jest-enzyme"
 import { sprintf } from "sprintf-js"
 
-global.console = {
-  log: (msg, args) => {
+let globalAny = global as any
+
+globalAny.console = {
+  log: (msg: string, args: any) => {
     if (typeof msg !== "string") {
       return
     }

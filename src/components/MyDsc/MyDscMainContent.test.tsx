@@ -8,8 +8,10 @@ describe("MyDsc/MyDscMainContent", () => {
     const props = {
       provider: "google",
       data: {
-        id: "123",
-        attributes: { email: "george@costanza.com", name: "George Costanza" },
+        id: "9999",
+        email: "wizardofloneliness@nathanforyou.com",
+        first_name: "Nathan",
+        last_name: "Fielder",
       },
     }
     const wrapper = shallow(<MyDscMainContent {...props} />)

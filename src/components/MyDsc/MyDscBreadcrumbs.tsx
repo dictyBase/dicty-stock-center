@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import useStyles from "./myDscStyles"
@@ -15,7 +14,7 @@ const MyDscBreadcrumbs = () => {
       <li className={classes.breadcrumbFirstItem}>
         <Link to="/">Home</Link>
       </li>
-      <li className={classes.breadcrumbItem}>My DSC</li>
+      <li className={classes.breadcrumbItem}>MyDSC</li>
     </ol>
   )
 }
