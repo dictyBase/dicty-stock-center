@@ -36,7 +36,7 @@ type Props = {
 
 /**
  * This is a basic panel wrapper that uses Material-UI for the design.
- * It is used for every panel on the gene summary page.
+ * It is used for all panel implementations.
  */
 
 const PanelWrapper = ({ title, children }: Props) => {

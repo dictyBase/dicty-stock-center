@@ -17,6 +17,7 @@ import "utils/icons" // fontawesome library
 import CartIcon from "components/ShoppingCart/CartIcon"
 import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
+import { useAuthStore } from "components/authentication/AuthStore"
 import { useStyles, navTheme } from "./appStyles"
 
 type Props = {
@@ -31,9 +32,10 @@ type Props = {
 }
 
 const App = (props: Props) => {
-  const { auth, navbar, footer, fetchNavbarAndFooter } = props
+  const { navbar, footer, fetchNavbarAndFooter } = props
+  const [{ isAuthenticated }] = useAuthStore()
   const classes = useStyles()
-  const headerContent = auth.isAuthenticated ? loggedHeaderItems : headerItems
+  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
   // if any errors, fall back to old link setup
   const navbarContent = !navbar.links ? navItems : navbar.links
   const footerContent = !footer.links ? footerItems : footer.links
@@ -60,8 +62,7 @@ const App = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ auth, navbar, footer }) => ({
-  auth,
+const mapStateToProps = ({ navbar, footer }) => ({
   navbar,
   footer,
 })
