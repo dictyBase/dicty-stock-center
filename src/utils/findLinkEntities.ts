@@ -1,8 +1,7 @@
-// @flow
 export default function findLinkEntities(
-  contentBlock: Object,
+  contentBlock: any,
   callback: Function,
-  contentState: Function,
+  contentState: any,
 ) {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity()

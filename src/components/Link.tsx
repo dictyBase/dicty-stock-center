@@ -1,10 +1,9 @@
-// @flow
 import React from "react"
 
 type Props = {
-  entityKey: string,
-  children: any,
-  contentState: Function,
+  entityKey: string
+  children: any
+  contentState: any
 }
 
 /**
