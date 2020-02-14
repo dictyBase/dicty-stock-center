@@ -125,7 +125,10 @@ const GET_CONTENT_BY_SLUG = gql`
       name
       slug
       created_by {
+        id
         email
+        first_name
+        last_name
         roles {
           role
           permissions {
@@ -135,29 +138,17 @@ const GET_CONTENT_BY_SLUG = gql`
         }
       }
       updated_by {
+        id
         email
+        first_name
+        last_name
+        updated_at
         roles {
           role
           permissions {
             permission
             resource
           }
-        }
-      }
-    }
-  }
-`
-
-const GET_USER = gql`
-  query GetUserByID($id: ID!) {
-    user(id: $id) {
-      first_name
-      last_name
-      roles {
-        role
-        permissions {
-          permission
-          resource
         }
       }
     }
@@ -246,7 +237,6 @@ export {
   GET_STRAIN,
   GET_PLASMID,
   GET_CONTENT_BY_SLUG,
-  GET_USER,
   GET_REFRESH_TOKEN,
   LOGIN,
   LOGOUT,
