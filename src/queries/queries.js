@@ -201,7 +201,9 @@ const CREATE_CONTENT = gql`
   mutation CreateContent($input: CreateContentInput!) {
     createContent(input: $input) {
       name
-      created_by
+      created_by {
+        id
+      }
       content
       namespace
     }
@@ -212,7 +214,9 @@ const UPDATE_CONTENT = gql`
   mutation UpdateContent($input: UpdateContentInput!) {
     updateContent(input: $input) {
       id
-      updated_by
+      updated_by {
+        id
+      }
       content
     }
   }
