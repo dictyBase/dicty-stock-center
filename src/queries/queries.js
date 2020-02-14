@@ -153,6 +153,13 @@ const GET_USER = gql`
     user(id: $id) {
       first_name
       last_name
+      roles {
+        role
+        permissions {
+          permission
+          resource
+        }
+      }
     }
   }
 `
