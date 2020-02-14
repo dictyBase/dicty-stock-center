@@ -1,9 +1,11 @@
 // @flow
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect, useRef } from "react"
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
+import { useLazyQuery, useQuery } from "@apollo/react-hooks"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
+import jwtDecode from "jwt-decode"
 import fetchNavbarAndFooter from "actions/navbar"
 import footerItems from "constants/Footer"
 import navItems from "constants/Navbar"
@@ -18,11 +20,23 @@ import CartIcon from "components/ShoppingCart/CartIcon"
 import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { useAuthStore } from "components/authentication/AuthStore"
+import useFetchRefreshToken from "hooks/useFetchRefreshToken"
+import { GET_REFRESH_TOKEN } from "queries/queries"
 import { useStyles, navTheme } from "./appStyles"
 
+const getTokenIntervalDelay = token => {
+  if (token === "") {
+    return
+  }
+  const decodedToken = jwtDecode(token)
+  const currentTime = new Date(Date.now())
+  const jwtTime = new Date(decodedToken.exp * 1000)
+  const timeDiffInMins = (jwtTime - currentTime) / 60000
+  // all this to say we want the delay to be two minutes before the JWT expires
+  return (timeDiffInMins - 2) * 60 * 1000
+}
+
 type Props = {
-  /** Object representing auth part of state */
-  auth: Object,
   /** Object representing navbar part of state */
   navbar: Object,
   /** Object representing footer part of state */
@@ -33,8 +47,26 @@ type Props = {
 
 const App = (props: Props) => {
   const { navbar, footer, fetchNavbarAndFooter } = props
-  const [{ isAuthenticated }] = useAuthStore()
+
+  const [{ token, isAuthenticated }, dispatch] = useAuthStore()
   const classes = useStyles()
+  // const [getRefreshToken, { data, error }] = useLazyQuery(GET_REFRESH_TOKEN, {
+  //   onCompleted: data =>
+  //     dispatch({
+  //       type: "UPDATE_TOKEN",
+  //       payload: {
+  //         token: data.getRefreshToken.token,
+  //       },
+  //     }),
+  // })
+  const { refetch } = useQuery(GET_REFRESH_TOKEN, {
+    variables: { token: token },
+    skip: true,
+  })
+
+  const interval = useRef(null)
+  const delay = getTokenIntervalDelay(token)
+
   const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
   // if any errors, fall back to old link setup
   const navbarContent = !navbar.links ? navItems : navbar.links
@@ -43,6 +75,19 @@ const App = (props: Props) => {
   useEffect(() => {
     fetchNavbarAndFooter()
   }, [fetchNavbarAndFooter])
+
+  const fetchRefreshToken = useCallback(async () => {
+    const res = await refetch({ token: token })
+    //     dispatch({
+    //       type: "UPDATE_TOKEN",
+    //       payload: {
+    //         token: data.getRefreshToken.token,
+    //       },
+    //     }),
+    console.log(res)
+  }, [refetch, token])
+
+  useFetchRefreshToken(fetchRefreshToken, interval, delay, isAuthenticated)
 
   return (
     <div className={classes.body}>
