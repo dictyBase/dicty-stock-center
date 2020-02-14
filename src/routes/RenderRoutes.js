@@ -79,9 +79,6 @@ const ContactPage = lazy(() =>
     /* webpackChunkName: "ContactPage" */ "components/Contact/ContactPage"
   ),
 )
-const ErrorPage = lazy(() =>
-  import(/* webpackChunkName: "ErrorPage" */ "components/Errors/ErrorPage"),
-)
 const ShoppingCartPage = lazy(() =>
   import(
     /* webpackChunkName: "ShoppingCartPage" */ "components/ShoppingCart/ShoppingCartPage"
@@ -123,7 +120,6 @@ const RenderRoutes = () => (
       <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
       {/* misc routes */}
       <Route exact path="/contact" component={ContactPage} />
-      <Route exact path="/error" component={ErrorPage} />
       <Route exact path="/cart" component={ShoppingCartPage} />
       <Route exact path="*" component={PageNotReady} />
     </Switch>

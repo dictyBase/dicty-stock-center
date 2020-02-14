@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from "react"
-import { connect } from "react-redux"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
@@ -13,8 +12,6 @@ const buttons = ["orcid", "google", "linkedin"]
 type Props = {
   // Object passed by React-Router
   location: Object,
-  // Auth part of state
-  auth: Object,
 }
 
 /**
@@ -45,7 +42,6 @@ class Login extends Component<Props> {
     )
   }
   render() {
-    const { auth } = this.props
     const { state = {} } = this.props.location
     const { error } = state
     return (
@@ -55,7 +51,6 @@ class Login extends Component<Props> {
             <h1>Log in</h1>
           </center>
           {error && <ErrorNotification error={error} />}
-          {auth.error && <ErrorNotification error={auth.error} />}
           <Grid container justify="center">
             <Grid item xs={1} />
             <Grid item xs={4}>
@@ -69,7 +64,4 @@ class Login extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
-
-export { Login }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(Login)
+export default Login
