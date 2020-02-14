@@ -1,6 +1,4 @@
-// @flow
 import React from "react"
-import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import bowser from "bowser"
@@ -13,7 +11,7 @@ import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
 import LinkList from "./LinkList"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
-import { AuthenticatedUser } from "utils/apiClasses"
+import { useAuthStore } from "components/authentication/AuthStore"
 import {
   downloadLinks,
   infoLinks,
@@ -22,19 +20,15 @@ import {
 } from "constants/linkLists"
 import useStyles from "./homeStyles"
 
-type Props = {
-  /** the User object from the current state */
-  user: Object,
-  /** the user's first and last names, taken from the AuthenticatedUser class */
-  fullName: string,
-}
-
 /**
  * Homepage is the main homepage component for DSC.
  */
 
-const Homepage = ({ fullName, user }: Props) => {
+const Homepage = () => {
   const classes = useStyles()
+  const [{ user }] = useAuthStore()
+
+  const fullName = `${user.first_name} ${user.last_name}`
 
   return (
     <div className={classes.container}>
@@ -45,7 +39,7 @@ const Homepage = ({ fullName, user }: Props) => {
           content="The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
         />
       </Helmet>
-      {user && (
+      {user.data && (
         <span>
           <h3>Hello, {`${fullName}!`}</h3>
         </span>
@@ -83,16 +77,4 @@ const Homepage = ({ fullName, user }: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  if (state.auth.user) {
-    const userData = new AuthenticatedUser(state.auth.user)
-    return {
-      user: state.auth.user,
-      fullName: userData.getFullName(),
-    }
-  }
-  return {}
-}
-
-export { Homepage }
-export default connect<*, *, *, *, *, *>(mapStateToProps)(Homepage)
+export default Homepage

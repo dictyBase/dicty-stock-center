@@ -45,5 +45,4 @@ const Availability = () => {
   )
 }
 
-export { Availability }
 export default Availability

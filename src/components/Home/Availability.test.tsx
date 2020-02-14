@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import { MockedProvider } from "@apollo/react-testing"
 import { BrowserRouter } from "react-router-dom"
 import wait from "waait"
-import { Availability } from "./Availability"
+import Availability from "./Availability"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { GET_STOCK_TOTALS } from "queries/queries"
 

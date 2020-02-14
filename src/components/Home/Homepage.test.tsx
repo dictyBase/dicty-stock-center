@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { Homepage } from "./Homepage"
+import Homepage from "./Homepage"
 import HomepageColumn from "./HomepageColumn"
 import Grid from "@material-ui/core/Grid"
 import Intro from "./Intro"

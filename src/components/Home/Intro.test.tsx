@@ -1,17 +1,18 @@
 import React from "react"
 import { shallow, mount } from "enzyme"
-import { OtherMaterials } from "./OtherMaterials"
+import sinon from "sinon"
+import Intro from "./Intro"
 import InlineEditor from "components/InlineEditor"
 import Grid from "@material-ui/core/Grid"
 
-describe("Home/OtherMaterials", () => {
+describe("Home/Intro", () => {
   let props
-  let mountedOtherMaterialsPage
-  const otherMaterialsPage = () => {
-    if (!mountedOtherMaterialsPage) {
-      mountedOtherMaterialsPage = mount(<OtherMaterials {...props} />)
+  let mountedIntroPage
+  const introPage = () => {
+    if (!mountedIntroPage) {
+      mountedIntroPage = mount(<Intro {...props} />)
     }
-    return mountedOtherMaterialsPage
+    return mountedIntroPage
   }
 
   beforeEach(() => {
@@ -21,10 +22,9 @@ describe("Home/OtherMaterials", () => {
       fetchInfoPage: undefined,
       isFetching: undefined,
     }
-    mountedOtherMaterialsPage = undefined
+    mountedIntroPage = undefined
   })
   describe("initial render", () => {
-    const fetchInfoPageSpy = jest.fn()
     beforeEach(() => {
       props = {
         page: {
@@ -34,17 +34,18 @@ describe("Home/OtherMaterials", () => {
             },
           },
         },
-        fetchInfoPage: fetchInfoPageSpy,
+        fetchInfoPage: () => {},
         isFetching: true,
       }
     })
 
     it("always renders two Grid components", () => {
-      expect(otherMaterialsPage().find(Grid).length).toBe(2)
+      expect(introPage().find(Grid).length).toBe(2)
     })
-    it("calls fetchInfoPage", () => {
-      otherMaterialsPage()
-      expect(fetchInfoPageSpy).toHaveBeenCalled()
+    it("calls componentDidMount", () => {
+      sinon.spy(Intro.prototype, "componentDidMount")
+      introPage()
+      expect(Intro.prototype.componentDidMount.calledOnce).toEqual(true)
     })
   })
 
@@ -64,12 +65,12 @@ describe("Home/OtherMaterials", () => {
     })
 
     it("renders InlineEditor", () => {
-      const wrapper = shallow(<OtherMaterials {...props} />)
+      const wrapper = shallow(<Intro {...props} />)
       expect(wrapper.find(InlineEditor).length).toBe(1)
     })
 
     it("no longer renders Grid", () => {
-      const wrapper = shallow(<OtherMaterials {...props} />)
+      const wrapper = shallow(<Intro {...props} />)
       expect(wrapper.find(Grid).length).toBe(0)
     })
   })

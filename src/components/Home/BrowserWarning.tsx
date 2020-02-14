@@ -25,7 +25,7 @@ const BrowserWarning = () => {
     <>
       <Dialog
         open={open}
-        transition={Transition}
+        TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}>
         <DialogTitle id="outdated-browser-warning">
