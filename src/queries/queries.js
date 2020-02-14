@@ -148,6 +148,15 @@ const GET_CONTENT_BY_SLUG = gql`
   }
 `
 
+const GET_USER = gql`
+  query GetUserByID($id: ID!) {
+    user(id: $id) {
+      first_name
+      last_name
+    }
+  }
+`
+
 const GET_REFRESH_TOKEN = gql`
   query GetRefreshToken($token: String!) {
     getRefreshToken(token: $token) {
@@ -230,6 +239,7 @@ export {
   GET_STRAIN,
   GET_PLASMID,
   GET_CONTENT_BY_SLUG,
+  GET_USER,
   GET_REFRESH_TOKEN,
   LOGIN,
   LOGOUT,
