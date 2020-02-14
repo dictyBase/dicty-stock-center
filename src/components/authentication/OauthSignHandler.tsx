@@ -30,7 +30,7 @@ const OauthSignHandler = () => {
           input: {
             client_id: provider.clientId,
             redirect_url: event.data.url,
-            state: parsed.state,
+            state: parsed.state || "state",
             code: parsed.code,
             scopes: provider.scopes[0],
             provider: event.data.provider,
