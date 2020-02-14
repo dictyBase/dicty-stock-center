@@ -1,24 +1,43 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import Homepage from "./Homepage"
-import HomepageColumn from "./HomepageColumn"
 import Grid from "@material-ui/core/Grid"
-import Intro from "./Intro"
+import { BrowserRouter } from "react-router-dom"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
 describe("Home/Homepage", () => {
-  const props = {
-    classes: {
-      container: "container",
-    },
-    fullName: "Nathan Fielder",
-    user: {},
-  }
-  const wrapper = shallow(<Homepage {...props} />)
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(3)
-      expect(wrapper.find(HomepageColumn)).toHaveLength(3)
-      expect(wrapper.find(Intro)).toHaveLength(1)
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token: "xyz",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
+        },
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <BrowserRouter>{children}</BrowserRouter>
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = mount(
+      <MockProvider>
+        <Homepage />
+      </MockProvider>,
+    )
+    it("renders loading components first", () => {
+      expect(wrapper.find(Grid)).toExist()
+      expect(wrapper.find(Skeleton)).toExist()
+      expect(wrapper.find(SkeletonTheme)).toExist()
     })
   })
 })

@@ -1,77 +1,43 @@
 import React from "react"
-import { shallow, mount } from "enzyme"
-import sinon from "sinon"
+import { mount } from "enzyme"
 import Intro from "./Intro"
 import InlineEditor from "components/InlineEditor"
 import Grid from "@material-ui/core/Grid"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
 describe("Home/Intro", () => {
-  let props
-  let mountedIntroPage
-  const introPage = () => {
-    if (!mountedIntroPage) {
-      mountedIntroPage = mount(<Intro {...props} />)
-    }
-    return mountedIntroPage
-  }
-
-  beforeEach(() => {
-    props = {
-      page: undefined,
-      match: undefined,
-      fetchInfoPage: undefined,
-      isFetching: undefined,
-    }
-    mountedIntroPage = undefined
-  })
   describe("initial render", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-            },
-          },
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token: "xyz",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
         },
-        fetchInfoPage: () => {},
-        isFetching: true,
-      }
-    })
-
-    it("always renders two Grid components", () => {
-      expect(introPage().find(Grid).length).toBe(2)
-    })
-    it("calls componentDidMount", () => {
-      sinon.spy(Intro.prototype, "componentDidMount")
-      introPage()
-      expect(Intro.prototype.componentDidMount.calledOnce).toEqual(true)
-    })
-  })
-
-  describe("after content is fetched", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-            },
-          },
-        },
-        fetchInfoPage: () => {},
-        isFetching: false,
-      }
-    })
-
-    it("renders InlineEditor", () => {
-      const wrapper = shallow(<Intro {...props} />)
-      expect(wrapper.find(InlineEditor).length).toBe(1)
-    })
-
-    it("no longer renders Grid", () => {
-      const wrapper = shallow(<Intro {...props} />)
-      expect(wrapper.find(Grid).length).toBe(0)
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            {children}
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = mount(
+      <MockProvider>
+        <Intro />
+      </MockProvider>,
+    )
+    it("renders loading components first", () => {
+      expect(wrapper.find(Grid)).toExist()
+      expect(wrapper.find(Skeleton)).toExist()
+      expect(wrapper.find(SkeletonTheme)).toExist()
     })
   })
 })

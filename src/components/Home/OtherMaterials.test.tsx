@@ -1,76 +1,43 @@
 import React from "react"
-import { shallow, mount } from "enzyme"
+import { mount } from "enzyme"
 import OtherMaterials from "./OtherMaterials"
 import InlineEditor from "components/InlineEditor"
 import Grid from "@material-ui/core/Grid"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
 describe("Home/OtherMaterials", () => {
-  let props
-  let mountedOtherMaterialsPage
-  const otherMaterialsPage = () => {
-    if (!mountedOtherMaterialsPage) {
-      mountedOtherMaterialsPage = mount(<OtherMaterials {...props} />)
-    }
-    return mountedOtherMaterialsPage
-  }
-
-  beforeEach(() => {
-    props = {
-      page: undefined,
-      match: undefined,
-      fetchInfoPage: undefined,
-      isFetching: undefined,
-    }
-    mountedOtherMaterialsPage = undefined
-  })
   describe("initial render", () => {
-    const fetchInfoPageSpy = jest.fn()
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-            },
-          },
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token: "xyz",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
         },
-        fetchInfoPage: fetchInfoPageSpy,
-        isFetching: true,
-      }
-    })
-
-    it("always renders two Grid components", () => {
-      expect(otherMaterialsPage().find(Grid).length).toBe(2)
-    })
-    it("calls fetchInfoPage", () => {
-      otherMaterialsPage()
-      expect(fetchInfoPageSpy).toHaveBeenCalled()
-    })
-  })
-
-  describe("after content is fetched", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-            },
-          },
-        },
-        fetchInfoPage: () => {},
-        isFetching: false,
-      }
-    })
-
-    it("renders InlineEditor", () => {
-      const wrapper = shallow(<OtherMaterials {...props} />)
-      expect(wrapper.find(InlineEditor).length).toBe(1)
-    })
-
-    it("no longer renders Grid", () => {
-      const wrapper = shallow(<OtherMaterials {...props} />)
-      expect(wrapper.find(Grid).length).toBe(0)
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            {children}
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = mount(
+      <MockProvider>
+        <OtherMaterials />
+      </MockProvider>,
+    )
+    it("renders loading components first", () => {
+      expect(wrapper.find(Grid)).toExist()
+      expect(wrapper.find(Skeleton)).toExist()
+      expect(wrapper.find(SkeletonTheme)).toExist()
     })
   })
 })
