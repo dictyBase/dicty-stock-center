@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import PanelLoader from "./PanelLoader"
 import { GET_STOCK_TOTALS } from "queries/queries"
 import useStyles from "./homeStyles"
 
@@ -17,13 +17,7 @@ const Availability = () => {
     },
   })
 
-  if (loading)
-    return (
-      <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
-        <Skeleton count={5} />
-        &nbsp;
-      </SkeletonTheme>
-    )
+  if (loading) return <PanelLoader skeletonCount={5} />
 
   if (error)
     return (

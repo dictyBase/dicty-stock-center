@@ -2,8 +2,7 @@ import React from "react"
 import { mount } from "enzyme"
 import About from "./About"
 import InlineEditor from "components/InlineEditor"
-import Grid from "@material-ui/core/Grid"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import PanelLoader from "./PanelLoader"
 import { MockedProvider } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
@@ -35,9 +34,7 @@ describe("Home/About", () => {
       </MockProvider>,
     )
     it("renders loading components first", () => {
-      expect(wrapper.find(Grid)).toExist()
-      expect(wrapper.find(Skeleton)).toExist()
-      expect(wrapper.find(SkeletonTheme)).toExist()
+      expect(wrapper.find(PanelLoader)).toExist()
     })
   })
 })

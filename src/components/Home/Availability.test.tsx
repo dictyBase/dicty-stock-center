@@ -4,15 +4,10 @@ import { MockedProvider } from "@apollo/react-testing"
 import { BrowserRouter } from "react-router-dom"
 import wait from "waait"
 import Availability from "./Availability"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import PanelLoader from "./PanelLoader"
 import { GET_STOCK_TOTALS } from "queries/queries"
 
 describe("Home/Availability", () => {
-  const props = {
-    classes: {
-      panelGray: "",
-    },
-  }
   describe("initial render", () => {
     const mocks = [
       {
@@ -35,13 +30,12 @@ describe("Home/Availability", () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <BrowserRouter>
-          <Availability {...props} />
+          <Availability />
         </BrowserRouter>
       </MockedProvider>,
     )
     it("renders loading component first", () => {
-      expect(wrapper.find(SkeletonTheme)).toHaveLength(1)
-      expect(wrapper.find(Skeleton)).toHaveLength(1)
+      expect(wrapper.find(PanelLoader)).toHaveLength(1)
     })
     it("renders expected components after receiving data", async () => {
       await wait()
@@ -83,7 +77,7 @@ describe("Home/Availability", () => {
     const wrapper = mount(
       <BrowserRouter>
         <MockedProvider mocks={mocks} addTypename={false}>
-          <Availability {...props} />
+          <Availability />
         </MockedProvider>
       </BrowserRouter>,
     )
