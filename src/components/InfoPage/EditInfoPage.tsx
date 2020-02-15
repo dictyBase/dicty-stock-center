@@ -1,4 +1,3 @@
-// @flow
 import React, { useRef, useState } from "react"
 import { useMutation } from "@apollo/react-hooks"
 import { useHistory, useParams } from "react-router-dom"

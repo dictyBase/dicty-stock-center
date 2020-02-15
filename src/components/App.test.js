@@ -31,14 +31,9 @@ describe("layout/App", () => {
       </AuthContext.Provider>
     )
   }
-  const props = {
-    navbar: {},
-    footer: {},
-    fetchNavbarAndFooter: jest.fn(),
-  }
   const wrapper = mount(
     <MockProvider>
-      <App {...props} />
+      <App />
     </MockProvider>,
   )
   describe("initial render without authentication", () => {

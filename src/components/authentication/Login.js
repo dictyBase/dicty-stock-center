@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
@@ -9,17 +8,12 @@ import Grid from "@material-ui/core/Grid"
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
 
-type Props = {
-  // Object passed by React-Router
-  location: Object,
-}
-
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-class Login extends Component<Props> {
-  handleClick = (name: string) => {
+class Login extends Component {
+  handleClick = name => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
     url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
