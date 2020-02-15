@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Provider } from "react-redux"
-import { ConnectedRouter } from "connected-react-router"
 import { ApolloProvider } from "@apollo/react-hooks"
 import { ApolloClient } from "apollo-client"
 import { InMemoryCache } from "apollo-cache-inmemory"
@@ -8,13 +6,10 @@ import { createHttpLink } from "apollo-link-http"
 import { setContext } from "apollo-link-context"
 // import { persistCache } from "apollo-cache-persist"
 // import { createPersistedQueryLink } from "apollo-link-persisted-queries"
+import { BrowserRouter as Router } from "react-router-dom"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
-import history from "utils/routerHistory"
-import configureStore from "store"
-
-const store = configureStore({})
 
 const createClient = async token => {
   const authLink = setContext((_, { headers }) => ({
@@ -71,13 +66,11 @@ const AppProviders = ({ children }) => {
 
   return (
     <ApolloProvider client={client}>
-      <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
-          <ConnectedRouter history={history}>
-            <CartProvider>{children}</CartProvider>
-          </ConnectedRouter>
-        </MuiThemeProvider>
-      </Provider>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <CartProvider>{children}</CartProvider>
+        </Router>
+      </MuiThemeProvider>
     </ApolloProvider>
   )
 }

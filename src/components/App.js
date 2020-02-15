@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef } from "react"
-import { withRouter } from "react-router-dom"
 import { useLazyQuery, useQuery } from "@apollo/react-hooks"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
@@ -86,4 +85,4 @@ const App = () => {
   )
 }
 
-export default withRouter(App)
+export default App
