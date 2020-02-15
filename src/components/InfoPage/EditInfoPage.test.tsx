@@ -1,111 +1,60 @@
 import React from "react"
-import { mount } from "enzyme"
-import { EditInfoPage } from "./EditInfoPage"
+import { shallow } from "enzyme"
+import EditInfoPage from "./EditInfoPage"
 import { Editor } from "draft-js"
+import { BrowserRouter } from "react-router-dom"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
 describe("InfoPage/EditInfoPage", () => {
-  let props
-  let mountedEditInfoPage
-  const editInfoPage = () => {
-    if (!mountedEditInfoPage) {
-      mountedEditInfoPage = mount(<EditInfoPage {...props} />)
-    }
-    return mountedEditInfoPage
-  }
-
-  beforeEach(() => {
-    props = {
-      page: undefined,
-      cancelEditing: undefined,
-      id: undefined,
-      updated_by: undefined,
-      saveEditing: undefined,
-      content: undefined,
-      classes: {
-        container: "container",
-      },
-    }
-    mountedEditInfoPage = undefined
-  })
-
-  const content = JSON.stringify({
-    entityMap: {},
-    blocks: [
-      {
-        key: "abc",
-        text: "123",
-        type: "unstyled",
-        depth: 0,
-      },
-    ],
-  })
-
   describe("initial render", () => {
-    beforeEach(() => {
-      props = {
-        page: {
+    const props = {
+      classes: {},
+      location: {
+        state: {
           data: {
-            attributes: {
-              content: content,
-              updated_at: "999",
-            },
+            content: JSON.stringify({
+              entityMap: {},
+              blocks: [
+                {
+                  key: "abc",
+                  text: "123",
+                  type: "unstyled",
+                  depth: 0,
+                },
+              ],
+            }),
           },
         },
-        content: content,
-        match: {
-          params: {
-            name: "order",
-          },
+      },
+    }
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token: "xyz",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
         },
-        classes: {
-          container: "container",
-        },
-      }
-    })
-    it("always renders an Editor", () => {
-      expect(editInfoPage().find(Editor).length).toBe(1)
-    })
-  })
-
-  describe("EditInfoPage methods", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: content,
-              updated_at: "999",
-            },
-          },
-        },
-        content: content,
-        match: {
-          params: {
-            name: "order",
-          },
-        },
-        saveEditing: () => {},
-        cancelEditing: () => {},
-        classes: {
-          container: "container",
-        },
-      }
-    })
-
-    it("should be read only after using onSave", () => {
-      const instance = editInfoPage().instance()
-      const spy = jest.spyOn(instance, "onSave")
-      instance.onSave()
-
-      expect(spy).toHaveBeenCalled()
-    })
-
-    it("should be read only after using onCancel", () => {
-      const instance = editInfoPage().instance()
-      const spy = jest.spyOn(instance, "onCancel")
-      instance.onCancel()
-
-      expect(spy).toHaveBeenCalled()
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <BrowserRouter>{children}</BrowserRouter>
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = shallow(
+      <MockProvider>
+        <EditInfoPage {...props} />
+      </MockProvider>,
+    )
+    it("renders initial components", () => {
+      expect(wrapper.find(Editor)).toHaveLength(1)
     })
   })
 })

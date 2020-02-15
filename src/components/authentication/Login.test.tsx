@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { Login } from "./Login"
+import Login from "./Login"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import ErrorNotification from "components/authentication/ErrorNotification"
@@ -9,7 +9,6 @@ describe("authentication/Login", () => {
   describe("initial render", () => {
     it("always renders initial components", () => {
       const props = {
-        auth: {},
         location: {
           state: {},
         },
@@ -22,11 +21,10 @@ describe("authentication/Login", () => {
   describe("error displays", () => {
     it("displays ErrorNotification if error", () => {
       const props = {
-        auth: {
-          error: "could not log in",
-        },
         location: {
-          state: {},
+          state: {
+            error: "could not log in",
+          },
         },
       }
       const wrapper = shallow(<Login {...props} />)

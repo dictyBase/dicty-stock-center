@@ -1,90 +1,40 @@
 import React from "react"
-import { shallow, mount } from "enzyme"
-import sinon from "sinon"
-import { InfoPage } from "./InfoPage"
-import InfoPageView from "./InfoPageView"
+import { mount } from "enzyme"
+import InfoPage from "./InfoPage"
 import Loader from "components/common/Loader"
+import { BrowserRouter } from "react-router-dom"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
 describe("InfoPage/InfoPage", () => {
-  let props
-  let mountedInfoPage
-  const infoPage = () => {
-    if (!mountedInfoPage) {
-      mountedInfoPage = mount(<InfoPage {...props} />)
-    }
-    return mountedInfoPage
-  }
-
-  beforeEach(() => {
-    props = {
-      page: undefined,
-      match: undefined,
-      fetchInfoPage: undefined,
-      isFetching: undefined,
-    }
-    mountedInfoPage = undefined
-  })
-
   describe("initial render", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-              name: "order",
-            },
-          },
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token: "xyz",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
         },
-        match: {
-          params: {
-            name: "order",
-          },
-        },
-        fetchInfoPage: () => {},
-        isFetching: true,
-      }
-    })
-
-    it("always renders Loader", () => {
-      expect(infoPage().find(Loader).length).toBe(1)
-    })
-    it("calls componentDidMount", () => {
-      sinon.spy(InfoPage.prototype, "componentDidMount")
-      infoPage()
-      expect(InfoPage.prototype.componentDidMount.calledOnce).toEqual(true)
-    })
-  })
-
-  describe("after content is fetched", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: "page content",
-              name: "order",
-            },
-          },
-        },
-        match: {
-          params: {
-            name: "order",
-          },
-        },
-        fetchInfoPage: () => {},
-        isFetching: false,
-      }
-    })
-
-    it("renders InfoPageView", () => {
-      const wrapper = shallow(<InfoPage {...props} />)
-      expect(wrapper.find(InfoPageView).length).toBe(1)
-    })
-
-    it("no longer renders Loader", () => {
-      const wrapper = shallow(<InfoPage {...props} />)
-      expect(wrapper.find(Loader).length).toBe(0)
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <BrowserRouter>{children}</BrowserRouter>
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = mount(
+      <MockProvider>
+        <InfoPage />
+      </MockProvider>,
+    )
+    it("renders loader first", () => {
+      expect(wrapper.find(Loader)).toHaveLength(1)
     })
   })
 })
