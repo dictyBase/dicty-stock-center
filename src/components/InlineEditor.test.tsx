@@ -1,127 +1,57 @@
 import React from "react"
-import { shallow } from "enzyme"
-import { InlineEditor } from "./InlineEditor"
-import Authorization from "components/authentication/Authorization"
-import Editor from "draft-js-plugins-editor"
+import { mount } from "enzyme"
+import InlineEditor from "./InlineEditor"
+import { Editor } from "draft-js"
+import { BrowserRouter } from "react-router-dom"
+import { MockedProvider } from "@apollo/react-testing"
+import { AuthContext, authReducer } from "components/authentication/AuthStore"
 
-describe("InlineEditor", () => {
-  let props
-  let mountedInlineEditor
-  const inlineEditor = () => {
-    if (!mountedInlineEditor) {
-      mountedInlineEditor = shallow(<InlineEditor {...props} />)
-    }
-    return mountedInlineEditor
-  }
-
-  beforeEach(() => {
-    props = {
-      page: undefined,
-      id: undefined,
-      updated_by: undefined,
-      saveInlineEditing: undefined,
-      editInline: undefined,
-      classes: {
-        container: "container",
-      },
-    }
-    mountedInlineEditor = undefined
-  })
-
-  const content = JSON.stringify({
-    entityMap: {},
-    blocks: [
-      {
-        key: "abc",
-        text: "123",
-        type: "unstyled",
-        depth: 0,
-      },
-    ],
-  })
-
+describe("InfoPage/InlineEditor", () => {
   describe("initial render", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: content,
-              updated_at: "999",
+    const props = {
+      data: {
+        content: JSON.stringify({
+          entityMap: {},
+          blocks: [
+            {
+              key: "abc",
+              text: "123",
+              type: "unstyled",
+              depth: 0,
             },
-          },
+          ],
+        }),
+      },
+      classes: {},
+    }
+    const mocks = []
+    const MockProvider = ({ children }) => {
+      const [state, dispatch] = React.useReducer(authReducer, {
+        token:
+          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.POstGetfAytaZS82wHcjoTyoqhMyxXiWdR7Nn7A29DNSl0EiXLdwJ6xC6AfgZWF1bOsS_TuYI3OG85AmiExREkrS6tDfTQ2B3WXlrr-wp5AokiRbz3_oB4OxG-W9KcEEbDRcZc0nH3L7LzYptiy1PtAylQGxHTWZXtGz4ht0bAecBgmpdgXMguEIcoqPJ1n3pIWk_dUZegpqx0Lka21H6XxUTxiy8OcaarA8zdnPUnV6AmNP3ecFawIFYdvJB_cm-GvpCSbr8G8y_Mllj8f4x9nBH8pQux89_6gUY618iYv7tuPWBFfEbLxtF2pZS6YC1aSfLQxeNe8djT9YjpvRZA",
+        user: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "george@vandelayindustries.com",
         },
-        classes: {
-          container: "container",
-        },
-      }
-    })
-
-    it("always renders an Editor", () => {
-      expect(inlineEditor().find(Editor).length).toBe(1)
-    })
-    it("renders the Authorization component", () => {
-      expect(inlineEditor().find(Authorization).length).toBe(1)
-    })
-  })
-
-  describe("button click events", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: content,
-              updated_at: "999",
-            },
-          },
-        },
-        saveInlineEditing: () => {},
-        classes: {
-          container: "container",
-        },
-      }
-    })
-  })
-
-  describe("InlineEditor methods", () => {
-    beforeEach(() => {
-      props = {
-        page: {
-          data: {
-            attributes: {
-              content: content,
-              updated_at: "999",
-            },
-          },
-        },
-        saveInlineEditing: () => {},
-        editInline: () => {},
-        fetchInfoPage: () => {},
-        classes: {
-          container: "container",
-        },
-      }
-    })
-
-    const preventDefault = jest.fn()
-
-    it("should be read only after using onSave", () => {
-      const instance = inlineEditor().instance()
-      instance.onSave(true)
-      expect(inlineEditor().state("readOnly")).toEqual(true)
-    })
-
-    it("should be read only after using onCancel", () => {
-      const instance = inlineEditor().instance()
-      instance.onCancel(true)
-      expect(inlineEditor().state("readOnly")).toEqual(true)
-    })
-
-    it("should not be read only after using onEdit", () => {
-      const instance = inlineEditor().instance()
-      instance.onEdit({ preventDefault })
-      expect(inlineEditor().state("readOnly")).toEqual(false)
+        provider: "google",
+        isAuthenticated: true,
+      })
+      return (
+        <AuthContext.Provider value={[state, dispatch]}>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <BrowserRouter>{children}</BrowserRouter>
+          </MockedProvider>
+        </AuthContext.Provider>
+      )
+    }
+    const wrapper = mount(
+      <MockProvider>
+        <InlineEditor {...props} />
+      </MockProvider>,
+    )
+    it("renders initial components", () => {
+      expect(wrapper.find(Editor)).toHaveLength(1)
     })
   })
 })
