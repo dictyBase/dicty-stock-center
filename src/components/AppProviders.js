@@ -6,7 +6,7 @@ import { createHttpLink } from "apollo-link-http"
 import { setContext } from "apollo-link-context"
 // import { persistCache } from "apollo-cache-persist"
 // import { createPersistedQueryLink } from "apollo-link-persisted-queries"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
@@ -67,9 +67,9 @@ const AppProviders = ({ children }) => {
   return (
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
-        <Router>
+        <BrowserRouter basename={process.env.REACT_APP_BASENAME}>
           <CartProvider>{children}</CartProvider>
-        </Router>
+        </BrowserRouter>
       </MuiThemeProvider>
     </ApolloProvider>
   )
