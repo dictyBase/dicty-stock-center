@@ -1,7 +1,6 @@
 // @flow
 import React, { useState, useRef } from "react"
 import { useMutation } from "@apollo/react-hooks"
-import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Tooltip from "@material-ui/core/Tooltip"
 import Button from "@material-ui/core/Button"
@@ -26,7 +25,7 @@ import {
 import useAuthorization from "hooks/useAuthorization"
 import { UPDATE_CONTENT } from "queries/queries"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "./inlineEditorStyles"
+import useStyles from "./inlineEditorStyles"
 import "draft-js-static-toolbar-plugin/lib/plugin.css"
 
 type Props = {
@@ -36,23 +35,14 @@ type Props = {
     content: string
     slug: string
   }
-  classes: {
-    toolbar: string
-    container: string
-    editorGrid: string
-    editButton: string
-    cancelButtonGrid: string
-    cancelButton: string
-    saveButtonGrid: string
-    saveButton: string
-  }
 }
 
 /**
  * Inline editor for all inline editable content
  */
 
-const InlineEditor = ({ data, classes }: Props) => {
+const InlineEditor = ({ data }: Props) => {
+  const classes = useStyles()
   const undoPlugin = createUndoPlugin()
   const toolbarLinkPlugin = createToolbarLinkPlugin({
     inputPlaceholder: "Insert URL here...",
@@ -199,4 +189,4 @@ const InlineEditor = ({ data, classes }: Props) => {
   )
 }
 
-export default withStyles(styles)(InlineEditor)
+export default InlineEditor

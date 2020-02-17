@@ -1,4 +1,6 @@
-const styles = () => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(() => ({
   inlineLink: {
     cursor: "pointer",
   },
@@ -45,6 +47,6 @@ const styles = () => ({
       outline: "none",
     },
   },
-})
+}))
 
-export default styles
+export default useStyles
