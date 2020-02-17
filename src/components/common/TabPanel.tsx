@@ -1,15 +1,14 @@
-// @flow
 import React from "react"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 
 type Props = {
   /** Any content inside the tab panel */
-  children: any,
+  children: any
   /** Tab value */
-  value: number,
+  value: number
   /** Index of tab selected */
-  index: number,
+  index: number
 }
 
 /**

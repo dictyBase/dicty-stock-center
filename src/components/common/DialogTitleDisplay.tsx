@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
@@ -21,10 +20,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  /** Title to display */
-  title: string,
-  /** Function to call when close button is clicked */
-  handleClose: Function,
+  title: string
+  handleClose: any
 }
 
 /**

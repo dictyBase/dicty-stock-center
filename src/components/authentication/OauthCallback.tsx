@@ -1,14 +1,8 @@
-// @flow
 import React, { Component } from "react"
 import Grid from "@material-ui/core/Grid"
 
-type Props = {
-  location: Object,
-  match: Object,
-}
-
 // helper function to set redirect URL with basename if included
-const redirectUrlGenerator = basename => {
+const redirectUrlGenerator = (basename: string) => {
   let url
   if (basename === "" || basename === "/") {
     url = `${window.location.origin}`
@@ -18,6 +12,18 @@ const redirectUrlGenerator = basename => {
     url = `${window.location.origin}/${basename}`
   }
   return url
+}
+
+type Props = {
+  location: {
+    search: string
+    pathname: string
+  }
+  match: {
+    params: {
+      provider: string
+    }
+  }
 }
 
 /**

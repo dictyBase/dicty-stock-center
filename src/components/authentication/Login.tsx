@@ -8,12 +8,20 @@ import Grid from "@material-ui/core/Grid"
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
 
+type Props = {
+  location: {
+    state: {
+      error: string
+    }
+  }
+}
+
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-class Login extends Component {
-  handleClick = name => {
+class Login extends Component<Props> {
+  handleClick = (name: string) => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
     url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
@@ -36,14 +44,13 @@ class Login extends Component {
     )
   }
   render() {
-    const { state = {} } = this.props.location
-    const { error } = state
+    const error = this.props.location.state.error
     return (
       <Grid container justify="center">
         <Grid item xs={8}>
-          <center>
+          <div style={{ textAlign: "center" }}>
             <h1>Log in</h1>
-          </center>
+          </div>
           {error && <ErrorNotification error={error} />}
           <Grid container justify="center">
             <Grid item xs={1} />
