@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react"
 import navItems from "constants/Navbar"
 
+const navbarDataFormatter = json =>
+  json.data.map(item => {
+    const menuItemsArr = item.attributes.items.map(c => ({
+      name: c.label,
+      href: c.link,
+    }))
+
+    return {
+      dropdown: true,
+      title: item.attributes.display,
+      items: menuItemsArr,
+    }
+  })
+
 /**
  * useNavbar is a hook for fetching dictyBase navbar
  * JSON data. It uses an included JSON file as its
@@ -21,19 +35,7 @@ const useNavbar = () => {
         const res = await fetch(url)
         const json = await res.json()
         if (res.ok) {
-          const navbarArr = json.data.map(item => {
-            const menuItemsArr = item.attributes.items.map(c => ({
-              name: c.label,
-              href: c.link,
-            }))
-
-            return {
-              dropdown: true,
-              title: item.attributes.display,
-              items: menuItemsArr,
-            }
-          })
-          setNavbarData(navbarArr)
+          setNavbarData(navbarDataFormatter(json))
         } else {
           setError(res.statusText)
         }
