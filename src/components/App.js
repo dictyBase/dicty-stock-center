@@ -1,5 +1,5 @@
-import React, { useCallback, useRef } from "react"
-import { useLazyQuery } from "@apollo/react-hooks"
+import React, { useCallback, useRef, useState } from "react"
+import { useQuery } from "@apollo/react-hooks"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
@@ -32,27 +32,33 @@ const getTokenIntervalDelay = token => {
 }
 
 const App = () => {
+  const [skipQuery, setSkipQuery] = useState(true)
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
   const { footerData } = useFooter()
   const classes = useStyles()
-  const [getRefreshToken] = useLazyQuery(GET_REFRESH_TOKEN, {
-    onCompleted: data =>
-      dispatch({
-        type: "UPDATE_TOKEN",
-        payload: {
-          token: data.getRefreshToken.token,
-        },
-      }),
+  const { refetch } = useQuery(GET_REFRESH_TOKEN, {
+    variables: { token: token },
+    skip: skipQuery,
   })
 
   const interval = useRef(null)
   const delay = getTokenIntervalDelay(token)
-  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
 
+  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
   const fetchRefreshToken = useCallback(async () => {
-    await getRefreshToken({ variables: { token: token } })
-  }, [getRefreshToken, token])
+    setSkipQuery(false)
+    const res = await refetch({ variables: { token: token } })
+    if (res.data) {
+      dispatch({
+        type: "UPDATE_TOKEN",
+        payload: {
+          token: res.data.getRefreshToken.token,
+        },
+      })
+    }
+    return () => setSkipQuery(true)
+  }, [dispatch, refetch, token])
 
   useFetchRefreshToken(fetchRefreshToken, interval, delay, isAuthenticated)
 
