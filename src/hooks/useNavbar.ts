@@ -3,15 +3,14 @@ import navItems from "constants/Navbar"
 
 const navbarDataFormatter = json =>
   json.data.map(item => {
-    const menuItemsArr = item.attributes.items.map(c => ({
+    const navbarItems = item.attributes.items.map(c => ({
       name: c.label,
       href: c.link,
     }))
-
     return {
       dropdown: true,
       title: item.attributes.display,
-      items: menuItemsArr,
+      items: navbarItems,
     }
   })
 

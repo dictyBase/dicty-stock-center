@@ -3,17 +3,16 @@ import footerItems from "constants/Footer"
 
 const footerDataFormatter = json =>
   json.data.map(item => {
-    const menuItemsArr = item.attributes.items.map(c => ({
+    const footerItems = item.attributes.items.map(c => ({
       description: c.label,
       link: c.link,
     }))
-
     return [
       {
         header: {
           description: item.attributes.display,
         },
-        items: menuItemsArr,
+        items: footerItems,
       },
     ]
   })
