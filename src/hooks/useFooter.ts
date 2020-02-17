@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react"
 import footerItems from "constants/Footer"
 
-const footerDataFormatter = json =>
+type FooterJson = {
+  data: Array<{
+    attributes: {
+      display: string
+      items: Array<{
+        label: string
+        link: string
+      }>
+    }
+  }>
+}
+
+const footerUrl = process.env.REACT_APP_FOOTER_JSON
+
+const footerDataFormatter = (json: FooterJson) =>
   json.data.map(item => {
     const footerItems = item.attributes.items.map(c => ({
       description: c.label,
@@ -26,15 +40,14 @@ const footerDataFormatter = json =>
 
 const useFooter = () => {
   const [footerData, setFooterData] = useState<any>(footerItems)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<null | string>(null)
 
   useEffect(() => {
     const fetchFooter = async () => {
-      const url = process.env.REACT_APP_FOOTER_JSON
       setLoading(true)
       try {
-        const res = await fetch(url)
+        const res = await fetch(footerUrl)
         const json = await res.json()
         if (res.ok) {
           const footerArr = footerDataFormatter(json)
@@ -44,7 +57,7 @@ const useFooter = () => {
         }
         setLoading(false)
       } catch (error) {
-        setError(error)
+        setError(error.toString())
       }
     }
     fetchFooter()

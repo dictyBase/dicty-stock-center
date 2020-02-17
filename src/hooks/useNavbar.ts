@@ -1,7 +1,23 @@
 import { useEffect, useState } from "react"
 import navItems from "constants/Navbar"
 
-const navbarDataFormatter = json =>
+type NavbarJson = {
+  data: Array<{
+    id: string
+    type: string
+    attributes: {
+      display: string
+      items: Array<{
+        label: string
+        link: string
+      }>
+    }
+  }>
+}
+
+const navbarUrl = process.env.REACT_APP_NAVBAR_JSON
+
+const navbarDataFormatter = (json: NavbarJson) =>
   json.data.map(item => {
     const navbarItems = item.attributes.items.map(c => ({
       name: c.label,
@@ -28,10 +44,9 @@ const useNavbar = () => {
 
   useEffect(() => {
     const fetchNavbar = async () => {
-      const url = process.env.REACT_APP_NAVBAR_JSON
       setLoading(true)
       try {
-        const res = await fetch(url)
+        const res = await fetch(navbarUrl)
         const json = await res.json()
         if (res.ok) {
           setNavbarData(navbarDataFormatter(json))
@@ -40,7 +55,7 @@ const useNavbar = () => {
         }
         setLoading(false)
       } catch (error) {
-        setError(error)
+        setError(error.toString())
       }
     }
     fetchNavbar()
