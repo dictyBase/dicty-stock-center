@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef } from "react"
-import { useLazyQuery, useQuery } from "@apollo/react-hooks"
+import React, { useCallback, useRef } from "react"
+import { useLazyQuery } from "@apollo/react-hooks"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
@@ -32,22 +32,18 @@ const getTokenIntervalDelay = token => {
 }
 
 const App = () => {
-  const [{ token, isAuthenticated }, dispatch] = useAuthStore()
+  const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
   const { footerData } = useFooter()
   const classes = useStyles()
-  // const [getRefreshToken, { data, error }] = useLazyQuery(GET_REFRESH_TOKEN, {
-  //   onCompleted: data =>
-  //     dispatch({
-  //       type: "UPDATE_TOKEN",
-  //       payload: {
-  //         token: data.getRefreshToken.token,
-  //       },
-  //     }),
-  // })
-  const { refetch } = useQuery(GET_REFRESH_TOKEN, {
-    variables: { token: token },
-    skip: true,
+  const [getRefreshToken] = useLazyQuery(GET_REFRESH_TOKEN, {
+    onCompleted: data =>
+      dispatch({
+        type: "UPDATE_TOKEN",
+        payload: {
+          token: data.getRefreshToken.token,
+        },
+      }),
   })
 
   const interval = useRef(null)
@@ -55,15 +51,8 @@ const App = () => {
   const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
 
   const fetchRefreshToken = useCallback(async () => {
-    const res = await refetch({ token: token })
-    //     dispatch({
-    //       type: "UPDATE_TOKEN",
-    //       payload: {
-    //         token: data.getRefreshToken.token,
-    //       },
-    //     }),
-    console.log(res)
-  }, [refetch, token])
+    await getRefreshToken({ variables: { token: token } })
+  }, [getRefreshToken, token])
 
   useFetchRefreshToken(fetchRefreshToken, interval, delay, isAuthenticated)
 
