@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react"
 import { Route, Switch } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
-import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
 
 const Homepage = lazy(() =>
@@ -97,7 +96,7 @@ const RenderRoutes = () => (
     <Switch>
       <Route exact path="/" component={Homepage} />
       {/* authentication routes */}
-      <LoginRoute exact path="/login" component={Login} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/:provider/callback" component={OauthCallback} />
       <Route exact path="/load/auth" component={AuthLoader} />
       <PrivateRoute exact path="/logout" component={Logout} />

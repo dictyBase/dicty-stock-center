@@ -2,25 +2,16 @@ import React, { Component } from "react"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
-import ErrorNotification from "components/authentication/ErrorNotification"
 import Grid from "@material-ui/core/Grid"
 
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
 
-type Props = {
-  location: {
-    state: {
-      error: string
-    }
-  }
-}
-
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-class Login extends Component<Props> {
+class Login extends Component {
   handleClick = (name: string) => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
@@ -44,14 +35,12 @@ class Login extends Component<Props> {
     )
   }
   render() {
-    const error = this.props.location.state.error
     return (
       <Grid container justify="center">
         <Grid item xs={8}>
           <div style={{ textAlign: "center" }}>
             <h1>Log in</h1>
           </div>
-          {error && <ErrorNotification error={error} />}
           <Grid container justify="center">
             <Grid item xs={1} />
             <Grid item xs={4}>
