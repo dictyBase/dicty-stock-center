@@ -62,7 +62,7 @@ const AppProviders = ({ children }) => {
     return () => {}
   }, [token])
 
-  if (client === undefined) return <div>Loading...</div>
+  if (client === undefined) return <div /> // maybe we could replace with animated dicty logo someday
 
   return (
     <ApolloProvider client={client}>
