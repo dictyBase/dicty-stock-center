@@ -1,35 +1,37 @@
 import { useEffect, useState } from "react"
 import footerItems from "constants/Footer"
 
+type Item = {
+  label: string
+  link: string
+}
+
 type FooterJson = {
   data: Array<{
     attributes: {
       display: string
-      items: Array<{
-        label: string
-        link: string
-      }>
+      items: Array<Item>
     }
   }>
 }
 
+const formatFooterItems = (items: Array<Item>) =>
+  items.map(c => ({
+    description: c.label,
+    link: c.link,
+  }))
+
 const footerUrl = process.env.REACT_APP_FOOTER_JSON
 
 const formatFooterData = (json: FooterJson) =>
-  json.data.map(item => {
-    const footerItems = item.attributes.items.map(c => ({
-      description: c.label,
-      link: c.link,
-    }))
-    return [
-      {
-        header: {
-          description: item.attributes.display,
-        },
-        items: footerItems,
+  json.data.map(item => [
+    {
+      header: {
+        description: item.attributes.display,
       },
-    ]
-  })
+      items: formatFooterItems(item.attributes.items),
+    },
+  ])
 
 /**
  * useFooter is a hook for fetching dictyBase footer
