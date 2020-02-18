@@ -5,8 +5,7 @@ import bowser from "bowser"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
 import Slideshow from "./Slideshow"
-import Intro from "./Intro"
-import About from "./About"
+import EditablePanel from "./EditablePanel"
 import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
 import LinkList from "./LinkList"
@@ -51,10 +50,13 @@ const Homepage = () => {
           </h1>
         </Grid>
         <Grid item xs={12}>
-          <Intro />
+          <EditablePanel slug="dsc-intro" skeletonCount={5} />
         </Grid>
         <HomepageColumn
-          components={[<About />, <LinkList list={miscLinks} bgColor="blue" />]}
+          components={[
+            <EditablePanel slug="dsc-about" skeletonCount={10} />,
+            <LinkList list={miscLinks} bgColor="blue" />,
+          ]}
         />
         <HomepageColumn
           components={[
