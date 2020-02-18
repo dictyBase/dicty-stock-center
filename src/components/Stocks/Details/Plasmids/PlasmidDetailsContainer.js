@@ -9,7 +9,7 @@ import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
-import { GET_PLASMID } from "queries/queries"
+import { GET_PLASMID } from "graphql/queries"
 import useStyles from "components/Stocks/Details/styles"
 
 /**

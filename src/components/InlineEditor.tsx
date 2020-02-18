@@ -23,7 +23,7 @@ import {
   BlockquoteButton,
 } from "draft-js-buttons"
 import useAuthorization from "hooks/useAuthorization"
-import { UPDATE_CONTENT } from "queries/queries"
+import { UPDATE_CONTENT } from "graphql/mutations"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useStyles from "./inlineEditorStyles"
 import "draft-js-static-toolbar-plugin/lib/plugin.css"

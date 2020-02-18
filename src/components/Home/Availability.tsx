@@ -2,7 +2,7 @@
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
 import PanelLoader from "./PanelLoader"
-import { GET_STOCK_TOTALS } from "queries/queries"
+import { GET_STOCK_TOTALS } from "graphql/queries"
 import useStyles from "./homeStyles"
 
 /**

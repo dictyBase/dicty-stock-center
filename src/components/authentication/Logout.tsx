@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useMutation } from "@apollo/react-hooks"
 import { Redirect } from "react-router-dom"
 import { useAuthStore, ActionType } from "components/authentication/AuthStore"
-import { LOGOUT } from "queries/queries"
+import { LOGOUT } from "graphql/mutations"
 
 /**
  * Allows the user to logout

@@ -16,7 +16,7 @@ import { useAuthStore } from "components/authentication/AuthStore"
 import useFetchRefreshToken from "hooks/useFetchRefreshToken"
 import useFooter from "hooks/useFooter"
 import useNavbar from "hooks/useNavbar"
-import { GET_REFRESH_TOKEN } from "queries/queries"
+import { GET_REFRESH_TOKEN } from "graphql/queries"
 import { useStyles, navTheme } from "./appStyles"
 
 const getTokenIntervalDelay = token => {

@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import { GET_RELATED_STRAINS } from "queries/queries"
+import { GET_RELATED_STRAINS } from "graphql/queries"
 import useStyles from "components/Stocks/Details/styles"
 
 type Props = {

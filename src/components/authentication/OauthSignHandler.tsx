@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/react-hooks"
 import { useHistory } from "react-router-dom"
 import querystring from "querystring"
 import { useAuthStore, ActionType } from "components/authentication/AuthStore"
-import { LOGIN } from "queries/queries"
+import { LOGIN } from "graphql/mutations"
 import oauthConfig from "utils/oauthConfig"
 
 /**
