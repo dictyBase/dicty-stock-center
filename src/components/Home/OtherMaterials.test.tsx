@@ -1,7 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import OtherMaterials from "./OtherMaterials"
-import InlineEditor from "components/InlineEditor"
+import InlineEditor from "components/InfoPage/InlineEditor"
 import PanelLoader from "./PanelLoader"
 import { MockedProvider } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "components/authentication/AuthStore"
