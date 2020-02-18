@@ -17,7 +17,7 @@ type NavbarJson = {
 
 const navbarUrl = process.env.REACT_APP_NAVBAR_JSON
 
-const navbarDataFormatter = (json: NavbarJson) =>
+const formatNavbarData = (json: NavbarJson) =>
   json.data.map(item => {
     const navbarItems = item.attributes.items.map(c => ({
       name: c.label,
@@ -49,7 +49,7 @@ const useNavbar = () => {
         const res = await fetch(navbarUrl)
         const json = await res.json()
         if (res.ok) {
-          setNavbarData(navbarDataFormatter(json))
+          setNavbarData(formatNavbarData(json))
         } else {
           setError(res.statusText)
         }

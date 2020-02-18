@@ -45,7 +45,6 @@ const App = () => {
   const interval = useRef(null)
   const delay = getTokenIntervalDelay(token)
 
-  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
   const fetchRefreshToken = useCallback(async () => {
     setSkipQuery(false)
     const res = await refetch({ variables: { token: token } })
@@ -57,10 +56,12 @@ const App = () => {
         },
       })
     }
-    return () => setSkipQuery(true)
+    setSkipQuery(true)
   }, [dispatch, refetch, token])
 
   useFetchRefreshToken(fetchRefreshToken, interval, delay, isAuthenticated)
+
+  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
 
   return (
     <div className={classes.body}>

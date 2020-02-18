@@ -15,7 +15,7 @@ type FooterJson = {
 
 const footerUrl = process.env.REACT_APP_FOOTER_JSON
 
-const footerDataFormatter = (json: FooterJson) =>
+const formatFooterData = (json: FooterJson) =>
   json.data.map(item => {
     const footerItems = item.attributes.items.map(c => ({
       description: c.label,
@@ -50,7 +50,7 @@ const useFooter = () => {
         const res = await fetch(footerUrl)
         const json = await res.json()
         if (res.ok) {
-          const footerArr = footerDataFormatter(json)
+          const footerArr = formatFooterData(json)
           setFooterData(footerArr)
         } else {
           setError(res.statusText)
