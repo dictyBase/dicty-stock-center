@@ -11,7 +11,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
 
-const createClient = async token => {
+const createClient = async (token: string) => {
   const authLink = setContext((_, { headers }) => ({
     headers: {
       ...headers,
@@ -55,7 +55,7 @@ const theme = createMuiTheme({
 })
 
 const AppProviders = ({ children }) => {
-  const [client, setClient] = useState(undefined)
+  const [client, setClient] = useState<ApolloClient<any> | undefined>(undefined)
   const [{ token }] = useAuthStore()
   useEffect(() => {
     createClient(token).then(apollo => setClient(apollo))

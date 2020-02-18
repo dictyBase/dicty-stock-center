@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef } from "react"
 import { useQuery } from "@apollo/react-hooks"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
@@ -23,40 +23,38 @@ const getTokenIntervalDelay = token => {
   if (token === "") {
     return
   }
-  const decodedToken = jwtDecode(token)
+  const decodedToken = jwtDecode(token) as any
   const currentTime = new Date(Date.now())
   const jwtTime = new Date(decodedToken.exp * 1000)
-  const timeDiffInMins = (jwtTime - currentTime) / 60000
+  const timeDiffInMins = (+jwtTime - +currentTime) / 60000
   // all this to say we want the delay to be two minutes before the JWT expires
   return (timeDiffInMins - 2) * 60 * 1000
 }
 
 const App = () => {
-  const [skipQuery, setSkipQuery] = useState(true)
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
   const { footerData } = useFooter()
   const classes = useStyles()
   const { refetch } = useQuery(GET_REFRESH_TOKEN, {
     variables: { token: token },
-    skip: skipQuery,
+    errorPolicy: "ignore",
   })
-
   const interval = useRef(null)
   const delay = getTokenIntervalDelay(token)
 
   const fetchRefreshToken = useCallback(async () => {
-    setSkipQuery(false)
-    const res = await refetch({ variables: { token: token } })
-    if (res.data) {
+    const res = await refetch({ token: token })
+    if (res.data.getRefreshToken) {
       dispatch({
         type: "UPDATE_TOKEN",
         payload: {
+          provider: res.data.getRefreshToken.identity.provider,
           token: res.data.getRefreshToken.token,
+          user: res.data.getRefreshToken.user,
         },
       })
     }
-    setSkipQuery(true)
   }, [dispatch, refetch, token])
 
   useFetchRefreshToken(fetchRefreshToken, interval, delay, isAuthenticated)
