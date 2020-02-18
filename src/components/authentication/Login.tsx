@@ -7,6 +7,14 @@ import Grid from "@material-ui/core/Grid"
 // list of buttons to display
 const buttons = ["orcid", "google", "linkedin"]
 
+const formatURLParams = (params: Array<string>) => {
+  let url = ""
+  params.forEach(element => {
+    url += `&${element[0]}=${element[1]}`
+  })
+  return url
+}
+
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
@@ -17,14 +25,10 @@ class Login extends Component {
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
     url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
     if (config.requiredUrlParams) {
-      config.requiredUrlParams.forEach(element => {
-        url += `&${element[0]}=${element[1]}`
-      })
+      url += formatURLParams(config.requiredUrlParams)
     }
     if (config.optionalUrlParams) {
-      config.optionalUrlParams.forEach(element => {
-        url += `&${element[0]}=${element[1]}`
-      })
+      url += formatURLParams(config.optionalUrlParams)
     }
     url += `&redirect_uri=${config.redirectUrl}`
     window.open(
