@@ -1,6 +1,11 @@
 import { useEffect } from "react"
 
-const useRefreshToken = (callback, intervalRef, delay, isAuthenticated) => {
+const useRefreshToken = (
+  callback: Function,
+  intervalRef: React.MutableRefObject<any>,
+  delay: number,
+  isAuthenticated: boolean,
+) => {
   useEffect(() => {
     callback()
   }, [callback])
