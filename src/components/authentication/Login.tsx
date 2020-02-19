@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
@@ -19,8 +19,8 @@ const formatURLParams = (params: Array<string>) => {
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-class Login extends Component {
-  handleClick = (name: string) => {
+const Login = () => {
+  const handleClick = (name: string) => {
     const config = oauthConfig[name]
     let url = `${config.authorizationEndpoint}?client_id=${config.clientId}`
     url += `&scope=${config.scopes.join(config.scopeDelimiter)}`
@@ -38,24 +38,23 @@ class Login extends Component {
                     height=${config.popupOptions.height}`,
     )
   }
-  render() {
-    return (
-      <Grid container justify="center">
-        <Grid item xs={8}>
-          <div style={{ textAlign: "center" }}>
-            <h1>Log in</h1>
-          </div>
-          <Grid container justify="center">
-            <Grid item xs={1} />
-            <Grid item xs={4}>
-              <LoginContainer buttons={buttons} onClick={this.handleClick} />
-              <OauthSignHandler />
-            </Grid>
+
+  return (
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        <div style={{ textAlign: "center" }}>
+          <h1>Log in</h1>
+        </div>
+        <Grid container justify="center">
+          <Grid item xs={1} />
+          <Grid item xs={4}>
+            <LoginContainer buttons={buttons} onClick={handleClick} />
+            <OauthSignHandler />
           </Grid>
         </Grid>
       </Grid>
-    )
-  }
+    </Grid>
+  )
 }
 
 export default Login
