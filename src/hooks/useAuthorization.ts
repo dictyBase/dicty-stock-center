@@ -58,16 +58,17 @@ const useAuthorization = () => {
   const verifiedToken = verifyToken(state.token)
 
   if (state.user.id) {
-    const roles = state.user.roles.map((item: RoleItem) => item.role)
-    if (roles.includes("superuser")) {
-      canEditPages = true
-    }
     const permissions = state.user.roles
       .map((item: RoleItem) => item.permissions)
       .flat() // need to flatten since it initially comes back as nested array
     canEditPages = verifyPermissions(permissions, "write", dsccontent)
+    const roles = state.user.roles.map((item: RoleItem) => item.role)
+    if (roles.includes("superuser")) {
+      canEditPages = true
+    }
   }
   return { user: state.user, canEditPages, verifiedToken }
 }
 
+export { verifyToken, verifyPermissions }
 export default useAuthorization
