@@ -1,7 +1,19 @@
 import { useAuthStore } from "components/authentication/AuthStore"
-import { RolesPermissionsAPI } from "utils/apiClasses"
-import { dsccontent } from "constants/resources"
+import { dsccontent, MAIN_RESOURCE } from "constants/resources"
 import jwtDecode from "jwt-decode"
+
+type RoleItem = {
+  id: string
+  role: string
+  permissions: Array<PermItem>
+}
+
+type PermItem = {
+  id: string
+  permission: string
+  resource: string
+  description?: string
+}
 
 const verifyToken = (token: string) => {
   if (token === "") {
@@ -18,6 +30,24 @@ const verifyToken = (token: string) => {
   return false
 }
 
+const verifyPermissions = (
+  permissions: Array<PermItem>,
+  perm: string,
+  resource: string,
+) => {
+  const allowedResources = [resource, MAIN_RESOURCE]
+  const validPerms = (item: PermItem) =>
+    item.permission === "admin" ||
+    (item.permission === perm && allowedResources.includes(item.resource))
+  const filteredPerms = permissions.filter(validPerms)
+  // check if array is empty
+  if (!Array.isArray(filteredPerms) || !filteredPerms.length) {
+    return false
+  }
+  // valid permission found, return true
+  return true
+}
+
 /**
  * useAuthorization is used to handle user authorization checks.
  */
@@ -27,8 +57,17 @@ const useAuthorization = () => {
   let canEditPages = false
 
   if (state.user.id) {
-    let loggedInUser = new RolesPermissionsAPI(state)
-    canEditPages = loggedInUser.verifyPermissions("write", dsccontent)
+    if (state.user.roles.length) {
+      const roles = state.user.roles.map((item: RoleItem) => item.role)
+      if (roles.includes("superuser")) {
+        canEditPages = true
+      }
+      // need to flatten since it initially comes back as nested array
+      const permissions = state.user.roles
+        .map((item: RoleItem) => item.permissions)
+        .flat()
+      canEditPages = verifyPermissions(permissions, "write", dsccontent)
+    }
   }
 
   const verifiedToken = verifyToken(state.token)
