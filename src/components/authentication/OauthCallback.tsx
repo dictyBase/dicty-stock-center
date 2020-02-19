@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { useEffect } from "react"
+import { useLocation, useParams } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 
 // helper function to set redirect URL with basename if included
@@ -30,27 +31,31 @@ type Props = {
  * Callback that transfers the user to the login system
  */
 
-export default class OauthCallback extends Component<Props> {
-  componentDidMount() {
+const OauthCallback = () => {
+  const { provider } = useParams()
+  const location = useLocation()
+
+  useEffect(() => {
     window.opener.postMessage(
       {
-        query: this.props.location.search,
-        provider: this.props.match.params.provider,
+        query: location.search,
+        provider: provider,
         url: `${redirectUrlGenerator(process.env.REACT_APP_BASENAME)}${
-          this.props.location.pathname
+          location.pathname
         }`,
       },
       window.location,
     )
     window.close()
-  }
-  render() {
-    return (
-      <Grid container justify="center">
-        <Grid item>
-          <h1>Transferring to login system ........</h1>
-        </Grid>
+  }, [location.pathname, location.search, provider])
+
+  return (
+    <Grid container justify="center">
+      <Grid item>
+        <h1>Transferring to login system ........</h1>
       </Grid>
-    )
-  }
+    </Grid>
+  )
 }
+
+export default OauthCallback
