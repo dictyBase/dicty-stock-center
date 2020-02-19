@@ -2,6 +2,7 @@ import { configure } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
 import "jest-enzyme"
 import { sprintf } from "sprintf-js"
+import "core-js"
 
 let globalAny = global as any
 
