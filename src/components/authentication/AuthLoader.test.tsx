@@ -8,8 +8,11 @@ describe("authentication/AuthLoader", () => {
   const wrapper = shallow(<AuthLoader />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(2)
+      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
+    })
+    it("displays expected text", () => {
+      expect(wrapper.find("h1").text()).toBe("Logging in...")
     })
   })
 })
