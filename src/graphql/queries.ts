@@ -168,6 +168,7 @@ const GET_REFRESH_TOKEN = gql`
           role
           permissions {
             permission
+            resource
           }
         }
       }

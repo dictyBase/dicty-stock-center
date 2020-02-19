@@ -13,6 +13,7 @@ const LOGIN = gql`
           role
           permissions {
             permission
+            resource
           }
         }
       }
