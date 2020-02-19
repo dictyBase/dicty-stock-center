@@ -1,28 +1,35 @@
-// @flow
 import { HeaderLink } from "dicty-components-header-footer"
 import { Link } from "react-router-dom"
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconProp } from "@fortawesome/fontawesome-svg-core"
 
-const generateLinks = (link: Object, i: string) =>
+type LinkProps = {
+  isRouter?: boolean
+  text: string
+  icon: IconProp
+  url: string
+}
+
+const generateLinks = (link: LinkProps, i: string) =>
   link.isRouter ? (
     <Link
       style={{ color: "#15317e", padding: "15px", textDecoration: "none" }}
       key={i}
       to={link.url}>
-      <center>
+      <div style={{ textAlign: "center" }}>
         <FontAwesomeIcon icon={link.icon} size="2x" />
         <br />
         {link.text}
-      </center>
+      </div>
     </Link>
   ) : (
     <HeaderLink key={i} href={link.url}>
-      <center>
+      <div style={{ textAlign: "center" }}>
         <FontAwesomeIcon icon={link.icon} size="2x" />
         <br />
         {link.text}
-      </center>
+      </div>
     </HeaderLink>
   )
 

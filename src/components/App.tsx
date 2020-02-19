@@ -19,7 +19,7 @@ import useNavbar from "hooks/useNavbar"
 import { GET_REFRESH_TOKEN } from "graphql/queries"
 import { useStyles, navTheme } from "./appStyles"
 
-const getTokenIntervalDelay = token => {
+const getTokenIntervalDelay = (token: string) => {
   if (token === "") {
     return
   }
