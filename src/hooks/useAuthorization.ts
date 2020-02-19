@@ -55,22 +55,18 @@ const verifyPermissions = (
 const useAuthorization = () => {
   const [state] = useAuthStore()
   let canEditPages = false
+  const verifiedToken = verifyToken(state.token)
 
   if (state.user.id) {
-    if (state.user.roles.length) {
-      const roles = state.user.roles.map((item: RoleItem) => item.role)
-      if (roles.includes("superuser")) {
-        canEditPages = true
-      }
-      // need to flatten since it initially comes back as nested array
-      const permissions = state.user.roles
-        .map((item: RoleItem) => item.permissions)
-        .flat()
-      canEditPages = verifyPermissions(permissions, "write", dsccontent)
+    const roles = state.user.roles.map((item: RoleItem) => item.role)
+    if (roles.includes("superuser")) {
+      canEditPages = true
     }
+    const permissions = state.user.roles
+      .map((item: RoleItem) => item.permissions)
+      .flat() // need to flatten since it initially comes back as nested array
+    canEditPages = verifyPermissions(permissions, "write", dsccontent)
   }
-
-  const verifiedToken = verifyToken(state.token)
   return { user: state.user, canEditPages, verifiedToken }
 }
 
