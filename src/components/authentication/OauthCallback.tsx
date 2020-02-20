@@ -58,4 +58,5 @@ const OauthCallback = () => {
   )
 }
 
+export { redirectUrlGenerator }
 export default OauthCallback
