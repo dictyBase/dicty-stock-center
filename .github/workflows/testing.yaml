@@ -13,13 +13,14 @@ jobs:
       - name: cache npm dependencies
         uses: actions/cache@v1
         id: cache
+        env:
+          cache-name: cache-node-modules
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: npm install
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: npm test
         run: |
