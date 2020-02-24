@@ -31,7 +31,7 @@ describe("AppProviders", () => {
     it("renders empty div first", () => {
       expect(wrapper.find("div")).toHaveLength(1)
     })
-    it("renders providers after client intialized", () => {
+    it("renders providers after client initialized", () => {
       wrapper.update()
       expect(wrapper.find(ApolloProvider)).toHaveLength(1)
       expect(wrapper.find(MuiThemeProvider)).toHaveLength(1)

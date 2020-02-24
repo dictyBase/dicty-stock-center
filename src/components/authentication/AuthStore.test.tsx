@@ -1,5 +1,5 @@
 import React from "react"
-import { renderHook } from "react-hooks-testing-library"
+import { renderHook } from "@testing-library/react-hooks"
 import { authReducer, useAuthStore, ActionType } from "./AuthStore"
 
 const initialState = {
@@ -96,6 +96,7 @@ describe("authReducer", () => {
 //   it("should throw error if not used in Provider", () => {
 //     const wrapper = ({ children }) => <div>{children}</div>
 //     const { result } = renderHook(() => useAuthStore(), { wrapper })
+
 //     expect(() => result.current).toThrow()
 //   })
 // })
