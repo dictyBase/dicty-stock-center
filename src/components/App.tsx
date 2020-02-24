@@ -19,7 +19,7 @@ import useNavbar from "hooks/useNavbar"
 import { GET_REFRESH_TOKEN } from "graphql/queries"
 import { useStyles, navTheme } from "./appStyles"
 
-const getTokenIntervalDelay = (token: string) => {
+const getTokenIntervalDelayInMS = (token: string) => {
   if (token === "") {
     return
   }
@@ -41,7 +41,7 @@ const App = () => {
     errorPolicy: "ignore",
   })
   const interval = useRef(null)
-  const delay = getTokenIntervalDelay(token)
+  const delay = getTokenIntervalDelayInMS(token)
 
   const fetchRefreshToken = useCallback(async () => {
     const res = await refetch({ token: token })
