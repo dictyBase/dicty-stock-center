@@ -78,4 +78,5 @@ const App = () => {
   )
 }
 
+export { getTokenIntervalDelayInMS }
 export default App

@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import App from "./App"
+import App, { getTokenIntervalDelayInMS } from "./App"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import CartIcon from "components/ShoppingCart/CartIcon"
@@ -8,7 +8,7 @@ import ErrorBoundary from "components/Errors/ErrorBoundary"
 import RenderRoutes from "routes/RenderRoutes"
 import { MockAuthProvider } from "utils/testing"
 
-describe("layout/App", () => {
+describe("App component", () => {
   const mocks = []
   const wrapper = mount(
     <MockAuthProvider mocks={mocks}>
@@ -24,5 +24,11 @@ describe("layout/App", () => {
       expect(wrapper.find(ErrorBoundary)).toHaveLength(1)
       expect(wrapper.find(RenderRoutes)).toHaveLength(1)
     })
+  })
+})
+
+describe("getTokenIntervalDelayInMS function", () => {
+  it("should return undefined if token is empty string", () => {
+    expect(getTokenIntervalDelayInMS("")).toBeUndefined()
   })
 })
