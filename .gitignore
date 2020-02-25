@@ -5,10 +5,11 @@ node_modules
 
 dist
 coverage
-clientConfig.js
 client/
-.env.development.local
-.env.production.local
 /build
 .vscode
 
+.env.development.local
+.env.production.local
+clientConfig.js
+cypress.env.json
