@@ -6,6 +6,33 @@ import { useAuthStore, ActionType } from "components/authentication/AuthStore"
 import { LOGIN } from "graphql/mutations"
 import oauthConfig from "utils/oauthConfig"
 
+type LoginEventData = {
+  /** Third-party provider (orcid, google, linkedin) */
+  provider: string
+  /** Query containing authorization code and possibly state */
+  query: string
+  /** Callback URL */
+  url: string
+}
+
+const getLoginInputVariables = (data: LoginEventData) => {
+  const provider = (oauthConfig as any)[data.provider]
+  const parsed = querystring.parse(data.query.replace("?", ""))
+
+  const variables = {
+    input: {
+      client_id: provider.clientId,
+      redirect_url: data.url,
+      state: parsed.state || "state",
+      code: parsed.code,
+      scopes: provider.scopes[0],
+      provider: data.provider,
+    },
+  }
+
+  return variables
+}
+
 /**
  * OauthSignHandler listens to an event message and attempts to login
  * with the event data.
@@ -23,19 +50,8 @@ const OauthSignHandler = () => {
       if (!event.data.provider) {
         return
       }
-      const provider = (oauthConfig as any)[event.data.provider]
-      const parsed = querystring.parse(event.data.query.replace("?", ""))
       const res = await login({
-        variables: {
-          input: {
-            client_id: provider.clientId,
-            redirect_url: event.data.url,
-            state: parsed.state || "state",
-            code: parsed.code,
-            scopes: provider.scopes[0],
-            provider: event.data.provider,
-          },
-        },
+        variables: getLoginInputVariables(event.data),
       })
       // need to add error handling
       history.push("/load/auth")
