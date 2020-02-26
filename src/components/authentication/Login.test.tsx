@@ -1,15 +1,20 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import Login, { createOauthURL, openOauthWindow } from "./Login"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import Grid from "@material-ui/core/Grid"
+import { MockAuthProvider } from "utils/testing"
 
 describe("authentication/Login", () => {
   const globalAny = global as any
   const openMock = jest.fn()
   globalAny.open = openMock
-  const wrapper = shallow(<Login />)
+  const wrapper = mount(
+    <MockAuthProvider mocks={[]}>
+      <Login />
+    </MockAuthProvider>,
+  )
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Grid)).toExist()

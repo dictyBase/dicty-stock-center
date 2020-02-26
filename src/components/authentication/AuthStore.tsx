@@ -21,7 +21,7 @@ type AuthPayload = {
 }
 
 type ErrorPayload = {
-  error: string
+  error: object
 }
 
 const initialState = {

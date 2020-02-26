@@ -7,6 +7,7 @@ const initialState = {
   token: "",
   user: {},
   provider: "",
+  error: null,
 }
 
 const mockToken = "tiubakjdgnjka"
@@ -35,6 +36,24 @@ describe("authReducer", () => {
       token: mockToken,
       provider: mockProvider,
       user: mockUser,
+      error: null,
+    })
+  })
+  it("should return error object when error on login", () => {
+    expect(
+      authReducer(initialState, {
+        type: ActionType.LOGIN_ERROR,
+        payload: {
+          error: {
+            message: "test error",
+          },
+        },
+      }),
+    ).toStrictEqual({
+      ...initialState,
+      error: {
+        message: "test error",
+      },
     })
   })
   it("should return initial state on logout", () => {
@@ -46,6 +65,7 @@ describe("authReducer", () => {
         email: "forrest@macneil.org",
       },
       provider: "google",
+      error: null,
     }
     expect(
       authReducer(state, {
@@ -59,6 +79,7 @@ describe("authReducer", () => {
       token: mockToken,
       provider: mockProvider,
       user: mockUser,
+      error: null,
     }
     const newToken = "wthjiowvnfskjkdfsbnkjadb"
     expect(
@@ -75,6 +96,7 @@ describe("authReducer", () => {
       token: newToken,
       provider: mockProvider,
       user: mockUser,
+      error: null,
     })
   })
   it("should return state if not defined action type", () => {
