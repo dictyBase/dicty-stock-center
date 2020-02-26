@@ -33,11 +33,10 @@ const createClient = async (token: string) => {
     cache,
     storage: window.localStorage as any,
   })
-  const client = new ApolloClient({
+  return new ApolloClient({
     cache,
     link,
   })
-  return client
 }
 
 const theme = createMuiTheme({

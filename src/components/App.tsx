@@ -46,12 +46,13 @@ const App = () => {
   const fetchRefreshToken = useCallback(async () => {
     const res = await refetch({ token: token })
     if (res.data.getRefreshToken) {
+      const { data } = res
       dispatch({
         type: "UPDATE_TOKEN",
         payload: {
-          provider: res.data.getRefreshToken.identity.provider,
-          token: res.data.getRefreshToken.token,
-          user: res.data.getRefreshToken.user,
+          provider: data.getRefreshToken.identity.provider,
+          token: data.getRefreshToken.token,
+          user: data.getRefreshToken.user,
         },
       })
     }
