@@ -39,9 +39,9 @@ const getLoginInputVariables = (data: LoginEventData) => {
  */
 
 const OauthSignHandler = () => {
-  const [login, { data }] = useMutation(LOGIN)
   const history = useHistory()
   const [, dispatch] = useAuthStore()
+  const [login, { data }] = useMutation(LOGIN)
 
   useEffect(() => {
     const onMessage = async (event: MessageEvent) => {
@@ -50,22 +50,28 @@ const OauthSignHandler = () => {
       if (!event.data.provider) {
         return
       }
-      const res = await login({
-        variables: getLoginInputVariables(event.data),
-      })
-      // need to add error handling
       history.push("/load/auth")
-      if (res) {
-        const { token, user, identity } = res.data.login
-        await dispatch({
+      try {
+        const { data } = await login({
+          variables: getLoginInputVariables(event.data),
+        })
+        dispatch({
           type: ActionType.LOGIN,
           payload: {
-            token: token,
-            user: user,
-            provider: identity.provider,
+            token: data.login.token,
+            user: data.login.user,
+            provider: data.login.identity.provider,
           },
         })
         history.push("/mydsc")
+      } catch (error) {
+        dispatch({
+          type: ActionType.LOGIN_ERROR,
+          payload: {
+            error: error,
+          },
+        })
+        history.push("/login")
       }
     }
     window.addEventListener("message", onMessage, false)

@@ -3,6 +3,8 @@ import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import oauthConfig from "utils/oauthConfig"
 import Grid from "@material-ui/core/Grid"
+import ErrorNotification from "./ErrorNotification"
+import { useAuthStore } from "./AuthStore"
 
 type Config = {
   name: string
@@ -14,6 +16,20 @@ type Config = {
   scopes: Array<string>
   scopeDelimiter: string
   optionalUrlParams?: Array<Array<string>>
+}
+
+/** The returned GraphQL error object */
+type GraphQLError = {
+  message?: string
+  networkError?: object
+  graphQLErrors?: Array<{
+    message: string
+    path: Array<string>
+    extensions?: {
+      code: string
+      timestamp: string
+    }
+  }>
 }
 
 // list of buttons to display
@@ -51,26 +67,54 @@ const openOauthWindow = (name: string) => {
   )
 }
 
+const generateErrorDisplayMessage = (error: GraphQLError) => {
+  let message = "Could not log in. Please contact us if the problem persists."
+  if (error.networkError) {
+    message = "Network Error"
+  }
+  if (
+    error.graphQLErrors &&
+    error.graphQLErrors.length > 0 &&
+    error.graphQLErrors[0].extensions &&
+    error.graphQLErrors[0].extensions.code === "NotFound"
+  ) {
+    message = `Could not find user account. 
+      
+      Please make sure you are a verified member and try again.`
+  }
+  return message
+}
+
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
 
-const Login = () => (
-  <Grid container justify="center">
-    <Grid item xs={8}>
-      <div style={{ textAlign: "center" }}>
-        <h1>Log in</h1>
-      </div>
-      <Grid container justify="center">
-        <Grid item xs={1} />
-        <Grid item xs={4}>
-          <LoginContainer buttons={buttons} onClick={openOauthWindow} />
-          <OauthSignHandler />
+const Login = () => {
+  const [{ error }] = useAuthStore()
+  let message = ""
+
+  if (error) {
+    message = generateErrorDisplayMessage(error)
+  }
+
+  return (
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        <div style={{ textAlign: "center" }}>
+          <h1>Log in</h1>
+        </div>
+        <Grid container justify="center">
+          <Grid item xs={1} />
+          <Grid item xs={4}>
+            {error && <ErrorNotification error={message} />}
+            <LoginContainer buttons={buttons} onClick={openOauthWindow} />
+            <OauthSignHandler />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
-  </Grid>
-)
+  )
+}
 
 export { createOauthURL, openOauthWindow } // for testing purposes
 export default Login

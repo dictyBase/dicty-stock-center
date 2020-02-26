@@ -2,6 +2,7 @@ import React, { createContext, useContext, useReducer } from "react"
 
 enum ActionType {
   LOGIN = "LOGIN",
+  LOGIN_ERROR = "LOGIN_ERROR",
   LOGOUT = "LOGOUT",
   UPDATE_TOKEN = "UPDATE_TOKEN",
 }
@@ -19,17 +20,26 @@ type AuthPayload = {
   provider: string
 }
 
+type ErrorPayload = {
+  error: string
+}
+
 const initialState = {
   isAuthenticated: false,
   token: "",
   user: {},
   provider: "",
+  error: null,
 }
 
 type Action =
   | {
       type: ActionType.LOGIN
       payload: AuthPayload
+    }
+  | {
+      type: ActionType.LOGIN_ERROR
+      payload: ErrorPayload
     }
   | { type: ActionType.LOGOUT }
   | {
@@ -49,7 +59,14 @@ const authReducer = (state: AuthState, action: Action) => {
         token,
         user: action.payload.user,
         provider: action.payload.provider,
+        error: null,
       }
+    case ActionType.LOGIN_ERROR: {
+      return {
+        ...state,
+        error: action.payload.error,
+      }
+    }
     case ActionType.LOGOUT:
       return initialState
     case ActionType.UPDATE_TOKEN:
@@ -60,6 +77,7 @@ const authReducer = (state: AuthState, action: Action) => {
         token: newToken,
         user: action.payload.user,
         provider: action.payload.provider,
+        error: null,
       }
     default:
       return state

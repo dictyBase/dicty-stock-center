@@ -3,6 +3,11 @@ import { makeStyles } from "@material-ui/core/styles"
 import SnackbarContent from "@material-ui/core/SnackbarContent"
 
 const useStyles = makeStyles({
+  container: {
+    textAlign: "center",
+    width: "80%",
+    marginBottom: "20px",
+  },
   snackbar: {
     backgroundColor: "#cc0000",
   },
@@ -19,10 +24,8 @@ const ErrorNotification = ({ error }: Props) => {
   const classes = useStyles()
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className={classes.container}>
       <SnackbarContent className={classes.snackbar} message={error} />
-      <br />
-      <br />
     </div>
   )
 }

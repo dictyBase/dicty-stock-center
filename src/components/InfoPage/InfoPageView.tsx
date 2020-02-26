@@ -95,7 +95,7 @@ const decorator = [
 ]
 
 const error =
-  "Your login token is expired. Please log out and then log back in to regain full user access."
+  "Your login token has expired. Please log out and then log back in to regain full user access."
 
 type Props = {
   data: {
