@@ -1,6 +1,10 @@
 import React from "react"
 import { mount } from "enzyme"
-import Login, { createOauthURL, openOauthWindow } from "./Login"
+import Login, {
+  createOauthURL,
+  openOauthWindow,
+  generateErrorDisplayMessage,
+} from "./Login"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "components/authentication/OauthSignHandler"
 import Grid from "@material-ui/core/Grid"
@@ -59,5 +63,36 @@ describe("authentication/Login", () => {
   describe("openOauthWindow function", () => {
     openOauthWindow("google")
     expect(openMock).toHaveBeenCalled()
+  })
+  describe("generateErrorDisplayMessage function", () => {
+    it("should return correct network error message", () => {
+      const error = {
+        networkError: {
+          error: "test error",
+        },
+      }
+      expect(generateErrorDisplayMessage(error)).toBe("Network Error")
+    })
+    it("should return appropriate error if user not found", () => {
+      const error = {
+        graphQLErrors: [
+          {
+            extensions: {
+              code: "NotFound",
+              timestamp: "cye",
+            },
+          },
+        ],
+      }
+      expect(generateErrorDisplayMessage(error)).toContain(
+        "Could not find user account",
+      )
+    })
+    it("should return generic error if not network or not found error", () => {
+      const error = {
+        message: "no object",
+      }
+      expect(generateErrorDisplayMessage(error)).toContain("Could not log in")
+    })
   })
 })
