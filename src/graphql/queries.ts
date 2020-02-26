@@ -124,19 +124,6 @@ const GET_CONTENT_BY_SLUG = gql`
       content
       name
       slug
-      created_by {
-        id
-        email
-        first_name
-        last_name
-        roles {
-          role
-          permissions {
-            permission
-            resource
-          }
-        }
-      }
       updated_by {
         id
         email
