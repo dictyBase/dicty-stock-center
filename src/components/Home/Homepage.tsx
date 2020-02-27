@@ -22,33 +22,32 @@ import useStyles from "./homeStyles"
 const metaDesc =
   "The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
 
-const browser = Bowser.getParser(window.navigator.userAgent)
-let unsupportedBrowser = false
-
-if (
-  browser.getBrowser().name === "Internet Explorer" &&
-  // @ts-ignore
-  browser.getBrowser().version <= "10.0"
-) {
-  unsupportedBrowser = true
-}
-
 /**
  * Homepage is the main homepage component for DSC.
  */
 
 const Homepage = () => {
   const classes = useStyles()
-  const [{ user }] = useAuthStore()
+  const [{ isAuthenticated, user }] = useAuthStore()
   const fullName = `${user.first_name} ${user.last_name}`
 
+  const browser = Bowser.getParser(window.navigator.userAgent)
+  let unsupportedBrowser = false
+
+  if (
+    browser.getBrowser().name === "Internet Explorer" &&
+    // @ts-ignore
+    browser.getBrowser().version <= "10.0"
+  ) {
+    unsupportedBrowser = true
+  }
   return (
     <div className={classes.container}>
       <Helmet>
         <title>Dicty Stock Center</title>
         <meta name="description" content={metaDesc} />
       </Helmet>
-      {user.data && (
+      {isAuthenticated && (
         <span>
           <h3>Hello, {`${fullName}!`}</h3>
         </span>
