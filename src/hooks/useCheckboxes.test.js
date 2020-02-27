@@ -1,6 +1,6 @@
 import React from "react"
 import useCheckboxes from "./useCheckboxes"
-import { renderHook, act, cleanup } from "react-hooks-testing-library"
+import { renderHook, act, cleanup } from "@testing-library/react-hooks"
 import {
   CatalogProvider,
   CatalogContext,

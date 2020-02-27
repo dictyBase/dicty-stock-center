@@ -9,7 +9,7 @@ import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "components/Stocks/Catalogs/styles"
 import { CartItem } from "components/Stocks/Catalogs/types/cart"
-import { GET_PLASMID_LIST } from "queries/queries"
+import { GET_PLASMID_LIST } from "graphql/queries"
 
 type Props = {
   data: Array<CartItem>,

@@ -9,7 +9,7 @@ import DetailsHeader from "components/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "components/Errors/GraphQLErrorPage"
 import { CartProvider } from "components/ShoppingCart/CartStore"
-import { GET_STRAIN } from "queries/queries"
+import { GET_STRAIN } from "graphql/queries"
 import { data } from "./mockStrainData"
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks

@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    "allowJs": true, // Allow javascript files to be compiled.
-    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
-    "baseUrl": "src", // Base directory to resolve non-absolute module names.
-    "esModuleInterop": true, // Emit '__importStar' and '__importDefault' helpers for runtime babel ecosystem compatibility and enable '--allowSyntheticDefaultImports' for typesystem compatibility.
-    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
-    "isolatedModules": true, // Unconditionally emit imports for unresolved files.
-    "jsx": "preserve", // The preserve mode will keep the JSX as part of the output to be further consumed by another transform step (e.g. Babel). Additionally the output will have a .jsx file extension.
-    "lib": ["dom", "dom.iterable", "esnext"], // Specify library files to be included in the compilation.
-    "module": "esnext", // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
-    "moduleResolution": "node", // Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6).
-    "noEmit": true, // Do not emit outputs.
-    "noImplicitAny": false, // Warn on expressions and declarations with an implied 'any' type.
-    "noUnusedLocals": false, // Report errors on unused locals. Requires TypeScript version 2.0 or later.
-    "resolveJsonModule": true, // Include modules imported with '.json' extension.
-    "skipLibCheck": true, // Skip type checking of all declaration files (*.d.ts).
-    "strict": true, // Enable all strict type-checking options.
-    "strictPropertyInitialization": false, // Ensure non-undefined class properties are initialized in the constructor. This option requires `--strictNullChecks` be enabled in order to take effect.
-    "target": "es5" // Specify ECMAScript target version: 'es3' (default), 'es5', 'es2015', 'es2016', 'es2017','es2018' or 'esnext'.
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "build",
+    "noUnusedLocals": false,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "noEmit": true
   },
   "exclude": ["src/**/*.js", "src/**/*.jsx", "node_modules"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]

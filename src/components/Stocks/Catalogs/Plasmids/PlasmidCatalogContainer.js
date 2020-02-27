@@ -8,7 +8,7 @@ import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorM
 import CatalogAppBar from "components/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
-import { GET_PLASMID_LIST } from "queries/queries"
+import { GET_PLASMID_LIST } from "graphql/queries"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [

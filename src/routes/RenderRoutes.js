@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react"
 import { Route, Switch } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
-import LoginRoute from "./LoginRoute"
 import Loader from "components/common/Loader"
 
 const Homepage = lazy(() =>
@@ -79,9 +78,6 @@ const ContactPage = lazy(() =>
     /* webpackChunkName: "ContactPage" */ "components/Contact/ContactPage"
   ),
 )
-const ErrorPage = lazy(() =>
-  import(/* webpackChunkName: "ErrorPage" */ "components/Errors/ErrorPage"),
-)
 const ShoppingCartPage = lazy(() =>
   import(
     /* webpackChunkName: "ShoppingCartPage" */ "components/ShoppingCart/ShoppingCartPage"
@@ -100,7 +96,7 @@ const RenderRoutes = () => (
     <Switch>
       <Route exact path="/" component={Homepage} />
       {/* authentication routes */}
-      <LoginRoute exact path="/login" component={Login} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/:provider/callback" component={OauthCallback} />
       <Route exact path="/load/auth" component={AuthLoader} />
       <PrivateRoute exact path="/logout" component={Logout} />
@@ -123,7 +119,6 @@ const RenderRoutes = () => (
       <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
       {/* misc routes */}
       <Route exact path="/contact" component={ContactPage} />
-      <Route exact path="/error" component={ErrorPage} />
       <Route exact path="/cart" component={ShoppingCartPage} />
       <Route exact path="*" component={PageNotReady} />
     </Switch>

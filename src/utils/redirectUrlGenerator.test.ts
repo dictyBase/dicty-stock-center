@@ -1,9 +1,11 @@
 import redirectUrlGenerator from "./redirectUrlGenerator"
 
+const globalAny: any = global
+
 describe("redirectUrlGenerator function", () => {
   beforeEach(() => {
-    delete global.window.location
-    global.window.location = new URL("http://localhost:3000")
+    delete globalAny.window.location
+    globalAny.window.location = new URL("http://localhost:3000")
   })
 
   afterEach(() => {

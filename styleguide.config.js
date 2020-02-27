@@ -16,7 +16,6 @@ module.exports = {
     "src/**/types/*.{js,jsx,ts,tsx}",
     "src/**/utils/*.{js,jsx,ts,tsx}",
     "src/**/hooks/*.{js,jsx,ts,tsx}",
-    "src/components/authentication/Authorization.js",
     "src/**/*Context.{js,jsx,ts,tsx}",
     "src/**/*Store.{js,jsx,ts,tsx}",
   ],

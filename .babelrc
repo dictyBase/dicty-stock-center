@@ -1,3 +1,3 @@
 {
-  "presets": [["react-app", { "flow": true, "typescript": false }]]
+  "presets": [["react-app", { "flow": true, "typescript": true }]]
 }

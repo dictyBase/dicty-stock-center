@@ -12,7 +12,7 @@ import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
 import { useCartStore } from "components/ShoppingCart/CartStore"
 import useCartItems from "hooks/useCartItems"
-import { POST_ORDER } from "queries/queries"
+import { POST_ORDER } from "graphql/mutations"
 import OrderFormStepper from "./OrderFormStepper"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
