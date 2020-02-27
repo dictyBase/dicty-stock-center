@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
-import bowser from "bowser"
+import Bowser from "bowser"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
 import Slideshow from "./Slideshow"
@@ -21,6 +21,17 @@ import useStyles from "./homeStyles"
 
 const metaDesc =
   "The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
+
+const browser = Bowser.getParser(window.navigator.userAgent)
+let unsupportedBrowser = false
+
+if (
+  browser.getBrowser().name === "Internet Explorer" &&
+  // @ts-ignore
+  browser.getBrowser().version <= "10.0"
+) {
+  unsupportedBrowser = true
+}
 
 /**
  * Homepage is the main homepage component for DSC.
@@ -42,7 +53,7 @@ const Homepage = () => {
           <h3>Hello, {`${fullName}!`}</h3>
         </span>
       )}
-      {bowser.msie && bowser.version <= 10 && <BrowserWarning />}
+      {unsupportedBrowser && <BrowserWarning />}
       <Grid container justify="space-between" spacing={3}>
         <Grid item>
           <h1 className={classes.header}>
