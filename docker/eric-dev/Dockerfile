@@ -14,7 +14,7 @@ COPY package*.json ./
 COPY .babelrc ./
 COPY tsconfig.json ./
 
-RUN npm ci
+RUN npm install
 
 # add necessary folders
 ADD src src
