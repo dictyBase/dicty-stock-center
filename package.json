@@ -48,6 +48,7 @@
     "dicty-components-header-footer": "github:dictyBase/dicty-components-header-footer#10.1.0",
     "dicty-components-login": "github:dictyBase/dicty-components-login#3.0.1",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#2.0.0",
+    "dicty-hooks": "github:dictyBase/dicty-hooks#1.0.0",
     "draft-js": "^0.10.5",
     "draft-js-plugins-editor": "^2.0.4",
     "draft-js-static-toolbar-plugin": "^2.0.1",
