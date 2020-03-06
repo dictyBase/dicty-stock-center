@@ -56,7 +56,7 @@ const miscLinks = [
   {
     name: "Nomenclature Guide",
     to: "/information/nomenclature-guidelines",
-    routerAware: false,
+    routerAware: true,
   },
   {
     name: "Other Stock Centers",
