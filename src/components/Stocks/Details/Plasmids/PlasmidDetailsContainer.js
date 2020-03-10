@@ -27,7 +27,7 @@ const PlasmidDetailsContainer = () => {
   if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
-  const title = `Plasmid Details for ${data.plasmid.id}`
+  const title = `Plasmid Details for ${data.plasmid.name}`
 
   return (
     <Grid container spacing={2} className={classes.root}>
