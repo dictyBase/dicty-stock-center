@@ -2,12 +2,18 @@ import React from "react"
 import { mount } from "enzyme"
 import wait from "waait"
 import OtherMaterials from "./OtherMaterials"
-import InlineEditor from "components/InfoPage/InlineEditor"
+import InlineEditor from "components/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
 import { GET_CONTENT_BY_SLUG } from "graphql/queries"
 import { MockAuthProvider } from "utils/testing"
 
 describe("Home/OtherMaterials", () => {
+  beforeEach(() => {
+    // @ts-ignore
+    window.getSelection = () => ({
+      removeAllRanges: () => {},
+    })
+  })
   describe("initial render", () => {
     const mocks = [
       {
@@ -22,13 +28,16 @@ describe("Home/OtherMaterials", () => {
             contentBySlug: {
               id: "1",
               content: JSON.stringify({
-                entityMap: {},
-                blocks: [
+                object: "block",
+                type: "paragraph",
+                nodes: [
                   {
-                    key: "abc",
-                    text: "123",
-                    type: "unstyled",
-                    depth: 0,
+                    object: "text",
+                    leaves: [
+                      {
+                        text: "Test content",
+                      },
+                    ],
                   },
                 ],
               }),

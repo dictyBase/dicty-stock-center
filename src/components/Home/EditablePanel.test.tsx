@@ -1,7 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import EditablePanel from "./EditablePanel"
-import InlineEditor from "components/InfoPage/InlineEditor"
+// import InlineEditor from "components/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
 import { MockAuthProvider } from "utils/testing"
 
