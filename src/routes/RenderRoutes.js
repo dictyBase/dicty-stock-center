@@ -28,13 +28,15 @@ const MyDscPage = lazy(() =>
   import(/* webpackChunkName: "MyDscPage" */ "components/MyDsc/MyDscPage"),
 )
 
-// infopage routes
-const InfoPage = lazy(() =>
-  import(/* webpackChunkName: "InfoPage" */ "components/InfoPage/InfoPage"),
+// editable page routes
+const InfoPageContainer = lazy(() =>
+  import(
+    /* webpackChunkName: "InfoPageContainer" */ "components/EditablePages/InfoPageContainer"
+  ),
 )
 const EditInfoPage = lazy(() =>
   import(
-    /* webpackChunkName: "EditInfoPage" */ "components/InfoPage/EditInfoPage"
+    /* webpackChunkName: "EditInfoPage" */ "components/EditablePages/EditInfoPage"
   ),
 )
 
@@ -102,7 +104,7 @@ const RenderRoutes = () => (
       <PrivateRoute exact path="/logout" component={Logout} />
       <PrivateRoute exact path="/mydsc" component={MyDscPage} />
       {/* infopage routes */}
-      <Route exact path="/information/:name" component={InfoPage} />
+      <Route exact path="/information/:name" component={InfoPageContainer} />
       <PrivateRoute
         exact
         path="/information/:name/edit"

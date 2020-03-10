@@ -1,6 +1,6 @@
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
-import InlineEditor from "components/InfoPage/InlineEditor"
+import InlineEditor from "components/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
 import { GET_CONTENT_BY_SLUG } from "graphql/queries"
 

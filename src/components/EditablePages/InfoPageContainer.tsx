@@ -13,10 +13,10 @@ const capitalizedName = (name: string) =>
   name.charAt(0).toUpperCase() + name.slice(1)
 
 /**
- * Fetches the data for the desired info page
+ * InfoPageContainer fetches the data for the desired editable page.
  */
 
-const InfoPage = () => {
+const InfoPageContainer = () => {
   const { name } = useParams()
   const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
     variables: {
@@ -43,4 +43,4 @@ const InfoPage = () => {
   )
 }
 
-export default InfoPage
+export default InfoPageContainer
