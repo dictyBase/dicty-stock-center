@@ -8,50 +8,13 @@ import useAuthorization from "hooks/useAuthorization"
 import { UPDATE_CONTENT } from "graphql/mutations"
 
 const useStyles = makeStyles(() => ({
-  inlineLink: {
-    cursor: "pointer",
-  },
-  toolbar: {
-    backgroundColor: "#fafafa",
-    borderRadius: "2px",
-    border: "1px solid #ddd",
-    padding: "5px",
-    width: "100%",
-    display: "inline-block",
-  },
-  editorGrid: {
-    marginTop: "4px",
-
-    "& a": {
-      color: "#004080",
-      textDecoration: "none",
-    },
-  },
   editButton: {
     fontSize: "0.9em",
     color: "#337ab7",
+    textTransform: "none",
     "&:hover": {
       color: "#337ab7",
       backgroundColor: "transparent",
-    },
-  },
-  saveButton: {
-    width: "100%",
-    backgroundColor: "#15317e",
-  },
-  cancelButton: {
-    width: "100%",
-  },
-  cancelButtonGrid: {
-    marginRight: "4px",
-    marginTop: "4px",
-  },
-  saveButtonGrid: {
-    marginTop: "4px",
-  },
-  container: {
-    "[contenteditable='true']:focus": {
-      outline: "none",
     },
   },
 }))
@@ -97,41 +60,36 @@ const InlineEditor = ({ data }: Props) => {
 
   if (readOnly) {
     return (
-      <>
+      <div>
         <PageEditor
           pageContent={data.content}
-          readOnly={true}
+          readOnly={readOnly}
           onSave={onSave}
           onCancel={onCancel}
         />
         {canEditPages && verifiedToken && (
-          <div>
-            {canEditPages && verifiedToken && readOnly && (
-              <span>
-                <Button
-                  className={classes.editButton}
-                  color="primary"
-                  onClick={() => setReadOnly(false)}
-                  title="Edit">
-                  <FontAwesomeIcon icon="pencil-alt" /> Edit
-                </Button>
-              </span>
-            )}
-          </div>
+          <span>
+            <Button
+              className={classes.editButton}
+              color="primary"
+              onClick={() => setReadOnly(false)}
+              title="Edit">
+              <FontAwesomeIcon icon="pencil-alt" />
+              &nbsp; Edit
+            </Button>
+          </span>
         )}
-      </>
+      </div>
     )
   }
 
   return (
-    <div>
-      <PageEditor
-        pageContent={data.content}
-        readOnly={false}
-        onSave={onSave}
-        onCancel={onCancel}
-      />
-    </div>
+    <PageEditor
+      pageContent={data.content}
+      readOnly={false}
+      onSave={onSave}
+      onCancel={onCancel}
+    />
   )
 }
 
