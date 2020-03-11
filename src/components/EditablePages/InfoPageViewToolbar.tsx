@@ -89,46 +89,45 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
   const role = `${data.roles[0].role}`
   const uppercaseRole = role.charAt(0).toUpperCase() + role.substring(1)
 
+  const validUser = isAuthenticated && canEditPages
+  const validUserExpiredToken = validUser && !verifiedToken
+
   return (
     <>
-      {isAuthenticated && canEditPages && verifiedToken && (
-        <div>
-          {canEditPages && !verifiedToken && (
-            <ErrorNotification error={error} />
-          )}
-          <br />
-          {canEditPages && (
-            <div className={classes.toolbar}>
-              <Grid container alignItems="center">
-                <Grid item>
-                  <span className={classes.textInfo}>
-                    <strong>
-                      <FontAwesomeIcon
-                        className={classes.editButton}
-                        icon="user"
-                      />
-                      &nbsp; {fullName}
-                    </strong>
-                    &nbsp; edited {timeSince(data.updated_at)} ago
-                  </span>
-                </Grid>
-                <Grid item className={classes.content}>
-                  <span className={classes.label}>{uppercaseRole}</span> &nbsp;
-                  {verifiedToken && (
-                    <Tooltip title="Edit Page" placement="bottom">
-                      <IconButton
-                        className={classes.editButton}
-                        onClick={handleClick}>
-                        <FontAwesomeIcon icon="pencil-alt" />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                </Grid>
+      <div>
+        {validUserExpiredToken && <ErrorNotification error={error} />}
+        <br />
+        {validUser && (
+          <div className={classes.toolbar}>
+            <Grid container alignItems="center">
+              <Grid item>
+                <span className={classes.textInfo}>
+                  <strong>
+                    <FontAwesomeIcon
+                      className={classes.editButton}
+                      icon="user"
+                    />
+                    &nbsp; {fullName}
+                  </strong>
+                  &nbsp; edited {timeSince(data.updated_at)} ago
+                </span>
               </Grid>
-            </div>
-          )}
-        </div>
-      )}
+              <Grid item className={classes.content}>
+                <span className={classes.label}>{uppercaseRole}</span> &nbsp;
+                {verifiedToken && (
+                  <Tooltip title="Edit Page" placement="bottom">
+                    <IconButton
+                      className={classes.editButton}
+                      onClick={handleClick}>
+                      <FontAwesomeIcon icon="pencil-alt" />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </Grid>
+            </Grid>
+          </div>
+        )}
+      </div>
     </>
   )
 }
