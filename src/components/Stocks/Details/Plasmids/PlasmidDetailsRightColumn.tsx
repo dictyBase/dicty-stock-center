@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import AvailabilityCard from "components/Stocks/Details/common/AvailabilityCard"

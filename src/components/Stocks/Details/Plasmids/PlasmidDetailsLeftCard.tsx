@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
