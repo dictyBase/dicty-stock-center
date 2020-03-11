@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
   },
   editButton: {
     color: "#337ab7",
-
+    fontSize: "1rem",
     "&:hover": {
       color: "#337ab7",
       backgroundColor: "transparent",
@@ -72,7 +72,7 @@ type Props = {
     last_name: string
     updated_at: string
     roles: Array<{
-      role
+      role: string
     }>
   }
   handleClick: any // fix this
@@ -87,8 +87,10 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
 
   const fullName = `${data.first_name} ${data.last_name}`
   const role = `${data.roles[0].role}`
+  const uppercaseRole = role.charAt(0).toUpperCase() + role.substring(1)
+
   return (
-    <div>
+    <>
       {isAuthenticated && canEditPages && verifiedToken && (
         <div>
           {canEditPages && !verifiedToken && (
@@ -101,13 +103,17 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
                 <Grid item>
                   <span className={classes.textInfo}>
                     <strong>
-                      <FontAwesomeIcon icon="user" /> {fullName}
-                    </strong>{" "}
-                    edited {timeSince(data.updated_at)} ago
+                      <FontAwesomeIcon
+                        className={classes.editButton}
+                        icon="user"
+                      />
+                      &nbsp; {fullName}
+                    </strong>
+                    &nbsp; edited {timeSince(data.updated_at)} ago
                   </span>
                 </Grid>
                 <Grid item className={classes.content}>
-                  <span className={classes.label}>{role}</span> &nbsp;
+                  <span className={classes.label}>{uppercaseRole}</span> &nbsp;
                   {verifiedToken && (
                     <Tooltip title="Edit Page" placement="bottom">
                       <IconButton
@@ -123,7 +129,7 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
           )}
         </div>
       )}
-    </div>
+    </>
   )
 }
 
