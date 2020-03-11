@@ -1,6 +1,6 @@
 import React from "react"
 import { useMutation } from "@apollo/react-hooks"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { PageEditor } from "dicty-components-page-editor"

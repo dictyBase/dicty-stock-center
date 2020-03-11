@@ -1,4 +1,3 @@
-// @flow
 import { useCartStore } from "components/ShoppingCart/CartStore"
 import { cartTypes } from "constants/cart"
 import { fees } from "constants/fees"
@@ -19,10 +18,10 @@ const getFee = (item: string) => {
 }
 
 type CartItem = {
-  id: string,
-  name: string,
-  summary: string,
-  type: string,
+  id: string
+  name: string
+  summary: string
+  type: string
 }
 
 /**

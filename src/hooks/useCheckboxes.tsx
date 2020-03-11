@@ -1,14 +1,13 @@
-// @flow
 import { useCatalogStore } from "components/Stocks/Catalogs/common/CatalogContext"
 import { catalogTypes } from "constants/catalogs"
 
 type cartDataType = {
   /** Stock ID */
-  id: string,
+  id: string
   /** Name/label of stock */
-  name: string,
+  name: string
   /** Summary of stock */
-  summary: string,
+  summary: string
 }
 
 /**

@@ -1,11 +1,10 @@
-// @flow
-import React from "react"
+import { useState, useEffect } from "react"
 
 type publicationType = Array<{
   /** DOI link for publication */
-  doi: string,
+  doi: string
   /** Pubmed ID, used for linking to our publication page */
-  id: string,
+  id: string
 }>
 
 /**
@@ -15,13 +14,13 @@ type publicationType = Array<{
  */
 
 const useDOI = (publications: publicationType) => {
-  const [data, setData] = React.useState([])
-  const [loading, setLoading] = React.useState(false)
-  const [error, setError] = React.useState(null)
+  const [data, setData] = useState<Array<any>>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     let ignore = false
-    const fetchData = async (doi, id) => {
+    const fetchData = async (doi: string, id: string) => {
       const url = `https://doi.org/${doi}`
       setLoading(true)
       try {

@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 
 /**
@@ -6,7 +5,7 @@ import React from "react"
  */
 
 const useHover = () => {
-  const [hover, setHover] = React.useState<boolean, Function>(false)
+  const [hover, setHover] = React.useState(false)
 
   const bind = {
     onMouseEnter: () => setHover(true),
