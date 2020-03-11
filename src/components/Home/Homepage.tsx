@@ -54,12 +54,10 @@ const Homepage = () => {
       )}
       {unsupportedBrowser && <BrowserWarning />}
       <Grid container justify="space-between" spacing={3}>
-        <Grid item>
-          <h1 className={classes.header}>
-            Welcome to Dicty Stock Center (DSC)
-          </h1>
+        <Grid item className={classes.header}>
+          <h1>Welcome to Dicty Stock Center (DSC)</h1>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.intro}>
           <EditablePanel slug="dsc-intro" skeletonCount={5} />
         </Grid>
         <HomepageColumn

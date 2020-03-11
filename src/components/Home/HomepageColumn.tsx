@@ -1,6 +1,6 @@
-// @flow
-import * as React from "react"
+import React from "react"
 import Grid from "@material-ui/core/Grid"
+import useStyles from "./homeStyles"
 
 type Props = {
   components: any
@@ -11,6 +11,7 @@ type Props = {
  */
 
 const HomepageColumn = ({ components }: Props) => {
+  const classes = useStyles()
   const content = components.map((item, index) => (
     <Grid item key={index}>
       {item}
@@ -18,7 +19,7 @@ const HomepageColumn = ({ components }: Props) => {
   ))
 
   return (
-    <Grid item xs={12} sm={4}>
+    <Grid item xs={12} sm={4} className={classes.column}>
       <Grid container direction="column">
         {content}
       </Grid>
