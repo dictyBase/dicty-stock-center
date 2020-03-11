@@ -67,7 +67,7 @@ const InfoPageView = ({ data }: Props) => {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} key={data.content}>
       <Grid container>
         <Grid item className={classes.editor}>
           <InfoPageViewToolbar
