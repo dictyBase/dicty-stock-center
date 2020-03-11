@@ -22,9 +22,21 @@ const useStyles = makeStyles(() => ({
 type Props = {
   data: {
     id: string
-    updated_by: string
     content: string
     slug: string
+    updated_by: {
+      email: string
+      first_name: string
+      last_name: string
+      updated_at: string
+      roles?: Array<{
+        role: string
+        permissions?: Array<{
+          permission: string
+          resource: string
+        }>
+      }>
+    }
   }
 }
 

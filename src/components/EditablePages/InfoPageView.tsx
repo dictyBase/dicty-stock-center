@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 type Props = {
+  /** Content API data */
   data: {
     content: string
     created_by: {
@@ -35,13 +36,14 @@ type Props = {
         role
       }>
     }
+    /** User data for last person to update page */
     updated_by: {
       id: string
       first_name: string
       last_name: string
       updated_at: string
       roles: Array<{
-        role
+        role: string
       }>
     }
   }
