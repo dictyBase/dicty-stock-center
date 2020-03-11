@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 
 /**
@@ -6,7 +5,7 @@ import React from "react"
  */
 
 const ContactForm = () => (
-  <center>
+  <div style={{ textAlign: "center" }}>
     <p>
       For questions, comments, or suggestions, please send us an email&nbsp;
       <a
@@ -17,7 +16,7 @@ const ContactForm = () => (
       .
     </p>
     <p>We will be adding a working contact form soon.</p>
-  </center>
+  </div>
 )
 
 export default ContactForm
