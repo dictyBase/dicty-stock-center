@@ -15,7 +15,7 @@ jobs:
         run: |
           cp package.json package-dev.json && rm package.json
           jq 'del(.homepage)' package-dev.json > package.json && rm package-dev.json
-          mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
+          mv src/utils/clientConfig.sample.ts src/utils/clientConfig.ts
       - name: run build
         run: |
           npm ci

@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: install dependencies
         run: |
-          mv src/utils/clientConfig.sample.js src/utils/clientConfig.js
+          mv src/utils/clientConfig.sample.ts src/utils/clientConfig.ts
           npm ci
       - name: run cypress and percy tests
         run: npm run cypress:ci

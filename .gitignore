@@ -11,5 +11,6 @@ client/
 
 .env.development.local
 .env.production.local
+clientConfig.ts
 clientConfig.js
 cypress.env.json
