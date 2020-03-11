@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
@@ -10,11 +9,11 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   /** Stock ID */
-  id: string,
+  id: string
   /** Strain descriptor or plasmid name */
-  name: string,
+  name: string
   /** Type of stock (strain or plasmid) */
-  stockType: string,
+  stockType: string
 }
 
 /**

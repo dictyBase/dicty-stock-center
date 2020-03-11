@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
@@ -10,12 +9,12 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   rows: Array<{
-    id: number,
-    title: string,
-    content: any,
-  }>,
-  stockType: string,
-  species: string,
+    id: number
+    title: string
+    content: any
+  }>
+  stockType: string
+  species: string
 }
 
 /**

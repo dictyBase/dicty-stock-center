@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import SnackbarContent from "@material-ui/core/SnackbarContent"
 import IconButton from "@material-ui/core/IconButton"
@@ -7,9 +6,9 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   /** Stock ID */
-  id: string,
+  id: string
   /** Function to toggle snackbar display */
-  setSnackbarOpen: Function,
+  setSnackbarOpen: Function
 }
 
 /**

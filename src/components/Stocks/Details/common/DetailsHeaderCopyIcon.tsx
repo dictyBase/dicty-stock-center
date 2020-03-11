@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,7 +6,7 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   /** Stock ID */
-  id: string,
+  id: string
 }
 
 /**

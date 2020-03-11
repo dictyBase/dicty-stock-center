@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import useStyles from "components/Stocks/Details/styles"
 import Typography from "@material-ui/core/Typography"

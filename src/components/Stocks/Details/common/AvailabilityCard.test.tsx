@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import AvailabilityCard from "./AvailabilityCard"
-import AvailableCardDisplay from "./AvailableCardDisplay"
+import AvailableCardDisplay from "./AvailableCardDisplayInProgess"
 import UnavailableCardDisplay from "./UnavailableCardDisplay"
 
 describe("Stocks/Details/common/AvailabilityCard", () => {

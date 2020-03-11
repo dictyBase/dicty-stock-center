@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import AvailableCardDisplay from "./AvailableCardDisplay"
+import AvailableCardDisplay from "./AvailableCardDisplayInProgess"
 import { BrowserRouter } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"

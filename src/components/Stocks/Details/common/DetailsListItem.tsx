@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
@@ -8,10 +7,10 @@ import useStyles from "../styles"
 type Props = {
   data: {
     /** Type of content to display (i.e. Strain Descriptor, Genotypes, etc.) */
-    title: string,
+    title: string
     /** The actual data for that field */
-    content: string,
-  },
+    content: string
+  }
 }
 
 const DetailsListItem = ({ data }: Props) => {

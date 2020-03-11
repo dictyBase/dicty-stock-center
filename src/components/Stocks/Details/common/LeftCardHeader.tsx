@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
@@ -6,9 +5,9 @@ import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
   /** Type of stock */
-  stockType: string,
+  stockType: string
   /** Strain species */
-  species: string,
+  species: string
 }
 
 /** LeftCardHeader displays the header at the top of the left card on the details

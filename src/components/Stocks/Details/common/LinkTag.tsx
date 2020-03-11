@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
@@ -36,9 +35,9 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 
 type Props = {
   /** The item to link to */
-  item: string,
+  item: string
   /** The subroute to use (i.e. publication, gene) */
-  route: string,
+  route: string
 }
 
 const LinkTag = ({ item, route }: Props) => {

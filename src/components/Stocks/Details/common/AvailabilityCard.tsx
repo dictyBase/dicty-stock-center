@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Card from "@material-ui/core/Card"
 import useStyles from "components/Stocks/Details/styles"
@@ -7,9 +6,15 @@ import UnavailableCardDisplay from "./UnavailableCardDisplay"
 
 type Props = {
   /** Stock data */
-  data: Object,
+  data: {
+    id: string
+    summary: string
+    label?: string
+    name?: string
+    in_stock: boolean
+  }
   /** strain or plasmid */
-  stockType: string,
+  stockType: string
 }
 
 /**
@@ -20,7 +25,15 @@ type Props = {
 const AvailabilityCard = ({ data, stockType }: Props) => {
   const classes = useStyles()
 
-  const label = stockType === "strain" ? data.label : data.name
+  let label
+
+  if (stockType === "strain" && data.label !== undefined) {
+    label = data.label
+  }
+
+  if (stockType === "plasmid" && data.name !== undefined) {
+    label = data.name
+  }
 
   const cartData = {
     id: data.id,
@@ -34,7 +47,7 @@ const AvailabilityCard = ({ data, stockType }: Props) => {
       {data.in_stock ? (
         <AvailableCardDisplay cartData={cartData} />
       ) : (
-        <UnavailableCardDisplay data={data} />
+        <UnavailableCardDisplay />
       )}
     </Card>
   )
