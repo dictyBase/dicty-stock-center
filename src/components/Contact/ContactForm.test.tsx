@@ -6,7 +6,7 @@ describe("Contact/ContactForm", () => {
   const wrapper = shallow(<ContactForm />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find("center")).toHaveLength(1)
+      expect(wrapper.find("div")).toHaveLength(1)
     })
   })
 })
