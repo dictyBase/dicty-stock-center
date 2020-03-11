@@ -52,56 +52,48 @@ const InlineEditor = ({ data }: Props) => {
   const classes = useStyles()
 
   const onSave = value => {
+    const valueStr = JSON.stringify(value.toJSON())
     updateContent({
       variables: {
         input: {
           id: data.id,
           updated_by: user.id,
-          content: JSON.stringify(value.toJSON()),
+          content: valueStr,
         },
       },
     })
-    setValue(value)
+    setValue(valueStr)
     setReadOnly(true)
   }
 
   const onCancel = () => {
-    setValue(value)
     setReadOnly(true)
   }
 
-  if (readOnly) {
-    return (
-      <div>
-        <PageEditor
-          pageContent={data.content}
-          readOnly={readOnly}
-          onSave={onSave}
-          onCancel={onCancel}
-        />
-        {canEditPages && verifiedToken && (
-          <span>
-            <Button
-              className={classes.editButton}
-              color="primary"
-              onClick={() => setReadOnly(false)}
-              title="Edit">
-              <FontAwesomeIcon icon="pencil-alt" />
-              &nbsp; Edit
-            </Button>
-          </span>
-        )}
-      </div>
-    )
-  }
+  const validEditor = canEditPages && verifiedToken
 
   return (
-    <PageEditor
-      pageContent={data.content}
-      readOnly={false}
-      onSave={onSave}
-      onCancel={onCancel}
-    />
+    <div>
+      <PageEditor
+        key={readOnly}
+        pageContent={value}
+        readOnly={readOnly}
+        onSave={onSave}
+        onCancel={onCancel}
+      />
+      {validEditor && (
+        <span>
+          <Button
+            className={classes.editButton}
+            color="primary"
+            onClick={() => setReadOnly(false)}
+            title="Edit">
+            <FontAwesomeIcon icon="pencil-alt" />
+            &nbsp; Edit
+          </Button>
+        </span>
+      )}
+    </div>
   )
 }
 
