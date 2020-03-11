@@ -6,7 +6,18 @@ import OtherError from "./OtherError"
 
 type Props = {
   /** GraphQL error object */
-  error: Object,
+  error: {
+    message?: string
+    networkError?: object
+    graphQLErrors?: Array<{
+      message: string
+      path: Array<string>
+      extensions?: {
+        code: string
+        timestamp: string
+      }
+    }>
+  }
 }
 
 /**
@@ -22,8 +33,13 @@ const GraphQLErrorPage = ({ error }: Props) => {
     return <ServerError />
   }
 
-  const errorCode = error.graphQLErrors[0].extensions.code
-  const errorMsg = error.graphQLErrors[0].message
+  let errorCode, errorMsg
+
+  if (error.graphQLErrors && error.graphQLErrors[0].extensions) {
+    errorCode = error.graphQLErrors[0].extensions.code
+    errorMsg = error.graphQLErrors[0].message
+  }
+
   const printError = `
   error: ${errorMsg}
   code: ${errorCode}

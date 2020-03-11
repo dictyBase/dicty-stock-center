@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react"
 import Grid from "@material-ui/core/Grid"
 import { withStyles } from "@material-ui/core/styles"
@@ -24,14 +23,17 @@ const styles = theme => ({
 
 type Props = {
   /** Material-UI styling */
-  classes: Object,
+  classes: {
+    gridContainer: string
+    paper: string
+  }
   /** Any children to render */
-  children: any,
+  children: any
 }
 
 type State = {
   /** If there is an error with JS code */
-  hasError: boolean,
+  hasError: boolean
 }
 
 /**
@@ -61,7 +63,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <Grid className={classes.gridContainer} container justify="center">
           <Grid item xs={6} className={classes.paper}>
-            <center>
+            <div style={{ textAlign: "center" }}>
               <img src={sadDicty} alt="Sad Dicty Logo" />
               <h2>Sorry! There was an error loading this page.</h2>
               <p>Something went wrong behind the scenes.</p>
@@ -72,7 +74,7 @@ class ErrorBoundary extends Component<Props, State> {
                 </a>
                 .
               </p>
-            </center>
+            </div>
           </Grid>
         </Grid>
       )
