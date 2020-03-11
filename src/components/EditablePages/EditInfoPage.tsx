@@ -62,15 +62,6 @@ const EditInfoPage = ({ location }) => {
     history.push(prevURL)
   }
 
-  if (!data) {
-    return (
-      <div className={classes.error}>
-        Please <Link to={prevURL}>go back</Link> and click on the "edit" button
-        again to directly edit this page.
-      </div>
-    )
-  }
-
   return (
     <Grid container justify="center">
       <Grid item xs={11} lg={8}>
