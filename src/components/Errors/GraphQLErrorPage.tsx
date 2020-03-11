@@ -1,23 +1,12 @@
-// @flow
 import React from "react"
 import ServerError from "./ServerError"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
+import { ApolloError } from "apollo-client"
 
 type Props = {
   /** GraphQL error object */
-  error: {
-    message?: string
-    networkError?: object
-    graphQLErrors?: Array<{
-      message: string
-      path: Array<string>
-      extensions?: {
-        code: string
-        timestamp: string
-      }
-    }>
-  }
+  error: ApolloError
 }
 
 /**

@@ -1,5 +1,4 @@
-// @flow
-import React from "react"
+import React, { ChangeEvent } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Tabs from "@material-ui/core/Tabs"
@@ -41,13 +40,13 @@ const useStyles = makeStyles(() => ({
 
 type Props = {
   /** Strain species */
-  species: string,
+  species: string
   /** Tab value */
-  value: number,
+  value: number
   /** Function for handling tab changes */
-  handleChange: Function,
+  handleChange: (event: ChangeEvent<{}>, value: any) => void
   /** Number of phenotypes */
-  phenotypeLength: number,
+  phenotypeLength: number
 }
 
 /** StrainDetailsLeftCardHeader displays the header at the top of the left card

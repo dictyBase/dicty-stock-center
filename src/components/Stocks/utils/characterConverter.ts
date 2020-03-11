@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * characterConverter is a simple function that replaces HTML entity characters
  * with their appropriate unicode character. More replacements will be added as

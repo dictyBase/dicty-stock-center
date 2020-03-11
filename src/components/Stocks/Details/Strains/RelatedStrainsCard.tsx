@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import { useQuery } from "@apollo/react-hooks"
@@ -12,7 +11,7 @@ import { GET_RELATED_STRAINS } from "graphql/queries"
 import useStyles from "components/Stocks/Details/styles"
 
 type Props = {
-  species: string,
+  species: string
 }
 
 const RelatedStrainsCard = ({ species }: Props) => {
