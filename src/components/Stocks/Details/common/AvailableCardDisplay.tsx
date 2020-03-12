@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import Typography from "@material-ui/core/Typography"
@@ -15,14 +14,22 @@ import { useCartStore } from "components/ShoppingCart/CartStore"
 type Props = {
   cartData: {
     /** Stock ID */
-    id: string,
+    id: string
     /** Stock name (label/descriptor) */
-    name: string,
+    name: string
     /** Stock summary */
-    summary: string,
+    summary: string
     /** Strain or plasmid */
-    type: string,
-  },
+    type: string
+  }
+}
+
+const createQuantityArray = (numItems: number) => {
+  const qty = 13 - numItems // quantity of items available to add to cart
+  return Array(qty)
+    .fill(0) // fill array with meaningless values
+    .map((_, i) => i + 1) // map into new array of numbers
+    .slice(0, -1) // remove extra item from end
 }
 
 /**
@@ -32,7 +39,7 @@ type Props = {
 
 const AvailableCardDisplay = ({ cartData }: Props) => {
   const [{ addedItems, maxItemsInCart }] = useCartStore()
-  const values = [...Array(13 - addedItems.length).keys()].slice(1)
+  const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
 
@@ -40,30 +47,30 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
     setQuantity(event.target.value)
   }
 
-  let content
+  let content = <CartCapacityFullMessage />
 
-  maxItemsInCart
-    ? (content = <CartCapacityFullMessage />)
-    : (content = (
-        <>
-          <TextField
-            id="outlined-quantity"
-            select
-            label="Quantity"
-            value={quantity}
-            onChange={handleChange}
-            margin="dense"
-            variant="outlined"
-            inputProps={{ className: classes.textField }}>
-            {values.map(option => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
-          <AddToCartButton data={Array(quantity).fill(cartData)} />
-        </>
-      ))
+  if (!maxItemsInCart) {
+    content = (
+      <>
+        <TextField
+          id="outlined-quantity"
+          select
+          label="Quantity"
+          value={quantity}
+          onChange={handleChange}
+          margin="dense"
+          variant="outlined"
+          inputProps={{ className: classes.textField }}>
+          {values.map(option => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
+        <AddToCartButton data={Array(quantity).fill(cartData)} />
+      </>
+    )
+  }
 
   return (
     <div>
