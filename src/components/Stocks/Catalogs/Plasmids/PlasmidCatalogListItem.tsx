@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
@@ -13,7 +12,7 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "hooks/useCheckboxes"
 import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
-import { listItemProps } from "components/Stocks/Catalogs/types/list"
+import { plasmidListItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 /**
@@ -21,15 +20,20 @@ import useStyles from "components/Stocks/Catalogs/styles"
  * row of data in the plasmid catalog.
  */
 
-const PlasmidCatalogListItem = ({ index, style, data }: listItemProps) => {
+const PlasmidCatalogListItem = ({
+  index,
+  style,
+  data,
+}: plasmidListItemProps) => {
   const plasmid = data.item[index]
   const cartData = {
     id: plasmid.id,
     name: plasmid.name,
     summary: plasmid.summary,
+    type: "plasmid",
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
-  const { itemIsInCart, removeFromCart } = useCartItems([plasmid])
+  const { itemIsInCart, removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
 

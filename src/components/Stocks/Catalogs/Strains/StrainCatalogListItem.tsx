@@ -12,7 +12,7 @@ import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
 import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { listItemProps } from "components/Stocks/Catalogs/types/list"
+import { strainListItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
 /**
@@ -20,7 +20,7 @@ import useStyles from "components/Stocks/Catalogs/styles"
  * row of data in the strain catalog.
  */
 
-const StrainCatalogListItem = ({ index, style, data }: listItemProps) => {
+const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
   const strain = data.item[index]
   const cartData = {
     id: strain.id,
