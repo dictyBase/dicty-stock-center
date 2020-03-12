@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
@@ -27,9 +26,10 @@ const StrainCatalogListItem = ({ index, style, data }: listItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
+    type: "strain",
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
-  const { itemIsInCart, removeFromCart } = useCartItems([strain])
+  const { itemIsInCart, removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
 

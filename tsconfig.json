@@ -18,7 +18,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
-    "noEmit": true
+    "noEmit": true,
+    "downlevelIteration": true
   },
   "exclude": ["src/**/*.js", "src/**/*.jsx", "node_modules"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]

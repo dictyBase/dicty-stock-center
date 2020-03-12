@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
@@ -12,9 +11,9 @@ import { CartItem } from "components/Stocks/Catalogs/types/cart"
 import { GET_STRAIN_LIST } from "graphql/queries"
 
 type Props = {
-  data: Array<CartItem>,
-  fetchMore: Function,
-  cursor: number,
+  data: Array<CartItem>
+  fetchMore: Function
+  cursor: number
 }
 
 /**
@@ -68,6 +67,7 @@ const StrainCatalogList = ({ data, fetchMore, cursor }: Props) => {
       <AutoSizer>
         {({ height, width }) => (
           <InfiniteLoader
+            // @ts-ignore
             isItemLoaded={isItemLoaded}
             itemCount={data.length}
             loadMoreItems={loadMoreItems}>
