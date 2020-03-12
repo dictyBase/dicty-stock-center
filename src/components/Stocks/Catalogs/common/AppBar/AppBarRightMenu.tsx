@@ -1,4 +1,3 @@
-// @flow
 import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
@@ -25,7 +24,7 @@ const dropdownItems = ["Download PDF", "Download CSV"]
  */
 
 const AppBarRightMenu = () => {
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const classes = useStyles()
   const open = Boolean(anchorEl)
 

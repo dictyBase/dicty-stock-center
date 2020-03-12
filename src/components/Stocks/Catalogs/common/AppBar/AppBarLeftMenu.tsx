@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
@@ -12,9 +11,9 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   dropdownItems: Array<{
-    value: string,
-    name: string,
-  }>,
+    value: string
+    name: string
+  }>
 }
 
 /**

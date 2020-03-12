@@ -1,22 +1,49 @@
-// @flow
 import React, { createContext, useContext, useReducer, useMemo } from "react"
-import { appBarTypes } from "constants/appBar"
 
-const AppBarContext: Object = createContext()
+type AppBarState = {
+  filter: String
+  searchValue: String
+  helpDialogOpen: boolean
+}
 
-const appBarReducer = (state: Object, action: Object) => {
+enum AppBarActionType {
+  SET_FILTER = "SET_FILTER",
+  SET_SEARCH_VALUE = "SET_SEARCH_VALUE",
+  SET_HELP_DIALOG_OPEN = "SET_HELP_DIALOG_OPEN",
+}
+
+type Action =
+  | {
+      type: AppBarActionType.SET_FILTER
+      payload: string
+    }
+  | {
+      type: AppBarActionType.SET_SEARCH_VALUE
+      payload: string
+    }
+  | { type: AppBarActionType.SET_HELP_DIALOG_OPEN; payload: boolean }
+
+const initialState = {
+  filter: "id",
+  searchValue: "",
+  helpDialogOpen: false,
+}
+
+const AppBarContext = createContext({} as any)
+
+const appBarReducer = (state: AppBarState, action: Action) => {
   switch (action.type) {
-    case appBarTypes.SET_FILTER:
+    case AppBarActionType.SET_FILTER:
       return {
         ...state,
         filter: action.payload,
       }
-    case appBarTypes.SET_SEARCH_VALUE:
+    case AppBarActionType.SET_SEARCH_VALUE:
       return {
         ...state,
         searchValue: action.payload,
       }
-    case appBarTypes.SET_HELP_DIALOG_OPEN:
+    case AppBarActionType.SET_HELP_DIALOG_OPEN:
       return {
         ...state,
         helpDialogOpen: action.payload,
@@ -24,12 +51,6 @@ const appBarReducer = (state: Object, action: Object) => {
     default:
       return state
   }
-}
-
-const initialState = {
-  filter: "id",
-  searchValue: "",
-  helpDialogOpen: false,
 }
 
 /**
@@ -54,4 +75,10 @@ const useAppBarStore = () => {
   return context
 }
 
-export { AppBarContext, appBarReducer, AppBarProvider, useAppBarStore }
+export {
+  AppBarContext,
+  appBarReducer,
+  AppBarProvider,
+  useAppBarStore,
+  AppBarActionType,
+}

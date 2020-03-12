@@ -1,11 +1,9 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
-import { useAppBarStore } from "./AppBarContext"
-import { appBarTypes } from "constants/appBar"
+import { useAppBarStore, AppBarActionType } from "./AppBarContext"
 
 const useStyles = makeStyles({
   select: {
@@ -17,9 +15,9 @@ const useStyles = makeStyles({
 
 type Props = {
   dropdownItems: Array<{
-    value: string,
-    name: string,
-  }>,
+    value: string
+    name: string
+  }>
 }
 
 /**
@@ -32,7 +30,7 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
 
   const handleChange = event => {
     dispatch({
-      type: appBarTypes.SET_FILTER,
+      type: AppBarActionType.SET_FILTER,
       payload: event.target.value,
     })
   }

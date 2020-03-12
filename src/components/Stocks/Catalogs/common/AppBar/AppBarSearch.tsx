@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
@@ -7,8 +6,7 @@ import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
-import { useAppBarStore } from "./AppBarContext"
-import { appBarTypes } from "constants/appBar"
+import { useAppBarStore, AppBarActionType } from "./AppBarContext"
 import { catalogTypes } from "constants/catalogs"
 
 const useStyles = makeStyles(theme => ({
@@ -32,12 +30,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  queryVariables: Object,
+  queryVariables: Object
   dropdownItems: Array<{
-    value: string,
-    name: string,
-  }>,
-  catalogDispatch: Function,
+    value: string
+    name: string
+  }>
+  catalogDispatch: Function
 }
 
 /**
@@ -60,7 +58,7 @@ const AppBarSearch = ({
 
   const handleChange = event => {
     dispatch({
-      type: appBarTypes.SET_SEARCH_VALUE,
+      type: AppBarActionType.SET_SEARCH_VALUE,
       payload: event.target.value,
     })
   }
@@ -72,7 +70,7 @@ const AppBarSearch = ({
 
   const clearSearch = () => {
     dispatch({
-      type: appBarTypes.SET_SEARCH_VALUE,
+      type: AppBarActionType.SET_SEARCH_VALUE,
       payload: "",
     })
     resetQueryVariables()
