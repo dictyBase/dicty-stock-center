@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import useStyles from "./homeStyles"
@@ -6,12 +5,12 @@ import useStyles from "./homeStyles"
 type Props = {
   /** List of links in array form */
   list: Array<{
-    name: string,
-    to: string,
-    routerAware: boolean,
-  }>,
+    name: string
+    to: string
+    routerAware: boolean
+  }>
   /** Color of panel background, either gray or blue */
-  bgColor: string,
+  bgColor: string
 }
 
 /**

@@ -1,4 +1,3 @@
-// @flow
 import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import TextField from "./TextField"
@@ -8,15 +7,15 @@ import useStyles from "./formStyles"
 
 type Props = {
   /** Function to manually set Formik field values */
-  setFieldValue: Function,
+  setFieldValue: Function
   /** Array of fields to display */
   fields: Array<{
-    field: string,
-    name: string,
-    required: boolean,
-  }>,
-  countryValue: string,
-  countryName: string,
+    field: string
+    name: string
+    required: boolean
+  }>
+  countryValue: string
+  countryName: string
 }
 
 /**

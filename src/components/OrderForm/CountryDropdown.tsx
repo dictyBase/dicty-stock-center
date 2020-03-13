@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Select from "@material-ui/core/Select"
 import OutlinedInput from "@material-ui/core/OutlinedInput"
@@ -7,11 +6,11 @@ import countryList from "./utils/countryList"
 
 type Props = {
   /** Function to manually set Formik field values */
-  setFieldValue: Function,
+  setFieldValue: Function
   /** Value for country select */
-  value: string,
+  value: string
   /** Name to use as value */
-  name: string,
+  name: string
 }
 
 /**

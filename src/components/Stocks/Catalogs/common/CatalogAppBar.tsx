@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -14,11 +13,11 @@ import useStyles from "components/Stocks/Catalogs/styles"
 type Props = {
   /** List of items to display in left dropdown menu */
   leftDropdownItems: Array<{
-    name: string,
-    value: string,
-  }>,
+    name: string
+    value: string
+  }>
   /** List of items to display in right dropdown menu */
-  rightDropdownItems: Array<{ name: string, value: string }>,
+  rightDropdownItems: Array<{ name: string; value: string }>
 }
 
 /**

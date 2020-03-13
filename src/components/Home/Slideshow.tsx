@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Carousel } from "react-responsive-carousel"
 import ctr9 from "static/slideshow-images/ctr9-mutant-DG1071.png"

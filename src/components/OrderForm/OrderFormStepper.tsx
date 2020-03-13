@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Stepper from "@material-ui/core/Stepper"
@@ -17,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  pageNum: number,
+  pageNum: number
 }
 
 const OrderFormStepper = ({ pageNum }: Props) => {

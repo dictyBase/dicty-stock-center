@@ -1,10 +1,9 @@
-// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import useStyles from "./formStyles"
 
 type Props = {
-  title: string,
+  title: string
 }
 
 const RequiredTextLabel = ({ title }: Props) => {

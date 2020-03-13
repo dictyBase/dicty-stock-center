@@ -22,7 +22,6 @@ const TabPanel = ({ children, value, index, ...other }: Props) => (
     hidden={value !== index}
     id={`tabpanel-${index}`}
     aria-labelledby={`tab-${index}`}
-    // $FlowFixMe https://github.com/facebook/flow/issues/8192
     {...other}>
     {value === index && <Box>{children}</Box>}
   </Typography>

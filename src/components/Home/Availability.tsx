@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { useQuery } from "@apollo/react-hooks"
 import PanelLoader from "./PanelLoader"

@@ -1,4 +1,3 @@
-// @flow
 import React, { useState } from "react"
 import { Form, Formik } from "formik"
 import { useMutation } from "@apollo/react-hooks"

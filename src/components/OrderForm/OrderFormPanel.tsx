@@ -1,11 +1,10 @@
-// @flow
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import PanelWrapper from "components/common/PanelWrapper"
 
 type Props = {
-  title: string,
-  component: any,
+  title: string
+  component: any
 }
 
 /**

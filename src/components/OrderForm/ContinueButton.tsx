@@ -1,4 +1,3 @@
-// @flow
 import React, { useState } from "react"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,11 +6,11 @@ import useStyles from "./formStyles"
 
 type Props = {
   /** List of fields */
-  fields: Array<string>,
+  fields: Array<string>
   /** Current order form page number */
-  pageNum: number,
+  pageNum: number
   /** Function to set the page number */
-  setPageNum: Function,
+  setPageNum: Function
 }
 
 /**
