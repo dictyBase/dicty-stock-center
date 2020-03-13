@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"

@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
@@ -21,7 +20,7 @@ const useStyles = makeStyles({
     color: "#fff",
     backgroundColor: "rgb(46, 109, 164)",
     textAlign: "center",
-    fontWeight: "400",
+    fontWeight: 400,
   },
   total: {
     color: "rgba(0, 0, 0, 0.54)",

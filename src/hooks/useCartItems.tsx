@@ -21,7 +21,7 @@ type CartItem = {
   id: string
   name: string
   summary: string
-  type: string
+  type?: string
 }
 
 /**

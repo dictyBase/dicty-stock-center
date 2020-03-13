@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
@@ -23,11 +22,11 @@ const useStyles = makeStyles({
 
 type Props = {
   item: {
-    name: string,
-    id: string,
-    summary: string,
-    fee: string,
-  },
+    name: string
+    id: string
+    summary: string
+    fee: string
+  }
 }
 
 /**

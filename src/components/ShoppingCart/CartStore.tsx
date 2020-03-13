@@ -1,11 +1,44 @@
-// @flow
 import React, { createContext, useContext, useReducer } from "react"
-import { cartTypes } from "constants/cart"
 
 const storageKey = "dscCart"
 const maxKey = "dscMaxItems"
 
-const CartContext: Object = createContext()
+enum CartActionType {
+  ADD_TO_CART = "ADD_TO_CART",
+  REMOVE_FROM_CART = "REMOVE_FROM_CART",
+  HIDE_CART_DIALOG = "HIDE_CART_DIALOG",
+}
+
+type CartItem = {
+  id: string
+  name: string
+  summary: string
+  type?: string
+  fee: string
+}
+
+type Action =
+  | {
+      type: CartActionType.ADD_TO_CART
+      payload: CartItem
+    }
+  | {
+      type: CartActionType.REMOVE_FROM_CART
+      payload: {
+        removeIndex: number
+      }
+    }
+  | {
+      type: CartActionType.HIDE_CART_DIALOG
+    }
+
+type CartState = {
+  addedItems: Array<CartItem>
+  showCartDialog: boolean
+  maxItemsInCart: string
+}
+
+const CartContext = createContext({} as any)
 
 const initialState = {
   addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
@@ -13,26 +46,9 @@ const initialState = {
   maxItemsInCart: JSON.parse(localStorage.getItem(maxKey) || "false"),
 }
 
-type CartItem = {
-  id: string,
-  name: string,
-  summary: string,
-  type: string,
-}
-
-const cartReducer = (
-  state: Object,
-  action: {
-    type: string,
-    payload: {
-      ...CartItem,
-      fee: string,
-      removeIndex: number, // used to remove item
-    },
-  },
-) => {
+const cartReducer = (state: CartState, action: Action) => {
   switch (action.type) {
-    case cartTypes.ADD_TO_CART:
+    case CartActionType.ADD_TO_CART:
       const newItems = state.addedItems
         .concat({
           id: action.payload.id,
@@ -57,7 +73,7 @@ const cartReducer = (
         showCartDialog: true,
         maxItemsInCart: false,
       }
-    case cartTypes.REMOVE_FROM_CART:
+    case CartActionType.REMOVE_FROM_CART:
       const updatedItems = [
         ...state.addedItems.slice(0, action.payload.removeIndex),
         ...state.addedItems.slice(action.payload.removeIndex + 1),
@@ -68,7 +84,7 @@ const cartReducer = (
         addedItems: updatedItems,
         maxItemsInCart: false,
       }
-    case cartTypes.HIDE_CART_DIALOG:
+    case CartActionType.HIDE_CART_DIALOG:
       return {
         ...state,
         showCartDialog: false,
@@ -83,6 +99,7 @@ const cartReducer = (
  */
 
 const CartProvider = ({ children }: any) => {
+  // @ts-ignore
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
   return (
@@ -100,4 +117,4 @@ const useCartStore = () => {
   return context
 }
 
-export { CartContext, cartReducer, CartProvider, useCartStore }
+export { CartContext, cartReducer, CartProvider, useCartStore, CartActionType }

@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles"
+import { Theme } from "@material-ui/core"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   container: {
     paddingRight: "15px",
     paddingLeft: "15px",
@@ -80,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     backgroundColor: "rgb(46, 109, 164)",
     textAlign: "center",
-    fontWeight: "400",
+    fontWeight: 400,
   },
 }))
 
