@@ -2,6 +2,7 @@ export type CartItem = {
   label: string
   id: string
   summary: string
+  type?: string
 }
 
 export type AddToCartProps = {
@@ -13,7 +14,9 @@ export type AddToCartProps = {
     name: string
     /** Strain summary */
     summary: string
+    /** strain or plasmid */
+    type: string
   }>
   /** Function to add to checked items array */
-  setCheckedItems: Function
+  setCheckedItems?: Function
 }

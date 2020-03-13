@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
@@ -17,12 +16,12 @@ type Props = {
   /** Stock data */
   data: Array<{
     /** ID number */
-    id: string,
+    id: string
     /** Label/name */
-    name: string,
+    name: string
     /** Summary/description */
-    summary: string,
-  }>,
+    summary: string
+  }>
 }
 
 /**

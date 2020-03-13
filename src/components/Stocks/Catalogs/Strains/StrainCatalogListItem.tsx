@@ -75,7 +75,7 @@ const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton data={[cartData]} stockType="strain" />
+                <AddToCartButton data={[cartData]} />
                 {itemIsInCart && (
                   <IconButton
                     size="medium"

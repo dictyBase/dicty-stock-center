@@ -1,11 +1,11 @@
-// @flow
 import React from "react"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
+import { ApolloError } from "apollo-client"
 
 type Props = {
   /** GraphQL error object */
-  error: Object,
+  error: ApolloError
 }
 
 /**
@@ -21,8 +21,13 @@ const CatalogErrorMessage = ({ error }: Props) => {
     return <OtherError />
   }
 
-  const errorCode = error.graphQLErrors[0].extensions.code
-  const errorMsg = error.graphQLErrors[0].message
+  let errorCode, errorMsg
+
+  if (error.graphQLErrors && error.graphQLErrors[0].extensions) {
+    errorCode = error.graphQLErrors[0].extensions.code
+    errorMsg = error.graphQLErrors[0].message
+  }
+
   const printError = `
   error: ${errorMsg}
   code: ${errorCode}

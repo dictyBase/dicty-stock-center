@@ -79,7 +79,7 @@ const PlasmidCatalogListItem = ({
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton data={[cartData]} stockType="plasmid" />
+                <AddToCartButton data={[cartData]} />
                 {itemIsInCart && (
                   <IconButton
                     size="medium"

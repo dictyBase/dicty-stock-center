@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import Dialog from "@material-ui/core/Dialog"
 import DialogTitleDisplay from "components/common/DialogTitleDisplay"

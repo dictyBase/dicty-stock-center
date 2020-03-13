@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
@@ -22,7 +21,11 @@ const useStyles = makeStyles(theme => ({
 const CatalogListHeaderButtons = () => {
   const [{ addedItems }] = useCartStore()
   const [{ checkedItems }] = useCatalogStore()
-  const { resetCheckedItems } = useCheckboxes({})
+  const { resetCheckedItems } = useCheckboxes({
+    id: "",
+    name: "",
+    summary: "",
+  })
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

@@ -1,22 +1,46 @@
-// @flow
 import React, { createContext, useContext, useMemo, useReducer } from "react"
-import { catalogTypes } from "constants/catalogs"
 
-const CatalogContext: Object = createContext()
+type CatalogState = {
+  queryVariables: {
+    cursor: number
+    filter: String
+  }
+  checkedItems: Array<any>
+}
+
+enum CatalogActionType {
+  SET_QUERY_VARIABLES = "SET_QUERY_VARIABLES",
+  SET_CHECKED_ITEMS = "SET_CHECKED_ITEMS",
+}
+
+type Action =
+  | {
+      type: CatalogActionType.SET_QUERY_VARIABLES
+      payload: {
+        cursor: number
+        filter: String
+      }
+    }
+  | {
+      type: CatalogActionType.SET_CHECKED_ITEMS
+      payload: Array<any>
+    }
+
+const CatalogContext = createContext({} as any)
 
 const initialState = {
   queryVariables: { cursor: 0, filter: "" },
   checkedItems: [],
 }
 
-const catalogReducer = (state: Object, action: Object) => {
+const catalogReducer = (state: CatalogState, action: Action) => {
   switch (action.type) {
-    case catalogTypes.SET_QUERY_VARIABLES:
+    case CatalogActionType.SET_QUERY_VARIABLES:
       return {
         ...state,
         queryVariables: action.payload,
       }
-    case catalogTypes.SET_CHECKED_ITEMS:
+    case CatalogActionType.SET_CHECKED_ITEMS:
       return {
         ...state,
         checkedItems: action.payload,

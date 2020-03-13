@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
 
 type Props = {
   /** Type of stock (strain or plasmid) */
-  stockType: string,
+  stockType: string
 }
 
 /**
@@ -43,7 +42,11 @@ type Props = {
 
 const CatalogListHeader = ({ stockType }: Props) => {
   const [{ checkedItems }] = useCatalogStore()
-  const { handleCheckAllChange } = useCheckboxes({})
+  const { handleCheckAllChange } = useCheckboxes({
+    id: "",
+    name: "",
+    summary: "",
+  })
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

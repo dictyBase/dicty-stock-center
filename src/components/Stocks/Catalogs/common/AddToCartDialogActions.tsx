@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/styles"
@@ -14,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   /** Function called when closing the dialog box */
-  handleClose: Function,
+  handleClose: () => void
 }
 
 /**
