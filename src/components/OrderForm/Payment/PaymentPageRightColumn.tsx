@@ -1,5 +1,4 @@
-// @flow
-import React, { Fragment } from "react"
+import React from "react"
 import Grid from "@material-ui/core/Grid"
 import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
@@ -10,13 +9,13 @@ import requiredFieldsGenerator from "../utils/requiredFields"
 
 type Props = {
   /** Values from Formik */
-  values: Object,
+  values: Object
   /** Current order form page number */
-  pageNum: number,
+  pageNum: number
   /** Function to set the page number */
-  setPageNum: Function,
-  handleChange: Function,
-  setFieldValue: Function,
+  setPageNum: Function
+  handleChange: () => void
+  setFieldValue: Function
 }
 
 /**
@@ -30,7 +29,7 @@ const PaymentPageRightColumn = ({
   handleChange,
   setFieldValue,
 }: Props) => (
-  <Fragment>
+  <>
     <OrderFormPanel
       title="Payment Method"
       component={
@@ -55,7 +54,7 @@ const PaymentPageRightColumn = ({
         />
       </Grid>
     </Grid>
-  </Fragment>
+  </>
 )
 
 export default PaymentPageRightColumn

@@ -1,4 +1,3 @@
-// @flow
 import React, { useState } from "react"
 import { Grid } from "@material-ui/core"
 import TextField from "../TextField"
@@ -8,9 +7,9 @@ import PaymentMethodRadioGroup from "./PaymentMethodRadioGroup"
 
 type Props = {
   /** Function for handling radio button selection */
-  handleChange: Function,
+  handleChange: () => void
   /** Function to manually set Formik field values */
-  setFieldValue: Function,
+  setFieldValue: Function
 }
 
 /**

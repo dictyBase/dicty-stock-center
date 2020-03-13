@@ -1,4 +1,3 @@
-// @flow
 import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -23,15 +22,14 @@ const paymentAddressFields = [
 
 type Props = {
   /** Function to manually set Formik field values */
-  setFieldValue: Function,
+  setFieldValue: Function
   /** Values from Formik */
-  values: Object,
+  values: Object
   /** Current order form page number */
-  pageNum: number,
+  pageNum: number
   /** Function to set the page number */
-  setPageNum: Function,
-  handleChange: Function,
-  setFieldValue: Function,
+  setPageNum: Function
+  handleChange: () => void
 }
 
 /**
