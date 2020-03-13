@@ -73,4 +73,10 @@ const useCatalogStore = () => {
   return context
 }
 
-export { CatalogContext, catalogReducer, CatalogProvider, useCatalogStore }
+export {
+  CatalogContext,
+  catalogReducer,
+  CatalogProvider,
+  useCatalogStore,
+  CatalogActionType,
+}
