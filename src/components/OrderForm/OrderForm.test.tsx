@@ -1,5 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
+import { BrowserRouter } from "react-router-dom"
 import { MockedProvider } from "@apollo/react-testing"
 import OrderForm from "./OrderForm"
 import { Helmet } from "react-helmet"
@@ -10,7 +11,9 @@ describe("OrderForm/OrderForm", () => {
   const wrapper = mount(
     <MockedProvider>
       <CartProvider>
-        <OrderForm />
+        <BrowserRouter>
+          <OrderForm />
+        </BrowserRouter>
       </CartProvider>
     </MockedProvider>,
   )
