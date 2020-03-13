@@ -1,4 +1,3 @@
-// @flow
 const requiredShippingFields = [
   "firstName",
   "lastName",
@@ -27,7 +26,7 @@ const requiredPaymentFields = [
   "purchaseOrderNum",
 ]
 
-const requiredFieldsGenerator = (values: Object, page: string) => {
+const requiredFieldsGenerator = (values: any, page: string) => {
   if (page === "shipping") {
     return requiredShippingFields.map<string>(item => values[item])
   }

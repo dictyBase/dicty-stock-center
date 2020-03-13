@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
@@ -21,11 +20,11 @@ const carriers = [
 
 type Props = {
   /** Function for handling radio button selection */
-  handleChange: Function,
+  handleChange: () => void
   /** Function to manually set Formik field values */
-  setFieldValue: Function,
-  setShipAccountNum: Function,
-  setPrepaidNotice: Function,
+  setFieldValue: Function
+  setShipAccountNum: Function
+  setPrepaidNotice: Function
 }
 
 /**

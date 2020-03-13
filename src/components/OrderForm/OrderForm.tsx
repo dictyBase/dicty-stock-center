@@ -2,6 +2,7 @@
 import React, { useState } from "react"
 import { Form, Formik } from "formik"
 import { useMutation } from "@apollo/react-hooks"
+import { useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import ShippingPage from "./Shipping/ShippingPage"
@@ -17,16 +18,12 @@ import OrderFormStepper from "./OrderFormStepper"
 
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
-type Props = {
-  /** React Router History */
-  history: Object,
-}
-
 /**
  * OrderForm is the main component used for the checkout process.
  */
 
-const OrderForm = ({ history }: Props) => {
+const OrderForm = () => {
+  const history = useHistory()
   const classes = useStyles()
   const [{ addedItems }] = useCartStore()
   const { removeFromCart } = useCartItems(addedItems)
@@ -41,9 +38,9 @@ const OrderForm = ({ history }: Props) => {
         <meta name="description" content="Order form for Dicty Stock Center" />
       </Helmet>
       <Grid item xs={12}>
-        <center>
+        <div style={{ textAlign: "center" }}>
           <h1>Checkout</h1>
-        </center>
+        </div>
         <OrderFormStepper pageNum={pageNum} />
         <Formik
           initialValues={initialValues}

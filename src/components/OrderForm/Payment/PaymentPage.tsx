@@ -29,7 +29,6 @@ type Props = {
   pageNum: number
   /** Function to set the page number */
   setPageNum: Function
-  handleChange: () => void
 }
 
 /**
@@ -74,7 +73,7 @@ const PaymentPage = (props: Props) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <PaymentPageRightColumn {...props} />
+        <PaymentPageRightColumn handleChange={handleChange} {...props} />
       </Grid>
     </Grid>
   )

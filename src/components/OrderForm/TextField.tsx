@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import { Field } from "formik"
 import { TextField as MuiTextField } from "@material-ui/core"
