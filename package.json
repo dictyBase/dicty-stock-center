@@ -15,10 +15,8 @@
     "eject": "react-scripts eject",
     "eslint": "eslint --ext .jsx,.js src/",
     "tsc": "tsc",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "cz": "git-cz",
     "semantic-release": "semantic-release",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "local-ci-eric": "IMAGE_TAG=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||' -e 's~/~-~')-$(git rev-parse --short HEAD) skaffold run -p ericdev",
@@ -97,10 +95,8 @@
     "apollo-boost": "^0.4.7",
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^9.1.1",
-    "commitizen": "^4.0.3",
     "core-js": "^3.6.4",
     "cypress": "^4.0.2",
-    "cz-conventional-changelog": "^3.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-prettier": "^6.10.0",
@@ -111,7 +107,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "flow-bin": "^0.120.1",
     "husky": "^4.2.3",
     "jest-enzyme": "^7.1.2",
     "lint-staged": "^10.0.8",
@@ -145,11 +140,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "browserslist": [
