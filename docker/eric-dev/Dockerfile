@@ -11,7 +11,6 @@ WORKDIR /usr/src/app
 
 # copy only necessary files
 COPY package*.json ./
-COPY .babelrc ./
 COPY tsconfig.json ./
 
 RUN npm install
