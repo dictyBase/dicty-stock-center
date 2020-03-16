@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
 import { useAppBarStore, AppBarActionType } from "./AppBarContext"
-import { catalogTypes } from "constants/catalogs"
+import { CatalogActionType } from "components/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  queryVariables: Object
   dropdownItems: Array<{
     value: string
     name: string
@@ -42,17 +41,13 @@ type Props = {
  * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const AppBarSearch = ({
-  queryVariables,
-  dropdownItems,
-  catalogDispatch,
-}: Props) => {
+const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
   const [{ searchValue, filter }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const resetQueryVariables = () =>
     catalogDispatch({
-      type: catalogTypes.SET_QUERY_VARIABLES,
+      type: CatalogActionType.SET_QUERY_VARIABLES,
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })
 

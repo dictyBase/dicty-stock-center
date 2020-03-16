@@ -26,7 +26,7 @@ type Props = {
  */
 
 const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
-  const [{ queryVariables }, dispatch] = useCatalogStore()
+  const [, dispatch] = useCatalogStore()
   const classes = useStyles()
 
   return (
@@ -44,7 +44,6 @@ const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
             <Grid item xs={12} md={4}>
               <Grid container justify="center">
                 <AppBarSearch
-                  queryVariables={queryVariables}
                   dropdownItems={rightDropdownItems}
                   catalogDispatch={dispatch}
                 />

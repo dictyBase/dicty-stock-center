@@ -1,9 +1,7 @@
-import { useCartStore } from "components/ShoppingCart/CartStore"
-import { cartTypes } from "constants/cart"
+import { useCartStore, CartActionType } from "components/ShoppingCart/CartStore"
 import { fees } from "constants/fees"
 import strainOrPlasmid from "utils/strainOrPlasmid"
 
-const { ADD_TO_CART, REMOVE_FROM_CART } = cartTypes
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
 const getFee = (item: string) => {
@@ -35,7 +33,7 @@ const useCartItems = (items: Array<CartItem>) => {
   const addToCart = () =>
     items.forEach(item =>
       dispatch({
-        type: ADD_TO_CART,
+        type: CartActionType.ADD_TO_CART,
         payload: {
           fee: getFee(strainOrPlasmid(item.id)),
           type: strainOrPlasmid(item.id),
@@ -49,7 +47,7 @@ const useCartItems = (items: Array<CartItem>) => {
   const removeFromCart = () =>
     items.forEach(item =>
       dispatch({
-        type: REMOVE_FROM_CART,
+        type: CartActionType.REMOVE_FROM_CART,
         payload: {
           // get new array of IDs then grab first index
           removeIndex: addedItems.map(item => item.id).indexOf(item.id),
