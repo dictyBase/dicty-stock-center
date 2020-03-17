@@ -7,6 +7,7 @@ describe("cartReducer", () => {
     id: "DBS1234567",
     name: "Test Strain",
     summary: "this is just a test summary",
+    type: "strain",
   }
   it("should add a new item to cart", () => {
     const state = {
@@ -49,6 +50,7 @@ describe("cartReducer", () => {
     ).toStrictEqual({
       addedItems: [],
       maxItemsInCart: false,
+      showCartDialog: false,
     })
   })
   it("should hide cart dialog", () => {
