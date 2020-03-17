@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import OauthCallback, { redirectUrlGenerator } from "./OauthCallback"
+import OauthCallback from "./OauthCallback"
 import { BrowserRouter } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 
@@ -36,30 +36,5 @@ describe("authentication/OauthCallback", () => {
       wrapper.unmount()
       expect(closeMock).toHaveBeenCalled()
     })
-  })
-})
-
-describe("redirectUrlGenerator", () => {
-  const globalAny: any = global
-  const originURL = "http://localhost:3000"
-  beforeEach(() => {
-    delete globalAny.window.location
-    globalAny.window.location = new URL(originURL)
-  })
-  afterEach(() => {
-    delete process.env.REACT_APP_BASENAME
-  })
-
-  it("should handle empty string properly", () => {
-    expect(redirectUrlGenerator("")).toEqual(originURL)
-  })
-  it("should handle '/' properly", () => {
-    expect(redirectUrlGenerator("/")).toEqual(originURL)
-  })
-  it("should handle '/' first character properly", () => {
-    expect(redirectUrlGenerator("/test")).toEqual(`${originURL}/test`)
-  })
-  it("should handle non-slash basenames properly", () => {
-    expect(redirectUrlGenerator("test")).toEqual(`${originURL}/test`)
   })
 })
