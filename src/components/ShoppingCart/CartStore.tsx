@@ -6,6 +6,7 @@ const maxKey = "dscMaxItems"
 enum CartActionType {
   ADD_TO_CART = "ADD_TO_CART",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
+  EMPTY_CART = "EMPTY_CART",
   HIDE_CART_DIALOG = "HIDE_CART_DIALOG",
 }
 
@@ -27,6 +28,9 @@ type Action =
       payload: {
         removeIndex: number
       }
+    }
+  | {
+      type: CartActionType.EMPTY_CART
     }
   | {
       type: CartActionType.HIDE_CART_DIALOG
@@ -60,7 +64,7 @@ const cartReducer = (state: CartState, action: Action) => {
         .slice(0, 12)
       localStorage.setItem(storageKey, JSON.stringify(newItems))
       if (newItems.length === 12) {
-        localStorage.setItem(maxKey, JSON.stringify(true))
+        localStorage.setItem(maxKey, "true")
         return {
           addedItems: newItems,
           showCartDialog: true,
@@ -78,9 +82,17 @@ const cartReducer = (state: CartState, action: Action) => {
         ...state.addedItems.slice(action.payload.removeIndex + 1),
       ]
       localStorage.setItem(storageKey, JSON.stringify(updatedItems))
-      localStorage.setItem(maxKey, JSON.stringify(false))
+      localStorage.setItem(maxKey, "false")
       return {
         addedItems: updatedItems,
+        maxItemsInCart: false,
+        showCartDialog: false,
+      }
+    case CartActionType.EMPTY_CART:
+      localStorage.setItem(storageKey, "[]")
+      localStorage.setItem(maxKey, "false")
+      return {
+        addedItems: [],
         maxItemsInCart: false,
         showCartDialog: false,
       }

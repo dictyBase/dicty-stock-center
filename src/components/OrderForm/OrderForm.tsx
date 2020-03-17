@@ -25,7 +25,7 @@ const OrderForm = () => {
   const history = useHistory()
   const classes = useStyles()
   const [{ addedItems }] = useCartStore()
-  const { removeFromCart } = useCartItems(addedItems)
+  const { emptyCart } = useCartItems(addedItems)
   const [pageNum, setPageNum] = useState(0)
   const PageComponent = pages[pageNum]
   const [createOrder] = useMutation(POST_ORDER)
@@ -63,7 +63,7 @@ const OrderForm = () => {
               },
             })
             history.push("/order/submitted")
-            removeFromCart()
+            emptyCart()
           }}>
           {props => (
             <Form>
