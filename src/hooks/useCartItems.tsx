@@ -50,13 +50,17 @@ const useCartItems = (items: Array<CartItem>) => {
         type: CartActionType.REMOVE_FROM_CART,
         payload: {
           // get new array of IDs then grab first index
-          removeIndex: addedItems.map(item => item.id).indexOf(item.id),
+          removeIndex: addedItems
+            .map((item: CartItem) => item.id)
+            .indexOf(item.id),
         },
       }),
     )
 
   // check if item is already in cart
-  const itemIsInCart = addedItems.some(stock => stock.id === items[0].id)
+  const itemIsInCart = addedItems.some(
+    (stock: CartItem) => stock.id === items[0].id,
+  )
 
   return { addToCart, removeFromCart, itemIsInCart }
 }

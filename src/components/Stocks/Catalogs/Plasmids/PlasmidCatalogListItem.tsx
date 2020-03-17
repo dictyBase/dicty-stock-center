@@ -30,7 +30,6 @@ const PlasmidCatalogListItem = ({
     id: plasmid.id,
     name: plasmid.name,
     summary: plasmid.summary,
-    type: "plasmid",
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
   const { itemIsInCart, removeFromCart } = useCartItems([cartData])

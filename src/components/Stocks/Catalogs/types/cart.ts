@@ -15,7 +15,7 @@ export type AddToCartProps = {
     /** Strain summary */
     summary: string
     /** strain or plasmid */
-    type: string
+    type?: string
   }>
   /** Function to add to checked items array */
   setCheckedItems?: Function

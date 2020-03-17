@@ -26,7 +26,6 @@ const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
-    type: "strain",
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
   const { itemIsInCart, removeFromCart } = useCartItems([cartData])
