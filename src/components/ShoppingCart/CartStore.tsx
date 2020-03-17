@@ -55,10 +55,11 @@ const cartReducer = (state: CartState, action: Action) => {
           name: action.payload.name,
           summary: action.payload.summary,
           fee: action.payload.fee,
+          type: action.payload.type,
         })
         .slice(0, 12)
+      localStorage.setItem(storageKey, JSON.stringify(newItems))
       if (newItems.length === 12) {
-        localStorage.setItem(storageKey, JSON.stringify(newItems))
         localStorage.setItem(maxKey, JSON.stringify(true))
         return {
           addedItems: newItems,
@@ -66,8 +67,6 @@ const cartReducer = (state: CartState, action: Action) => {
           maxItemsInCart: true,
         }
       }
-      localStorage.setItem(storageKey, JSON.stringify(newItems))
-      localStorage.setItem(maxKey, JSON.stringify(false))
       return {
         addedItems: newItems,
         showCartDialog: true,
@@ -83,6 +82,7 @@ const cartReducer = (state: CartState, action: Action) => {
       return {
         addedItems: updatedItems,
         maxItemsInCart: false,
+        showCartDialog: false,
       }
     case CartActionType.HIDE_CART_DIALOG:
       return {
