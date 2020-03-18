@@ -39,7 +39,7 @@ type Action =
 type CartState = {
   addedItems: Array<CartItem>
   showCartDialog: boolean
-  maxItemsInCart: string
+  maxItemsInCart: boolean
 }
 
 const CartContext = createContext({} as any)
@@ -111,7 +111,6 @@ const cartReducer = (state: CartState, action: Action) => {
  */
 
 const CartProvider = ({ children }: any) => {
-  // @ts-ignore
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
   return (

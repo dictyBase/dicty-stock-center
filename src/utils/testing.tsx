@@ -29,15 +29,7 @@ type AuthProps = {
 type CartProps = {
   children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
-  addedItems: [
-    {
-      id: string
-      name: string
-      summary: string
-      type?: string
-      fee: string
-    },
-  ]
+  addedItems: []
 }
 
 const MockSuperuser = {
