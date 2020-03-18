@@ -4,8 +4,8 @@ import { MockedProvider, MockedResponse } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "components/authentication/AuthStore"
 import { CartContext, cartReducer } from "components/ShoppingCart/CartStore"
 
-type Props = {
-  children: any
+type AuthProps = {
+  children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
   user?: {
     id: number
@@ -24,6 +24,20 @@ type Props = {
   }
   /** Indicates if auth state should include valid token, default is true */
   validToken?: boolean
+}
+
+type CartProps = {
+  children: React.ReactNode
+  mocks: ReadonlyArray<MockedResponse>
+  addedItems: [
+    {
+      id: string
+      name: string
+      summary: string
+      type?: string
+      fee: string
+    },
+  ]
 }
 
 const MockSuperuser = {
@@ -51,7 +65,7 @@ const MockAuthProvider = ({
   mocks,
   user = MockSuperuser,
   validToken = true,
-}: Props) => {
+}: AuthProps) => {
   const [state, dispatch] = React.useReducer(authReducer, {
     token: validToken ? activeToken : expiredToken,
     user: user,
@@ -67,7 +81,7 @@ const MockAuthProvider = ({
   )
 }
 
-const MockCartProvider = ({ children, mocks, addedItems }: Props) => {
+const MockCartProvider = ({ children, mocks, addedItems }: CartProps) => {
   const [state, dispatch] = React.useReducer(cartReducer, {
     addedItems: addedItems,
     showCartDialog: false,

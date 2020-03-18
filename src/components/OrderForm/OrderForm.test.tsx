@@ -7,18 +7,26 @@ import { POST_ORDER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
 import useCartItems from "hooks/useCartItems"
 
-jest.mock("hooks/useCartItems")
+// set up all of our mocks=
 const mockHistoryPush = jest.fn()
 const formikFunctions = {
   setSubmitting: jest.fn(),
 }
 
+jest.mock("hooks/useCartItems")
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
     push: mockHistoryPush,
   }),
 }))
+
+useCartItems.mockReturnValue({
+  addToCart: jest.fn(),
+  removeFromCart: jest.fn(),
+  emptyCart: jest.fn(),
+  itemIsInCart: false,
+})
 
 const mockValues = {
   firstName: "Art",
@@ -51,12 +59,14 @@ const mockValues = {
   paymentMethod: "Credit card",
   purchaseOrderNum: "99999",
 }
-useCartItems.mockReturnValue({
-  addToCart: jest.fn(),
-  removeFromCart: jest.fn(),
-  emptyCart: jest.fn(),
-  itemIsInCart: false,
-})
+
+type CartItem = {
+  id: string
+  name: string
+  summary: string
+  type?: string
+  fee: string
+}
 
 describe("OrderForm/OrderForm", () => {
   describe("initial render", () => {
@@ -72,7 +82,8 @@ describe("OrderForm/OrderForm", () => {
     })
   })
   describe("onSubmit", () => {
-    const addedItems = [].fill(
+    let addedItems = [] as Array<CartItem>
+    addedItems.fill(
       {
         id: "DBS1234",
         name: "test strain",
