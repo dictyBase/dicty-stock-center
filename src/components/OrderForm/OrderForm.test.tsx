@@ -25,7 +25,6 @@ useCartItems.mockReturnValue({
   addToCart: jest.fn(),
   removeFromCart: jest.fn(),
   emptyCart: jest.fn(),
-  itemIsInCart: false,
 })
 
 const mockValues = {

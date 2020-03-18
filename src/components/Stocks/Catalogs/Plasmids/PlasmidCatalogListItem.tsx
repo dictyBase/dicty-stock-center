@@ -12,6 +12,8 @@ import characterConverter from "components/Stocks/utils/characterConverter"
 import useCheckboxes from "hooks/useCheckboxes"
 import useCartItems from "hooks/useCartItems"
 import useHover from "hooks/useHover"
+import { useCartStore } from "components/ShoppingCart/CartStore"
+import itemIsInCart from "utils/itemIsInCart"
 import { plasmidListItemProps } from "components/Stocks/Catalogs/types/list"
 import useStyles from "components/Stocks/Catalogs/styles"
 
@@ -32,7 +34,8 @@ const PlasmidCatalogListItem = ({
     summary: plasmid.summary,
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
-  const { itemIsInCart, removeFromCart } = useCartItems([cartData])
+  const [{ addedItems }] = useCartStore()
+  const { removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
   const classes = useStyles()
 
@@ -79,7 +82,7 @@ const PlasmidCatalogListItem = ({
             {hover && (
               <span>
                 <AddToCartButton data={[cartData]} />
-                {itemIsInCart && (
+                {itemIsInCart(addedItems, plasmid.id) && (
                   <IconButton
                     size="medium"
                     color="secondary"

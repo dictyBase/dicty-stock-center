@@ -61,12 +61,7 @@ const useCartItems = (items: Array<CartItem>) => {
     dispatch({ type: CartActionType.EMPTY_CART })
   }
 
-  // check if item is already in cart
-  const itemIsInCart = addedItems.some(
-    (stock: CartItem) => stock.id === items[0].id,
-  )
-
-  return { addToCart, removeFromCart, emptyCart, itemIsInCart }
+  return { addToCart, removeFromCart, emptyCart }
 }
 
 export { getFee }
