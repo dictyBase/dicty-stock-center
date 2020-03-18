@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter } from "react-router-dom"
 import { MockedProvider, MockedResponse } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "components/authentication/AuthStore"
+import { CartContext, cartReducer } from "components/ShoppingCart/CartStore"
 
 type Props = {
   children: any
@@ -66,4 +67,19 @@ const MockAuthProvider = ({
   )
 }
 
-export { MockSuperuser, MockAuthProvider }
+const MockCartProvider = ({ children, mocks, addedItems }: Props) => {
+  const [state, dispatch] = React.useReducer(cartReducer, {
+    addedItems: addedItems,
+    showCartDialog: false,
+    maxItemsInCart: false,
+  })
+  return (
+    <CartContext.Provider value={[state, dispatch]}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </MockedProvider>
+    </CartContext.Provider>
+  )
+}
+
+export { MockSuperuser, MockAuthProvider, MockCartProvider }
