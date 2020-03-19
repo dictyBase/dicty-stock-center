@@ -1,4 +1,5 @@
 import React from "react"
+import { useFormikContext } from "formik"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -11,11 +12,8 @@ import { Props } from "./types"
  * the final submit page.
  */
 
-const SubmitPageBottomButtons = ({
-  pageNum,
-  setPageNum,
-  isSubmitting,
-}: Props) => {
+const SubmitPageBottomButtons = ({ pageNum, setPageNum }: Props) => {
+  const { isSubmitting } = useFormikContext<any>()
   const classes = useStyles()
 
   return (

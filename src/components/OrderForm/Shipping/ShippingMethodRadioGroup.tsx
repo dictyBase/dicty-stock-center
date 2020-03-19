@@ -1,4 +1,5 @@
 import React from "react"
+import { useFormikContext } from "formik"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -19,10 +20,6 @@ const carriers = [
 ]
 
 type Props = {
-  /** Function for handling radio button selection */
-  handleChange: () => void
-  /** Function to manually set Formik field values */
-  setFieldValue: Function
   setShipAccountNum: Function
   setPrepaidNotice: Function
 }
@@ -32,11 +29,11 @@ type Props = {
  */
 
 const ShippingMethodRadioGroup = ({
-  handleChange,
-  setFieldValue,
   setShipAccountNum,
   setPrepaidNotice,
 }: Props) => {
+  const { setFieldValue, handleChange } = useFormikContext<any>()
+
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
     setPrepaidNotice(false)

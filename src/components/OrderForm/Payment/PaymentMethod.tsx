@@ -5,18 +5,11 @@ import RequiredTextLabel from "../RequiredTextLabel"
 import useStyles from "../formStyles"
 import PaymentMethodRadioGroup from "./PaymentMethodRadioGroup"
 
-type Props = {
-  /** Function for handling radio button selection */
-  handleChange: () => void
-  /** Function to manually set Formik field values */
-  setFieldValue: Function
-}
-
 /**
  * PaymentMethod contains radio buttons and a text field for listing payment method information.
  */
 
-const PaymentMethod = ({ handleChange, setFieldValue }: Props) => {
+const PaymentMethod = () => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
   const classes = useStyles()
 
@@ -28,11 +21,7 @@ const PaymentMethod = ({ handleChange, setFieldValue }: Props) => {
       className={classes.innerForm}>
       <RequiredTextLabel title="Payment Account" />
       <Grid item xs={12} md={8}>
-        <PaymentMethodRadioGroup
-          setPurchaseOrderNum={setPurchaseOrderNum}
-          handleChange={handleChange}
-          setFieldValue={setFieldValue}
-        />
+        <PaymentMethodRadioGroup setPurchaseOrderNum={setPurchaseOrderNum} />
         {purchaseOrderNum && (
           <TextField
             type="text"

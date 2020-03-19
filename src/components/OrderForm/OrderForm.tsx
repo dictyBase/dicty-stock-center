@@ -67,11 +67,7 @@ const OrderForm = () => {
           }}>
           {props => (
             <Form>
-              <PageComponent
-                {...props}
-                pageNum={pageNum}
-                setPageNum={setPageNum}
-              />
+              <PageComponent pageNum={pageNum} setPageNum={setPageNum} />
             </Form>
           )}
         </Formik>

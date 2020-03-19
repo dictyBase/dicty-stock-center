@@ -1,13 +1,10 @@
 import React from "react"
+import { useFormikContext } from "formik"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 
 type Props = {
-  /** Function for handling radio button selection */
-  handleChange: () => void
-  /** Function to manually set Formik field values */
-  setFieldValue: Function
   setPurchaseOrderNum: Function
 }
 
@@ -15,11 +12,9 @@ type Props = {
  * PaymentMethodRadioGroup contains radio buttons for payment methods.
  */
 
-const PaymentMethodRadioGroup = ({
-  handleChange,
-  setFieldValue,
-  setPurchaseOrderNum,
-}: Props) => {
+const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
+  const { setFieldValue, handleChange } = useFormikContext<any>()
+
   const handlePaymentChange = () => {
     setPurchaseOrderNum(false)
     setFieldValue("purchaseOrderNum", "N/A")

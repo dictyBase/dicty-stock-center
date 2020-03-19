@@ -9,7 +9,7 @@ import { Props } from "./types"
  * SubmitPage is the final page the user sees before submitting the order.
  */
 
-export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
+export const SubmitPage = ({ pageNum, setPageNum }: Props) => {
   const classes = useStyles()
 
   return (
@@ -23,11 +23,7 @@ export const SubmitPage = ({ pageNum, setPageNum, isSubmitting }: Props) => {
         <br />
         <br />
         <br />
-        <SubmitPageBottomButtons
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          isSubmitting={isSubmitting}
-        />
+        <SubmitPageBottomButtons pageNum={pageNum} setPageNum={setPageNum} />
       </Grid>
     </Grid>
   )

@@ -1,4 +1,5 @@
 import React from "react"
+import { useFormikContext } from "formik"
 import Grid from "@material-ui/core/Grid"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
@@ -7,37 +8,25 @@ import OrderFormPanel from "../OrderFormPanel"
 import requiredFieldsGenerator from "../utils/requiredFields"
 
 type Props = {
-  /** Values from Formik */
-  values: Object
   /** Current order form page number */
   pageNum: number
   /** Function to set the page number */
   setPageNum: Function
-  handleChange: () => void
-  setFieldValue: Function
 }
 
 /**
  * ShippingPageRightColumn displays the right column of the shipping page.
  */
 
-const ShippingPageRightColumn = (props: Props) => {
-  const { values, pageNum, setPageNum, handleChange, setFieldValue } = props
+const ShippingPageRightColumn = ({ pageNum, setPageNum }: Props) => {
+  const { values } = useFormikContext<any>()
 
   return (
     <>
-      <OrderFormPanel
-        title="Shipping Method"
-        component={
-          <ShippingMethod
-            handleChange={handleChange}
-            setFieldValue={setFieldValue}
-          />
-        }
-      />
+      <OrderFormPanel title="Shipping Method" component={<ShippingMethod />} />
       <OrderFormPanel
         title="Additional Information"
-        component={<AdditionalInformation {...props} />}
+        component={<AdditionalInformation />}
       />
       <Grid item xs={12}>
         <ContinueButton

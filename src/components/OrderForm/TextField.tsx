@@ -25,7 +25,8 @@ const TextField = ({
       variant={variant}
       fullWidth={fullWidth}
       error={meta.touched && meta.touched[field.name] && !!meta.error}
-      helperText={meta.touched && meta.error}>
+      helperText={meta.touched && meta.error}
+      {...props}>
       {children}
     </MuiTextField>
   )

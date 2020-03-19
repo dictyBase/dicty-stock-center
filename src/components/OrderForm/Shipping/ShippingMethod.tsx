@@ -6,18 +6,11 @@ import useStyles from "../formStyles"
 import ShippingMethodPrepaidNotice from "./ShippingMethodPrepaidNotice"
 import ShippingMethodRadioGroup from "./ShippingMethodRadioGroup"
 
-type Props = {
-  /** Function for handling radio button selection */
-  handleChange: () => void
-  /** Function to manually set Formik field values */
-  setFieldValue: Function
-}
-
 /**
  * ShippingMethod contains radio buttons and a text field for listing courier information.
  */
 
-const ShippingMethod = ({ handleChange, setFieldValue }: Props) => {
+const ShippingMethod = () => {
   const [shipAccountNum, setShipAccountNum] = useState(true)
   const [prepaidNotice, setPrepaidNotice] = useState(false)
   const classes = useStyles()
@@ -33,8 +26,6 @@ const ShippingMethod = ({ handleChange, setFieldValue }: Props) => {
         <ShippingMethodRadioGroup
           setShipAccountNum={setShipAccountNum}
           setPrepaidNotice={setPrepaidNotice}
-          handleChange={handleChange}
-          setFieldValue={setFieldValue}
         />
         {shipAccountNum && (
           <TextField

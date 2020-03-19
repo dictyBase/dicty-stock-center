@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useFormikContext } from "formik"
 import Grid from "@material-ui/core/Grid"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
@@ -21,10 +22,6 @@ const paymentAddressFields = [
 ]
 
 type Props = {
-  /** Function to manually set Formik field values */
-  setFieldValue: Function
-  /** Values from Formik */
-  values: Object
   /** Current order form page number */
   pageNum: number
   /** Function to set the page number */
@@ -35,9 +32,9 @@ type Props = {
  * PaymentPage is the display component for when the user is entering payment information.
  */
 
-const PaymentPage = (props: Props) => {
+const PaymentPage = ({ pageNum, setPageNum }: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
-  const { setFieldValue, values } = props
+  const { values, setFieldValue } = useFormikContext<any>()
 
   const handleChange = () => {
     toggleCheckbox(!checkbox)
@@ -65,15 +62,10 @@ const PaymentPage = (props: Props) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <LeftColumn
-          page="Payment"
-          countryName="payerCountry"
-          values={values}
-          setFieldValue={setFieldValue}
-        />
+        <LeftColumn page="Payment" countryName="payerCountry" />
       </Grid>
       <Grid item xs={12} md={6}>
-        <PaymentPageRightColumn handleChange={handleChange} {...props} />
+        <PaymentPageRightColumn pageNum={pageNum} setPageNum={setPageNum} />
       </Grid>
     </Grid>
   )

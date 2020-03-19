@@ -7,7 +7,7 @@ import useStyles from "../formStyles"
  * AdditionalInformation contains a text area for entering any optional comments.
  */
 
-const AdditionalInformation = (props: any) => {
+const AdditionalInformation = () => {
   const classes = useStyles()
 
   return (
@@ -21,7 +21,6 @@ const AdditionalInformation = (props: any) => {
       </Grid>
       <Grid item xs={12} md={8}>
         <TextField
-          {...props}
           type="text"
           name="comments"
           multiline
