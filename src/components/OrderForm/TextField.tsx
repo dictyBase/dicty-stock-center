@@ -1,44 +1,35 @@
 import React from "react"
-import { Field } from "formik"
-import { TextField as MuiTextField } from "@material-ui/core"
-
-const InputField = ({
-  children,
-  field,
-  form,
-  margin = "dense",
-  variant = "outlined",
-  fullWidth = true,
-  helperText,
-  ...restMuiProps
-}) => (
-  <MuiTextField
-    {...field}
-    margin={margin}
-    variant={variant}
-    fullWidth={fullWidth}
-    error={
-      form.touched &&
-      form.touched[field.name] &&
-      form.errors &&
-      !!form.errors[field.name]
-    }
-    helperText={
-      form.touched &&
-      form.touched[field.name] &&
-      form.errors &&
-      form.errors[field.name]
-    }
-    {...restMuiProps}>
-    {children}
-  </MuiTextField>
-)
+import { useField } from "formik"
+import MuiTextField, {
+  TextFieldProps as MuiTextFieldProps,
+} from "@material-ui/core/TextField"
 
 /**
  * TextField is a wrapper component that puts all Formik and MUI props
  * on the Material-UI TextField component.
  */
 
-const TextField = (props: any) => <Field {...props} component={InputField} />
+const TextField = ({
+  margin = "dense",
+  variant = "outlined",
+  fullWidth = true,
+  children,
+  ...props
+}: MuiTextFieldProps) => {
+  const [field, meta] = useField(props as any)
+
+  return (
+    <MuiTextField
+      {...field}
+      margin={margin}
+      variant={variant}
+      fullWidth={fullWidth}
+      error={meta.touched && meta.touched[field.name] && !!meta.error}
+      helperText={meta.touched && meta.error}
+      {...props}>
+      {children}
+    </MuiTextField>
+  )
+}
 
 export default TextField
