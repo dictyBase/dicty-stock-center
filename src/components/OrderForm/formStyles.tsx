@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     paddingBottom: "10px",
   },
   requiredText: {
-    color: "#dc3545",
+    color: "#dc3545 !important",
   },
   panelBlue: {
     backgroundColor: "#e6f2ff",
@@ -34,19 +34,19 @@ const useStyles = makeStyles({
   },
   continueBtn: {
     width: "100%",
-    color: "#fff",
-    backgroundColor: "rgb(46, 109, 164)",
+    color: "#fff !important",
+    backgroundColor: "rgb(46, 109, 164) !important",
     "&:hover": {
-      backgroundColor: "#0073e6",
+      backgroundColor: "#0073e6 !important",
     },
     textTransform: "none",
   },
   backBtn: {
     width: "100%",
-    color: "#fff",
-    backgroundColor: "#5cb85c",
+    color: "#fff !important",
+    backgroundColor: "#5cb85c !important",
     "&:hover": {
-      backgroundColor: "#449d44",
+      backgroundColor: "#449d44 !important",
     },
     textTransform: "none",
   },
