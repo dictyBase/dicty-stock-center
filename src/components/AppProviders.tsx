@@ -46,6 +46,11 @@ const theme = createMuiTheme({
       main: "rgb(220, 0, 78)",
     },
   },
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
 })
 
 const AppProviders = ({ children }) => {
