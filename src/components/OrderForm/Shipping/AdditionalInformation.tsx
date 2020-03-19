@@ -21,7 +21,6 @@ const AdditionalInformation = () => {
       </Grid>
       <Grid item xs={12} md={8}>
         <TextField
-          type="text"
           name="comments"
           multiline
           rows="5"

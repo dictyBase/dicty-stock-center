@@ -29,7 +29,6 @@ const ShippingMethod = () => {
         />
         {shipAccountNum && (
           <TextField
-            type="text"
             name="shippingAccountNumber"
             placeholder="Shipping Account Number"
           />

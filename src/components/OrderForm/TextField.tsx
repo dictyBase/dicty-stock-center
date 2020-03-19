@@ -21,6 +21,7 @@ const TextField = ({
   return (
     <MuiTextField
       {...field}
+      type="text"
       margin={margin}
       variant={variant}
       fullWidth={fullWidth}

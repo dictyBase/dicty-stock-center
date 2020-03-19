@@ -62,7 +62,7 @@ const PaymentPage = ({ pageNum, setPageNum }: Props) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <LeftColumn page="Payment" countryName="payerCountry" />
+        <LeftColumn page="payment" countryName="payerCountry" />
       </Grid>
       <Grid item xs={12} md={6}>
         <PaymentPageRightColumn pageNum={pageNum} setPageNum={setPageNum} />

@@ -23,11 +23,7 @@ const PaymentMethod = () => {
       <Grid item xs={12} md={8}>
         <PaymentMethodRadioGroup setPurchaseOrderNum={setPurchaseOrderNum} />
         {purchaseOrderNum && (
-          <TextField
-            type="text"
-            name="purchaseOrderNum"
-            placeholder="PO Number"
-          />
+          <TextField name="purchaseOrderNum" placeholder="PO Number" />
         )}
       </Grid>
     </Grid>

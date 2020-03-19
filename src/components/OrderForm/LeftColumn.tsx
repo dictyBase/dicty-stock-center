@@ -14,17 +14,15 @@ type Props = {
  * and payment order form pages.
  */
 
-const LeftColumn = (props: Props) => {
-  const { page, countryName } = props
-  const { values, setFieldValue } = useFormikContext<any>()
+const LeftColumn = ({ page, countryName }: Props) => {
+  const { values } = useFormikContext<any>()
 
   return (
     <PanelWrapper title={`${page} Address`}>
       <AddressFields
-        fields={addressFieldsGenerator(page.toLowerCase())}
+        fields={addressFieldsGenerator(page)}
         countryName={countryName}
         countryValue={values[countryName]}
-        setFieldValue={setFieldValue}
       />
     </PanelWrapper>
   )

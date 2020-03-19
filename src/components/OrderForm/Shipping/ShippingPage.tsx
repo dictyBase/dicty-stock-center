@@ -15,7 +15,7 @@ type Props = {
 const ShippingPage = ({ pageNum, setPageNum }: Props) => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={6}>
-      <LeftColumn page="Shipping" countryName="country" />
+      <LeftColumn page="shipping" countryName="country" />
     </Grid>
     <Grid item xs={12} md={6}>
       <Grid container direction="column" spacing={2}>
