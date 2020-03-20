@@ -1,14 +1,19 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
+import { OrderFormWrapper } from "utils/testing"
 import CountryDropdown from "./CountryDropdown"
 import Select from "@material-ui/core/Select"
 
 describe("OrderForm/CountryDropdown", () => {
   const props = {
     value: "Iceland",
-    setFieldValue: jest.fn(),
+    name: "Iceland",
   }
-  const wrapper = shallow(<CountryDropdown {...props} />)
+  const wrapper = mount(
+    <OrderFormWrapper>
+      <CountryDropdown {...props} />
+    </OrderFormWrapper>,
+  )
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Select)).toHaveLength(1)

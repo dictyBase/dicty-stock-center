@@ -1,11 +1,16 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
+import { OrderFormWrapper } from "utils/testing"
 import PaymentPage from "./PaymentPage"
 import LeftColumn from "../LeftColumn"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
 
 describe("OrderForm/Payment/PaymentPage", () => {
-  const wrapper = shallow(<PaymentPage />)
+  const wrapper = mount(
+    <OrderFormWrapper>
+      <PaymentPage pageNum={2} setPageNum={jest.fn()} />
+    </OrderFormWrapper>,
+  )
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(LeftColumn)).toHaveLength(1)

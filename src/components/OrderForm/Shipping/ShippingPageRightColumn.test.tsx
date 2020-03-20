@@ -1,5 +1,6 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
+import { OrderFormWrapper } from "utils/testing"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
 import OrderFormPanel from "../OrderFormPanel"
 import ContinueButton from "../ContinueButton"
@@ -22,7 +23,11 @@ describe("OrderForm/Shipping/ShippingPageRightColumn", () => {
     pageNum: 0,
     setPageNum: jest.fn(),
   }
-  const wrapper = shallow(<ShippingPageRightColumn {...props} />)
+  const wrapper = mount(
+    <OrderFormWrapper>
+      <ShippingPageRightColumn {...props} />
+    </OrderFormWrapper>,
+  )
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(OrderFormPanel)).toHaveLength(2)

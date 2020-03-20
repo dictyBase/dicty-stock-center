@@ -1,6 +1,6 @@
 import React from "react"
-import { shallow } from "enzyme"
-import sinon from "sinon"
+import { mount } from "enzyme"
+import { OrderFormWrapper } from "utils/testing"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
 import OrderFormPanel from "../OrderFormPanel"
 import PaymentInfoBox from "./PaymentInfoBox"
@@ -8,24 +8,15 @@ import ContinueButton from "../ContinueButton"
 import BackButton from "../BackButton"
 
 describe("OrderForm/Payment/PaymentPageRightColumn", () => {
-  const setPageNumSpy = sinon.spy()
   const props = {
-    values: {
-      firstName: "john",
-      lastName: "doe",
-      email: "johndoe@test.com",
-      organization: "northwestern",
-      lab: "dictybase",
-      address1: "123 fake st",
-      city: "chicago",
-      zip: "60601",
-      country: "usa",
-      phone: "1234567890",
-      PaymentAccountNumber: "999",
-    },
-    setPageNum: setPageNumSpy,
+    pageNum: 2,
+    setPageNum: jest.fn(),
   }
-  const wrapper = shallow(<PaymentPageRightColumn {...props} />)
+  const wrapper = mount(
+    <OrderFormWrapper>
+      <PaymentPageRightColumn {...props} />
+    </OrderFormWrapper>,
+  )
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(OrderFormPanel)).toHaveLength(1)
