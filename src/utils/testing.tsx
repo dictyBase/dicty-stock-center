@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter } from "react-router-dom"
+import { Formik } from "formik"
 import { MockedProvider, MockedResponse } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "components/authentication/AuthStore"
 import { CartContext, cartReducer } from "components/ShoppingCart/CartStore"
@@ -88,4 +89,24 @@ const MockCartProvider = ({ children, mocks, addedItems }: CartProps) => {
   )
 }
 
-export { MockSuperuser, MockAuthProvider, MockCartProvider }
+const OrderFormWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Formik
+    initialValues={{
+      firstName: "john",
+      lastName: "doe",
+      email: "johndoe@test.com",
+      organization: "northwestern",
+      lab: "dictybase",
+      address1: "123 fake st",
+      city: "chicago",
+      zip: "60601",
+      country: "usa",
+      phone: "1234567890",
+      PaymentAccountNumber: "999",
+    }}
+    onSubmit={jest.fn()}>
+    {children}
+  </Formik>
+)
+
+export { MockSuperuser, MockAuthProvider, MockCartProvider, OrderFormWrapper }
