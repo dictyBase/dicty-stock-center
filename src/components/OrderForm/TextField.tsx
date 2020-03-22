@@ -13,7 +13,6 @@ const TextField = ({
   margin = "dense",
   variant = "outlined",
   fullWidth = true,
-  children,
   ...props
 }: MuiTextFieldProps) => {
   const [field, meta] = useField(props as any)
@@ -27,9 +26,8 @@ const TextField = ({
       fullWidth={fullWidth}
       error={meta.touched && meta.touched[field.name] && !!meta.error}
       helperText={meta.touched && meta.error}
-      {...props}>
-      {children}
-    </MuiTextField>
+      {...props}
+    />
   )
 }
 
