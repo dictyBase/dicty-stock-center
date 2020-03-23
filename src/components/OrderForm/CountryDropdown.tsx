@@ -58,4 +58,5 @@ const CountryDropdown = ({ name }: Props) => {
   )
 }
 
+export { countryToFlag }
 export default CountryDropdown
