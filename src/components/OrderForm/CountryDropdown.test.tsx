@@ -2,21 +2,17 @@ import React from "react"
 import { mount } from "enzyme"
 import { OrderFormWrapper } from "utils/testing"
 import CountryDropdown from "./CountryDropdown"
-import Select from "@material-ui/core/Select"
+import Autocomplete from "@material-ui/lab/Autocomplete"
 
 describe("OrderForm/CountryDropdown", () => {
-  const props = {
-    value: "Iceland",
-    name: "Iceland",
-  }
   const wrapper = mount(
     <OrderFormWrapper>
-      <CountryDropdown {...props} />
+      <CountryDropdown name={"Iceland"} />
     </OrderFormWrapper>,
   )
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(Select)).toHaveLength(1)
+      expect(wrapper.find(Autocomplete)).toHaveLength(1)
     })
   })
 })
