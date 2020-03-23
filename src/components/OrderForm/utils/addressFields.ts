@@ -58,7 +58,7 @@ let fields = [
 
 const addressFieldsGenerator = (page: string) => {
   let addressFields = fields
-  if (page === "payment") {
+  if (page === "Payment") {
     addressFields = fields.map(item => ({
       name: `payer${item.name.charAt(0).toUpperCase()}${item.name.substring(
         1,

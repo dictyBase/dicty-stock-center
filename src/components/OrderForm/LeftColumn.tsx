@@ -1,11 +1,12 @@
 import React from "react"
-import { useFormikContext } from "formik"
 import PanelWrapper from "components/common/PanelWrapper"
 import AddressFields from "./AddressFields"
 import addressFieldsGenerator from "./utils/addressFields"
 
 type Props = {
+  /** Payment or Shipping */
   page: string
+  /** Name of country field (country or payerCountry) */
   countryName: string
 }
 
@@ -14,18 +15,13 @@ type Props = {
  * and payment order form pages.
  */
 
-const LeftColumn = ({ page, countryName }: Props) => {
-  const { values } = useFormikContext<any>()
-
-  return (
-    <PanelWrapper title={`${page} Address`}>
-      <AddressFields
-        fields={addressFieldsGenerator(page)}
-        countryName={countryName}
-        countryValue={values[countryName]}
-      />
-    </PanelWrapper>
-  )
-}
+const LeftColumn = ({ page, countryName }: Props) => (
+  <PanelWrapper title={`${page} Address`}>
+    <AddressFields
+      fields={addressFieldsGenerator(page)}
+      countryName={countryName}
+    />
+  </PanelWrapper>
+)
 
 export default LeftColumn

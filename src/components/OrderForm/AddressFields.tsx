@@ -12,7 +12,6 @@ type Props = {
     name: string
     required: boolean
   }>
-  countryValue: string
   countryName: string
 }
 
@@ -20,7 +19,7 @@ type Props = {
  * AddressFields contains text fields for entering a user address.
  */
 
-const AddressFields = ({ fields, countryValue, countryName }: Props) => {
+const AddressFields = ({ fields, countryName }: Props) => {
   const classes = useStyles()
 
   return (
@@ -42,7 +41,7 @@ const AddressFields = ({ fields, countryValue, countryName }: Props) => {
       ))}
       <RequiredTextLabel title="Country" />
       <Grid item xs={12} md={8} className={classes.selectBox}>
-        <CountryDropdown value={countryValue} name={countryName} />
+        <CountryDropdown name={countryName} />
       </Grid>
     </Grid>
   )
