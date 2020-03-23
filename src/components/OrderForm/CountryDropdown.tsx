@@ -1,14 +1,29 @@
 import React from "react"
 import { useFormikContext } from "formik"
-import Select from "@material-ui/core/Select"
-import OutlinedInput from "@material-ui/core/OutlinedInput"
-import MenuItem from "@material-ui/core/MenuItem"
+import Autocomplete from "@material-ui/lab/Autocomplete"
+import TextField from "./TextField"
 import countryList from "./utils/countryList"
 
+// ISO 3166-1 alpha-2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+const countryToFlag = (isoCode: string) => {
+  // verify fromCodePoint is a valid method for browser
+  if (typeof String.fromCodePoint !== "undefined") {
+    return isoCode.replace(/./g, (char: string) =>
+      String.fromCodePoint(char.charCodeAt(0) + 127397),
+    )
+  }
+  return isoCode
+}
+
+type CountryValue = {
+  /** Two-digit country code */
+  code: string
+  /** Name of country */
+  label: string
+}
+
 type Props = {
-  /** Value for country select */
-  value: string
-  /** Name to use as value */
+  /** Field name (country or payerCountry) */
   name: string
 }
 
@@ -16,26 +31,30 @@ type Props = {
  * CountryDropdown is the reusable dropdown component for selecting a country.
  */
 
-const CountryDropdown = ({ value, name }: Props) => {
-  const { setFieldValue } = useFormikContext<any>()
+const CountryDropdown = ({ name }: Props) => {
+  const { values, setFieldValue } = useFormikContext<any>()
+
+  const handleChange = (_: object, value: CountryValue | null) => {
+    if (value !== null) {
+      setFieldValue(name, value.label)
+    }
+  }
 
   return (
-    <Select
-      name={name}
-      label="Country"
-      fullWidth
-      value={value}
-      onChange={e => setFieldValue(name, e.target.value)}
-      input={
-        <OutlinedInput name={name} id="country" fullWidth labelWidth={0} />
-      }>
-      {countryList &&
-        countryList.map(item => (
-          <MenuItem key={countryList.indexOf(item)} value={item}>
-            {item}
-          </MenuItem>
-        ))}
-    </Select>
+    <Autocomplete
+      id="country"
+      options={countryList}
+      getOptionLabel={option => option.label}
+      onChange={handleChange}
+      inputValue={values[name]}
+      renderOption={option => (
+        <>
+          <span>{countryToFlag(option.code)}</span>&nbsp;
+          {option.label}
+        </>
+      )}
+      renderInput={props => <TextField {...props} name={name} />}
+    />
   )
 }
 
