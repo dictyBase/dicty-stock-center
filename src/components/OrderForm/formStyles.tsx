@@ -56,6 +56,10 @@ const useStyles = makeStyles({
       backgroundColor: "#0073e6 !important",
     },
   },
+  paymentBtn: {
+    color: "#b23c17 !important",
+    fontSize: "1.2em !important",
+  },
   selectBox: {
     marginTop: "8px",
   },
@@ -78,6 +82,9 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: "none",
+  },
+  arrowIcon: {
+    marginLeft: "4px",
   },
 })
 
