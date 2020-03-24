@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
   layout: {
-    width: "80%",
+    width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
   },

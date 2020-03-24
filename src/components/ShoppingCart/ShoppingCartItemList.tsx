@@ -8,7 +8,7 @@ import { useCartStore } from "./CartStore"
 
 const useStyles = makeStyles({
   layout: {
-    width: "70%",
+    width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
     "& a": {
