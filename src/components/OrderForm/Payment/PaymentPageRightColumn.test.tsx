@@ -1,6 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import { OrderFormWrapper } from "utils/testing"
+import { BrowserRouter } from "react-router-dom"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
 import OrderFormPanel from "../OrderFormPanel"
 import PaymentInfoBox from "./PaymentInfoBox"
@@ -14,7 +15,9 @@ describe("OrderForm/Payment/PaymentPageRightColumn", () => {
   }
   const wrapper = mount(
     <OrderFormWrapper>
-      <PaymentPageRightColumn {...props} />
+      <BrowserRouter>
+        <PaymentPageRightColumn {...props} />
+      </BrowserRouter>
     </OrderFormWrapper>,
   )
   describe("initial render", () => {
