@@ -4,6 +4,21 @@ import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 
+const radioValues = [
+  {
+    value: "credit",
+    label: "Credit Card",
+  },
+  {
+    value: "wire",
+    label: "Wire Transfer",
+  },
+  {
+    value: "purchaseOrder",
+    label: "Purchase Order (PO)",
+  },
+]
+
 type Props = {
   setPurchaseOrderNum: Function
 }
@@ -31,27 +46,20 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
       name="paymentMethod"
       onChange={handleChange}
       row>
-      <FormControlLabel
-        value="credit"
-        control={<Radio />}
-        label="Credit Card"
-        onChange={handlePaymentChange}
-        checked={values["paymentMethod"] === "credit"}
-      />
-      <FormControlLabel
-        value="wire"
-        control={<Radio />}
-        label="Wire transfer"
-        onChange={handlePaymentChange}
-        checked={values["paymentMethod"] === "wire"}
-      />
-      <FormControlLabel
-        value="purchaseOrder"
-        control={<Radio />}
-        label="Purchase Order (PO)"
-        onChange={handlePurchaseOrderChange}
-        checked={values["paymentMethod"] === "purchaseOrder"}
-      />
+      {radioValues.map(item => (
+        <FormControlLabel
+          key={item.value}
+          value={item.value}
+          control={<Radio />}
+          label={item.label}
+          onChange={
+            item.value === "purchaseOrder"
+              ? handlePurchaseOrderChange
+              : handlePaymentChange
+          }
+          checked={values["paymentMethod"] === item.value}
+        />
+      ))}
     </RadioGroup>
   )
 }
