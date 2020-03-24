@@ -11,6 +11,9 @@ jest.mock("formik", () => ({
   useFormikContext: () => ({
     setFieldValue: mockSetFieldValue,
     handleChange: jest.fn(),
+    values: {
+      paymentMethod: "credit",
+    },
   }),
 }))
 
