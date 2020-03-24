@@ -20,7 +20,7 @@ const PaymentInfoBox = () => {
         <p>
           <Button
             component={Link}
-            to="/cart"
+            to="/information/payment"
             target="_blank"
             rel="noopener noreferrer"
             variant="outlined"
