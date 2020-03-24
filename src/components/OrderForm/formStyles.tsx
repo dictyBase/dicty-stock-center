@@ -39,7 +39,6 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#0073e6 !important",
     },
-    textTransform: "none",
   },
   backBtn: {
     width: "100%",
@@ -48,16 +47,14 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#449d44 !important",
     },
-    textTransform: "none",
   },
   submitBtn: {
     width: "100%",
-    color: "#fff",
-    backgroundColor: "rgb(46, 109, 164)",
+    color: "#fff !important",
+    backgroundColor: "rgb(46, 109, 164) !important",
     "&:hover": {
-      backgroundColor: "#0073e6",
+      backgroundColor: "#0073e6 !important",
     },
-    textTransform: "none",
   },
   selectBox: {
     marginTop: "8px",
@@ -78,7 +75,6 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#0073e6",
     },
-    textTransform: "none",
   },
   link: {
     textDecoration: "none",
