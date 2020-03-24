@@ -60,9 +60,6 @@ const useStyles = makeStyles({
     color: "#b23c17 !important",
     fontSize: "1.2em !important",
   },
-  selectBox: {
-    marginTop: "8px",
-  },
   alertBox: {
     padding: "15px",
     marginBottom: "20px",

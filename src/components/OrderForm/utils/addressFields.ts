@@ -50,6 +50,11 @@ let fields = [
     required: false,
   },
   {
+    name: "country",
+    field: "Country",
+    required: true,
+  },
+  {
     name: "zip",
     field: "Zip Code",
     required: true,

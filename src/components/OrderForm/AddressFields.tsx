@@ -2,8 +2,10 @@ import React, { Fragment } from "react"
 import Grid from "@material-ui/core/Grid"
 import TextField from "./TextField"
 import CountryDropdown from "./CountryDropdown"
-import RequiredTextLabel from "./RequiredTextLabel"
 import useStyles from "./formStyles"
+
+const checkIfCountry = (name: string) =>
+  name === "country" || name === "payerCountry"
 
 type Props = {
   /** Array of fields to display */
@@ -35,16 +37,17 @@ const AddressFields = ({ fields, countryName }: Props) => {
             {item.field}:
           </Grid>
           <Grid item xs={12} md={8}>
-            <TextField name={item.name} />
+            {checkIfCountry(item.name) ? (
+              <CountryDropdown name={countryName} />
+            ) : (
+              <TextField name={item.name} />
+            )}
           </Grid>
         </Fragment>
       ))}
-      <RequiredTextLabel title="Country" />
-      <Grid item xs={12} md={8} className={classes.selectBox}>
-        <CountryDropdown name={countryName} />
-      </Grid>
     </Grid>
   )
 }
 
+export { checkIfCountry }
 export default AddressFields
