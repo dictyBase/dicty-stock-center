@@ -34,6 +34,9 @@ const ShippingMethod = () => {
           />
         )}
         {prepaidNotice && <ShippingMethodPrepaidNotice />}
+        <p>
+          <em>Note: credit card is not allowed for shipment</em>
+        </p>
       </Grid>
     </Grid>
   )
