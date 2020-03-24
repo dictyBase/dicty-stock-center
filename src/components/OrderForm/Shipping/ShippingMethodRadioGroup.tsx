@@ -37,6 +37,7 @@ const ShippingMethodRadioGroup = ({
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
     setPrepaidNotice(false)
+    setFieldValue("shippingAccountNumber", "")
   }
 
   const handlePrepaidLabelChange = () => {

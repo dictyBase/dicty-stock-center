@@ -20,6 +20,11 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
     setFieldValue("purchaseOrderNum", "N/A")
   }
 
+  const handlePurchaseOrderChange = () => {
+    setPurchaseOrderNum(true)
+    setFieldValue("purchaseOrderNum", "")
+  }
+
   return (
     <RadioGroup
       aria-label="Payment Method"
@@ -42,7 +47,7 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
         value="purchaseOrder"
         control={<Radio />}
         label="Purchase Order (PO)"
-        onChange={() => setPurchaseOrderNum(true)}
+        onChange={handlePurchaseOrderChange}
       />
     </RadioGroup>
   )
