@@ -24,7 +24,7 @@ const TextField = ({
       margin={margin}
       variant={variant}
       fullWidth={fullWidth}
-      error={meta.touched && meta.touched[field.name] && !!meta.error}
+      error={meta.touched && !!meta.error}
       helperText={meta.touched && meta.error}
       {...props}
     />
