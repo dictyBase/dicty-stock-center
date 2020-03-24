@@ -13,7 +13,7 @@ type Props = {
  */
 
 const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
-  const { setFieldValue, handleChange } = useFormikContext<any>()
+  const { values, setFieldValue, handleChange } = useFormikContext<any>()
 
   const handlePaymentChange = () => {
     setPurchaseOrderNum(false)
@@ -36,18 +36,21 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
         control={<Radio />}
         label="Credit Card"
         onChange={handlePaymentChange}
+        checked={values["paymentMethod"] === "credit"}
       />
       <FormControlLabel
         value="wire"
         control={<Radio />}
         label="Wire transfer"
         onChange={handlePaymentChange}
+        checked={values["paymentMethod"] === "wire"}
       />
       <FormControlLabel
         value="purchaseOrder"
         control={<Radio />}
         label="Purchase Order (PO)"
         onChange={handlePurchaseOrderChange}
+        checked={values["paymentMethod"] === "purchaseOrder"}
       />
     </RadioGroup>
   )

@@ -4,7 +4,7 @@ import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 
-const carriers = [
+const couriers = [
   {
     value: "fedex",
     label: "FedEx",
@@ -32,7 +32,7 @@ const ShippingMethodRadioGroup = ({
   setShipAccountNum,
   setPrepaidNotice,
 }: Props) => {
-  const { setFieldValue, handleChange } = useFormikContext<any>()
+  const { values, setFieldValue, handleChange } = useFormikContext<any>()
 
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
@@ -52,13 +52,14 @@ const ShippingMethodRadioGroup = ({
       name="shippingAccount"
       onChange={handleChange}
       row>
-      {carriers.map(item => (
+      {couriers.map(item => (
         <FormControlLabel
           key={item.value}
           value={item.value}
           control={<Radio />}
           label={item.label}
           onChange={handleShipAccountChange}
+          checked={values["shippingAccount"] === item.value}
         />
       ))}
       <FormControlLabel
@@ -66,6 +67,7 @@ const ShippingMethodRadioGroup = ({
         control={<Radio />}
         label="Send prepaid shipping label"
         onChange={handlePrepaidLabelChange}
+        checked={values["shippingAccount"] === "prepaid"}
       />
     </RadioGroup>
   )
