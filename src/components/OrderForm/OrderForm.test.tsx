@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import OrderForm from "./OrderForm"
+import OrderForm, { getIDs } from "./OrderForm"
 import { Helmet } from "react-helmet"
 import { Form, Formik } from "formik"
 import { POST_ORDER } from "graphql/mutations"
@@ -136,5 +136,26 @@ describe("OrderForm/OrderForm", () => {
       expect(mockHistoryPush).toHaveBeenCalledTimes(1)
       expect(useCartItems).toHaveBeenCalledWith(addedItems)
     })
+  })
+})
+
+describe("OrderForm/getIDs", () => {
+  it("should return array of IDs", () => {
+    const items = [
+      {
+        id: "DBS123",
+        name: "test",
+        summary: "test summary",
+        fee: "30.00",
+      },
+      {
+        id: "DBS456",
+        name: "test",
+        summary: "test summary",
+        fee: "30.00",
+      },
+    ]
+    const ids = ["DBS123", "DBS456"]
+    expect(getIDs(items)).toEqual(ids)
   })
 })

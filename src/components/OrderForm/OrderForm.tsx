@@ -15,6 +15,16 @@ import useCartItems from "hooks/useCartItems"
 import { POST_ORDER } from "graphql/mutations"
 import OrderFormStepper from "./OrderFormStepper"
 
+type CartItem = {
+  id: string
+  name: string
+  summary: string
+  type?: string
+  fee: string
+}
+
+const getIDs = (items: Array<CartItem>) => items.map(item => item.id)
+
 const pages = [ShippingPage, PaymentPage, SubmitPage]
 
 /**
@@ -58,7 +68,7 @@ const OrderForm = () => {
                   consumer: values.email,
                   payer: values.payerEmail,
                   purchaser: values.email,
-                  items: addedItems.map(item => item.id),
+                  items: getIDs(addedItems),
                 },
               },
             })
@@ -76,4 +86,5 @@ const OrderForm = () => {
   )
 }
 
+export { getIDs }
 export default OrderForm
