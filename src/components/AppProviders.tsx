@@ -15,7 +15,7 @@ const createClient = async (token: string) => {
   const authLink = setContext((_, { headers }) => ({
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      Authorization: token ? `Bearer ${token}` : "",
     },
   }))
   // const link = createPersistedQueryLink().concat(
