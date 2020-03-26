@@ -3,7 +3,7 @@ LABEL maintainer "Siddhartha Basu <siddhartha-basu@northwestern.edu>"
 
 # base path for React Router
 ARG basename
-ENV REACT_APP_BASENAME ${basename:-stockcenter}
+ENV REACT_APP_BASENAME ${basename:-/stockcenter}
 
 # Create app directory
 RUN mkdir -p /usr/src/app

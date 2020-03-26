@@ -4,7 +4,7 @@ LABEL maintainer "Eric Hartline <eric.hartline@northwestern.edu>"
 
 # base path for React Router
 ARG basename
-ENV REACT_APP_BASENAME ${basename:-stockcenter}
+ENV REACT_APP_BASENAME ${basename:-/stockcenter}
 
 # Google Analytics tracking ID
 ARG ga_tracking_id
