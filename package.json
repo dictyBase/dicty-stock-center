@@ -93,7 +93,7 @@
     "@types/react-window": "^1.8.1",
     "@types/react-window-infinite-loader": "^1.0.2",
     "@types/testing-library__react-hooks": "^3.2.0",
-    "@types/yup": "^0.26.33",
+    "@types/yup": "^0.26.34",
     "apollo-boost": "^0.4.7",
     "core-js": "^3.6.4",
     "cypress": "^4.0.2",
