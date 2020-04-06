@@ -65,4 +65,12 @@ const UPDATE_CONTENT = gql`
   }
 `
 
-export { LOGIN, LOGOUT, POST_ORDER, CREATE_CONTENT, UPDATE_CONTENT }
+const mutationList = ["Logout", "CreateContent", "UpdateContent"]
+export {
+  LOGIN,
+  LOGOUT,
+  POST_ORDER,
+  CREATE_CONTENT,
+  UPDATE_CONTENT,
+  mutationList,
+}

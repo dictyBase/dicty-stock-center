@@ -10,14 +10,19 @@ import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
+import { mutationList } from "graphql/mutations"
 
 const createClient = async (token: string) => {
-  const authLink = setContext((_, { headers }) => ({
-    headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-  }))
+  const authLink = setContext((request, { headers }) => {
+    const mutation = mutationList.includes(request.operationName || "")
+    return {
+      headers: {
+        ...headers,
+        Authorization: token ? `Bearer ${token}` : "",
+        "X-GraphQL-Method": mutation ? "Mutation" : "Query",
+      },
+    }
+  })
   // const link = createPersistedQueryLink().concat(
   const link = authLink.concat(
     createHttpLink({
