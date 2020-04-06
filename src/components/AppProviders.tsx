@@ -12,9 +12,16 @@ import { useAuthStore } from "components/authentication/AuthStore"
 import { CartProvider } from "components/ShoppingCart/CartStore"
 import { mutationList } from "graphql/mutations"
 
+const isMutation = (value: string) => {
+  if (mutationList.includes(value)) {
+    return true
+  }
+  return false
+}
+
 const createClient = async (token: string) => {
   const authLink = setContext((request, { headers }) => {
-    const mutation = mutationList.includes(request.operationName || "")
+    const mutation = isMutation(request.operationName || "")
     return {
       headers: {
         ...headers,
@@ -79,4 +86,5 @@ const AppProviders = ({ children }) => {
   )
 }
 
+export { isMutation }
 export default AppProviders
