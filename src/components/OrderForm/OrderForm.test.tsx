@@ -3,11 +3,11 @@ import { mount } from "enzyme"
 import OrderForm, { getIDs } from "./OrderForm"
 import { Helmet } from "react-helmet"
 import { Form, Formik } from "formik"
-import { POST_ORDER } from "graphql/mutations"
+import { CREATE_ORDER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
 import useCartItems from "hooks/useCartItems"
 
-// set up all of our mocks=
+// set up all of our mocks
 const mockHistoryPush = jest.fn()
 const formikFunctions = {
   setSubmitting: jest.fn(),
@@ -95,7 +95,7 @@ describe("OrderForm/OrderForm", () => {
     const mocks = [
       {
         request: {
-          query: POST_ORDER,
+          query: CREATE_ORDER,
           variables: {
             input: {
               courier: mockValues.shippingAccount,
@@ -107,7 +107,7 @@ describe("OrderForm/OrderForm", () => {
               consumer: mockValues.email,
               payer: mockValues.payerEmail,
               purchaser: mockValues.email,
-              items: addedItems.map(item => item.id),
+              items: addedItems.map((item) => item.id),
             },
           },
         },
@@ -126,10 +126,7 @@ describe("OrderForm/OrderForm", () => {
       </MockCartProvider>,
     )
     it("should handle onSubmit properly", async () => {
-      const onSubmit = wrapper
-        .find(Formik)
-        .first()
-        .prop("onSubmit")
+      const onSubmit = wrapper.find(Formik).first().prop("onSubmit")
       await onSubmit(mockValues, formikFunctions)
       expect(formikFunctions.setSubmitting).toHaveBeenCalledTimes(1)
       expect(formikFunctions.setSubmitting).toHaveBeenCalledWith(false)
