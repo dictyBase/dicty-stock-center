@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import OrderForm, { getIDs } from "./OrderForm"
+import OrderForm, { getIDs, getUserVariables } from "./OrderForm"
 import { Helmet } from "react-helmet"
 import { Form, Formik } from "formik"
 import { CREATE_ORDER } from "graphql/mutations"
@@ -154,5 +154,50 @@ describe("OrderForm/getIDs", () => {
     ]
     const ids = ["DBS123", "DBS456"]
     expect(getIDs(items)).toEqual(ids)
+  })
+})
+
+describe("OrderForm/getUserVariables", () => {
+  it("should return id but no email if id is passed", () => {
+    expect(getUserVariables(mockValues, "999")).toStrictEqual({
+      variables: {
+        id: "999",
+        input: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          organization: "Vandelay Industries",
+          group_name: "Steinbrenner",
+          first_address: "123 Main St",
+          second_address: "",
+          city: "New York City",
+          state: "NY",
+          zipcode: "10001",
+          country: "USA",
+          phone: "123-456-7890",
+          is_active: true,
+        },
+      },
+    })
+  })
+  it("should include email if no id passed", () => {
+    expect(getUserVariables(mockValues)).toStrictEqual({
+      variables: {
+        input: {
+          first_name: "Art",
+          last_name: "Vandelay",
+          email: "art@vandelayindustries.com",
+          organization: "Vandelay Industries",
+          group_name: "Steinbrenner",
+          first_address: "123 Main St",
+          second_address: "",
+          city: "New York City",
+          state: "NY",
+          zipcode: "10001",
+          country: "USA",
+          phone: "123-456-7890",
+          is_active: true,
+        },
+      },
+    })
   })
 })

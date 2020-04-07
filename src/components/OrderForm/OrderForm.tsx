@@ -164,5 +164,5 @@ const OrderForm = () => {
   )
 }
 
-export { getIDs }
+export { getIDs, getUserVariables, updateOrCreateUser, getOrderVariables }
 export default OrderForm
