@@ -1,4 +1,36 @@
-const initialValues = {
+type FormikValues = {
+  firstName: string
+  lastName: string
+  email: string
+  organization: string
+  lab: string
+  address1: string
+  address2: string
+  city: string
+  state: string
+  zip: string
+  country: string
+  phone: string
+  shippingAccount: string
+  shippingAccountNumber: string
+  comments: string
+  payerFirstName: string
+  payerLastName: string
+  payerEmail: string
+  payerOrganization: string
+  payerLab: string
+  payerAddress1: string
+  payerAddress2: string
+  payerCity: string
+  payerState: string
+  payerZip: string
+  payerCountry: string
+  payerPhone: string
+  paymentMethod: string
+  purchaseOrderNum: string
+}
+
+const initialValues: FormikValues = {
   firstName: "",
   lastName: "",
   email: "",
@@ -30,4 +62,5 @@ const initialValues = {
   purchaseOrderNum: "",
 }
 
+export type { FormikValues }
 export default initialValues
