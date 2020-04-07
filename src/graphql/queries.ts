@@ -166,6 +166,14 @@ const GET_REFRESH_TOKEN = gql`
   }
 `
 
+const GET_USER_BY_EMAIL = gql`
+  query UserByEmail($email: String!) {
+    userByEmail(email: $email) {
+      id
+    }
+  }
+`
+
 export {
   GET_STOCK_TOTALS,
   GET_STRAIN_LIST,
@@ -175,4 +183,5 @@ export {
   GET_PLASMID,
   GET_CONTENT_BY_SLUG,
   GET_REFRESH_TOKEN,
+  GET_USER_BY_EMAIL,
 }
