@@ -11,6 +11,18 @@ import useCartItems from "hooks/useCartItems"
 const mockHistoryPush = jest.fn()
 const formikFunctions = {
   setSubmitting: jest.fn(),
+  setErrors: jest.fn(),
+  setStatus: jest.fn(),
+  setTouched: jest.fn(),
+  setValues: jest.fn(),
+  setFieldValue: jest.fn(),
+  setFieldError: jest.fn(),
+  setFieldTouched: jest.fn(),
+  validateForm: jest.fn(),
+  validateField: jest.fn(),
+  setFormikState: jest.fn(),
+  resetForm: jest.fn(),
+  submitForm: jest.fn(),
 }
 
 jest.mock("hooks/useCartItems")
@@ -21,7 +33,8 @@ jest.mock("react-router-dom", () => ({
   }),
 }))
 
-useCartItems.mockReturnValue({
+const mockedUseCartItems = useCartItems as jest.Mock
+mockedUseCartItems.mockReturnValue({
   addToCart: jest.fn(),
   removeFromCart: jest.fn(),
   emptyCart: jest.fn(),

@@ -27,10 +27,18 @@ type AuthProps = {
   validToken?: boolean
 }
 
+type CartItem = {
+  id: string
+  name: string
+  summary: string
+  type?: string
+  fee: string
+}
+
 type CartProps = {
   children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
-  addedItems: []
+  addedItems: Array<CartItem>
 }
 
 const MockSuperuser = {
