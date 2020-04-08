@@ -5,6 +5,8 @@ import ApolloClient from "apollo-client"
 import { useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
+import Alert from "@material-ui/lab/Alert"
+import AlertTitle from "@material-ui/lab/AlertTitle"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
@@ -74,6 +76,7 @@ const updateOrCreateUser = async (
   values: FormikValues,
   updateUser: Function,
   createUser: Function,
+  setSubmitError: Function,
 ) => {
   try {
     const { data: userData } = await client.query({
@@ -85,8 +88,9 @@ const updateOrCreateUser = async (
     const notFound = error.toString().includes("NotFound")
     if (notFound) {
       await createUser(getUserVariables(values))
+      return
     }
-    console.log(error)
+    setSubmitError(error)
   }
 }
 
@@ -128,14 +132,24 @@ const OrderForm = () => {
   const [{ addedItems }] = useCartStore()
   const { emptyCart } = useCartItems(addedItems)
   const [pageNum, setPageNum] = useState(0)
+  const [submitError, setSubmitError] = useState(null)
   const PageComponent = pages[pageNum]
 
   const handleSubmit = async (values: FormikValues, { setSubmitting }: any) => {
     setSubmitting(false)
-    await updateOrCreateUser(client, values, updateUser, createUser)
-    await createOrder(getOrderVariables(values, addedItems))
-    history.push("/order/submitted")
-    emptyCart()
+    await updateOrCreateUser(
+      client,
+      values,
+      updateUser,
+      createUser,
+      setSubmitError,
+    )
+    // if no error, continue with order processing
+    if (submitError != null) {
+      await createOrder(getOrderVariables(values, addedItems))
+      history.push("/order/submitted")
+      emptyCart()
+    }
   }
 
   return (
@@ -145,10 +159,25 @@ const OrderForm = () => {
         <meta name="description" content="Order form for Dicty Stock Center" />
       </Helmet>
       <Grid item xs={12}>
-        <div style={{ textAlign: "center" }}>
+        <div className={classes.centerText}>
           <h1>Checkout</h1>
         </div>
         <OrderFormStepper pageNum={pageNum} />
+        {submitError && (
+          <Alert className={classes.submitAlert} severity="error">
+            <AlertTitle>Error</AlertTitle>
+            <p>
+              There was an error submitting your order. This is most likely a
+              problem on our end. If the problem persists, please email us at
+              <a
+                href="mailto:dictystocks@northwestern.edu?Subject=Question"
+                target="_top">
+                dictystocks@northwestern.edu
+              </a>
+              .
+            </p>
+          </Alert>
+        )}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

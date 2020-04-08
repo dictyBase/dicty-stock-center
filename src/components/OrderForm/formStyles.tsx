@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   },
   innerForm: {
     paddingBottom: "10px",
+    marginTop: "20px",
   },
   requiredText: {
     color: "#dc3545 !important",
@@ -82,6 +83,13 @@ const useStyles = makeStyles({
   },
   arrowIcon: {
     marginLeft: "4px",
+  },
+  centerText: {
+    textAlign: "center",
+  },
+  submitAlert: {
+    width: "50%",
+    margin: "auto",
   },
 })
 
