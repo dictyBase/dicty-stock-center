@@ -3,7 +3,8 @@ import { mount } from "enzyme"
 import OrderForm, { getIDs, getUserVariables } from "./OrderForm"
 import { Helmet } from "react-helmet"
 import { Form, Formik } from "formik"
-import { CREATE_ORDER } from "graphql/mutations"
+import { GET_USER_BY_EMAIL } from "graphql/queries"
+import { CREATE_ORDER, CREATE_USER, UPDATE_USER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
 import useCartItems from "hooks/useCartItems"
 
@@ -81,6 +82,9 @@ type CartItem = {
 }
 
 describe("OrderForm/OrderForm", () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
   describe("initial render", () => {
     const wrapper = mount(
       <MockCartProvider mocks={[]} addedItems={[]}>
@@ -93,7 +97,7 @@ describe("OrderForm/OrderForm", () => {
       expect(wrapper.find(Form)).toHaveLength(1)
     })
   })
-  describe("onSubmit", () => {
+  describe("onSubmit with existing user", () => {
     let addedItems = [] as Array<CartItem>
     addedItems.fill(
       {
@@ -132,13 +136,158 @@ describe("OrderForm/OrderForm", () => {
           },
         },
       },
+      {
+        request: {
+          query: GET_USER_BY_EMAIL,
+          variables: {
+            email: mockValues.email,
+          },
+        },
+        result: {
+          data: {
+            userByEmail: {
+              id: "999",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: UPDATE_USER,
+          variables: {
+            id: "999",
+            input: {
+              first_name: mockValues.firstName,
+              last_name: mockValues.lastName,
+              organization: mockValues.organization,
+              group_name: mockValues.lab,
+              first_address: mockValues.address1,
+              second_address: mockValues.address2,
+              city: mockValues.city,
+              state: mockValues.state,
+              zipcode: mockValues.zip,
+              country: mockValues.country,
+              phone: mockValues.phone,
+              is_active: true,
+            },
+          },
+        },
+        result: {
+          data: {
+            updateUser: {
+              id: "999",
+            },
+          },
+        },
+      },
     ]
     const wrapper = mount(
       <MockCartProvider mocks={mocks} addedItems={addedItems}>
         <OrderForm />
       </MockCartProvider>,
     )
-    it("should handle onSubmit properly", async () => {
+    it("should fire off expected functions", async () => {
+      const onSubmit = wrapper.find(Formik).first().prop("onSubmit")
+      await onSubmit(mockValues, formikFunctions)
+      expect(formikFunctions.setSubmitting).toHaveBeenCalledTimes(1)
+      expect(formikFunctions.setSubmitting).toHaveBeenCalledWith(false)
+      expect(mockHistoryPush).toHaveBeenCalledTimes(1)
+      expect(useCartItems).toHaveBeenCalledWith(addedItems)
+    })
+  })
+  describe("onSubmit with existing user", () => {
+    let addedItems = [] as Array<CartItem>
+    addedItems.fill(
+      {
+        id: "DBS1234",
+        name: "test strain",
+        summary: "this is a test strain",
+        fee: "30.00",
+      },
+      0,
+      10,
+    )
+    const mocks = [
+      {
+        request: {
+          query: CREATE_ORDER,
+          variables: {
+            input: {
+              courier: mockValues.shippingAccount,
+              courier_account: mockValues.shippingAccountNumber,
+              comments: mockValues.comments,
+              payment: mockValues.paymentMethod,
+              purchase_order_num: mockValues.purchaseOrderNum,
+              status: "IN_PREPARATION",
+              consumer: mockValues.email,
+              payer: mockValues.payerEmail,
+              purchaser: mockValues.email,
+              items: addedItems.map((item) => item.id),
+            },
+          },
+        },
+        result: {
+          data: {
+            createOrder: {
+              id: "123456",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: GET_USER_BY_EMAIL,
+          variables: {
+            email: mockValues.email,
+          },
+        },
+        result: {
+          errors: [
+            {
+              message: "could not find user",
+              path: ["users"],
+              extensions: { code: "NotFound" },
+            },
+          ],
+        },
+      },
+      {
+        request: {
+          query: CREATE_USER,
+          variables: {
+            input: {
+              first_name: mockValues.firstName,
+              last_name: mockValues.lastName,
+              email: mockValues.email,
+              organization: mockValues.organization,
+              group_name: mockValues.lab,
+              first_address: mockValues.address1,
+              second_address: mockValues.address2,
+              city: mockValues.city,
+              state: mockValues.state,
+              zipcode: mockValues.zip,
+              country: mockValues.country,
+              phone: mockValues.phone,
+              is_active: true,
+            },
+          },
+        },
+        result: {
+          data: {
+            createUser: {
+              id: "9991",
+            },
+          },
+        },
+      },
+    ]
+    const wrapper = mount(
+      //@ts-ignore
+      <MockCartProvider mocks={mocks} addedItems={addedItems}>
+        <OrderForm />
+      </MockCartProvider>,
+    )
+    it("should fire off expected functions", async () => {
       const onSubmit = wrapper.find(Formik).first().prop("onSubmit")
       await onSubmit(mockValues, formikFunctions)
       expect(formikFunctions.setSubmitting).toHaveBeenCalledTimes(1)

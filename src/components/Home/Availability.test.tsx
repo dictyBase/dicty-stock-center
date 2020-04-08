@@ -40,18 +40,8 @@ describe("Home/Availability", () => {
     it("renders expected components after receiving data", async () => {
       await wait()
       wrapper.update()
-      expect(
-        wrapper
-          .find("h5")
-          .at(0)
-          .text(),
-      ).toBe("26000 Strains")
-      expect(
-        wrapper
-          .find("h5")
-          .at(1)
-          .text(),
-      ).toBe("900 Plasmids")
+      expect(wrapper.find("h5").at(0).text()).toBe("26000 Strains")
+      expect(wrapper.find("h5").at(1).text()).toBe("900 Plasmids")
     })
   })
   describe("error handling", () => {
