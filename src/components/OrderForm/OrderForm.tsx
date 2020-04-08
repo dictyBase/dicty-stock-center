@@ -85,7 +85,7 @@ const updateOrCreateUser = async (
     })
     await updateUser(getUserVariables(values, userData.userByEmail.id))
   } catch (error) {
-    const notFound = error.toString().includes("NotFound")
+    const notFound = error.graphQLErrors[0].extensions.code === "NotFound"
     if (notFound) {
       await createUser(getUserVariables(values))
       return
@@ -145,13 +145,12 @@ const OrderForm = () => {
       setSubmitError,
     )
     // if no error, continue with order processing
-    if (submitError != null) {
+    if (submitError === null) {
       await createOrder(getOrderVariables(values, addedItems))
       history.push("/order/submitted")
       emptyCart()
     }
   }
-
   return (
     <Grid container spacing={2} className={classes.layout}>
       <Helmet>
