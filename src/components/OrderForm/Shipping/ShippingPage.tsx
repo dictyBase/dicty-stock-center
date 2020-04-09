@@ -2,17 +2,13 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import LeftColumn from "../LeftColumn"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
-
-type Props = {
-  pageNum: number
-  setPageNum: Function
-}
+import { PageProps } from "../types"
 
 /**
  * ShippingPage is the display component for when the user is entering shipping information.
  */
 
-const ShippingPage = ({ pageNum, setPageNum }: Props) => (
+const ShippingPage = ({ pageNum, setPageNum }: PageProps) => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={6}>
       <LeftColumn page="Shipping" countryName="country" />

@@ -6,6 +6,8 @@ import { Form, Formik } from "formik"
 import { GET_USER_BY_EMAIL } from "graphql/queries"
 import { CREATE_ORDER, CREATE_USER, UPDATE_USER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
+import Alert from "@material-ui/lab/Alert"
+import AlertTitle from "@material-ui/lab/AlertTitle"
 import useCartItems from "hooks/useCartItems"
 
 // set up all of our mocks
@@ -71,6 +73,42 @@ const mockValues = {
   payerPhone: "123-456-7890",
   paymentMethod: "Credit card",
   purchaseOrderNum: "99999",
+}
+
+const createUserVariables = {
+  input: {
+    first_name: mockValues.firstName,
+    last_name: mockValues.lastName,
+    email: mockValues.email,
+    organization: mockValues.organization,
+    group_name: mockValues.lab,
+    first_address: mockValues.address1,
+    second_address: mockValues.address2,
+    city: mockValues.city,
+    state: mockValues.state,
+    zipcode: mockValues.zip,
+    country: mockValues.country,
+    phone: mockValues.phone,
+    is_active: true,
+  },
+}
+
+const updateUserVariables = {
+  id: "999",
+  input: {
+    first_name: mockValues.firstName,
+    last_name: mockValues.lastName,
+    organization: mockValues.organization,
+    group_name: mockValues.lab,
+    first_address: mockValues.address1,
+    second_address: mockValues.address2,
+    city: mockValues.city,
+    state: mockValues.state,
+    zipcode: mockValues.zip,
+    country: mockValues.country,
+    phone: mockValues.phone,
+    is_active: true,
+  },
 }
 
 type CartItem = {
@@ -154,23 +192,7 @@ describe("OrderForm/OrderForm", () => {
       {
         request: {
           query: UPDATE_USER,
-          variables: {
-            id: "999",
-            input: {
-              first_name: mockValues.firstName,
-              last_name: mockValues.lastName,
-              organization: mockValues.organization,
-              group_name: mockValues.lab,
-              first_address: mockValues.address1,
-              second_address: mockValues.address2,
-              city: mockValues.city,
-              state: mockValues.state,
-              zipcode: mockValues.zip,
-              country: mockValues.country,
-              phone: mockValues.phone,
-              is_active: true,
-            },
-          },
+          variables: updateUserVariables,
         },
         result: {
           data: {
@@ -254,23 +276,7 @@ describe("OrderForm/OrderForm", () => {
       {
         request: {
           query: CREATE_USER,
-          variables: {
-            input: {
-              first_name: mockValues.firstName,
-              last_name: mockValues.lastName,
-              email: mockValues.email,
-              organization: mockValues.organization,
-              group_name: mockValues.lab,
-              first_address: mockValues.address1,
-              second_address: mockValues.address2,
-              city: mockValues.city,
-              state: mockValues.state,
-              zipcode: mockValues.zip,
-              country: mockValues.country,
-              phone: mockValues.phone,
-              is_active: true,
-            },
-          },
+          variables: createUserVariables,
         },
         result: {
           data: {
@@ -294,6 +300,46 @@ describe("OrderForm/OrderForm", () => {
       expect(formikFunctions.setSubmitting).toHaveBeenCalledWith(false)
       expect(mockHistoryPush).toHaveBeenCalledTimes(1)
       expect(useCartItems).toHaveBeenCalledWith(addedItems)
+    })
+  })
+
+  describe("onSubmit with unknown error fetching user", () => {
+    const mocks = [
+      {
+        request: {
+          query: GET_USER_BY_EMAIL,
+          variables: {
+            email: mockValues.email,
+          },
+        },
+        result: {
+          errors: [
+            {
+              message: "unknown error",
+              path: ["users"],
+              extensions: { code: "Unknown" },
+            },
+          ],
+        },
+      },
+    ]
+    const wrapper = mount(
+      //@ts-ignore
+      <MockCartProvider mocks={mocks} addedItems={[]}>
+        <OrderForm />
+      </MockCartProvider>,
+    )
+    it("should not call all functions", async () => {
+      const onSubmit = wrapper.find(Formik).first().prop("onSubmit")
+      await onSubmit(mockValues, formikFunctions)
+      expect(formikFunctions.setSubmitting).toHaveBeenCalledTimes(1)
+      expect(formikFunctions.setSubmitting).toHaveBeenCalledWith(false)
+      expect(mockHistoryPush).toHaveBeenCalledTimes(0)
+      expect(useCartItems).toHaveBeenCalledTimes(0)
+    })
+    it("should display Alert", () => {
+      expect(wrapper.find(Alert)).toHaveLength(1)
+      expect(wrapper.find(AlertTitle)).toHaveLength(1)
     })
   })
 })

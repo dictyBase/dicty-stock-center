@@ -8,6 +8,7 @@ describe("OrderForm/Submit/SubmitPage", () => {
   const props = {
     pageNum: 2,
     setPageNum: jest.fn(),
+    setSubmitError: jest.fn(),
   }
   const wrapper = shallow(<SubmitPage {...props} />)
   describe("initial render", () => {

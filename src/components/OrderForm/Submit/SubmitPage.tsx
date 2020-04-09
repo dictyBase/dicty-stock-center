@@ -3,13 +3,17 @@ import Grid from "@material-ui/core/Grid"
 import ShoppingCartItemList from "components/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 import useStyles from "../formStyles"
-import { Props } from "./types"
+import { PageProps } from "../types"
 
 /**
  * SubmitPage is the final page the user sees before submitting the order.
  */
 
-export const SubmitPage = ({ pageNum, setPageNum }: Props) => {
+export const SubmitPage = ({
+  pageNum,
+  setPageNum,
+  setSubmitError,
+}: PageProps) => {
   const classes = useStyles()
 
   return (
@@ -23,7 +27,11 @@ export const SubmitPage = ({ pageNum, setPageNum }: Props) => {
         <br />
         <br />
         <br />
-        <SubmitPageBottomButtons pageNum={pageNum} setPageNum={setPageNum} />
+        <SubmitPageBottomButtons
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          setSubmitError={setSubmitError}
+        />
       </Grid>
     </Grid>
   )

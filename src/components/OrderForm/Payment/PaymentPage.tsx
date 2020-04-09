@@ -5,6 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
 import LeftColumn from "../LeftColumn"
 import PaymentPageRightColumn from "./PaymentPageRightColumn"
+import { PageProps } from "../types"
 
 const paymentAddressFields = [
   "payerFirstName",
@@ -21,24 +22,17 @@ const paymentAddressFields = [
   "payerPhone",
 ]
 
-type Props = {
-  /** Current order form page number */
-  pageNum: number
-  /** Function to set the page number */
-  setPageNum: Function
-}
-
 /**
  * PaymentPage is the display component for when the user is entering payment information.
  */
 
-const PaymentPage = ({ pageNum, setPageNum }: Props) => {
+const PaymentPage = ({ pageNum, setPageNum }: PageProps) => {
   const [checkbox, toggleCheckbox] = useState(false)
   const { values, setFieldValue } = useFormikContext<any>()
 
   const handleChange = () => {
     toggleCheckbox(!checkbox)
-    paymentAddressFields.forEach(item => {
+    paymentAddressFields.forEach((item) => {
       // convert "payerFirstName" to "firstName",  etc
       const convertedVal = item.replace("payer", "")
       const newVal =
