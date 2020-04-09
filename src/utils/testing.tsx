@@ -110,7 +110,7 @@ const OrderFormWrapper = ({ children }: { children: React.ReactNode }) => (
       zip: "60601",
       country: "usa",
       phone: "1234567890",
-      PaymentAccountNumber: "999",
+      paymentAccountNumber: "999",
     }}
     onSubmit={jest.fn()}>
     {children}

@@ -150,4 +150,5 @@ const SubmitButton = ({ setSubmitError }: { setSubmitError: Function }) => {
   )
 }
 
+export { getUserVariables, getIDs }
 export default SubmitButton
