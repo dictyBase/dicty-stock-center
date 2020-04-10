@@ -2,7 +2,7 @@ import React from "react"
 import { useFormikContext } from "formik"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useMutation, useLazyQuery } from "@apollo/react-hooks"
+import { useMutation, useQuery } from "@apollo/react-hooks"
 import { useHistory } from "react-router-dom"
 import { useCartStore } from "components/ShoppingCart/CartStore"
 import useCartItems from "hooks/useCartItems"
@@ -73,6 +73,39 @@ const getOrderVariables = (
 })
 
 /**
+ * updateOrCreateUser attempts to find a user from our database via the consumer's
+ * email address. If successful, it then updates the user with the current values.
+ * Otherwise, it adds a new user to our database.
+ */
+const updateOrCreateUser = async (
+  refetch: Function,
+  values: FormikValues,
+  updateUser: Function,
+  createUser: Function,
+  setSubmitError: Function,
+) => {
+  try {
+    const user = await refetch({
+      email: values.email,
+    })
+    if (user.data.userByEmail) {
+      const updatedUser = await updateUser(
+        getUserVariables(values, user.data.userByEmail.id),
+      )
+      return updatedUser
+    }
+  } catch (error) {
+    const notFound = error.graphQLErrors[0].extensions.code === "NotFound"
+    if (notFound) {
+      const createdUser = await createUser(getUserVariables(values))
+      return createdUser
+    }
+    setSubmitError(error)
+    return Promise.reject(error)
+  }
+}
+
+/**
  * SubmitButton is the button used to submit the order. It
  * appears on the last page of the order form, and it contains the
  * necessary logic for GraphQL queries and mutations.
@@ -83,58 +116,31 @@ const SubmitButton = ({ setSubmitError }: { setSubmitError: Function }) => {
   const [{ addedItems }] = useCartStore()
   const { emptyCart } = useCartItems(addedItems)
   const history = useHistory()
-  const [createOrder] = useMutation(CREATE_ORDER, {
-    onCompleted: () => {
-      setSubmitError(false)
-      submitForm()
-      history.push("/order/submitted")
-      emptyCart()
-    },
-    onError: () => {
-      setSubmitError(true)
-    },
-  })
-  const [createUser] = useMutation(CREATE_USER, {
-    onCompleted: () => {
-      setSubmitError(false)
-      createOrder(getOrderVariables(values, addedItems))
-    },
-    onError: () => {
-      setSubmitError(true)
-    },
-  })
-  const [updateUser] = useMutation(UPDATE_USER, {
-    onCompleted: () => {
-      setSubmitError(false)
-      createOrder(getOrderVariables(values, addedItems))
-    },
-    onError: () => {
-      setSubmitError(true)
-    },
-  })
-  const [getUserByEmail] = useLazyQuery(GET_USER_BY_EMAIL, {
-    onCompleted: (data) => {
-      updateUser(getUserVariables(values, data.userByEmail.id))
-      setSubmitError(false)
-    },
-    onError: (error: any) => {
-      if (
-        error.graphQLErrors.length > 0 &&
-        error.graphQLErrors[0].extensions.code === "NotFound"
-      ) {
-        setSubmitError(false)
-        createUser(getUserVariables(values))
-        return
-      }
-      setSubmitError(true)
-    },
+  const [createOrder] = useMutation(CREATE_ORDER)
+  const [createUser] = useMutation(CREATE_USER)
+  const [updateUser] = useMutation(UPDATE_USER)
+  const { refetch } = useQuery(GET_USER_BY_EMAIL, {
+    variables: { email: values.email },
+    skip: true, // skip initial fetch, we only want to fetch on button click
   })
   const classes = useStyles()
 
-  const handleSubmit = () => {
-    getUserByEmail({
-      variables: { email: values.email },
-    })
+  const handleSubmit = async () => {
+    try {
+      await updateOrCreateUser(
+        refetch,
+        values,
+        updateUser,
+        createUser,
+        setSubmitError,
+      )
+      await createOrder(getOrderVariables(values, addedItems))
+      submitForm()
+      history.push("/order/submitted")
+      emptyCart()
+    } catch (error) {
+      setSubmitError(true)
+    }
   }
 
   return (
