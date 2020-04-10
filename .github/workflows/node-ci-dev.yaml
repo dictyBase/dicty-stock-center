@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: npm install and test
         run: |
-          mv src/utils/clientConfig.sample.ts src/utils/clientConfig.ts
+          mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
           npm ci
           npm test -- --coverage
         env:
