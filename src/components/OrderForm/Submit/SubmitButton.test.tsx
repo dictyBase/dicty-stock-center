@@ -1,6 +1,5 @@
 import React from "react"
 import { mount } from "enzyme"
-import { act } from "react-dom/test-utils"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
@@ -8,7 +7,7 @@ import { GET_USER_BY_EMAIL } from "graphql/queries"
 import { CREATE_ORDER, CREATE_USER, UPDATE_USER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
 import useCartItems from "hooks/useCartItems"
-import wait from "waait"
+import waitForExpect from "wait-for-expect"
 import { CartItem } from "../types"
 
 const mockValues = {
@@ -200,11 +199,12 @@ describe("SubmitButton/SubmitButton", () => {
     )
     it("should process order when updating existing user", async () => {
       wrapper.find("button").first().simulate("click")
-      await act(() => wait(15))
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-      expect(mockSubmitForm).toHaveBeenCalledTimes(1)
-      expect(useCartItems).toHaveBeenCalledWith(addedItems)
-      expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
+      await waitForExpect(() => {
+        expect(mockHistoryPush).toHaveBeenCalledTimes(1)
+        expect(mockSubmitForm).toHaveBeenCalledTimes(1)
+        expect(useCartItems).toHaveBeenCalledWith(addedItems)
+        expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
+      })
     })
   })
   describe("order submission with nonexistent user", () => {
@@ -261,11 +261,12 @@ describe("SubmitButton/SubmitButton", () => {
     )
     xit("should process order while creating new user", async () => {
       wrapper.find("button").first().simulate("click")
-      await act(() => wait(15))
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-      expect(mockSubmitForm).toHaveBeenCalledTimes(1)
-      expect(useCartItems).toHaveBeenCalledWith(addedItems)
-      expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
+      await waitForExpect(() => {
+        expect(mockHistoryPush).toHaveBeenCalledTimes(1)
+        expect(mockSubmitForm).toHaveBeenCalledTimes(1)
+        expect(useCartItems).toHaveBeenCalledWith(addedItems)
+        expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
+      })
     })
   })
 
@@ -297,15 +298,17 @@ describe("SubmitButton/SubmitButton", () => {
     )
     xit("should not call functions designated for successful submit", async () => {
       wrapper.find("button").first().simulate("click")
-      await act(() => wait(25))
-      expect(mockHistoryPush).toHaveBeenCalledTimes(0)
-      expect(mockSubmitForm).toHaveBeenCalledTimes(0)
-      expect(useCartItems).toHaveBeenCalledTimes(0)
+      await waitForExpect(() => {
+        expect(mockHistoryPush).toHaveBeenCalledTimes(0)
+        expect(mockSubmitForm).toHaveBeenCalledTimes(0)
+        expect(useCartItems).toHaveBeenCalledTimes(0)
+      })
     })
     xit("should call setSubmitError if error fetching user", async () => {
       wrapper.find("button").first().simulate("click")
-      await act(() => wait(15))
-      expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
+      await waitForExpect(() => {
+        expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
+      })
     })
   })
 })

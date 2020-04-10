@@ -118,7 +118,8 @@
     "source-map-explorer": "^2.4.1",
     "start-server-and-test": "^1.10.11",
     "typescript": "^3.8.2",
-    "waait": "^1.0.5"
+    "waait": "^1.0.5",
+    "wait-for-expect": "^3.0.2"
   },
   "jest": {
     "collectCoverageFrom": [
