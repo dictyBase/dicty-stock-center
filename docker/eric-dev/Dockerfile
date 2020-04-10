@@ -20,7 +20,7 @@ ADD src src
 ADD public public
 
 # overwrite the client key file
-ADD $CLIENT_KEYS /usr/src/app/src/utils/clientConfig.ts
+ADD $CLIENT_KEYS /usr/src/app/src/common/utils/clientConfig.ts
 
 RUN npm run build
 
