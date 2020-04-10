@@ -203,7 +203,6 @@ describe("SubmitButton/SubmitButton", () => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
         expect(mockSubmitForm).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalledWith(addedItems)
-        expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
       })
     })
   })
@@ -220,7 +219,7 @@ describe("SubmitButton/SubmitButton", () => {
           errors: [
             {
               message: "could not find user",
-              path: ["users"],
+              path: ["userByEmail"],
               extensions: { code: "NotFound" },
             },
           ],
@@ -259,13 +258,12 @@ describe("SubmitButton/SubmitButton", () => {
         <SubmitButton setSubmitError={mockSetSubmitError} />
       </MockCartProvider>,
     )
-    xit("should process order while creating new user", async () => {
+    it("should process order while creating new user", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
         expect(mockSubmitForm).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalledWith(addedItems)
-        expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
       })
     })
   })
@@ -283,7 +281,7 @@ describe("SubmitButton/SubmitButton", () => {
           errors: [
             {
               message: "unknown error",
-              path: ["users"],
+              path: ["userByEmail"],
               extensions: { code: "Unknown" },
             },
           ],
@@ -296,7 +294,7 @@ describe("SubmitButton/SubmitButton", () => {
         <SubmitButton setSubmitError={mockSetSubmitError} />
       </MockCartProvider>,
     )
-    xit("should not call functions designated for successful submit", async () => {
+    it("should not call functions designated for successful submit", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(0)
@@ -304,7 +302,7 @@ describe("SubmitButton/SubmitButton", () => {
         expect(useCartItems).toHaveBeenCalledTimes(0)
       })
     })
-    xit("should call setSubmitError if error fetching user", async () => {
+    it("should call setSubmitError if error fetching user", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
