@@ -50,7 +50,7 @@ const createOauthURL = (config: Config) => {
 
 const formatURLParams = (params: Array<Array<string>>) => {
   let url = ""
-  params.forEach(element => {
+  params.forEach((element) => {
     url += `&${element[0]}=${element[1]}`
   })
   return url

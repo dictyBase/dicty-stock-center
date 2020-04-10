@@ -27,13 +27,16 @@ const useStyles = makeStyles(() => ({
 type Props = {
   /** Content API data */
   data: {
+    id: string
     content: string
+    slug: string
+    name: string
     created_by: {
       id: string
       first_name: string
       last_name: string
       roles: Array<{
-        role
+        role: string
       }>
     }
     /** User data for last person to update page */
@@ -56,7 +59,7 @@ const InfoPageView = ({ data }: Props) => {
   const history = useHistory()
   const { name } = useParams()
 
-  const handleClick = event => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     history.push({
       pathname: `/information/${name}/edit`,

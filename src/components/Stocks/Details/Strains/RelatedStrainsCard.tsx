@@ -9,6 +9,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import { GET_RELATED_STRAINS } from "graphql/queries"
 import useStyles from "components/Stocks/Details/styles"
+import { StrainDetails } from "../types/props"
 
 type Props = {
   species: string
@@ -35,19 +36,21 @@ const RelatedStrainsCard = ({ species }: Props) => {
       </Typography>
       <div className={classes.options}>
         <List>
-          {data.listStrains.strains.slice(0, 5).map((item, index) => (
-            <ListItem
-              disableGutters
-              dense
-              key={index}
-              className={classes.relatedItem}>
-              <Typography variant="body1">
-                <Link className={classes.link} to={`/strains/${item.id}`}>
-                  {item.label}
-                </Link>
-              </Typography>
-            </ListItem>
-          ))}
+          {data.listStrains.strains
+            .slice(0, 5)
+            .map((item: StrainDetails, index: number) => (
+              <ListItem
+                disableGutters
+                dense
+                key={index}
+                className={classes.relatedItem}>
+                <Typography variant="body1">
+                  <Link className={classes.link} to={`/strains/${item.id}`}>
+                    {item.label}
+                  </Link>
+                </Typography>
+              </ListItem>
+            ))}
           <br />
           <Button className={classes.viewMoreBtn} variant="outlined">
             View More

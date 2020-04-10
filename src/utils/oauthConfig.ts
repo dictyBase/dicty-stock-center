@@ -20,6 +20,7 @@ interface Auth {
   google: Config
   linkedin: Config
   orcid: Config
+  [index: string]: any
 }
 
 const basename = process.env.REACT_APP_BASENAME

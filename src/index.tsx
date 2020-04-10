@@ -9,7 +9,7 @@ import App from "components/App"
 import "utils/icons" // fontawesome library
 import "typeface-roboto"
 
-const setGoogleAnalytics = async location => {
+const setGoogleAnalytics = async (location: any) => {
   try {
     const module = await import("react-ga")
     const page = location.pathname || window.location.pathname
@@ -23,7 +23,7 @@ const setGoogleAnalytics = async location => {
 }
 
 if (process.env.NODE_ENV === "production") {
-  history.listen(location => {
+  history.listen((location) => {
     setGoogleAnalytics(location)
   })
 }

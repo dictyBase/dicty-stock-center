@@ -31,9 +31,18 @@ const useStyles = makeStyles({
   },
 })
 
+type CartItem = {
+  name: string
+  id: string
+  summary: string
+  fee: string
+}
+
 // get the total fee for combined items in cart
-const getCartTotal = items =>
-  items.map(item => Number(item.fee)).reduce((acc, val) => acc + val)
+const getCartTotal = (items: Array<CartItem>) =>
+  items
+    .map((item: CartItem) => Number(item.fee))
+    .reduce((acc, val) => acc + val)
 
 /**
  * ShoppingCartItemList lists all of the items in the user's cart.
@@ -50,7 +59,7 @@ const ShoppingCartItemList = () => {
       </Grid>
       <Grid item xs={12}>
         <List>
-          {addedItems.map((item, index) => (
+          {addedItems.map((item: CartItem, index: number) => (
             <ShoppingCartItem key={index} item={item} />
           ))}
           <ListItem>

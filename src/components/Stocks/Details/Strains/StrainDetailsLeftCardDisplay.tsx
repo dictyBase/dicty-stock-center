@@ -29,7 +29,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
 
@@ -47,7 +47,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
               />
             </ListItem>
             <TabPanel value={value} index={0}>
-              {rows.map(data => (
+              {rows.map((data: any) => (
                 <DetailsListItem data={data} key={data.id} />
               ))}
             </TabPanel>

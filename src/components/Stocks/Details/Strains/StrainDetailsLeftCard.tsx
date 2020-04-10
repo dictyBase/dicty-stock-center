@@ -4,9 +4,17 @@ import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "components/Stocks/utils/characterConverter"
-import { StrainDetailsProps } from "components/Stocks/Details/types/props"
+import {
+  StrainDetails,
+  StrainDetailsProps,
+} from "components/Stocks/Details/types/props"
 
-const strainRowsGenerator = (data, parent, publications, genes) => [
+const strainRowsGenerator = (
+  data: StrainDetails,
+  parent: any,
+  publications: any,
+  genes: any,
+) => [
   {
     id: 0,
     title: "Strain Descriptor",

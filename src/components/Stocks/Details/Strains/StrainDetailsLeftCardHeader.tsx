@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
 
 // accessibility helper function
-const a11yProps = index => ({
+const a11yProps = (index: number) => ({
   id: `strain-details-tab-${index}`,
   "aria-controls": `strain-details-tabpanel-${index}`,
 })

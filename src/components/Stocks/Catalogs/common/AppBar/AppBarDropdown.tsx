@@ -28,7 +28,9 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
   const [{ filter }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
-  const handleChange = event => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown; name?: string | undefined }>,
+  ) => {
     dispatch({
       type: AppBarActionType.SET_FILTER,
       payload: event.target.value,

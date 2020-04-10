@@ -23,7 +23,7 @@ const LinkIcon = ({ link }: LinkIconProps) => (
   </div>
 )
 
-const generateLinks = (link: LinkProps, i: string) =>
+const generateLinks = (link: LinkProps, i: number) =>
   link.isRouter ? (
     <Link
       style={{ color: "#15317e", padding: "15px", textDecoration: "none" }}

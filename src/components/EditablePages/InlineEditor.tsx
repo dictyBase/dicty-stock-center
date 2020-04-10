@@ -51,7 +51,7 @@ const InlineEditor = ({ data }: Props) => {
   const [updateContent] = useMutation(UPDATE_CONTENT)
   const classes = useStyles()
 
-  const onSave = value => {
+  const onSave = (value: any) => {
     const valueStr = JSON.stringify(value.toJSON())
     updateContent({
       variables: {

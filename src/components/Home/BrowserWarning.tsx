@@ -6,7 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle"
 import Slide from "@material-ui/core/Slide"
 import BrowserWarningContent from "./BrowserWarningContent"
 
-const Transition = props => <Slide direction="up" {...props} />
+const Transition = (props: any) => <Slide direction="up" {...props} />
 
 /**
  * BrowserWarning tells the user to upgrade if they are using an outdated version (i.e. IE10 or below).

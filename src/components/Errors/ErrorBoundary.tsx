@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { withStyles, Theme } from "@material-ui/core/styles"
 import sadDicty from "static/sad-dicty.png"
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   gridContainer: {
     marginTop: "33px",
   },
@@ -45,13 +45,12 @@ type State = {
 class ErrorBoundary extends Component<Props, State> {
   state = { hasError: false }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true }
   }
 
-  componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
+  componentDidCatch(error: Error, errorInfo: object) {
     console.error(error, errorInfo)
   }
 

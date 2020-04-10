@@ -43,8 +43,10 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
 
-  const handleChange = event => {
-    setQuantity(event.target.value)
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setQuantity(Number(event.target.value))
   }
 
   let content = <CartCapacityFullMessage />
@@ -61,7 +63,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
           margin="dense"
           variant="outlined"
           inputProps={{ className: classes.textField }}>
-          {values.map(option => (
+          {values.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>

@@ -25,7 +25,7 @@ type Props = {
 const AvailabilityCard = ({ data, stockType }: Props) => {
   const classes = useStyles()
 
-  let label
+  let label = ""
 
   if (stockType === "strain" && data.label !== undefined) {
     label = data.label

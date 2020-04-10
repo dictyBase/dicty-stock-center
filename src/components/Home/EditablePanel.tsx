@@ -17,7 +17,7 @@ type Props = {
  * authorized.
  */
 
-const EditablePanel = ({ slug, skeletonCount }) => {
+const EditablePanel = ({ slug, skeletonCount }: Props) => {
   const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
     variables: {
       slug: slug,

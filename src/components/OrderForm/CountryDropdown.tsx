@@ -44,16 +44,16 @@ const CountryDropdown = ({ name }: Props) => {
     <Autocomplete
       id="country"
       options={countryList}
-      getOptionLabel={option => option.label}
+      getOptionLabel={(option) => option.label}
       onChange={handleChange}
       inputValue={values[name]}
-      renderOption={option => (
+      renderOption={(option) => (
         <>
           <span>{countryToFlag(option.code)}</span>&nbsp;
           {option.label}
         </>
       )}
-      renderInput={props => <TextField {...props} name={name} />}
+      renderInput={(props) => <TextField {...props} name={name} />}
     />
   )
 }

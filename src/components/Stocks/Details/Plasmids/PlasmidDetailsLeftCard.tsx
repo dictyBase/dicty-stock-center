@@ -2,9 +2,17 @@ import React from "react"
 import LeftCardDisplay from "components/Stocks/Details/common/LeftCardDisplay"
 import GenesDisplay from "components/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "components/Stocks/Details/common/PublicationsDisplay"
-import { PlasmidDetailsProps } from "components/Stocks/Details/types/props"
+import {
+  PlasmidDetails,
+  PlasmidDetailsProps,
+} from "components/Stocks/Details/types/props"
 
-const plasmidRowGenerator = (data, imageMap, publications, genes) => [
+const plasmidRowGenerator = (
+  data: PlasmidDetails,
+  imageMap: any,
+  publications: any,
+  genes: any,
+) => [
   {
     id: 0,
     title: "Name",

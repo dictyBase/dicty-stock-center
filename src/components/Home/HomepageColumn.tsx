@@ -12,7 +12,7 @@ type Props = {
 
 const HomepageColumn = ({ components }: Props) => {
   const classes = useStyles()
-  const content = components.map((item, index) => (
+  const content = components.map((item: React.FC, index: number) => (
     <Grid item key={index}>
       {item}
     </Grid>

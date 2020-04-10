@@ -9,7 +9,7 @@ import AppBarDropdown from "./AppBarDropdown"
 import { useAppBarStore, AppBarActionType } from "./AppBarContext"
 import { CatalogActionType } from "components/Stocks/Catalogs/common/CatalogContext"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   input: {
     marginLeft: theme.spacing(1),
@@ -51,14 +51,16 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
       payload: { cursor: 0, filter: `${filter}~${searchValue}` },
     })
 
-  const handleChange = event => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown; name?: string | undefined }>,
+  ) => {
     dispatch({
       type: AppBarActionType.SET_SEARCH_VALUE,
       payload: event.target.value,
     })
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     resetQueryVariables()
   }

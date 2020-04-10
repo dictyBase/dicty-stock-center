@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, ReactNode } from "react"
 import { ApolloProvider } from "@apollo/react-hooks"
 import { ApolloClient } from "apollo-client"
 import { InMemoryCache } from "apollo-cache-inmemory"
@@ -65,11 +65,11 @@ const theme = createMuiTheme({
   },
 })
 
-const AppProviders = ({ children }) => {
+const AppProviders = ({ children }: { children: ReactNode }) => {
   const [client, setClient] = useState<ApolloClient<any> | undefined>(undefined)
   const [{ token }] = useAuthStore()
   useEffect(() => {
-    createClient(token).then(apollo => setClient(apollo))
+    createClient(token).then((apollo) => setClient(apollo))
     return () => {}
   }, [token])
 

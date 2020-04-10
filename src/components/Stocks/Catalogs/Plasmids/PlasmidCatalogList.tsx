@@ -32,7 +32,7 @@ export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
         cursor: cursor,
         filter: queryVariables.filter,
       },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) return previousResult
         const previousEntry = previousResult.listPlasmids
         const previousPlasmids = previousEntry.plasmids
@@ -59,7 +59,7 @@ export const PlasmidCatalogList = ({ data, fetchMore, cursor }: Props) => {
       },
     })
 
-  const isItemLoaded = ({ index }) => !!data[index]
+  const isItemLoaded = ({ index }: any) => !!data[index]
 
   return (
     <Paper className={classes.catalogPaper}>

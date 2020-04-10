@@ -33,7 +33,7 @@ const CatalogErrorMessage = ({ error }: Props) => {
   code: ${errorCode}
   `
 
-  if (errorCode === "NotFound") {
+  if (errorCode === "NotFound" && errorMsg) {
     return (
       <NotFoundError
         error={errorMsg.charAt(0).toUpperCase() + errorMsg.slice(1)}

@@ -4,6 +4,7 @@ import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "components/ShoppingCart/CartStore"
+import { IconProp } from "@fortawesome/fontawesome-svg-core"
 import {
   headerItems,
   loggedHeaderItems,
@@ -16,6 +17,13 @@ import { useAuthStore } from "components/authentication/AuthStore"
 import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
 import { GET_REFRESH_TOKEN } from "graphql/queries"
 import { useStyles, navTheme } from "./appStyles"
+
+interface IHeader {
+  isRouter?: boolean
+  text: string
+  icon: IconProp
+  url: string
+}
 
 const getTokenIntervalDelayInMS = (token: string) => {
   if (token === "") {
@@ -61,7 +69,9 @@ const App = () => {
 
   return (
     <div className={classes.body}>
-      <Header items={headerContent}>{items => items.map(generateLinks)}</Header>
+      <Header items={headerContent}>
+        {(items: Array<IHeader>) => items.map(generateLinks)}
+      </Header>
       <Navbar items={navbarData} theme={navTheme} />
       <br />
       <CartProvider>
