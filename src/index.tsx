@@ -1,12 +1,12 @@
-import "utils/polyfills" // necessary for IE11
+import "common/utils/polyfills" // necessary for IE11
 import React from "react"
 import ReactDOM from "react-dom"
 import CssBaseline from "@material-ui/core/CssBaseline"
-import { AuthProvider } from "components/authentication/AuthStore"
-import history from "utils/routerHistory"
-import AppProviders from "components/AppProviders"
-import App from "components/App"
-import "utils/icons" // fontawesome library
+import { AuthProvider } from "features/Authentication/AuthStore"
+import history from "common/utils/routerHistory"
+import AppProviders from "app/layout/AppProviders"
+import App from "app/layout/App"
+import "common/utils/icons" // fontawesome library
 import "typeface-roboto"
 
 const setGoogleAnalytics = async (location: any) => {
@@ -23,7 +23,7 @@ const setGoogleAnalytics = async (location: any) => {
 }
 
 if (process.env.NODE_ENV === "production") {
-  history.listen((location) => {
+  history.listen((location: any) => {
     setGoogleAnalytics(location)
   })
 }
