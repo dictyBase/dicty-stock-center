@@ -4,6 +4,7 @@ import { PageEditor } from "dicty-components-page-editor"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
+import { IContent } from "./types"
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -24,37 +25,9 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-type Props = {
-  /** Content API data */
-  data: {
-    id: string
-    content: string
-    slug: string
-    name: string
-    created_by: {
-      id: string
-      first_name: string
-      last_name: string
-      roles: Array<{
-        role: string
-      }>
-    }
-    /** User data for last person to update page */
-    updated_by: {
-      id: string
-      first_name: string
-      last_name: string
-      updated_at: string
-      roles: Array<{
-        role: string
-      }>
-    }
-  }
-}
-
 /** Displays the info page data that was fetched from the InfoPage component */
 
-const InfoPageView = ({ data }: Props) => {
+const InfoPageView = ({ data }: IContent) => {
   const classes = useStyles()
   const history = useHistory()
   const { name } = useParams()
