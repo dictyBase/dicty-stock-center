@@ -11,7 +11,7 @@ describe("Stocks/Catalogs/common/AddToCartDialogContent", () => {
       data: [
         {
           id: "DBS0351367",
-          label: "myoB-/[act15]:myoB(S332A)",
+          name: "myoB-/[act15]:myoB(S332A)",
           summary: "myoB with S332A substitution expressed in myoB null",
         },
       ],

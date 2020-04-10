@@ -7,8 +7,8 @@ import Divider from "@material-ui/core/Divider"
 import Button from "@material-ui/core/Button"
 // import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
-import AddToCartButton from "components/Stocks/Catalogs/common/AddToCartButton"
-import { CartContext, cartReducer } from "components/ShoppingCart/CartStore"
+import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
+import { CartContext, cartReducer } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Details/common/AvailableCardDisplay", () => {
   const props = {

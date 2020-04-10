@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import StrainCatalogWrapper from "./StrainCatalogWrapper"
 import StrainCatalogContainer from "./StrainCatalogContainer"
-import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Catalogs/Strains/StrainCatalogWrapper", () => {
   const wrapper = shallow(<StrainCatalogWrapper />)

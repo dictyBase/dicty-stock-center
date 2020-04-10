@@ -2,7 +2,7 @@ import React from "react"
 import { mount } from "enzyme"
 import HelpDialog from "./HelpDialog"
 import Dialog from "@material-ui/core/Dialog"
-import DialogTitleDisplay from "components/common/DialogTitleDisplay"
+import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import { AppBarProvider } from "./AppBar/AppBarContext"
 
 describe("Stocks/Catalogs/common/HelpDialog", () => {

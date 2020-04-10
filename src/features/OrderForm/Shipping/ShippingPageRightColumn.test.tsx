@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import { OrderFormWrapper } from "utils/testing"
+import { OrderFormWrapper } from "common/utils/testing"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
 import OrderFormPanel from "../OrderFormPanel"
 import ContinueButton from "../ContinueButton"

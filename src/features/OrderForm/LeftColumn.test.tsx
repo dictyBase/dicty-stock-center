@@ -1,8 +1,8 @@
 import React from "react"
 import { mount } from "enzyme"
-import { OrderFormWrapper } from "utils/testing"
+import { OrderFormWrapper } from "common/utils/testing"
 import LeftColumn from "./LeftColumn"
-import PanelWrapper from "components/common/PanelWrapper"
+import PanelWrapper from "common/components/PanelWrapper"
 import AddressFields from "./AddressFields"
 
 describe("OrderForm/LeftColumn", () => {

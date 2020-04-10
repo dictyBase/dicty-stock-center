@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import EditablePanel from "./EditablePanel"
 // import InlineEditor from "components/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { MockAuthProvider } from "utils/testing"
+import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/EditablePanel", () => {
   describe("initial render", () => {

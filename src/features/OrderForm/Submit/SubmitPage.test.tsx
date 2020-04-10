@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import SubmitPage from "./SubmitPage"
-import ShoppingCartItemList from "components/ShoppingCart/ShoppingCartItemList"
+import ShoppingCartItemList from "features/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 
 describe("OrderForm/Submit/SubmitPage", () => {

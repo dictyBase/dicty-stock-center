@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import MyDscMainContent from "./MyDscMainContent"
-import PanelWrapper from "features/common/PanelWrapper"
+import PanelWrapper from "common/components/PanelWrapper"
 
 describe("MyDsc/MyDscMainContent", () => {
   describe("initial render", () => {

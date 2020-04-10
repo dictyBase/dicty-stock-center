@@ -5,7 +5,7 @@ import {
   CatalogProvider,
   CatalogContext,
   catalogReducer,
-} from "components/Stocks/Catalogs/common/CatalogContext"
+} from "features/Stocks/Catalogs/common/CatalogContext"
 
 const cartData = {
   id: "DBS123456",

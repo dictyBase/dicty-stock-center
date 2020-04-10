@@ -9,7 +9,7 @@ import {
   CartProvider,
   CartContext,
   cartReducer,
-} from "components/ShoppingCart/CartStore"
+} from "features/ShoppingCart/CartStore"
 import AddToCartDialog from "./AddToCartDialog"
 
 describe("Stocks/Catalogs/common/AddToCartButton", () => {

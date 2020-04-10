@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import OtherError from "./OtherError"
 import Grid from "@material-ui/core/Grid"
-import BackToHomepageButton from "components/common/BackToHomepageButton"
+import BackToHomepageButton from "common/components/BackToHomepageButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("Errors/OtherError", () => {

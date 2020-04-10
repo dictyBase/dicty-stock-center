@@ -4,7 +4,7 @@ import HomepageColumn from "./HomepageColumn"
 import Grid from "@material-ui/core/Grid"
 import EditablePanel from "./EditablePanel"
 import LinkList from "./LinkList"
-import { miscLinks } from "constants/linkLists"
+import { miscLinks } from "common/constants/linkLists"
 
 describe("Home/HomepageColumn", () => {
   const wrapper = shallow(

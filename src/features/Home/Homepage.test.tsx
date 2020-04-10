@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import EditablePanel from "./EditablePanel"
 import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
-import { MockAuthProvider } from "utils/testing"
+import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/Homepage", () => {
   describe("initial render", () => {
@@ -21,12 +21,7 @@ describe("Home/Homepage", () => {
       expect(wrapper.find(HomepageColumn)).toHaveLength(3)
     })
     it("should display user greeting when logged in", () => {
-      expect(
-        wrapper
-          .find("h3")
-          .at(0)
-          .text(),
-      ).toBe("Hello, Art Vandelay!")
+      expect(wrapper.find("h3").at(0).text()).toBe("Hello, Art Vandelay!")
     })
   })
   describe("browser warning", () => {

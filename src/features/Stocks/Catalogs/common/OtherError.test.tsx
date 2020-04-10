@@ -1,7 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import OtherError from "./OtherError"
-import ErrorMessage from "components/Errors/ErrorMessage"
+import ErrorMessage from "features/Errors/ErrorMessage"
 
 describe("Stocks/Catalogs/common/OtherError", () => {
   const wrapper = mount(<OtherError />)

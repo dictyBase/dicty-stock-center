@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import GenesDisplay from "./GenesDisplay"
-import LinkTag from "components/Stocks/Details/common/LinkTag"
+import LinkTag from "features/Stocks/Details/common/LinkTag"
 
 describe("Stocks/Details/common/GenesDisplay", () => {
   describe("initial render with genes", () => {

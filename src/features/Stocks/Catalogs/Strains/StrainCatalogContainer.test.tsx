@@ -4,12 +4,12 @@ import { MockedProvider } from "@apollo/react-testing"
 import wait from "waait"
 import StrainCatalogContainer from "./StrainCatalogContainer"
 import StrainCatalogList from "./StrainCatalogList"
-import CatalogHeader from "components/Stocks/Catalogs/common/CatalogHeader"
-import DetailsLoader from "components/Stocks/Details/common/DetailsLoader"
-import CatalogErrorMessage from "components/Stocks/Catalogs/common/CatalogErrorMessage"
-import { GET_STRAIN_LIST } from "graphql/queries"
-import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
+import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
+import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
+import { GET_STRAIN_LIST } from "common/graphql/queries"
+import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Strains/StrainCatalogContainer", () => {
   describe("initial render", () => {

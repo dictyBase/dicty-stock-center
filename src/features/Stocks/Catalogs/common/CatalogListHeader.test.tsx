@@ -7,10 +7,10 @@ import {
   CatalogProvider,
   CatalogContext,
   catalogReducer,
-} from "components/Stocks/Catalogs/common/CatalogContext"
-import { CartProvider } from "components/ShoppingCart/CartStore"
-import StrainCatalogListHeader from "components/Stocks/Catalogs/Strains/StrainCatalogListHeader"
-import PlasmidCatalogListHeader from "components/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
+} from "features/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "features/ShoppingCart/CartStore"
+import StrainCatalogListHeader from "features/Stocks/Catalogs/Strains/StrainCatalogListHeader"
+import PlasmidCatalogListHeader from "features/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
 import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
 
 describe("Stocks/Catalogs/common/CatalogListHeader", () => {

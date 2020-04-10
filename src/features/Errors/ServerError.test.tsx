@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import ServerError from "./ServerError"
 import Grid from "@material-ui/core/Grid"
-import BackToHomepageButton from "components/common/BackToHomepageButton"
+import BackToHomepageButton from "common/components/BackToHomepageButton"
 
 describe("Errors/ServerError", () => {
   const wrapper = shallow(<ServerError />)

@@ -3,15 +3,14 @@ import { mount } from "enzyme"
 import App, { getTokenIntervalDelayInMS } from "./App"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
-import CartIcon from "components/ShoppingCart/CartIcon"
-import ErrorBoundary from "components/Errors/ErrorBoundary"
-import RenderRoutes from "routes/RenderRoutes"
-import { MockAuthProvider } from "utils/testing"
+import CartIcon from "features/ShoppingCart/CartIcon"
+import ErrorBoundary from "features/Errors/ErrorBoundary"
+import RenderRoutes from "app/routes/RenderRoutes"
+import { MockAuthProvider } from "common/utils/testing"
 
 describe("App component", () => {
-  const mocks = []
   const wrapper = mount(
-    <MockAuthProvider mocks={mocks}>
+    <MockAuthProvider mocks={[]}>
       <App />
     </MockAuthProvider>,
   )

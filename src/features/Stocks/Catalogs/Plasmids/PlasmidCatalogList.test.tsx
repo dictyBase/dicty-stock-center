@@ -4,9 +4,9 @@ import PlasmidCatalogList from "./PlasmidCatalogList"
 import { data } from "./mockPlasmidCatalogData"
 import AutoSizer from "react-virtualized-auto-sizer"
 import Paper from "@material-ui/core/Paper"
-import CatalogListHeader from "components/Stocks/Catalogs/common/CatalogListHeader"
-import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader"
+import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Plasmids/PlasmidCatalogList", () => {
   const props = {

@@ -3,10 +3,14 @@ import { mount } from "enzyme"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
-import { GET_USER_BY_EMAIL } from "graphql/queries"
-import { CREATE_ORDER, CREATE_USER, UPDATE_USER } from "graphql/mutations"
-import { MockCartProvider } from "utils/testing"
-import useCartItems from "hooks/useCartItems"
+import { GET_USER_BY_EMAIL } from "common/graphql/queries"
+import {
+  CREATE_ORDER,
+  CREATE_USER,
+  UPDATE_USER,
+} from "common/graphql/mutations"
+import { MockCartProvider } from "common/utils/testing"
+import useCartItems from "common/hooks/useCartItems"
 import waitForExpect from "wait-for-expect"
 import { CartItem } from "../types"
 
@@ -46,7 +50,7 @@ const mockValues = {
 const mockHistoryPush = jest.fn()
 const mockSubmitForm = jest.fn()
 
-jest.mock("hooks/useCartItems")
+jest.mock("common/hooks/useCartItems")
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({

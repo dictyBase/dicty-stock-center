@@ -2,11 +2,11 @@ import React from "react"
 import { mount } from "enzyme"
 import StrainCatalogListItem from "./StrainCatalogListItem"
 import { BrowserRouter } from "react-router-dom"
-import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
   describe("initial render", () => {

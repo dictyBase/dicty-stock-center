@@ -5,10 +5,10 @@ import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import StrainDetailsLeftCardHeader from "components/Stocks/Details/Strains/StrainDetailsLeftCardHeader"
-import DetailsListItem from "components/Stocks/Details/common/DetailsListItem"
+import StrainDetailsLeftCardHeader from "features/Stocks/Details/Strains/StrainDetailsLeftCardHeader"
+import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import PhenotypeList from "./Phenotypes/PhenotypeList"
-import TabPanel from "components/common/TabPanel"
+import TabPanel from "common/components/TabPanel"
 
 describe("Stock/Details/Strains/StrainDetailsLeftCardDisplay", () => {
   const props = {

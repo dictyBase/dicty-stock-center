@@ -3,10 +3,10 @@ import { mount } from "enzyme"
 import { BrowserRouter } from "react-router-dom"
 import AddToCartDialog from "./AddToCartDialog"
 import Dialog from "@material-ui/core/Dialog"
-import DialogTitleDisplay from "components/common/DialogTitleDisplay"
+import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
   const setCheckedItemsSpy = jest.fn()

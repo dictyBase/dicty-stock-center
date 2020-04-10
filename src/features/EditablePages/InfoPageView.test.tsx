@@ -2,7 +2,7 @@ import React from "react"
 import { mount } from "enzyme"
 import InfoPageView from "./InfoPageView"
 import { PageEditor } from "dicty-components-page-editor"
-import { MockAuthProvider } from "utils/testing"
+import { MockAuthProvider } from "common/utils/testing"
 import Grid from "@material-ui/core/Grid"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
 

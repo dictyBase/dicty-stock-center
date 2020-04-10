@@ -4,7 +4,7 @@ import InlineEditor from "./InlineEditor"
 import { PageEditor } from "dicty-components-page-editor"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { MockAuthProvider } from "utils/testing"
+import { MockAuthProvider } from "common/utils/testing"
 
 window.getSelection = jest.fn()
 

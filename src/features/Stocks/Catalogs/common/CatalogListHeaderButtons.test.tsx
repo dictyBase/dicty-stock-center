@@ -7,8 +7,8 @@ import AddToCartButton from "./AddToCartButton"
 import {
   CatalogContext,
   catalogReducer,
-} from "components/Stocks/Catalogs/common/CatalogContext"
-import { CartProvider } from "components/ShoppingCart/CartStore"
+} from "features/Stocks/Catalogs/common/CatalogContext"
+import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
   describe("initial render with checkedItems", () => {
@@ -43,12 +43,7 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
       expect(wrapper.find(FontAwesomeIcon).exists()).toBe(true)
     })
     it("displays correct text", () => {
-      expect(
-        wrapper
-          .find("span")
-          .at(0)
-          .text(),
-      ).toContain("2 items selected")
+      expect(wrapper.find("span").at(0).text()).toContain("2 items selected")
     })
   })
 

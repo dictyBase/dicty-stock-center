@@ -1,6 +1,5 @@
 import React from "react"
 import { mount } from "enzyme"
-import { useFormikContext } from "formik"
 import CountryDropdown, { countryToFlag } from "./CountryDropdown"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 

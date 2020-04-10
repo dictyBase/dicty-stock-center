@@ -2,9 +2,9 @@ import React from "react"
 import { mount } from "enzyme"
 import wait from "waait"
 import OauthSignHandler from "./OauthSignHandler"
-import { LOGIN } from "graphql/mutations"
-import { MockAuthProvider } from "utils/testing"
-import clientConfig from "utils/clientConfig"
+import { LOGIN } from "common/graphql/mutations"
+import { MockAuthProvider } from "common/utils/testing"
+import clientConfig from "common/utils/clientConfig"
 
 const mockHistoryPush = jest.fn()
 
@@ -19,7 +19,7 @@ describe("authentication/OauthSignHandler", () => {
   // set up mocks for window event listeners
   const globalAny = global as any
   const map = {
-    message: any => {},
+    message: (any) => {},
   }
   globalAny.addEventListener = jest.fn((event, cb) => {
     map[event] = cb

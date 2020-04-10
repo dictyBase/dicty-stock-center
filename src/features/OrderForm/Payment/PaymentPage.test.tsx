@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import { OrderFormWrapper } from "utils/testing"
+import { OrderFormWrapper } from "common/utils/testing"
 import { BrowserRouter } from "react-router-dom"
 import PaymentPage from "./PaymentPage"
 import LeftColumn from "../LeftColumn"

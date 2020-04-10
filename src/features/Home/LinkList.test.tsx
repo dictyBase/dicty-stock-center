@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import LinkList from "./LinkList"
-import { downloadLinks } from "constants/linkLists"
+import { downloadLinks } from "common/constants/linkLists"
 import { Link } from "react-router-dom"
 
 describe("Home/LinkList", () => {

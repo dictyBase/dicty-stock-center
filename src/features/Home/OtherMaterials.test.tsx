@@ -2,10 +2,10 @@ import React from "react"
 import { mount } from "enzyme"
 import wait from "waait"
 import OtherMaterials from "./OtherMaterials"
-import InlineEditor from "components/EditablePages/InlineEditor"
+import InlineEditor from "features/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { GET_CONTENT_BY_SLUG } from "graphql/queries"
-import { MockAuthProvider } from "utils/testing"
+import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
+import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/OtherMaterials", () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@ import React from "react"
 import { shallow } from "enzyme"
 import PlasmidCatalogWrapper from "./PlasmidCatalogWrapper"
 import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
-import { CatalogProvider } from "components/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
 
 describe("Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper", () => {
   const wrapper = shallow(<PlasmidCatalogWrapper />)
