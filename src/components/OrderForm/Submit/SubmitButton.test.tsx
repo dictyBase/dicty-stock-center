@@ -1,5 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
+import { act } from "react-dom/test-utils"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
@@ -7,36 +8,8 @@ import { GET_USER_BY_EMAIL } from "graphql/queries"
 import { CREATE_ORDER, CREATE_USER, UPDATE_USER } from "graphql/mutations"
 import { MockCartProvider } from "utils/testing"
 import useCartItems from "hooks/useCartItems"
+import wait from "waait"
 import { CartItem } from "../types"
-
-// set up all of our mocks
-const mockHistoryPush = jest.fn()
-const mockSubmitForm = jest.fn()
-
-jest.mock("hooks/useCartItems")
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
-}))
-jest.mock("formik", () => ({
-  ...jest.requireActual("formik"),
-  useFormikContext: () => ({
-    isSubmitting: true,
-    submitForm: mockSubmitForm,
-    values: {
-      paymentMethod: "credit",
-    },
-  }),
-}))
-
-const mockedUseCartItems = useCartItems as jest.Mock
-mockedUseCartItems.mockReturnValue({
-  addToCart: jest.fn(),
-  removeFromCart: jest.fn(),
-  emptyCart: jest.fn(),
-})
 
 const mockValues = {
   firstName: "Art",
@@ -69,6 +42,32 @@ const mockValues = {
   paymentMethod: "Credit card",
   purchaseOrderNum: "99999",
 }
+
+// set up all of our mocks
+const mockHistoryPush = jest.fn()
+const mockSubmitForm = jest.fn()
+
+jest.mock("hooks/useCartItems")
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}))
+jest.mock("formik", () => ({
+  ...jest.requireActual("formik"),
+  useFormikContext: () => ({
+    submitForm: mockSubmitForm,
+    values: mockValues,
+  }),
+}))
+
+const mockedUseCartItems = useCartItems as jest.Mock
+mockedUseCartItems.mockReturnValue({
+  addToCart: jest.fn(),
+  removeFromCart: jest.fn(),
+  emptyCart: jest.fn(),
+})
 
 let addedItems = [] as Array<CartItem>
 addedItems.fill(
@@ -139,7 +138,7 @@ describe("SubmitButton/SubmitButton", () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
-  describe.only("initial render", () => {
+  describe("initial render", () => {
     const wrapper = mount(
       <MockCartProvider mocks={[]} addedItems={[]}>
         <SubmitButton setSubmitError={mockSetSubmitError} />
@@ -152,19 +151,6 @@ describe("SubmitButton/SubmitButton", () => {
   })
   describe("order submission with existing user", () => {
     const mocks = [
-      {
-        request: {
-          query: CREATE_ORDER,
-          variables: createOrderVariables,
-        },
-        result: {
-          data: {
-            createOrder: {
-              id: "123456",
-            },
-          },
-        },
-      },
       {
         request: {
           query: GET_USER_BY_EMAIL,
@@ -193,20 +179,6 @@ describe("SubmitButton/SubmitButton", () => {
           },
         },
       },
-    ]
-    const wrapper = mount(
-      <MockCartProvider mocks={mocks} addedItems={addedItems}>
-        <SubmitButton setSubmitError={mockSetSubmitError} />
-      </MockCartProvider>,
-    )
-    it("should fire off expected functions", () => {
-      wrapper.find(Button).first().simulate("click")
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-      expect(useCartItems).toHaveBeenCalledWith(addedItems)
-    })
-  })
-  describe("order submission with nonexistent user", () => {
-    const mocks = [
       {
         request: {
           query: CREATE_ORDER,
@@ -220,6 +192,23 @@ describe("SubmitButton/SubmitButton", () => {
           },
         },
       },
+    ]
+    const wrapper = mount(
+      <MockCartProvider mocks={mocks} addedItems={addedItems}>
+        <SubmitButton setSubmitError={mockSetSubmitError} />
+      </MockCartProvider>,
+    )
+    it("should process order when updating existing user", async () => {
+      wrapper.find("button").first().simulate("click")
+      await act(() => wait(15))
+      expect(mockHistoryPush).toHaveBeenCalledTimes(1)
+      expect(mockSubmitForm).toHaveBeenCalledTimes(1)
+      expect(useCartItems).toHaveBeenCalledWith(addedItems)
+      expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
+    })
+  })
+  describe("order submission with nonexistent user", () => {
+    const mocks = [
       {
         request: {
           query: GET_USER_BY_EMAIL,
@@ -250,6 +239,19 @@ describe("SubmitButton/SubmitButton", () => {
           },
         },
       },
+      {
+        request: {
+          query: CREATE_ORDER,
+          variables: createOrderVariables,
+        },
+        result: {
+          data: {
+            createOrder: {
+              id: "123456",
+            },
+          },
+        },
+      },
     ]
     const wrapper = mount(
       //@ts-ignore
@@ -257,11 +259,13 @@ describe("SubmitButton/SubmitButton", () => {
         <SubmitButton setSubmitError={mockSetSubmitError} />
       </MockCartProvider>,
     )
-    it("should fire off expected functions", async () => {
-      wrapper.find(Button).first().simulate("click")
-      wrapper.update()
+    xit("should process order while creating new user", async () => {
+      wrapper.find("button").first().simulate("click")
+      await act(() => wait(15))
       expect(mockHistoryPush).toHaveBeenCalledTimes(1)
+      expect(mockSubmitForm).toHaveBeenCalledTimes(1)
       expect(useCartItems).toHaveBeenCalledWith(addedItems)
+      expect(mockSetSubmitError).toHaveBeenCalledTimes(3)
     })
   })
 
@@ -291,20 +295,22 @@ describe("SubmitButton/SubmitButton", () => {
         <SubmitButton setSubmitError={mockSetSubmitError} />
       </MockCartProvider>,
     )
-    it("should call setSubmitError if error fetching user", () => {
-      wrapper.find(Button).first().simulate("click")
-      expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
-    })
-    it("should not call functions designated for successful submit", async () => {
-      wrapper.find(Button).first().simulate("click")
+    xit("should not call functions designated for successful submit", async () => {
+      wrapper.find("button").first().simulate("click")
+      await act(() => wait(25))
       expect(mockHistoryPush).toHaveBeenCalledTimes(0)
-      expect(useCartItems).toHaveBeenCalledTimes(0)
       expect(mockSubmitForm).toHaveBeenCalledTimes(0)
+      expect(useCartItems).toHaveBeenCalledTimes(0)
+    })
+    xit("should call setSubmitError if error fetching user", async () => {
+      wrapper.find("button").first().simulate("click")
+      await act(() => wait(15))
+      expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
     })
   })
 })
 
-describe.only("SubmitButton/getIDs", () => {
+describe("SubmitButton/getIDs", () => {
   it("should return array of IDs", () => {
     const items = [
       {
@@ -325,7 +331,7 @@ describe.only("SubmitButton/getIDs", () => {
   })
 })
 
-describe.only("SubmitButton/getUserVariables", () => {
+describe("SubmitButton/getUserVariables", () => {
   it("should return id but no email if id is passed", () => {
     expect(getUserVariables(mockValues, "999")).toStrictEqual({
       variables: {
