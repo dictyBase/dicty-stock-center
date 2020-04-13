@@ -122,12 +122,15 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/components/**/*.{js,jsx,ts,tsx}",
-      "src/hooks/**/*.{js,jsx,ts,tsx}",
-      "src/utils/**/*.{js,jsx,ts,tsx}",
-      "!src/components/**/mock*.{js,jsx,ts,tsx}",
-      "!src/components/**/types.{js,jsx,ts,tsx}",
-      "!src/components/**/*Styles.{js,jsx,ts,tsx}"
+      "src/app/layout/**/*.{js,jsx,ts,tsx}",
+      "src/common/components/**/*.{js,jsx,ts,tsx}",
+      "src/common/hooks/**/*.{js,jsx,ts,tsx}",
+      "src/common/utils/**/*.{js,jsx,ts,tsx}",
+      "src/features/**/*.{js,jsx,ts,tsx}",
+      "!src/**/mock*.{js,jsx,ts,tsx}",
+      "!src/**/types.{js,jsx,ts,tsx}",
+      "!src/**/*Styles.{js,jsx,ts,tsx}",
+      "!src/**/clientConfig*.{js,jsx,ts,tsx}"
     ]
   },
   "lint-staged": {
