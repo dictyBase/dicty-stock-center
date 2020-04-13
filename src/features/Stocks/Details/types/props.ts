@@ -1,4 +1,5 @@
-type PhenotypeData = {
+/* eslint-disable */
+export type PhenotypeData = {
   phenotype: string
   note: string
   assay?: string
@@ -9,7 +10,7 @@ type PhenotypeData = {
   }
 }
 
-type StrainDetails = {
+export type StrainDetails = {
   id: string
   label: string
   names: Array<string>
@@ -37,11 +38,11 @@ type StrainDetails = {
   in_stock: boolean
 }
 
-type StrainDetailsProps = {
+export type StrainDetailsProps = {
   data: StrainDetails
 }
 
-type PlasmidDetails = {
+export type PlasmidDetails = {
   id: string
   name: string
   summary: string
@@ -59,20 +60,11 @@ type PlasmidDetails = {
   in_stock: boolean
 }
 
-type PlasmidDetailsProps = {
+export type PlasmidDetailsProps = {
   data: PlasmidDetails
 }
 
-type PhenotypeProps = {
+export type PhenotypeProps = {
   /** Phenotype data */
   item: PhenotypeData
-}
-
-export type {
-  PhenotypeData,
-  StrainDetails,
-  StrainDetailsProps,
-  PlasmidDetails,
-  PlasmidDetailsProps,
-  PhenotypeProps,
 }

@@ -1,4 +1,4 @@
-interface IContent {
+export interface IContent {
   /** Content API data */
   data: {
     id: string
@@ -25,5 +25,3 @@ interface IContent {
     }
   }
 }
-
-export type { IContent }
