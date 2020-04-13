@@ -138,9 +138,14 @@ const SubmitButton = ({ setSubmitError }: { setSubmitError: Function }) => {
         createUser,
         setSubmitError,
       )
-      await createOrder(getOrderVariables(values, addedItems))
+      const order = await createOrder(getOrderVariables(values, addedItems))
       submitForm()
-      history.push("/order/submitted")
+      history.push({
+        pathname: "/order/submitted",
+        state: {
+          orderID: order.data.createOrder.id,
+        },
+      })
       emptyCart()
     } catch (error) {
       setSubmitError(true)

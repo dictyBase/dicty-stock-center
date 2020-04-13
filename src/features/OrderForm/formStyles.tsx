@@ -91,6 +91,13 @@ const useStyles = makeStyles({
     width: "50%",
     margin: "auto",
   },
+  confirmation: {
+    fontSize: "1.2em",
+  },
+  warningBox: {
+    margin: "0px auto 22px auto",
+    width: "60%",
+  },
 })
 
 export default useStyles
