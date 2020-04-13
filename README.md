@@ -51,11 +51,11 @@ in your cluster.
 In order for this application to work locally, you will need to configure the list of
 login providers.
 
-- Copy the provided sample [clientConfig.sample.js](src/common/utils/clientConfig.sample.js) file
-  to **clientConfig.js** in the same folder.
+- Copy the provided sample [clientConfig.sample.ts](src/common/utils/clientConfig.sample.ts) file
+  to **clientConfig.ts** in the same folder.
 - Add any provider names and their corresponding client IDs.
 - All providers should have a matching counterpart in the
-  [oauthConfig.js](src/common/utils/oauthConfig.js) file. Fill up all of the
+  [oauthConfig.ts](src/common/utils/oauthConfig.ts) file. Fill up all of the
   configuration parameters for every new provider in that file.
 
 After setting up the login providers, you can run `npm install` and `npm start` as usual.
@@ -67,7 +67,7 @@ This app requires the following services to be running:
 - [graphql-server](https://github.com/dictyBase/graphql-server)
 - [modware-content](https://github.com/dictyBase/modware-content)
 - [modware-user](https://github.com/dictyBase/modware-user) (used for login)
-- [authserver](https://github.com/dictyBase/authserver)
+- [modware-auth](https://github.com/dictyBase/modware-auth)
 
 It also relies on the navbar and footer JSON files found in the
 [migration-data](https://github.com/dictyBase/migration-data) repository. An example
