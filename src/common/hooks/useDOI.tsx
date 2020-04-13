@@ -16,7 +16,7 @@ type publicationType = Array<{
 const useDOI = (publications: publicationType) => {
   const [data, setData] = useState<Array<any>>([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<any>(null)
 
   useEffect(() => {
     let ignore = false
@@ -31,7 +31,7 @@ const useDOI = (publications: publicationType) => {
         })
         const txt = await res.text()
         if (!ignore) {
-          setData(data => [
+          setData((data) => [
             ...data,
             {
               id,
@@ -46,7 +46,7 @@ const useDOI = (publications: publicationType) => {
       }
     }
 
-    publications.forEach(item => {
+    publications.forEach((item) => {
       fetchData(item.doi, item.id)
     })
 

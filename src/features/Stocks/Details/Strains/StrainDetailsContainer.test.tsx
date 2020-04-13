@@ -12,28 +12,23 @@ import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries"
 import { data } from "./mockStrainData"
 
+const mockID = "DBS0236123"
+
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
   useParams: () => ({
-    id: "DBS0236123",
+    id: mockID,
   }),
 }))
 
 describe("Stocks/Strains/StrainDetailsContainer", () => {
-  const props = {
-    match: {
-      params: {
-        id: "DBS0236123",
-      },
-    },
-  }
   describe("initial render", () => {
     const mocks = [
       {
         request: {
           query: GET_STRAIN,
-          variables: { id: props.match.params.id },
+          variables: { id: mockID },
         },
         result: {
           data: {
@@ -46,12 +41,12 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       <MockedProvider mocks={mocks} addTypename={false}>
         <CartProvider>
           <BrowserRouter>
-            <StrainDetailsContainer {...props} />
+            <StrainDetailsContainer />
           </BrowserRouter>
         </CartProvider>
       </MockedProvider>,
     )
-    it("renders Loading component first", () => {
+    it("renders loading component first", () => {
       expect(wrapper.find(DetailsLoader)).toHaveLength(1)
     })
     it("renders expected components after receiving data", async () => {
@@ -85,7 +80,7 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       <MockedProvider mocks={mocks} addTypename={false}>
         <CartProvider>
           <BrowserRouter>
-            <StrainDetailsContainer {...props} />
+            <StrainDetailsContainer />
           </BrowserRouter>
         </CartProvider>
       </MockedProvider>,

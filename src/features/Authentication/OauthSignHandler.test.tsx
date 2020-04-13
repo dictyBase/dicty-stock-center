@@ -19,7 +19,7 @@ describe("authentication/OauthSignHandler", () => {
   // set up mocks for window event listeners
   const globalAny = global as any
   const map = {
-    message: (any) => {},
+    message: (any: any) => {},
   }
   globalAny.addEventListener = jest.fn((event, cb) => {
     map[event] = cb

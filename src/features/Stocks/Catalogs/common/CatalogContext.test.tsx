@@ -9,17 +9,18 @@ import {
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {
     const initialState = {
-      queryVariables: { cursor: 0 },
+      queryVariables: { cursor: 0, filter: "" },
       checkedItems: [],
     }
     it("returns initial state if no changes", () => {
+      // @ts-ignore
       expect(catalogReducer(initialState, {})).toEqual(initialState)
     })
 
     it("should handle SET_QUERY_VARIABLES", () => {
       const action = {
         type: CatalogActionType.SET_QUERY_VARIABLES,
-        payload: { limit: 10 },
+        payload: { cursor: 0, filter: "", limit: 10 },
       }
       const expectedState = {
         queryVariables: action.payload,

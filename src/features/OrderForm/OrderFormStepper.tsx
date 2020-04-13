@@ -6,7 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel"
 
 const steps = ["Shipping address", "Payment details", "Review your order"]
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
@@ -24,7 +24,7 @@ const OrderFormStepper = ({ pageNum }: Props) => {
 
   return (
     <Stepper activeStep={pageNum} className={classes.stepper}>
-      {steps.map(label => (
+      {steps.map((label) => (
         <Step key={label}>
           <StepLabel StepIconProps={{ classes: { active: classes.icon } }}>
             {label}

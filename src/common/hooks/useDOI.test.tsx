@@ -1,6 +1,8 @@
 import useDOI from "./useDOI"
 import { renderHook, cleanup } from "@testing-library/react-hooks"
 
+const globalAny = global as any
+
 const publications = [
   {
     id: "123456",
@@ -10,7 +12,7 @@ const publications = [
 
 describe("hooks/useDOI", () => {
   beforeEach(() => {
-    global.fetch = jest.fn().mockImplementation(
+    globalAny.fetch = jest.fn().mockImplementation(
       () =>
         new Promise((resolve, reject) => {
           resolve({
@@ -54,7 +56,7 @@ describe("hooks/useDOI", () => {
   })
 
   it("rejects the promise correctly", async () => {
-    global.fetch = jest.fn().mockImplementation(() =>
+    globalAny.fetch = jest.fn().mockImplementation(() =>
       Promise.reject({
         error: "this is a test error",
       }),

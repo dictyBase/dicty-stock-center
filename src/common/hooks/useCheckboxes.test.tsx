@@ -17,7 +17,7 @@ describe("hooks/useCheckboxes", () => {
   afterEach(() => cleanup)
 
   it("handles unchecked item correctly", () => {
-    const wrapper = ({ children }) => (
+    const wrapper = ({ children }: any) => (
       <CatalogProvider>{children}</CatalogProvider>
     )
     const {
@@ -30,9 +30,10 @@ describe("hooks/useCheckboxes", () => {
   })
 
   it("handles checked item correctly", () => {
-    const MockProvider = ({ children }) => {
+    const MockProvider = ({ children }: any) => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
         checkedItems: [cartData],
+        queryVariables: { cursor: 0, filter: "" },
       })
       return (
         <CatalogContext.Provider value={[state, dispatch]}>
@@ -51,9 +52,10 @@ describe("hooks/useCheckboxes", () => {
   })
 
   it("resets all checked items correctly", () => {
-    const MockProvider = ({ children }) => {
+    const MockProvider = ({ children }: any) => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
         checkedItems: [cartData],
+        queryVariables: { cursor: 0, filter: "" },
       })
       return (
         <CatalogContext.Provider value={[state, dispatch]}>

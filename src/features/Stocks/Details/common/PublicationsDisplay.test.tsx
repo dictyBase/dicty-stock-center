@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton"
 import * as PublicationHook from "common/hooks/useDOI"
 
 jest.mock("common/hooks/useDOI")
+const mockedHook = PublicationHook as jest.Mocked<typeof PublicationHook>
 
 describe("Stocks/Details/common/PublicationsDisplay", () => {
   const props = {
@@ -16,7 +17,6 @@ describe("Stocks/Details/common/PublicationsDisplay", () => {
     ],
   }
   it("initially renders loading component", () => {
-    const mockedHook = PublicationHook
     mockedHook.default.mockImplementation(() => ({
       loading: true,
       data: [],
@@ -27,7 +27,6 @@ describe("Stocks/Details/common/PublicationsDisplay", () => {
   })
 
   it("displays anchor tag when data is present", () => {
-    const mockedHook = PublicationHook
     mockedHook.default.mockImplementation(() => ({
       loading: false,
       data: [
@@ -44,7 +43,6 @@ describe("Stocks/Details/common/PublicationsDisplay", () => {
   })
 
   it("displays error message if error", () => {
-    const mockedHook = PublicationHook
     mockedHook.default.mockImplementation(() => ({
       loading: false,
       data: [],

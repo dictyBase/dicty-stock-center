@@ -4,6 +4,8 @@ import DetailsHeaderCopyIcon from "./DetailsHeaderCopyIcon"
 import IconButton from "@material-ui/core/IconButton"
 import DetailsHeaderSnackbar from "./DetailsHeaderSnackbar"
 
+const globalAny = global as any
+
 describe("Stocks/Details/common/DetailsHeaderCopyIcon", () => {
   const props = {
     id: "DBS0351367",
@@ -19,15 +21,15 @@ describe("Stocks/Details/common/DetailsHeaderCopyIcon", () => {
 
   describe("button clicking", () => {
     // set up mocks
-    global.navigator.clipboard = {
+    globalAny.navigator.clipboard = {
       writeText: jest.fn(() => Promise.resolve()),
     }
-    global.window.setTimeout = jest.fn()
+    globalAny.window.setTimeout = jest.fn()
     it("should write to clipboard on click", () => {
       wrapper.find(IconButton).simulate("click")
       wrapper.update()
-      expect(global.navigator.clipboard.writeText).toHaveBeenCalled()
-      expect(global.window.setTimeout).toHaveBeenCalled()
+      expect(globalAny.navigator.clipboard.writeText).toHaveBeenCalled()
+      expect(globalAny.window.setTimeout).toHaveBeenCalled()
     })
   })
 })

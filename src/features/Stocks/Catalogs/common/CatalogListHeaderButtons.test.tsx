@@ -26,6 +26,7 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
             summary: "another test",
           },
         ],
+        queryVariables: { cursor: 0, filter: "" },
       })
 
       return (
@@ -55,6 +56,7 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
           name: "testarooni",
           summary: "test1212",
         }),
+        queryVariables: { cursor: 0, filter: "" },
       })
 
       return (
