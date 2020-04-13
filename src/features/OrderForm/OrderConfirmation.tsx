@@ -2,14 +2,15 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import { Alert, AlertTitle } from "@material-ui/lab"
+import Alert from "@material-ui/lab/Alert"
+import AlertTitle from "@material-ui/lab/AlertTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useStyles from "./formStyles"
 
 type LocationProps = {
   location: {
     pathname: string
-    state: {
+    state?: {
       orderID: string
     }
   }
