@@ -41,7 +41,7 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
         ],
       }
       const expectedState = {
-        queryVariables: { cursor: 0 },
+        queryVariables: { cursor: 0, filter: "" },
         checkedItems: action.payload,
       }
       expect(catalogReducer(initialState, action)).toEqual(expectedState)
