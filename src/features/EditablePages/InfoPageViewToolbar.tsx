@@ -8,6 +8,7 @@ import ErrorNotification from "features/Authentication/ErrorNotification"
 import timeSince from "common/utils/timeSince"
 import { useAuthStore } from "features/Authentication/AuthStore"
 import useAuthorization from "common/hooks/useAuthorization"
+import { IUpdatedBy } from "./types"
 
 const useStyles = makeStyles(() => ({
   grid: {
@@ -66,16 +67,8 @@ const error =
   "Your login token has expired. Please log out and then log back in to regain full user access."
 
 type Props = {
-  data: {
-    id: string
-    first_name: string
-    last_name: string
-    updated_at: string
-    roles: Array<{
-      role: string
-    }>
-  }
-  handleClick: any // fix this
+  data: IUpdatedBy
+  handleClick: any
 }
 
 /** Displays the info page data that was fetched from the InfoPage component */

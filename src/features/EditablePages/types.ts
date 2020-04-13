@@ -1,3 +1,13 @@
+export interface IUpdatedBy {
+  id: string
+  first_name: string
+  last_name: string
+  updated_at: string
+  roles: Array<{
+    role: string
+  }>
+}
+
 export interface IContent {
   /** Content API data */
   data: {
@@ -14,14 +24,6 @@ export interface IContent {
       }>
     }
     /** User data for last person to update page */
-    updated_by: {
-      id: string
-      first_name: string
-      last_name: string
-      updated_at: string
-      roles: Array<{
-        role: string
-      }>
-    }
+    updated_by: IUpdatedBy
   }
 }
