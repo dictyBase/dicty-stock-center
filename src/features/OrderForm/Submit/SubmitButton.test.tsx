@@ -84,7 +84,7 @@ addedItems.fill(
   10,
 )
 
-const createUserVariables = {
+const createConsumerVariables = {
   input: {
     first_name: mockValues.firstName,
     last_name: mockValues.lastName,
@@ -102,7 +102,7 @@ const createUserVariables = {
   },
 }
 
-const updateUserVariables = {
+const updateConsumerVariables = {
   id: "999",
   input: {
     first_name: mockValues.firstName,
@@ -116,6 +116,42 @@ const updateUserVariables = {
     zipcode: mockValues.zip,
     country: mockValues.country,
     phone: mockValues.phone,
+    is_active: true,
+  },
+}
+
+const createPayerVariables = {
+  input: {
+    first_name: mockValues.payerFirstName,
+    last_name: mockValues.payerLastName,
+    email: mockValues.payerEmail,
+    organization: mockValues.payerOrganization,
+    group_name: mockValues.payerLab,
+    first_address: mockValues.payerAddress1,
+    second_address: mockValues.payerAddress2,
+    city: mockValues.payerCity,
+    state: mockValues.payerState,
+    zipcode: mockValues.payerZip,
+    country: mockValues.payerCountry,
+    phone: mockValues.payerPhone,
+    is_active: true,
+  },
+}
+
+const updatePayerVariables = {
+  id: "999",
+  input: {
+    first_name: mockValues.payerFirstName,
+    last_name: mockValues.payerLastName,
+    organization: mockValues.payerOrganization,
+    group_name: mockValues.payerLab,
+    first_address: mockValues.payerAddress1,
+    second_address: mockValues.payerAddress2,
+    city: mockValues.payerCity,
+    state: mockValues.payerState,
+    zipcode: mockValues.payerZip,
+    country: mockValues.payerCountry,
+    phone: mockValues.payerPhone,
     is_active: true,
   },
 }
@@ -172,7 +208,35 @@ describe("SubmitButton/SubmitButton", () => {
       {
         request: {
           query: UPDATE_USER,
-          variables: updateUserVariables,
+          variables: updateConsumerVariables,
+        },
+        result: {
+          data: {
+            updateUser: {
+              id: "999",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: GET_USER_BY_EMAIL,
+          variables: {
+            email: mockValues.payerEmail,
+          },
+        },
+        result: {
+          data: {
+            userByEmail: {
+              id: "999",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: UPDATE_USER,
+          variables: updatePayerVariables,
         },
         result: {
           data: {
@@ -232,12 +296,40 @@ describe("SubmitButton/SubmitButton", () => {
       {
         request: {
           query: CREATE_USER,
-          variables: createUserVariables,
+          variables: createConsumerVariables,
         },
         result: {
           data: {
             createUser: {
               id: "9991",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: GET_USER_BY_EMAIL,
+          variables: {
+            email: mockValues.payerEmail,
+          },
+        },
+        result: {
+          data: {
+            userByEmail: {
+              id: "999",
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: UPDATE_USER,
+          variables: updatePayerVariables,
+        },
+        result: {
+          data: {
+            updateUser: {
+              id: "999",
             },
           },
         },
@@ -338,7 +430,7 @@ describe("SubmitButton/getIDs", () => {
 
 describe("SubmitButton/getUserVariables", () => {
   it("should return id but no email if id is passed", () => {
-    expect(getUserVariables(mockValues, "999")).toStrictEqual({
+    expect(getUserVariables(mockValues, "consumer", "999")).toStrictEqual({
       variables: {
         id: "999",
         input: {
@@ -359,7 +451,7 @@ describe("SubmitButton/getUserVariables", () => {
     })
   })
   it("should include email if no id passed", () => {
-    expect(getUserVariables(mockValues)).toStrictEqual({
+    expect(getUserVariables(mockValues, "consumer")).toStrictEqual({
       variables: {
         input: {
           first_name: "Art",
