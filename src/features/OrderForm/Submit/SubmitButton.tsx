@@ -16,31 +16,60 @@ import useStyles from "../formStyles"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "../types"
 
+/**
+ * getIDs creates a new array of just stock IDs
+ */
 const getIDs = (items: Array<CartItem>) =>
   items.map((item: CartItem) => item.id)
+
+const getConsumerVariables = (values: FormikValues) => ({
+  first_name: values.firstName,
+  last_name: values.lastName,
+  email: values.email,
+  organization: values.organization,
+  group_name: values.lab,
+  first_address: values.address1,
+  second_address: values.address2,
+  city: values.city,
+  state: values.state,
+  zipcode: values.zip,
+  country: values.country,
+  phone: values.phone,
+  is_active: true,
+})
+
+const getPayerVariables = (values: FormikValues) => ({
+  first_name: values.payerFirstName,
+  last_name: values.payerLastName,
+  email: values.payerEmail,
+  organization: values.payerOrganization,
+  group_name: values.payerLab,
+  first_address: values.payerAddress1,
+  second_address: values.payerAddress2,
+  city: values.payerCity,
+  state: values.payerState,
+  zipcode: values.payerZip,
+  country: values.payerCountry,
+  phone: values.payerPhone,
+  is_active: true,
+})
 
 /**
  * getUserVariables generates a variables object that is passed with
  * create or update user mutations.
  */
-const getUserVariables = (values: FormikValues, id?: string) => {
+const getUserVariables = (
+  values: FormikValues,
+  userType: string,
+  id?: string,
+) => {
+  const inputVals =
+    userType === "consumer"
+      ? getConsumerVariables(values)
+      : getPayerVariables(values)
   const variablesObj: any = {
     variables: {
-      input: {
-        first_name: values.firstName,
-        last_name: values.lastName,
-        email: values.email,
-        organization: values.organization,
-        group_name: values.lab,
-        first_address: values.address1,
-        second_address: values.address2,
-        city: values.city,
-        state: values.state,
-        zipcode: values.zip,
-        country: values.country,
-        phone: values.phone,
-        is_active: true,
-      },
+      input: inputVals,
     },
   }
   // if there's an ID, that means we need to send an update mutation;
@@ -87,21 +116,23 @@ const updateOrCreateUser = async (
   updateUser: Function,
   createUser: Function,
   setSubmitError: Function,
+  userType: string,
 ) => {
+  const userEmail = userType === "consumer" ? values.email : values.payerEmail
   try {
     const user = await refetch({
-      email: values.email,
+      email: userEmail,
     })
     if (user.data.userByEmail) {
       const updatedUser = await updateUser(
-        getUserVariables(values, user.data.userByEmail.id),
+        getUserVariables(values, userType, user.data.userByEmail.id),
       )
       return updatedUser
     }
   } catch (error) {
     const notFound = error.graphQLErrors[0].extensions.code === "NotFound"
     if (notFound) {
-      const createdUser = await createUser(getUserVariables(values))
+      const createdUser = await createUser(getUserVariables(values, userType))
       return createdUser
     }
     setSubmitError(error)
@@ -131,12 +162,23 @@ const SubmitButton = ({ setSubmitError }: { setSubmitError: Function }) => {
 
   const handleSubmit = async () => {
     try {
+      // update or create consumer
       await updateOrCreateUser(
         refetch,
         values,
         updateUser,
         createUser,
         setSubmitError,
+        "consumer",
+      )
+      // update or create payer
+      await updateOrCreateUser(
+        refetch,
+        values,
+        updateUser,
+        createUser,
+        setSubmitError,
+        "payer",
       )
       const order = await createOrder(getOrderVariables(values, addedItems))
       submitForm()
