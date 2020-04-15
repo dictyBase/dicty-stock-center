@@ -109,13 +109,13 @@ const Login = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <Grid container justify="center">
-        <Grid item xs={8}>
+        <Grid item>
           <div style={{ textAlign: "center" }}>
             <h1>Log in</h1>
           </div>
           <Grid container justify="center">
-            <Grid item xs={1} />
-            <Grid item xs={4}>
+            <Grid item xs={2} />
+            <Grid item xs={10}>
               {error && <ErrorNotification error={message} />}
               <LoginContainer buttons={buttons} onClick={openOauthWindow} />
               <OauthSignHandler />
