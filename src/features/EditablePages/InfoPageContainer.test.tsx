@@ -4,6 +4,7 @@ import wait from "waait"
 import InfoPageContainer from "./InfoPageContainer"
 import { Helmet } from "react-helmet"
 import Loader from "common/components/Loader"
+import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import InfoPageView from "./InfoPageView"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
 import { MockAuthProvider } from "common/utils/testing"
@@ -81,6 +82,7 @@ describe("EditablePages/InfoPageContainer", () => {
       wrapper.update()
       expect(wrapper.find(Helmet)).toHaveLength(1)
       expect(wrapper.find(InfoPageView)).toHaveLength(1)
+      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(0)
     })
   })
 
@@ -112,7 +114,7 @@ describe("EditablePages/InfoPageContainer", () => {
     it("handles errors as expected", async () => {
       await wait()
       wrapper.update()
-      expect(wrapper.find("div").text()).toBe("Error fetching page content")
+      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
     })
   })
 })

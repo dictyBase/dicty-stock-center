@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks"
 import { useParams } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import Loader from "common/components/Loader"
+import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import InfoPageView from "./InfoPageView"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
 import NAMESPACE from "common/constants/namespace"
@@ -29,7 +30,7 @@ const InfoPageContainer = () => {
   }
 
   if (error || name === undefined) {
-    return <div>Error fetching page content</div>
+    return <GraphQLErrorPage error={error} />
   }
 
   return (
