@@ -1,3 +1,5 @@
+import { FormikValues } from "./initialValues"
+
 const requiredShippingFields = [
   "firstName",
   "lastName",
@@ -26,11 +28,11 @@ const requiredPaymentFields = [
   "purchaseOrderNum",
 ]
 
-const requiredFieldsGenerator = (values: any, page: string) => {
+const requiredFieldsGenerator = (values: FormikValues, page: string) => {
   if (page === "shipping") {
-    return requiredShippingFields.map<string>(item => values[item])
+    return requiredShippingFields.map<string>((item) => values[item])
   }
-  return requiredPaymentFields.map<string>(item => values[item])
+  return requiredPaymentFields.map<string>((item) => values[item])
 }
 
 export default requiredFieldsGenerator

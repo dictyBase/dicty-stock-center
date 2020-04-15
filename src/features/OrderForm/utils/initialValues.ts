@@ -29,6 +29,7 @@ export type FormikValues = {
   payerPhone: string
   paymentMethod: string
   purchaseOrderNum: string
+  [key: string]: string
 }
 
 const initialValues: FormikValues = {

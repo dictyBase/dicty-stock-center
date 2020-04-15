@@ -16,7 +16,7 @@ type Props = {
 
 const ValidationDialog = ({ modalOpen, setModalOpen }: Props) => (
   <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
-    <DialogTitle>{"Validation error"}</DialogTitle>
+    <DialogTitle>Validation error</DialogTitle>
     <DialogContent>
       <DialogContentText>
         Some fields are missing. Please ensure that you have filled out all
