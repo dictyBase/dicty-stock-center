@@ -18,7 +18,13 @@
     "strict": true,
     "target": "es5",
     "noEmit": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "paths": {
+      // remap rsg-components/anything to its version in react-styleguidist
+      "rsg-components/*": [
+        "node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ]
+    }
   },
   "exclude": ["src/**/*.js", "src/**/*.jsx", "node_modules"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]

@@ -27,38 +27,38 @@ module.exports = {
     {
       sectionDepth: 1,
       name: "Catalog Pages",
-      content: "src/components/Stocks/Catalogs/README.md",
+      content: "src/features/Stocks/Catalogs/README.md",
       sections: [
         {
           name: "Common",
-          components: "src/components/Stocks/Catalogs/common/**/*.js",
+          components: "src/features/Stocks/Catalogs/common/**/*.tsx",
         },
         {
           name: "Strains",
-          components: "src/components/Stocks/Catalogs/Strains/*.js",
+          components: "src/features/Stocks/Catalogs/Strains/*.tsx",
         },
         {
           name: "Plasmids",
-          components: "src/components/Stocks/Catalogs/Plasmids/*.js",
+          components: "src/features/Stocks/Catalogs/Plasmids/*.tsx",
         },
       ],
     },
     {
       sectionDepth: 1,
       name: "Details Pages",
-      content: "src/components/Stocks/Details/README.md",
+      content: "src/features/Stocks/Details/README.md",
       sections: [
         {
           name: "Common",
-          components: "src/components/Stocks/Details/common/**/*.js",
+          components: "src/features/Stocks/Details/common/**/*.tsx",
         },
         {
           name: "Strains",
-          components: "src/components/Stocks/Details/Strains/*.js",
+          components: "src/features/Stocks/Details/Strains/*.tsx",
         },
         {
           name: "Plasmids",
-          components: "src/components/Stocks/Details/Plasmids/*.js",
+          components: "src/features/Stocks/Details/Plasmids/*.tsx",
         },
       ],
     },
@@ -70,64 +70,64 @@ module.exports = {
       sections: [
         {
           name: "Common",
-          components: "src/components/OrderForm/*.js",
+          components: "src/features/OrderForm/*.tsx",
         },
         {
           name: "Payment",
-          components: "src/components/OrderForm/Payment/*.js",
+          components: "src/features/OrderForm/Payment/*.tsx",
         },
         {
           name: "Shipping ",
-          components: "src/components/OrderForm/Shipping/*.js",
+          components: "src/features/OrderForm/Shipping/*.tsx",
         },
         {
           name: "Submit",
-          components: "src/components/OrderForm/Submit/*.js",
+          components: "src/features/OrderForm/Submit/*.tsx",
         },
       ],
     },
     {
       name: "Basic Components",
-      components: "src/components/common/*.js",
+      components: "src/common/components/*.tsx",
       description:
         "This contains a list of components commonly used throughout the entire DSC application.",
     },
     {
       name: "Contact Page",
-      components: "src/components/Contact/*.js",
+      components: "src/features/Contact/*.tsx",
       description:
         "All components used for the contact form, which is not yet built.",
     },
     // {
     //   name: "Error Displays",
-    //   components: "src/components/Errors/*.js",
+    //   components: "src/features/Errors/*.tsx",
     //   description: "All components designed for handling errors."
     // },
     {
       name: "Homepage Components",
-      components: "src/components/Home/*.js",
+      components: "src/features/Home/*.tsx",
       description: "All components specific to the homepage.",
     },
     {
       name: "Info Pages",
-      components: "src/components/InfoPage/*.js",
+      components: "src/features/InfoPage/*.tsx",
       description:
         "Components related to the display of information pages, currently using Draft.js but will be switched to use our custom built Slate editor.",
     },
     {
       name: "MyDSC",
-      components: "src/components/MyDsc/*.js",
+      components: "src/features/MyDsc/*.tsx",
       description: "All components related to the not-yet-ready MyDSC.",
     },
     {
       name: "Shopping Cart Page",
-      components: "src/components/ShoppingCart/*.js",
+      components: "src/features/ShoppingCart/*.tsx",
       description:
         "Components used on the shopping cart page before entering the order form.",
     },
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, "src/styleguide/Wrapper"),
+    Wrapper: path.join(__dirname, "src/app/styleguide/Wrapper"),
   },
   template: {
     favicon: "./public/favicon.ico",
