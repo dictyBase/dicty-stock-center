@@ -110,9 +110,9 @@ module.exports = {
     },
     {
       name: "Info Pages",
-      components: "src/features/InfoPage/*.tsx",
+      components: "src/features/EditablePages/*.tsx",
       description:
-        "Components related to the display of information pages, currently using Draft.js but will be switched to use our custom built Slate editor.",
+        "Components related to the display of information pages using our custom built Slate.js editor.",
     },
     {
       name: "MyDSC",
