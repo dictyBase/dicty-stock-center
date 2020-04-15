@@ -1,4 +1,5 @@
 import React from "react"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { Login as LoginContainer } from "dicty-components-login"
 import OauthSignHandler from "features/Authentication/OauthSignHandler"
 import oauthConfig from "common/utils/oauthConfig"
@@ -85,6 +86,14 @@ const generateErrorDisplayMessage = (error: GraphQLError) => {
   return message
 }
 
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      textTransform: "uppercase",
+    },
+  },
+})
+
 /**
  * Component that displays all of the social login buttons with click handlers for each one
  */
@@ -98,21 +107,23 @@ const Login = () => {
   }
 
   return (
-    <Grid container justify="center">
-      <Grid item xs={8}>
-        <div style={{ textAlign: "center" }}>
-          <h1>Log in</h1>
-        </div>
-        <Grid container justify="center">
-          <Grid item xs={1} />
-          <Grid item xs={4}>
-            {error && <ErrorNotification error={message} />}
-            <LoginContainer buttons={buttons} onClick={openOauthWindow} />
-            <OauthSignHandler />
+    <MuiThemeProvider theme={theme}>
+      <Grid container justify="center">
+        <Grid item xs={8}>
+          <div style={{ textAlign: "center" }}>
+            <h1>Log in</h1>
+          </div>
+          <Grid container justify="center">
+            <Grid item xs={1} />
+            <Grid item xs={4}>
+              {error && <ErrorNotification error={message} />}
+              <LoginContainer buttons={buttons} onClick={openOauthWindow} />
+              <OauthSignHandler />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </MuiThemeProvider>
   )
 }
 
