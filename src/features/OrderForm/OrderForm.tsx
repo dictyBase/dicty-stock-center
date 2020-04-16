@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Form, Formik } from "formik"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import Alert from "@material-ui/lab/Alert"
@@ -9,11 +8,7 @@ import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
 import OrderFormStepper from "./OrderFormStepper"
 import initialValues from "./utils/initialValues"
-import validationSchema from "./utils/validationSchema"
 import useStyles from "./formStyles"
-
-// List of page components for multi-step form
-const pages = [ShippingPage, PaymentPage, SubmitPage]
 
 /**
  * OrderForm is the main component used for the checkout process.
@@ -21,9 +16,46 @@ const pages = [ShippingPage, PaymentPage, SubmitPage]
 
 const OrderForm = () => {
   const classes = useStyles()
-  const [pageNum, setPageNum] = useState(0)
+  const [step, setStep] = useState(0)
+  const [formData, setFormData] = useState(initialValues)
   const [submitError, setSubmitError] = useState(false)
-  const PageComponent = pages[pageNum]
+
+  const nextStep = () => setStep((prev) => prev + 1)
+  const prevStep = () => setStep((prev) => prev - 1)
+
+  let pageContent
+  switch (step) {
+    case 0:
+      pageContent = (
+        <ShippingPage
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+        />
+      )
+      break
+    case 1:
+      pageContent = (
+        <PaymentPage
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      )
+      break
+    case 2:
+      pageContent = (
+        <SubmitPage
+          formData={formData}
+          prevStep={prevStep}
+          setSubmitError={setSubmitError}
+        />
+      )
+      break
+    default:
+      pageContent = null
+  }
 
   return (
     <Grid container spacing={2} className={classes.layout}>
@@ -35,7 +67,7 @@ const OrderForm = () => {
         <div className={classes.centerText}>
           <h1>Checkout</h1>
         </div>
-        <OrderFormStepper pageNum={pageNum} />
+        <OrderFormStepper step={step} />
         {submitError && (
           <Alert className={classes.submitAlert} severity="error">
             <AlertTitle>Error</AlertTitle>
@@ -52,20 +84,7 @@ const OrderForm = () => {
             </p>
           </Alert>
         )}
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(values, actions) => actions.setSubmitting(false)}>
-          {() => (
-            <Form>
-              <PageComponent
-                pageNum={pageNum}
-                setPageNum={setPageNum}
-                setSubmitError={setSubmitError}
-              />
-            </Form>
-          )}
-        </Formik>
+        {pageContent}
       </Grid>
     </Grid>
   )

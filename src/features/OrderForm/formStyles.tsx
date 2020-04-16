@@ -32,6 +32,7 @@ const useStyles = makeStyles({
   submitPage: {
     textAlign: "center",
     paddingLeft: "25px",
+    marginBottom: "40px",
   },
   continueBtn: {
     width: "100%",

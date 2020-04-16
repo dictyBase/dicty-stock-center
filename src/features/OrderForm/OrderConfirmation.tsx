@@ -20,7 +20,7 @@ type LocationProps = {
  * Displays notification that the user's order was submitted successfully.
  */
 
-export const OrderConfirmation = ({ location }: LocationProps) => {
+const OrderConfirmation = ({ location }: LocationProps) => {
   const classes = useStyles()
 
   let content = (

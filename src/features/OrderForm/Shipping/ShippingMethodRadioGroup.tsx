@@ -52,7 +52,7 @@ const ShippingMethodRadioGroup = ({
       name="shippingAccount"
       onChange={handleChange}
       row>
-      {couriers.map(item => (
+      {couriers.map((item) => (
         <FormControlLabel
           key={item.value}
           value={item.value}

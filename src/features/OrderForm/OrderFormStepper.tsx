@@ -16,14 +16,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
-  pageNum: number
+  // Page number the user is on (0, 1, 2)
+  step: number
 }
 
-const OrderFormStepper = ({ pageNum }: Props) => {
+const OrderFormStepper = ({ step }: Props) => {
   const classes = useStyles()
 
   return (
-    <Stepper activeStep={pageNum} className={classes.stepper}>
+    <Stepper activeStep={step} className={classes.stepper}>
       {steps.map((label) => (
         <Step key={label}>
           <StepLabel StepIconProps={{ classes: { active: classes.icon } }}>
