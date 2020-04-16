@@ -2,16 +2,7 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import BackButton from "../BackButton"
 import SubmitButton from "./SubmitButton"
-import { FormikValues } from "../utils/initialValues"
-
-type Props = {
-  /** Full object of form data (shipping and payment) */
-  formData: FormikValues
-  /** Function to move to previous step */
-  prevStep: Function
-  /** Function to set a submit error (bool) */
-  setSubmitError: Function
-}
+import { SubmitProps } from "./submitTypes"
 
 /**
  * SubmitPageBottomButtons is the display for the buttons at the bottom of
@@ -22,7 +13,7 @@ const SubmitPageBottomButtons = ({
   formData,
   prevStep,
   setSubmitError,
-}: Props) => (
+}: SubmitProps) => (
   <Grid container justify="center" spacing={2}>
     <Grid item xs={2} />
     <Grid item xs={4}>

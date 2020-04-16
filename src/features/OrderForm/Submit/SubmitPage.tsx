@@ -3,22 +3,13 @@ import Grid from "@material-ui/core/Grid"
 import ShoppingCartItemList from "features/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
 import useStyles from "../formStyles"
-import { FormikValues } from "../utils/initialValues"
-
-type Props = {
-  /** Full object of form data (shipping and payment) */
-  formData: FormikValues
-  /** Function to move to previous step */
-  prevStep: Function
-  /** Function to set a submit error (bool) */
-  setSubmitError: Function
-}
+import { SubmitProps } from "./submitTypes"
 
 /**
  * SubmitPage is the final page the user sees before submitting the order.
  */
 
-export const SubmitPage = ({ formData, prevStep, setSubmitError }: Props) => {
+const SubmitPage = ({ formData, prevStep, setSubmitError }: SubmitProps) => {
   const classes = useStyles()
 
   return (
