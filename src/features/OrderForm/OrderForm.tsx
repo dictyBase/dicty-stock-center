@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import Alert from "@material-ui/lab/Alert"
@@ -15,10 +15,10 @@ import useStyles from "./formStyles"
  */
 
 const OrderForm = () => {
+  const [step, setStep] = React.useState(0)
+  const [formData, setFormData] = React.useState(initialValues)
+  const [submitError, setSubmitError] = React.useState(false)
   const classes = useStyles()
-  const [step, setStep] = useState(0)
-  const [formData, setFormData] = useState(initialValues)
-  const [submitError, setSubmitError] = useState(false)
 
   const nextStep = () => setStep((prev) => prev + 1)
   const prevStep = () => setStep((prev) => prev - 1)
