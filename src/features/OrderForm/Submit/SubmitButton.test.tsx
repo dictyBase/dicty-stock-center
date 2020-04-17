@@ -48,20 +48,12 @@ const mockValues = {
 
 // set up all of our mocks
 const mockHistoryPush = jest.fn()
-const mockSubmitForm = jest.fn()
 
 jest.mock("common/hooks/useCartItems")
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
     push: mockHistoryPush,
-  }),
-}))
-jest.mock("formik", () => ({
-  ...jest.requireActual("formik"),
-  useFormikContext: () => ({
-    submitForm: mockSubmitForm,
-    values: mockValues,
   }),
 }))
 
@@ -180,7 +172,10 @@ describe("SubmitButton/SubmitButton", () => {
   describe("initial render", () => {
     const wrapper = mount(
       <MockCartProvider mocks={[]} addedItems={[]}>
-        <SubmitButton setSubmitError={mockSetSubmitError} />
+        <SubmitButton
+          formData={mockValues}
+          setSubmitError={mockSetSubmitError}
+        />
       </MockCartProvider>,
     )
     it("always renders initial components", () => {
@@ -262,14 +257,16 @@ describe("SubmitButton/SubmitButton", () => {
     ]
     const wrapper = mount(
       <MockCartProvider mocks={mocks} addedItems={addedItems}>
-        <SubmitButton setSubmitError={mockSetSubmitError} />
+        <SubmitButton
+          formData={mockValues}
+          setSubmitError={mockSetSubmitError}
+        />
       </MockCartProvider>,
     )
     it("should process order when updating existing user", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-        expect(mockSubmitForm).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalledWith(addedItems)
       })
     })
@@ -351,14 +348,16 @@ describe("SubmitButton/SubmitButton", () => {
     const wrapper = mount(
       //@ts-ignore
       <MockCartProvider mocks={mocks} addedItems={addedItems}>
-        <SubmitButton setSubmitError={mockSetSubmitError} />
+        <SubmitButton
+          formData={mockValues}
+          setSubmitError={mockSetSubmitError}
+        />
       </MockCartProvider>,
     )
     it("should process order while creating new user", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-        expect(mockSubmitForm).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalledWith(addedItems)
       })
     })
@@ -387,14 +386,16 @@ describe("SubmitButton/SubmitButton", () => {
     const wrapper = mount(
       //@ts-ignore
       <MockCartProvider mocks={mocks} addedItems={[]}>
-        <SubmitButton setSubmitError={mockSetSubmitError} />
+        <SubmitButton
+          formData={mockValues}
+          setSubmitError={mockSetSubmitError}
+        />
       </MockCartProvider>,
     )
     it("should not call functions designated for successful submit", async () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(0)
-        expect(mockSubmitForm).toHaveBeenCalledTimes(0)
         expect(useCartItems).toHaveBeenCalledTimes(0)
       })
     })
