@@ -24,9 +24,8 @@ describe("EditablePages/InfoPageViewToolbar", () => {
       },
       handleClick: jest.fn(),
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <InfoPageViewToolbar {...props} />
       </MockAuthProvider>,
     )
@@ -57,9 +56,8 @@ describe("EditablePages/InfoPageViewToolbar", () => {
       },
       handleClick: jest.fn(),
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks} validToken={false}>
+      <MockAuthProvider mocks={[]} validToken={false}>
         <InfoPageViewToolbar {...props} />
       </MockAuthProvider>,
     )

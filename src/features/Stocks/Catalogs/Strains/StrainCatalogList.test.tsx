@@ -11,6 +11,8 @@ import { CartProvider } from "features/ShoppingCart/CartStore"
 describe("Stocks/Strains/StrainCatalogList", () => {
   const props = {
     data: data,
+    fetchMore: jest.fn(),
+    cursor: 0,
   }
   const wrapper = mount(
     <CartProvider>

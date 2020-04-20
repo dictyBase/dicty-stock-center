@@ -20,12 +20,17 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
     it("should handle SET_QUERY_VARIABLES", () => {
       const action = {
         type: CatalogActionType.SET_QUERY_VARIABLES,
-        payload: { cursor: 0, filter: "", limit: 10 },
+        payload: {
+          cursor: 0,
+          filter: "",
+          limit: 10,
+        },
       }
       const expectedState = {
         queryVariables: action.payload,
         checkedItems: [],
       }
+      // @ts-ignore
       expect(catalogReducer(initialState, action)).toEqual(expectedState)
     })
 
@@ -44,6 +49,7 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
         queryVariables: { cursor: 0, filter: "" },
         checkedItems: action.payload,
       }
+      // @ts-ignore
       expect(catalogReducer(initialState, action)).toEqual(expectedState)
     })
   })

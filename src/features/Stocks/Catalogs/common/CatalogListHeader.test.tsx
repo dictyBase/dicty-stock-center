@@ -60,6 +60,10 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
             summary: "test1212",
           },
         ],
+        queryVariables: {
+          cursor: 0,
+          filter: "",
+        },
       })
 
       return (

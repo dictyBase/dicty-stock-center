@@ -8,12 +8,13 @@ import { Link } from "react-router-dom"
 import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/CartIcon", () => {
-  const MockComponent = ({ items }) => {
+  const MockComponent = ({ items }: any) => {
     let maxItems
     items.length > 0 ? (maxItems = true) : (maxItems = false)
     const [state, dispatch] = React.useReducer(cartReducer, {
       addedItems: items,
       maxItemsInCart: maxItems,
+      showCartDialog: false,
     })
     return (
       <CartContext.Provider value={[state, dispatch]}>

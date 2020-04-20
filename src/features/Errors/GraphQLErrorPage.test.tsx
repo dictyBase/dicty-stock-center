@@ -9,7 +9,13 @@ describe("Errors/GraphQLErrorPage", () => {
   const networkErrProps = {
     error: {
       message: "Network error",
-      networkError: {},
+      networkError: {
+        name: "err",
+        message: "error",
+      },
+      graphQLErrors: [],
+      extraInfo: undefined,
+      name: "",
     },
   }
   const unavailableErrProps = {
@@ -21,8 +27,18 @@ describe("Errors/GraphQLErrorPage", () => {
           extensions: {
             code: "Unavailable",
           },
+          locations: undefined,
+          nodes: undefined,
+          source: undefined,
+          positions: undefined,
+          originalError: undefined,
+          name: "",
+          path: undefined,
         },
       ],
+      networkError: null,
+      extraInfo: undefined,
+      name: "",
     },
   }
   const notFoundErrProps = {
@@ -34,8 +50,18 @@ describe("Errors/GraphQLErrorPage", () => {
           extensions: {
             code: "NotFound",
           },
+          locations: undefined,
+          nodes: undefined,
+          source: undefined,
+          positions: undefined,
+          originalError: undefined,
+          name: "",
+          path: undefined,
         },
       ],
+      networkError: null,
+      extraInfo: undefined,
+      name: "",
     },
   }
   const otherErrProps = {
@@ -47,8 +73,18 @@ describe("Errors/GraphQLErrorPage", () => {
           extensions: {
             code: "Misc",
           },
+          locations: undefined,
+          nodes: undefined,
+          source: undefined,
+          positions: undefined,
+          originalError: undefined,
+          name: "",
+          path: undefined,
         },
       ],
+      networkError: null,
+      extraInfo: undefined,
+      name: "",
     },
   }
   describe("error handling", () => {

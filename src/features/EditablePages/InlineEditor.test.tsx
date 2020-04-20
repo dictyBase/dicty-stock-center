@@ -43,9 +43,8 @@ describe("EditablePages/InlineEditor", () => {
         }),
       },
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <InlineEditor {...props} />
       </MockAuthProvider>,
     )
@@ -90,9 +89,8 @@ describe("EditablePages/InlineEditor", () => {
         }),
       },
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks} validToken={false}>
+      <MockAuthProvider mocks={[]} validToken={false}>
         <InlineEditor {...props} />
       </MockAuthProvider>,
     )

@@ -43,7 +43,12 @@ describe("cartReducer", () => {
   })
   it("should remove an item from cart", () => {
     const state = {
-      addedItems: [newItem],
+      addedItems: [
+        {
+          ...newItem,
+          fee: "30.00",
+        },
+      ],
       showCartDialog: false,
       maxItemsInCart: false,
     }
@@ -64,7 +69,20 @@ describe("cartReducer", () => {
   })
   it("should empty entire cart", () => {
     const state = {
-      addedItems: [newItem, newItem, newItem],
+      addedItems: [
+        {
+          ...newItem,
+          fee: "30.00",
+        },
+        {
+          ...newItem,
+          fee: "30.00",
+        },
+        {
+          ...newItem,
+          fee: "30.00",
+        },
+      ],
       showCartDialog: false,
       maxItemsInCart: false,
     }

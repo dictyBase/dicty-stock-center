@@ -22,9 +22,11 @@ describe("authentication/OauthSignHandler", () => {
     message: (any: any) => {},
   }
   globalAny.addEventListener = jest.fn((event, cb) => {
+    // @ts-ignore
     map[event] = cb
   })
   globalAny.removeEventListener = jest.fn((event, cb) => {
+    // @ts-ignore
     map[event] = cb
   })
 

@@ -12,6 +12,9 @@ describe("EditablePages/InfoPageView", () => {
   describe("initial render", () => {
     const props = {
       data: {
+        id: "123",
+        slug: "dsc-test",
+        name: "test",
         created_by: {
           id: "999",
           first_name: "Art",
@@ -49,9 +52,8 @@ describe("EditablePages/InfoPageView", () => {
         }),
       },
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <InfoPageView {...props} />
       </MockAuthProvider>,
     )

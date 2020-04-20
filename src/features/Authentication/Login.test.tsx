@@ -77,10 +77,18 @@ describe("authentication/Login", () => {
       const error = {
         graphQLErrors: [
           {
+            message: "",
             extensions: {
               code: "NotFound",
               timestamp: "cye",
             },
+            locations: undefined,
+            nodes: undefined,
+            source: undefined,
+            positions: undefined,
+            originalError: undefined,
+            name: "",
+            path: [""],
           },
         ],
       }

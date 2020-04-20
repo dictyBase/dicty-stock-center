@@ -7,15 +7,9 @@ import { AppBarProvider } from "./AppBarContext"
 
 describe("Stocks/CatalogPageItems/AppBar/AppBarHelp", () => {
   describe("initial render", () => {
-    const props = {
-      dropdownItems: [],
-      query: "test query",
-      setQuery: jest.fn(),
-      setQueryVariables: jest.fn(),
-    }
     const wrapper = mount(
       <AppBarProvider>
-        <AppBarHelp {...props} />
+        <AppBarHelp />
       </AppBarProvider>,
     )
     it("always renders initial components", () => {

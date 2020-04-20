@@ -9,9 +9,8 @@ import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/Homepage", () => {
   describe("initial render", () => {
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <Homepage />
       </MockAuthProvider>,
     )
@@ -29,9 +28,8 @@ describe("Home/Homepage", () => {
       value: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)",
       configurable: true,
     })
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <Homepage />
       </MockAuthProvider>,
     )

@@ -7,9 +7,8 @@ import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/EditablePanel", () => {
   describe("initial render", () => {
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <EditablePanel slug="dsc-intro" skeletonCount={5} />
       </MockAuthProvider>,
     )

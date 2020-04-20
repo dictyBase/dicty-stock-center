@@ -10,8 +10,7 @@ import BackButton from "../BackButton"
 
 describe("OrderForm/Payment/PaymentPageRightColumn", () => {
   const props = {
-    pageNum: 2,
-    setPageNum: jest.fn(),
+    prevStep: jest.fn(),
   }
   const wrapper = mount(
     <OrderFormWrapper>

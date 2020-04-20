@@ -11,7 +11,7 @@ const mockJWT =
 
 describe("hooks/useAuthorization", () => {
   describe("verifyToken", () => {
-    let dateNowSpy
+    let dateNowSpy = global as any
 
     afterAll(() => {
       // unlock time
@@ -59,10 +59,8 @@ describe("hooks/useAuthorization", () => {
 
   describe("useAuthorization hook", () => {
     describe("useAuthorization with superuser logged in", () => {
-      const mocks = []
-
-      const wrapper = ({ children }) => (
-        <MockAuthProvider mocks={mocks} user={MockSuperuser}>
+      const wrapper = ({ children }: any) => (
+        <MockAuthProvider mocks={[]} user={MockSuperuser}>
           {children}
         </MockAuthProvider>
       )
@@ -78,7 +76,6 @@ describe("hooks/useAuthorization", () => {
     })
 
     describe("useAuthorization with non-superuser logged in", () => {
-      const mocks = []
       const MockAdmin = {
         id: 999,
         first_name: "Art",
@@ -94,8 +91,8 @@ describe("hooks/useAuthorization", () => {
           },
         ],
       }
-      const wrapper = ({ children }) => (
-        <MockAuthProvider mocks={mocks} user={MockAdmin}>
+      const wrapper = ({ children }: any) => (
+        <MockAuthProvider mocks={[]} user={MockAdmin}>
           {children}
         </MockAuthProvider>
       )
@@ -111,10 +108,10 @@ describe("hooks/useAuthorization", () => {
     })
 
     describe("useAuthorization with no user state", () => {
-      const mocks = []
       const MockEmptyUser = {}
-      const wrapper = ({ children }) => (
-        <MockAuthProvider mocks={mocks} user={MockEmptyUser}>
+      const wrapper = ({ children }: any) => (
+        // @ts-ignore
+        <MockAuthProvider mocks={[]} user={MockEmptyUser}>
           {children}
         </MockAuthProvider>
       )

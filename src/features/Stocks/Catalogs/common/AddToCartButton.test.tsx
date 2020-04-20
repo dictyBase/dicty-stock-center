@@ -47,6 +47,7 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
       const [state, dispatch] = React.useReducer(cartReducer, {
         addedItems: [],
         maxItemsInCart: true,
+        showCartDialog: false,
       })
 
       return (

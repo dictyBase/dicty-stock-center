@@ -14,6 +14,7 @@ describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
         searchValue: "",
         helpDialogOpen: false,
       }
+      //@ts-ignore
       expect(appBarReducer(initialState, {})).toEqual(initialState)
     })
 
@@ -32,6 +33,7 @@ describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
         searchValue: "",
         helpDialogOpen: false,
       }
+      // @ts-ignore
       expect(appBarReducer(initialState, action)).toEqual(expectedState)
     })
 
@@ -50,6 +52,7 @@ describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
         searchValue: action.payload,
         helpDialogOpen: false,
       }
+      // @ts-ignore
       expect(appBarReducer(initialState, action)).toEqual(expectedState)
     })
 
@@ -68,6 +71,7 @@ describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
         searchValue: "",
         helpDialogOpen: true,
       }
+      // @ts-ignore
       expect(appBarReducer(initialState, action)).toEqual(expectedState)
     })
   })

@@ -12,7 +12,7 @@ describe("Stocks/Plasmids/PlasmidCatalogList", () => {
   const props = {
     data: data,
     fetchMore: jest.fn(),
-    cursor: String,
+    cursor: 0,
   }
   const wrapper = mount(
     <CartProvider>

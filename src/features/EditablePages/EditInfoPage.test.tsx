@@ -49,9 +49,8 @@ describe("EditablePages/EditInfoPage", () => {
         },
       },
     }
-    const mocks = []
     const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
+      <MockAuthProvider mocks={[]}>
         <EditInfoPage {...props} />
       </MockAuthProvider>,
     )

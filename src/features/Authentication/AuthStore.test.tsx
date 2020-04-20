@@ -108,6 +108,7 @@ describe("authReducer", () => {
     }
     expect(
       authReducer(state, {
+        // @ts-ignore
         type: "not a real type",
       }),
     ).toStrictEqual(state)

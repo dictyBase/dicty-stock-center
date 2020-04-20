@@ -6,7 +6,7 @@ import Step from "@material-ui/core/Step"
 import StepLabel from "@material-ui/core/StepLabel"
 
 describe("OrderForm/OrderFormStepper", () => {
-  const wrapper = shallow(<OrderFormStepper pageNum={0} />)
+  const wrapper = shallow(<OrderFormStepper step={0} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(Stepper)).toHaveLength(1)

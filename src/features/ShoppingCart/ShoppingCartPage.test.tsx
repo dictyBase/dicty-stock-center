@@ -7,9 +7,11 @@ import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
 import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/ShoppingCartPage", () => {
-  const MockProvider = ({ items }) => {
+  const MockProvider = ({ items }: any) => {
     const [state, dispatch] = React.useReducer(cartReducer, {
       addedItems: items,
+      showCartDialog: false,
+      maxItemsInCart: false,
     })
     return (
       <CartContext.Provider value={[state, dispatch]}>

@@ -8,8 +8,9 @@ describe("utils/timeSince", () => {
   realDate = Date
   // @ts-ignore
   global.Date = class extends Date {
-    constructor(date) {
+    constructor(date: any) {
       if (date) {
+        // @ts-ignore
         return super(date)
       }
 

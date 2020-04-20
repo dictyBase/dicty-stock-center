@@ -15,7 +15,7 @@ export interface IContent {
     content: string
     slug: string
     name: string
-    created_by: {
+    created_by?: {
       id: string
       first_name: string
       last_name: string

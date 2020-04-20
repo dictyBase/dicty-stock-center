@@ -14,7 +14,7 @@ describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
     data: [
       {
         id: "DBS1234",
-        label: "test strain",
+        name: "test strain",
         summary: "test summary",
       },
     ],
@@ -37,6 +37,7 @@ describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
   })
   describe("it should handle close correctly", () => {
     it("should call setCheckedItems on close", () => {
+      // @ts-ignore
       wrapper.find(Dialog).prop("onClose")("handleClose")
       wrapper.update()
       expect(setCheckedItemsSpy).toHaveBeenCalledTimes(1)
