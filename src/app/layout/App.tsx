@@ -50,17 +50,21 @@ const App = () => {
   const delay = getTokenIntervalDelayInMS(token)
 
   const fetchRefreshToken = useCallback(async () => {
-    const res = await refetch({ token: token })
-    if (res.data.getRefreshToken) {
-      const { data } = res
-      dispatch({
-        type: "UPDATE_TOKEN",
-        payload: {
-          provider: data.getRefreshToken.identity.provider,
-          token: data.getRefreshToken.token,
-          user: data.getRefreshToken.user,
-        },
-      })
+    try {
+      const res = await refetch({ token: token })
+      if (res.data.getRefreshToken) {
+        const { data } = res
+        dispatch({
+          type: "UPDATE_TOKEN",
+          payload: {
+            provider: data.getRefreshToken.identity.provider,
+            token: data.getRefreshToken.token,
+            user: data.getRefreshToken.user,
+          },
+        })
+      }
+    } catch (error) {
+      console.error(error)
     }
   }, [dispatch, refetch, token])
   useFetchRefreshToken(fetchRefreshToken, interval, delay!, isAuthenticated)
