@@ -5,7 +5,7 @@ import ShippingPage from "./ShippingPage"
 import LeftColumn from "../LeftColumn"
 import ShippingPageRightColumn from "./ShippingPageRightColumn"
 import { Formik } from "formik"
-import initialValues from "../utils/initialValues"
+import wait from "waait"
 
 const mockValues = {
   firstName: "Art",
@@ -23,23 +23,36 @@ const mockValues = {
   shippingAccount: "FedEx",
   shippingAccountNumber: "99999999",
   comments: "test comment",
+  payerFirstName: "Art",
+  payerLastName: "Vandelay",
+  payerEmail: "art@vandelayindustries.com",
+  payerOrganization: "Vandelay Industries",
+  payerLab: "Steinbrenner",
+  payerAddress1: "123 Main St",
+  payerAddress2: "",
+  payerCity: "New York City",
+  payerState: "NY",
+  payerZip: "10010",
+  payerCountry: "USA",
+  payerPhone: "123-456-7890",
+  paymentMethod: "Credit card",
+  purchaseOrderNum: "99999",
 }
 
 const mockSetFormData = jest.fn()
 const mockNextStep = jest.fn()
-const mockSubmitForm = jest.fn()
+const mockPrevStep = jest.fn()
 
 jest.mock("formik", () => ({
   ...jest.requireActual("formik"),
   useFormikContext: () => ({
-    submitForm: mockSubmitForm,
     values: mockValues,
   }),
 }))
 
 describe("OrderForm/Shipping/ShippingPage", () => {
   const props = {
-    formData: initialValues,
+    formData: mockValues,
     setFormData: mockSetFormData,
     nextStep: mockNextStep,
   }
@@ -53,6 +66,16 @@ describe("OrderForm/Shipping/ShippingPage", () => {
       expect(wrapper.find(Formik)).toHaveLength(1)
       expect(wrapper.find(LeftColumn)).toHaveLength(1)
       expect(wrapper.find(ShippingPageRightColumn)).toHaveLength(1)
+    })
+  })
+  describe("form submission", () => {
+    it("should call functions when submitted", async () => {
+      const form = wrapper.find("form").at(0)
+      form.simulate("submit", { preventDefault: () => {} })
+      await wait(0)
+      expect(mockNextStep).toHaveBeenCalledTimes(1)
+      expect(mockSetFormData).toHaveBeenCalledTimes(1)
+      expect(mockSetFormData).toHaveBeenCalledWith(mockValues)
     })
   })
 })
