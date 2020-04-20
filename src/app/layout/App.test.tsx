@@ -7,10 +7,26 @@ import CartIcon from "features/ShoppingCart/CartIcon"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
 import { MockAuthProvider } from "common/utils/testing"
+import { GET_REFRESH_TOKEN } from "common/graphql/queries"
 
 describe("App component", () => {
+  const mocks = [
+    {
+      request: {
+        query: GET_REFRESH_TOKEN,
+        variables: {
+          token: "",
+        },
+      },
+      result: {
+        data: {
+          getRefreshToken: null,
+        },
+      },
+    },
+  ]
   const wrapper = mount(
-    <MockAuthProvider mocks={[]}>
+    <MockAuthProvider mocks={mocks}>
       <App />
     </MockAuthProvider>,
   )

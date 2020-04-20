@@ -3,11 +3,12 @@ import { shallow } from "enzyme"
 import SubmitPage from "./SubmitPage"
 import ShoppingCartItemList from "features/ShoppingCart/ShoppingCartItemList"
 import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
+import initialValues from "../utils/initialValues"
 
 describe("OrderForm/Submit/SubmitPage", () => {
   const props = {
-    pageNum: 2,
-    setPageNum: jest.fn(),
+    formData: initialValues,
+    prevStep: jest.fn(),
     setSubmitError: jest.fn(),
   }
   const wrapper = shallow(<SubmitPage {...props} />)
