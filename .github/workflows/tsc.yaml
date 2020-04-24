@@ -1,4 +1,4 @@
-name: ESLint
+name: TSC
 on: pull_request
 jobs:
   eslint:
@@ -12,5 +12,5 @@ jobs:
         uses: actions/checkout@v1
       - name: npm install
         run: npm install
-      - name: eslint
-        run: npm run lint
+      - name: tsc
+        run: npm run tsc
