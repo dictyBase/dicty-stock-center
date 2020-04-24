@@ -13,4 +13,6 @@ jobs:
       - name: npm install
         run: npm install
       - name: tsc
-        run: npm run tsc
+        run: |
+          mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
+          npm run tsc
