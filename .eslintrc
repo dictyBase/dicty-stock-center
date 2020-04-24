@@ -1,6 +1,7 @@
 {
-  "extends": ["react-app", "prettier", "plugin:cypress/recommended"],
-  "plugins": ["prettier", "import"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["react-app", "plugin:cypress/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "import", "prettier"],
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
