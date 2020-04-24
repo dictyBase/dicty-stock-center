@@ -4,7 +4,7 @@ describe("login", () => {
   it.skip("should successfully log into our app", () => {
     // cy.visit("/login")
     cy.login()
-      .then(resp => resp.body)
+      .then((resp) => resp.body)
       .then(() => {
         window.postMessage(
           {
@@ -15,7 +15,7 @@ describe("login", () => {
           "http://localhost:3000/login",
         )
       })
-      .then(body => {
+      .then((body) => {
         // const { access_token, expires_in, id_token } = body
         const auth0State = {
           nonce: "",

@@ -1,10 +1,6 @@
-import React from "react"
-import { renderHook } from "@testing-library/react-hooks"
-import {
-  catalogReducer,
-  useCatalogStore,
-  CatalogActionType,
-} from "./CatalogContext"
+// import React from "react"
+// import { renderHook } from "@testing-library/react-hooks"
+import { catalogReducer, CatalogActionType } from "./CatalogContext"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {

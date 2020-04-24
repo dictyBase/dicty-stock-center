@@ -1,6 +1,6 @@
-import React from "react"
-import { renderHook } from "@testing-library/react-hooks"
-import { authReducer, useAuthStore, ActionType } from "./AuthStore"
+// import React from "react"
+// import { renderHook } from "@testing-library/react-hooks"
+import { authReducer, ActionType } from "./AuthStore"
 
 const initialState = {
   isAuthenticated: false,

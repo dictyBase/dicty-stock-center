@@ -46,7 +46,7 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
       name="paymentMethod"
       onChange={handleChange}
       row>
-      {radioValues.map(item => (
+      {radioValues.map((item) => (
         <FormControlLabel
           key={item.value}
           value={item.value}

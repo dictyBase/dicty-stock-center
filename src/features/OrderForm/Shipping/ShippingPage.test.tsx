@@ -41,7 +41,6 @@ const mockValues = {
 
 const mockSetFormData = jest.fn()
 const mockNextStep = jest.fn()
-const mockPrevStep = jest.fn()
 
 jest.mock("formik", () => ({
   ...jest.requireActual("formik"),

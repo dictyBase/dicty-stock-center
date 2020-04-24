@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 
 type Props = {
   /** The title of the page (either Strain Catalog or Plasmid Catalog) */
-  title: string,
+  title: string
 }
 
 /**

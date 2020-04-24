@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   panelGray: {
     backgroundColor: "#f2f2f2",
     border: "1px solid #f2f2f2",

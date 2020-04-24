@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarHelp from "./AppBarHelp"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   icon: {
     color: "#fff",
     paddingRight: "5px",
@@ -37,13 +37,13 @@ const AppBarRightMenu = () => {
       <IconButton
         size="small"
         className={classes.icon}
-        onClick={event => setAnchorEl(event.currentTarget)}
+        onClick={(event) => setAnchorEl(event.currentTarget)}
         title="More options"
         aria-label="More options for stock catalog page">
         <FontAwesomeIcon icon="ellipsis-v" />
       </IconButton>
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {dropdownItems.map(item => (
+        {dropdownItems.map((item) => (
           <MenuItem
             key={item}
             onClick={handleClose}

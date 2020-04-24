@@ -1,11 +1,8 @@
 import timeSince from "./timeSince"
 
-let realDate
-
 describe("utils/timeSince", () => {
   // Setup
   const currentDate = new Date("2020-01-02T11:01:58.135Z")
-  realDate = Date
   // @ts-ignore
   global.Date = class extends Date {
     constructor(date: any) {

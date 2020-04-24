@@ -1,10 +1,6 @@
-import React from "react"
-import { renderHook } from "@testing-library/react-hooks"
-import {
-  appBarReducer,
-  useAppBarStore,
-  AppBarActionType,
-} from "./AppBarContext"
+// import React from "react"
+// import { renderHook } from "@testing-library/react-hooks"
+import { appBarReducer, AppBarActionType } from "./AppBarContext"
 
 describe("Stocks/Catalogs/common/AppBar/AppBarContext", () => {
   describe("appBarReducer", () => {

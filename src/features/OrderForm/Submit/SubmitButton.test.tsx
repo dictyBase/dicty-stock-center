@@ -112,24 +112,6 @@ const updateConsumerVariables = {
   },
 }
 
-const createPayerVariables = {
-  input: {
-    first_name: mockValues.payerFirstName,
-    last_name: mockValues.payerLastName,
-    email: mockValues.payerEmail,
-    organization: mockValues.payerOrganization,
-    group_name: mockValues.payerLab,
-    first_address: mockValues.payerAddress1,
-    second_address: mockValues.payerAddress2,
-    city: mockValues.payerCity,
-    state: mockValues.payerState,
-    zipcode: mockValues.payerZip,
-    country: mockValues.payerCountry,
-    phone: mockValues.payerPhone,
-    is_active: true,
-  },
-}
-
 const updatePayerVariables = {
   id: "999",
   input: {

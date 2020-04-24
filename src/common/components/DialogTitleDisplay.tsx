@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   dialogTitle: {
     backgroundColor: "#0059b3",
     color: "#fff",

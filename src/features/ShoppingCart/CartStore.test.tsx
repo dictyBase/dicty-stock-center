@@ -1,6 +1,6 @@
-import React from "react"
-import { renderHook } from "@testing-library/react-hooks"
-import { cartReducer, useCartStore, CartActionType } from "./CartStore"
+// import React from "react"
+// import { renderHook } from "@testing-library/react-hooks"
+import { cartReducer, CartActionType } from "./CartStore"
 
 const storageKey = "dscCart"
 const maxKey = "dscMaxItems"

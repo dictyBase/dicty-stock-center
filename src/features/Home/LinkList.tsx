@@ -21,7 +21,9 @@ const LinkList = ({ list, bgColor }: Props) => {
   const classes = useStyles()
 
   // add simple header if the link list is for downloads panel
-  const isDownloadPanel = list.some(item => item.name === "Phenotype Ontology")
+  const isDownloadPanel = list.some(
+    (item) => item.name === "Phenotype Ontology",
+  )
 
   return (
     <div className={bgColor === "gray" ? classes.panelGray : classes.panelBlue}>

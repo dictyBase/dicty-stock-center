@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles"
 import Button from "@material-ui/core/Button"
 import DialogActions from "@material-ui/core/DialogActions"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   cartDialogButton: {
     backgroundColor: "#0059b3",
     color: "#fff",

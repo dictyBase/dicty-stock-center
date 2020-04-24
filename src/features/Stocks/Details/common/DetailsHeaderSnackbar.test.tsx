@@ -4,10 +4,9 @@ import DetailsHeaderSnackbar from "./DetailsHeaderSnackbar"
 import SnackbarContent from "@material-ui/core/SnackbarContent"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import sinon from "sinon"
 
 describe("Stocks/Details/common/DetailsHeaderSnackbar", () => {
-  const setSnackbarOpenSpy = sinon.spy()
+  const setSnackbarOpenSpy = jest.fn()
   const props = {
     id: "DBS0351367",
     setSnackbarOpen: setSnackbarOpenSpy,
@@ -22,11 +21,8 @@ describe("Stocks/Details/common/DetailsHeaderSnackbar", () => {
   })
   describe("button clicking", () => {
     it("calls correct function on button click", () => {
-      wrapper
-        .find(IconButton)
-        .first()
-        .simulate("click")
-      expect(setSnackbarOpenSpy.calledOnce).toBe(true)
+      wrapper.find(IconButton).first().simulate("click")
+      expect(setSnackbarOpenSpy).toHaveBeenCalledTimes(1)
     })
   })
 })

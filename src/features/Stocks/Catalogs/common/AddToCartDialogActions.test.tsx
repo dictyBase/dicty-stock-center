@@ -24,10 +24,7 @@ describe("Stocks/Catalogs/common/AddToCartDialogActions", () => {
         handleClose: handleCloseSpy,
       }
       const wrapper = shallow(<AddToCartDialogActions {...props} />)
-      wrapper
-        .find(Button)
-        .first()
-        .simulate("click")
+      wrapper.find(Button).first().simulate("click")
       expect(handleCloseSpy).toHaveBeenCalled()
     })
   })
