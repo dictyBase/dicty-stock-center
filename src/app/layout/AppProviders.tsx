@@ -34,7 +34,7 @@ const createClient = async (token: string) => {
   const link = authLink.concat(
     createHttpLink({
       uri: `${process.env.REACT_APP_GRAPHQL_SERVER}/graphql`,
-      credentials: "same-origin",
+      credentials: "include",
     }),
   )
   // )
