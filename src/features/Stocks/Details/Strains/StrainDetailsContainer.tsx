@@ -29,9 +29,9 @@ const StrainDetailsContainer = () => {
 
   const label = characterConverter(data.strain.label)
   let title = `Strain Details for ${label}`
-  // if (data.strain.phenotypes.length > 0) {
-  //   title = `Phenotype and Strain Details for ${data.strain.label}`
-  // }
+  if (data.strain.phenotypes.length > 0) {
+    title = `Phenotype and Strain Details for ${data.strain.label}`
+  }
 
   return (
     <Grid container className={classes.root} spacing={2} justify="center">

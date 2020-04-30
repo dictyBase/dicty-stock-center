@@ -99,23 +99,19 @@ const GET_STRAIN = gql`
       genetic_modification
       names
       characteristics
-    }
-  }
-`
-
-/**
- * query will still need these from annotations:
       phenotypes {
         phenotype
         note
         assay
         environment
         publication {
-         doi
-         id
+          doi
+          id
         }
       }
- */
+    }
+  }
+`
 
 const GET_CONTENT_BY_SLUG = gql`
   query contentBySlug($slug: String!) {

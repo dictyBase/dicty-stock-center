@@ -8,6 +8,7 @@ import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import PhenotypeList from "./Phenotypes/PhenotypeList"
 import useStyles from "features/Stocks/Details/styles"
 import TabPanel from "common/components/TabPanel"
+import { PhenotypeData } from "../types/props"
 
 type Props = {
   /** Rows of strain data to display */
@@ -18,6 +19,8 @@ type Props = {
   }>
   /** Strain species */
   species: string
+  /** List of phenotypes */
+  phenotypes: Array<PhenotypeData>
 }
 
 /**
@@ -25,7 +28,7 @@ type Props = {
  * strain details page (tab version).
  */
 
-const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
+const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -43,7 +46,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
                 value={value}
                 handleChange={handleChange}
                 species={species}
-                phenotypeLength={3}
+                phenotypeLength={phenotypes.length}
               />
             </ListItem>
             <TabPanel value={value} index={0}>
@@ -52,7 +55,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species }: Props) => {
               ))}
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <PhenotypeList />
+              <PhenotypeList phenotypes={phenotypes} />
             </TabPanel>
           </List>
         </Grid>

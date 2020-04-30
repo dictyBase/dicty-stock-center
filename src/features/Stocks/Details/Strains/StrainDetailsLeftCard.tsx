@@ -96,7 +96,13 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     <GenesDisplay genes={data.genes} />,
   )
 
-  return <StrainDetailsLeftCardDisplay rows={rows} species={data.species} />
+  return (
+    <StrainDetailsLeftCardDisplay
+      rows={rows}
+      species={data.species}
+      phenotypes={data.phenotypes}
+    />
+  )
 }
 
 export default StrainDetailsLeftCard
