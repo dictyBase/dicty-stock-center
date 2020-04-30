@@ -67,31 +67,37 @@ const StrainDetailsLeftCardHeader = ({
     wrapper: classes.wrapper,
   }
 
+  let content = <Typography variant="h6">Strain Details</Typography>
+
+  if (phenotypeLength > 0) {
+    content = (
+      <Tabs
+        classes={{ indicator: classes.indicator }}
+        value={value}
+        onChange={handleChange}
+        aria-label="strain details tabs">
+        <Tab
+          classes={tabStyles}
+          label={<Typography variant="body1">Strain Details</Typography>}
+          {...a11yProps(0)}
+        />
+        <Tab
+          classes={tabStyles}
+          label={
+            <Typography variant="body1">
+              Phenotypes ({phenotypeLength})
+            </Typography>
+          }
+          {...a11yProps(1)}
+        />
+      </Tabs>
+    )
+  }
+
   return (
     <Grid item xs={12}>
       <Grid container justify="space-between" alignItems="center">
-        <Grid item>
-          <Tabs
-            classes={{ indicator: classes.indicator }}
-            value={value}
-            onChange={handleChange}
-            aria-label="strain details tabs">
-            <Tab
-              classes={tabStyles}
-              label={<Typography variant="body1">Strain Details</Typography>}
-              {...a11yProps(0)}
-            />
-            <Tab
-              classes={tabStyles}
-              label={
-                <Typography variant="body1">
-                  Phenotypes ({phenotypeLength})
-                </Typography>
-              }
-              {...a11yProps(1)}
-            />
-          </Tabs>
-        </Grid>
+        <Grid item>{content}</Grid>
         <Grid item>
           <Typography variant="body1">{species}</Typography>
         </Grid>
