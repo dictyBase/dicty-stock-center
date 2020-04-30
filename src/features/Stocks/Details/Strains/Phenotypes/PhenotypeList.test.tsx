@@ -3,9 +3,10 @@ import { mount } from "enzyme"
 import PhenotypeList from "./PhenotypeList"
 import PhenotypeListListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
+import { data } from "./mockPhenotypeData"
 
 describe("Stocks/Details/Strains/Phenotypes/PhenotypeList", () => {
-  const wrapper = mount(<PhenotypeList />)
+  const wrapper = mount(<PhenotypeList phenotypes={data} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
       expect(wrapper.find(PhenotypeListListHeader)).toHaveLength(1)

@@ -9,6 +9,7 @@ import StrainDetailsLeftCardHeader from "features/Stocks/Details/Strains/StrainD
 import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import PhenotypeList from "./Phenotypes/PhenotypeList"
 import TabPanel from "common/components/TabPanel"
+import { data } from "./Phenotypes/mockPhenotypeData"
 
 describe("Stock/Details/Strains/StrainDetailsLeftCardDisplay", () => {
   const props = {
@@ -20,6 +21,7 @@ describe("Stock/Details/Strains/StrainDetailsLeftCardDisplay", () => {
         content: "Test descriptor",
       },
     ],
+    phenotypes: data,
   }
   const wrapper = shallow(<StrainDetailsLeftCardDisplay {...props} />)
   describe("initial render", () => {

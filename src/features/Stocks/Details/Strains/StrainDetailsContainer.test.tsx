@@ -10,9 +10,9 @@ import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries"
-import { data } from "./mockStrainData"
+import { strainWithPhenotype } from "./mockStrainData"
 
-const mockID = "DBS0236123"
+const mockID = "DBS0350966"
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => ({
@@ -32,7 +32,7 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
         },
         result: {
           data: {
-            strain: data,
+            strain: strainWithPhenotype,
           },
         },
       },
@@ -56,6 +56,7 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       expect(wrapper.find(StrainDetailsLeftCard)).toHaveLength(1)
     })
   })
+
   describe("error handling", () => {
     const mocks = [
       {
