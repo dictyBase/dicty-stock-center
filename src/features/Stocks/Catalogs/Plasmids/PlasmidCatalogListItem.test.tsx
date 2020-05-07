@@ -17,6 +17,7 @@ describe("Stocks/Plasmids/Catalog/PlasmidCatalogListItem", () => {
             id: "DBP1234",
             name: "test plasmid",
             summary: "test summary",
+            in_stock: true,
           },
         ],
       },

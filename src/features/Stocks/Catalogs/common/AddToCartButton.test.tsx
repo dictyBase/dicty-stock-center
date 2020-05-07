@@ -21,6 +21,7 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
         summary: "this is a test summary",
       },
     ],
+    inStock: true,
     setCheckedItems: jest.fn(),
   }
   const wrapper = mount(

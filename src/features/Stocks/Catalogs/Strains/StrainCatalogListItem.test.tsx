@@ -17,6 +17,7 @@ describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
             id: "DBS1234",
             label: "test strain",
             summary: "test summary",
+            in_stock: true,
           },
         ],
       },

@@ -11,6 +11,7 @@ const cartData = {
   id: "DBS123456",
   name: "test strain",
   summary: "a test strain summary",
+  in_stock: true,
 }
 
 describe("hooks/useCheckboxes", () => {
