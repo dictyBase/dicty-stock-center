@@ -46,6 +46,7 @@ const CatalogListHeader = ({ stockType }: Props) => {
     id: "",
     name: "",
     summary: "",
+    in_stock: false,
   })
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length

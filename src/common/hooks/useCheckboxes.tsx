@@ -10,6 +10,8 @@ type cartDataType = {
   name: string
   /** Summary of stock */
   summary: string
+  /** Stock inventory status */
+  in_stock: boolean
 }
 
 /**

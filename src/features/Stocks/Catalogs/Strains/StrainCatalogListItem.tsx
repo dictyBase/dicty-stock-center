@@ -29,7 +29,11 @@ const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
     name: strain.label,
     summary: strain.summary,
   }
-  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
+  const checkboxData = {
+    ...cartData,
+    in_stock: strain.in_stock,
+  }
+  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
   const [{ addedItems }] = useCartStore()
   const { removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
@@ -45,17 +49,15 @@ const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
       <Grid container spacing={0} alignItems="center">
         <Hidden smDown>
           <Grid item md={1}>
-            {strain.in_stock && (
-              <Checkbox
-                checked={itemIsChecked}
-                onChange={handleCheckboxChange}
-                color="default"
-                value={strain.id}
-                inputProps={{
-                  "aria-label": "Strain catalog checkbox",
-                }}
-              />
-            )}
+            <Checkbox
+              checked={itemIsChecked}
+              onChange={handleCheckboxChange}
+              color="default"
+              value={strain.id}
+              inputProps={{
+                "aria-label": "Strain catalog checkbox",
+              }}
+            />
           </Grid>
         </Hidden>
         <Grid item xs={8} sm={4} md={3} className={classes.item}>

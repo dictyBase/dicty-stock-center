@@ -6,6 +6,7 @@ import AddToCartButton from "./AddToCartButton"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
 import { useCartStore } from "features/ShoppingCart/CartStore"
+import { CartItem } from "../types/cart"
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -25,13 +26,18 @@ const CatalogListHeaderButtons = () => {
     id: "",
     name: "",
     summary: "",
+    in_stock: false,
   })
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
   let cartButtonDisplay = true
+  const maxItems = addedItems.length + checkedItemsLength > 12
+  const includesUnavailableStocks = checkedItems.some(
+    (item: CartItem) => item.in_stock === false,
+  )
 
-  if (addedItems.length + checkedItemsLength > 12) {
+  if (maxItems || includesUnavailableStocks) {
     cartButtonDisplay = false
   }
 

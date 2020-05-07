@@ -33,7 +33,11 @@ const PlasmidCatalogListItem = ({
     name: plasmid.name,
     summary: plasmid.summary,
   }
-  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(cartData)
+  const checkboxData = {
+    ...cartData,
+    in_stock: plasmid.in_stock,
+  }
+  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
   const [{ addedItems }] = useCartStore()
   const { removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
@@ -49,17 +53,15 @@ const PlasmidCatalogListItem = ({
       <Grid container spacing={0} alignItems="center">
         <Hidden smDown>
           <Grid item md={1}>
-            {plasmid.in_stock && (
-              <Checkbox
-                checked={itemIsChecked}
-                onChange={handleCheckboxChange}
-                color="default"
-                value={plasmid.id}
-                inputProps={{
-                  "aria-label": "Plasmid catalog checkbox",
-                }}
-              />
-            )}
+            <Checkbox
+              checked={itemIsChecked}
+              onChange={handleCheckboxChange}
+              color="default"
+              value={plasmid.id}
+              inputProps={{
+                "aria-label": "Plasmid catalog checkbox",
+              }}
+            />
           </Grid>
         </Hidden>
         <Grid item xs={8} sm={3} md={2} className={classes.item}>

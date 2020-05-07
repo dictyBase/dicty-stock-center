@@ -4,6 +4,7 @@ export type CartItem = {
   id: string
   summary: string
   type?: string
+  in_stock?: boolean
 }
 
 export type AddToCartProps = {
