@@ -7,5 +7,5 @@ const data = [
     type: "strain",
   },
 ]
-;<AddToCartButton data={data} />
+;<AddToCartButton data={data} inStock={true} />
 ```
