@@ -1,9 +1,9 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles"
 import IconButton from "@material-ui/core/IconButton"
-import Tooltip from "@material-ui/core/Tooltip"
 import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import UnavailableButton from "./UnavailableButton"
 import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
@@ -20,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
  * for purchase.
  */
 
-export const AddToCartButton = ({ data, setCheckedItems }: AddToCartProps) => {
+export const AddToCartButton = ({
+  data,
+  inStock,
+  setCheckedItems,
+}: AddToCartProps) => {
   const [{ showCartDialog, maxItemsInCart }] = useCartStore()
   const { addToCart } = useCartItems(data)
   const classes = useStyles()
@@ -36,19 +40,12 @@ export const AddToCartButton = ({ data, setCheckedItems }: AddToCartProps) => {
     </IconButton>
   )
 
+  if (!inStock) {
+    button = <UnavailableButton title="Item is currently unavailable" />
+  }
+
   if (maxItemsInCart) {
-    button = (
-      <Tooltip title="Shopping cart is full">
-        <span>
-          <IconButton disabled size="medium" aria-label="Shopping cart is full">
-            <span className="fa-layers fa-fw">
-              <FontAwesomeIcon icon="cart-plus" />
-              <FontAwesomeIcon icon="slash" />
-            </span>
-          </IconButton>
-        </span>
-      </Tooltip>
-    )
+    button = <UnavailableButton title="Shopping cart is full" />
   }
 
   return (

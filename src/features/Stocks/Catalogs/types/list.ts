@@ -6,6 +6,7 @@ export type strainListItemProps = {
       label: string
       id: string
       summary: string
+      in_stock: boolean
     }>
   }
   cartItems?: Array<Object>
@@ -20,6 +21,7 @@ export type plasmidListItemProps = {
       name: string
       id: string
       summary: string
+      in_stock: boolean
     }>
   }
   cartItems?: Array<Object>

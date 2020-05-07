@@ -4,14 +4,29 @@ import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
 import { useCartStore, CartActionType } from "features/ShoppingCart/CartStore"
-import { AddToCartProps } from "../types/cart"
+
+type Props = {
+  /** Strain data */
+  data: Array<{
+    /** Strain ID number */
+    id: string
+    /** Strain label (name) */
+    name: string
+    /** Strain summary */
+    summary: string
+    /** strain or plasmid */
+    type?: string
+  }>
+  /** Function to add to checked items array */
+  setCheckedItems?: Function
+}
 
 /**
  * AddToCartDialog is the dialog box that appears when an item
  * is added to the cart.
  */
 
-export const AddToCartDialog = ({ data, setCheckedItems }: AddToCartProps) => {
+export const AddToCartDialog = ({ data, setCheckedItems }: Props) => {
   const [, dispatch] = useCartStore()
 
   const handleClose = () => {

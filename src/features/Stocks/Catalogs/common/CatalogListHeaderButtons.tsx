@@ -42,6 +42,7 @@ const CatalogListHeaderButtons = () => {
         <AddToCartButton
           data={checkedItems}
           setCheckedItems={resetCheckedItems}
+          inStock={true}
         />
       )}
       <IconButton

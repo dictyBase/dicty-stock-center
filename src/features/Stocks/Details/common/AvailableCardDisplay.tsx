@@ -69,7 +69,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
             </MenuItem>
           ))}
         </TextField>
-        <AddToCartButton data={Array(quantity).fill(cartData)} />
+        <AddToCartButton data={Array(quantity).fill(cartData)} inStock={true} />
       </>
     )
   }

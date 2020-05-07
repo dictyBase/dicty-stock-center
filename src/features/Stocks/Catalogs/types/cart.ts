@@ -18,6 +18,8 @@ export type AddToCartProps = {
     /** strain or plasmid */
     type?: string
   }>
+  /** Stock inventory status */
+  inStock: boolean
   /** Function to add to checked items array */
   setCheckedItems?: Function
 }

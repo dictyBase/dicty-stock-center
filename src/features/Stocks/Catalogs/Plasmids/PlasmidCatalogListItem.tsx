@@ -49,15 +49,17 @@ const PlasmidCatalogListItem = ({
       <Grid container spacing={0} alignItems="center">
         <Hidden smDown>
           <Grid item md={1}>
-            <Checkbox
-              checked={itemIsChecked}
-              onChange={handleCheckboxChange}
-              color="default"
-              value={plasmid.id}
-              inputProps={{
-                "aria-label": "Plasmid catalog checkbox",
-              }}
-            />
+            {plasmid.in_stock && (
+              <Checkbox
+                checked={itemIsChecked}
+                onChange={handleCheckboxChange}
+                color="default"
+                value={plasmid.id}
+                inputProps={{
+                  "aria-label": "Plasmid catalog checkbox",
+                }}
+              />
+            )}
           </Grid>
         </Hidden>
         <Grid item xs={8} sm={3} md={2} className={classes.item}>
@@ -81,7 +83,7 @@ const PlasmidCatalogListItem = ({
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton data={[cartData]} />
+                <AddToCartButton data={[cartData]} inStock={plasmid.in_stock} />
                 {itemIsInCart(addedItems, plasmid.id) && (
                   <IconButton
                     size="medium"
