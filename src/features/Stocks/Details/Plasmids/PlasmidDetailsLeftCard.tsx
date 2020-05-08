@@ -10,8 +10,8 @@ import {
 const plasmidRowGenerator = (
   data: PlasmidDetails,
   imageMap: any,
-  publications: any,
-  genes: any,
+  publications: JSX.Element,
+  genes: JSX.Element,
 ) => [
   {
     id: 0,

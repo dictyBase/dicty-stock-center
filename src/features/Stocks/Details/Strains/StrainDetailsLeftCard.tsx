@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
-import characterConverter from "features/Stocks/utils/characterConverter"
 import {
   StrainDetails,
   StrainDetailsProps,
@@ -12,13 +11,13 @@ import {
 const strainRowsGenerator = (
   data: StrainDetails,
   parent: any,
-  publications: any,
-  genes: any,
+  publications: JSX.Element,
+  genes: JSX.Element,
 ) => [
   {
     id: 0,
     title: "Strain Descriptor",
-    content: characterConverter(data.label),
+    content: data.label,
   },
   {
     id: 1,
@@ -86,7 +85,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   const parent = data.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
   ) : (
-    "N/A"
+    ""
   )
 
   const rows = strainRowsGenerator(
