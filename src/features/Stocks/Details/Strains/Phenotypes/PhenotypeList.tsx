@@ -19,9 +19,11 @@ const PhenotypeList = ({ phenotypes }: Props) => {
   return (
     <Paper className={classes.paper}>
       <PhenotypeListListHeader />
-      {phenotypes.map((item, index) => (
-        <PhenotypeListItem key={index} data={item} />
-      ))}
+      {phenotypes
+        .sort((a, b) => a.phenotype.localeCompare(b.phenotype))
+        .map((item, index) => (
+          <PhenotypeListItem key={index} data={item} />
+        ))}
     </Paper>
   )
 }

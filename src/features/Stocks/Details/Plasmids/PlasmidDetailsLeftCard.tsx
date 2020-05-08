@@ -41,7 +41,7 @@ const plasmidRowGenerator = (
   {
     id: 5,
     title: "Keywords",
-    content: data.keywords,
+    content: data.keywords.sort().join(", "),
   },
   {
     id: 6,
