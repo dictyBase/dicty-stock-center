@@ -10,6 +10,13 @@ const publications = [
   },
 ]
 
+const pubsNoDOI = [
+  {
+    id: "123456",
+    doi: "",
+  },
+]
+
 describe("hooks/useDOI", () => {
   beforeEach(() => {
     globalAny.fetch = jest.fn().mockImplementation(
@@ -50,6 +57,18 @@ describe("hooks/useDOI", () => {
     expect(result.current.data).toEqual([
       {
         data: "this is test data",
+        id: "123456",
+      },
+    ])
+  })
+
+  it("does not error if DOI string is empty", async () => {
+    let { result } = renderHook(() => useDOI(pubsNoDOI))
+    expect(result.current.loading).toEqual(false)
+    expect(result.current.error).toEqual(null)
+    expect(result.current.data).toEqual([
+      {
+        data: "123456 ",
         id: "123456",
       },
     ])
