@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DetailsHeaderCopyIcon from "./DetailsHeaderCopyIcon"
-import characterConverter from "features/Stocks/utils/characterConverter"
+import characterConverter from "common/utils/characterConverter"
 import useStyles from "features/Stocks/Details/styles"
 
 type Props = {

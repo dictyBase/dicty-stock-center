@@ -9,7 +9,7 @@ import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import StrainDetailsRightColumn from "./StrainDetailsRightColumn"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN } from "common/graphql/queries"
-import characterConverter from "features/Stocks/utils/characterConverter"
+import characterConverter from "common/utils/characterConverter"
 import useStyles from "features/Stocks/Details/styles"
 
 /**
