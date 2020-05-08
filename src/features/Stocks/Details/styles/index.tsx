@@ -21,6 +21,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     textTransform: "none",
   },
   cardHeader: {
+    paddingTop: "5px",
     color: "#002f5e",
   },
   details: {
@@ -41,8 +42,8 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     padding: "0px !important",
   },
   availabilityCard: {
-    paddingTop: "5px",
     textAlign: "center",
+    borderRadius: "0px",
   },
   cartBtnRow: {
     padding: "16px",
@@ -142,6 +143,11 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   moreInfoText: {
     marginTop: "4px",
     fontSize: "0.75rem",
+  },
+  unavailableContainer: {
+    backgroundColor: "rgb(253, 236, 234)",
+    border: "1px solid #cc0000",
+    color: "rgb(97, 26, 21)",
   },
 }))
 

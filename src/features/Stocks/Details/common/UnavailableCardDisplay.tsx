@@ -1,28 +1,21 @@
 import React from "react"
-import useStyles from "features/Stocks/Details/styles"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import useStyles from "features/Stocks/Details/styles"
 
 const UnavailableCardDisplay = () => {
   const classes = useStyles()
 
   return (
-    <div>
-      <Typography variant="h6" className={classes.cardHeader}>
+    <div className={classes.unavailableContainer}>
+      <Typography variant="h6">
         <FontAwesomeIcon icon="times" className={classes.unavailableIcon} />
         Unavailable
       </Typography>
       <Divider />
       <Typography variant="body2" className={classes.unavailableText}>
         This item is currently unavailable at the Dicty Stock Center.
-        <br />
-        <br />
-        If you would like to receive this stock from the DSC,{" "}
-        <a className={classes.link} href="mailto:dictystocks@northwestern.edu">
-          send us an email
-        </a>{" "}
-        and we will contact the depositor.
       </Typography>
     </div>
   )
