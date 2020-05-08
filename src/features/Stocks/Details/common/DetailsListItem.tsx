@@ -24,7 +24,9 @@ const DetailsListItem = ({ data }: Props) => {
         </Typography>
       </Grid>
       <Grid item xs={12} sm={9}>
-        <Typography variant="body1">{data.content}</Typography>
+        <Typography component={"span"} variant="body1">
+          {data.content}
+        </Typography>
       </Grid>
     </ListItem>
   )

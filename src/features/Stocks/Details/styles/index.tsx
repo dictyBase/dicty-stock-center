@@ -149,6 +149,9 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     border: "1px solid #cc0000",
     color: "rgb(97, 26, 21)",
   },
+  error: {
+    color: "#cc0000",
+  },
 }))
 
 export default useStyles

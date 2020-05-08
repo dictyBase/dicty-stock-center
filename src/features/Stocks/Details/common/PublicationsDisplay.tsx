@@ -26,7 +26,7 @@ const PublicationsDisplay = ({ publications }: Props) => {
   }
 
   if (error) {
-    return <div>Error fetching publication data</div>
+    return <div className={classes.error}>Error fetching publication data</div>
   }
 
   return (
