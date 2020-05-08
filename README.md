@@ -65,9 +65,13 @@ After setting up the login providers, you can run `npm install` and `npm start` 
 This app requires the following services to be running:
 
 - [graphql-server](https://github.com/dictyBase/graphql-server)
-- [modware-content](https://github.com/dictyBase/modware-content)
-- [modware-user](https://github.com/dictyBase/modware-user) (used for login)
 - [modware-auth](https://github.com/dictyBase/modware-auth)
+- [modware-annotation](https://github.com/dictyBase/modware-annotation)
+- [modware-content](https://github.com/dictyBase/modware-content)
+- [modware-identity](https://github.com/dictyBase/modware-identity)
+- [modware-order](https://github.com/dictyBase/modware-order)
+- [modware-stock](https://github.com/dictyBase/modware-stock)
+- [modware-user](https://github.com/dictyBase/modware-user)
 
 It also relies on the navbar and footer JSON files found in the
 [migration-data](https://github.com/dictyBase/migration-data) repository. An example
