@@ -47,7 +47,11 @@ const useDOI = (publications: publicationType) => {
     }
 
     publications.forEach((item) => {
-      fetchData(item.doi, item.id)
+      if (item.doi !== "") {
+        fetchData(item.doi, item.id)
+      } else {
+        setData((data) => [...data, { id: item.id, data: `${item.id} ` }])
+      }
     })
 
     // prevent unnecessary refetching
