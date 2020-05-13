@@ -63,13 +63,12 @@ describe("OrderForm/OrderForm", () => {
     })
   })
   describe("display for default switch case", () => {
-    const realUseState = React.useState
-    jest
+    // @ts-ignore
+    React.useState = jest
       .spyOn(React, "useState")
-      // @ts-ignore
-      .mockImplementationOnce(() => realUseState(4))
-      .mockImplementationOnce(() => realUseState(initialValues))
-      .mockImplementationOnce(() => realUseState(false))
+      .mockImplementationOnce(() => [4, jest.fn()])
+      .mockImplementationOnce(() => [initialValues, jest.fn()])
+      .mockImplementationOnce(() => [false, jest.fn()])
     const wrapper = shallow(<OrderForm />)
     it("always renders initial components", () => {
       expect(wrapper.find(Helmet)).toHaveLength(1)
