@@ -61,8 +61,7 @@ const AvailableCardDisplay = ({ cartData }: Props) => {
           value={quantity}
           onChange={handleChange}
           margin="dense"
-          variant="outlined"
-          inputProps={{ className: classes.textField }}>
+          variant="outlined">
           {values.map((option) => (
             <MenuItem key={option} value={option}>
               {option}

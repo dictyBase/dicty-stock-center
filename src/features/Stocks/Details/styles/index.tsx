@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import { green } from "@material-ui/core/colors"
 
 // @ts-ignore
-const useStyles = makeStyles(({ palette, spacing }) => ({
+const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   root: {
     width: "90%",
     margin: "auto",
