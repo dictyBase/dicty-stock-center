@@ -1,7 +1,7 @@
 name: TSC
 on: pull_request
 jobs:
-  eslint:
+  tsc:
     runs-on: ubuntu-18.04
     steps:
       - name: set up node.js
