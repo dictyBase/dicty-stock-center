@@ -11,6 +11,8 @@ jobs:
           node-version: 12.x
       - name: check out code
         uses: actions/checkout@v2
+      - name: add yarn global bin to path
+        run: echo "::add-path::$(yarn global bin)"
       - name: set up app
         run: |
           cp package.json package-dev.json && rm package.json
