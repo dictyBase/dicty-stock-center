@@ -10,19 +10,20 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # copy only necessary files
-COPY package*.json ./
+COPY package.json ./
 COPY tsconfig.json ./
+COPY yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 # add necessary folders
-ADD src src
-ADD public public
+COPY src src
+COPY public public
 
 # overwrite the client key file
 ADD $CLIENT_KEYS /usr/src/app/src/common/utils/clientConfig.ts
 
-RUN npm run build
+RUN yarn build
 
 FROM dictybase/static-server:develop-09ee139
 RUN mkdir /www
