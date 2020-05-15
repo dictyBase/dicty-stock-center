@@ -8,12 +8,16 @@ import clientConfig from "common/utils/clientConfig"
 
 const mockHistoryPush = jest.fn()
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
-}))
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+
+  return {
+    ...originalModule,
+    useHistory: () => ({
+      push: mockHistoryPush,
+    }),
+  }
+})
 
 describe("authentication/OauthSignHandler", () => {
   // set up mocks for window event listeners

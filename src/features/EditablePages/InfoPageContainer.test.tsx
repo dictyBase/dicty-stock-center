@@ -10,13 +10,18 @@ import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
 import { MockAuthProvider } from "common/utils/testing"
 
 window.getSelection = jest.fn()
+const mockName = "payment"
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
-  useParams: () => ({
-    name: "payment",
-  }),
-}))
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+
+  return {
+    ...originalModule,
+    useParams: () => ({
+      name: mockName,
+    }),
+  }
+})
 
 describe("EditablePages/InfoPageContainer", () => {
   describe("initial render", () => {
@@ -46,7 +51,7 @@ describe("EditablePages/InfoPageContainer", () => {
                   },
                 ],
               }),
-              name: "payment",
+              name: mockName,
               slug: "dsc-payment",
               updated_by: {
                 id: "1",

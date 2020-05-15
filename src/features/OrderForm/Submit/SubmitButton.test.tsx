@@ -50,12 +50,16 @@ const mockValues = {
 const mockHistoryPush = jest.fn()
 
 jest.mock("common/hooks/useCartItems")
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
-}))
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+
+  return {
+    ...originalModule,
+    useHistory: () => ({
+      push: mockHistoryPush,
+    }),
+  }
+})
 
 const mockedUseCartItems = useCartItems as jest.Mock
 mockedUseCartItems.mockReturnValue({

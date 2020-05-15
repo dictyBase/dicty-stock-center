@@ -6,16 +6,20 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 
 const mockSetFieldValue = jest.fn()
 
-jest.mock("formik", () => ({
-  ...jest.requireActual("formik"),
-  useFormikContext: () => ({
-    setFieldValue: mockSetFieldValue,
-    handleChange: jest.fn(),
-    values: {
-      paymentMethod: "credit",
-    },
-  }),
-}))
+jest.mock("formik", () => {
+  const originalModule = jest.requireActual("formik")
+
+  return {
+    ...originalModule,
+    useFormikContext: () => ({
+      setFieldValue: mockSetFieldValue,
+      handleChange: jest.fn(),
+      values: {
+        paymentMethod: "credit",
+      },
+    }),
+  }
+})
 
 describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
   const setPurchaseOrderNumSpy = jest.fn()

@@ -13,13 +13,19 @@ import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_PLASMID } from "common/graphql/queries"
 import { data } from "./mockPlasmidData"
 
+const mockID = "DBS0236123"
+
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
-  useParams: () => ({
-    id: "DBS0236123",
-  }),
-}))
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+
+  return {
+    ...originalModule,
+    useParams: () => ({
+      id: mockID,
+    }),
+  }
+})
 
 describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
   describe("initial render", () => {
@@ -27,7 +33,7 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       {
         request: {
           query: GET_PLASMID,
-          variables: { id: "DBS0236123" },
+          variables: { id: mockID },
         },
         result: {
           data: {

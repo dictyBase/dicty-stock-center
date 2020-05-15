@@ -15,12 +15,16 @@ import { strainWithPhenotype } from "./mockStrainData"
 const mockID = "DBS0350966"
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
-  useParams: () => ({
-    id: mockID,
-  }),
-}))
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+
+  return {
+    ...originalModule,
+    useParams: () => ({
+      id: mockID,
+    }),
+  }
+})
 
 describe("Stocks/Strains/StrainDetailsContainer", () => {
   describe("initial render", () => {

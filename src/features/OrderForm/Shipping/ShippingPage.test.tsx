@@ -42,12 +42,16 @@ const mockValues = {
 const mockSetFormData = jest.fn()
 const mockNextStep = jest.fn()
 
-jest.mock("formik", () => ({
-  ...jest.requireActual("formik"),
-  useFormikContext: () => ({
-    values: mockValues,
-  }),
-}))
+jest.mock("formik", () => {
+  const originalModule = jest.requireActual("formik")
+
+  return {
+    ...originalModule,
+    useFormikContext: () => ({
+      values: mockValues,
+    }),
+  }
+})
 
 describe("OrderForm/Shipping/ShippingPage", () => {
   const props = {
