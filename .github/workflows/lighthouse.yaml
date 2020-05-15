@@ -5,12 +5,12 @@ jobs:
     name: Lighthouse CI
     runs-on: ubuntu-18.04
     steps:
-      - name: Use Node.js 10.x
+      - name: set up node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: 12.x
       - name: check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: set up app
         run: |
           cp package.json package-dev.json && rm package.json
@@ -18,12 +18,12 @@ jobs:
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
       - name: run build
         run: |
-          npm ci
-          npm i -g serve
-          npm run build
+          yarn install
+          yarn global add serve
+          yarn build
       - name: run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.3.x
+          yarn global add @lhci/cli@0.3.x
           lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

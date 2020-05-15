@@ -7,12 +7,12 @@ jobs:
       - name: set up node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: 12.x
       - name: check out code
-        uses: actions/checkout@v1
-      - name: npm install
-        run: npm install
+        uses: actions/checkout@v2
+      - name: yarn install
+        run: yarn install
       - name: tsc
         run: |
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
-          npm run tsc
+          yarn run tsc

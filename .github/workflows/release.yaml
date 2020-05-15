@@ -10,12 +10,12 @@ jobs:
       - name: set up node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: 12.x
       - name: check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: install semantic release
-        run: npm i semantic-release@17.0.4
-      - name: Release
+        run: yarn add semantic-release@17.0.4
+      - name: release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
+        run: yarn semantic-release
