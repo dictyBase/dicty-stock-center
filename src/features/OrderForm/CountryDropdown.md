@@ -1,3 +1,0 @@
-```jsx
-<CountryDropdown name="country" />
-```

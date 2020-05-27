@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "2.0.1"
-description: A Helm chart for Dicty stock center frontend application
-name: dicty-stock-center
-version: 0.0.1
