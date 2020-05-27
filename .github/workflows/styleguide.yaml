@@ -1,9 +1,8 @@
 name: Styleguide Build
 on:
-  pull_request
-  # push:
-  #   branches:
-  #     - develop
+  push:
+    branches:
+      - develop
 jobs:
   build-and-deploy-styleguide:
     runs-on: ubuntu-18.04
