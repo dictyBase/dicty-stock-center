@@ -15,10 +15,9 @@ jobs:
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
           yarn install
           yarn styleguide:build
-          ls docs
       - name: deploy to gh-pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: docs
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./docs
