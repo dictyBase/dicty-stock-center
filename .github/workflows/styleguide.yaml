@@ -1,0 +1,24 @@
+name: Build and deploy styleguide
+on:
+  pull_request
+  # push:
+  #   branches:
+  #     - develop
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Install and build styleguide
+        run: |
+          yarn add react-styleguidist@11.0.6
+          yarn styleguide:build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs
