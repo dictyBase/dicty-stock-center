@@ -15,7 +15,7 @@ jobs:
       - name: install and build styleguide
         run: |
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
-          yarn install react-styleguidist@11.0.6
+          yarn install
           yarn styleguide:build
       - name: deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
