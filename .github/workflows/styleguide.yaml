@@ -10,16 +10,15 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
       - name: install and build styleguide
         run: |
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
           yarn install
           yarn styleguide:build
+          ls docs
       - name: deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           BRANCH: gh-pages
           FOLDER: docs
