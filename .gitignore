@@ -14,3 +14,6 @@ client/
 clientConfig.ts
 clientConfig.js
 cypress.env.json
+
+# React-styleguidist documentation (now contained to gh-pages branch)
+/docs
