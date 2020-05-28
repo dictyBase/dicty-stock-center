@@ -1,6 +1,6 @@
 const path = require("path")
 module.exports = {
-  styleguideDir: "docs",
+  styleguideDir: "styleguide",
   pagePerSection: true,
   title: "Dicty Stock Center",
   webpackConfig: require("react-scripts/config/webpack.config")("development"),
