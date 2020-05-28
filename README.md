@@ -79,11 +79,9 @@ of the necessary environmental variables can be found [here](.env.development).
 
 ## Further Documentation
 
-It is recommended to start a local styleguide server (`npm run styleguide`) to see
-documentation for all of the app's components. This will provide descriptions, demos
-and a list of props for each component.
+There is a static site available for [react-styleguidist documentation](https://dictybase.github.io/Dicty-Stock-Center/).
 
-More documentation can be found in the [documentation](./documentation) folder,
+More documentation can be found in the [docs](./docs) folder,
 including mockups, wireframes and Redux shape of state diagrams.
 
 ## Active Developers
