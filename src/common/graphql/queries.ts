@@ -26,6 +26,31 @@ const GET_STRAIN_LIST = gql`
   }
 `
 
+const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
+  query ListStrainsWithPhenotype(
+    $cursor: Int!
+    $limit: Int!
+    $phenotype: String!
+  ) {
+    listStrainsWithPhenotype(
+      input: { cursor: $cursor, limit: $limit, phenotype: $phenotype }
+    ) {
+      nextCursor
+      previousCursor
+      limit
+      totalCount
+      strains {
+        label
+        genes
+        publications {
+          id
+          doi
+        }
+      }
+    }
+  }
+`
+
 const GET_PLASMID_LIST = gql`
   query PlasmidListFilter($cursor: Int!, $filter: String!) {
     listPlasmids(input: { cursor: $cursor, limit: 10, filter: $filter }) {
@@ -173,6 +198,7 @@ const GET_USER_BY_EMAIL = gql`
 export {
   GET_STOCK_TOTALS,
   GET_STRAIN_LIST,
+  GET_STRAIN_LIST_WITH_PHENOTYPE,
   GET_PLASMID_LIST,
   GET_RELATED_STRAINS,
   GET_STRAIN,
