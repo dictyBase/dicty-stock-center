@@ -21,14 +21,10 @@ const ShoppingCartPageNoItems = () => {
             <h2>Browse our catalogs</h2>
             <ul>
               <li>
-                <Link className={classes.catalogLink} to="/strains">
-                  Strains Catalog
-                </Link>
+                <Link to="/strains">Strains Catalog</Link>
               </li>
               <li>
-                <Link className={classes.catalogLink} to="/plasmids">
-                  Plasmids Catalog
-                </Link>
+                <Link to="/plasmids">Plasmids Catalog</Link>
               </li>
             </ul>
           </Grid>

@@ -10,10 +10,6 @@ const useStyles = makeStyles(({ palette }) => ({
     margin: "auto",
     width: "95%",
   },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
   cartFull: {
     fontSize: "0.7rem",
     color: palette.secondary.main,
@@ -32,7 +28,7 @@ const CartIcon = () => {
   return (
     <Grid container justify="flex-end" className={classes.container}>
       <Grid item>
-        <Link className={classes.link} to="/cart">
+        <Link to="/cart">
           <FontAwesomeIcon icon="shopping-cart" size="2x" /> (
           {addedItems.length}){" "}
           {maxItemsInCart && (

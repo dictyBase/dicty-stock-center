@@ -11,10 +11,6 @@ import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
 
 const useStyles = makeStyles({
-  link: {
-    color: "#004080",
-    textDecoration: "none",
-  },
   trashBtn: {
     minWidth: 0,
   },
@@ -44,9 +40,7 @@ const ShoppingCartItem = ({ item }: Props) => {
           <Grid item xs={10}>
             <Typography noWrap>
               <strong>
-                <Link
-                  className={classes.link}
-                  to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
+                <Link to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
                   {item.name}
                 </Link>
               </strong>

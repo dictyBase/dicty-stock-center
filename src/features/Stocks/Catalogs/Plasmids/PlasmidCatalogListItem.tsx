@@ -66,7 +66,7 @@ const PlasmidCatalogListItem = ({
         </Hidden>
         <Grid item xs={8} sm={3} md={2} className={classes.item}>
           <Typography noWrap>
-            <Link className={classes.link} to={`/plasmids/${plasmid.id}`}>
+            <Link to={`/plasmids/${plasmid.id}`}>
               {characterConverter(plasmid.name)}
             </Link>
           </Typography>

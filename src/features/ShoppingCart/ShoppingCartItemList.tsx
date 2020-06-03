@@ -11,9 +11,6 @@ const useStyles = makeStyles({
     width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
-    "& a": {
-      textDecoration: "none",
-    },
   },
   itemsHeader: {
     padding: "15px",

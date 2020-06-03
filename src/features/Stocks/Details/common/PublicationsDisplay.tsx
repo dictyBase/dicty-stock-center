@@ -35,7 +35,6 @@ const PublicationsDisplay = ({ publications }: Props) => {
         <React.Fragment key={index}>
           {item.data}
           <a
-            className={classes.link}
             href={`/publication/${item.id}`}
             title="Visit dictyBase publication page">
             <FontAwesomeIcon icon="external-link-alt" size="sm" />

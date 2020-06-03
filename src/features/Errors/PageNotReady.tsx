@@ -26,10 +26,6 @@ const useStyles = makeStyles({
     paddingLeft: "10px",
     paddingRight: "10px",
   },
-  link: {
-    color: "#428bca",
-    textDecoration: "none",
-  },
 })
 
 /**
@@ -52,7 +48,7 @@ const PageNotReady = () => {
             We are constantly adding content to our new website so check back
             soon!
           </p>
-          <Link className={classes.link} to="/">
+          <Link to="/">
             <Button
               className={classes.button}
               size="small"

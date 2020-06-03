@@ -18,7 +18,6 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
       backgroundColor: "transparent",
       color: "inherit",
     },
-    textTransform: "none",
   },
   cardHeader: {
     paddingTop: "5px",
@@ -65,18 +64,11 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   secondaryText: {
     paddingTop: "8px",
   },
-  link: {
-    textDecoration: "none",
-    color: palette.primary.main,
-  },
   checkoutBtn: {
     borderStyle: "none !important",
     borderRadius: "0px !important",
     fontSize: "0.9rem !important",
     textTransform: "none !important",
-  },
-  viewMoreBtn: {
-    textTransform: "none",
   },
   arrowIcon: {
     marginRight: "8px",

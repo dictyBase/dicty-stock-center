@@ -6,8 +6,9 @@ import DialogActions from "@material-ui/core/DialogActions"
 
 const useStyles = makeStyles((theme) => ({
   cartDialogButton: {
-    backgroundColor: "#0059b3",
-    color: "#fff",
+    "&:hover": {
+      color: "#fff",
+    },
   },
 }))
 
