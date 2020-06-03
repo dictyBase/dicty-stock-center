@@ -1919,12 +1919,22 @@
     "@percy/agent" "~0"
     axios "^0.19.0"
 
+"@reach/observe-rect@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@reach/observe-rect/-/observe-rect-1.1.0.tgz#4e967a93852b6004c3895d9ed8d4e5b41895afde"
+  integrity sha512-kE+jvoj/OyJV24C03VvLt5zclb9ArJi04wWXMMFwQvdZjdHoBlN4g0ZQFjyy/ejPF1Z/dpUD5dhRdBiUmIGZTA==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
   integrity sha512-MI4Xx6LHs4Webyvi6EbspgyAb4D2Q2VtnCQ1blOJcoLS6mVa8lNN2rkIy1CVxfTUpoyIbCTkXES1rLXztFD1lg==
   dependencies:
     any-observable "^0.3.0"
+
+"@scarf/scarf@^1.0.0":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.0.5.tgz#accee0bce88a9047672f7c8faf3cada59c996b81"
+  integrity sha512-9WKaGVpQH905Aqkk+BczFEeLQxS07rl04afFRPUG9IcSlOwmo5EVVuuNu0d4M9LMYucObvK0LoAe+5HfMW2QhQ==
 
 "@semantic-release/commit-analyzer@^8.0.0":
   version "8.0.1"
@@ -13927,6 +13937,15 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-virtual@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-virtual/-/react-virtual-2.2.0.tgz#bd9d2925a9778d8f12f22b1acacb2bd22069a7eb"
+  integrity sha512-ZiXj6DwHuUT4KRWl4GxkvF+WzQTXRmLn8+fgMbrsHB23NQeH+4rWB9NykzhzqwbZF/c5vzzT2MPcl3N+OgrDaA==
+  dependencies:
+    "@reach/observe-rect" "^1.1.0"
+    "@scarf/scarf" "^1.0.0"
+    ts-toolbelt "^6.4.2"
+
 react-virtualized-auto-sizer@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.2.tgz#a61dd4f756458bbf63bd895a92379f9b70f803bd"
@@ -16322,6 +16341,11 @@ ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
+
+ts-toolbelt@^6.4.2:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.9.4.tgz#cc3a070d99c557c552b4f69e36f13d430c47a760"
+  integrity sha512-muRZZqfOTOVvLk5cdnp7YWm6xX+kD/WL2cS/L4zximBRcbQSuMoTbQQ2ZZBVMs1gB0EZw1qThP+HrIQB35OmEw==
 
 tslib@^1, tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.13.0"
