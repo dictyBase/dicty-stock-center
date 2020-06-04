@@ -36,9 +36,6 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
       input: { cursor: $cursor, limit: $limit, phenotype: $phenotype }
     ) {
       nextCursor
-      previousCursor
-      limit
-      totalCount
       strains {
         label
         genes
