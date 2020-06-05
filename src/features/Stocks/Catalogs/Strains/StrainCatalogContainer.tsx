@@ -10,8 +10,6 @@ import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
 import { GET_STRAIN_LIST } from "common/graphql/queries"
 import useStyles from "features/Stocks/Catalogs/styles"
 
-/** Need to update values */
-
 const leftDropdownItems = [
   {
     name: "All Strains",
@@ -60,14 +58,47 @@ export const StrainCatalogContainer = () => {
 
   if (loading) return <DetailsLoader />
 
+  const loadMoreItems = () =>
+    fetchMore({
+      query: GET_STRAIN_LIST,
+      variables: {
+        cursor: data.listStrains.nextCursor,
+        filter: queryVariables.filter,
+      },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        if (!fetchMoreResult) return previousResult
+        const previousEntry = previousResult.listStrains
+        const previousStrains = previousEntry.strains
+        const newStrains = fetchMoreResult.listStrains.strains
+        const newCursor = fetchMoreResult.listStrains.nextCursor
+        const allStrains = [...previousStrains, ...newStrains]
+
+        // fix issue where response always brings back a duplicate of last item;
+        // check if first item of new batch equals last item of previous batch
+        // if dupes, then remove it
+        if (
+          newStrains[0].id === previousStrains[previousStrains.length - 1].id
+        ) {
+          allStrains.pop()
+        }
+
+        return {
+          listStrains: {
+            nextCursor: newCursor,
+            strains: [...new Set(allStrains)], // remove any duplicate entries
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
+
   // use conditional so both error and data appear below search bar
   const content = error ? (
     <CatalogErrorMessage error={error} />
   ) : (
     <StrainCatalogList
       data={data.listStrains.strains}
-      fetchMore={fetchMore}
-      cursor={data.listStrains.nextCursor}
+      loadMoreItems={loadMoreItems}
     />
   )
 

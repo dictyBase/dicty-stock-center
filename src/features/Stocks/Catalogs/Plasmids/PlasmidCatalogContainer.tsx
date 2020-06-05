@@ -54,13 +54,46 @@ export const PlasmidCatalogContainer = () => {
 
   if (loading) return <DetailsLoader />
 
+  const loadMoreItems = () =>
+    fetchMore({
+      query: GET_PLASMID_LIST,
+      variables: {
+        cursor: data.listPlasmids.nextCursor,
+        filter: queryVariables.filter,
+      },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        if (!fetchMoreResult) return previousResult
+        const previousEntry = previousResult.listPlasmids
+        const previousPlasmids = previousEntry.plasmids
+        const newPlasmids = fetchMoreResult.listPlasmids.plasmids
+        const newCursor = fetchMoreResult.listPlasmids.nextCursor
+        const allPlasmids = [...previousPlasmids, ...newPlasmids]
+
+        // fix issue where response always brings back a duplicate of last item;
+        // check if first item of new batch equals last item of previous batch
+        // if dupes, then remove it
+        if (
+          newPlasmids[0].id === previousPlasmids[previousPlasmids.length - 1].id
+        ) {
+          allPlasmids.pop()
+        }
+
+        return {
+          listPlasmids: {
+            nextCursor: newCursor,
+            plasmids: [...new Set(allPlasmids)], // remove any duplicate entries
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
+
   const content = error ? (
     <CatalogErrorMessage error={error} />
   ) : (
     <PlasmidCatalogList
       data={data.listPlasmids.plasmids}
-      fetchMore={fetchMore}
-      cursor={data.listPlasmids.nextCursor}
+      loadMoreItems={loadMoreItems}
     />
   )
 
