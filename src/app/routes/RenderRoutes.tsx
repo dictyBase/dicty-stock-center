@@ -55,7 +55,7 @@ const StrainDetailsContainer = lazy(() =>
 // phenotype routes
 const PhenotypesWrapper = lazy(() =>
   import(
-    /* webpackChunkName: "PhenotypesWrapper" */ "features/Stocks/SearchResults/PhenotypesContainer"
+    /* webpackChunkName: "PhenotypesWrapper" */ "features/Stocks/SearchResults/PhenotypeContainer"
   ),
 )
 

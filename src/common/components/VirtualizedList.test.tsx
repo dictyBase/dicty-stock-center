@@ -69,5 +69,10 @@ describe("Stocks/SearchResults/ResultsHeader", () => {
     it("itemCount matches number of items in data", () => {
       expect(infiniteLoader.prop("itemCount")).toBe(props.data.length)
     })
+    it("handles loadMoreItems", () => {
+      infiniteLoader.props().loadMoreItems(0, 9)
+      expect(props.loadMoreItems).toHaveBeenCalledTimes(1)
+      expect(props.loadMoreItems).lastCalledWith(0, 9)
+    })
   })
 })

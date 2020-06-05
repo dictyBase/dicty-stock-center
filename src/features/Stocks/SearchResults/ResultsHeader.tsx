@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ResultsHeader = ({ property, description }: Props) => (
-  <Typography variant="h2">
+  <Typography variant="h4">
     {property} Search Results for {description}
   </Typography>
 )

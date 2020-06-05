@@ -16,14 +16,17 @@ const useStyles = makeStyles({
     margin: "auto",
     textAlign: "center",
   },
+  gridItem: {
+    marginBottom: "20px",
+  },
 })
 
 const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
 /**
- * PhenotypesContainer is used to fetch a list of strains with a given phenotype.
+ * PhenotypeContainer is used to fetch a list of strains with a given phenotype.
  */
 
-const PhenotypesContainer = () => {
+const PhenotypeContainer = () => {
   const classes = useStyles()
   const { name } = useParams()
   const phenotype = cleanQuery(name)
@@ -78,7 +81,7 @@ const PhenotypesContainer = () => {
         />
       </Helmet>
       <Grid container className={classes.layout}>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.gridItem}>
           <ResultsHeader property="Phenotype" description={phenotype} />
         </Grid>
         <Grid item xs={12}>
@@ -93,4 +96,4 @@ const PhenotypesContainer = () => {
   )
 }
 
-export default PhenotypesContainer
+export default PhenotypeContainer

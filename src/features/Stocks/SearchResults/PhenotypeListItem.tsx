@@ -30,7 +30,7 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
   return (
     <ListItem key={strain.id} className={classes.row} style={style}>
       <Grid container spacing={0} alignItems="center">
-        <Grid item xs={12} sm={4} md={3} className={classes.item}>
+        <Grid item xs={12} sm={4} className={classes.item}>
           <Typography noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
