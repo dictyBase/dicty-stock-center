@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import Hidden from "@material-ui/core/Hidden"
 import { makeStyles } from "@material-ui/core/styles"
 import { ListChildComponentProps } from "react-window"
 import characterConverter from "common/utils/characterConverter"
@@ -37,16 +36,12 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
             </Link>
           </Typography>
         </Grid>
-        <Hidden xsDown>
-          <Grid item sm={4} className={classes.item}>
-            <Typography noWrap>{strain.genes[0]}</Typography>
-          </Grid>
-        </Hidden>
-        <Hidden mdDown>
-          <Grid item lg={4} className={classes.item}>
-            <Typography noWrap>{strain.publications[0].id}</Typography>
-          </Grid>
-        </Hidden>
+        <Grid item sm={4} className={classes.item}>
+          <Typography noWrap>{strain.genes[0]}</Typography>
+        </Grid>
+        <Grid item lg={4} className={classes.item}>
+          <Typography noWrap>{strain.publications[0].id}</Typography>
+        </Grid>
       </Grid>
     </ListItem>
   )
