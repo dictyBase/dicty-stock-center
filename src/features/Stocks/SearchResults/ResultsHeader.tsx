@@ -1,4 +1,5 @@
 import React from "react"
+import Typography from "@material-ui/core/Typography"
 
 type Props = {
   property: string
@@ -6,9 +7,9 @@ type Props = {
 }
 
 const ResultsHeader = ({ property, description }: Props) => (
-  <h1>
+  <Typography variant="h2">
     {property} Search Results for {description}
-  </h1>
+  </Typography>
 )
 
 export default ResultsHeader
