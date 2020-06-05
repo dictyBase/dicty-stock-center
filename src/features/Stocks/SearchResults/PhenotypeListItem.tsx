@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import Hidden from "@material-ui/core/Hidden"
 import { makeStyles } from "@material-ui/core/styles"
+import { ListChildComponentProps } from "react-window"
 import characterConverter from "common/utils/characterConverter"
 
 const useStyles = makeStyles({
@@ -22,13 +23,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
-  index: number
-  style: Object
-  data: any
-}
-
-const PhenotypeListItem = ({ index, style, data }: Props) => {
+const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
   const classes = useStyles()
   const strain = data.item[index]
 
