@@ -9,7 +9,7 @@ type Props = {
   data: Array<any>
   loadMoreItems: (startIndex: number, stopIndex: number) => Promise<any> | null
   children: any
-  headerComponent: React.ReactNode
+  headerComponent?: React.ReactNode
 }
 
 /**

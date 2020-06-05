@@ -1,6 +1,6 @@
 import React from "react"
 import VirtualizedList from "common/components/VirtualizedList"
-import ResultsHeader from "./ResultsHeader"
+import PhenotypeListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
 
 type Props = {
@@ -17,16 +17,12 @@ const PhenotypeList = ({ data, loadMoreItems, phenotype }: Props) => {
   console.log(data)
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <VirtualizedList
-        data={data}
-        loadMoreItems={loadMoreItems}
-        headerComponent={
-          <ResultsHeader property="Phenotype" description={phenotype} />
-        }>
-        {PhenotypeListItem}
-      </VirtualizedList>
-    </div>
+    <VirtualizedList
+      data={data}
+      loadMoreItems={loadMoreItems}
+      headerComponent={<PhenotypeListHeader />}>
+      {PhenotypeListItem}
+    </VirtualizedList>
   )
 }
 

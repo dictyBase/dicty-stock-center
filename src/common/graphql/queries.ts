@@ -37,6 +37,7 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
     ) {
       nextCursor
       strains {
+        id
         label
         genes
         publications {
