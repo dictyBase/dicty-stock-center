@@ -13,17 +13,13 @@ type Props = {
  * PhenotypeList is used to display a list of phenotypes.
  */
 
-const PhenotypeList = ({ data, loadMoreItems, phenotype }: Props) => {
-  console.log(data)
-
-  return (
-    <VirtualizedList
-      data={data}
-      loadMoreItems={loadMoreItems}
-      headerComponent={<PhenotypeListHeader />}>
-      {PhenotypeListItem}
-    </VirtualizedList>
-  )
-}
+const PhenotypeList = ({ data, loadMoreItems, phenotype }: Props) => (
+  <VirtualizedList
+    data={data}
+    loadMoreItems={loadMoreItems}
+    headerComponent={<PhenotypeListHeader />}>
+    {PhenotypeListItem}
+  </VirtualizedList>
+)
 
 export default PhenotypeList
