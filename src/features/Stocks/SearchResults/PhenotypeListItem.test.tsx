@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
+import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
+import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
 
 describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("initial render", () => {
@@ -36,11 +38,11 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
       expect(wrapper.find(ListItem)).toHaveLength(1)
       expect(wrapper.find(Grid).exists()).toBeTruthy()
       expect(wrapper.find(Typography).exists()).toBeTruthy()
+      expect(wrapper.find(GenesDisplay)).toHaveLength(1)
+      expect(wrapper.find(PublicationsDisplay)).toHaveLength(1)
     })
-    it("displays correct data", () => {
+    it("displays correct label", () => {
       expect(wrapper.text()).toContain("counting strain")
-      expect(wrapper.text()).toContain("abcd")
-      expect(wrapper.text()).toContain("20008082")
     })
   })
 })

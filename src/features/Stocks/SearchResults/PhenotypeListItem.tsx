@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
 import { ListChildComponentProps } from "react-window"
+import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
+import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
 import characterConverter from "common/utils/characterConverter"
 
 const useStyles = makeStyles({
@@ -29,18 +31,22 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
   return (
     <ListItem key={strain.id} className={classes.row} style={style}>
       <Grid container spacing={0} alignItems="center">
-        <Grid item xs={12} sm={4} className={classes.item}>
+        <Grid item sm={3} className={classes.item}>
           <Typography noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
             </Link>
           </Typography>
         </Grid>
-        <Grid item sm={4} className={classes.item}>
-          <Typography noWrap>{strain.genes[0]}</Typography>
+        <Grid item sm={3} className={classes.item}>
+          <Typography noWrap>
+            <GenesDisplay genes={strain.genes} />
+          </Typography>
         </Grid>
-        <Grid item lg={4} className={classes.item}>
-          <Typography noWrap>{strain.publications[0].id}</Typography>
+        <Grid item sm={6} className={classes.item}>
+          <Typography>
+            <PublicationsDisplay publications={strain.publications} />
+          </Typography>
         </Grid>
       </Grid>
     </ListItem>
