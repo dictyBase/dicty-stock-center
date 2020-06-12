@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
   },
   header: {
-    fontSize: "62px",
+    fontSize: "3rem",
     marginTop: "25px",
     marginBottom: "25px",
     borderBottom: "1px solid #eee",
@@ -32,22 +32,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   continueBtn: {
     marginBottom: "10px",
     marginRight: "10px",
-    textTransform: "none",
+    "&:hover": {
+      color: "inherit",
+    },
   },
   checkoutBtn: {
     marginBottom: "10px",
-    backgroundColor: "#004080",
     "&:hover": {
-      backgroundColor: "#0059b3",
+      color: "#fff",
     },
-    textTransform: "none",
   },
   buttons: {
     textAlign: "center",
-  },
-  catalogLink: {
-    color: "#004080",
-    textDecoration: "none",
   },
   trashBtn: {
     minWidth: 0,
@@ -58,20 +54,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: "auto",
     marginLeft: "auto",
     width: "75%",
-
     "& tr": {
       padding: "10px",
     },
-
     "& td": {
       fontSize: "1rem",
     },
-
-    "& a": {
-      color: "#004080",
-      textDecoration: "none",
-    },
-
     [theme.breakpoints.up("xl")]: {
       width: "1270px",
     },

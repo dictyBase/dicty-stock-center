@@ -63,6 +63,19 @@ const theme = createMuiTheme({
       textTransform: "none",
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        a: {
+          textDecoration: "none",
+          color: "#004080",
+          "&:hover": {
+            color: "#001b53",
+          },
+        },
+      },
+    },
+  },
 })
 
 const AppProviders = ({ children }: { children: ReactNode }) => {

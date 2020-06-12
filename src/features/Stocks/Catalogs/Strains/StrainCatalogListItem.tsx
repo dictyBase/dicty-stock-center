@@ -62,7 +62,7 @@ const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
         </Hidden>
         <Grid item xs={8} sm={4} md={3} className={classes.item}>
           <Typography noWrap>
-            <Link className={classes.link} to={`/strains/${strain.id}`}>
+            <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
             </Link>
           </Typography>

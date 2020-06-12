@@ -46,6 +46,7 @@ const rightDropdownItems = [
  */
 
 export const PlasmidCatalogContainer = () => {
+  const [hasMore, setHasMore] = React.useState(true)
   const [{ queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
     variables: queryVariables,
@@ -54,13 +55,42 @@ export const PlasmidCatalogContainer = () => {
 
   if (loading) return <DetailsLoader />
 
+  const loadMoreItems = () =>
+    fetchMore({
+      query: GET_PLASMID_LIST,
+      variables: {
+        cursor: data.listPlasmids.nextCursor,
+        filter: queryVariables.filter,
+      },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        if (!fetchMoreResult) return previousResult
+        const previousEntry = previousResult.listPlasmids
+        const previousPlasmids = previousEntry.plasmids
+        const newPlasmids = fetchMoreResult.listPlasmids.plasmids
+        const newCursor = fetchMoreResult.listPlasmids.nextCursor
+        const allPlasmids = [...previousPlasmids, ...newPlasmids]
+
+        if (newCursor === 0) {
+          setHasMore(false)
+        }
+
+        return {
+          listPlasmids: {
+            nextCursor: newCursor,
+            plasmids: [...new Set(allPlasmids)], // remove any duplicate entries
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
+
   const content = error ? (
     <CatalogErrorMessage error={error} />
   ) : (
     <PlasmidCatalogList
       data={data.listPlasmids.plasmids}
-      fetchMore={fetchMore}
-      cursor={data.listPlasmids.nextCursor}
+      loadMoreItems={loadMoreItems}
+      hasMore={hasMore}
     />
   )
 

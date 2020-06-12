@@ -52,6 +52,13 @@ const StrainDetailsContainer = lazy(() =>
   ),
 )
 
+// phenotype routes
+const PhenotypesWrapper = lazy(() =>
+  import(
+    /* webpackChunkName: "PhenotypesWrapper" */ "features/Stocks/SearchResults/PhenotypeContainer"
+  ),
+)
+
 // plasmid routes
 const PlasmidCatalogWrapper = lazy(() =>
   import(
@@ -112,6 +119,8 @@ const RenderRoutes = () => (
       {/* strain routes */}
       <Route exact path="/strains" component={StrainCatalogWrapper} />
       <Route exact path="/strains/:id" component={StrainDetailsContainer} />
+      {/* phenotype routes */}
+      <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
       {/* plasmid routes */}
       <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
       <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />

@@ -28,10 +28,6 @@ const useStyles = makeStyles((theme) => ({
   paragraph: {
     padding: "10px",
   },
-  link: {
-    color: "#428bca",
-    textDecoration: "none",
-  },
   list: {
     margin: "0 auto",
     display: "table",

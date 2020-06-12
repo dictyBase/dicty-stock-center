@@ -79,9 +79,6 @@ const useStyles = makeStyles({
       backgroundColor: "#0073e6",
     },
   },
-  link: {
-    textDecoration: "none",
-  },
   arrowIcon: {
     marginLeft: "4px",
   },

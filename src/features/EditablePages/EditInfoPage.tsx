@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
     "& a": {
       color: "#004080",
       textDecoration: "none",
+      cursor: "pointer",
     },
   },
   error: {

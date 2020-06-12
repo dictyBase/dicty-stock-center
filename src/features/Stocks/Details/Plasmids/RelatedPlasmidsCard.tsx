@@ -30,9 +30,7 @@ const RelatedPlasmidsCard = ({ genes }: Props) => {
           {plasmids.map((item) => (
             <ListItem disableGutters dense key={item}>
               <Typography variant="body1">
-                <Link className={classes.link} to={`/plasmids/${item}`}>
-                  {item}
-                </Link>
+                <Link to={`/plasmids/${item}`}>{item}</Link>
               </Typography>
             </ListItem>
           ))}

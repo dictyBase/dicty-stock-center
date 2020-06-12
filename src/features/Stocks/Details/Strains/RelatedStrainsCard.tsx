@@ -45,16 +45,12 @@ const RelatedStrainsCard = ({ species }: Props) => {
                 key={index}
                 className={classes.relatedItem}>
                 <Typography variant="body1">
-                  <Link className={classes.link} to={`/strains/${item.id}`}>
-                    {item.label}
-                  </Link>
+                  <Link to={`/strains/${item.id}`}>{item.label}</Link>
                 </Typography>
               </ListItem>
             ))}
           <br />
-          <Button className={classes.viewMoreBtn} variant="outlined">
-            View More
-          </Button>
+          <Button variant="outlined">View More</Button>
         </List>
       </div>
     </Card>

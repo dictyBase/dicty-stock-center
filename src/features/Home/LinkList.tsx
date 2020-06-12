@@ -32,13 +32,9 @@ const LinkList = ({ list, bgColor }: Props) => {
         {list.map((link, index) => (
           <li key={index}>
             {link.routerAware ? (
-              <Link to={link.to} className={classes.link}>
-                {link.name}
-              </Link>
+              <Link to={link.to}>{link.name}</Link>
             ) : (
-              <a href={link.to} className={classes.link}>
-                {link.name}
-              </a>
+              <a href={link.to}>{link.name}</a>
             )}
           </li>
         ))}

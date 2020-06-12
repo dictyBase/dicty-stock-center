@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   sopLink: {
     color: "#961818",
-    textDecoration: "none",
   },
   container: {
     paddingRight: "15px",
@@ -41,10 +40,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: "25px",
       borderBottom: "1px solid #eee",
     },
-  },
-  link: {
-    color: "#004080",
-    textDecoration: "none",
   },
   list: {
     margin: 0,

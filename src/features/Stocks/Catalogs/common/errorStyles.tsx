@@ -8,10 +8,6 @@ const useStyles = makeStyles({
     paddingTop: "50px",
     textAlign: "center",
   },
-  link: {
-    color: "#428bca",
-    textDecoration: "none",
-  },
   catalogPaper: {
     height: 300,
     width: "100%",

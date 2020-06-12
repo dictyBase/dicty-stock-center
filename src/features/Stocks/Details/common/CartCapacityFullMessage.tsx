@@ -10,10 +10,7 @@ const CartCapacityFullMessage = () => {
       <div className={classes.maxItems}>Cart capacity is full</div>
       <div className={classes.moreInfoText}>
         For more information, visit the{" "}
-        <Link className={classes.link} to="/information/order">
-          Ordering Information page
-        </Link>
-        .
+        <Link to="/information/order">Ordering Information page</Link>.
       </div>
     </div>
   )
