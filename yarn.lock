@@ -1322,7 +1322,7 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.28"
 
-"@fortawesome/react-fontawesome@^0.1.4", "@fortawesome/react-fontawesome@^0.1.8", "@fortawesome/react-fontawesome@^0.1.9":
+"@fortawesome/react-fontawesome@^0.1.10", "@fortawesome/react-fontawesome@^0.1.4", "@fortawesome/react-fontawesome@^0.1.8":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.10.tgz#7ba2bd300036f95e2ac084000ba8ba26cd269c96"
   integrity sha512-UGdpJiLBIqR/8xcLrCarf2pChqQFKjDTD02C7ZS/odpOVVl2YuHYRCLEOQ0GpfOk6jtYhmouSFOFoC8qNCe5cg==
@@ -1554,10 +1554,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@material-ui/core@^4.9.12":
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.10.2.tgz#0ef78572132fcef1a25f6969bce0d34652d42e31"
-  integrity sha512-Uf4iDLi9sW6HKbVQDyDZDr1nMR4RUAE7w/RIIJZGNVZResC0xwmpLRZMtaUdSO43N0R0yJehfxTi4Z461Cd49A==
+"@material-ui/core@^4.10.1":
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.10.1.tgz#e3db4ca55d2af6cc23a1159ef5c32ad97c43c39c"
+  integrity sha512-bJb/07JFTht0oSjoWMu0j7r1mx4EbJ2ZHx+OKiY+i6IYW/4JPZ1J6rZuFS2b9jT+slSONPZaZq/kHitbE5lcig==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/styles" "^4.10.0"
@@ -1579,10 +1579,10 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/lab@^4.0.0-alpha.51":
-  version "4.0.0-alpha.56"
-  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.56.tgz#ff63080949b55b40625e056bbda05e130d216d34"
-  integrity sha512-xPlkK+z/6y/24ka4gVJgwPfoCF4RCh8dXb1BNE7MtF9bXEBLN/lBxNTK8VAa0qm3V2oinA6xtUIdcRh0aeRtVw==
+"@material-ui/lab@^4.0.0-alpha.55":
+  version "4.0.0-alpha.55"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.55.tgz#82a850dc59654e04ee3a31be1b34eb3bf64d5585"
+  integrity sha512-mPHiS52Z1AT6NlWNp07xxTkoKGU3DZhoGdVtLKGy2+uMH5t4/UPtiZLRab7hR3hvuHvguxgV4tkBC9ww3xqUzA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/utils" "^4.10.2"
@@ -2161,7 +2161,7 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@testing-library/react-hooks@^3.2.1":
+"@testing-library/react-hooks@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.3.0.tgz#dc217bfce8e7c34a99c811d73d23feef957b7c1d"
   integrity sha512-rE9geI1+HJ6jqXkzzJ6abREbeud6bLF8OmF+Vyc7gBoPwZAEVBYjbC1up5nNoVfYBhO5HUwdD4u9mTehAUeiyw==
@@ -10073,10 +10073,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@^10.2.7:
-  version "10.2.10"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.2.10.tgz#f0f78bf8786bbe90e1775a0dc540f7f12b6a79b2"
-  integrity sha512-dgelFaNH6puUGAcU+OVMgbfpKSerNYsPSn6+nlbRDjovL0KigpsVpCu0PFZG6BJxX8gnHJqaZlR9krZamQsb0w==
+lint-staged@^10.2.9:
+  version "10.2.9"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.2.9.tgz#6013ecfa80829cd422446b545fd30a96bca3098c"
+  integrity sha512-ziRAuXEqvJLSXg43ezBpHxRW8FOJCXISaXU//BWrxRrp5cBdRkIx7g5IsB3OI45xYGE0S6cOacfekSjDyDKF2g==
   dependencies:
     chalk "^4.0.0"
     cli-truncate "2.1.0"
@@ -16481,7 +16481,7 @@ typeface-roboto@0.0.75:
   resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.75.tgz#98d5ba35ec234bbc7172374c8297277099cc712b"
   integrity sha512-VrR/IiH00Z1tFP4vDGfwZ1esNqTiDMchBEXYY9kilT6wRGgFoCAlgkEUMHb1E3mB0FsfZhv756IF0+R+SFPfdg==
 
-typescript@^3.9.3:
+typescript@^3.9.5:
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
   integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
