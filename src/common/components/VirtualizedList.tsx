@@ -10,6 +10,8 @@ type Props = {
   loadMoreItems: (startIndex: number, stopIndex: number) => Promise<any> | null
   children: any
   headerComponent?: React.ReactNode
+  rowHeight?: number
+  hasMore: boolean
 }
 
 /**
@@ -22,10 +24,13 @@ const VirtualizedList = ({
   loadMoreItems,
   children,
   headerComponent,
+  rowHeight,
+  hasMore,
 }: Props) => {
   const classes = useStyles()
 
-  const isItemLoaded = ({ index }: any) => !!data[index]
+  const itemCount = hasMore ? data.length + 1 : data.length
+  const isItemLoaded = (index: number) => !hasMore || index < data.length
 
   return (
     <Paper className={classes.catalogPaper}>
@@ -34,7 +39,7 @@ const VirtualizedList = ({
         {({ width }) => (
           <InfiniteLoader
             isItemLoaded={isItemLoaded}
-            itemCount={data.length}
+            itemCount={itemCount}
             loadMoreItems={loadMoreItems}>
             {({ onItemsRendered, ref }) => (
               <FixedSizeList
@@ -42,7 +47,7 @@ const VirtualizedList = ({
                 ref={ref}
                 height={535}
                 width={width}
-                itemSize={50}
+                itemSize={rowHeight ? rowHeight : 50}
                 itemCount={data.length}
                 // pass props to list item via itemData
                 itemData={{

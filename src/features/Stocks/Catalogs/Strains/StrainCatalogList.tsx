@@ -7,16 +7,18 @@ import { CartItem } from "features/Stocks/Catalogs/types/cart"
 type Props = {
   data: Array<CartItem>
   loadMoreItems: any
+  hasMore: boolean
 }
 
 /**
  * StrainCatalogList provides the virtualized list of data.
  */
 
-const StrainCatalogList = ({ data, loadMoreItems }: Props) => (
+const StrainCatalogList = ({ data, loadMoreItems, hasMore }: Props) => (
   <VirtualizedList
     data={data}
     loadMoreItems={loadMoreItems}
+    hasMore={hasMore}
     headerComponent={<CatalogListHeader stockType="strain" />}>
     {StrainCatalogListItem}
   </VirtualizedList>

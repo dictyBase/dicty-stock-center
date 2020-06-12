@@ -46,6 +46,7 @@ const rightDropdownItems = [
  */
 
 export const PlasmidCatalogContainer = () => {
+  const [hasMore, setHasMore] = React.useState(true)
   const [{ queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
     variables: queryVariables,
@@ -69,13 +70,8 @@ export const PlasmidCatalogContainer = () => {
         const newCursor = fetchMoreResult.listPlasmids.nextCursor
         const allPlasmids = [...previousPlasmids, ...newPlasmids]
 
-        // fix issue where response always brings back a duplicate of last item;
-        // check if first item of new batch equals last item of previous batch
-        // if dupes, then remove it
-        if (
-          newPlasmids[0].id === previousPlasmids[previousPlasmids.length - 1].id
-        ) {
-          allPlasmids.pop()
+        if (newCursor === 0) {
+          setHasMore(false)
         }
 
         return {
@@ -94,6 +90,7 @@ export const PlasmidCatalogContainer = () => {
     <PlasmidCatalogList
       data={data.listPlasmids.plasmids}
       loadMoreItems={loadMoreItems}
+      hasMore={hasMore}
     />
   )
 

@@ -27,6 +27,7 @@ const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
  */
 
 const PhenotypeContainer = () => {
+  const [hasMore, setHasMore] = React.useState(true)
   const classes = useStyles()
   const { name } = useParams()
   const phenotype = cleanQuery(name)
@@ -56,7 +57,7 @@ const PhenotypeContainer = () => {
         const allStrains = [...previousStrains, ...newStrains]
 
         if (newCursor === 0) {
-          return previousResult
+          setHasMore(false)
         }
 
         return {
@@ -88,7 +89,7 @@ const PhenotypeContainer = () => {
           <PhenotypeList
             data={data.listStrainsWithPhenotype.strains}
             loadMoreItems={loadMoreItems}
-            phenotype={phenotype}
+            hasMore={hasMore}
           />
         </Grid>
       </Grid>

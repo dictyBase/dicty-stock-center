@@ -5,17 +5,19 @@ import wait from "waait"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
 import PhenotypeList from "./PhenotypeList"
+import PhenotypeListItem from "./PhenotypeListItem"
+import VirtualizedList from "common/components/VirtualizedList"
 import ResultsHeader from "./ResultsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
+import data from "./mockData"
 
 const mockName = "abolished+protein+phosphorylation"
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
-
   return {
     ...originalModule,
     useParams: () => ({
@@ -23,6 +25,24 @@ jest.mock("react-router-dom", () => {
     }),
   }
 })
+
+// jest.mock("react-virtualized-auto-sizer", () => ({
+//   AutoSizer: ({ children }: AutoSizerProps) =>
+//     children({ height: 500, width: 600 }),
+// }))
+
+// jest.mock("react-window-infinite-loader", () => ({
+//   InfiniteLoader: ({ children }: any) =>
+//     children({ onItemsRendered: jest.fn(), ref: jest.fn() }),
+// }))
+
+// jest.mock("react-window", () => {
+//   const originalModule = require.requireActual("react-window")
+//   return {
+//     ...originalModule,
+//     FixedSizeList: jest.fn(() => null),
+//   }
+// })
 
 describe("Stocks/SearchResults/PhenotypeContainer", () => {
   describe("initial render", () => {
@@ -39,8 +59,25 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 1,
               nextCursor: 123456,
+              strains: data,
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          variables: {
+            cursor: 123456,
+            limit: 10,
+            phenotype: "abolished protein phosphorylation",
+          },
+        },
+        result: {
+          data: {
+            listStrainsWithPhenotype: {
+              nextCursor: 0,
               strains: [
                 {
                   genes: ["abcd"],
@@ -74,6 +111,9 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
       wrapper.update()
       expect(wrapper.find(ResultsHeader)).toHaveLength(1)
       expect(wrapper.find(PhenotypeList)).toHaveLength(1)
+      expect(wrapper.find(VirtualizedList)).toHaveLength(1)
+      // console.log(wrapper.find(PhenotypeList).debug())
+      expect(wrapper.find(PhenotypeListItem)).toHaveLength(10)
     })
   })
   describe("error handling", () => {
