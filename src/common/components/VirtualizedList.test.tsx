@@ -40,6 +40,7 @@ describe("Stocks/SearchResults/ResultsHeader", () => {
     ],
     loadMoreItems: jest.fn(),
     headerComponent: <PhenotypeListHeader />,
+    hasMore: true,
   }
   const wrapper = shallow(
     <VirtualizedList {...props}>{PhenotypeListItem}</VirtualizedList>,

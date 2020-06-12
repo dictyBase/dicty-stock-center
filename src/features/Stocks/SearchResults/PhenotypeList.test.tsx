@@ -8,6 +8,7 @@ describe("Stocks/SearchResults/PhenotypeList", () => {
     data: [],
     loadMoreItems: jest.fn(),
     phenotype: "abolished protein phosphorylation",
+    hasMore: true,
   }
   const wrapper = shallow(<PhenotypeList {...props} />)
   describe("initial render", () => {

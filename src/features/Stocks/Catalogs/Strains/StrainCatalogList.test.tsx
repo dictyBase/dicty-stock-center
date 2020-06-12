@@ -8,6 +8,7 @@ describe("Stocks/Catalogs/Strains/StrainCatalogList", () => {
   const props = {
     data: data,
     loadMoreItems: jest.fn(),
+    hasMore: true,
   }
   const wrapper = shallow(<StrainCatalogList {...props} />)
   describe("initial render", () => {
