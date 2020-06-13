@@ -111,7 +111,7 @@
     "jest-enzyme": "^7.1.2",
     "lint-staged": "^10.2.10",
     "prettier": "^2.0.5",
-    "react-docgen-typescript": "^1.16.4",
+    "react-docgen-typescript": "^1.17.0",
     "react-styleguidist": "^11.0.6",
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.0.7",
