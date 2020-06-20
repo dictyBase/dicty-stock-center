@@ -62,7 +62,7 @@
     "react-ga": "^3.0.0",
     "react-helmet": "^6.0.0",
     "react-loading-skeleton": "^2.0.1",
-    "react-responsive-carousel": "^3.2.7",
+    "react-responsive-carousel": "^3.2.8",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "react-virtualized-auto-sizer": "^1.0.2",
