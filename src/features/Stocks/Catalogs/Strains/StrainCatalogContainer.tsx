@@ -31,16 +31,16 @@ const leftDropdownItems = [
 
 const rightDropdownItems = [
   {
-    name: "ID",
-    value: "id",
-  },
-  {
     name: "Descriptor",
     value: "label",
   },
   {
     name: "Summary",
     value: "summary",
+  },
+  {
+    name: "ID",
+    value: "id",
   },
 ]
 
@@ -108,6 +108,7 @@ export const StrainCatalogContainer = () => {
         <CatalogAppBar
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
+          stockType="strain"
         />
       </Grid>
       <Grid item xs={12}>

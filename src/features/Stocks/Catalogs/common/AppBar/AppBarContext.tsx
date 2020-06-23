@@ -23,8 +23,14 @@ type Action =
     }
   | { type: AppBarActionType.SET_HELP_DIALOG_OPEN; payload: boolean }
 
-const initialState = {
-  filter: "id",
+const strainInitialState = {
+  filter: "label",
+  searchValue: "",
+  helpDialogOpen: false,
+}
+
+const plasmidInitialState = {
+  filter: "plasmid_name",
   searchValue: "",
   helpDialogOpen: false,
 }
@@ -58,7 +64,15 @@ const appBarReducer = (state: AppBarState, action: Action) => {
  * This removes the need for prop drilling through multiple components.
  */
 
-const AppBarProvider = ({ children }: any) => {
+const AppBarProvider = ({
+  children,
+  stockType,
+}: {
+  children: any
+  stockType?: string
+}) => {
+  const initialState =
+    stockType === "plasmid" ? plasmidInitialState : strainInitialState
   const [state, dispatch] = useReducer(appBarReducer, initialState)
   const value = useMemo(() => [state, dispatch], [state])
 

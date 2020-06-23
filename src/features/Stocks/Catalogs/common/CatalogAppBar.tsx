@@ -18,6 +18,8 @@ type Props = {
   }>
   /** List of items to display in right dropdown menu */
   rightDropdownItems: Array<{ name: string; value: string }>
+  /** Stock or Plasmid */
+  stockType: string
 }
 
 /**
@@ -25,12 +27,16 @@ type Props = {
  * at the top of the catalog page.
  */
 
-const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
+const CatalogAppBar = ({
+  leftDropdownItems,
+  rightDropdownItems,
+  stockType,
+}: Props) => {
   const [, dispatch] = useCatalogStore()
   const classes = useStyles()
 
   return (
-    <AppBarProvider>
+    <AppBarProvider stockType={stockType}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Grid container alignItems="center">
