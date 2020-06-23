@@ -19,7 +19,7 @@ describe("Stocks/Catalogs/common/CatalogAppBar", () => {
     const props = {
       leftDropdownItems: [],
       rightDropdownItems: [],
-      query: "",
+      stockType: "strain",
     }
     const wrapper = createMount()(
       <ThemeProvider theme={theme}>
