@@ -20,6 +20,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           variables: {
             cursor: 0,
             filter: "",
+            limit: 10,
           },
         },
         result: {
@@ -68,6 +69,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           variables: {
             cursor: 0,
             filter: "",
+            limit: 10,
           },
         },
         result: {
