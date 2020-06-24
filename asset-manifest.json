@@ -1,7 +1,7 @@
 {
   "files": {
     "build/0.34082674.js": "/stockcenter/build/0.34082674.js",
-    "main.js": "/stockcenter/build/main.ad93145a.js",
+    "main.js": "/stockcenter/build/main.d60130cb.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
     "index.html": "/stockcenter/index.html",
     "static/media/ctr9-mutant-DG1071.png": "/stockcenter/static/media/ctr9-mutant-DG1071.62b6bac0.png",
@@ -158,6 +158,6 @@
   "entrypoints": [
     "build/bundle.105de5e2.js",
     "build/0.34082674.js",
-    "build/main.ad93145a.js"
+    "build/main.d60130cb.js"
   ]
 }
