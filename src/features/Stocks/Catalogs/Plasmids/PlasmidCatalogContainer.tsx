@@ -61,6 +61,7 @@ export const PlasmidCatalogContainer = () => {
       variables: {
         cursor: data.listPlasmids.nextCursor,
         filter: queryVariables.filter,
+        limit: queryVariables.limit,
       },
       updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) return previousResult

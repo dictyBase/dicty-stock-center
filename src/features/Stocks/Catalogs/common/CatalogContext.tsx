@@ -29,7 +29,7 @@ type Action =
 const CatalogContext = createContext({} as any)
 
 const initialState = {
-  queryVariables: { cursor: 0, filter: "" },
+  queryVariables: { cursor: 0, limit: 10, filter: "" },
   checkedItems: [],
 }
 

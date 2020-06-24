@@ -65,6 +65,7 @@ export const StrainCatalogContainer = () => {
       variables: {
         cursor: data.listStrains.nextCursor,
         filter: queryVariables.filter,
+        limit: queryVariables.limit,
       },
       updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) return previousResult
