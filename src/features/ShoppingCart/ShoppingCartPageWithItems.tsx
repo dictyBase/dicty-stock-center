@@ -4,9 +4,11 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartItemList from "./ShoppingCartItemList"
+import { useCartStore } from "./CartStore"
 import useStyles from "./shoppingCartStyles"
 
 const ShoppingCartPageWithItems = () => {
+  const [{ maxItemsInCart }] = useCartStore()
   const classes = useStyles()
 
   return (
@@ -18,15 +20,17 @@ const ShoppingCartPageWithItems = () => {
       </Grid>
       <Grid container justify="center">
         <Grid item className={classes.btnGrid}>
-          <Button
-            component={Link}
-            to="/strains"
-            color="default"
-            variant="contained"
-            size="large"
-            className={classes.continueBtn}>
-            <FontAwesomeIcon icon="share" /> &nbsp; Continue Shopping
-          </Button>
+          {!maxItemsInCart && (
+            <Button
+              component={Link}
+              to="/strains"
+              color="default"
+              variant="contained"
+              size="large"
+              className={classes.continueBtn}>
+              <FontAwesomeIcon icon="share" /> &nbsp; Continue Shopping
+            </Button>
+          )}
           <Button
             component={Link}
             to="/order/checkout"
