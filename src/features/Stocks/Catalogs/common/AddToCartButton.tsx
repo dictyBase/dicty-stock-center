@@ -45,7 +45,7 @@ export const AddToCartButton = ({
   }
 
   if (maxItemsInCart) {
-    button = <UnavailableButton title="Shopping cart is full" />
+    button = <UnavailableButton title="Shopping cart is full" cartFull />
   }
 
   return (
