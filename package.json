@@ -52,7 +52,7 @@
     "element-remove": "^1.0.4",
     "formik": "^2.1.4",
     "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3",
+    "graphql-tag": "^2.10.4",
     "history": "^4.10.1",
     "immutable": "^3.8.2",
     "jwt-decode": "^2.2.0",
