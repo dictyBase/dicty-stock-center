@@ -51,7 +51,7 @@
     "dicty-hooks": "github:dictyBase/dicty-hooks#1.1.0",
     "element-remove": "^1.0.4",
     "formik": "^2.1.4",
-    "graphql": "^14.6.0",
+    "graphql": "^14.7.0",
     "graphql-tag": "^2.10.4",
     "history": "^4.10.1",
     "immutable": "^3.8.2",
