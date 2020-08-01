@@ -70,7 +70,7 @@
     "react-window-infinite-loader": "^1.0.5",
     "string.prototype.includes": "^2.0.0",
     "typeface-roboto": "0.0.75",
-    "yup": "^0.29.0"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "@apollo/react-testing": "^3.1.4",
