@@ -93,7 +93,7 @@
     "@types/react-window-infinite-loader": "^1.0.3",
     "@types/sinon": "^9.0.4",
     "@types/testing-library__react-hooks": "^3.4.0",
-    "@types/yup": "^0.29.4",
+    "@types/yup": "^0.29.5",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "apollo-boost": "^0.4.8",
