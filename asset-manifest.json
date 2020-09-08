@@ -1,6 +1,6 @@
 {
   "files": {
-    "build/0.4f8b85f7.js": "/stockcenter/build/0.4f8b85f7.js",
+    "build/0.f26b350d.js": "/stockcenter/build/0.f26b350d.js",
     "main.js": "/stockcenter/build/main.5508a481.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
     "index.html": "/stockcenter/index.html",
@@ -157,7 +157,7 @@
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/0.4f8b85f7.js",
+    "build/0.f26b350d.js",
     "build/main.5508a481.js"
   ]
 }
