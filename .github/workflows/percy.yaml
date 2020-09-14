@@ -31,10 +31,10 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: install dependencies
-        run: |
-          mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
-          yarn install
+      - name: rename config file
+        run: mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
+      - name: install
+        run: yarn install
       - name: run cypress and percy tests
         run: yarn cypress:ci
         env:
