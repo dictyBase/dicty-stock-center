@@ -42,7 +42,7 @@ jobs:
     needs: test
     if: |
       github.actor == 'dependabot[bot]' && 
-      startsWith(github.event.pull_request.title, 'build(deps-dev):')
+      startsWith(github.event.pull_request.title, 'chore(deps-dev):')
     steps:
       - name: wait for code cov project to pass
         uses: fountainhead/action-wait-for-check@v1.0.0
