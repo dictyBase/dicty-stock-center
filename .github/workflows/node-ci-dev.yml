@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: dictybase/dicty-stock-center:ericdev-develop-${{ steps.type.outputs.id }
+          tags: dictybase/dicty-stock-center:ericdev-develop-${{ steps.type.outputs.id }}
           build-args: |
             graphql_server=https://ericgraphql.dictybase.dev
             client_keys=https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.1/clientConfig.eric.js
@@ -74,7 +74,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: dictybase/dicty-stock-center:devsidd-develop-${{ steps.type.outputs.id }
+          tags: dictybase/dicty-stock-center:devsidd-develop-${{ steps.type.outputs.id }}
           build-args: |
             graphql_server=https://siddgraphql.dictybase.dev
             client_keys=https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.1/clientConfig.sidd.js
