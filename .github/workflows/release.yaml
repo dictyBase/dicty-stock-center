@@ -17,5 +17,5 @@ jobs:
         run: yarn add semantic-release@17.0.4
       - name: release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn semantic-release
