@@ -1,30 +1,29 @@
-# Dicty-Stock-Center
+# Dicty Stock Center
 
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)  
-![GitHub tag](https://img.shields.io/github/v/tag/dictyBase/Dicty-Stock-Center)  
-![GitHub action](https://github.com/dictyBase/Dicty-Stock-Center/workflows/Node%20CI/badge.svg)
-[![codecov](https://codecov.io/gh/dictyBase/Dicty-Stock-Center/branch/develop/graph/badge.svg)](https://codecov.io/gh/dictyBase/Dicty-Stock-Center)
-[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dictyBase/Dicty-Stock-Center)  
-[![Dependency Status](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop.svg?style=flat-square)](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop)
-[![devDependency Status](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictyBase/Dicty-Stock-Center/develop?type=dev)  
-[![Technical debt](https://badgen.net/codeclimate/tech-debt/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center/trends/technical_debt)
-[![Issues](https://badgen.net/codeclimate/issues/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center/issues)
-[![Maintainability](https://badgen.net/codeclimate/maintainability/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dictyBase/Dicty-Stock-Center)](https://dependabot.com)  
-![Issues](https://badgen.net/github/issues/dictyBase/Dicty-Stock-Center)
-![Open Issues](https://badgen.net/github/open-issues/dictyBase/Dicty-Stock-Center)
-![Closed Issues](https://badgen.net/github/closed-issues/dictyBase/Dicty-Stock-Center)
-![Total PRS](https://badgen.net/github/prs/dictyBase/Dicty-Stock-Center)
-![Open PRS](https://badgen.net/github/open-prs/dictyBase/Dicty-Stock-Center)
-![Closed PRS](https://badgen.net/github/closed-prs/dictyBase/Dicty-Stock-Center)
-![Merged PRS](https://badgen.net/github/merged-prs/dictyBase/Dicty-Stock-Center)  
-![Commits](https://badgen.net/github/commits/dictyBase/Dicty-Stock-Center/develop)
-![Last commit](https://badgen.net/github/last-commit/dictyBase/Dicty-Stock-Center/develop)
-![Branches](https://badgen.net/github/branches/dictyBase/Dicty-Stock-Center)
-![Tags](https://badgen.net/github/tags/dictyBase/Dicty-Stock-Center)
-![GitHub repo size](https://img.shields.io/github/repo-size/dictyBase/Dicty-Stock-Center?style=plastic)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dictyBase/Dicty-Stock-Center?style=plastic)
-[![Lines of Code](https://badgen.net/codeclimate/loc/dictyBase/Dicty-Stock-Center)](https://codeclimate.com/github/dictyBase/Dicty-Stock-Center/code)  
+![GitHub tag](https://img.shields.io/github/v/tag/dictyBase/dicty-stock-center)  
+![GitHub action](https://github.com/dictyBase/dicty-stock-center/workflows/Node%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/dictyBase/dicty-stock-center/branch/develop/graph/badge.svg)](https://codecov.io/gh/dictyBase/dicty-stock-center)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dictyBase/dicty-stock-center)  
+[![Dependency Status](https://david-dm.org/dictyBase/dicty-stock-center/develop.svg?style=flat-square)](https://david-dm.org/dictyBase/dicty-stock-center/develop)
+[![devDependency Status](https://david-dm.org/dictyBase/dicty-stock-center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictyBase/dicty-stock-center/develop?type=dev)  
+[![Technical debt](https://badgen.net/codeclimate/tech-debt/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center/trends/technical_debt)
+[![Issues](https://badgen.net/codeclimate/issues/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center/issues)
+[![Maintainability](https://badgen.net/codeclimate/maintainability/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center)  
+![Issues](https://badgen.net/github/issues/dictyBase/dicty-stock-center)
+![Open Issues](https://badgen.net/github/open-issues/dictyBase/dicty-stock-center)
+![Closed Issues](https://badgen.net/github/closed-issues/dictyBase/dicty-stock-center)
+![Total PRS](https://badgen.net/github/prs/dictyBase/dicty-stock-center)
+![Open PRS](https://badgen.net/github/open-prs/dictyBase/dicty-stock-center)
+![Closed PRS](https://badgen.net/github/closed-prs/dictyBase/dicty-stock-center)
+![Merged PRS](https://badgen.net/github/merged-prs/dictyBase/dicty-stock-center)  
+![Commits](https://badgen.net/github/commits/dictyBase/dicty-stock-center/develop)
+![Last commit](https://badgen.net/github/last-commit/dictyBase/dicty-stock-center/develop)
+![Branches](https://badgen.net/github/branches/dictyBase/dicty-stock-center)
+![Tags](https://badgen.net/github/tags/dictyBase/dicty-stock-center)
+![GitHub repo size](https://img.shields.io/github/repo-size/dictyBase/dicty-stock-center?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dictyBase/dicty-stock-center?style=plastic)
+[![Lines of Code](https://badgen.net/codeclimate/loc/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center/code)  
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,dictyBase/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9476993)
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,DSC/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9438930)
 
@@ -79,7 +78,7 @@ of the necessary environmental variables can be found [here](.env.development).
 
 ## Further Documentation
 
-There is a static site available for [react-styleguidist documentation](https://dictybase.github.io/Dicty-Stock-Center/).
+There is a static site available for [react-styleguidist documentation](https://dictybase.github.io/dicty-stock-center/).
 
 More documentation can be found in the [docs](./docs) folder,
 including mockups, wireframes and Redux shape of state diagrams.
