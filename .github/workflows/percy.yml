@@ -6,7 +6,7 @@ on:
       - "src/**"
 jobs:
   percy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: set up node.js
         uses: actions/setup-node@v1
@@ -15,7 +15,7 @@ jobs:
       - name: check out code
         uses: actions/checkout@v2
       - name: cache cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
