@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)  
 ![GitHub tag](https://img.shields.io/github/v/tag/dictyBase/dicty-stock-center)  
-![GitHub action](https://github.com/dictyBase/dicty-stock-center/workflows/Node%20CI/badge.svg)
+![GitHub action](https://github.com/dictyBase/dicty-stock-center/workflows/Node%20CI%20Develop/badge.svg)
 [![codecov](https://codecov.io/gh/dictyBase/dicty-stock-center/branch/develop/graph/badge.svg)](https://codecov.io/gh/dictyBase/dicty-stock-center)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dictyBase/dicty-stock-center)  
 [![Dependency Status](https://david-dm.org/dictyBase/dicty-stock-center/develop.svg?style=flat-square)](https://david-dm.org/dictyBase/dicty-stock-center/develop)
