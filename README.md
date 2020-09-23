@@ -64,24 +64,12 @@ After setting up the login providers, you can run `npm install` and `npm start` 
 This app requires the following services to be running:
 
 - [graphql-server](https://github.com/dictyBase/graphql-server)
-- [modware-auth](https://github.com/dictyBase/modware-auth)
-- [modware-annotation](https://github.com/dictyBase/modware-annotation)
-- [modware-content](https://github.com/dictyBase/modware-content)
-- [modware-identity](https://github.com/dictyBase/modware-identity)
-- [modware-order](https://github.com/dictyBase/modware-order)
-- [modware-stock](https://github.com/dictyBase/modware-stock)
-- [modware-user](https://github.com/dictyBase/modware-user)
-
-It also relies on the navbar and footer JSON files found in the
-[migration-data](https://github.com/dictyBase/migration-data) repository. An example
-of the necessary environmental variables can be found [here](.env.development).
 
 ## Further Documentation
 
 There is a static site available for [react-styleguidist documentation](https://dictybase.github.io/dicty-stock-center/).
 
-More documentation can be found in the [docs](./docs) folder,
-including mockups, wireframes and Redux shape of state diagrams.
+More documentation can be found in the [docs](./docs) folder.
 
 ## Active Developers
 
