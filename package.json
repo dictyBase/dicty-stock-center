@@ -89,7 +89,7 @@
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
     "@types/react-window-infinite-loader": "^1.0.3",
-    "@types/sinon": "^9.0.5",
+    "@types/sinon": "^9.0.6",
     "@types/testing-library__react-hooks": "^3.4.0",
     "@types/yup": "^0.29.7",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
