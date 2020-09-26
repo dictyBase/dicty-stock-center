@@ -116,7 +116,7 @@
     "semantic-release": "^17.1.2",
     "sinon": "^9.0.3",
     "source-map-explorer": "^2.5.0",
-    "start-server-and-test": "^1.11.3",
+    "start-server-and-test": "^1.11.4",
     "typescript": "^3.9.7",
     "waait": "^1.0.5",
     "wait-for-expect": "^3.0.2"
