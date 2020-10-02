@@ -57,7 +57,7 @@ login providers.
   [oauthConfig.ts](src/common/utils/oauthConfig.ts) file. Fill up all of the
   configuration parameters for every new provider in that file.
 
-After setting up the login providers, you can run `npm install` and `npm start` as usual.
+After setting up the login providers, you can run `yarn install` and `yarn start` as usual.
 
 ## Backend Requirements
 
