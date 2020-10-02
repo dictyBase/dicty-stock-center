@@ -1,7 +1,7 @@
 {
   "files": {
-    "build/0.c1198942.js": "/stockcenter/build/0.c1198942.js",
-    "main.js": "/stockcenter/build/main.8c606987.js",
+    "build/0.7851710b.js": "/stockcenter/build/0.7851710b.js",
+    "main.js": "/stockcenter/build/main.85b80eac.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
     "index.html": "/stockcenter/index.html",
     "static/media/ctr9-mutant-DG1071.png": "/stockcenter/static/media/ctr9-mutant-DG1071.62b6bac0.png",
@@ -157,7 +157,7 @@
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/0.c1198942.js",
-    "build/main.8c606987.js"
+    "build/0.7851710b.js",
+    "build/main.85b80eac.js"
   ]
 }
