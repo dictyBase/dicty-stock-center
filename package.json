@@ -97,7 +97,7 @@
     "@typescript-eslint/parser": "^2.31.0",
     "apollo-boost": "^0.4.8",
     "core-js": "^3.6.5",
-    "cypress": "^4.12.1",
+    "cypress": "^5.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint-config-prettier": "^6.12.0",
