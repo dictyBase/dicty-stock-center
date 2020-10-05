@@ -25,12 +25,17 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
+type Params = {
+  /** Slug name from URL */
+  name: string
+}
+
 /** Displays the info page data that was fetched from the InfoPage component */
 
 const InfoPageView = ({ data }: IContent) => {
   const classes = useStyles()
   const history = useHistory()
-  const { name } = useParams()
+  const { name } = useParams<Params>()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
