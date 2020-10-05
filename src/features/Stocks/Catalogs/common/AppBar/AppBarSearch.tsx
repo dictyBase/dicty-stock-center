@@ -48,7 +48,7 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
   const resetQueryVariables = () =>
     catalogDispatch({
       type: CatalogActionType.SET_QUERY_VARIABLES,
-      payload: { cursor: 0, filter: `${filter}~${searchValue}` },
+      payload: { cursor: 0, limit: 10, filter: `${filter}~${searchValue}` },
     })
 
   const handleChange = (
