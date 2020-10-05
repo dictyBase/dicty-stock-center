@@ -22,6 +22,12 @@ const useStyles = makeStyles({
 })
 
 const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
+
+type Params = {
+  /** Phenotype name from URL */
+  name: string
+}
+
 /**
  * PhenotypeContainer is used to fetch a list of strains with a given phenotype.
  */
@@ -29,7 +35,7 @@ const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
 const PhenotypeContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const classes = useStyles()
-  const { name } = useParams()
+  const { name } = useParams<Params>()
   const phenotype = cleanQuery(name)
   const { loading, error, data, fetchMore } = useQuery(
     GET_STRAIN_LIST_WITH_PHENOTYPE,

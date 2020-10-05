@@ -12,13 +12,18 @@ import { GET_STRAIN } from "common/graphql/queries"
 import characterConverter from "common/utils/characterConverter"
 import useStyles from "features/Stocks/Details/styles"
 
+type Params = {
+  /** Stock ID from URL */
+  id: string
+}
+
 /**
  * StrainDetailsContainer is the main component for an individual strain details page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 
 const StrainDetailsContainer = () => {
-  const { id } = useParams()
+  const { id } = useParams<Params>()
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STRAIN, {
     variables: { id },

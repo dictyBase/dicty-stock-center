@@ -13,12 +13,17 @@ const metaContent =
 const capitalizedName = (name: string) =>
   name.charAt(0).toUpperCase() + name.slice(1)
 
+type Params = {
+  /** Slug name from URL */
+  name: string
+}
+
 /**
  * InfoPageContainer fetches the data for the desired editable page.
  */
 
 const InfoPageContainer = () => {
-  const { name } = useParams()
+  const { name } = useParams<Params>()
   const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
     variables: {
       slug: `${NAMESPACE}-${name}`,

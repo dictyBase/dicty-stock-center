@@ -32,6 +32,11 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
+type Params = {
+  /** Slug name from URL */
+  name: string
+}
+
 type Props = {
   location: {
     state: IContent
@@ -49,7 +54,7 @@ const EditInfoPage = ({ location }: Props) => {
   const { user } = useAuthorization()
   const [updateContent] = useMutation(UPDATE_CONTENT)
   const history = useHistory()
-  const { name } = useParams()
+  const { name } = useParams<Params>()
 
   const prevURL = `/information/${name}`
 
