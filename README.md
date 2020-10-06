@@ -35,9 +35,9 @@ All dictyBase development is now done with cloud native development in mind. It 
 that you have your own [Kubernetes](https://kubernetes.io/) cluster running. Documentation
 for the cloud deployment process can be found [here](https://github.com/dictyBase/Migration/tree/master/deployment).
 
-The general workflow is to cut a `feature` or `hotfix` branch (see [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow))
+The general workflow is to cut a `feature` or `fix` branch (see [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow))
 then open a pull request when it is ready to merge into `develop`. We have a CI
-pipeline set up with GitHub Actions that will run unit tests, Flow type checking,
+pipeline set up with GitHub Actions that will run unit tests, type checking,
 ESLint and other tasks for every pull request. When those checks pass, the branch
 can then be merged into `develop`.
 
