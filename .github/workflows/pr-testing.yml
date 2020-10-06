@@ -1,4 +1,5 @@
 name: Pull Request Testing
+on:
   pull_request:
     types: [edited, labeled, opened, synchronize, reopened]
 jobs:
