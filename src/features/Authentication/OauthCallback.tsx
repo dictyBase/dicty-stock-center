@@ -20,7 +20,7 @@ const OauthCallback = () => {
       {
         query: location.search,
         provider: provider,
-        url: `${window.location.origin}${process.env.REACT_APP_BASENAME}${location.pathname}`,
+        url: `${window.location.origin}/${process.env.REACT_APP_BASENAME}${location.pathname}`,
       },
       window.location,
     )
