@@ -1,5 +1,6 @@
 name: Pull Request Testing
-on: pull_request
+  pull_request:
+    types: [edited, labeled, opened, synchronize, reopened]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -34,7 +35,7 @@ jobs:
         env:
           CI: true
       - name: upload test coverage to codecov
-        uses: codecov/codecov-action@v1.0.2
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
   automerge:
