@@ -6,10 +6,6 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: dump github context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Dispatch deploy slash command
         id: deploy
         uses: peter-evans/slash-command-dispatch@v2
@@ -25,6 +21,7 @@ jobs:
             issue-number=${{ github.event.issue.number }}
             html-url=${{ github.event.comment.html_url }}
             comment-id=${{ github.event.comment.id }}
+            actor=${{ github.actor }}
       - name: Edit comment with error message
         if: steps.deploy.outputs.error-message
         uses: peter-evans/create-or-update-comment@v1
