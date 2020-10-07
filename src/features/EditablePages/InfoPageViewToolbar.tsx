@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: "9px",
     width: "100%",
     display: "inline-block",
+    marginBottom: "10px",
   },
   label: {
     display: "inline",
@@ -102,7 +103,7 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
                     />
                     &nbsp; {fullName}
                   </strong>
-                  &nbsp; edited {timeSince(data.updated_at)} ago
+                  &nbsp;edited {timeSince(data.updated_at)} ago
                 </span>
               </Grid>
               <Grid item className={classes.content}>
