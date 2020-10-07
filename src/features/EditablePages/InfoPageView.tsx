@@ -6,21 +6,15 @@ import Grid from "@material-ui/core/Grid"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
 import { IContent } from "./types"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     paddingRight: "15px",
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "90%",
-    "@media (min-width: 1300px)": {
-      width: "80%",
-    },
-  },
-  editor: {
-    "& a": {
-      color: "#004080",
-      textDecoration: "none",
+    width: "75%",
+    [theme.breakpoints.up("xl")]: {
+      width: "1100px",
     },
   },
 }))
@@ -49,8 +43,8 @@ const InfoPageView = ({ data }: IContent) => {
 
   return (
     <div className={classes.container} key={data.content}>
-      <Grid container>
-        <Grid item className={classes.editor}>
+      <Grid container justify="center">
+        <Grid item xs={12}>
           <InfoPageViewToolbar
             handleClick={handleClick}
             data={data.updated_by}

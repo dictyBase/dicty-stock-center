@@ -8,21 +8,19 @@ import useAuthorization from "common/hooks/useAuthorization"
 import { UPDATE_CONTENT } from "common/graphql/mutations"
 import { IContent } from "./types"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     paddingRight: "15px",
     paddingLeft: "15px",
     marginRight: "auto",
     marginLeft: "auto",
-    width: "90%",
-    "@media (min-width: 1300px)": {
-      width: "80%",
+    width: "75%",
+    [theme.breakpoints.up("xl")]: {
+      width: "1100px",
     },
   },
   editor: {
     "& a": {
-      color: "#004080",
-      textDecoration: "none",
       cursor: "pointer",
     },
   },
