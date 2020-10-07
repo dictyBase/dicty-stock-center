@@ -80,6 +80,7 @@ const InlineEditor = ({ data }: Props) => {
         readOnly={readOnly}
         onSave={onSave}
         onCancel={onCancel}
+        inline
       />
       {validEditor && (
         <span>
