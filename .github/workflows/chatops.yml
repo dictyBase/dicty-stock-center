@@ -6,6 +6,10 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
+      - name: dump github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Dispatch deploy slash command
         id: deploy
         uses: peter-evans/slash-command-dispatch@v2
