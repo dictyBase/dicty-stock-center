@@ -1,5 +1,9 @@
 name: Lighthouse CI
-on: pull_request
+on: 
+  pull_request:
+    types: [edited, labeled, opened, synchronize, reopened]
+    branches:
+      - develop
 jobs:
   lhci:
     name: Lighthouse CI
