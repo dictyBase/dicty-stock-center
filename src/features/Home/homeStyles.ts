@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   intro: {
     paddingTop: "0px !important",
-    paddingBottom: "0px !important",
+    paddingBottom: "12px !important",
   },
   column: {
     paddingTop: "0px !important",
