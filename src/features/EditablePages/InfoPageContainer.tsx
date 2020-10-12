@@ -5,13 +5,12 @@ import { Helmet } from "react-helmet"
 import Loader from "common/components/Loader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import InfoPageView from "./InfoPageView"
+import { pageTitleLookup } from "common/utils/convertPageTitles"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
 import NAMESPACE from "common/constants/namespace"
 
 const metaContent =
   "The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
-const capitalizedName = (name: string) =>
-  name.charAt(0).toUpperCase() + name.slice(1)
 
 type Params = {
   /** Slug name from URL */
@@ -41,7 +40,7 @@ const InfoPageContainer = () => {
   return (
     <>
       <Helmet>
-        <title>{capitalizedName(name)} Information - Dicty Stock Center</title>
+        <title>{pageTitleLookup(name)} Information - Dicty Stock Center</title>
         <meta name="description" content={metaContent} />
       </Helmet>
       <InfoPageView data={data.contentBySlug} />
