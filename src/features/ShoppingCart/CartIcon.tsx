@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCartStore } from "./CartStore"
+import useCartItems from "common/hooks/useCartItems"
 
 const useStyles = makeStyles(({ palette }) => ({
   container: {
@@ -23,7 +24,14 @@ const useStyles = makeStyles(({ palette }) => ({
 
 const CartIcon = () => {
   const [{ addedItems, maxItemsInCart }] = useCartStore()
+  const { getItemsFromStorage } = useCartItems([])
   const classes = useStyles()
+
+  React.useEffect(() => {
+    // if there are any updates to local storage in other tabs,
+    // this will get the updated items
+    window.addEventListener("storage", () => getItemsFromStorage())
+  }, [getItemsFromStorage])
 
   return (
     <Grid container justify="flex-end" className={classes.container}>
