@@ -40,7 +40,7 @@ const InfoPageContainer = () => {
   return (
     <>
       <Helmet>
-        <title>{pageTitleLookup(name)} Information - Dicty Stock Center</title>
+        <title>{pageTitleLookup(name)} - Dicty Stock Center</title>
         <meta name="description" content={metaContent} />
       </Helmet>
       <InfoPageView data={data.contentBySlug} />
