@@ -8,7 +8,7 @@ import ErrorNotification from "features/Authentication/ErrorNotification"
 import timeSince from "common/utils/timeSince"
 import { useAuthStore } from "features/Authentication/AuthStore"
 import useAuthorization from "common/hooks/useAuthorization"
-import { IUpdatedBy } from "./types"
+import { Content } from "./types"
 
 const useStyles = makeStyles(() => ({
   grid: {
@@ -68,7 +68,7 @@ const error =
   "Your login token has expired. Please log out and then log back in to regain full user access."
 
 type Props = {
-  data: IUpdatedBy
+  data: Content
   handleClick: any
 }
 
@@ -79,8 +79,8 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
   const [{ isAuthenticated }] = useAuthStore()
   const { canEditPages, verifiedToken } = useAuthorization()
 
-  const fullName = `${data.first_name} ${data.last_name}`
-  const role = `${data.roles[0].role}`
+  const fullName = `${data.updated_by.first_name} ${data.updated_by.last_name}`
+  const role = `${data.updated_by.roles[0].role}`
   const uppercaseRole = role.charAt(0).toUpperCase() + role.substring(1)
 
   const validUser = isAuthenticated && canEditPages

@@ -1,29 +1,26 @@
-export interface IUpdatedBy {
+type Content = {
   id: string
-  first_name: string
-  last_name: string
+  content: string
+  slug: string
+  name: string
   updated_at: string
-  roles: Array<{
-    role: string
-  }>
-}
-
-export interface IContent {
-  /** Content API data */
-  data: {
+  created_by?: {
     id: string
-    content: string
-    slug: string
-    name: string
-    created_by?: {
-      id: string
-      first_name: string
-      last_name: string
-      roles: Array<{
-        role: string
-      }>
-    }
-    /** User data for last person to update page */
-    updated_by: IUpdatedBy
+    first_name: string
+    last_name: string
+    roles: Array<{
+      role: string
+    }>
+  }
+  /** User data for last person to update page */
+  updated_by: {
+    id: string
+    first_name: string
+    last_name: string
+    roles: Array<{
+      role: string
+    }>
   }
 }
+
+export type { Content }

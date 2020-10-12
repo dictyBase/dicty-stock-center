@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import { PageEditor } from "dicty-components-page-editor"
 import useAuthorization from "common/hooks/useAuthorization"
 import { UPDATE_CONTENT } from "common/graphql/mutations"
-import { IContent } from "./types"
+import { Content } from "./types"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -37,7 +37,9 @@ type Params = {
 
 type Props = {
   location: {
-    state: IContent
+    state: {
+      data: Content
+    }
   }
 }
 
