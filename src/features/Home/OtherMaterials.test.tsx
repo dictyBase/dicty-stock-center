@@ -41,12 +41,12 @@ describe("Home/OtherMaterials", () => {
               }),
               name: "other-materials",
               slug: "dsc-other-materials",
+              updated_at: "2020",
               updated_by: {
                 id: "1",
                 email: "rusty@holzer.com",
                 first_name: "Rusty",
                 last_name: "Holzer",
-                updated_at: "2020",
                 roles: [
                   {
                     role: "superuser",
