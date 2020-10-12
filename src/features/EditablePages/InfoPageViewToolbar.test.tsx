@@ -11,11 +11,11 @@ import { MockAuthProvider } from "common/utils/testing"
 describe("EditablePages/InfoPageViewToolbar", () => {
   describe("user has editing permission and verified token", () => {
     const props = {
-      data: {
+      lastUpdate: "2020-01-01T17:50:12.427Z",
+      user: {
         id: "1234",
         first_name: "Art",
         last_name: "Vandelay",
-        updated_at: "2020-01-01T17:50:12.427Z",
         roles: [
           {
             role: "Latex Salesman",
@@ -43,11 +43,11 @@ describe("EditablePages/InfoPageViewToolbar", () => {
 
   describe("user has editing permission and expired token", () => {
     const props = {
-      data: {
+      lastUpdate: "2020-01-01T17:50:12.427Z",
+      user: {
         id: "1234",
         first_name: "Art",
         last_name: "Vandelay",
-        updated_at: "2020-01-01T17:50:12.427Z",
         roles: [
           {
             role: "Latex Salesman",

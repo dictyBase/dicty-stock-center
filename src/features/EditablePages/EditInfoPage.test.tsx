@@ -20,11 +20,11 @@ describe("EditablePages/EditInfoPage", () => {
             id: "99",
             name: "payment",
             slug: "dsc-payment",
+            updated_at: "2020-01-01T17:50:12.427Z",
             updated_by: {
               id: "999",
               first_name: "Art",
               last_name: "Vandelay",
-              updated_at: "2020-01-01T17:50:12.427Z",
               roles: [
                 {
                   role: "Latex Salesman",

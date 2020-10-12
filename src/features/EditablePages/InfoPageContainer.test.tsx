@@ -53,12 +53,12 @@ describe("EditablePages/InfoPageContainer", () => {
               }),
               name: mockName,
               slug: "dsc-payment",
+              updated_at: "2020-01-01T17:50:12.427Z",
               updated_by: {
                 id: "1",
                 email: "rusty@holzer.com",
                 first_name: "Rusty",
                 last_name: "Holzer",
-                updated_at: "2020",
                 roles: [
                   {
                     role: "superuser",
