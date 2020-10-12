@@ -15,6 +15,7 @@ describe("EditablePages/InfoPageView", () => {
         id: "123",
         slug: "dsc-test",
         name: "test",
+        updated_at: "2020-01-01T17:50:12.427Z",
         created_by: {
           id: "999",
           first_name: "Art",
@@ -29,7 +30,6 @@ describe("EditablePages/InfoPageView", () => {
           id: "999",
           first_name: "Art",
           last_name: "Vandelay",
-          updated_at: "2020-01-01T17:50:12.427Z",
           roles: [
             {
               role: "Latex Salesman",
