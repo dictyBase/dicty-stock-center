@@ -1,4 +1,4 @@
-name: Testing (Pull Request)
+name: Automerge (Dependabot)
 on: [pull_request]
 jobs:
   automerge:
