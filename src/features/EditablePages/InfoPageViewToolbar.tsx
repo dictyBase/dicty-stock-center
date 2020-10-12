@@ -8,7 +8,7 @@ import ErrorNotification from "features/Authentication/ErrorNotification"
 import timeSince from "common/utils/timeSince"
 import { useAuthStore } from "features/Authentication/AuthStore"
 import useAuthorization from "common/hooks/useAuthorization"
-import { Content } from "./types"
+import { UpdatedByUser } from "./types"
 
 const useStyles = makeStyles(() => ({
   grid: {
@@ -68,19 +68,23 @@ const error =
   "Your login token has expired. Please log out and then log back in to regain full user access."
 
 type Props = {
-  data: Content
-  handleClick: any
+  /** Timestamp for when this content was last updated */
+  lastUpdate: string
+  /** User object for who last updated this content */
+  user: UpdatedByUser
+  /** Function to execute when user clicks edit icon */
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 /** Displays the info page data that was fetched from the InfoPage component */
 
-const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
+const InfoPageViewToolbar = ({ handleClick, lastUpdate, user }: Props) => {
   const classes = useStyles()
   const [{ isAuthenticated }] = useAuthStore()
   const { canEditPages, verifiedToken } = useAuthorization()
 
-  const fullName = `${data.updated_by.first_name} ${data.updated_by.last_name}`
-  const role = `${data.updated_by.roles[0].role}`
+  const fullName = `${user.first_name} ${user.last_name}`
+  const role = `${user.roles[0].role}`
   const uppercaseRole = role.charAt(0).toUpperCase() + role.substring(1)
 
   const validUser = isAuthenticated && canEditPages
@@ -103,7 +107,7 @@ const InfoPageViewToolbar = ({ handleClick, data }: Props) => {
                     />
                     &nbsp; {fullName}
                   </strong>
-                  &nbsp;edited {timeSince(data.updated_at)} ago
+                  &nbsp;edited {timeSince(lastUpdate)} ago
                 </span>
               </Grid>
               <Grid item className={classes.content}>
