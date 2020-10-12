@@ -2,6 +2,7 @@ name: Automerge (Dependabot)
 on: [pull_request]
 jobs:
   automerge:
+    name: Unit tests (PR ${{ github.event.number }})
     runs-on: ubuntu-latest
     if: |
       github.actor == 'dependabot[bot]' && 
@@ -12,7 +13,7 @@ jobs:
         id: wait-for-unit-tests
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: Unit tests
+          checkName: Unit tests (PR ${{ github.event.number }})
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: merge
         if: steps.wait-for-unit-tests.outputs.conclusion == 'success'
