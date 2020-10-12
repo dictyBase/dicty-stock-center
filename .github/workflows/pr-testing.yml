@@ -4,6 +4,7 @@ on:
     types: [edited, labeled, opened, synchronize, reopened]
 jobs:
   test:
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
       - name: set up node.js
@@ -27,10 +28,6 @@ jobs:
         run: mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
       - name: install
         run: yarn install
-      - name: lint
-        run: yarn lint
-      - name: tsc
-        run: yarn tsc
       - name: unit tests
         run: yarn test-coverage
         env:
@@ -39,35 +36,3 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-  automerge:
-    runs-on: ubuntu-latest
-    needs: test
-    if: |
-      github.actor == 'dependabot[bot]' && 
-      startsWith(github.event.pull_request.title, 'chore(deps-dev):')
-    steps:
-      - name: wait for code cov project to pass
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait-for-codecov-project
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: codecov/project
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - name: wait for codecov patch to pass
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait-for-codecov-patch
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: codecov/patch
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - name: merge
-        if: steps.wait-for-codecov-project.outputs.conclusion == 'success' && steps.wait-for-codecov-patch.outputs.conclusion == 'success'
-        uses: actions/github-script@v3
-        with:
-          script: |
-            github.pulls.merge({
-              owner: context.payload.repository.owner.login,
-              repo: context.payload.repository.name,
-              pull_number: context.payload.pull_request.number,
-              merge_method: "rebase"
-            })
