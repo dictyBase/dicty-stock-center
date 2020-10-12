@@ -2,7 +2,6 @@ name: Automerge (Dependabot)
 on: [pull_request]
 jobs:
   automerge:
-    name: Unit tests (PR ${{ github.event.number }})
     runs-on: ubuntu-latest
     if: |
       github.actor == 'dependabot[bot]' && 
