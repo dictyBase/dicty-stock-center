@@ -61,7 +61,11 @@ const useCartItems = (items: Array<CartItem>) => {
     dispatch({ type: CartActionType.EMPTY_CART })
   }
 
-  return { addToCart, removeFromCart, emptyCart }
+  const getItemsFromStorage = () => {
+    dispatch({ type: CartActionType.GET_ITEMS_FROM_STORAGE })
+  }
+
+  return { addToCart, removeFromCart, emptyCart, getItemsFromStorage }
 }
 
 export { getFee }

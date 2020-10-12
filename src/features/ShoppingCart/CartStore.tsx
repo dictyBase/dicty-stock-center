@@ -8,6 +8,7 @@ enum CartActionType {
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
   EMPTY_CART = "EMPTY_CART",
   HIDE_CART_DIALOG = "HIDE_CART_DIALOG",
+  GET_ITEMS_FROM_STORAGE = "GET_ITEMS_FROM_STORAGE",
 }
 
 type CartItem = {
@@ -34,6 +35,9 @@ type Action =
     }
   | {
       type: CartActionType.HIDE_CART_DIALOG
+    }
+  | {
+      type: CartActionType.GET_ITEMS_FROM_STORAGE
     }
 
 type CartState = {
@@ -100,6 +104,12 @@ const cartReducer = (state: CartState, action: Action) => {
       return {
         ...state,
         showCartDialog: false,
+      }
+    case CartActionType.GET_ITEMS_FROM_STORAGE:
+      const latestItems = localStorage.getItem(storageKey) || "[]"
+      return {
+        ...state,
+        addedItems: JSON.parse(latestItems),
       }
     default:
       return state
