@@ -13,14 +13,16 @@ type Content = {
     }>
   }
   /** User data for last person to update page */
-  updated_by: {
-    id: string
-    first_name: string
-    last_name: string
-    roles: Array<{
-      role: string
-    }>
-  }
+  updated_by: UpdatedByUser
 }
 
-export type { Content }
+type UpdatedByUser = {
+  id: string
+  first_name: string
+  last_name: string
+  roles: Array<{
+    role: string
+  }>
+}
+
+export type { Content, UpdatedByUser }
