@@ -7,7 +7,7 @@ import history from "common/utils/routerHistory"
 import AppProviders from "app/layout/AppProviders"
 import App from "app/layout/App"
 import "common/utils/icons" // fontawesome library
-import "typeface-roboto"
+import "fontsource-roboto"
 
 const setGoogleAnalytics = async (location: any) => {
   try {
