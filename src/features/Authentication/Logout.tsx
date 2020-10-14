@@ -9,8 +9,14 @@ import { LOGOUT } from "common/graphql/mutations"
  */
 
 const Logout = () => {
-  const [logout] = useMutation(LOGOUT)
-  const [, dispatch] = useAuthStore()
+  const [{ token }, dispatch] = useAuthStore()
+  const [logout] = useMutation(LOGOUT, {
+    context: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  })
 
   useEffect(() => {
     logout()

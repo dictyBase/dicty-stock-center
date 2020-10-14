@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import { PageEditor } from "dicty-components-page-editor"
 import useAuthorization from "common/hooks/useAuthorization"
+import { useAuthStore } from "features/Authentication/AuthStore"
 import { UPDATE_CONTENT } from "common/graphql/mutations"
 import { Content } from "./types"
 
@@ -48,11 +49,18 @@ type Props = {
  */
 const EditInfoPage = ({ location }: Props) => {
   const classes = useStyles()
+  const [{ token }] = useAuthStore()
   const {
     state: { data },
   } = location
   const { user } = useAuthorization()
-  const [updateContent] = useMutation(UPDATE_CONTENT)
+  const [updateContent] = useMutation(UPDATE_CONTENT, {
+    context: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  })
   const history = useHistory()
   const { name } = useParams<Params>()
 
