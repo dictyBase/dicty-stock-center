@@ -28,11 +28,7 @@ describe("AppProviders", () => {
     </MockAuthProvider>,
   )
   describe("initial render", () => {
-    it("renders empty div first", () => {
-      expect(wrapper.find("div")).toHaveLength(1)
-    })
-    it("renders providers after client initialized", () => {
-      wrapper.update()
+    it("renders provider components", () => {
       expect(wrapper.find(ApolloProvider)).toHaveLength(1)
       expect(wrapper.find(MuiThemeProvider)).toHaveLength(1)
       expect(wrapper.find(CartProvider)).toHaveLength(1)
