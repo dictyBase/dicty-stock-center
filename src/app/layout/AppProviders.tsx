@@ -6,9 +6,9 @@ import { createHttpLink } from "apollo-link-http"
 import { setContext } from "apollo-link-context"
 import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { useAuthStore } from "features/Authentication/AuthStore"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { mutationList } from "common/graphql/mutations"
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -46,14 +46,11 @@ const isMutation = (value: string) => {
 }
 
 const useApolloClient = () => {
-  const [{ token }] = useAuthStore()
-
   const authLink = setContext((request, { headers }) => {
     const mutation = isMutation(request.operationName || "")
     return {
       headers: {
         ...headers,
-        Authorization: token ? `Bearer ${token}` : "",
         "X-GraphQL-Method": mutation ? "Mutation" : "Query",
       },
     }

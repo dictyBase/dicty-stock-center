@@ -82,6 +82,7 @@ const UPDATE_USER = gql`
 `
 
 const mutationList = ["Logout", "CreateContent", "UpdateContent"]
+
 export {
   LOGIN,
   LOGOUT,
