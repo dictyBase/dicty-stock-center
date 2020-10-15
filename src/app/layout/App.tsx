@@ -54,7 +54,7 @@ const App = () => {
   // set skip to true so the query is only run once
   // then update the refresh token in our global state
   React.useEffect(() => {
-    if (!loading && data) {
+    if (!loading && data && data.getRefreshToken) {
       setSkip(true)
       dispatch({
         type: "UPDATE_TOKEN",
