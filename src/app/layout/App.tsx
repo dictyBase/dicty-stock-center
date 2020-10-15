@@ -13,15 +13,19 @@ import {
 import CartIcon from "features/ShoppingCart/CartIcon"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
-import { useAuthStore } from "features/Authentication/AuthStore"
+import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries"
 import { useStyles, navTheme } from "./appStyles"
 
-interface IHeader {
+type HeaderProps = {
+  /** Identifies if header link should use React Router */
   isRouter?: boolean
+  /** Text to display in link */
   text: string
+  /** Font Awesome Icon to display */
   icon: IconProp
+  /** URL of link */
   url: string
 }
 
@@ -57,7 +61,7 @@ const App = () => {
     if (!loading && data && data.getRefreshToken) {
       setSkip(true)
       dispatch({
-        type: "UPDATE_TOKEN",
+        type: ActionType.UPDATE_TOKEN,
         payload: {
           provider: data.getRefreshToken.identity.provider,
           token: data.getRefreshToken.token,
@@ -73,7 +77,7 @@ const App = () => {
       if (res.data.getRefreshToken) {
         const { data } = res
         dispatch({
-          type: "UPDATE_TOKEN",
+          type: ActionType.UPDATE_TOKEN,
           payload: {
             provider: data.getRefreshToken.identity.provider,
             token: data.getRefreshToken.token,
@@ -92,7 +96,7 @@ const App = () => {
   return (
     <div className={classes.body}>
       <Header items={headerContent}>
-        {(items: Array<IHeader>) => items.map(generateLinks)}
+        {(items: Array<HeaderProps>) => items.map(generateLinks)}
       </Header>
       <Navbar items={navbarData} theme={navTheme} />
       <br />
