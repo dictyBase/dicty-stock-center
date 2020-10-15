@@ -41,6 +41,52 @@ const getTokenIntervalDelayInMS = (token: string) => {
   return (timeDiffInMins - 2) * 60 * 1000
 }
 
+type User = {
+  id: number
+  first_name: string
+  last_name: string
+  email: string
+  roles: Array<{
+    id: number
+    role: string
+    permissions?: Array<{
+      id: number
+      permission: string
+      resource: string
+    }>
+  }>
+}
+
+type RefreshTokenData = {
+  token: string
+  user: User
+  identity: {
+    provider: string
+  }
+}
+
+type Action = {
+  type: string
+  payload: {
+    provider: string
+    token: string
+    user: User
+  }
+}
+
+const updateToken = (
+  dispatch: (arg0: Action) => void,
+  data: RefreshTokenData,
+) =>
+  dispatch({
+    type: ActionType.UPDATE_TOKEN,
+    payload: {
+      provider: data.identity.provider,
+      token: data.token,
+      user: data.user,
+    },
+  })
+
 const App = () => {
   const [skip, setSkip] = React.useState(false)
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
@@ -60,14 +106,7 @@ const App = () => {
   React.useEffect(() => {
     if (!loading && data && data.getRefreshToken) {
       setSkip(true)
-      dispatch({
-        type: ActionType.UPDATE_TOKEN,
-        payload: {
-          provider: data.getRefreshToken.identity.provider,
-          token: data.getRefreshToken.token,
-          user: data.getRefreshToken.user,
-        },
-      })
+      updateToken(dispatch, data.getRefreshToken)
     }
   }, [data, dispatch, loading])
 
@@ -76,14 +115,7 @@ const App = () => {
       const res = await refetch({ token: token })
       if (res.data.getRefreshToken) {
         const { data } = res
-        dispatch({
-          type: ActionType.UPDATE_TOKEN,
-          payload: {
-            provider: data.getRefreshToken.identity.provider,
-            token: data.getRefreshToken.token,
-            user: data.getRefreshToken.user,
-          },
-        })
+        updateToken(dispatch, data.getRefreshToken)
       }
     } catch (error) {
       console.error(error)
