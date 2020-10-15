@@ -38,16 +38,34 @@ const getTokenIntervalDelayInMS = (token: string) => {
 }
 
 const App = () => {
+  const [skip, setSkip] = React.useState(false)
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
   const { footerData } = useFooter()
   const classes = useStyles()
-  const { refetch } = useQuery(GET_REFRESH_TOKEN, {
+  const { loading, refetch, data } = useQuery(GET_REFRESH_TOKEN, {
     variables: { token: token },
     errorPolicy: "ignore",
+    skip, // only run query once
   })
-  const interval = useRef(null)
+  const interval = useRef<any>(null)
   const delay = getTokenIntervalDelayInMS(token)
+
+  // set skip to true so the query is only run once
+  // then update the refresh token in our global state
+  React.useEffect(() => {
+    if (!loading && data) {
+      setSkip(true)
+      dispatch({
+        type: "UPDATE_TOKEN",
+        payload: {
+          provider: data.getRefreshToken.identity.provider,
+          token: data.getRefreshToken.token,
+          user: data.getRefreshToken.user,
+        },
+      })
+    }
+  }, [data, dispatch, loading])
 
   const fetchRefreshToken = useCallback(async () => {
     try {
