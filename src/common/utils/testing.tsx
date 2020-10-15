@@ -4,25 +4,12 @@ import { Formik } from "formik"
 import { MockedProvider, MockedResponse } from "@apollo/react-testing"
 import { AuthContext, authReducer } from "features/Authentication/AuthStore"
 import { CartContext, cartReducer } from "features/ShoppingCart/CartStore"
+import { User } from "common/@types/user"
 
 type AuthProps = {
   children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
-  user?: {
-    id: number
-    first_name: string
-    last_name: string
-    email: string
-    roles: Array<{
-      id: number
-      role: string
-      permissions?: Array<{
-        id: number
-        permission: string
-        resource: string
-      }>
-    }>
-  }
+  user?: User
   /** Indicates if auth state should include valid token, default is true */
   validToken?: boolean
 }
