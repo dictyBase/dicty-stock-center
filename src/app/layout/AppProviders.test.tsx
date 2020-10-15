@@ -1,6 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
-import AppProviders, { isMutation } from "./AppProviders"
+import AppProviders from "./AppProviders"
 import { ApolloProvider } from "@apollo/react-hooks"
 import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider } from "@material-ui/core/styles"
@@ -34,14 +34,5 @@ describe("AppProviders", () => {
       expect(wrapper.find(CartProvider)).toHaveLength(1)
       expect(wrapper.find(BrowserRouter)).toHaveLength(1)
     })
-  })
-})
-
-describe("isMutation function", () => {
-  it("should return true for mutation", () => {
-    expect(isMutation("CreateContent")).toBeTruthy()
-  })
-  it("should return false for query", () => {
-    expect(isMutation("GetRefreshToken")).toBeFalsy()
   })
 })
