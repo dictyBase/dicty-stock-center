@@ -5,6 +5,7 @@ import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
+import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
 import {
   headerItems,
   loggedHeaderItems,
@@ -14,8 +15,8 @@ import CartIcon from "features/ShoppingCart/CartIcon"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
-import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries"
+import { User } from "common/@types/user"
 import { useStyles, navTheme } from "./appStyles"
 
 type HeaderProps = {
@@ -39,22 +40,6 @@ const getTokenIntervalDelayInMS = (token: string) => {
   const timeDiffInMins = (+jwtTime - +currentTime) / 60000
   // all this to say we want the delay to be two minutes before the JWT expires
   return (timeDiffInMins - 2) * 60 * 1000
-}
-
-type User = {
-  id: number
-  first_name: string
-  last_name: string
-  email: string
-  roles: Array<{
-    id: number
-    role: string
-    permissions?: Array<{
-      id: number
-      permission: string
-      resource: string
-    }>
-  }>
 }
 
 type RefreshTokenData = {
