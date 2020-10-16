@@ -1,4 +1,4 @@
-import gql from "graphql-tag"
+import { gql } from "@apollo/client"
 
 // used in Availability component (homepage)
 const GET_STOCK_TOTALS = gql`
