@@ -37,11 +37,8 @@ const InfoPageView = ({ data }: Props) => {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    history.push({
-      pathname: `/information/${name}/edit`,
-      state: {
-        data: data,
-      },
+    history.push(`/information/${name}/edit`, {
+      data: data,
     })
   }
 

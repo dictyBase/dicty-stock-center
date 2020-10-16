@@ -187,11 +187,8 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
         "payer",
       )
       const order = await createOrder(getOrderVariables(formData, addedItems))
-      history.push({
-        pathname: "/order/submitted",
-        state: {
-          orderID: order.data.createOrder.id,
-        },
+      history.push("/order/submitted", {
+        orderID: order.data.createOrder.id,
       })
       emptyCart()
     } catch (error) {
