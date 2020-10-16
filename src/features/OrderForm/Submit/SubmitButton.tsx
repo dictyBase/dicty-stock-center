@@ -1,7 +1,7 @@
 import React from "react"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useMutation, useQuery } from "@apollo/react-hooks"
+import { useMutation, useQuery } from "@apollo/client"
 import { useHistory } from "react-router-dom"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"

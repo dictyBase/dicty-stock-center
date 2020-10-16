@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter } from "react-router-dom"
 import { Formik } from "formik"
-import { MockedProvider, MockedResponse } from "@apollo/react-testing"
+import { MockedProvider, MockedResponse } from "@apollo/client/testing"
 import { AuthContext, authReducer } from "features/Authentication/AuthStore"
 import { CartContext, cartReducer } from "features/ShoppingCart/CartStore"
 import { User } from "common/@types/user"
