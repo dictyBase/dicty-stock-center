@@ -22,7 +22,7 @@ const strainRowsGenerator = (
   {
     id: 1,
     title: "Strain Names",
-    content: data.names.sort().join(", "),
+    content: data.names.slice().sort().join(", "),
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const strainRowsGenerator = (
   {
     id: 4,
     title: "Strain Characteristics",
-    content: data.characteristics.sort().join(", "),
+    content: data.characteristics.slice().sort().join(", "),
   },
   {
     id: 5,
