@@ -7,7 +7,6 @@ import { StrainDetailsContainer } from "./StrainDetailsContainer"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
-import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries"
 import { strainWithPhenotype } from "./mockStrainData"
@@ -58,48 +57,6 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       wrapper.update()
       expect(wrapper.find(DetailsHeader)).toHaveLength(1)
       expect(wrapper.find(StrainDetailsLeftCard)).toHaveLength(1)
-    })
-  })
-
-  describe("error handling", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_STRAIN,
-          variables: {
-            id: "DBS999999",
-          },
-        },
-        result: {
-          errors: [
-            {
-              message: "could not find strain with ID DBS999999",
-              path: ["strain"],
-              extensions: { code: "NotFound" },
-              locations: undefined,
-              nodes: undefined,
-              source: undefined,
-              positions: undefined,
-              originalError: undefined,
-              name: "",
-            },
-          ],
-        },
-      },
-    ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <CartProvider>
-          <BrowserRouter>
-            <StrainDetailsContainer />
-          </BrowserRouter>
-        </CartProvider>
-      </MockedProvider>,
-    )
-    it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
     })
   })
 })

@@ -5,11 +5,9 @@ import wait from "waait"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
 import PhenotypeList from "./PhenotypeList"
-// import PhenotypeListItem from "./PhenotypeListItem"
 import VirtualizedList from "common/components/VirtualizedList"
 import ResultsHeader from "./ResultsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
-import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import data from "./mockData"
 
@@ -114,46 +112,6 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
       expect(wrapper.find(VirtualizedList)).toHaveLength(1)
       // console.log(wrapper.find(PhenotypeList).debug())
       // expect(wrapper.find(PhenotypeListItem)).toHaveLength(10)
-    })
-  })
-  describe("error handling", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
-          variables: {
-            cursor: 0,
-            filter: "",
-          },
-        },
-        result: {
-          errors: [
-            {
-              message: "Strains not found",
-              path: [],
-              extensions: { code: "NotFound" },
-              locations: undefined,
-              nodes: undefined,
-              source: undefined,
-              positions: undefined,
-              originalError: undefined,
-              name: "",
-            },
-          ],
-        },
-      },
-    ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <BrowserRouter>
-          <PhenotypeContainer />
-        </BrowserRouter>
-      </MockedProvider>,
-    )
-    it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
     })
   })
 })
