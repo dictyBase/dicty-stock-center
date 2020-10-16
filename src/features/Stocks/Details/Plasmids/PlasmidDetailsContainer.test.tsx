@@ -8,7 +8,6 @@ import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
 import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
-import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_PLASMID } from "common/graphql/queries"
 import { data } from "./mockPlasmidData"
@@ -60,47 +59,6 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       expect(wrapper.find(DetailsHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsLeftCard)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsRightColumn)).toHaveLength(1)
-    })
-  })
-  describe("error handling", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_PLASMID,
-          variables: {
-            id: "DBP999999",
-          },
-        },
-        result: {
-          errors: [
-            {
-              message: "could not find plasmid with ID DBP999999",
-              path: ["plasmid"],
-              extensions: { code: "NotFound" },
-              locations: undefined,
-              nodes: undefined,
-              source: undefined,
-              positions: undefined,
-              originalError: undefined,
-              name: "",
-            },
-          ],
-        },
-      },
-    ]
-    const wrapper = mount(
-      <CartProvider>
-        <BrowserRouter>
-          <MockedProvider mocks={mocks} addTypename={false}>
-            <PlasmidDetailsContainer />
-          </MockedProvider>
-        </BrowserRouter>
-      </CartProvider>,
-    )
-    it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
     })
   })
 })
