@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/client"
 import Grid from "@material-ui/core/Grid"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
 import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"

@@ -1,5 +1,5 @@
 import React from "react"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/client"
 import Grid from "@material-ui/core/Grid"
 import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"

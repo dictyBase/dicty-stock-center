@@ -1,7 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 import AppProviders from "./AppProviders"
-import { ApolloProvider } from "@apollo/react-hooks"
+import { ApolloProvider } from "@apollo/client"
 import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import { CartProvider } from "features/ShoppingCart/CartStore"

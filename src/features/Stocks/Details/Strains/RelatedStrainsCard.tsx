@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/client"
 import Card from "@material-ui/core/Card"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
