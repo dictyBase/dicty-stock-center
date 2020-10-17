@@ -44,7 +44,7 @@
     "element-remove": "^1.0.4",
     "fontsource-roboto": "^3.0.3",
     "formik": "^2.2.0",
-    "graphql": "^14.7.0",
+    "graphql": "^15.3.0",
     "history": "^5.0.0",
     "immutable": "^3.8.2",
     "jwt-decode": "^3.0.0",
