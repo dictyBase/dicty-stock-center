@@ -40,7 +40,7 @@ const PaymentMethodRadioGroup = ({
 }: Props) => {
   const { values, setFieldValue, handleChange } = useFormikContext<any>()
 
-  const handlePaymentChange = (event: any) => {
+  const handlePaymentChange = (event: React.ChangeEvent<any>) => {
     switch (event.target.value) {
       case "purchaseOrder":
         setPurchaseOrderNum(true)
