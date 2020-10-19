@@ -17,27 +17,46 @@ const radioValues = [
     value: "purchaseOrder",
     label: "Purchase Order (PO)",
   },
+  {
+    value: "waiver",
+    label: "Waiver Requested",
+  },
 ]
 
 type Props = {
-  setPurchaseOrderNum: Function
+  /** Function to toggle selection of Purchase Order Number radio button */
+  setPurchaseOrderNum: (arg0: boolean) => void
+  /** Function to toggle selection of Waiver Requested radio button */
+  setWaiverRequested: (arg0: boolean) => void
 }
 
 /**
  * PaymentMethodRadioGroup contains radio buttons for payment methods.
  */
 
-const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
+const PaymentMethodRadioGroup = ({
+  setPurchaseOrderNum,
+  setWaiverRequested,
+}: Props) => {
   const { values, setFieldValue, handleChange } = useFormikContext<any>()
 
-  const handlePaymentChange = () => {
-    setPurchaseOrderNum(false)
-    setFieldValue("purchaseOrderNum", "N/A")
-  }
-
-  const handlePurchaseOrderChange = () => {
-    setPurchaseOrderNum(true)
-    setFieldValue("purchaseOrderNum", "")
+  const handlePaymentChange = (event: any) => {
+    switch (event.target.value) {
+      case "purchaseOrder":
+        setPurchaseOrderNum(true)
+        setWaiverRequested(false)
+        setFieldValue("purchaseOrderNum", "")
+        break
+      case "waiver":
+        setPurchaseOrderNum(false)
+        setWaiverRequested(true)
+        setFieldValue("waiverRequested", "")
+        break
+      default:
+        setPurchaseOrderNum(false)
+        setWaiverRequested(false)
+        setFieldValue("purchaseOrderNum", "N/A")
+    }
   }
 
   return (
@@ -52,11 +71,7 @@ const PaymentMethodRadioGroup = ({ setPurchaseOrderNum }: Props) => {
           value={item.value}
           control={<Radio />}
           label={item.label}
-          onChange={
-            item.value === "purchaseOrder"
-              ? handlePurchaseOrderChange
-              : handlePaymentChange
-          }
+          onChange={handlePaymentChange}
           checked={values["paymentMethod"] === item.value}
         />
       ))}
