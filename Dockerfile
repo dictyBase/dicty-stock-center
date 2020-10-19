@@ -12,6 +12,12 @@ ENV CLIENT_KEYS ${client_keys}
 ARG basename
 ENV REACT_APP_BASENAME ${basename:-stockcenter}
 
+ARG deploy_env
+ENV DEPLOY_ENV ${deploy_env}
+
+ARG alt_graphql_server
+ENV REACT_APP_ALT_GRAPHQL_SERVER ${alt_graphql_server:-https://betagraphql.dictycr.org}
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
