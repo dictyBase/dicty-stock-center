@@ -11,6 +11,7 @@ import PaymentMethodRadioGroup from "./PaymentMethodRadioGroup"
 
 const PaymentMethod = () => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
+  const [waiverRequested, setWaiverRequested] = useState(false)
   const classes = useStyles()
 
   return (
@@ -21,9 +22,21 @@ const PaymentMethod = () => {
       className={classes.innerForm}>
       <RequiredTextLabel title="Payment Account" />
       <Grid item xs={12} md={8}>
-        <PaymentMethodRadioGroup setPurchaseOrderNum={setPurchaseOrderNum} />
+        <PaymentMethodRadioGroup
+          setPurchaseOrderNum={setPurchaseOrderNum}
+          setWaiverRequested={setWaiverRequested}
+        />
         {purchaseOrderNum && (
           <TextField name="purchaseOrderNum" placeholder="PO Number" />
+        )}
+        {waiverRequested && (
+          <div className={classes.panelBlue}>
+            Please send an email to{" "}
+            <a href="mailto:dictystocks@northwestern.edu" target="_top">
+              dictystocks@northwestern.edu
+            </a>{" "}
+            describing why you need a waiver.
+          </div>
         )}
       </Grid>
     </Grid>
