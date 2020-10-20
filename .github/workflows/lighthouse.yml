@@ -24,7 +24,8 @@ jobs:
           accessToken: ${{ secrets.REPO_ACCESS_TOKEN }}
           emulatedFormFactor: "all"
           outputDirectory: /tmp/artifacts
-          urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit'
+          urls: 'https://eric.dictybase.dev/stockcenter'
+          # urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit'
       - name: upload artifacts
         uses: actions/upload-artifact@master
         with:
@@ -35,10 +36,10 @@ jobs:
             RESULTS: ${{ toJson(steps.lighthouseCheck.outputs.lighthouseCheckResults) }}
         run: echo "$RESULTS"
       - name: add comment if checks fail
-        if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != 'success'
+        # if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != 'success'
         uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ github.event.issue.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             > One or more of the Lighthouse status checks have failed.
             > 
