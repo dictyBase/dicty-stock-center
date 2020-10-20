@@ -38,6 +38,10 @@ jobs:
           minPerformanceScore: "90"
           minProgressiveWebAppScore: "90"
           minSeoScore: "90"
+      - name: log results
+        env:
+            RESULTS: ${{ toJson(steps.lighthouseCheck.outputs.lighthouseCheckResults) }}
+        run: echo "$RESULTS"
       - name: add comment if checks fail
         if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != 'success'
         uses: peter-evans/create-or-update-comment@v1
