@@ -38,3 +38,12 @@ jobs:
           minPerformanceScore: "90"
           minProgressiveWebAppScore: "90"
           minSeoScore: "90"
+      - name: add comment if checks fail
+        if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != "SUCCESS"
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            > One or more of the Lighthouse status checks have failed.
+            > 
+            > All scores are expected to be a minimum of 90.
