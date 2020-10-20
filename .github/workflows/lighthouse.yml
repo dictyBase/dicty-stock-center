@@ -5,7 +5,7 @@ on:
     branches:
       - develop
 jobs:
-  lhci:
+  lighthouse:
     name: Lighthouse CI
     runs-on: ubuntu-latest
     steps:
@@ -15,21 +15,16 @@ jobs:
           node-version: 12.x
       - name: check out code
         uses: actions/checkout@v2
-      - name: add yarn global bin to path
-        run: echo "::add-path::$(yarn global bin)"
-      - name: set up app
-        run: |
-          cp package.json package-dev.json && rm package.json
-          jq 'del(.homepage)' package-dev.json > package.json && rm package-dev.json
-          mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
-      - name: run build
-        run: |
-          yarn install
-          yarn global add serve
-          yarn build
-      - name: run Lighthouse CI
-        run: |
-          yarn global add @lhci/cli@0.3.x
-          lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - run: mkdir /tmp/artifacts
+      - name: run lighthouse
+        uses: foo-software/lighthouse-check-action@v2
+        with:
+          accessToken: ${{ secrets.REPO_ACCESS_TOKEN }}
+          emulatedFormFactor: "all"
+          outputDirectory: /tmp/artifacts
+          urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit'
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Lighthouse reports
+          path: /tmp/artifacts
