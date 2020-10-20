@@ -30,15 +30,6 @@ jobs:
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
-      - name: handle lighthouse check results
-        uses: foo-software/lighthouse-check-status-action@master
-        with:
-          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "90"
-          minBestPracticesScore: "90"
-          minPerformanceScore: "90"
-          minProgressiveWebAppScore: "90"
-          minSeoScore: "90"
       - name: log results
         env:
             RESULTS: ${{ toJson(steps.lighthouseCheck.outputs.lighthouseCheckResults) }}
@@ -52,3 +43,12 @@ jobs:
             > One or more of the Lighthouse status checks have failed.
             > 
             > All scores are expected to be a minimum of 90.
+      - name: handle lighthouse check results
+        uses: foo-software/lighthouse-check-status-action@master
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "90"
+          minBestPracticesScore: "90"
+          minPerformanceScore: "90"
+          minProgressiveWebAppScore: "90"
+          minSeoScore: "90"
