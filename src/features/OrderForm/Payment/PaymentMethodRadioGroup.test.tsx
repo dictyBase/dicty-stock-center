@@ -47,6 +47,7 @@ describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
       expect(mockSetFieldValue).toBeCalledTimes(1)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
       expect(setPurchaseOrderNumSpy).toBeCalledTimes(1)
+      expect(setWaiverRequestedSpy).toBeCalledWith(false)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
       // click wire transfer button
       const wire = wrapper.find(FormControlLabel).at(1)
@@ -57,6 +58,7 @@ describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
       })
       expect(setPurchaseOrderNumSpy).toBeCalledTimes(2)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
+      expect(setWaiverRequestedSpy).toBeCalledWith(false)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
       expect(mockSetFieldValue).toBeCalledTimes(2)
     })
@@ -69,7 +71,20 @@ describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
         },
       })
       expect(setPurchaseOrderNumSpy).toBeCalledWith(true)
+      expect(setWaiverRequestedSpy).toBeCalledWith(false)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "")
+    })
+    it("does not set field value when clicking Waiver radio button", () => {
+      // click waiver button
+      const po = wrapper.find(FormControlLabel).at(3)
+      po.simulate("change", {
+        target: {
+          value: "waiver",
+        },
+      })
+      expect(setWaiverRequestedSpy).toBeCalledWith(true)
+      expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
+      expect(mockSetFieldValue).toBeCalledWith("waiverRequested", "")
     })
   })
 })
