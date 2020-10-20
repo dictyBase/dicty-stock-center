@@ -39,7 +39,7 @@ jobs:
           minProgressiveWebAppScore: "90"
           minSeoScore: "90"
       - name: add comment if checks fail
-        if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != "SUCCESS"
+        if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != 'success'
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
