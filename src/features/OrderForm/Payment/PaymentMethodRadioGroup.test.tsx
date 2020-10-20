@@ -84,7 +84,7 @@ describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
       })
       expect(setWaiverRequestedSpy).toBeCalledWith(true)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
-      expect(mockSetFieldValue).toBeCalledWith("waiverRequested", "")
+      expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
     })
   })
 })
