@@ -3,6 +3,7 @@ import { useFormikContext } from "formik"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
+import { FormikValues } from "../utils/initialValues"
 
 const radioValues = [
   {
@@ -38,7 +39,8 @@ const PaymentMethodRadioGroup = ({
   setPurchaseOrderNum,
   setWaiverRequested,
 }: Props) => {
-  const { values, setFieldValue, handleChange } = useFormikContext<any>()
+  // eslint-disable-next-line
+  const { values, setFieldValue, handleChange } = useFormikContext<FormikValues>()
 
   const handlePaymentChange = (event: React.ChangeEvent<any>) => {
     switch (event.target.value) {

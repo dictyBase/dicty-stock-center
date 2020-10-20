@@ -1,5 +1,4 @@
-/* eslint-disable */
-export type FormikValues = {
+type FormikValues = {
   firstName: string
   lastName: string
   email: string
@@ -64,4 +63,5 @@ const initialValues: FormikValues = {
   purchaseOrderNum: "",
 }
 
+export type { FormikValues }
 export default initialValues
