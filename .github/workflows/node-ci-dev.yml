@@ -59,6 +59,7 @@ jobs:
             graphql_server=https://ericgraphql.dictybase.dev
             client_keys=https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.1/clientConfig.eric.js
             ga_tracking_id=-UA-146763741-1
+            deploy_env=development
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: docker build and push (devsidd)
@@ -69,5 +70,6 @@ jobs:
           build-args: |
             graphql_server=https://siddgraphql.dictybase.dev
             client_keys=https://raw.githubusercontent.com/dictybase-playground/client-keys/2.0.1/clientConfig.sidd.js
+            deploy_env=development
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
