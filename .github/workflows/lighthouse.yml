@@ -31,19 +31,6 @@ jobs:
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
-      - name: log results
-        env:
-            RESULTS: ${{ toJson(steps.lighthouseCheck.outputs.lighthouseCheckResults) }}
-        run: echo "$RESULTS"
-      - name: add comment if checks fail
-        # if: steps.lighthouseCheck.outputs.lighthouseCheckResults.code != 'success'
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            > One or more of the Lighthouse status checks have failed.
-            > 
-            > All scores are expected to be a minimum of 90.
       - name: handle lighthouse check results
         uses: foo-software/lighthouse-check-status-action@master
         with:
@@ -53,3 +40,15 @@ jobs:
           minPerformanceScore: "90"
           minProgressiveWebAppScore: "90"
           minSeoScore: "90"
+      - name: add comment if checks fail
+        if: ${{ failure() }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            > ### :warning::warning: Lighthouse Check Failure :warning::warning:
+            >
+            > One or more of the Lighthouse status checks have failed. Look at comment above 
+            > for more information.
+            > 
+            > All scores are expected to be a minimum of 90.
