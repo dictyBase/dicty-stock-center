@@ -52,7 +52,7 @@ const PaymentMethodRadioGroup = ({
       case "waiver":
         setPurchaseOrderNum(false)
         setWaiverRequested(true)
-        setFieldValue("waiverRequested", "")
+        setFieldValue("purchaseOrderNum", "N/A")
         break
       default:
         setPurchaseOrderNum(false)
