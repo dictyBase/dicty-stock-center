@@ -18,13 +18,23 @@ jobs:
       - run: mkdir /tmp/artifacts
       - name: run lighthouse
         uses: foo-software/lighthouse-check-action@v2.0.5
+        id: lighthouseCheck
         with:
           accessToken: ${{ secrets.REPO_ACCESS_TOKEN }}
           emulatedFormFactor: "all"
           outputDirectory: /tmp/artifacts
           urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit'
-      - name: Upload artifacts
+      - name: upload artifacts
         uses: actions/upload-artifact@master
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
+      - name: handle lighthouse check results
+        uses: foo-software/lighthouse-check-status-action@v2.0.5
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "90"
+          minBestPracticesScore: "90"
+          minPerformanceScore: "90"
+          minProgressiveWebAppScore: "90"
+          minSeoScore: "90"
