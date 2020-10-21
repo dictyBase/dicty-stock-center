@@ -15,9 +15,6 @@ jobs:
           node-version: 12.x
       - name: check out code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - run: ls
       - name: run lighthouse
         id: lighthouse
         uses: treosh/lighthouse-ci-action@v3
@@ -28,6 +25,7 @@ jobs:
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+          runs: 3
       # - run: mkdir /tmp/artifacts
       # - name: run lighthouse
       #   uses: foo-software/lighthouse-check-action@master
