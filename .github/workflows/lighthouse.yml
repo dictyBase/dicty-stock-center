@@ -47,6 +47,16 @@ jobs:
             console.log(${{ steps.lighthouse.outputs.links }})
             console.log(${{ steps.lighthouse.outputs.assertionResults }})
             console.log(${{ steps.lighthouse.outputs.manifest }})
+            let body = ''
+            for (const [key, value] of Object.entries(${{ steps.lighthouse.outputs.links }})) {
+              body := `[key](value)`
+            }
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
       # - name: handle lighthouse check results
       #   uses: foo-software/lighthouse-check-status-action@master
       #   with:
