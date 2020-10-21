@@ -34,11 +34,11 @@ jobs:
         uses: foo-software/lighthouse-check-status-action@master
         with:
           lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "90"
-          minBestPracticesScore: "90"
+          minAccessibilityScore: "50"
+          minBestPracticesScore: "50"
           minPerformanceScore: "90"
-          minProgressiveWebAppScore: "90"
-          minSeoScore: "90"
+          minProgressiveWebAppScore: "0"
+          minSeoScore: "50"
       - name: add comment if checks fail
         if: ${{ failure() }}
         uses: peter-evans/create-or-update-comment@v1
@@ -49,5 +49,3 @@ jobs:
             >
             > One or more of the Lighthouse status checks have failed. Look at the comment above 
             > for more information.
-            > 
-            > All scores are expected to be a minimum of 90.
