@@ -35,7 +35,7 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log(context)
+            console.log(${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }})
       # - name: handle lighthouse check results
       #   uses: foo-software/lighthouse-check-status-action@master
       #   with:
