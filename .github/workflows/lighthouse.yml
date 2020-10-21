@@ -1,14 +1,13 @@
 name: Lighthouse CI
 on: 
   pull_request:
-    types: [edited, labeled, opened, synchronize, reopened]
+    types: [opened]
     branches:
       - develop
 jobs:
   lighthouse:
     name: Lighthouse CI
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - name: set up node.js
         uses: actions/setup-node@v1
@@ -22,7 +21,7 @@ jobs:
         id: lighthouseCheck
         with:
           accessToken: ${{ secrets.REPO_ACCESS_TOKEN }}
-          emulatedFormFactor: "all"
+          emulatedFormFactor: "desktop"
           outputDirectory: /tmp/artifacts
           urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/plasmids,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit,https://eric.dictybase.dev/stockcenter/information/nomenclature-guidelines'
       - name: upload artifacts
@@ -39,13 +38,3 @@ jobs:
           minPerformanceScore: "90"
           minProgressiveWebAppScore: "0"
           minSeoScore: "50"
-      - name: add comment if checks fail
-        if: ${{ failure() }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            > ### :warning::warning: Lighthouse Check Failure :warning::warning:
-            >
-            > One or more of the Lighthouse status checks have failed. Look at the comment above 
-            > for more information.
