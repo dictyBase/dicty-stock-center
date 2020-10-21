@@ -47,7 +47,7 @@ jobs:
             console.log(${{ steps.lighthouse.outputs.manifest }})
             let body = ''
             for (const [key, value] of Object.entries(${{ steps.lighthouse.outputs.links }})) {
-              console.log(key, value)
+              body += `[${key}](${value})    `
             }
             github.issues.createComment({
               issue_number: context.issue.number,
