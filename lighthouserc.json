@@ -25,7 +25,8 @@
     "collect": {
       "settings": {
         "emulatedFormFactor": "desktop",
-        "locale": "en-us"
+        "locale": "en-us",
+        "throttlingMethod": "devtools"
       }
     }
   }
