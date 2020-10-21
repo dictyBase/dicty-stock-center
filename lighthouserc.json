@@ -31,7 +31,7 @@
           "requestLatencyMs": 562.5,
           "rttMs": 150,
           "throughputKbps": 1638.4,
-          "uploadThroughputKbps": 675,
+          "uploadThroughputKbps": 675
         }
       }
     }
