@@ -1,7 +1,7 @@
 name: Lighthouse CI
 on: 
   pull_request:
-    types: [opened]
+    types: [opened, synchronize] # change to 'opened' when finished
     branches:
       - develop
 jobs:
@@ -23,18 +23,25 @@ jobs:
           accessToken: ${{ secrets.REPO_ACCESS_TOKEN }}
           emulatedFormFactor: "desktop"
           outputDirectory: /tmp/artifacts
-          urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/plasmids,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit,https://eric.dictybase.dev/stockcenter/information/nomenclature-guidelines'
+          urls: 'https://eric.dictybase.dev/stockcenter'
+          # urls: 'https://eric.dictybase.dev/stockcenter,https://eric.dictybase.dev/stockcenter/strains,https://eric.dictybase.dev/stockcenter/plasmids,https://eric.dictybase.dev/stockcenter/strains/DBS0236921,https://eric.dictybase.dev/stockcenter/information/faq,https://eric.dictybase.dev/stockcenter/information/order,https://eric.dictybase.dev/stockcenter/information/payment,https://eric.dictybase.dev/stockcenter/information/deposit,https://eric.dictybase.dev/stockcenter/information/nomenclature-guidelines'
       - name: upload artifacts
         uses: actions/upload-artifact@master
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
-      - name: handle lighthouse check results
-        uses: foo-software/lighthouse-check-status-action@master
+      - name: github script
+        uses: actions/github-script@v3
         with:
-          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "50"
-          minBestPracticesScore: "50"
-          minPerformanceScore: "90"
-          minProgressiveWebAppScore: "0"
-          minSeoScore: "50"
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            console.log(context)
+      # - name: handle lighthouse check results
+      #   uses: foo-software/lighthouse-check-status-action@master
+      #   with:
+      #     lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+      #     minAccessibilityScore: "50"
+      #     minBestPracticesScore: "50"
+      #     minPerformanceScore: "90"
+      #     minProgressiveWebAppScore: "0"
+      #     minSeoScore: "50"
