@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
       - name: run lighthouse
         id: lighthouse
-        uses: treosh/lighthouse-ci-action@v2
+        uses: treosh/lighthouse-ci-action@v3
         with:
           urls: |
             https://eric.dictybase.dev/stockcenter
