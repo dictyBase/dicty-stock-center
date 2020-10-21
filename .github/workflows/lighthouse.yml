@@ -44,14 +44,10 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log(${{ steps.lighthouse.outputs.links }})
-            console.log(${{ steps.lighthouse.outputs.assertionResults }})
             console.log(${{ steps.lighthouse.outputs.manifest }})
             let body = ''
             for (const [key, value] of Object.entries(${{ steps.lighthouse.outputs.links }})) {
-              let k = JSON.parse(key)
-              let v = JSON.parse(value)
-              body := `[${k}](${v})`
+              console.log(key, value)
             }
             github.issues.createComment({
               issue_number: context.issue.number,
