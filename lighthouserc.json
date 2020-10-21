@@ -2,35 +2,30 @@
   "ci": {
     "assert": {
       "assertions": {
-        "categories:performance": [
+        "largest-contentful-paint": [
           "error",
           {
-            "minScore": 0.9
+            "maxNumericValue": 2500
           }
         ],
-        "categories:accessibility": [
-          "warn",
-          {
-            "minScore": 0.5
-          }
-        ],
-        "categories:best-practices": [
+        "total-blocking-time": [
           "error",
           {
-            "minScore": 0.8
+            "maxNumericValue": 300
           }
         ],
-        "categories:seo": [
-          "warn",
+        "cumulative-layout-shift": [
+          "error",
           {
-            "minScore": 0.5
+            "maxNumericValue": 0.1
           }
         ]
       }
     },
     "collect": {
       "settings": {
-        "emulatedFormFactor": "desktop"
+        "emulatedFormFactor": "desktop",
+        "locale": "en-us"
       }
     }
   }
