@@ -22,8 +22,9 @@ jobs:
           urls: |
             https://eric.dictybase.dev/stockcenter
             https://eric.dictybase.dev/stockcenter/strains
-          uploadArtifacts: true # save results as an action artifacts
-          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
       # - run: mkdir /tmp/artifacts
       # - name: run lighthouse
       #   uses: foo-software/lighthouse-check-action@master
