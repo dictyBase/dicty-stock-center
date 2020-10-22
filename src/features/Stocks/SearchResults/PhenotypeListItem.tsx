@@ -14,13 +14,11 @@ const useStyles = makeStyles({
     borderBottom: "1px solid rgba(224, 224, 224, 1)",
     "&:hover": {
       backgroundColor: "#eeeeee",
-      boxShadow:
-        "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
-      zIndex: 1,
     },
   },
   item: {
     paddingRight: "10px",
+    fontSize: "0.9rem",
   },
 })
 
@@ -32,19 +30,19 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
     <ListItem key={strain.id} className={classes.row} style={style}>
       <Grid container spacing={0} alignItems="center">
         <Grid item sm={3} className={classes.item}>
-          <Typography noWrap>
+          <Typography variant="body2" noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
             </Link>
           </Typography>
         </Grid>
         <Grid item sm={3} className={classes.item}>
-          <Typography noWrap>
+          <Typography variant="body2" noWrap>
             <GenesDisplay genes={strain.genes} />
           </Typography>
         </Grid>
         <Grid item sm={6} className={classes.item}>
-          <Typography>
+          <Typography variant="body2">
             <PublicationsDisplay publications={strain.publications} />
           </Typography>
         </Grid>
