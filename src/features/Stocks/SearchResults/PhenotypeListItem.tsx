@@ -6,7 +6,7 @@ import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
 import { ListChildComponentProps } from "react-window"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
+import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
 import characterConverter from "common/utils/characterConverter"
 
 const useStyles = makeStyles({
@@ -29,7 +29,7 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
   return (
     <ListItem key={strain.id} className={classes.row} style={style}>
       <Grid container spacing={0} alignItems="center">
-        <Grid item sm={3} className={classes.item}>
+        <Grid item sm={2} className={classes.item}>
           <Typography variant="body2" noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
@@ -41,9 +41,9 @@ const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
             <GenesDisplay genes={strain.genes} />
           </Typography>
         </Grid>
-        <Grid item sm={6} className={classes.item}>
+        <Grid item sm={7} className={classes.item}>
           <Typography variant="body2">
-            <PublicationsDisplay publications={strain.publications} />
+            <PublicationsContainer publications={strain.publications} single />
           </Typography>
         </Grid>
       </Grid>

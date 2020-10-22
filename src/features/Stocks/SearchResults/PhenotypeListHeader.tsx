@@ -24,17 +24,17 @@ const PhenotypeListHeader = () => {
     <List className={classes.list}>
       <ListItem className={classes.listHeaders}>
         <Grid container spacing={0} alignItems="center">
-          <Grid item sm={3}>
+          <Grid item sm={2}>
             Strain Descriptor
           </Grid>
           <Hidden xsDown>
             <Grid item sm={3}>
-              Associated Genes
+              Associated Gene(s)
             </Grid>
           </Hidden>
           <Hidden mdDown>
-            <Grid item sm={6}>
-              Publication(s)
+            <Grid item sm={7}>
+              Reference
             </Grid>
           </Hidden>
         </Grid>

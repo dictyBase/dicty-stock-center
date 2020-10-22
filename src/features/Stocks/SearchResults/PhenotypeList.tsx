@@ -19,7 +19,7 @@ const PhenotypeList = ({ data, loadMoreItems, hasMore }: Props) => (
     loadMoreItems={loadMoreItems}
     hasMore={hasMore}
     headerComponent={<PhenotypeListHeader />}
-    rowHeight={75}>
+    rowHeight={65}>
     {PhenotypeListItem}
   </VirtualizedList>
 )

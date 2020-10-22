@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
+import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
 import {
   StrainDetails,
   StrainDetailsProps,
@@ -91,7 +91,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   const rows = strainRowsGenerator(
     data,
     parent,
-    <PublicationsDisplay publications={data.publications} />,
+    <PublicationsContainer publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
   )
 
