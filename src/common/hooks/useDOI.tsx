@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-type publicationType = Array<{
+type Publications = Array<{
   /** DOI link for publication */
   doi: string
   /** Pubmed ID, used for linking to our publication page */
@@ -13,7 +13,7 @@ type publicationType = Array<{
  * publications using their DOI links.
  */
 
-const useDOI = (publications: publicationType) => {
+const useDOI = (publications: Publications) => {
   const [data, setData] = useState<Array<any>>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<any>(null)
