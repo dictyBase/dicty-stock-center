@@ -16,6 +16,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
         opacity: 1,
       },
     },
+    marginRight: "5px",
   },
   label: {
     transition: "0.2s",
