@@ -54,7 +54,9 @@ const PhenotypeListItem = ({ data }: Props) => {
         </Grid>
         <Grid item xs={3} className={classes.item}>
           <Typography variant="body2">
-            <PublicationsDisplay publications={[data.publication]} />
+            {data.publication && (
+              <PublicationsDisplay publications={[data.publication]} />
+            )}
           </Typography>
         </Grid>
       </Grid>
