@@ -42,7 +42,15 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
         genes
         publications {
           id
-          doi
+          pub_date
+          title
+          journal
+          volume
+          pages
+          authors {
+            last_name
+            initials
+          }
         }
       }
     }

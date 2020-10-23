@@ -72,9 +72,19 @@ type StrainWithPhenotype = {
   id: string
   label: string
   genes: Array<string>
-  publications: Array<{
-    id: string
-    doi: string
+  publications: Array<Publication>
+}
+
+type Publication = {
+  id: string
+  pub_date: string
+  title: string
+  journal: string
+  volume: string
+  pages: string
+  authors: Array<{
+    last_name: string
+    initials: string
   }>
 }
 
@@ -86,4 +96,5 @@ export type {
   PlasmidDetailsProps,
   PhenotypeProps,
   StrainWithPhenotype,
+  Publication,
 }
