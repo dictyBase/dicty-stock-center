@@ -1,6 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import PublicationsDisplay from "./PublicationsDisplay"
+import ExternalLinkIcon from "common/components/ExternalLinkIcon"
 import Skeleton from "react-loading-skeleton"
 import * as PublicationHook from "common/hooks/useDOI"
 
@@ -39,7 +40,7 @@ describe("Stocks/Details/common/PublicationsDisplay", () => {
     }))
     const wrapper = shallow(<PublicationsDisplay {...props} />)
 
-    expect(wrapper.find("a")).toHaveLength(1)
+    expect(wrapper.find(ExternalLinkIcon)).toHaveLength(1)
   })
 
   it("displays error message if error", () => {
