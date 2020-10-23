@@ -27,10 +27,13 @@ const PhenotypeList = ({ data }: Props) => {
   return (
     <Paper>
       <PhenotypeListHeader />
-      <List className={classes.list} dense>
-        {data.map((item: StrainWithPhenotype, index: number) => (
-          <PhenotypeListItem key={index} strain={item} />
-        ))}
+      <List className={classes.list}>
+        {data
+          .slice()
+          .sort((a, b) => a.label.localeCompare(b.label))
+          .map((item: StrainWithPhenotype, index: number) => (
+            <PhenotypeListItem key={index} strain={item} />
+          ))}
       </List>
     </Paper>
   )
