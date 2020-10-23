@@ -47,4 +47,5 @@ const PhenotypePublicationDisplay = ({ publication }: Props) => {
   )
 }
 
+export { listAuthors, getYearFromTimestamp }
 export default PhenotypePublicationDisplay
