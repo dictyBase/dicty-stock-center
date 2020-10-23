@@ -1,7 +1,7 @@
 import React from "react"
 import LeftCardDisplay from "features/Stocks/Details/common/LeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
+import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
 import {
   PlasmidDetails,
   PlasmidDetailsProps,
@@ -70,7 +70,7 @@ const PlasmidDetailsLeftCard = ({ data }: PlasmidDetailsProps) => {
   const rows = plasmidRowGenerator(
     data,
     imageMap,
-    <PublicationsContainer publications={data.publications} />,
+    <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
   )
 
