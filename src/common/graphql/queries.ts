@@ -35,7 +35,7 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
     listStrainsWithPhenotype(
       input: { cursor: $cursor, limit: $limit, phenotype: $phenotype }
     ) {
-      nextCursor
+      totalCount
       strains {
         id
         label

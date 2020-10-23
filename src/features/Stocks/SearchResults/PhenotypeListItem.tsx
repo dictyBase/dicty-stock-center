@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
-import { ListChildComponentProps } from "react-window"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
 import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
 import characterConverter from "common/utils/characterConverter"
+import { StrainWithPhenotype } from "../Details/types/props"
 
 const useStyles = makeStyles({
   row: {
@@ -22,12 +22,15 @@ const useStyles = makeStyles({
   },
 })
 
-const PhenotypeListItem = ({ index, style, data }: ListChildComponentProps) => {
+type Props = {
+  strain: StrainWithPhenotype
+}
+
+const PhenotypeListItem = ({ strain }: Props) => {
   const classes = useStyles()
-  const strain = data.item[index]
 
   return (
-    <ListItem key={strain.id} className={classes.row} style={style}>
+    <ListItem key={strain.id} className={classes.row}>
       <Grid container spacing={0} alignItems="center">
         <Grid item sm={2} className={classes.item}>
           <Typography variant="body2" noWrap>
