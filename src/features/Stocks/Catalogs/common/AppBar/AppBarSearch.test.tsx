@@ -5,7 +5,6 @@ import AppBarDropdown from "./AppBarDropdown"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AppBarProvider } from "./AppBarContext"
-// import InputBase from "@material-ui/core/InputBase"
 import sinon from "sinon"
 
 describe("Stocks/Strains/Catalog/AppBarSearch", () => {
@@ -42,6 +41,12 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
     it("should use dispatch when clear button is clicked", () => {
       catalogDispatchSpy.resetHistory()
       const clearBtn = wrapper.find(IconButton).at(1)
+      clearBtn.simulate("click")
+      expect(catalogDispatchSpy.calledOnce).toBe(true)
+    })
+    it("should use dispatch when search button is clicked", () => {
+      catalogDispatchSpy.resetHistory()
+      const clearBtn = wrapper.find(IconButton).at(0)
       clearBtn.simulate("click")
       expect(catalogDispatchSpy.calledOnce).toBe(true)
     })
