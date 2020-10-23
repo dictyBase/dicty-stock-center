@@ -33,48 +33,15 @@ type Params = {
  */
 
 const PhenotypeContainer = () => {
-  const [hasMore, setHasMore] = React.useState(true)
   const classes = useStyles()
   const { name } = useParams<Params>()
   const phenotype = cleanQuery(name)
-  const { loading, error, data, fetchMore } = useQuery(
-    GET_STRAIN_LIST_WITH_PHENOTYPE,
-    {
-      variables: { cursor: 0, limit: 10, phenotype },
-    },
-  )
+  const { loading, error, data } = useQuery(GET_STRAIN_LIST_WITH_PHENOTYPE, {
+    variables: { cursor: 0, limit: 10000, phenotype },
+  })
 
   if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
-
-  const loadMoreItems = () =>
-    fetchMore({
-      query: GET_STRAIN_LIST_WITH_PHENOTYPE,
-      variables: {
-        cursor: data.listStrainsWithPhenotype.nextCursor,
-        limit: 10,
-        phenotype,
-      },
-      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
-        const previousEntry = previousResult.listStrainsWithPhenotype
-        const previousStrains = previousEntry.strains
-        const newStrains = fetchMoreResult.listStrainsWithPhenotype.strains
-        const newCursor = fetchMoreResult.listStrainsWithPhenotype.nextCursor
-        const allStrains = [...previousStrains, ...newStrains]
-
-        if (newCursor === 0) {
-          setHasMore(false)
-        }
-
-        return {
-          listStrainsWithPhenotype: {
-            nextCursor: newCursor,
-            strains: [...new Set(allStrains)], // remove any duplicate entries
-            __typename: previousEntry.__typename,
-          },
-        }
-      },
-    })
 
   return (
     <>
@@ -93,9 +60,8 @@ const PhenotypeContainer = () => {
         </Grid>
         <Grid item xs={12}>
           <PhenotypeList
+            totalCount={data.listStrainsWithPhenotype.totalCount}
             data={data.listStrainsWithPhenotype.strains}
-            loadMoreItems={loadMoreItems}
-            hasMore={hasMore}
           />
         </Grid>
       </Grid>
