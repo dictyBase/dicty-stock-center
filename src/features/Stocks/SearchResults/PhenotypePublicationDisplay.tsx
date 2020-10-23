@@ -1,6 +1,6 @@
 import React from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { makeStyles } from "@material-ui/core/styles"
+import ExternalLinkIcon from "common/components/ExternalLinkIcon"
 import { Publication } from "../Details/types/props"
 
 const useStyles = makeStyles({
@@ -38,11 +38,10 @@ const PhenotypePublicationDisplay = ({ publication }: Props) => {
       </span>{" "}
       '{publication.title}' <em>{publication.journal}</em> {publication.volume}:
       {publication.pages}{" "}
-      <a
-        href={`/publication/${publication.id}`}
-        title="Visit dictyBase publication page">
-        <FontAwesomeIcon icon="external-link-alt" size="sm" />
-      </a>
+      <ExternalLinkIcon
+        url={`/publication/${publication.id}`}
+        title="Visit dictyBase publication page"
+      />
     </React.Fragment>
   )
 }

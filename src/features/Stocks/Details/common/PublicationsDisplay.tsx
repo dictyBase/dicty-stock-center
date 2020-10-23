@@ -1,6 +1,6 @@
 import React from "react"
 import Skeleton from "react-loading-skeleton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ExternalLinkIcon from "common/components/ExternalLinkIcon"
 import useDOI from "common/hooks/useDOI"
 import useStyles from "features/Stocks/Details/styles"
 
@@ -34,11 +34,10 @@ const PublicationsDisplay = ({ publications }: Props) => {
       {data.map<any>((item, index) => (
         <React.Fragment key={index}>
           {item.data}
-          <a
-            href={`/publication/${item.id}`}
-            title="Visit dictyBase publication page">
-            <FontAwesomeIcon icon="external-link-alt" size="sm" />
-          </a>
+          <ExternalLinkIcon
+            url={`/publication/${item.id}`}
+            title="Visit dictyBase publication page"
+          />
           <br />
         </React.Fragment>
       ))}
