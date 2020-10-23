@@ -84,7 +84,6 @@ type Publication = {
   pages: string
   authors: Array<{
     last_name: string
-    initials: string
   }>
 }
 

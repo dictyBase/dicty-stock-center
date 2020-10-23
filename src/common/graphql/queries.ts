@@ -49,7 +49,6 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
           pages
           authors {
             last_name
-            initials
           }
         }
       }
