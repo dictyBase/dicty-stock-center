@@ -29,6 +29,15 @@ type Props = {
 const PhenotypeListItem = ({ strain }: Props) => {
   const classes = useStyles()
 
+  let pubDisplay
+  if (strain.publications && strain.publications.length) {
+    pubDisplay = (
+      <PhenotypePublicationDisplay publication={strain.publications[0]} />
+    )
+  } else {
+    pubDisplay = <React.Fragment />
+  }
+
   return (
     <ListItem key={strain.id} className={classes.row}>
       <Grid container spacing={0} alignItems="center">
@@ -45,9 +54,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
           </Typography>
         </Grid>
         <Grid item sm={6} className={classes.item}>
-          <Typography variant="body2">
-            <PhenotypePublicationDisplay publication={strain.publications[0]} />
-          </Typography>
+          <Typography variant="body2">{pubDisplay}</Typography>
         </Grid>
       </Grid>
     </ListItem>

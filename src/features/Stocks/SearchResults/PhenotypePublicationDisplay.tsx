@@ -24,11 +24,15 @@ const getYearFromTimestamp = (date: string) => {
 }
 
 type Props = {
-  publication: Publication
+  publication?: Publication
 }
 
 const PhenotypePublicationDisplay = ({ publication }: Props) => {
   const classes = useStyles()
+
+  if (!publication) {
+    return <div />
+  }
 
   return (
     <React.Fragment>

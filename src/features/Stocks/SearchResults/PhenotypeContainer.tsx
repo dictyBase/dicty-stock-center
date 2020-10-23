@@ -42,10 +42,13 @@ const PhenotypeContainer = () => {
   const phenotype = cleanQuery(name)
   const { loading, error, data } = useQuery(GET_STRAIN_LIST_WITH_PHENOTYPE, {
     variables: { cursor: 0, limit: 10000, phenotype },
+    errorPolicy: "all",
   })
 
   if (loading) return <DetailsLoader />
-  if (error) return <GraphQLErrorPage error={error} />
+  if (error && !data) {
+    return <GraphQLErrorPage error={error} />
+  }
 
   return (
     <>
