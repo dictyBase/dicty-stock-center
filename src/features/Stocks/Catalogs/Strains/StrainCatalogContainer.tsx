@@ -27,6 +27,10 @@ const leftDropdownItems = [
     name: "Unavailable Strains",
     value: "",
   },
+  {
+    name: "Bacterial Food Strains",
+    value: "",
+  },
 ]
 
 const rightDropdownItems = [
