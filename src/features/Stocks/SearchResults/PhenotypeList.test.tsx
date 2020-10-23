@@ -1,19 +1,16 @@
 import React from "react"
 import { shallow } from "enzyme"
 import PhenotypeList from "./PhenotypeList"
-import VirtualizedList from "common/components/VirtualizedList"
+import List from "@material-ui/core/List"
 
 describe("Stocks/SearchResults/PhenotypeList", () => {
   const props = {
     data: [],
-    loadMoreItems: jest.fn(),
-    phenotype: "abolished protein phosphorylation",
-    hasMore: true,
   }
   const wrapper = shallow(<PhenotypeList {...props} />)
   describe("initial render", () => {
     it("always renders initial components", () => {
-      expect(wrapper.find(VirtualizedList)).toHaveLength(1)
+      expect(wrapper.find(List)).toHaveLength(1)
     })
   })
 })
