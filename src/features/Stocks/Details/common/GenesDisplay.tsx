@@ -1,5 +1,5 @@
 import React from "react"
-import LinkTag from "features/Stocks/Details/common/LinkTag"
+import LinkTag from "common/components/LinkTag"
 
 type Props = {
   /** List of gene IDs */
