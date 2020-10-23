@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles(({ spacing, palette }) => ({
   root: {
-    backgroundColor: palette.grey[200],
+    backgroundColor: "#cce6ff",
     borderRadius: "16px",
     lineHeight: 1.5,
     "&:hover, &.Mui-focusVisible": {

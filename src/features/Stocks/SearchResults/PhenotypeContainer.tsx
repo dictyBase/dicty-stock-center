@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   gridItem: {
     marginBottom: "20px",
   },
+  resultsText: {
+    marginTop: "20px !important",
+  },
 })
 
 const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
@@ -58,7 +61,7 @@ const PhenotypeContainer = () => {
       <Grid container className={classes.layout}>
         <Grid item xs={12} className={classes.gridItem}>
           <ResultsHeader property="Phenotype" description={phenotype} />
-          <Typography variant="h6">
+          <Typography className={classes.resultsText} variant="subtitle1">
             Showing {data.listStrainsWithPhenotype.totalCount} results
           </Typography>
         </Grid>
