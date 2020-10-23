@@ -6,28 +6,41 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
+import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 
 describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("initial render", () => {
     const props = {
-      data: {
-        item: [
+      strain: {
+        genes: ["abcd"],
+        id: "DBS123456",
+        label: "counting strain",
+        publications: [
           {
-            genes: ["abcd"],
-            id: "DBS123456",
-            label: "counting strain",
-            publications: [
+            id: "20008082",
+            pub_date: "2009-12-11T00:00:00.000Z",
+            title:
+              "WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.",
+            journal: "Eukaryotic cell",
+            volume: "9",
+            pages: "344-349",
+            authors: [
               {
-                doi: "10.1128/ec.00242-09",
-                id: "20008082",
+                last_name: "Franklin",
+              },
+              {
+                last_name: "Hyatt",
+              },
+              {
+                last_name: "Chowdhury",
+              },
+              {
+                last_name: "Steimle",
               },
             ],
           },
         ],
       },
-      index: 0,
-      style: {},
     }
     const wrapper = mount(
       <BrowserRouter>
@@ -39,7 +52,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
       expect(wrapper.find(Grid).exists()).toBeTruthy()
       expect(wrapper.find(Typography).exists()).toBeTruthy()
       expect(wrapper.find(GenesDisplay)).toHaveLength(1)
-      expect(wrapper.find(PublicationsDisplay)).toHaveLength(1)
+      expect(wrapper.find(PhenotypePublicationDisplay)).toHaveLength(1)
     })
     it("displays correct label", () => {
       expect(wrapper.text()).toContain("counting strain")
