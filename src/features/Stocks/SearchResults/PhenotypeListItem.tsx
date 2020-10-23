@@ -32,7 +32,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
   return (
     <ListItem key={strain.id} className={classes.row}>
       <Grid container spacing={0} alignItems="center">
-        <Grid item sm={2} className={classes.item}>
+        <Grid item sm={3} className={classes.item}>
           <Typography variant="body2" noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
@@ -44,7 +44,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
             <GenesDisplay genes={strain.genes} />
           </Typography>
         </Grid>
-        <Grid item sm={7} className={classes.item}>
+        <Grid item sm={6} className={classes.item}>
           <Typography variant="body2">
             <PhenotypePublicationDisplay publication={strain.publications[0]} />
           </Typography>

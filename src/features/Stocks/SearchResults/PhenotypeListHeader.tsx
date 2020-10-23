@@ -24,7 +24,7 @@ const PhenotypeListHeader = () => {
     <List className={classes.list}>
       <ListItem className={classes.listHeaders}>
         <Grid container spacing={0} alignItems="center">
-          <Grid item sm={2}>
+          <Grid item sm={3}>
             Strain Descriptor
           </Grid>
           <Hidden xsDown>
@@ -33,7 +33,7 @@ const PhenotypeListHeader = () => {
             </Grid>
           </Hidden>
           <Hidden mdDown>
-            <Grid item sm={7}>
+            <Grid item sm={6}>
               Reference
             </Grid>
           </Hidden>
