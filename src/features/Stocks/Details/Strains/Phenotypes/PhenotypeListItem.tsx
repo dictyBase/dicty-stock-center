@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
+import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
 import useStyles from "./phenotypeStyles"
 import { PhenotypeData } from "features/Stocks/Details/types/props"
 
@@ -54,7 +54,7 @@ const PhenotypeListItem = ({ data }: Props) => {
         </Grid>
         <Grid item xs={3} className={classes.item}>
           <Typography variant="body2">
-            <PublicationsContainer publications={[data.publication]} />
+            <PublicationsDisplay publications={[data.publication]} />
           </Typography>
         </Grid>
       </Grid>
