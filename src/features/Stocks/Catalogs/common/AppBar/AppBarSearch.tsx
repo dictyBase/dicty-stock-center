@@ -60,7 +60,9 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
     })
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
+  ) => {
     event.preventDefault()
     resetQueryVariables()
   }
@@ -80,7 +82,8 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
           <IconButton
             className={classes.iconButton}
             aria-label="Catalog search icon"
-            title="Search catalog">
+            title="Search catalog"
+            onClick={handleSubmit}>
             <FontAwesomeIcon icon="search" size="sm" />
           </IconButton>
           <InputBase
