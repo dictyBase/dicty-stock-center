@@ -58,4 +58,22 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
       expect(wrapper.text()).toContain("counting strain")
     })
   })
+  describe("render without publications", () => {
+    const props = {
+      strain: {
+        genes: ["abcd"],
+        id: "DBS123456",
+        label: "counting strain",
+        publications: [],
+      },
+    }
+    const wrapper = mount(
+      <BrowserRouter>
+        <PhenotypeListItem {...props} />
+      </BrowserRouter>,
+    )
+    it("should not include publications when not passed as prop", () => {
+      expect(wrapper.find(PhenotypePublicationDisplay).exists()).toBeFalsy()
+    })
+  })
 })
