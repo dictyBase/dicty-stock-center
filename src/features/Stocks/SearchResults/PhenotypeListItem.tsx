@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsContainer from "features/Stocks/Details/common/PublicationsContainer"
+import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 import characterConverter from "common/utils/characterConverter"
 import { StrainWithPhenotype } from "../Details/types/props"
 
@@ -46,7 +46,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
         </Grid>
         <Grid item sm={7} className={classes.item}>
           <Typography variant="body2">
-            <PublicationsContainer publications={strain.publications} single />
+            <PhenotypePublicationDisplay publication={strain.publications[0]} />
           </Typography>
         </Grid>
       </Grid>

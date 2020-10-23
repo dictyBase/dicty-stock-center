@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
@@ -57,12 +58,12 @@ const PhenotypeContainer = () => {
       <Grid container className={classes.layout}>
         <Grid item xs={12} className={classes.gridItem}>
           <ResultsHeader property="Phenotype" description={phenotype} />
+          <Typography variant="h6">
+            Showing {data.listStrainsWithPhenotype.totalCount} results
+          </Typography>
         </Grid>
         <Grid item xs={12}>
-          <PhenotypeList
-            totalCount={data.listStrainsWithPhenotype.totalCount}
-            data={data.listStrainsWithPhenotype.strains}
-          />
+          <PhenotypeList data={data.listStrainsWithPhenotype.strains} />
         </Grid>
       </Grid>
     </>
