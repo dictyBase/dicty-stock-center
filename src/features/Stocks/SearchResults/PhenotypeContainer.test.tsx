@@ -1,15 +1,17 @@
 import React from "react"
-import { mount } from "enzyme"
+import {
+  render,
+  screen,
+  fireEvent,
+  queryByTestId,
+  getAllByRole,
+  waitFor,
+} from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
-import wait from "waait"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
-import PhenotypeList from "./PhenotypeList"
-import ResultsHeader from "./ResultsHeader"
-import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
-import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
-import data from "./mockData"
+import { first50 } from "./mockData"
 
 const mockParams = "abolished+protein+phosphorylation"
 
@@ -25,42 +27,66 @@ jest.mock("react-router-dom", () => {
 })
 
 describe("Stocks/SearchResults/PhenotypeContainer", () => {
-  describe("initial render", () => {
+  const window = global as any
+  let mockObserve: jest.Mock
+  let mockUnobserve: jest.Mock
+
+  describe("initial render with small data set", () => {
+    beforeEach(() => {
+      mockObserve = jest.fn()
+      mockUnobserve = jest.fn()
+    })
+    beforeAll(() => {
+      window.IntersectionObserver = jest.fn((callback, options) => ({
+        observe: mockObserve,
+        unobserve: mockUnobserve,
+      }))
+    })
+
     const mocks = [
       {
         request: {
           query: GET_STRAIN_LIST_WITH_PHENOTYPE,
           variables: {
             cursor: 0,
-            limit: 10000,
+            limit: 50,
             phenotype: "abolished protein phosphorylation",
           },
         },
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 1,
-              strains: data,
+              totalCount: 50,
+              nextCursor: 0,
+              strains: first50.slice(0, 10),
             },
           },
         },
       },
     ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <BrowserRouter>
-          <PhenotypeContainer />
-        </BrowserRouter>
-      </MockedProvider>,
-    )
-    it("renders Loading component first", () => {
-      expect(wrapper.find(DetailsLoader)).toHaveLength(1)
-    })
-    it("renders expected components after receiving data", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(ResultsHeader)).toHaveLength(1)
-      expect(wrapper.find(PhenotypeList)).toHaveLength(1)
+    it("should render fetched data", async () => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>
+            <PhenotypeContainer />
+          </BrowserRouter>
+        </MockedProvider>,
+      )
+      // displays loading skeleton first
+      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+
+      // wait for data to load...
+      const firstRow = await screen.findByText("Dd5P4-/[act15]:Hs-OCRL(D422A)")
+      expect(firstRow).toBeInTheDocument()
+      const lastRow = await screen.findByText("[act15]:YFP:iqgC")
+      expect(lastRow).toBeInTheDocument()
+
+      const row11 = screen.queryByText("sadA-")
+      expect(row11).toBeFalsy()
+
+      const listItems = await screen.findAllByRole("listitem")
+      // should have 11 list items -> 10 rows of data + list header
+      expect(listItems).toHaveLength(11)
     })
   })
 
@@ -71,14 +97,14 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           query: GET_STRAIN_LIST_WITH_PHENOTYPE,
           variables: {
             cursor: 0,
-            limit: 10000,
+            limit: 50,
             phenotype: "abolished protein phosphorylation",
           },
         },
         result: {
           errors: [
             {
-              message: "Publication not found",
+              message: "No strains found",
               path: [],
               extensions: { code: "NotFound" },
               locations: undefined,
@@ -92,17 +118,20 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <BrowserRouter>
-          <PhenotypeContainer />
-        </BrowserRouter>
-      </MockedProvider>,
-    )
-    it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
+    it("displays error message", async () => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>
+            <PhenotypeContainer />
+          </BrowserRouter>
+        </MockedProvider>,
+      )
+      // displays loading skeleton first
+      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+
+      // wait for error message to load...
+      const errorMsg = await screen.findByText(/No strains found/)
+      expect(errorMsg).toBeInTheDocument()
     })
   })
 })
