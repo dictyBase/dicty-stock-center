@@ -39,7 +39,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
   }
 
   return (
-    <ListItem key={strain.id} className={classes.row}>
+    <ListItem className={classes.row}>
       <Grid container spacing={0} alignItems="center">
         <Grid item sm={3} className={classes.item}>
           <Typography variant="body2" noWrap>
