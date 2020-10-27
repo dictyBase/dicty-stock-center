@@ -6,6 +6,9 @@ import List from "@material-ui/core/List"
 describe("Stocks/SearchResults/PhenotypeList", () => {
   const props = {
     data: [],
+    loadMore: jest.fn(),
+    hasMore: false,
+    isLoadingMore: false,
   }
   const wrapper = shallow(<PhenotypeList {...props} />)
   describe("initial render", () => {
