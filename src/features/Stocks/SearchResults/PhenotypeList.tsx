@@ -57,7 +57,7 @@ const PhenotypeList = ({ data, loadMore, hasMore, isLoadingMore }: Props) => {
         {/* need to use new loading boolean to prevent double fetching on scroll */}
         {isLoadingMore && (
           <ListItem className={classes.loading}>
-            Fetching more list items...
+            Fetching more strains with this phenotype...
           </ListItem>
         )}
         <div ref={targetRef} />
