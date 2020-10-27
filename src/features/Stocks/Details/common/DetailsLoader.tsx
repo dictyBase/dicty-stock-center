@@ -18,7 +18,11 @@ const DetailsLoader = () => {
   const classes = useStyles()
 
   return (
-    <Grid container spacing={2} className={classes.layout}>
+    <Grid
+      container
+      spacing={2}
+      className={classes.layout}
+      data-testid="skeleton-loader">
       <Grid item xs={12}>
         <h1>
           <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
