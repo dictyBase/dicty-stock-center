@@ -1,19 +1,24 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 import PhenotypeListHeader from "./PhenotypeListHeader"
-import Grid from "@material-ui/core/Grid"
-import Hidden from "@material-ui/core/Hidden"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
 
 describe("Stocks/SearchResults/PhenotypeListHeader", () => {
-  const wrapper = shallow(<PhenotypeListHeader />)
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(List)).toHaveLength(1)
-      expect(wrapper.find(ListItem)).toHaveLength(1)
-      expect(wrapper.find(Grid).exists()).toBeTruthy()
-      expect(wrapper.find(Hidden).exists()).toBeTruthy()
+    const theme = createMuiTheme({
+      props: { MuiWithWidth: { initialWidth: "lg" } },
+    })
+    // need to add theme to render with large screen
+    // this allows all three headers to show
+    render(
+      <ThemeProvider theme={theme}>
+        <PhenotypeListHeader />
+      </ThemeProvider>,
+    )
+    it("renders the three expected list headers", () => {
+      expect(screen.getByText("Strain Descriptor")).toBeTruthy()
+      expect(screen.getByText("Associated Gene(s)")).toBeTruthy()
+      expect(screen.getByText("Reference")).toBeTruthy()
     })
   })
 })
