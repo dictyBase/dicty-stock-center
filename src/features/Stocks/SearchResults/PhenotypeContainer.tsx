@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
@@ -25,6 +24,8 @@ const useStyles = makeStyles({
   },
 })
 
+// remove "+" from phenotype params to get the proper name
+// i.e. "abolished+protein+phosphorylation" = "abolished protein phosphorylation"
 const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
 
 type Params = {
@@ -37,19 +38,63 @@ type Params = {
  */
 
 const PhenotypeContainer = () => {
+  const [hasMore, setHasMore] = React.useState(true)
+  const [isLoadingMore, setIsLoadingMore] = React.useState(false)
+  const [prevCursor, setPrevCursor] = React.useState(null)
   const classes = useStyles()
   const { name } = useParams<Params>()
   const phenotype = cleanQuery(name)
-  const { loading, error, data } = useQuery(GET_STRAIN_LIST_WITH_PHENOTYPE, {
-    variables: { cursor: 0, limit: 10000, phenotype },
-    errorPolicy: "all",
-  })
+  const { loading, error, data, fetchMore } = useQuery(
+    GET_STRAIN_LIST_WITH_PHENOTYPE,
+    {
+      variables: { cursor: 0, limit: 50, phenotype },
+      errorPolicy: "all",
+    },
+  )
 
   if (loading) return <DetailsLoader />
   if (error && !data) {
     return <GraphQLErrorPage error={error} />
   }
 
+  const loadMoreItems = () => {
+    const newCursor = data.listStrainsWithPhenotype.nextCursor
+    if (newCursor === prevCursor || newCursor === 0) {
+      return
+    }
+    setPrevCursor(newCursor)
+    setIsLoadingMore(true)
+    fetchMore({
+      query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+      variables: {
+        cursor: data.listStrainsWithPhenotype.nextCursor,
+        limit: 50,
+        phenotype,
+      },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        setIsLoadingMore(false)
+        if (!fetchMoreResult) return previousResult
+        const previousEntry = previousResult.listStrainsWithPhenotype
+        const previousStrains = previousEntry.strains
+        const newStrains = fetchMoreResult.listStrainsWithPhenotype.strains
+        const newCursor = fetchMoreResult.listStrainsWithPhenotype.nextCursor
+        const allStrains = [...previousStrains, ...newStrains]
+
+        if (newCursor === 0) {
+          setHasMore(false)
+        }
+
+        return {
+          listStrainsWithPhenotype: {
+            nextCursor: newCursor,
+            totalCount: fetchMoreResult.listStrainsWithPhenotype.totalCount,
+            strains: [...new Set(allStrains)], // remove any duplicate entries
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
+    })
+  }
   return (
     <>
       <Helmet>
@@ -64,12 +109,14 @@ const PhenotypeContainer = () => {
       <Grid container className={classes.layout}>
         <Grid item xs={12} className={classes.gridItem}>
           <ResultsHeader property="Phenotype" description={phenotype} />
-          <Typography className={classes.resultsText} variant="subtitle1">
-            Showing {data.listStrainsWithPhenotype.totalCount} results
-          </Typography>
         </Grid>
         <Grid item xs={12}>
-          <PhenotypeList data={data.listStrainsWithPhenotype.strains} />
+          <PhenotypeList
+            loadMore={loadMoreItems}
+            hasMore={hasMore}
+            isLoadingMore={isLoadingMore}
+            data={data.listStrainsWithPhenotype.strains}
+          />
         </Grid>
       </Grid>
     </>
