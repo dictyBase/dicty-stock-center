@@ -2,7 +2,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
+import CircularProgress from "@material-ui/core/CircularProgress"
 import { useIntersectionObserver } from "dicty-hooks"
 import PhenotypeListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
@@ -15,6 +15,9 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   loading: {
     color: palette.secondary.main,
+  },
+  spinner: {
+    marginTop: "15px",
   },
 }))
 
@@ -48,21 +51,18 @@ const PhenotypeList = ({ data, loadMore, hasMore, isLoadingMore }: Props) => {
   }, [hasMore, loadMore, visible])
 
   return (
-    <Paper>
-      <PhenotypeListHeader />
-      <List className={classes.list}>
-        {data.map((item: StrainWithPhenotype, index: number) => (
-          <PhenotypeListItem key={index} strain={item} />
-        ))}
-        {/* need to use new loading boolean to prevent double fetching on scroll */}
-        {isLoadingMore && (
-          <ListItem className={classes.loading}>
-            Fetching more strains with this phenotype...
-          </ListItem>
-        )}
-        <div ref={targetRef} />
-      </List>
-    </Paper>
+    <React.Fragment>
+      <Paper>
+        <PhenotypeListHeader />
+        <List className={classes.list}>
+          {data.map((item: StrainWithPhenotype, index: number) => (
+            <PhenotypeListItem key={index} strain={item} />
+          ))}
+          <div ref={targetRef} />
+        </List>
+      </Paper>
+      {isLoadingMore && <CircularProgress className={classes.spinner} />}
+    </React.Fragment>
   )
 }
 
