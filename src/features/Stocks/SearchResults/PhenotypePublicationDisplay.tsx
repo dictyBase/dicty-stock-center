@@ -35,7 +35,7 @@ const PhenotypePublicationDisplay = ({ publication }: Props) => {
   }
 
   return (
-    <React.Fragment>
+    <div data-testid="phenotype-publication-display">
       <span className={classes.bold}>
         {listAuthors(publication.authors)} (
         {getYearFromTimestamp(publication.pub_date)})
@@ -46,7 +46,7 @@ const PhenotypePublicationDisplay = ({ publication }: Props) => {
         url={`/publication/${publication.id}`}
         title="Visit dictyBase publication page"
       />
-    </React.Fragment>
+    </div>
   )
 }
 
