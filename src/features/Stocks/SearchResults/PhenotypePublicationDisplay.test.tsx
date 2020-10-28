@@ -1,10 +1,9 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import PhenotypePublicationDisplay, {
   listAuthors,
   getYearFromTimestamp,
 } from "./PhenotypePublicationDisplay"
-import ExternalLinkIcon from "common/components/ExternalLinkIcon"
 
 describe("features/Stocks/SearchResults/PhenotypePublicationDisplay", () => {
   describe("initial render with publication", () => {
@@ -33,21 +32,26 @@ describe("features/Stocks/SearchResults/PhenotypePublicationDisplay", () => {
         ],
       },
     }
-    const wrapper = mount(<PhenotypePublicationDisplay {...props} />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(ExternalLinkIcon)).toHaveLength(1)
+
+    it("includes link to publication page", () => {
+      render(<PhenotypePublicationDisplay {...props} />)
+      const link = screen.getByRole("link")
+      expect(link).toHaveAttribute("href", "/publication/20008082")
     })
     it("should match expected reference format", () => {
-      expect(wrapper.text()).toContain(
+      render(<PhenotypePublicationDisplay {...props} />)
+      const pubDisplay = screen.getByTestId("phenotype-publication-display")
+      expect(pubDisplay).toHaveTextContent(
         "Franklin, Hyatt, Chowdhury & Steimle (2009) 'WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.' Eukaryotic cell 9:344-349",
       )
     })
   })
 
   describe("initial render without publication", () => {
-    const wrapper = mount(<PhenotypePublicationDisplay />)
     it("should not display publication link", () => {
-      expect(wrapper.find(ExternalLinkIcon).exists()).toBeFalsy()
+      render(<PhenotypePublicationDisplay />)
+      const link = screen.queryByRole("link")
+      expect(link).toBeFalsy()
     })
   })
 })

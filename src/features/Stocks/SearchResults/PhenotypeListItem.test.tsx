@@ -1,12 +1,7 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import PhenotypeListItem from "./PhenotypeListItem"
 import { BrowserRouter } from "react-router-dom"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import ListItem from "@material-ui/core/ListItem"
-import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
 
 describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("initial render", () => {
@@ -14,7 +9,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
       strain: {
         genes: ["abcd"],
         id: "DBS123456",
-        label: "counting strain",
+        label: "test1",
         publications: [
           {
             id: "20008082",
@@ -42,20 +37,22 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
         ],
       },
     }
-    const wrapper = mount(
-      <BrowserRouter>
-        <PhenotypeListItem {...props} />
-      </BrowserRouter>,
-    )
-    it("always renders initial components", () => {
-      expect(wrapper.find(ListItem)).toHaveLength(1)
-      expect(wrapper.find(Grid).exists()).toBeTruthy()
-      expect(wrapper.find(Typography).exists()).toBeTruthy()
-      expect(wrapper.find(GenesDisplay)).toHaveLength(1)
-      expect(wrapper.find(PhenotypePublicationDisplay)).toHaveLength(1)
-    })
-    it("displays correct label", () => {
-      expect(wrapper.text()).toContain("counting strain")
+    it("includes expected list items", () => {
+      render(
+        <BrowserRouter>
+          <PhenotypeListItem {...props} />
+        </BrowserRouter>,
+      )
+      // find strain descriptor
+      const label = screen.getByText(/test1/)
+      expect(label).toBeInTheDocument()
+      // find associated genes
+      const gene = screen.getByText(/abcd/)
+      expect(gene).toBeInTheDocument()
+      // find pub link
+      const links = screen.getAllByRole("link")
+      const pubLink = links[2]
+      expect(pubLink).toHaveAttribute("href", "/publication/20008082")
     })
   })
   describe("render without publications", () => {
@@ -67,13 +64,14 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
         publications: [],
       },
     }
-    const wrapper = mount(
-      <BrowserRouter>
-        <PhenotypeListItem {...props} />
-      </BrowserRouter>,
-    )
     it("should not include publications when not passed as prop", () => {
-      expect(wrapper.find(PhenotypePublicationDisplay).exists()).toBeFalsy()
+      render(
+        <BrowserRouter>
+          <PhenotypeListItem {...props} />
+        </BrowserRouter>,
+      )
+      const pubDisplay = screen.queryByTestId("phenotype-publication-display")
+      expect(pubDisplay).toBeFalsy()
     })
   })
 })
