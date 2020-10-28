@@ -67,7 +67,7 @@ const PhenotypeContainer = () => {
     setIsLoadingMore(true)
     const res = await fetchMore({
       variables: {
-        cursor: data.listStrainsWithPhenotype.nextCursor,
+        cursor: newCursor,
         limit: 50,
         phenotype,
       },
