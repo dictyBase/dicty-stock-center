@@ -15,7 +15,7 @@ jobs:
       - name: setup nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: 12.19.0 
+          node-version: 12.19.0
       - name: install lhci 
         run: npm i -g @lhci/cli@0.5.x
       - name: run report
@@ -23,10 +23,10 @@ jobs:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
       - name: run develop report
-        if: contains(github.event.deployment.payload.image_tag, 'develop')
+        if: contains(github.event.deployment.payload, 'develop')
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: develop
-        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml 
+        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
   lighthouse-report-staging:
     runs-on: ubuntu-20.04
     if: |
