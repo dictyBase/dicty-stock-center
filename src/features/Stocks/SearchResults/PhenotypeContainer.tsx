@@ -47,7 +47,45 @@ type ListStrainsWithPhenotype = {
   }
 }
 
-/** Custom hook to handle all fetching/refetching logic */
+/**
+ * updateListData is used to return merged data
+ */
+const updateListData = (
+  setIsLoadingMore: (arg0: boolean) => void,
+  setHasMore: (arg0: boolean) => void,
+  previousResult: ListStrainsWithPhenotype,
+  fetchMoreResult?: ListStrainsWithPhenotype,
+) => {
+  setIsLoadingMore(false)
+  if (!fetchMoreResult) return previousResult
+
+  const {
+    strains: newStrains,
+    nextCursor: newCursor,
+    totalCount,
+    __typename,
+  } = fetchMoreResult.listStrainsWithPhenotype
+  const previousStrains = previousResult.listStrainsWithPhenotype.strains
+
+  const mergedStrains = [...previousStrains, ...newStrains]
+
+  if (newCursor === 0) {
+    setHasMore(false)
+  }
+
+  return {
+    listStrainsWithPhenotype: {
+      nextCursor: newCursor,
+      totalCount: totalCount,
+      strains: [...new Set(mergedStrains)], // remove any duplicate entries
+      __typename: __typename,
+    },
+  }
+}
+
+/**
+ * Custom hook to handle all fetching/refetching logic
+ * */
 const useListStrainsWithPhenotype = (phenotype: string) => {
   const [hasMore, setHasMore] = React.useState(true)
   const [isLoadingMore, setIsLoadingMore] = React.useState(false)
@@ -76,28 +114,13 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
       updateQuery: (
         previousResult: ListStrainsWithPhenotype,
         { fetchMoreResult }: { fetchMoreResult?: ListStrainsWithPhenotype },
-      ) => {
-        setIsLoadingMore(false)
-        if (!fetchMoreResult) return previousResult
-        const previousEntry = previousResult.listStrainsWithPhenotype
-        const previousStrains = previousEntry.strains
-        const newStrains = fetchMoreResult.listStrainsWithPhenotype.strains
-        const newCursor = fetchMoreResult.listStrainsWithPhenotype.nextCursor
-        const allStrains = [...previousStrains, ...newStrains]
-
-        if (newCursor === 0) {
-          setHasMore(false)
-        }
-
-        return {
-          listStrainsWithPhenotype: {
-            nextCursor: newCursor,
-            totalCount: fetchMoreResult.listStrainsWithPhenotype.totalCount,
-            strains: [...new Set(allStrains)], // remove any duplicate entries
-            __typename: previousEntry.__typename,
-          },
-        }
-      },
+      ) =>
+        updateListData(
+          setIsLoadingMore,
+          setHasMore,
+          previousResult,
+          fetchMoreResult,
+        ),
     })
   }
 
