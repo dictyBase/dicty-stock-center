@@ -3,6 +3,13 @@ ci:
     url: 
       - https://sidd.dictybase.dev/stockcenter
       - https://sidd.dictybase.dev/stockcenter/strains
+      - https://sidd.dictybase.dev/stockcenter/strains/DBS0309040
+      - https://sidd.dictybase.dev/stockcenter/phenotypes/decreased+sporulation
+      - https://sidd.dictybase.dev/stockcenter/plasmids
+      - https://sidd.dictybase.dev/stockcenter/plasmids/DBP0001062
+      - https://sidd.dictybase.dev/stockcenter/information/order
+      - https://sidd.dictybase.dev/stockcenter/information/faq
+      - https://sidd.dictybase.dev/stockcenter/information/nomenclature-guidelines
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:

@@ -3,6 +3,13 @@ ci:
     url: 
       - https://eric.dictybase.dev/stockcenter
       - https://eric.dictybase.dev/stockcenter/strains
+      - https://eric.dictybase.dev/stockcenter/strains/DBS0309040
+      - https://eric.dictybase.dev/stockcenter/phenotypes/decreased+sporulation
+      - https://eric.dictybase.dev/stockcenter/plasmids
+      - https://eric.dictybase.dev/stockcenter/plasmids/DBP0001062
+      - https://eric.dictybase.dev/stockcenter/information/order
+      - https://eric.dictybase.dev/stockcenter/information/faq
+      - https://eric.dictybase.dev/stockcenter/information/nomenclature-guidelines
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:
