@@ -5,7 +5,7 @@ on:
       - develop
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: set up node.js
         uses: actions/setup-node@v1
@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
   build:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: check out code
         uses: actions/checkout@v2
