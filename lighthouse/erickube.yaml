@@ -1,0 +1,11 @@
+ci:
+  collect:
+    url: https://eric.dictybase.dev/stockcenter
+    settings:
+      chromeFlags: "--disable-gpu --no-sandbox"
+  assert:
+    preset: "lighthouse:all"
+  upload:
+    target: lhci
+    serverBaseUrl: https://lighthouse.dictycr.org
+    token: dd358b01-20d1-41f0-8940-3eb48be77fca
