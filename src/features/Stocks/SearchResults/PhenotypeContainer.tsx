@@ -58,26 +58,42 @@ const PhenotypeContainer = () => {
     return <GraphQLErrorPage error={error} />
   }
 
-  const loadMoreItems = async () => {
+  const loadMoreItems = () => {
     const newCursor = data.listStrainsWithPhenotype.nextCursor
     if (newCursor === prevCursor || newCursor === 0) {
       return
     }
     setPrevCursor(newCursor)
     setIsLoadingMore(true)
-    const res = await fetchMore({
+    fetchMore({
       variables: {
         cursor: newCursor,
         limit: 50,
         phenotype,
       },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        setIsLoadingMore(false)
+        if (!fetchMoreResult) return previousResult
+        const previousEntry = previousResult.listStrainsWithPhenotype
+        const previousStrains = previousEntry.strains
+        const newStrains = fetchMoreResult.listStrainsWithPhenotype.strains
+        const newCursor = fetchMoreResult.listStrainsWithPhenotype.nextCursor
+        const allStrains = [...previousStrains, ...newStrains]
+
+        if (newCursor === 0) {
+          setHasMore(false)
+        }
+
+        return {
+          listStrainsWithPhenotype: {
+            nextCursor: newCursor,
+            totalCount: fetchMoreResult.listStrainsWithPhenotype.totalCount,
+            strains: [...new Set(allStrains)], // remove any duplicate entries
+            __typename: previousEntry.__typename,
+          },
+        }
+      },
     })
-    if (res.data) {
-      setIsLoadingMore(false)
-    }
-    if (newCursor === 0) {
-      setHasMore(false)
-    }
   }
 
   return (
