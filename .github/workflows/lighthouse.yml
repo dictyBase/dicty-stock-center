@@ -21,4 +21,4 @@ jobs:
       - name: run report 
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
-        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yaml 
+        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml 
