@@ -1,0 +1,24 @@
+
+name: Lighthouse report 
+on: [deployment_status]
+jobs:
+  lighthouse-report:
+    runs-on: ubuntu-20.04
+    if: |
+      github.event.deployment_status.state == 'success' && 
+      contains(github.event.deployment.environment, 'kube')
+    steps:
+      - name: checkout code 
+        uses: actions/checkout@v2 
+        with:
+          ref: ${{ github.event.deployment.ref }}
+      - name: setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.19.0 
+      - name: install lhci 
+        run: npm i -g @lhci/cli@0.5.x
+      - name: run report 
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
+        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yaml 
