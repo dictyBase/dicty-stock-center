@@ -1,0 +1,20 @@
+ci:
+  collect:
+    url: 
+      - https://dictycr.org/stockcenter
+      - https://dictycr.org/stockcenter/strains
+      - https://dictycr.org/stockcenter/strains/DBS0309040
+      - https://dictycr.org/stockcenter/phenotypes/decreased+sporulation
+      - https://dictycr.org/stockcenter/plasmids
+      - https://dictycr.org/stockcenter/plasmids/DBP0001062
+      - https://dictycr.org/stockcenter/information/order
+      - https://dictycr.org/stockcenter/information/faq
+      - https://dictycr.org/stockcenter/information/nomenclature-guidelines
+    settings:
+      chromeFlags: "--disable-gpu --no-sandbox"
+  assert:
+    preset: "lighthouse:all"
+  upload:
+    target: lhci
+    serverBaseUrl: https://lighthouse.dictycr.org
+    token: 7dcccec6-1758-4029-a1f5-3160931932c8

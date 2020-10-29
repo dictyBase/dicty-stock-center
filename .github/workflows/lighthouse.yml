@@ -2,7 +2,7 @@
 name: Lighthouse report 
 on: [deployment_status]
 jobs:
-  lighthouse-report:
+  lighthouse-report-dev:
     runs-on: ubuntu-20.04
     if: |
       github.event.deployment_status.state == 'success' && 
@@ -22,3 +22,23 @@ jobs:
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml 
+  lighthouse-report-staging:
+    runs-on: ubuntu-20.04
+    if: |
+      github.event.deployment_status.state == 'success' && 
+      github.event.deployment.environment === 'staging'
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.deployment.ref }}
+      - name: setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.19.0 
+      - name: install lhci
+        run: npm i -g @lhci/cli@0.5.x
+      - name: run report
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
+        run: lhci autorun --config lighthouse/staging.yml 
