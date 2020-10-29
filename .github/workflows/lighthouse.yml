@@ -23,7 +23,7 @@ jobs:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
       - name: run develop report
-        if: contains(github.event.deployment.payload, 'develop')
+        if: contains(github.event.deployment.payload.image_tag, 'develop')
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: develop
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml 
