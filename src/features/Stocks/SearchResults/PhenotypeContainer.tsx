@@ -9,6 +9,7 @@ import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import PhenotypeList from "./PhenotypeList"
+import { StrainWithPhenotype } from "features/Stocks/Details/types/props"
 
 const useStyles = makeStyles({
   layout: {
@@ -33,17 +34,24 @@ type Params = {
   name: string
 }
 
-/**
- * PhenotypeContainer is used to fetch a list of strains with a given phenotype.
- */
+type ListStrainsWithPhenotype = {
+  listStrainsWithPhenotype: {
+    /** Typename given by Apollo Client ("StrainListWithCursor") */
+    __typename: string
+    /** Cursor used to fetch next set of items */
+    nextCursor: number
+    /** Total count of strains returned from query */
+    totalCount: number
+    /** Array of strain data */
+    strains: Array<StrainWithPhenotype>
+  }
+}
 
-const PhenotypeContainer = () => {
+/** Custom hook to handle all fetching/refetching logic */
+const useListStrainsWithPhenotype = (phenotype: string) => {
   const [hasMore, setHasMore] = React.useState(true)
   const [isLoadingMore, setIsLoadingMore] = React.useState(false)
   const [prevCursor, setPrevCursor] = React.useState(null)
-  const classes = useStyles()
-  const { name } = useParams<Params>()
-  const phenotype = cleanQuery(name)
   const { loading, error, data, fetchMore } = useQuery(
     GET_STRAIN_LIST_WITH_PHENOTYPE,
     {
@@ -51,12 +59,6 @@ const PhenotypeContainer = () => {
       errorPolicy: "all",
     },
   )
-
-  if (loading) return <DetailsLoader />
-
-  if (error && !data) {
-    return <GraphQLErrorPage error={error} />
-  }
 
   const loadMoreItems = () => {
     const newCursor = data.listStrainsWithPhenotype.nextCursor
@@ -71,7 +73,10 @@ const PhenotypeContainer = () => {
         limit: 50,
         phenotype,
       },
-      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+      updateQuery: (
+        previousResult: ListStrainsWithPhenotype,
+        { fetchMoreResult }: { fetchMoreResult?: ListStrainsWithPhenotype },
+      ) => {
         setIsLoadingMore(false)
         if (!fetchMoreResult) return previousResult
         const previousEntry = previousResult.listStrainsWithPhenotype
@@ -94,6 +99,39 @@ const PhenotypeContainer = () => {
         }
       },
     })
+  }
+
+  return {
+    loading,
+    error,
+    data,
+    loadMoreItems,
+    hasMore,
+    isLoadingMore,
+  }
+}
+
+/**
+ * PhenotypeContainer is used to fetch a list of strains with a given phenotype.
+ */
+
+const PhenotypeContainer = () => {
+  const classes = useStyles()
+  const { name } = useParams<Params>()
+  const phenotype = cleanQuery(name)
+  const {
+    loading,
+    error,
+    data,
+    loadMoreItems,
+    hasMore,
+    isLoadingMore,
+  } = useListStrainsWithPhenotype(phenotype)
+
+  if (loading) return <DetailsLoader />
+
+  if (error && !data) {
+    return <GraphQLErrorPage error={error} />
   }
 
   return (
