@@ -1,6 +1,8 @@
 ci:
   collect:
-    url: https://eric.dictybase.dev/stockcenter
+    url: 
+      - https://sidd.dictybase.dev/stockcenter
+      - https://sidd.dictybase.dev/stockcenter/strains
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:
@@ -8,4 +10,4 @@ ci:
   upload:
     target: lhci
     serverBaseUrl: https://lighthouse.dictycr.org
-    token: dd358b01-20d1-41f0-8940-3eb48be77fca
+    token: 15c2ace2-b059-436a-91f8-7dae39c4c6df
