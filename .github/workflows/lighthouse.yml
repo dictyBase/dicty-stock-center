@@ -14,7 +14,7 @@ jobs:
           ref: ${{ github.event.deployment.ref }}
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ toJson(github.event.deployment.payload) }}
+          GITHUB_CONTEXT: ${{ toJson(github.event.deployment.payload.image_tag) }}
         run: echo "$GITHUB_CONTEXT"
       - name: setup nodejs
         uses: actions/setup-node@v1
