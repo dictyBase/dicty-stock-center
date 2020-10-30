@@ -12,6 +12,10 @@ jobs:
         uses: actions/checkout@v2 
         with:
           ref: ${{ github.event.deployment.ref }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: setup nodejs
         uses: actions/setup-node@v1
         with:
