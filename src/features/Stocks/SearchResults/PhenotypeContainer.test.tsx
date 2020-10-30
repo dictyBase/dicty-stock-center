@@ -1,10 +1,12 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
+import { InMemoryCache } from "@apollo/client"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import { first50, second50, lastItems } from "./mockData"
+import { listStrainsWithPhenotypePagination } from "common/hooks/useApolloClient"
 
 const mockParams = "abolished+protein+phosphorylation"
 
@@ -84,6 +86,15 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
   })
 
   describe("initial render with large data set", () => {
+    const cache = new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            listStrainsWithPhenotype: listStrainsWithPhenotypePagination(),
+          },
+        },
+      },
+    })
     const mocks = [
       {
         request: {
@@ -145,7 +156,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
     ]
     it("should render first 50 results", async () => {
       render(
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={mocks} addTypename={true} cache={cache}>
           <BrowserRouter>
             <PhenotypeContainer />
           </BrowserRouter>

@@ -95,33 +95,30 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     {
       variables: { cursor: 0, limit: 50, phenotype },
       errorPolicy: "all",
+      // fetchPolicy: "cache-and-network",
     },
   )
 
-  const loadMoreItems = () => {
+  const loadMoreItems = async () => {
     const newCursor = data.listStrainsWithPhenotype.nextCursor
     if (newCursor === prevCursor || newCursor === 0) {
       return
     }
     setPrevCursor(newCursor)
     setIsLoadingMore(true)
-    fetchMore({
+    const res = await fetchMore({
       variables: {
-        cursor: newCursor,
+        cursor: data.listStrainsWithPhenotype.nextCursor,
         limit: 50,
         phenotype,
       },
-      updateQuery: (
-        previousResult: ListStrainsWithPhenotype,
-        { fetchMoreResult }: { fetchMoreResult?: ListStrainsWithPhenotype },
-      ) =>
-        updateListData(
-          setIsLoadingMore,
-          setHasMore,
-          previousResult,
-          fetchMoreResult,
-        ),
     })
+    if (res.data) {
+      setIsLoadingMore(false)
+    }
+    if (newCursor === 0) {
+      setHasMore(false)
+    }
   }
 
   return {
