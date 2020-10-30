@@ -22,11 +22,6 @@ jobs:
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
-      - name: run develop report
-        if: contains(github.event.deployment.payload, 'develop')
-        env:
-          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: develop
-        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
   lighthouse-report-staging:
     runs-on: ubuntu-20.04
     if: |
