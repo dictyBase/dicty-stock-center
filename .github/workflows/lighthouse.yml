@@ -21,7 +21,7 @@ jobs:
           PAYLOAD: ${{ toJson(github.event.deployment.payload) }}
         run: echo "$PAYLOAD"
       - name: log message
-        if: contains(env.PAYLOAD, 'ericdev')
+        if: contains(github.event.deployment.payload, 'ericdev')
         run: echo "got ericdev"
   #     - name: setup nodejs
   #       uses: actions/setup-node@v1
