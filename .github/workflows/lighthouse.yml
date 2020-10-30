@@ -14,12 +14,15 @@ jobs:
           ref: ${{ github.event.deployment.ref }}
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ github }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: get img tag
         env:
-          IMAGE_TAG: ${{ github.event.deployment.payload.image_tag }}
-        run: echo "$IMAGE_TAG"
+          PAYLOAD: ${{ toJson(github.event.deployment.payload) }}
+        run: echo "$PAYLOAD"
+      - name: log message
+        if: contains($PAYLOAD, 'ericdev')
+        run: echo "got ericdev"
   #     - name: setup nodejs
   #       uses: actions/setup-node@v1
   #       with:
