@@ -110,7 +110,7 @@
     "react-styleguidist": "^11.1.1",
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.2.2",
-    "sinon": "^9.0.3",
+    "sinon": "^9.2.1",
     "source-map-explorer": "^2.5.0",
     "start-server-and-test": "^1.11.4",
     "waait": "^1.0.5",
