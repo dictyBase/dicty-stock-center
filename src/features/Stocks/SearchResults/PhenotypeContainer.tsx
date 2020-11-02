@@ -48,42 +48,6 @@ type ListStrainsWithPhenotype = {
 }
 
 /**
- * updateListData is used to return merged data
- */
-const updateListData = (
-  setIsLoadingMore: (arg0: boolean) => void,
-  setHasMore: (arg0: boolean) => void,
-  previousResult: ListStrainsWithPhenotype,
-  fetchMoreResult?: ListStrainsWithPhenotype,
-) => {
-  setIsLoadingMore(false)
-  if (!fetchMoreResult) return previousResult
-
-  const {
-    strains: newStrains,
-    nextCursor: newCursor,
-    totalCount,
-    __typename,
-  } = fetchMoreResult.listStrainsWithPhenotype
-  const previousStrains = previousResult.listStrainsWithPhenotype.strains
-
-  const mergedStrains = [...previousStrains, ...newStrains]
-
-  if (newCursor === 0) {
-    setHasMore(false)
-  }
-
-  return {
-    listStrainsWithPhenotype: {
-      nextCursor: newCursor,
-      totalCount: totalCount,
-      strains: [...new Set(mergedStrains)], // remove any duplicate entries
-      __typename: __typename,
-    },
-  }
-}
-
-/**
  * Custom hook to handle all fetching/refetching logic
  * */
 const useListStrainsWithPhenotype = (phenotype: string) => {
@@ -95,7 +59,6 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     {
       variables: { cursor: 0, limit: 50, phenotype },
       errorPolicy: "all",
-      // fetchPolicy: "cache-and-network",
     },
   )
 
