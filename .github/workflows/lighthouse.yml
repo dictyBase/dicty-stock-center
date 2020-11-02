@@ -18,6 +18,11 @@ jobs:
           node-version: 12.19.0
       - name: install lhci 
         run: npm i -g @lhci/cli@0.5.x
+      - name: run develop report
+        if: contains(github.event.deployment.payload, 'develop')
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: develop
+        run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml 
       - name: run report
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
