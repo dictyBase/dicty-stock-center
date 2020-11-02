@@ -13,7 +13,7 @@ describe("Home/Availability", () => {
       {
         request: {
           query: GET_STOCK_TOTALS,
-          variables: { cursor: 0 },
+          variables: { limit: 80000 },
         },
         result: {
           data: {
@@ -49,9 +49,7 @@ describe("Home/Availability", () => {
       {
         request: {
           query: GET_STOCK_TOTALS,
-          variables: {
-            cursor: 0,
-          },
+          variables: { limit: 80000 },
         },
         result: {
           errors: [

@@ -12,7 +12,7 @@ const Availability = () => {
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STOCK_TOTALS, {
     variables: {
-      cursor: 0,
+      limit: 80000,
     },
   })
 
