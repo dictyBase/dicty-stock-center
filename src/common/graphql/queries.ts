@@ -2,11 +2,11 @@ import { gql } from "@apollo/client"
 
 // used in Availability component (homepage)
 const GET_STOCK_TOTALS = gql`
-  query StockList($cursor: Int!) {
-    listPlasmids(input: { cursor: $cursor, limit: 30000 }) {
+  query StockList($limit: Int!) {
+    listPlasmids(limit: $limit) {
       totalCount
     }
-    listStrains(input: { cursor: $cursor, limit: 30000 }) {
+    listStrains(limit: $limit) {
       totalCount
     }
   }
@@ -14,7 +14,7 @@ const GET_STOCK_TOTALS = gql`
 
 const GET_STRAIN_LIST = gql`
   query StrainList($cursor: Int!, $limit: Int!, $filter: String!) {
-    listStrains(input: { cursor: $cursor, limit: $limit, filter: $filter }) {
+    listStrains(cursor: $cursor, limit: $limit, filter: $filter) {
       nextCursor
       strains {
         id
@@ -33,7 +33,9 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
     $phenotype: String!
   ) {
     listStrainsWithPhenotype(
-      input: { cursor: $cursor, limit: $limit, phenotype: $phenotype }
+      cursor: $cursor
+      limit: $limit
+      phenotype: $phenotype
     ) {
       totalCount
       nextCursor
@@ -59,7 +61,7 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
 
 const GET_PLASMID_LIST = gql`
   query PlasmidListFilter($cursor: Int!, $limit: Int!, $filter: String!) {
-    listPlasmids(input: { cursor: $cursor, limit: $limit, filter: $filter }) {
+    listPlasmids(cursor: $cursor, limit: $limit, filter: $filter) {
       nextCursor
       plasmids {
         id
@@ -73,7 +75,7 @@ const GET_PLASMID_LIST = gql`
 
 const GET_RELATED_STRAINS = gql`
   query StrainList($filter: String!) {
-    listStrains(input: { limit: 10, filter: $filter }) {
+    listStrains(limit: 10, filter: $filter) {
       strains {
         id
         label
