@@ -127,7 +127,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 50,
+              totalCount: 100,
               nextCursor: 987654,
               strains: second50,
             },
@@ -146,7 +146,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 3,
+              totalCount: 103,
               nextCursor: 0,
               strains: lastItems,
             },
@@ -188,18 +188,13 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         }
       })
       render(
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={mocks} addTypename={true} cache={cache}>
           <BrowserRouter>
             <PhenotypeContainer />
           </BrowserRouter>
         </MockedProvider>,
       )
-      // displays loading skeleton first
-      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
 
-      // wait for data to load...
-      const firstRow = await screen.findByText(first50[0].label)
-      expect(firstRow).toBeInTheDocument()
       // next 50 results should be included since isIntersecting is true
       const firstRowSecondSet = await screen.findByText(second50[0].label)
       expect(firstRowSecondSet).toBeInTheDocument()
