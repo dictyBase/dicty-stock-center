@@ -63,35 +63,20 @@ export const StrainCatalogContainer = () => {
 
   if (loading) return <DetailsLoader />
 
-  const loadMoreItems = () =>
-    fetchMore({
+  const loadMoreItems = async () => {
+    const newCursor = data.listStrains.nextCursor
+    await fetchMore({
       query: GET_STRAIN_LIST,
       variables: {
         cursor: data.listStrains.nextCursor,
         filter: queryVariables.filter,
         limit: queryVariables.limit,
       },
-      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
-        if (!fetchMoreResult) return previousResult
-        const previousEntry = previousResult.listStrains
-        const previousStrains = previousEntry.strains
-        const newStrains = fetchMoreResult.listStrains.strains
-        const newCursor = fetchMoreResult.listStrains.nextCursor
-        const allStrains = [...previousStrains, ...newStrains]
-
-        if (newCursor === 0) {
-          setHasMore(false)
-        }
-
-        return {
-          listStrains: {
-            nextCursor: newCursor,
-            strains: [...new Set(allStrains)], // remove any duplicate entries
-            __typename: previousEntry.__typename,
-          },
-        }
-      },
     })
+    if (newCursor === 0) {
+      setHasMore(false)
+    }
+  }
 
   // use conditional so both error and data appear below search bar
   const content = error ? (

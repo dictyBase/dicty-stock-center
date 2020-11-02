@@ -1,4 +1,4 @@
-export type strainListItemProps = {
+type strainListItemProps = {
   index: number
   style: Object
   data: {
@@ -13,7 +13,7 @@ export type strainListItemProps = {
   removeItem?: Function
 }
 
-export type plasmidListItemProps = {
+type plasmidListItemProps = {
   index: number
   style: Object
   data: {
@@ -27,3 +27,5 @@ export type plasmidListItemProps = {
   cartItems?: Array<Object>
   removeItem?: Function
 }
+
+export type { strainListItemProps, plasmidListItemProps }

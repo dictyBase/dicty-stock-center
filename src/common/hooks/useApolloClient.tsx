@@ -24,6 +24,30 @@ type ListStrainsWithPhenotype = {
   __typename: string
 }
 
+type ListStrains = {
+  strains: Array<{
+    label: string
+    id: string
+    summary: string
+    in_stock: boolean
+  }>
+  nextCursor: number
+  totalCount: number
+  __typename: string
+}
+
+type ListPlasmids = {
+  plasmids: Array<{
+    name: string
+    id: string
+    summary: string
+    in_stock: boolean
+  }>
+  nextCursor: number
+  totalCount: number
+  __typename: string
+}
+
 const listStrainsWithPhenotypePagination = () => ({
   keyArgs: ["phenotype"],
   merge(
@@ -47,6 +71,54 @@ const listStrainsWithPhenotypePagination = () => ({
     }
   },
   read(existing: ListStrainsWithPhenotype) {
+    return existing
+  },
+})
+
+const listStrainsPagination = () => ({
+  keyArgs: ["filter"],
+  merge(existing: ListStrains, incoming: ListStrains) {
+    let strains: ListStrains["strains"] = []
+    let totalCount: ListStrains["totalCount"] = 0
+    if (existing && existing.strains) {
+      strains = strains.concat(existing.strains)
+      totalCount = existing.totalCount
+    }
+    if (incoming && incoming.strains) {
+      strains = strains.concat(incoming.strains)
+      totalCount = totalCount + incoming.totalCount
+    }
+    return {
+      ...incoming,
+      strains,
+      totalCount,
+    }
+  },
+  read(existing: ListStrains) {
+    return existing
+  },
+})
+
+const listPlasmidsPagination = () => ({
+  keyArgs: ["filter"],
+  merge(existing: ListPlasmids, incoming: ListPlasmids) {
+    let strains: ListPlasmids["plasmids"] = []
+    let totalCount: ListPlasmids["totalCount"] = 0
+    if (existing && existing.plasmids) {
+      strains = strains.concat(existing.plasmids)
+      totalCount = existing.totalCount
+    }
+    if (incoming && incoming.plasmids) {
+      strains = strains.concat(incoming.plasmids)
+      totalCount = totalCount + incoming.totalCount
+    }
+    return {
+      ...incoming,
+      strains,
+      totalCount,
+    }
+  },
+  read(existing: ListPlasmids) {
     return existing
   },
 })
@@ -79,6 +151,8 @@ const useApolloClient = () => {
     typePolicies: {
       Query: {
         fields: {
+          listPlasmids: listPlasmidsPagination(),
+          listStrains: listStrainsPagination(),
           listStrainsWithPhenotype: listStrainsWithPhenotypePagination(),
         },
       },
