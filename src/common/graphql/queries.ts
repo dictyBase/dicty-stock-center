@@ -3,10 +3,10 @@ import { gql } from "@apollo/client"
 // used in Availability component (homepage)
 const GET_STOCK_TOTALS = gql`
   query StockList($limit: Int!) {
-    listPlasmids(limit: $limit) {
+    listPlasmids(limit: $limit, filter: "") {
       totalCount
     }
-    listStrains(limit: $limit) {
+    listStrains(limit: $limit, filter: "") {
       totalCount
     }
   }
