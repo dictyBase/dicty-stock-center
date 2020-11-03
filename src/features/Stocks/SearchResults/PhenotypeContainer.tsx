@@ -9,7 +9,6 @@ import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import PhenotypeList from "./PhenotypeList"
-import { StrainWithPhenotype } from "features/Stocks/Details/types/props"
 
 const useStyles = makeStyles({
   layout: {
@@ -32,19 +31,6 @@ const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
 type Params = {
   /** Phenotype name from URL */
   name: string
-}
-
-type ListStrainsWithPhenotype = {
-  listStrainsWithPhenotype: {
-    /** Typename given by Apollo Client ("StrainListWithCursor") */
-    __typename: string
-    /** Cursor used to fetch next set of items */
-    nextCursor: number
-    /** Total count of strains returned from query */
-    totalCount: number
-    /** Array of strain data */
-    strains: Array<StrainWithPhenotype>
-  }
 }
 
 /**

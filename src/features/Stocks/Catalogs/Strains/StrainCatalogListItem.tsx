@@ -14,7 +14,7 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "common/utils/characterConverter"
 import itemIsInCart from "common/utils/itemIsInCart"
-import { strainListItemProps } from "features/Stocks/Catalogs/types/list"
+import { StrainListItemProps } from "features/Stocks/Catalogs/types/list"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 /**
@@ -22,7 +22,7 @@ import useStyles from "features/Stocks/Catalogs/styles"
  * row of data in the strain catalog.
  */
 
-const StrainCatalogListItem = ({ index, style, data }: strainListItemProps) => {
+const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
   const strain = data.item[index]
   const cartData = {
     id: strain.id,

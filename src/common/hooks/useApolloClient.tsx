@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { mutationList } from "common/graphql/mutations"
 import { StrainWithPhenotype } from "features/Stocks/Details/types/props"
+import { StrainItem, PlasmidItem } from "features/Stocks/Catalogs/types/list"
 
 const isMutation = (value: string) => {
   if (mutationList.includes(value)) {
@@ -17,35 +18,22 @@ const getGraphQLServer = (url: string, deployEnv: string, origin: string) => {
   return url
 }
 
-type ListStrainsWithPhenotype = {
+interface SearchInfo {
+  nextCursor: number
+  totalCount: number
+  __typename: string
+}
+
+interface ListStrainsWithPhenotype extends SearchInfo {
   strains: Array<StrainWithPhenotype>
-  nextCursor: number
-  totalCount: number
-  __typename: string
 }
 
-type ListStrains = {
-  strains: Array<{
-    label: string
-    id: string
-    summary: string
-    in_stock: boolean
-  }>
-  nextCursor: number
-  totalCount: number
-  __typename: string
+interface ListStrains extends SearchInfo {
+  strains: Array<StrainItem>
 }
 
-type ListPlasmids = {
-  plasmids: Array<{
-    name: string
-    id: string
-    summary: string
-    in_stock: boolean
-  }>
-  nextCursor: number
-  totalCount: number
-  __typename: string
+interface ListPlasmids extends SearchInfo {
+  plasmids: Array<PlasmidItem>
 }
 
 const listStrainsWithPhenotypePagination = () => ({
