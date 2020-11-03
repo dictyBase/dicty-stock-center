@@ -6,6 +6,8 @@ import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCartItems from "common/hooks/useCartItems"
@@ -37,6 +39,8 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
   const [{ addedItems }] = useCartStore()
   const { removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
+  const theme = useTheme()
+  const smallWindow = useMediaQuery(theme.breakpoints.down("md"))
   const classes = useStyles()
 
   const handleRemoveItemClick = () => {
@@ -44,11 +48,18 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     setHover(false)
   }
 
+  const size = smallWindow ? "small" : "medium"
+
   return (
-    <ListItem key={strain.id} className={classes.row} style={style} {...bind}>
+    <ListItem
+      key={strain.id}
+      className={classes.row}
+      style={style}
+      {...bind}
+      dense>
       <Grid container spacing={0} alignItems="center">
-        <Hidden smDown>
-          <Grid item md={1}>
+        <Hidden xsDown>
+          <Grid item sm={1}>
             <Checkbox
               checked={itemIsChecked}
               onChange={handleCheckboxChange}
@@ -60,7 +71,7 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
             />
           </Grid>
         </Hidden>
-        <Grid item xs={8} sm={4} md={3} className={classes.item}>
+        <Grid item xs={8} sm={2} md={3} className={classes.item}>
           <Typography noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
@@ -68,26 +79,33 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
           </Typography>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={6} className={classes.item}>
+          <Grid item sm={6} md={5} lg={6} className={classes.item}>
             <Typography noWrap>{strain.summary}</Typography>
           </Grid>
         </Hidden>
-        <Hidden mdDown>
-          <Grid item lg={1}>
+        <Hidden xsDown>
+          <Grid item sm={2} lg={1}>
             <Typography noWrap>{strain.id}</Typography>
           </Grid>
         </Hidden>
-        <Grid item xs={4} sm={2} md={2} lg={1}>
+        <Grid item xs={4} sm={1}>
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton data={[cartData]} inStock={strain.in_stock} />
+                <AddToCartButton
+                  size={size}
+                  data={[cartData]}
+                  inStock={strain.in_stock}
+                />
                 {itemIsInCart(addedItems, strain.id) && (
                   <IconButton
-                    size="medium"
                     color="secondary"
+                    size={size}
                     onClick={handleRemoveItemClick}>
-                    <FontAwesomeIcon icon="trash" />
+                    <FontAwesomeIcon
+                      icon="trash"
+                      size={smallWindow ? "xs" : "sm"}
+                    />
                   </IconButton>
                 )}
               </span>

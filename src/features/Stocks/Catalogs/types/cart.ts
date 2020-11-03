@@ -23,6 +23,8 @@ type AddToCartProps = {
   inStock: boolean
   /** Function to add to checked items array */
   setCheckedItems?: Function
+  /** Size of icon */
+  size?: "small" | "medium" | undefined
 }
 
 export type { CartItem, AddToCartProps }

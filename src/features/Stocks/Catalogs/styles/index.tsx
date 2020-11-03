@@ -24,6 +24,11 @@ const useStyles = makeStyles({
         "inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
       zIndex: 1,
     },
+    "@media (max-width: 1024px)": {
+      "& p": {
+        fontSize: "0.75rem !important",
+      },
+    },
   },
   item: {
     paddingRight: "10px",

@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     backgroundColor: "#f6f9fc",
     color: "#525f7f",
     fontWeight: 600,
+    "@media (max-width: 1024px)": {
+      fontSize: "0.85rem",
+    },
   },
   list: {
     padding: 0,
@@ -61,8 +64,8 @@ const CatalogListHeader = ({ stockType }: Props) => {
     <List className={classes.list}>
       <ListItem className={classes.listHeaders}>
         <Grid container spacing={0} alignItems="center">
-          <Hidden smDown>
-            <Grid item md={1}>
+          <Hidden xsDown>
+            <Grid item sm={1}>
               {checkedItemsLength > 0 && (
                 <Checkbox
                   indeterminate={true}
