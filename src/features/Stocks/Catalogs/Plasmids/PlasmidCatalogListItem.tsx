@@ -6,6 +6,8 @@ import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "common/utils/characterConverter"
@@ -41,18 +43,27 @@ const PlasmidCatalogListItem = ({
   const [{ addedItems }] = useCartStore()
   const { removeFromCart } = useCartItems([cartData])
   const { hover, setHover, bind } = useHover()
+  const theme = useTheme()
+  const smallWindow = useMediaQuery(theme.breakpoints.down("md"))
   const classes = useStyles()
 
   const handleRemoveItemClick = () => {
     removeFromCart()
     setHover(false)
   }
+  console.log(smallWindow)
+  const size = smallWindow ? "small" : "medium"
 
   return (
-    <ListItem key={plasmid.id} className={classes.row} style={style} {...bind}>
+    <ListItem
+      key={plasmid.id}
+      className={classes.row}
+      style={style}
+      {...bind}
+      dense>
       <Grid container spacing={0} alignItems="center">
-        <Hidden smDown>
-          <Grid item md={1}>
+        <Hidden xsDown>
+          <Grid item sm={1}>
             <Checkbox
               checked={itemIsChecked}
               onChange={handleCheckboxChange}
@@ -64,7 +75,7 @@ const PlasmidCatalogListItem = ({
             />
           </Grid>
         </Hidden>
-        <Grid item xs={8} sm={3} md={2} className={classes.item}>
+        <Grid item xs={8} sm={2} lg={3} className={classes.item}>
           <Typography noWrap>
             <Link to={`/plasmids/${plasmid.id}`}>
               {characterConverter(plasmid.name)}
@@ -72,26 +83,33 @@ const PlasmidCatalogListItem = ({
           </Typography>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={7} className={classes.item}>
+          <Grid item sm={6} className={classes.item}>
             <Typography noWrap>{plasmid.summary}</Typography>
           </Grid>
         </Hidden>
-        <Hidden mdDown>
-          <Grid item lg={1}>
+        <Hidden xsDown>
+          <Grid item sm={2} lg={1}>
             <Typography noWrap>{plasmid.id}</Typography>
           </Grid>
         </Hidden>
-        <Grid item xs={4} sm={2} md={2} lg={1}>
+        <Grid item xs={4} sm={1}>
           <Grid container justify="center">
             {hover && (
               <span>
-                <AddToCartButton data={[cartData]} inStock={plasmid.in_stock} />
+                <AddToCartButton
+                  data={[cartData]}
+                  size={size}
+                  inStock={plasmid.in_stock}
+                />
                 {itemIsInCart(addedItems, plasmid.id) && (
                   <IconButton
-                    size="medium"
+                    size={size}
                     color="secondary"
                     onClick={handleRemoveItemClick}>
-                    <FontAwesomeIcon icon="trash" />
+                    <FontAwesomeIcon
+                      icon="trash"
+                      size={smallWindow ? "xs" : "sm"}
+                    />
                   </IconButton>
                 )}
               </span>
