@@ -35,11 +35,11 @@ const listStrainsWithPhenotypePagination = () => ({
   ) {
     let strains: ListStrainsWithPhenotype["strains"] = []
     let totalCount: ListStrainsWithPhenotype["totalCount"] = 0
-    if (existing && existing.strains) {
+    if (existing) {
       strains = strains.concat(existing.strains)
       totalCount = existing.totalCount
     }
-    if (incoming && incoming.strains) {
+    if (incoming) {
       strains = strains.concat(incoming.strains)
       totalCount = totalCount + incoming.totalCount
     }
@@ -58,19 +58,15 @@ const listStrainsPagination = () => ({
   keyArgs: ["filter"],
   merge(existing: ListStrains, incoming: ListStrains) {
     let strains: ListStrains["strains"] = []
-    // let totalCount: ListStrains["totalCount"] = 0
-    if (existing && existing.strains) {
+    if (existing) {
       strains = strains.concat(existing.strains)
-      // totalCount = existing.totalCount
     }
-    if (incoming && incoming.strains) {
+    if (incoming) {
       strains = strains.concat(incoming.strains)
-      // totalCount = totalCount + incoming.totalCount
     }
     return {
       ...incoming,
       strains,
-      // totalCount,
     }
   },
   read(existing: ListStrains) {
@@ -82,19 +78,15 @@ const listPlasmidsPagination = () => ({
   keyArgs: ["filter"],
   merge(existing: ListPlasmids, incoming: ListPlasmids) {
     let plasmids: ListPlasmids["plasmids"] = []
-    // let totalCount: ListPlasmids["totalCount"] = 0
-    if (existing && existing.plasmids) {
+    if (existing) {
       plasmids = plasmids.concat(existing.plasmids)
-      // totalCount = existing.totalCount
     }
-    if (incoming && incoming.plasmids) {
+    if (incoming) {
       plasmids = plasmids.concat(incoming.plasmids)
-      // totalCount = totalCount + incoming.totalCount
     }
     return {
       ...incoming,
       plasmids,
-      // totalCount,
     }
   },
   read(existing: ListPlasmids) {
