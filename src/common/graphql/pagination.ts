@@ -94,6 +94,7 @@ const listPlasmidsPagination = () => ({
   },
 })
 
+export type { ListStrainsWithPhenotype }
 export {
   listStrainsWithPhenotypePagination,
   listStrainsPagination,
