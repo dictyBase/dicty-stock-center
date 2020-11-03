@@ -50,6 +50,8 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
 
   const loadMoreItems = async () => {
     const newCursor = data.listStrainsWithPhenotype.nextCursor
+    // need to check for same cursor to prevent extra fetching
+    // https://github.com/apollographql/apollo-client/issues/5901
     if (newCursor === prevCursor || newCursor === 0) {
       return
     }
