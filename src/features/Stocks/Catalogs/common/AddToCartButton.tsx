@@ -24,6 +24,7 @@ export const AddToCartButton = ({
   data,
   inStock,
   setCheckedItems,
+  size = "medium",
 }: AddToCartProps) => {
   const [{ showCartDialog, maxItemsInCart }] = useCartStore()
   const { addToCart } = useCartItems(data)
@@ -31,7 +32,7 @@ export const AddToCartButton = ({
 
   let button = (
     <IconButton
-      size="medium"
+      size={size}
       className={classes.cartButton}
       onClick={addToCart}
       title="Add to cart"
@@ -41,11 +42,15 @@ export const AddToCartButton = ({
   )
 
   if (!inStock) {
-    button = <UnavailableButton title="Item is currently unavailable" />
+    button = (
+      <UnavailableButton title="Item is currently unavailable" size={size} />
+    )
   }
 
   if (maxItemsInCart) {
-    button = <UnavailableButton title="Shopping cart is full" cartFull />
+    button = (
+      <UnavailableButton title="Shopping cart is full" cartFull size={size} />
+    )
   }
 
   return (

@@ -18,19 +18,25 @@ type Props = {
   title: string
   /** Indicates if shopping cart is full */
   cartFull?: boolean
+  /** Size of icon */
+  size?: "small" | "medium" | undefined
 }
 /**
  * UnavailableButton appears on catalog pages when an item
  * is not in stock.
  */
 
-export const UnavailableButton = ({ title, cartFull }: Props) => {
+export const UnavailableButton = ({
+  title,
+  cartFull,
+  size = "medium",
+}: Props) => {
   const classes = useStyles()
 
   return (
     <Tooltip title={title}>
       <span>
-        <IconButton disabled size="medium" aria-label={title}>
+        <IconButton disabled size={size} aria-label={title}>
           <span className="fa-layers fa-fw">
             <FontAwesomeIcon
               icon="cart-plus"
