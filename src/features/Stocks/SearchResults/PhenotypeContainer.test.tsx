@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import { first50, second50, lastItems } from "./mockData"
-import { listStrainsWithPhenotypePagination } from "common/hooks/useApolloClient"
+import { listStrainsWithPhenotypePagination } from "common/graphql/pagination"
 
 const mockParams = "abolished+protein+phosphorylation"
 
