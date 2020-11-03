@@ -102,19 +102,19 @@ const listStrainsPagination = () => ({
 const listPlasmidsPagination = () => ({
   keyArgs: ["filter"],
   merge(existing: ListPlasmids, incoming: ListPlasmids) {
-    let strains: ListPlasmids["plasmids"] = []
+    let plasmids: ListPlasmids["plasmids"] = []
     let totalCount: ListPlasmids["totalCount"] = 0
     if (existing && existing.plasmids) {
-      strains = strains.concat(existing.plasmids)
+      plasmids = plasmids.concat(existing.plasmids)
       totalCount = existing.totalCount
     }
     if (incoming && incoming.plasmids) {
-      strains = strains.concat(incoming.plasmids)
+      plasmids = plasmids.concat(incoming.plasmids)
       totalCount = totalCount + incoming.totalCount
     }
     return {
       ...incoming,
-      strains,
+      plasmids,
       totalCount,
     }
   },
