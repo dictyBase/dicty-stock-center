@@ -65,6 +65,10 @@ export const StrainCatalogContainer = () => {
 
   const loadMoreItems = async () => {
     const newCursor = data.listStrains.nextCursor
+    if (newCursor === 0) {
+      setHasMore(false)
+      return
+    }
     await fetchMore({
       query: GET_STRAIN_LIST,
       variables: {
@@ -73,9 +77,6 @@ export const StrainCatalogContainer = () => {
         limit: queryVariables.limit,
       },
     })
-    if (newCursor === 0) {
-      setHasMore(false)
-    }
   }
 
   // use conditional so both error and data appear below search bar

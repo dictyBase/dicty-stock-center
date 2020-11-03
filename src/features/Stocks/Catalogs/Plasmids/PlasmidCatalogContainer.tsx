@@ -57,6 +57,10 @@ export const PlasmidCatalogContainer = () => {
 
   const loadMoreItems = async () => {
     const newCursor = data.listPlasmids.nextCursor
+    if (newCursor === 0) {
+      setHasMore(false)
+      return
+    }
     await fetchMore({
       query: GET_PLASMID_LIST,
       variables: {
@@ -65,9 +69,6 @@ export const PlasmidCatalogContainer = () => {
         limit: queryVariables.limit,
       },
     })
-    if (newCursor === 0) {
-      setHasMore(false)
-    }
   }
 
   const content = error ? (
