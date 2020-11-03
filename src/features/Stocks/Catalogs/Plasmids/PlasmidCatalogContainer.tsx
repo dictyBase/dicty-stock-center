@@ -45,7 +45,7 @@ const rightDropdownItems = [
  * It is responsible for fetching the data and passing it down to more specific features.
  */
 
-export const PlasmidCatalogContainer = () => {
+const PlasmidCatalogContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const [{ queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
