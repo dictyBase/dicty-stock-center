@@ -1,4 +1,4 @@
-export type CartItem = {
+type CartItem = {
   label?: string
   name?: string
   id: string
@@ -7,7 +7,7 @@ export type CartItem = {
   in_stock?: boolean
 }
 
-export type AddToCartProps = {
+type AddToCartProps = {
   /** Strain data */
   data: Array<{
     /** Strain ID number */
@@ -24,3 +24,5 @@ export type AddToCartProps = {
   /** Function to add to checked items array */
   setCheckedItems?: Function
 }
+
+export type { CartItem, AddToCartProps }

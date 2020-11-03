@@ -14,7 +14,7 @@ import useCartItems from "common/hooks/useCartItems"
 import useHover from "common/hooks/useHover"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import itemIsInCart from "common/utils/itemIsInCart"
-import { plasmidListItemProps } from "features/Stocks/Catalogs/types/list"
+import { PlasmidListItemProps } from "features/Stocks/Catalogs/types/list"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 /**
@@ -26,7 +26,7 @@ const PlasmidCatalogListItem = ({
   index,
   style,
   data,
-}: plasmidListItemProps) => {
+}: PlasmidListItemProps) => {
   const plasmid = data.item[index]
   const cartData = {
     id: plasmid.id,
