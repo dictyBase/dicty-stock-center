@@ -75,7 +75,6 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     }
     if (res.data.listStrainsWithPhenotype.nextCursor === 0) {
       setHasMore(false)
-      return
     }
   }
 
