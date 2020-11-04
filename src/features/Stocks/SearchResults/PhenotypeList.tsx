@@ -19,6 +19,11 @@ const useStyles = makeStyles(({ palette }) => ({
   spinner: {
     marginTop: "15px",
   },
+  totalCount: {
+    marginTop: "15px",
+    textAlign: "center",
+    color: "rgb(112, 117, 122)",
+  },
 }))
 
 type Props = {
@@ -30,13 +35,21 @@ type Props = {
   hasMore: boolean
   /** Indicator to determine if more data is being loaded */
   isLoadingMore: boolean
+  /** Total number of strains found with given phenotype */
+  totalCount: number
 }
 
 /**
  * PhenotypeList is used to display a list of phenotypes.
  */
 
-const PhenotypeList = ({ data, loadMore, hasMore, isLoadingMore }: Props) => {
+const PhenotypeList = ({
+  data,
+  loadMore,
+  hasMore,
+  isLoadingMore,
+  totalCount,
+}: Props) => {
   const targetRef = React.useRef<HTMLDivElement>(null)
   const visible = useIntersectionObserver({
     ref: targetRef,
@@ -62,6 +75,7 @@ const PhenotypeList = ({ data, loadMore, hasMore, isLoadingMore }: Props) => {
         </List>
       </Paper>
       {isLoadingMore && <CircularProgress className={classes.spinner} />}
+      <div className={classes.totalCount}>Displaying {totalCount} results</div>
     </React.Fragment>
   )
 }
