@@ -58,7 +58,7 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     const newCursor = data.listStrainsWithPhenotype.nextCursor
     // need to check for same cursor to prevent extra fetching
     // https://github.com/apollographql/apollo-client/issues/5901
-    if (newCursor === prevCursor) {
+    if (newCursor === prevCursor || newCursor === 0) {
       return
     }
     setPrevCursor(newCursor)
