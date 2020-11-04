@@ -51,7 +51,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 50,
+              totalCount: 10,
               nextCursor: 0,
               strains: first50.slice(0, 10),
             },
@@ -82,6 +82,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
       const listItems = await screen.findAllByRole("listitem")
       // should have 11 list items -> 10 rows of data + list header
       expect(listItems).toHaveLength(11)
+      expect(screen.getByText(/Displaying 10 results/)).toBeInTheDocument()
     })
   })
 
@@ -127,7 +128,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 100,
+              totalCount: 50,
               nextCursor: 987654,
               strains: second50,
             },
@@ -146,7 +147,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           data: {
             listStrainsWithPhenotype: {
-              totalCount: 103,
+              totalCount: 3,
               nextCursor: 0,
               strains: lastItems,
             },
@@ -154,7 +155,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         },
       },
     ]
-    it("should render first 50 results", async () => {
+    it("should only render first 50 results when intersection observer is not visible", async () => {
       render(
         <MockedProvider mocks={mocks} addTypename={true} cache={cache}>
           <BrowserRouter>
@@ -162,6 +163,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           </BrowserRouter>
         </MockedProvider>,
       )
+
       // displays loading skeleton first
       expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
 
@@ -177,9 +179,11 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
       const listItems = await screen.findAllByRole("listitem")
       // should have 51 list items -> 50 rows of data + list header
       expect(listItems).toHaveLength(51)
+
+      expect(screen.getByText(/Displaying 50 results/)).toBeInTheDocument()
     })
 
-    it("should render next 50 results after scrolling", async () => {
+    it("should render next 50 results when intersection observer is visible", async () => {
       window.IntersectionObserver = jest.fn((callback, options) => {
         callback([{ isIntersecting: true }])
         return {
@@ -203,6 +207,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
 
       const listItems = await screen.findAllByRole("listitem")
       expect(listItems).toHaveLength(104) // 103 items + 1 header row
+      expect(screen.getByText(/Displaying 103 results/)).toBeInTheDocument()
     })
   })
 
