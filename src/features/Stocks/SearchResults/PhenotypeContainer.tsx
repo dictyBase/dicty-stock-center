@@ -132,6 +132,7 @@ const PhenotypeContainer = () => {
             hasMore={hasMore}
             isLoadingMore={isLoadingMore}
             data={data.listStrainsWithPhenotype.strains}
+            totalCount={data.listStrainsWithPhenotype.totalCount}
           />
         </Grid>
       </Grid>
