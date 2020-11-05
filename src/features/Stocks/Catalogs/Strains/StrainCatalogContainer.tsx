@@ -28,7 +28,7 @@ const leftDropdownItems = [
     value: "",
   },
   {
-    name: "Bacterial Food Strains",
+    name: "Bacterial Strains",
     value: "",
   },
 ]
