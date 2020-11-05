@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
 import { first50, second50, lastItems } from "./mockData"
-import { listStrainsWithPhenotypePagination } from "common/graphql/pagination"
+import { listStrainsWithAnnotationPagination } from "common/graphql/pagination"
 
 const mockParams = "abolished+protein+phosphorylation"
 
@@ -45,12 +45,13 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           variables: {
             cursor: 0,
             limit: 50,
-            phenotype: "abolished protein phosphorylation",
+            type: "phenotype",
+            annotation: "abolished protein phosphorylation",
           },
         },
         result: {
           data: {
-            listStrainsWithPhenotype: {
+            listStrainsWithAnnotation: {
               totalCount: 10,
               nextCursor: 0,
               strains: first50.slice(0, 10),
@@ -91,7 +92,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
       typePolicies: {
         Query: {
           fields: {
-            listStrainsWithPhenotype: listStrainsWithPhenotypePagination(),
+            listStrainsWithAnnotation: listStrainsWithAnnotationPagination(),
           },
         },
       },
@@ -103,12 +104,13 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           variables: {
             cursor: 0,
             limit: 50,
-            phenotype: "abolished protein phosphorylation",
+            type: "phenotype",
+            annotation: "abolished protein phosphorylation",
           },
         },
         result: {
           data: {
-            listStrainsWithPhenotype: {
+            listStrainsWithAnnotation: {
               totalCount: 50,
               nextCursor: 123456,
               strains: first50,
@@ -122,12 +124,13 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           variables: {
             cursor: 123456,
             limit: 50,
-            phenotype: "abolished protein phosphorylation",
+            type: "phenotype",
+            annotation: "abolished protein phosphorylation",
           },
         },
         result: {
           data: {
-            listStrainsWithPhenotype: {
+            listStrainsWithAnnotation: {
               totalCount: 50,
               nextCursor: 987654,
               strains: second50,
@@ -141,12 +144,13 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           variables: {
             cursor: 987654,
             limit: 50,
-            phenotype: "abolished protein phosphorylation",
+            type: "phenotype",
+            annotation: "abolished protein phosphorylation",
           },
         },
         result: {
           data: {
-            listStrainsWithPhenotype: {
+            listStrainsWithAnnotation: {
               totalCount: 3,
               nextCursor: 0,
               strains: lastItems,
@@ -219,7 +223,8 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
           variables: {
             cursor: 0,
             limit: 50,
-            phenotype: "abolished protein phosphorylation",
+            type: "phenotype",
+            annotation: "abolished protein phosphorylation",
           },
         },
         result: {
