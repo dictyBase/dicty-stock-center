@@ -31,12 +31,14 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
   query ListStrainsWithPhenotype(
     $cursor: Int!
     $limit: Int!
-    $phenotype: String!
+    $type: String!
+    $annotation: String!
   ) {
-    listStrainsWithPhenotype(
+    listStrainsWithAnnotation(
       cursor: $cursor
       limit: $limit
-      phenotype: $phenotype
+      type: $type
+      annotation: $annotation
     ) {
       totalCount
       nextCursor
