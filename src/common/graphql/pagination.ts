@@ -15,7 +15,7 @@ interface SearchInfo {
   __typename: string
 }
 
-interface ListStrainsWithPhenotype extends SearchInfo {
+interface ListStrainsWithAnnotation extends SearchInfo {
   strains: Array<StrainWithPhenotype>
 }
 
@@ -27,14 +27,14 @@ interface ListPlasmids extends SearchInfo {
   plasmids: Array<PlasmidItem>
 }
 
-const listStrainsWithPhenotypePagination = () => ({
-  keyArgs: ["phenotype"],
+const listStrainsWithAnnotationPagination = () => ({
+  keyArgs: ["type", "annotation"],
   merge(
-    existing: ListStrainsWithPhenotype,
-    incoming: ListStrainsWithPhenotype,
+    existing: ListStrainsWithAnnotation,
+    incoming: ListStrainsWithAnnotation,
   ) {
-    let strains: ListStrainsWithPhenotype["strains"] = []
-    let totalCount: ListStrainsWithPhenotype["totalCount"] = 0
+    let strains: ListStrainsWithAnnotation["strains"] = []
+    let totalCount: ListStrainsWithAnnotation["totalCount"] = 0
     if (existing) {
       strains = strains.concat(existing.strains)
       totalCount = existing.totalCount
@@ -49,7 +49,7 @@ const listStrainsWithPhenotypePagination = () => ({
       totalCount,
     }
   },
-  read(existing: ListStrainsWithPhenotype) {
+  read(existing: ListStrainsWithAnnotation) {
     return existing
   },
 })
@@ -94,9 +94,9 @@ const listPlasmidsPagination = () => ({
   },
 })
 
-export type { ListStrainsWithPhenotype }
+export type { ListStrainsWithAnnotation }
 export {
-  listStrainsWithPhenotypePagination,
+  listStrainsWithAnnotationPagination,
   listStrainsPagination,
   listPlasmidsPagination,
 }

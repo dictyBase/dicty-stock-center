@@ -9,7 +9,7 @@ import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
 import PhenotypeList from "./PhenotypeList"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
-import { ListStrainsWithPhenotype } from "common/graphql/pagination"
+import { ListStrainsWithAnnotation } from "common/graphql/pagination"
 
 const useStyles = makeStyles({
   layout: {
@@ -36,7 +36,7 @@ type Params = {
 
 type ListData = {
   /** Object returned from fetching list data */
-  listStrainsWithPhenotype: ListStrainsWithPhenotype
+  listStrainsWithAnnotation: ListStrainsWithAnnotation
 }
 
 /**
@@ -49,13 +49,18 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
   const { loading, error, data, fetchMore } = useQuery(
     GET_STRAIN_LIST_WITH_PHENOTYPE,
     {
-      variables: { cursor: 0, limit: 50, phenotype },
+      variables: {
+        cursor: 0,
+        limit: 50,
+        type: "phenotype",
+        annotation: phenotype,
+      },
       errorPolicy: "all",
     },
   )
 
   const loadMoreItems = async () => {
-    const newCursor = data.listStrainsWithPhenotype.nextCursor
+    const newCursor = data.listStrainsWithAnnotation.nextCursor
     // need to check for same cursor to prevent extra fetching
     // https://github.com/apollographql/apollo-client/issues/5901
     if (newCursor === prevCursor || newCursor === 0) {
@@ -65,7 +70,7 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     setIsLoadingMore(true)
     const res: ApolloQueryResult<ListData> = await fetchMore({
       variables: {
-        cursor: data.listStrainsWithPhenotype.nextCursor,
+        cursor: data.listStrainsWithAnnotation.nextCursor,
         limit: 50,
         phenotype,
       },
@@ -73,7 +78,7 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
     if (res.data) {
       setIsLoadingMore(false)
     }
-    if (res.data.listStrainsWithPhenotype.nextCursor === 0) {
+    if (res.data.listStrainsWithAnnotation.nextCursor === 0) {
       setHasMore(false)
     }
   }
@@ -131,8 +136,8 @@ const PhenotypeContainer = () => {
             loadMore={loadMoreItems}
             hasMore={hasMore}
             isLoadingMore={isLoadingMore}
-            data={data.listStrainsWithPhenotype.strains}
-            totalCount={data.listStrainsWithPhenotype.totalCount}
+            data={data.listStrainsWithAnnotation.strains}
+            totalCount={data.listStrainsWithAnnotation.totalCount}
           />
         </Grid>
       </Grid>

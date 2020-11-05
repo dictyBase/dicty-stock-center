@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { mutationList } from "common/graphql/mutations"
 import {
-  listStrainsWithPhenotypePagination,
+  listStrainsWithAnnotationPagination,
   listStrainsPagination,
   listPlasmidsPagination,
 } from "common/graphql/pagination"
@@ -27,7 +27,7 @@ const cache = new InMemoryCache({
       fields: {
         listPlasmids: listPlasmidsPagination(),
         listStrains: listStrainsPagination(),
-        listStrainsWithPhenotype: listStrainsWithPhenotypePagination(),
+        listStrainsWithAnnotation: listStrainsWithAnnotationPagination(),
       },
     },
   },
