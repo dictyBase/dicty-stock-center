@@ -72,7 +72,8 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
       variables: {
         cursor: data.listStrainsWithAnnotation.nextCursor,
         limit: 50,
-        phenotype,
+        type: "phenotype",
+        annotation: phenotype,
       },
     })
     if (res.data) {
