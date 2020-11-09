@@ -51,7 +51,7 @@ const PlasmidCatalogListItem = ({
     removeFromCart()
     setHover(false)
   }
-  console.log(smallWindow)
+
   const size = smallWindow ? "small" : "medium"
 
   return (

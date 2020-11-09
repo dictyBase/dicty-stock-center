@@ -1,8 +1,11 @@
 import React, { createContext, useContext, useReducer, useMemo } from "react"
 
 type AppBarState = {
+  /** The search filter selected from the middle dropdown menu (i.e. Descriptor, Summary, ID) */
   filter: String
+  /** The value typed into the search box by the user */
   searchValue: String
+  /** The current state of the help dialog box */
   helpDialogOpen: boolean
 }
 
@@ -68,7 +71,7 @@ const AppBarProvider = ({
   children,
   stockType,
 }: {
-  children: any
+  children: React.ReactNode
   stockType?: string
 }) => {
   const initialState =
@@ -86,6 +89,7 @@ const useAppBarStore = () => {
   if (!context) {
     throw new Error("useAppBarStore must be used within an AppBarProvider")
   }
+
   return context
 }
 

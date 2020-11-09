@@ -3,11 +3,11 @@ import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import AppBarDropdown from "./AppBarDropdown"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     padding: "2px 4px",
   },
-}))
+})
 
 type Props = {
   dropdownItems: Array<{
