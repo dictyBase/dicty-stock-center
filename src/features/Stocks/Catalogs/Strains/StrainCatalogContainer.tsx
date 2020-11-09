@@ -13,7 +13,7 @@ import useStyles from "features/Stocks/Catalogs/styles"
 const leftDropdownItems = [
   {
     name: "All Strains",
-    value: "",
+    value: "all",
   },
   {
     name: "GWDI Strains",
@@ -29,7 +29,7 @@ const leftDropdownItems = [
   },
   {
     name: "Bacterial Strains",
-    value: "",
+    value: "bacterial",
   },
 ]
 
