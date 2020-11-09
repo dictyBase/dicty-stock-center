@@ -63,7 +63,12 @@ const materialsLinks = [
     routerAware: true,
     newWindow: false,
   },
-  { name: "Bacterial Strains", to: "", routerAware: true, newWindow: false },
+  {
+    name: "Bacterial Strains",
+    to: "/strains?search=bacterial",
+    routerAware: true,
+    newWindow: false,
+  },
   {
     name: "Additional Materials",
     to: "/information/additional-materials",
