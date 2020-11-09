@@ -20,6 +20,8 @@ describe("Stocks/Catalogs/common/CatalogAppBar", () => {
       leftDropdownItems: [],
       rightDropdownItems: [],
       stockType: "strain",
+      searchTerm: "all",
+      setSearchTerm: jest.fn(),
     }
     const wrapper = createMount()(
       <ThemeProvider theme={theme}>
