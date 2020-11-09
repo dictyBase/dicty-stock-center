@@ -8,20 +8,21 @@ import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
 import { GET_PLASMID_LIST } from "common/graphql/queries"
+import useSearchQuery from "common/hooks/useSearchQuery"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [
   {
     name: "All Plasmids",
-    value: "",
+    value: "all",
   },
   {
     name: "Available Plasmids",
-    value: "",
+    value: "available",
   },
   {
     name: "Unavailable Plasmids",
-    value: "",
+    value: "unavailable",
   },
 ]
 
@@ -46,12 +47,15 @@ const rightDropdownItems = [
  */
 
 const PlasmidCatalogContainer = () => {
+  const query = useSearchQuery()
+  const params = query.get("search") || "all"
   const [hasMore, setHasMore] = React.useState(true)
   const [{ queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
     variables: queryVariables,
   })
   const classes = useStyles()
+  const [searchTerm, setSearchTerm] = React.useState(params)
 
   if (loading) return <DetailsLoader />
 
@@ -91,6 +95,8 @@ const PlasmidCatalogContainer = () => {
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
           stockType="plasmid"
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </Grid>
       <Grid item xs={12}>
