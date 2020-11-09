@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
-// import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -34,14 +33,6 @@ const AppBarRightMenu = () => {
 
   return (
     <>
-      {/* <IconButton
-        size="small"
-        className={classes.icon}
-        onClick={(event) => setAnchorEl(event.currentTarget)}
-        title="More options"
-        aria-label="More options for stock catalog page">
-        <FontAwesomeIcon icon="ellipsis-v" />
-      </IconButton> */}
       <Menu id="menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
         {dropdownItems.map((item) => (
           <MenuItem
