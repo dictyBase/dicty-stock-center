@@ -25,14 +25,14 @@ type Props = {
  */
 
 const AppBarDropdown = ({ dropdownItems }: Props) => {
-  const [{ filter }, dispatch] = useAppBarStore()
+  const [{ searchBoxDropdownValue }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const handleChange = (
     event: React.ChangeEvent<{ value: unknown; name?: string | undefined }>,
   ) => {
     dispatch({
-      type: AppBarActionType.SET_FILTER,
+      type: AppBarActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
       payload: event.target.value,
     })
   }
@@ -41,7 +41,7 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
     <FormControl>
       <Select
         native
-        value={filter}
+        value={searchBoxDropdownValue}
         onChange={handleChange}
         input={
           <Input

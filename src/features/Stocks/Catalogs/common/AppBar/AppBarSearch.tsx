@@ -42,13 +42,17 @@ type Props = {
  */
 
 const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
-  const [{ searchValue, filter }, dispatch] = useAppBarStore()
+  const [{ searchValue, searchBoxDropdownValue }, dispatch] = useAppBarStore()
   const classes = useStyles()
 
   const resetQueryVariables = () =>
     catalogDispatch({
       type: CatalogActionType.SET_QUERY_VARIABLES,
-      payload: { cursor: 0, limit: 10, filter: `${filter}~${searchValue}` },
+      payload: {
+        cursor: 0,
+        limit: 10,
+        filter: `${searchBoxDropdownValue}~${searchValue}`,
+      },
     })
 
   const handleChange = (

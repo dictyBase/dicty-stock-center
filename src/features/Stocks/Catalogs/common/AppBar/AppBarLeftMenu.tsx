@@ -5,6 +5,8 @@ import Paper from "@material-ui/core/Paper"
 import FormControl from "@material-ui/core/FormControl"
 import Input from "@material-ui/core/Input"
 import Select from "@material-ui/core/Select"
+import useSearchQuery from "common/hooks/useSearchQuery"
+import { useAppBarStore, AppBarActionType } from "./AppBarContext"
 
 const useStyles = makeStyles({
   root: {
@@ -22,8 +24,6 @@ type Props = {
     value: string
     name: string
   }>
-  searchTerm: string | null
-  setSearchTerm: (arg0: string) => void
   stockType: string
 }
 
@@ -32,20 +32,30 @@ type Props = {
  * left side of the app bar.
  */
 
-const AppBarLeftMenu = ({
-  dropdownItems,
-  searchTerm,
-  setSearchTerm,
-  stockType,
-}: Props) => {
+const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
+  const query = useSearchQuery()
+  const params = query.get("search") || "all"
   const classes = useStyles()
   const history = useHistory()
+  const [{ leftDropdownValue }, dispatch] = useAppBarStore()
+
+  React.useEffect(() => {
+    if (params !== leftDropdownValue) {
+      dispatch({
+        type: AppBarActionType.SET_LEFT_DROPDOWN_VALUE,
+        payload: params,
+      })
+    }
+  }, [params, leftDropdownValue, dispatch])
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     history.push(`/${stockType}s?search=${event.target.value}`)
-    setSearchTerm(event.target.value)
+    dispatch({
+      type: AppBarActionType.SET_LEFT_DROPDOWN_VALUE,
+      payload: event.target.value,
+    })
   }
 
   return (
@@ -53,7 +63,7 @@ const AppBarLeftMenu = ({
       <FormControl>
         <Select
           native
-          value={searchTerm}
+          value={leftDropdownValue}
           onChange={handleChange}
           input={
             <Input
