@@ -55,10 +55,6 @@ const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     history.push(`/${stockType}s?search=${event.target.value}`)
-    dispatch({
-      type: AppBarActionType.SET_LEFT_DROPDOWN_VALUE,
-      payload: event.target.value,
-    })
   }
 
   return (
