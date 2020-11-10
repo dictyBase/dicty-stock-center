@@ -20,8 +20,6 @@ type Props = {
   rightDropdownItems: Array<{ name: string; value: string }>
   /** Stock or Plasmid */
   stockType: string
-  searchTerm: string | null
-  setSearchTerm: (arg0: string) => void
 }
 
 /**
@@ -33,8 +31,6 @@ const CatalogAppBar = ({
   leftDropdownItems,
   rightDropdownItems,
   stockType,
-  searchTerm,
-  setSearchTerm,
 }: Props) => {
   const [, dispatch] = useCatalogStore()
   const classes = useStyles()
@@ -49,8 +45,6 @@ const CatalogAppBar = ({
                 <Grid container justify="flex-start">
                   <AppBarLeftMenu
                     dropdownItems={leftDropdownItems}
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
                     stockType={stockType}
                   />
                 </Grid>

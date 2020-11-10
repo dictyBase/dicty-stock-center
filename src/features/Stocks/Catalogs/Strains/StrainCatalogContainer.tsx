@@ -8,7 +8,6 @@ import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import StrainCatalogList from "./StrainCatalogList"
 import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
 import { GET_STRAIN_LIST } from "common/graphql/queries"
-import useSearchQuery from "common/hooks/useSearchQuery"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [
@@ -55,14 +54,11 @@ const rightDropdownItems = [
  */
 
 const StrainCatalogContainer = () => {
-  const query = useSearchQuery()
-  const params = query.get("search") || "all"
   const [hasMore, setHasMore] = React.useState(true)
   const [{ queryVariables }] = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_STRAIN_LIST, {
     variables: queryVariables,
   })
-  const [searchTerm, setSearchTerm] = React.useState(params)
   const classes = useStyles()
 
   if (loading) return <DetailsLoader />
@@ -104,8 +100,6 @@ const StrainCatalogContainer = () => {
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
           stockType="strain"
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
         />
       </Grid>
       <Grid item xs={12}>
