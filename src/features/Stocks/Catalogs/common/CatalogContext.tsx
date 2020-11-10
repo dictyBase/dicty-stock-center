@@ -1,7 +1,11 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react"
+import { DocumentNode } from "@apollo/client"
+import { GET_STRAIN_LIST, GET_PLASMID_LIST } from "common/graphql/queries"
 
 type CatalogState = {
+  query: DocumentNode
   queryVariables: {
+    limit?: number
     cursor: number
     filter: String
   }
@@ -10,6 +14,7 @@ type CatalogState = {
 
 enum CatalogActionType {
   SET_QUERY_VARIABLES = "SET_QUERY_VARIABLES",
+  SET_QUERY = "SET_QUERY",
   SET_CHECKED_ITEMS = "SET_CHECKED_ITEMS",
 }
 
@@ -17,21 +22,40 @@ type Action =
   | {
       type: CatalogActionType.SET_QUERY_VARIABLES
       payload: {
+        limit?: number
         cursor: number
         filter: String
       }
+    }
+  | {
+      type: CatalogActionType.SET_QUERY
+      payload: DocumentNode
     }
   | {
       type: CatalogActionType.SET_CHECKED_ITEMS
       payload: Array<any>
     }
 
-const CatalogContext = createContext({} as any)
-
-const initialState = {
+const strainInitialState = {
   queryVariables: { cursor: 0, limit: 10, filter: "" },
+  query: GET_STRAIN_LIST,
   checkedItems: [],
 }
+
+const plasmidInitialState = {
+  queryVariables: { cursor: 0, limit: 10, filter: "" },
+  query: GET_PLASMID_LIST,
+  checkedItems: [],
+}
+
+type CatalogStateContextProps = {
+  state: CatalogState
+  dispatch: React.Dispatch<Action>
+}
+
+const CatalogContext = createContext<CatalogStateContextProps>(
+  {} as CatalogStateContextProps,
+)
 
 const catalogReducer = (state: CatalogState, action: Action) => {
   switch (action.type) {
@@ -39,6 +63,11 @@ const catalogReducer = (state: CatalogState, action: Action) => {
       return {
         ...state,
         queryVariables: action.payload,
+      }
+    case CatalogActionType.SET_QUERY:
+      return {
+        ...state,
+        query: action.payload,
       }
     case CatalogActionType.SET_CHECKED_ITEMS:
       return {
@@ -56,9 +85,17 @@ const catalogReducer = (state: CatalogState, action: Action) => {
  * components.
  */
 
-const CatalogProvider = ({ children }: any) => {
+const CatalogProvider = ({
+  children,
+  stockType,
+}: {
+  children: React.ReactNode
+  stockType?: string
+}) => {
+  const initialState =
+    stockType === "plasmid" ? plasmidInitialState : strainInitialState
   const [state, dispatch] = useReducer(catalogReducer, initialState)
-  const value = useMemo(() => [state, dispatch], [state])
+  const value = useMemo(() => ({ state, dispatch }), [state])
 
   return (
     <CatalogContext.Provider value={value}>{children}</CatalogContext.Provider>
@@ -70,6 +107,7 @@ const useCatalogStore = () => {
   if (!context) {
     throw new Error("useCatalogStore must be used within a CatalogProvider")
   }
+
   return context
 }
 

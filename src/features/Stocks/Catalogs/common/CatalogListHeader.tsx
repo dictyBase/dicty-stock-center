@@ -44,7 +44,9 @@ type Props = {
  */
 
 const CatalogListHeader = ({ stockType }: Props) => {
-  const [{ checkedItems }] = useCatalogStore()
+  const {
+    state: { checkedItems },
+  } = useCatalogStore()
   const { handleCheckAllChange } = useCheckboxes({
     id: "",
     name: "",

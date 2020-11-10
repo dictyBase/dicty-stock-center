@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
 const CatalogListHeaderButtons = () => {
   const [{ addedItems }] = useCartStore()
-  const [{ checkedItems }] = useCatalogStore()
+  const {
+    state: { checkedItems },
+  } = useCatalogStore()
   const { resetCheckedItems } = useCheckboxes({
     id: "",
     name: "",

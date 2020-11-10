@@ -9,7 +9,7 @@ import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
  */
 
 export const PlasmidCatalogWrapper = () => (
-  <CatalogProvider>
+  <CatalogProvider stockType="plasmid">
     <Helmet>
       <title>Plasmid Catalog - Dicty Stock Center</title>
       <meta name="description" content={"Dicty Stock Center plasmid catalog"} />
