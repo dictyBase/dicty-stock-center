@@ -3,19 +3,34 @@ import { DocumentNode } from "@apollo/client"
 import { GET_STRAIN_LIST, GET_PLASMID_LIST } from "common/graphql/queries"
 
 type CatalogState = {
+  /** The actual GraphQL query (no variables) */
   query: DocumentNode
+  /** Variables used for GraphQL query */
   queryVariables: {
     limit?: number
     cursor: number
     filter: String
   }
+  /** Array of currently checked items */
   checkedItems: Array<any>
+  /** The search filter selected from the middle dropdown menu (i.e. Descriptor, Summary, ID) */
+  searchBoxDropdownValue: string
+  /** The value typed into the search box by the user */
+  searchValue: string
+  /** The current state of the help dialog box */
+  helpDialogOpen: boolean
+  /** The value selected from the left dropdown menu */
+  leftDropdownValue: string
 }
 
 enum CatalogActionType {
   SET_QUERY_VARIABLES = "SET_QUERY_VARIABLES",
   SET_QUERY = "SET_QUERY",
   SET_CHECKED_ITEMS = "SET_CHECKED_ITEMS",
+  SET_SEARCHBOX_DROPDOWN_VALUE = "SET_SEARCHBOX_DROPDOWN_VALUE",
+  SET_SEARCH_VALUE = "SET_SEARCH_VALUE",
+  SET_HELP_DIALOG_OPEN = "SET_HELP_DIALOG_OPEN",
+  SET_LEFT_DROPDOWN_VALUE = "SET_LEFT_DROPDOWN_VALUE",
 }
 
 type Action =
@@ -35,17 +50,41 @@ type Action =
       type: CatalogActionType.SET_CHECKED_ITEMS
       payload: Array<any>
     }
+  | {
+      type: CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE
+      payload: string
+    }
+  | {
+      type: CatalogActionType.SET_SEARCH_VALUE
+      payload: string
+    }
+  | {
+      type: CatalogActionType.SET_HELP_DIALOG_OPEN
+      payload: boolean
+    }
+  | {
+      type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE
+      payload: string
+    }
+
+const initialState = {
+  queryVariables: { cursor: 0, limit: 10, filter: "" },
+  checkedItems: [],
+  leftDropdownValue: "all",
+  searchValue: "",
+  helpDialogOpen: false,
+}
 
 const strainInitialState = {
-  queryVariables: { cursor: 0, limit: 10, filter: "" },
+  ...initialState,
   query: GET_STRAIN_LIST,
-  checkedItems: [],
+  searchBoxDropdownValue: "label",
 }
 
 const plasmidInitialState = {
-  queryVariables: { cursor: 0, limit: 10, filter: "" },
+  ...initialState,
   query: GET_PLASMID_LIST,
-  checkedItems: [],
+  searchBoxDropdownValue: "plasmid_name",
 }
 
 type CatalogStateContextProps = {
@@ -73,6 +112,26 @@ const catalogReducer = (state: CatalogState, action: Action) => {
       return {
         ...state,
         checkedItems: action.payload,
+      }
+    case CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE:
+      return {
+        ...state,
+        searchBoxDropdownValue: action.payload,
+      }
+    case CatalogActionType.SET_SEARCH_VALUE:
+      return {
+        ...state,
+        searchValue: action.payload,
+      }
+    case CatalogActionType.SET_HELP_DIALOG_OPEN:
+      return {
+        ...state,
+        helpDialogOpen: action.payload,
+      }
+    case CatalogActionType.SET_LEFT_DROPDOWN_VALUE:
+      return {
+        ...state,
+        leftDropdownValue: action.payload,
       }
     default:
       return state

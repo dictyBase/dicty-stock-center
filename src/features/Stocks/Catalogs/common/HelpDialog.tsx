@@ -5,9 +5,9 @@ import DialogActions from "@material-ui/core/DialogActions"
 import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import HelpDialogContent from "./HelpDialogContent"
 import {
-  useAppBarStore,
-  AppBarActionType,
-} from "features/Stocks/Catalogs/common/AppBar/AppBarContext"
+  useCatalogStore,
+  CatalogActionType,
+} from "features/Stocks/Catalogs/common/CatalogContext"
 
 /**
  * HelpDialog is the dialog box that appears when the user clicks
@@ -18,11 +18,11 @@ export const HelpDialog = () => {
   const {
     state: { helpDialogOpen },
     dispatch,
-  } = useAppBarStore()
+  } = useCatalogStore()
 
   const handleClose = () => {
     dispatch({
-      type: AppBarActionType.SET_HELP_DIALOG_OPEN,
+      type: CatalogActionType.SET_HELP_DIALOG_OPEN,
       payload: false,
     })
   }

@@ -6,8 +6,6 @@ import Hidden from "@material-ui/core/Hidden"
 import AppBarLeftMenu from "features/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "features/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "features/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
-import { AppBarProvider } from "features/Stocks/Catalogs/common/AppBar/AppBarContext"
-import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 type Props = {
@@ -32,43 +30,37 @@ const CatalogAppBar = ({
   rightDropdownItems,
   stockType,
 }: Props) => {
-  const { dispatch } = useCatalogStore()
   const classes = useStyles()
 
   return (
-    <AppBarProvider stockType={stockType}>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <Grid container alignItems="center">
-            <Hidden smDown>
-              <Grid item xs={4}>
-                <Grid container justify="flex-start">
-                  <AppBarLeftMenu
-                    dropdownItems={leftDropdownItems}
-                    stockType={stockType}
-                  />
-                </Grid>
-              </Grid>
-            </Hidden>
-            <Grid item xs={12} md={4}>
-              <Grid container justify="center">
-                <AppBarSearch
-                  dropdownItems={rightDropdownItems}
-                  catalogDispatch={dispatch}
+    <AppBar position="static" className={classes.appBar}>
+      <Toolbar>
+        <Grid container alignItems="center">
+          <Hidden smDown>
+            <Grid item xs={4}>
+              <Grid container justify="flex-start">
+                <AppBarLeftMenu
+                  dropdownItems={leftDropdownItems}
+                  stockType={stockType}
                 />
               </Grid>
             </Grid>
-            <Hidden smDown>
-              <Grid item xs={4}>
-                <Grid container justify="flex-end">
-                  <AppBarRightMenu />
-                </Grid>
-              </Grid>
-            </Hidden>
+          </Hidden>
+          <Grid item xs={12} md={4}>
+            <Grid container justify="center">
+              <AppBarSearch dropdownItems={rightDropdownItems} />
+            </Grid>
           </Grid>
-        </Toolbar>
-      </AppBar>
-    </AppBarProvider>
+          <Hidden smDown>
+            <Grid item xs={4}>
+              <Grid container justify="flex-end">
+                <AppBarRightMenu />
+              </Grid>
+            </Grid>
+          </Hidden>
+        </Grid>
+      </Toolbar>
+    </AppBar>
   )
 }
 

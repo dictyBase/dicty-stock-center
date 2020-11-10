@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom"
 import { Formik } from "formik"
 import { AuthProvider } from "features/Authentication/AuthStore"
 import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
-import { AppBarProvider } from "features/Stocks/Catalogs/common/AppBar/AppBarContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import useApolloClient from "common/hooks/useApolloClient"
 
@@ -20,13 +19,11 @@ const Wrapper = ({ children }: any) => {
       <AuthProvider>
         <CartProvider>
           <CatalogProvider>
-            <AppBarProvider>
-              <BrowserRouter>
-                <Formik initialValues={{}} onSubmit={() => {}}>
-                  {children}
-                </Formik>
-              </BrowserRouter>
-            </AppBarProvider>
+            <BrowserRouter>
+              <Formik initialValues={{}} onSubmit={() => {}}>
+                {children}
+              </Formik>
+            </BrowserRouter>
           </CatalogProvider>
         </CartProvider>
       </AuthProvider>
