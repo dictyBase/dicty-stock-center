@@ -27,7 +27,6 @@ type Props = {
     value: string
     name: string
   }>
-  stockType: string
 }
 
 /**
@@ -35,9 +34,9 @@ type Props = {
  * left side of the app bar.
  */
 
-const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
+const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const query = useSearchQuery()
-  const params = query.get("search") || "all"
+  const filter = query.get("filter") || "all"
   const classes = useStyles()
   const history = useHistory()
   const {
@@ -46,18 +45,18 @@ const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
   } = useCatalogStore()
 
   React.useEffect(() => {
-    if (params !== leftDropdownValue) {
+    if (filter !== leftDropdownValue) {
       dispatch({
         type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE,
-        payload: params,
+        payload: filter,
       })
     }
-  }, [params, leftDropdownValue, dispatch])
+  }, [filter, leftDropdownValue, dispatch])
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
-    history.push(`/${stockType}s?search=${event.target.value}`)
+    history.push(`?filter=${event.target.value}`)
   }
 
   return (

@@ -100,7 +100,6 @@ const StrainCatalogContainer = () => {
         <CatalogAppBar
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
-          stockType="strain"
         />
       </Grid>
       <Grid item xs={12}>
