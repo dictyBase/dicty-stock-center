@@ -176,4 +176,5 @@ export {
   CatalogProvider,
   useCatalogStore,
   CatalogActionType,
+  strainInitialState,
 }

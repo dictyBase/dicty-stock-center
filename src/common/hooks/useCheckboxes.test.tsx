@@ -5,6 +5,7 @@ import {
   CatalogProvider,
   CatalogContext,
   catalogReducer,
+  strainInitialState,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 const cartData = {
@@ -33,11 +34,11 @@ describe("hooks/useCheckboxes", () => {
   it("handles checked item correctly", () => {
     const MockProvider = ({ children }: any) => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
+        ...strainInitialState,
         checkedItems: [cartData],
-        queryVariables: { cursor: 0, filter: "" },
       })
       return (
-        <CatalogContext.Provider value={[state, dispatch]}>
+        <CatalogContext.Provider value={{ state, dispatch }}>
           {children}
         </CatalogContext.Provider>
       )
@@ -55,11 +56,11 @@ describe("hooks/useCheckboxes", () => {
   it("resets all checked items correctly", () => {
     const MockProvider = ({ children }: any) => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
+        ...strainInitialState,
         checkedItems: [cartData],
-        queryVariables: { cursor: 0, filter: "" },
       })
       return (
-        <CatalogContext.Provider value={[state, dispatch]}>
+        <CatalogContext.Provider value={{ state, dispatch }}>
           {children}
         </CatalogContext.Provider>
       )

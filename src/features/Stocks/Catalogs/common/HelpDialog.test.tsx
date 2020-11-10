@@ -1,20 +1,36 @@
 import React from "react"
-import { mount } from "enzyme"
+import { screen, render } from "@testing-library/react"
 import HelpDialog from "./HelpDialog"
-import Dialog from "@material-ui/core/Dialog"
-import DialogTitleDisplay from "common/components/DialogTitleDisplay"
-import { AppBarProvider } from "./AppBar/AppBarContext"
+import {
+  CatalogContext,
+  catalogReducer,
+  strainInitialState,
+} from "./CatalogContext"
 
 describe("Stocks/Catalogs/common/HelpDialog", () => {
-  const wrapper = mount(
-    <AppBarProvider>
-      <HelpDialog />
-    </AppBarProvider>,
-  )
-  describe("initial render", () => {
-    it("only renders Dialog component when help dialog is not open", () => {
-      expect(wrapper.find(Dialog)).toHaveLength(1)
-      expect(wrapper.find(DialogTitleDisplay)).toHaveLength(0)
-    })
+  const initialState = {
+    ...strainInitialState,
+    helpDialogOpen: true,
+  }
+  const MockCatalogProvider = ({ children }: { children: React.ReactNode }) => {
+    const [state, dispatch] = React.useReducer(catalogReducer, initialState)
+    return (
+      <CatalogContext.Provider value={{ state, dispatch }}>
+        {children}
+      </CatalogContext.Provider>
+    )
+  }
+
+  it("renders help dialog content when dialog box is open", () => {
+    render(
+      <MockCatalogProvider>
+        <HelpDialog />
+      </MockCatalogProvider>,
+    )
+    expect(
+      screen.getByText(
+        /The catalog page data is provided as as infinite scroll./,
+      ),
+    ).toBeInTheDocument()
   })
 })
