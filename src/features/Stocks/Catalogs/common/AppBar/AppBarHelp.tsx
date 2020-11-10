@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
  */
 
 const AppBarHelp = () => {
-  const [{ helpDialogOpen }, dispatch] = useAppBarStore()
+  const {
+    state: { helpDialogOpen },
+    dispatch,
+  } = useAppBarStore()
   const classes = useStyles()
 
   const handleClick = () => {
