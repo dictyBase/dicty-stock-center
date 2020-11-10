@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react"
 import { DocumentNode } from "@apollo/client"
 import { GET_STRAIN_LIST, GET_PLASMID_LIST } from "common/graphql/queries"
+import useSearchQuery from "common/hooks/useSearchQuery"
 
 type CatalogState = {
   /** The actual GraphQL query (no variables) */
@@ -138,12 +139,36 @@ const catalogReducer = (state: CatalogState, action: Action) => {
   }
 }
 
+const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
+  const label = query.get("label")
+  const summary = query.get("summary")
+  const id = query.get("id")
+  const plasmidName = query.get("name")
+  const description = query.get("description")
+
+  if (label) {
+    return `label~${label}`
+  }
+  if (summary) {
+    return `summary~${summary}`
+  }
+  if (id) {
+    return `id~${id}`
+  }
+  if (plasmidName) {
+    return `plasmid_name~${plasmidName}`
+  }
+  if (description) {
+    return `description~${description}`
+  }
+
+  return ""
+}
+
 /**
  * CatalogProvider contains "global" state used for the stock catalog
- * pages. This removes the need for prop drilling through multiple
- * components.
+ * pages. This includes all appbar state as well.
  */
-
 const CatalogProvider = ({
   children,
   stockType,
@@ -151,9 +176,19 @@ const CatalogProvider = ({
   children: React.ReactNode
   stockType?: string
 }) => {
+  // initial state varies based on stock or plasmid
   const initialState =
     stockType === "plasmid" ? plasmidInitialState : strainInitialState
-  const [state, dispatch] = useReducer(catalogReducer, initialState)
+  // set initial state to use search filter if query strings exist
+  const searchQuery = useSearchQuery()
+  const [state, dispatch] = useReducer(catalogReducer, {
+    ...initialState,
+    queryVariables: {
+      cursor: 0,
+      limit: 10,
+      filter: getGraphQLFilterFromSearchQuery(searchQuery),
+    },
+  })
   const value = useMemo(() => ({ state, dispatch }), [state])
 
   return (

@@ -1,4 +1,5 @@
 import React from "react"
+import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
@@ -12,7 +13,6 @@ import {
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
@@ -45,20 +45,11 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, searchBoxDropdownValue },
+    state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
     dispatch,
   } = useCatalogStore()
   const classes = useStyles()
-
-  const resetQueryVariables = () =>
-    dispatch({
-      type: CatalogActionType.SET_QUERY_VARIABLES,
-      payload: {
-        cursor: 0,
-        limit: 10,
-        filter: `${searchBoxDropdownValue}~${searchValue}`,
-      },
-    })
+  const history = useHistory()
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
@@ -73,7 +64,17 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
   ) => {
     event.preventDefault()
-    resetQueryVariables()
+    history.push(
+      `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
+    )
+    dispatch({
+      type: CatalogActionType.SET_QUERY_VARIABLES,
+      payload: {
+        cursor: 0,
+        limit: 10,
+        filter: `${searchBoxDropdownValue}~${searchValue}`,
+      },
+    })
   }
 
   const clearSearch = () => {
@@ -81,12 +82,11 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       type: CatalogActionType.SET_SEARCH_VALUE,
       payload: "",
     })
-    resetQueryVariables()
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <Paper className={classes.root}>
+      <Paper>
         <Grid container alignItems="center">
           <IconButton
             className={classes.iconButton}
