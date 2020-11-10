@@ -47,7 +47,9 @@ const rightDropdownItems = [
 
 const PlasmidCatalogContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
-  const [{ queryVariables }] = useCatalogStore()
+  const {
+    state: { queryVariables },
+  } = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
     variables: queryVariables,
   })

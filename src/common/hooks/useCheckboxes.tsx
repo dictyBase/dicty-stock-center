@@ -3,7 +3,7 @@ import {
   CatalogActionType,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
-type cartDataType = {
+type CartData = {
   /** Stock ID */
   id: string
   /** Name/label of stock */
@@ -18,8 +18,11 @@ type cartDataType = {
  * useCheckboxes is a hook for handling checkbox state.
  */
 
-const useCheckboxes = (cartData: cartDataType) => {
-  const [{ checkedItems }, dispatch] = useCatalogStore()
+const useCheckboxes = (cartData: CartData) => {
+  const {
+    state: { checkedItems },
+    dispatch,
+  } = useCatalogStore()
 
   const resetCheckedItems = () =>
     dispatch({
@@ -35,7 +38,7 @@ const useCheckboxes = (cartData: cartDataType) => {
 
   // if item is checked, then return true for checkbox
   const itemIsChecked = checkedItems.some(
-    (item: cartDataType) => item.id === cartData.id,
+    (item: CartData) => item.id === cartData.id,
   )
 
   const handleCheckboxChange = () => {
@@ -44,7 +47,7 @@ const useCheckboxes = (cartData: cartDataType) => {
       dispatch({
         type: CatalogActionType.SET_CHECKED_ITEMS,
         payload: checkedItems.filter(
-          (item: cartDataType) => item.id !== cartData.id,
+          (item: CartData) => item.id !== cartData.id,
         ),
       })
     } else {

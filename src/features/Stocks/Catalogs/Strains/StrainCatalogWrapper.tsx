@@ -9,7 +9,7 @@ import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
  */
 
 export const StrainCatalogWrapper = () => (
-  <CatalogProvider>
+  <CatalogProvider stockType="strain">
     <Helmet>
       <title>Strain Catalog - Dicty Stock Center</title>
       <meta name="description" content={"Dicty Stock Center strain catalog"} />

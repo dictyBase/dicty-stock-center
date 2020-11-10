@@ -55,7 +55,9 @@ const rightDropdownItems = [
 
 const StrainCatalogContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
-  const [{ queryVariables }] = useCatalogStore()
+  const {
+    state: { queryVariables },
+  } = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(GET_STRAIN_LIST, {
     variables: queryVariables,
   })

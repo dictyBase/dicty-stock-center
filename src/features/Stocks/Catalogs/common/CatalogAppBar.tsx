@@ -32,7 +32,7 @@ const CatalogAppBar = ({
   rightDropdownItems,
   stockType,
 }: Props) => {
-  const [, dispatch] = useCatalogStore()
+  const { dispatch } = useCatalogStore()
   const classes = useStyles()
 
   return (
