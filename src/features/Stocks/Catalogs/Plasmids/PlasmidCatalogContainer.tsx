@@ -91,7 +91,6 @@ const PlasmidCatalogContainer = () => {
         <CatalogAppBar
           leftDropdownItems={leftDropdownItems}
           rightDropdownItems={rightDropdownItems}
-          stockType="plasmid"
         />
       </Grid>
       <Grid item xs={12}>
