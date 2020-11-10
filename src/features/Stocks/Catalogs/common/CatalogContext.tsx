@@ -145,24 +145,25 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
   const id = query.get("id")
   const plasmidName = query.get("name")
   const description = query.get("description")
+  let filter = ""
 
   if (label) {
-    return `label~${label}`
+    filter = `label~${label}`
   }
   if (summary) {
-    return `summary~${summary}`
+    filter = `summary~${summary}`
   }
   if (id) {
-    return `id~${id}`
+    filter = `id~${id}`
   }
   if (plasmidName) {
-    return `plasmid_name~${plasmidName}`
+    filter = `plasmid_name~${plasmidName}`
   }
   if (description) {
-    return `description~${description}`
+    filter = `description~${description}`
   }
 
-  return ""
+  return filter
 }
 
 /**
