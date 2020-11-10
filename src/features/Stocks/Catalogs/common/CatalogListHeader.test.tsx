@@ -7,6 +7,7 @@ import {
   CatalogProvider,
   CatalogContext,
   catalogReducer,
+  strainInitialState,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import StrainCatalogListHeader from "features/Stocks/Catalogs/Strains/StrainCatalogListHeader"
@@ -53,6 +54,7 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render with checked items", () => {
     const MockedComponent = () => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
+        ...strainInitialState,
         checkedItems: [
           {
             id: "DBS123456",
@@ -60,15 +62,11 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
             summary: "test1212",
           },
         ],
-        queryVariables: {
-          cursor: 0,
-          filter: "",
-        },
       })
 
       return (
         <CartProvider>
-          <CatalogContext.Provider value={[state, dispatch]}>
+          <CatalogContext.Provider value={{ state, dispatch }}>
             <CatalogListHeader stockType="plasmid" />
           </CatalogContext.Provider>
         </CartProvider>

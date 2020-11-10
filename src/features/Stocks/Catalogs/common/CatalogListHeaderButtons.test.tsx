@@ -7,6 +7,7 @@ import AddToCartButton from "./AddToCartButton"
 import {
   CatalogContext,
   catalogReducer,
+  strainInitialState,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
@@ -14,6 +15,7 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
   describe("initial render with checkedItems", () => {
     const MockedComponent = () => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
+        ...strainInitialState,
         checkedItems: [
           {
             id: "DBS123456",
@@ -26,12 +28,11 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
             summary: "another test",
           },
         ],
-        queryVariables: { cursor: 0, filter: "" },
       })
 
       return (
         <CartProvider>
-          <CatalogContext.Provider value={[state, dispatch]}>
+          <CatalogContext.Provider value={{ state, dispatch }}>
             <CatalogListHeaderButtons />
           </CatalogContext.Provider>
         </CartProvider>
@@ -51,17 +52,17 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
   describe("render with >12 items", () => {
     const MockedComponent = () => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
+        ...strainInitialState,
         checkedItems: new Array(13).fill({
           id: "DBS123456",
           name: "testarooni",
           summary: "test1212",
         }),
-        queryVariables: { cursor: 0, filter: "" },
       })
 
       return (
         <CartProvider>
-          <CatalogContext.Provider value={[state, dispatch]}>
+          <CatalogContext.Provider value={{ state, dispatch }}>
             <CatalogListHeaderButtons />
           </CatalogContext.Provider>
         </CartProvider>

@@ -9,6 +9,16 @@ import AppBarSearch from "features/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "features/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
 import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?search=GWDI",
+    }),
+  }
+})
+
 describe("Stocks/Catalogs/common/CatalogAppBar", () => {
   describe("initial render on large device", () => {
     // need to create custom theme to view components nested below Hidden components
@@ -20,8 +30,6 @@ describe("Stocks/Catalogs/common/CatalogAppBar", () => {
       leftDropdownItems: [],
       rightDropdownItems: [],
       stockType: "strain",
-      searchTerm: "all",
-      setSearchTerm: jest.fn(),
     }
     const wrapper = createMount()(
       <ThemeProvider theme={theme}>
