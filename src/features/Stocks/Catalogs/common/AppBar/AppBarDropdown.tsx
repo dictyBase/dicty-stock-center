@@ -3,7 +3,10 @@ import { makeStyles } from "@material-ui/core/styles"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
-import { useAppBarStore, AppBarActionType } from "./AppBarContext"
+import {
+  useCatalogStore,
+  CatalogActionType,
+} from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles({
   select: {
@@ -28,14 +31,14 @@ const AppBarDropdown = ({ dropdownItems }: Props) => {
   const {
     state: { searchBoxDropdownValue },
     dispatch,
-  } = useAppBarStore()
+  } = useCatalogStore()
   const classes = useStyles()
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     dispatch({
-      type: AppBarActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
+      type: CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
       payload: event.target.value,
     })
   }

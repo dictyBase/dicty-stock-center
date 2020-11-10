@@ -6,8 +6,10 @@ import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
-import { useAppBarStore, AppBarActionType } from "./AppBarContext"
-import { CatalogActionType } from "features/Stocks/Catalogs/common/CatalogContext"
+import {
+  useCatalogStore,
+  CatalogActionType,
+} from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -30,26 +32,26 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
+  /** List of dropdown items next to search box */
   dropdownItems: Array<{
     value: string
     name: string
   }>
-  catalogDispatch: Function
 }
 
 /**
  * AppBarSearch is the search box found on a stock catalog page.
  */
 
-const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
+const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
     state: { searchValue, searchBoxDropdownValue },
     dispatch,
-  } = useAppBarStore()
+  } = useCatalogStore()
   const classes = useStyles()
 
   const resetQueryVariables = () =>
-    catalogDispatch({
+    dispatch({
       type: CatalogActionType.SET_QUERY_VARIABLES,
       payload: {
         cursor: 0,
@@ -62,7 +64,7 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     dispatch({
-      type: AppBarActionType.SET_SEARCH_VALUE,
+      type: CatalogActionType.SET_SEARCH_VALUE,
       payload: event.target.value,
     })
   }
@@ -76,7 +78,7 @@ const AppBarSearch = ({ dropdownItems, catalogDispatch }: Props) => {
 
   const clearSearch = () => {
     dispatch({
-      type: AppBarActionType.SET_SEARCH_VALUE,
+      type: CatalogActionType.SET_SEARCH_VALUE,
       payload: "",
     })
     resetQueryVariables()

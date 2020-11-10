@@ -6,7 +6,10 @@ import FormControl from "@material-ui/core/FormControl"
 import Input from "@material-ui/core/Input"
 import Select from "@material-ui/core/Select"
 import useSearchQuery from "common/hooks/useSearchQuery"
-import { useAppBarStore, AppBarActionType } from "./AppBarContext"
+import {
+  useCatalogStore,
+  CatalogActionType,
+} from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles({
   root: {
@@ -40,12 +43,12 @@ const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
   const {
     state: { leftDropdownValue },
     dispatch,
-  } = useAppBarStore()
+  } = useCatalogStore()
 
   React.useEffect(() => {
     if (params !== leftDropdownValue) {
       dispatch({
-        type: AppBarActionType.SET_LEFT_DROPDOWN_VALUE,
+        type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE,
         payload: params,
       })
     }
