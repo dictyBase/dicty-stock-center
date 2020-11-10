@@ -37,7 +37,10 @@ const AppBarLeftMenu = ({ dropdownItems, stockType }: Props) => {
   const params = query.get("search") || "all"
   const classes = useStyles()
   const history = useHistory()
-  const [{ leftDropdownValue }, dispatch] = useAppBarStore()
+  const {
+    state: { leftDropdownValue },
+    dispatch,
+  } = useAppBarStore()
 
   React.useEffect(() => {
     if (params !== leftDropdownValue) {

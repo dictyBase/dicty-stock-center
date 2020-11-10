@@ -25,11 +25,14 @@ type Props = {
  */
 
 const AppBarDropdown = ({ dropdownItems }: Props) => {
-  const [{ searchBoxDropdownValue }, dispatch] = useAppBarStore()
+  const {
+    state: { searchBoxDropdownValue },
+    dispatch,
+  } = useAppBarStore()
   const classes = useStyles()
 
   const handleChange = (
-    event: React.ChangeEvent<{ value: unknown; name?: string | undefined }>,
+    event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     dispatch({
       type: AppBarActionType.SET_SEARCHBOX_DROPDOWN_VALUE,

@@ -50,7 +50,14 @@ const plasmidInitialState = {
   helpDialogOpen: false,
 }
 
-const AppBarContext = createContext({} as any)
+type AppBarStateContextProps = {
+  state: AppBarState
+  dispatch: React.Dispatch<Action>
+}
+
+const AppBarContext = createContext<AppBarStateContextProps>(
+  {} as AppBarStateContextProps,
+)
 
 const appBarReducer = (state: AppBarState, action: Action) => {
   switch (action.type) {
@@ -94,7 +101,7 @@ const AppBarProvider = ({
   const initialState =
     stockType === "plasmid" ? plasmidInitialState : strainInitialState
   const [state, dispatch] = useReducer(appBarReducer, initialState)
-  const value = useMemo(() => [state, dispatch], [state])
+  const value = useMemo(() => ({ state, dispatch }), [state])
 
   return (
     <AppBarContext.Provider value={value}>{children}</AppBarContext.Provider>
