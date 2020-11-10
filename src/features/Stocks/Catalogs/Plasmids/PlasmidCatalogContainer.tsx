@@ -7,7 +7,6 @@ import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMes
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
-import { GET_PLASMID_LIST } from "common/graphql/queries"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [
@@ -48,9 +47,9 @@ const rightDropdownItems = [
 const PlasmidCatalogContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const {
-    state: { queryVariables },
+    state: { query, queryVariables },
   } = useCatalogStore()
-  const { loading, error, data, fetchMore } = useQuery(GET_PLASMID_LIST, {
+  const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
   const classes = useStyles()
@@ -64,7 +63,7 @@ const PlasmidCatalogContainer = () => {
       return
     }
     await fetchMore({
-      query: GET_PLASMID_LIST,
+      query: query,
       variables: {
         cursor: data.listPlasmids.nextCursor,
         filter: queryVariables.filter,

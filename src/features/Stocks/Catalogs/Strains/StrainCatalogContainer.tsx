@@ -7,7 +7,6 @@ import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMes
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import StrainCatalogList from "./StrainCatalogList"
 import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
-import { GET_STRAIN_LIST } from "common/graphql/queries"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [
@@ -56,9 +55,9 @@ const rightDropdownItems = [
 const StrainCatalogContainer = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const {
-    state: { queryVariables },
+    state: { query, queryVariables },
   } = useCatalogStore()
-  const { loading, error, data, fetchMore } = useQuery(GET_STRAIN_LIST, {
+  const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
   const classes = useStyles()
@@ -72,7 +71,7 @@ const StrainCatalogContainer = () => {
       return
     }
     await fetchMore({
-      query: GET_STRAIN_LIST,
+      query,
       variables: {
         cursor: data.listStrains.nextCursor,
         filter: queryVariables.filter,
