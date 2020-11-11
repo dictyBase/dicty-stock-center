@@ -75,6 +75,11 @@ type BacterialStrainsData = {
   symbioticFarmerBacterium: CatalogQueryResponse
 }
 
+/**
+ * normalizeBacterialStrainsData normalizes the bacterial strain data
+ * response into the standard listStrains object. This is necessary since
+ * the query actually issues two queries together.
+ */
 const normalizeBacterialStrainsData = (data: BacterialStrainsData) => ({
   listStrains: {
     __typename: data.bacterialFoodSource.__typename,
@@ -91,7 +96,9 @@ const normalizeBacterialStrainsData = (data: BacterialStrainsData) => ({
 
 /**
  * dispatchStrainList sends a dispatch to update the query
- * and query variables for "all" and "gwdi" filters.
+ * and query variables for "all" and "gwdi" filters. The
+ * only difference between the two is that GWDI needs to have
+ * the label filter.
  */
 const dispatchStrainList = (
   dispatch: (arg0: CatalogAction) => void,
@@ -113,6 +120,18 @@ const dispatchStrainList = (
       filter: gqlFilter,
     },
   })
+}
+
+/**
+ * getStrainsArray returns only the list of strains from a
+ * GraphQL data response object.
+ */
+const getStrainsArray = (data: any) => {
+  if (data.bacterialFoodSource) {
+    const bacterial = normalizeBacterialStrainsData(data)
+    return bacterial.listStrains.strains
+  }
+  return data.listStrains.strains
 }
 
 /**
@@ -146,6 +165,10 @@ const StrainCatalogContainer = () => {
             payload: GET_BACTERIAL_STRAIN_LIST,
           })
           break
+        case "available":
+        case "unavailable":
+          console.log("inventory query")
+          break
         default:
           return
       }
@@ -161,6 +184,9 @@ const StrainCatalogContainer = () => {
   }
 
   const loadMoreItems = async () => {
+    if (!data.listStrains) {
+      return
+    }
     const newCursor = data.listStrains.nextCursor
     if (newCursor === 0) {
       setHasMore(false)
@@ -176,20 +202,10 @@ const StrainCatalogContainer = () => {
     })
   }
 
-  if (data && data.bacterialFoodSource) {
-    const bacterial = normalizeBacterialStrainsData(data)
+  if (data) {
     content = (
       <StrainCatalogList
-        data={bacterial.listStrains.strains}
-        loadMoreItems={() => {}}
-        hasMore={hasMore}
-      />
-    )
-  }
-  if (data && data.listStrains) {
-    content = (
-      <StrainCatalogList
-        data={data.listStrains.strains}
+        data={getStrainsArray(data)}
         loadMoreItems={loadMoreItems}
         hasMore={hasMore}
       />
