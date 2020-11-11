@@ -47,7 +47,11 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
     state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
   } = useCatalogStore()
-  const { setSearchValue, setQueryVariables } = useCatalogDispatch()
+  const {
+    setSearchValue,
+    setSearchBoxDropdownValue,
+    setQueryVariables,
+  } = useCatalogDispatch()
   const classes = useStyles()
   const history = useHistory()
 
@@ -69,6 +73,12 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       limit: 10,
       filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
+  }
+
+  const handleDropdownChange = (
+    event: React.ChangeEvent<{ name?: string; value: any }>,
+  ) => {
+    setSearchBoxDropdownValue(event.target.value)
   }
 
   const clearSearch = () => {
@@ -107,7 +117,11 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             <FontAwesomeIcon icon="times" size="sm" />
           </IconButton>
           <div className={classes.separator} />
-          <AppBarDropdown dropdownItems={dropdownItems} />
+          <AppBarDropdown
+            dropdownItems={dropdownItems}
+            handleChange={handleDropdownChange}
+            dropdownValue={searchBoxDropdownValue}
+          />
         </Grid>
       </Paper>
     </form>
