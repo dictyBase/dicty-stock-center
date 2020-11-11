@@ -1,8 +1,8 @@
 import React from "react"
 import { useQuery } from "@apollo/client"
 import Grid from "@material-ui/core/Grid"
+import CircularProgress from "@material-ui/core/CircularProgress"
 import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
-import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
@@ -54,7 +54,11 @@ const PlasmidCatalogContainer = () => {
   })
   const classes = useStyles()
 
-  if (loading) return <DetailsLoader />
+  let content = <div />
+
+  if (error) {
+    content = <CatalogErrorMessage error={error} />
+  }
 
   const loadMoreItems = async () => {
     const newCursor = data.listPlasmids.nextCursor
@@ -72,15 +76,15 @@ const PlasmidCatalogContainer = () => {
     })
   }
 
-  const content = error ? (
-    <CatalogErrorMessage error={error} />
-  ) : (
-    <PlasmidCatalogList
-      data={data.listPlasmids.plasmids}
-      loadMoreItems={loadMoreItems}
-      hasMore={hasMore}
-    />
-  )
+  if (data) {
+    content = (
+      <PlasmidCatalogList
+        data={data.listPlasmids.plasmids}
+        loadMoreItems={loadMoreItems}
+        hasMore={hasMore}
+      />
+    )
+  }
 
   return (
     <Grid container spacing={0} className={classes.layout}>
@@ -94,6 +98,11 @@ const PlasmidCatalogContainer = () => {
         />
       </Grid>
       <Grid item xs={12}>
+        {loading && (
+          <div className={classes.spinner}>
+            <CircularProgress data-testid="catalog-spinner" size={100} />
+          </div>
+        )}
         {content}
       </Grid>
     </Grid>
