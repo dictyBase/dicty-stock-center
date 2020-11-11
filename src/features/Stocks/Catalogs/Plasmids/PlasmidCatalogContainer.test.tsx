@@ -53,8 +53,8 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           </CatalogProvider>
         </CartProvider>,
       )
-      // displays loading skeleton first
-      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+      // displays loading spinner first
+      expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
       // wait for data to load...
       const firstRow = await screen.findByText(
         lastFivePlasmidCatalogItems.plasmids[0].name,
@@ -111,8 +111,8 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           </CatalogProvider>
         </CartProvider>,
       )
-      // displays loading skeleton first
-      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+      // displays loading spinner first
+      expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
 
       // wait for error message to load...
       const errorMsg = await screen.findByText(/No plasmids found/)
