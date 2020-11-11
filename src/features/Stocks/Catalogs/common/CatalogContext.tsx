@@ -225,6 +225,7 @@ const useCatalogStore = () => {
   return context
 }
 
+export type { Action }
 export {
   CatalogContext,
   catalogReducer,

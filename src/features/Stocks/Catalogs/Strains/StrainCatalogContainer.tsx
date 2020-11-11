@@ -9,6 +9,7 @@ import StrainCatalogList from "./StrainCatalogList"
 import {
   useCatalogStore,
   CatalogActionType,
+  Action as CatalogAction,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import {
@@ -55,7 +56,26 @@ const rightDropdownItems = [
   },
 ]
 
-const normalizeBacterialStrainsData = (data: any) => ({
+type Strain = {
+  id: string
+  name: string
+  summary: string
+  in_stock: boolean
+}
+
+type CatalogQueryResponse = {
+  __typename: string
+  nextCursor: number
+  totalCount: number
+  strains: Array<Strain>
+}
+
+type BacterialStrainsData = {
+  bacterialFoodSource: CatalogQueryResponse
+  symbioticFarmerBacterium: CatalogQueryResponse
+}
+
+const normalizeBacterialStrainsData = (data: BacterialStrainsData) => ({
   listStrains: {
     __typename: data.bacterialFoodSource.__typename,
     nextCursor: 0,
@@ -68,6 +88,32 @@ const normalizeBacterialStrainsData = (data: any) => ({
     ],
   },
 })
+
+/**
+ * dispatchStrainList sends a dispatch to update the query
+ * and query variables for "all" and "gwdi" filters.
+ */
+const dispatchStrainList = (
+  dispatch: (arg0: CatalogAction) => void,
+  filter: string,
+) => {
+  let gqlFilter = ""
+  dispatch({
+    type: CatalogActionType.SET_QUERY,
+    payload: GET_STRAIN_LIST,
+  })
+  if (filter === "gwdi") {
+    gqlFilter = "label=~gwdi"
+  }
+  dispatch({
+    type: CatalogActionType.SET_QUERY_VARIABLES,
+    payload: {
+      cursor: 0,
+      limit: 10,
+      filter: gqlFilter,
+    },
+  })
+}
 
 /**
  * StrainCatalogContainer is the main component for the strain catalog page.
@@ -91,37 +137,13 @@ const StrainCatalogContainer = () => {
     const updateData = async () => {
       switch (filter) {
         case "all":
-          dispatch({
-            type: CatalogActionType.SET_QUERY,
-            payload: GET_STRAIN_LIST,
-          })
-          dispatch({
-            type: CatalogActionType.SET_QUERY_VARIABLES,
-            payload: {
-              cursor: 0,
-              limit: 10,
-              filter: "",
-            },
-          })
+        case "gwdi":
+          dispatchStrainList(dispatch, filter)
           break
         case "bacterial":
           dispatch({
             type: CatalogActionType.SET_QUERY,
             payload: GET_BACTERIAL_STRAIN_LIST,
-          })
-          break
-        case "gwdi":
-          dispatch({
-            type: CatalogActionType.SET_QUERY,
-            payload: GET_STRAIN_LIST,
-          })
-          dispatch({
-            type: CatalogActionType.SET_QUERY_VARIABLES,
-            payload: {
-              cursor: 0,
-              limit: 10,
-              filter: "label=~gwdi",
-            },
           })
           break
         default:
