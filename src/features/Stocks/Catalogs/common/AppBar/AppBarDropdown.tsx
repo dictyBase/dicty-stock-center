@@ -5,7 +5,7 @@ import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
 import {
   useCatalogStore,
-  CatalogActionType,
+  useCatalogDispatch,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles({
@@ -30,17 +30,14 @@ type Props = {
 const AppBarDropdown = ({ dropdownItems }: Props) => {
   const {
     state: { searchBoxDropdownValue },
-    dispatch,
   } = useCatalogStore()
+  const { setSearchBoxDropdownValue } = useCatalogDispatch()
   const classes = useStyles()
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
-    dispatch({
-      type: CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
-      payload: event.target.value,
-    })
+    setSearchBoxDropdownValue(event.target.value)
   }
 
   return (
