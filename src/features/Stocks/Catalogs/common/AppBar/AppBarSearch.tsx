@@ -65,14 +65,14 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
   ) => {
     event.preventDefault()
-    history.push(
-      `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
-    )
     setQueryVariables({
       cursor: 0,
       limit: 10,
       filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
+    history.push(
+      `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
+    )
   }
 
   const handleDropdownChange = (
@@ -89,6 +89,11 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       limit: 10,
       filter: "",
     })
+  }
+
+  // remove this when filtering is available on the backend
+  if (leftDropdownValue !== "all") {
+    return null
   }
 
   return (
