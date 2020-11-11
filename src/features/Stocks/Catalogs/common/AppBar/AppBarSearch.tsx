@@ -72,7 +72,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       payload: {
         cursor: 0,
         limit: 10,
-        filter: `${searchBoxDropdownValue}~${searchValue}`,
+        filter: `${searchBoxDropdownValue}=~${searchValue}`,
       },
     })
   }
