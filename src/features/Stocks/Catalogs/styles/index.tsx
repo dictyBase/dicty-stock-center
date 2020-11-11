@@ -33,6 +33,11 @@ const useStyles = makeStyles({
   item: {
     paddingRight: "10px",
   },
+  spinner: {
+    textAlign: "center",
+    marginTop: "200px",
+    marginBottom: "200px",
+  },
 })
 
 export default useStyles

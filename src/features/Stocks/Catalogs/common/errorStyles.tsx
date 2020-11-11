@@ -5,11 +5,12 @@ const useStyles = makeStyles({
     marginBottom: "20px",
   },
   body: {
-    paddingTop: "50px",
     textAlign: "center",
+    marginTop: "150px",
+    marginBottom: "150px",
   },
   catalogPaper: {
-    height: 300,
+    height: 500,
     width: "100%",
   },
 })
