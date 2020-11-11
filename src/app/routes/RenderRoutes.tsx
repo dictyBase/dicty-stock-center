@@ -49,7 +49,7 @@ const EditInfoPage = lazy(
 const StrainCatalogWrapper = lazy(
   () =>
     import(
-      /* webpackChunkName: "StrainCatalogWrapper" */ "features/Stocks/Catalogs/Strains/StrainCatalogWrapper"
+      /* webpackChunkName: "StrainCatalogWrapper" */ "features/Stocks/Catalogs/common/CatalogWrapper"
     ),
 )
 const StrainDetailsContainer = lazy(
@@ -71,7 +71,7 @@ const PhenotypesWrapper = lazy(
 const PlasmidCatalogWrapper = lazy(
   () =>
     import(
-      /* webpackChunkName: "PlasmidCatalogWrapper" */ "features/Stocks/Catalogs/Plasmids/PlasmidCatalogWrapper"
+      /* webpackChunkName: "PlasmidCatalogWrapper" */ "features/Stocks/Catalogs/common/CatalogWrapper"
     ),
 )
 const PlasmidDetailsContainer = lazy(
@@ -136,12 +136,24 @@ const RenderRoutes = () => (
       <Route exact path="/order/checkout" component={OrderForm} />
       <Route exact path="/order/submitted" component={OrderConfirmation} />
       {/* strain routes */}
-      <Route exact path="/strains" component={StrainCatalogWrapper} />
+      <Route
+        exact
+        path="/strains"
+        render={(props) => (
+          <StrainCatalogWrapper {...props} stockType="strain" />
+        )}
+      />
       <Route exact path="/strains/:id" component={StrainDetailsContainer} />
       {/* phenotype routes */}
       <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
       {/* plasmid routes */}
-      <Route exact path="/plasmids" component={PlasmidCatalogWrapper} />
+      <Route
+        exact
+        path="/plasmids"
+        render={(props) => (
+          <PlasmidCatalogWrapper {...props} stockType="plasmid" />
+        )}
+      />
       <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
       {/* misc routes */}
       <Route exact path="/contact" component={ContactPage} />
