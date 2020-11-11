@@ -65,7 +65,7 @@ const materialsLinks = [
   },
   {
     name: "Bacterial Strains",
-    to: "/strains?search=bacterial",
+    to: "/strains?filter=bacterial",
     routerAware: true,
     newWindow: false,
   },
