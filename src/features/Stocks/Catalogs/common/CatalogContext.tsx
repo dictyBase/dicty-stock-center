@@ -7,15 +7,17 @@ import {
 } from "common/graphql/queries"
 import useSearchQuery from "common/hooks/useSearchQuery"
 
+type QueryVariables = {
+  cursor: number
+  limit: number
+  filter: string
+}
+
 type CatalogState = {
   /** The actual GraphQL query (no variables) */
   query: DocumentNode
   /** Variables used for GraphQL query */
-  queryVariables: {
-    limit?: number
-    cursor: number
-    filter: String
-  }
+  queryVariables: QueryVariables
   /** Array of currently checked items */
   checkedItems: Array<any>
   /** The search filter selected from the middle dropdown menu (i.e. Descriptor, Summary, ID) */
@@ -42,9 +44,9 @@ type Action =
   | {
       type: CatalogActionType.SET_QUERY_VARIABLES
       payload: {
-        limit?: number
+        limit: number
         cursor: number
-        filter: String
+        filter: string
       }
     }
   | {
@@ -225,6 +227,59 @@ const useCatalogStore = () => {
   return context
 }
 
+/**
+ * useCatalogDispatch provides helper functions for dispatching
+ * actions related to the catalog pages.
+ */
+const useCatalogDispatch = () => {
+  const { dispatch } = useCatalogStore()
+
+  const setSearchValue = (value: string) =>
+    dispatch({
+      type: CatalogActionType.SET_SEARCH_VALUE,
+      payload: value,
+    })
+
+  const setSearchBoxDropdownValue = (value: string) =>
+    dispatch({
+      type: CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
+      payload: value,
+    })
+
+  const setLeftDropdownValue = (value: string) =>
+    dispatch({
+      type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE,
+      payload: value,
+    })
+
+  const setQuery = (query: DocumentNode) =>
+    dispatch({
+      type: CatalogActionType.SET_QUERY,
+      payload: query,
+    })
+
+  const setQueryVariables = (variables: QueryVariables) =>
+    dispatch({
+      type: CatalogActionType.SET_QUERY_VARIABLES,
+      payload: variables,
+    })
+
+  const setHelpDialogOpen = (bool: boolean) =>
+    dispatch({
+      type: CatalogActionType.SET_HELP_DIALOG_OPEN,
+      payload: bool,
+    })
+
+  return {
+    setSearchValue,
+    setSearchBoxDropdownValue,
+    setLeftDropdownValue,
+    setQuery,
+    setQueryVariables,
+    setHelpDialogOpen,
+  }
+}
+
 export type { Action }
 export {
   CatalogContext,
@@ -233,4 +288,5 @@ export {
   useCatalogStore,
   CatalogActionType,
   strainInitialState,
+  useCatalogDispatch,
 }
