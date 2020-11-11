@@ -188,7 +188,7 @@ const StrainCatalogContainer = () => {
       <Grid item xs={12}>
         {loading && (
           <div className={classes.spinner}>
-            <CircularProgress size={100} />
+            <CircularProgress data-testid="catalog-spinner" size={100} />
           </div>
         )}
         {content}
