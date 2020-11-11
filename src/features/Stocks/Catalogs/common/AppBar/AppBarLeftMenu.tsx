@@ -2,9 +2,7 @@ import React from "react"
 import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
-import FormControl from "@material-ui/core/FormControl"
-import Input from "@material-ui/core/Input"
-import Select from "@material-ui/core/Select"
+import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import {
   useCatalogStore,
@@ -58,28 +56,11 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
 
   return (
     <Paper className={classes.root}>
-      <FormControl>
-        <Select
-          native
-          value={leftDropdownValue}
-          onChange={handleChange}
-          input={
-            <Input
-              disableUnderline
-              name="catalog-search"
-              id="catalog-filter"
-              classes={{
-                input: classes.select,
-              }}
-            />
-          }>
-          {dropdownItems.map((item, index) => (
-            <option key={index} value={item.value}>
-              {item.name}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
+      <AppBarDropdown
+        handleChange={handleChange}
+        dropdownValue={leftDropdownValue}
+        dropdownItems={dropdownItems}
+      />
     </Paper>
   )
 }
