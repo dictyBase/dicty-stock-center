@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react"
 import { DocumentNode } from "@apollo/client"
-import { GET_STRAIN_LIST, GET_PLASMID_LIST } from "common/graphql/queries"
+import {
+  GET_STRAIN_LIST,
+  GET_PLASMID_LIST,
+  GET_BACTERIAL_STRAIN_LIST,
+} from "common/graphql/queries"
 import useSearchQuery from "common/hooks/useSearchQuery"
 
 type CatalogState = {
@@ -166,6 +170,20 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
   return filter
 }
 
+const getGraphQLQueryFromSearchQuery = (
+  stockType: string,
+  query: URLSearchParams,
+) => {
+  const filter = query.get("filter")
+  if (filter === "bacterial") {
+    return GET_BACTERIAL_STRAIN_LIST
+  }
+  if (stockType === "plasmid") {
+    return GET_PLASMID_LIST
+  }
+  return GET_STRAIN_LIST
+}
+
 /**
  * CatalogProvider contains "global" state used for the stock catalog
  * pages. This includes all appbar state as well.
@@ -184,6 +202,7 @@ const CatalogProvider = ({
   const searchQuery = useSearchQuery()
   const [state, dispatch] = useReducer(catalogReducer, {
     ...initialState,
+    query: getGraphQLQueryFromSearchQuery(stockType || "strain", searchQuery),
     queryVariables: {
       cursor: 0,
       limit: 10,
