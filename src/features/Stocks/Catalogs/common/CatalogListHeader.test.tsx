@@ -14,6 +14,16 @@ import StrainCatalogListHeader from "features/Stocks/Catalogs/Strains/StrainCata
 import PlasmidCatalogListHeader from "features/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
 import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=gwdi",
+    }),
+  }
+})
+
 describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render for strain", () => {
     const props = {

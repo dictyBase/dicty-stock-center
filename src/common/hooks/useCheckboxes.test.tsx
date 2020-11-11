@@ -15,6 +15,16 @@ const cartData = {
   in_stock: true,
 }
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=gwdi",
+    }),
+  }
+})
+
 describe("hooks/useCheckboxes", () => {
   afterEach(() => cleanup)
 

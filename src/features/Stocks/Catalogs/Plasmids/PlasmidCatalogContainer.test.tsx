@@ -12,6 +12,16 @@ jest.mock("react-virtualized-auto-sizer", () => ({ children }: any) =>
   children({ height: 535, width: 600 }),
 )
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=all",
+    }),
+  }
+})
+
 describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
   describe("initial render", () => {
     const mocks = [

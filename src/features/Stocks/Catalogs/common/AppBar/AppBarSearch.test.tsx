@@ -3,6 +3,16 @@ import { render } from "@testing-library/react"
 import AppBarSearch from "./AppBarSearch"
 import { CatalogProvider } from "../CatalogContext"
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=gwdi",
+    }),
+  }
+})
+
 describe("Stocks/Strains/Catalog/AppBarSearch", () => {
   describe("initial render", () => {
     const props = {
