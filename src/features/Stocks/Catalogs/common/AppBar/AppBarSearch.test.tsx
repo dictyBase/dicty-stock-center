@@ -1,5 +1,5 @@
 import React from "react"
-import { render } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import AppBarSearch from "./AppBarSearch"
 import { CatalogProvider } from "../CatalogContext"
 
@@ -14,41 +14,45 @@ jest.mock("react-router-dom", () => {
 })
 
 describe("Stocks/Strains/Catalog/AppBarSearch", () => {
+  const props = {
+    dropdownItems: [],
+  }
+  const MockComponent = () => (
+    <CatalogProvider>
+      <AppBarSearch {...props} />
+    </CatalogProvider>
+  )
+
   describe("initial render", () => {
-    const props = {
-      dropdownItems: [],
-    }
-    render(
-      <CatalogProvider>
-        <AppBarSearch {...props} />
-      </CatalogProvider>,
-    )
-    it.todo("should render one search box")
+    it("should render one search box", () => {
+      render(<MockComponent />)
+      expect(screen.getAllByRole("textbox")).toHaveLength(1)
+    })
+    it("should render two buttons", () => {
+      render(<MockComponent />)
+      expect(screen.getAllByRole("button")).toHaveLength(2)
+    })
+    it("should render one dropdown", () => {
+      render(<MockComponent />)
+      expect(screen.getAllByRole("combobox")).toHaveLength(1)
+    })
   })
 
   describe("clicking buttons", () => {
-    const props = {
-      dropdownItems: [],
-    }
-    render(
-      <CatalogProvider>
-        <AppBarSearch {...props} />
-      </CatalogProvider>,
-    )
-    it.todo("should use dispatch when clear button is clicked")
+    it("should clear text box", () => {
+      render(<MockComponent />)
+      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const buttons = screen.getAllByRole("button")
+      fireEvent.change(input, { target: { value: "GWDI" } })
+      expect(input.value).toBe("GWDI")
+      fireEvent.click(buttons[1])
+      expect(input.value).toBe("")
+    })
 
     it.todo("should use dispatch when search button is clicked")
   })
 
   describe("form submit", () => {
-    const props = {
-      dropdownItems: [],
-    }
-    render(
-      <CatalogProvider>
-        <AppBarSearch {...props} />
-      </CatalogProvider>,
-    )
     it.todo("should use dispatch when form is submitted")
   })
 })
