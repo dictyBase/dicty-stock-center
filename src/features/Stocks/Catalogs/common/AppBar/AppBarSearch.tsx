@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
 import {
   useCatalogStore,
-  CatalogActionType,
+  useCatalogDispatch,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles((theme) => ({
@@ -46,18 +46,15 @@ type Props = {
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
     state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
-    dispatch,
   } = useCatalogStore()
+  const { setSearchValue, setQueryVariables } = useCatalogDispatch()
   const classes = useStyles()
   const history = useHistory()
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
-    dispatch({
-      type: CatalogActionType.SET_SEARCH_VALUE,
-      payload: event.target.value,
-    })
+    setSearchValue(event.target.value)
   }
 
   const handleSubmit = (
@@ -67,20 +64,20 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     history.push(
       `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
     )
-    dispatch({
-      type: CatalogActionType.SET_QUERY_VARIABLES,
-      payload: {
-        cursor: 0,
-        limit: 10,
-        filter: `${searchBoxDropdownValue}=~${searchValue}`,
-      },
+    setQueryVariables({
+      cursor: 0,
+      limit: 10,
+      filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
   }
 
   const clearSearch = () => {
-    dispatch({
-      type: CatalogActionType.SET_SEARCH_VALUE,
-      payload: "",
+    setSearchValue("")
+    history.push(`?filter=${leftDropdownValue}`)
+    setQueryVariables({
+      cursor: 0,
+      limit: 10,
+      filter: "",
     })
   }
 

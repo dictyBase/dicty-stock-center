@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   useCatalogStore,
-  CatalogActionType,
+  useCatalogDispatch,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 import HelpDialog from "features/Stocks/Catalogs/common/HelpDialog"
 
@@ -23,15 +23,12 @@ const useStyles = makeStyles((theme) => ({
 const AppBarHelp = () => {
   const {
     state: { helpDialogOpen },
-    dispatch,
   } = useCatalogStore()
+  const { setHelpDialogOpen } = useCatalogDispatch()
   const classes = useStyles()
 
   const handleClick = () => {
-    dispatch({
-      type: CatalogActionType.SET_HELP_DIALOG_OPEN,
-      payload: !helpDialogOpen,
-    })
+    setHelpDialogOpen(!helpDialogOpen)
   }
 
   return (

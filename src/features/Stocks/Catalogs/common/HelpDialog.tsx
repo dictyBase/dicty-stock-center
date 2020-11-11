@@ -6,7 +6,7 @@ import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import HelpDialogContent from "./HelpDialogContent"
 import {
   useCatalogStore,
-  CatalogActionType,
+  useCatalogDispatch,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 /**
@@ -17,14 +17,11 @@ import {
 export const HelpDialog = () => {
   const {
     state: { helpDialogOpen },
-    dispatch,
   } = useCatalogStore()
+  const { setHelpDialogOpen } = useCatalogDispatch()
 
   const handleClose = () => {
-    dispatch({
-      type: CatalogActionType.SET_HELP_DIALOG_OPEN,
-      payload: false,
-    })
+    setHelpDialogOpen(false)
   }
 
   return (

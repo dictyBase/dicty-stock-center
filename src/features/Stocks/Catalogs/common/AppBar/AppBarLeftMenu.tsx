@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import {
   useCatalogStore,
-  CatalogActionType,
+  useCatalogDispatch,
 } from "features/Stocks/Catalogs/common/CatalogContext"
 
 const useStyles = makeStyles({
@@ -41,17 +41,14 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const history = useHistory()
   const {
     state: { leftDropdownValue },
-    dispatch,
   } = useCatalogStore()
+  const { setLeftDropdownValue } = useCatalogDispatch()
 
   React.useEffect(() => {
     if (filter !== leftDropdownValue) {
-      dispatch({
-        type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE,
-        payload: filter,
-      })
+      setLeftDropdownValue(filter)
     }
-  }, [filter, leftDropdownValue, dispatch])
+  }, [filter, leftDropdownValue, setLeftDropdownValue])
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
