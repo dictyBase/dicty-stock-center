@@ -83,12 +83,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   const clearSearch = () => {
     setSearchValue("")
-    history.push(`?filter=${leftDropdownValue}`)
-    setQueryVariables({
-      cursor: 0,
-      limit: 10,
-      filter: "",
-    })
   }
 
   // remove this when filtering is available on the backend
