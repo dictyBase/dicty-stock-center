@@ -14,7 +14,7 @@ jest.mock("react-router-dom", () => {
   return {
     ...originalModule,
     useLocation: () => ({
-      search: "?search=GWDI",
+      search: "?filter=gwdi",
     }),
   }
 })

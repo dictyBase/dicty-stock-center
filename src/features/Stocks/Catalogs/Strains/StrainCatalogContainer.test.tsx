@@ -12,6 +12,16 @@ jest.mock("react-virtualized-auto-sizer", () => ({ children }: any) =>
   children({ height: 535, width: 600 }),
 )
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=all",
+    }),
+  }
+})
+
 describe("Stocks/Strains/StrainCatalogContainer", () => {
   describe("initial render", () => {
     const mocks = [
@@ -43,8 +53,8 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           </CatalogProvider>
         </CartProvider>,
       )
-      // displays loading skeleton first
-      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+      // displays spinner first
+      expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
       // wait for data to load...
       const firstRow = await screen.findByText(
         lastFiveStrainCatalogItems.strains[0].label,
@@ -101,8 +111,8 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           </CatalogProvider>
         </CartProvider>,
       )
-      // displays loading skeleton first
-      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+      // displays spinner first
+      expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
 
       // wait for error message to load...
       const errorMsg = await screen.findByText(/No strains found/)

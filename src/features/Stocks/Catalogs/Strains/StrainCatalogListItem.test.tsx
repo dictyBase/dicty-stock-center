@@ -8,6 +8,16 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useLocation: () => ({
+      search: "?filter=gwdi",
+    }),
+  }
+})
+
 describe("Stocks/Strains/Catalog/StrainCatalogListItem", () => {
   describe("initial render", () => {
     const props = {
