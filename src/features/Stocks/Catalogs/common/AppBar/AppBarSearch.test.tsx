@@ -1,7 +1,10 @@
 import React from "react"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import AppBarSearch from "./AppBarSearch"
-import { CatalogProvider } from "../CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
+import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
@@ -12,6 +15,14 @@ jest.mock("react-router-dom", () => {
     }),
   }
 })
+
+const mockSetSearchValue = jest.fn()
+
+jest.mock("../CatalogContext", () => ({
+  useCatalogStore: () => ({
+    setSearchValue: mockSetSearchValue,
+  }),
+}))
 
 const dropdownItems = [
   {
@@ -58,6 +69,7 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
     it("should render one dropdown with five items", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("combobox")).toHaveLength(1)
+      expect(screen.getAllByRole("option")).toHaveLength(5)
     })
   })
 
@@ -68,9 +80,9 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
       const clearButton = screen.getByRole("button", {
         name: /clear search box/,
       })
-      fireEvent.change(input, { target: { value: "GWDI" } })
+      userEvent.type(input, "GWDI")
       expect(input.value).toBe("GWDI")
-      fireEvent.click(clearButton)
+      userEvent.click(clearButton)
       expect(input.value).toBe("")
     })
 

@@ -4,10 +4,8 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
 import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import HelpDialogContent from "./HelpDialogContent"
-import {
-  useCatalogStore,
-  useCatalogDispatch,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
+import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
 /**
  * HelpDialog is the dialog box that appears when the user clicks

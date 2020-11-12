@@ -5,7 +5,7 @@ import {
   CatalogContext,
   catalogReducer,
   strainInitialState,
-} from "./CatalogContext"
+} from "../context/CatalogContext"
 
 describe("Stocks/Catalogs/common/HelpDialog", () => {
   const initialState = {

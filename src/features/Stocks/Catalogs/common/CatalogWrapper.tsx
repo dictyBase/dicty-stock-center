@@ -2,7 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import StrainCatalogContainer from "../Strains/StrainCatalogContainer"
 import PlasmidCatalogContainer from "../Plasmids/PlasmidCatalogContainer"
-import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 
 const capitalizeFirstLetter = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1)

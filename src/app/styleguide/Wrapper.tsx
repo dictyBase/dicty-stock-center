@@ -3,7 +3,7 @@ import { ApolloProvider } from "@apollo/client"
 import { BrowserRouter } from "react-router-dom"
 import { Formik } from "formik"
 import { AuthProvider } from "features/Authentication/AuthStore"
-import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import useApolloClient from "common/hooks/useApolloClient"
 

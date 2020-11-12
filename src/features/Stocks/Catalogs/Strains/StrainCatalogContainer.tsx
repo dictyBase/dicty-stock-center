@@ -7,10 +7,10 @@ import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMes
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import StrainCatalogList from "./StrainCatalogList"
 import {
-  useCatalogStore,
   CatalogActionType,
   Action as CatalogAction,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+} from "features/Stocks/Catalogs/context/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import {
   GET_STRAIN_LIST,

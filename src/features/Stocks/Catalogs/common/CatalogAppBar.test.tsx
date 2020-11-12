@@ -7,7 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar"
 import AppBarLeftMenu from "features/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "features/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "features/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
-import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
