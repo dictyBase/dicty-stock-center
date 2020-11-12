@@ -70,6 +70,7 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/user-event": "^12.2.2",
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/history": "^4.7.8",
