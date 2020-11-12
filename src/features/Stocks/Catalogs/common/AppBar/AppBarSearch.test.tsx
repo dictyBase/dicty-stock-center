@@ -13,9 +13,32 @@ jest.mock("react-router-dom", () => {
   }
 })
 
+const dropdownItems = [
+  {
+    name: "All Strains",
+    value: "all",
+  },
+  {
+    name: "GWDI Strains",
+    value: "gwdi",
+  },
+  {
+    name: "Available Strains",
+    value: "available",
+  },
+  {
+    name: "Unavailable Strains",
+    value: "unavailable",
+  },
+  {
+    name: "Bacterial Strains",
+    value: "bacterial",
+  },
+]
+
 describe("Stocks/Strains/Catalog/AppBarSearch", () => {
   const props = {
-    dropdownItems: [],
+    dropdownItems,
   }
   const MockComponent = () => (
     <CatalogProvider>
@@ -32,7 +55,7 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("button")).toHaveLength(2)
     })
-    it("should render one dropdown", () => {
+    it("should render one dropdown with five items", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("combobox")).toHaveLength(1)
     })
@@ -42,10 +65,12 @@ describe("Stocks/Strains/Catalog/AppBarSearch", () => {
     it("should clear text box", () => {
       render(<MockComponent />)
       const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
-      const buttons = screen.getAllByRole("button")
+      const clearButton = screen.getByRole("button", {
+        name: /clear search box/,
+      })
       fireEvent.change(input, { target: { value: "GWDI" } })
       expect(input.value).toBe("GWDI")
-      fireEvent.click(buttons[1])
+      fireEvent.click(clearButton)
       expect(input.value).toBe("")
     })
 
