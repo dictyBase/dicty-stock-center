@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useReducer } from "react"
+import React, { createContext, useMemo, useReducer } from "react"
 import { DocumentNode } from "@apollo/client"
 import {
   GET_STRAIN_LIST,
@@ -218,75 +218,11 @@ const CatalogProvider = ({
   )
 }
 
-const useCatalogStore = () => {
-  const context = useContext(CatalogContext)
-  if (!context) {
-    throw new Error("useCatalogStore must be used within a CatalogProvider")
-  }
-
-  return context
-}
-
-/**
- * useCatalogDispatch provides helper functions for dispatching
- * actions related to the catalog pages.
- */
-const useCatalogDispatch = () => {
-  const { dispatch } = useCatalogStore()
-
-  const setSearchValue = (value: string) =>
-    dispatch({
-      type: CatalogActionType.SET_SEARCH_VALUE,
-      payload: value,
-    })
-
-  const setSearchBoxDropdownValue = (value: string) =>
-    dispatch({
-      type: CatalogActionType.SET_SEARCHBOX_DROPDOWN_VALUE,
-      payload: value,
-    })
-
-  const setLeftDropdownValue = (value: string) =>
-    dispatch({
-      type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE,
-      payload: value,
-    })
-
-  const setQuery = (query: DocumentNode) =>
-    dispatch({
-      type: CatalogActionType.SET_QUERY,
-      payload: query,
-    })
-
-  const setQueryVariables = (variables: QueryVariables) =>
-    dispatch({
-      type: CatalogActionType.SET_QUERY_VARIABLES,
-      payload: variables,
-    })
-
-  const setHelpDialogOpen = (bool: boolean) =>
-    dispatch({
-      type: CatalogActionType.SET_HELP_DIALOG_OPEN,
-      payload: bool,
-    })
-
-  return {
-    setSearchValue,
-    setSearchBoxDropdownValue,
-    setLeftDropdownValue,
-    setQuery,
-    setQueryVariables,
-    setHelpDialogOpen,
-  }
-}
-
-export type { Action }
+export type { Action, QueryVariables }
 export {
   CatalogContext,
   catalogReducer,
   CatalogProvider,
-  useCatalogStore,
   CatalogActionType,
   strainInitialState,
-  useCatalogDispatch,
 }

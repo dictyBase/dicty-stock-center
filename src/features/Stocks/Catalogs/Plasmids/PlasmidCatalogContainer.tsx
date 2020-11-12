@@ -6,7 +6,7 @@ import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import PlasmidCatalogList from "./PlasmidCatalogList"
-import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [

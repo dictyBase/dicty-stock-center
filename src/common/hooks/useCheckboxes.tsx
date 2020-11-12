@@ -1,7 +1,5 @@
-import {
-  useCatalogStore,
-  CatalogActionType,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 
 type CartData = {
   /** Stock ID */

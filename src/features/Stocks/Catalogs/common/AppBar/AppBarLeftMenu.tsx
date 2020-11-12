@@ -4,10 +4,8 @@ import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
-import {
-  useCatalogStore,
-  useCatalogDispatch,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
+import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
 const useStyles = makeStyles({
   root: {

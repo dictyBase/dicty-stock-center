@@ -9,7 +9,7 @@ import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
 import StrainCatalogListHeader from "features/Stocks/Catalogs/Strains/StrainCatalogListHeader"
 import PlasmidCatalogListHeader from "features/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
 import useCheckboxes from "common/hooks/useCheckboxes"
-import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 
 const headerSelector = (type: string) => {
   if (type === "strain") {

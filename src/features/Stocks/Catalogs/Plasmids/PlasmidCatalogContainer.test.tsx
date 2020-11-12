@@ -4,7 +4,7 @@ import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
 import { GET_PLASMID_LIST } from "common/graphql/queries"
-import { CatalogProvider } from "features/Stocks/Catalogs/common/CatalogContext"
+import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { lastFivePlasmidCatalogItems } from "./mockData"
 

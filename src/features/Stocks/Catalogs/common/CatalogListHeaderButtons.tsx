@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
 import useCheckboxes from "common/hooks/useCheckboxes"
-import { useCatalogStore } from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import { CartItem } from "../types/cart"
 

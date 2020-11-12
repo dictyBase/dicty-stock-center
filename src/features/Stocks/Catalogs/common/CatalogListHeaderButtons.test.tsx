@@ -8,7 +8,7 @@ import {
   CatalogContext,
   catalogReducer,
   strainInitialState,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+} from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {

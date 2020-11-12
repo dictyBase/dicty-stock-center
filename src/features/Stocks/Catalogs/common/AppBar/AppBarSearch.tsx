@@ -7,10 +7,8 @@ import InputBase from "@material-ui/core/InputBase"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarDropdown from "./AppBarDropdown"
-import {
-  useCatalogStore,
-  useCatalogDispatch,
-} from "features/Stocks/Catalogs/common/CatalogContext"
+import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
+import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
 const useStyles = makeStyles((theme) => ({
   input: {
