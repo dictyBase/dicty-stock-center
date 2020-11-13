@@ -149,7 +149,7 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
   const label = query.get("label")
   const summary = query.get("summary")
   const id = query.get("id")
-  const plasmidName = query.get("name")
+  const plasmidName = query.get("plasmid_name")
   const description = query.get("description")
   let filter = ""
 
@@ -221,8 +221,10 @@ const CatalogProvider = ({
 export type { Action, QueryVariables }
 export {
   CatalogContext,
-  catalogReducer,
   CatalogProvider,
   CatalogActionType,
+  catalogReducer,
   strainInitialState,
+  getGraphQLFilterFromSearchQuery,
+  getGraphQLQueryFromSearchQuery,
 }
