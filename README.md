@@ -1,12 +1,10 @@
 # Dicty Stock Center
 
-[![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)  
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
 ![GitHub tag](https://img.shields.io/github/v/tag/dictyBase/dicty-stock-center)  
 ![GitHub action](https://github.com/dictyBase/dicty-stock-center/workflows/Node%20CI%20Develop/badge.svg)
 [![codecov](https://codecov.io/gh/dictyBase/dicty-stock-center/branch/develop/graph/badge.svg)](https://codecov.io/gh/dictyBase/dicty-stock-center)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dictyBase/dicty-stock-center)  
-[![Dependency Status](https://david-dm.org/dictyBase/dicty-stock-center/develop.svg?style=flat-square)](https://david-dm.org/dictyBase/dicty-stock-center/develop)
-[![devDependency Status](https://david-dm.org/dictyBase/dicty-stock-center/develop/dev-status.svg?style=flat-square)](https://david-dm.org/dictyBase/dicty-stock-center/develop?type=dev)  
 [![Technical debt](https://badgen.net/codeclimate/tech-debt/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center/trends/technical_debt)
 [![Issues](https://badgen.net/codeclimate/issues/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center/issues)
 [![Maintainability](https://badgen.net/codeclimate/maintainability/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center)  
@@ -27,7 +25,7 @@
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,dictyBase/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9476993)
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,DSC/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9438930)
 
-This is the repository for the new [Dicty Stock Center](https://testdb.dictybase.org/stockcenter).
+This is the repository for the new [Dicty Stock Center](https://dictycr.org/stockcenter).
 
 ## Cloud Native Development
 
@@ -64,6 +62,7 @@ After setting up the login providers, you can run `yarn install` and `yarn start
 This app requires the following services to be running:
 
 - [graphql-server](https://github.com/dictyBase/graphql-server)
+- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
 
 ## Further Documentation
 
