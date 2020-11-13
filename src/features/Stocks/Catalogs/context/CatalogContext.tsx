@@ -154,19 +154,19 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
   let filter = ""
 
   if (label) {
-    filter = `label~${label}`
+    filter = `label=~${label}`
   }
   if (summary) {
-    filter = `summary~${summary}`
+    filter = `summary=~${summary}`
   }
   if (id) {
-    filter = `id~${id}`
+    filter = `id=~${id}`
   }
   if (plasmidName) {
-    filter = `plasmid_name~${plasmidName}`
+    filter = `plasmid_name=~${plasmidName}`
   }
   if (description) {
-    filter = `description~${description}`
+    filter = `description=~${description}`
   }
 
   return filter
