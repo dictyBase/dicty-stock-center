@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
-import StrainDetailsRightColumn from "./StrainDetailsRightColumn"
+import AvailabilityCard from "features/Stocks/Details/common/AvailabilityCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN } from "common/graphql/queries"
 import characterConverter from "common/utils/characterConverter"
@@ -54,7 +54,9 @@ const StrainDetailsContainer = () => {
         name={data.strain.label}
       />
       <StrainDetailsLeftCard data={data.strain} />
-      <StrainDetailsRightColumn data={data.strain} />
+      <Grid item xs={12} md={3} lg={2}>
+        <AvailabilityCard data={data} stockType="strain" />
+      </Grid>
     </Grid>
   )
 }
