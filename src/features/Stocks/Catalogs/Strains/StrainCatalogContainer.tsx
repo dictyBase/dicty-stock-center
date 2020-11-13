@@ -1,10 +1,7 @@
 import React from "react"
 import { useQuery } from "@apollo/client"
-import Grid from "@material-ui/core/Grid"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
+import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
-import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
 import StrainCatalogList from "./StrainCatalogList"
 import {
   CatalogActionType,
@@ -15,7 +12,6 @@ import {
   GET_STRAIN_LIST,
   GET_BACTERIAL_STRAIN_LIST,
 } from "common/graphql/queries"
-import useStyles from "features/Stocks/Catalogs/styles"
 
 const leftDropdownItems = [
   {
@@ -156,7 +152,6 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
-  const classes = useStyles()
 
   React.useEffect(() => {
     const updateData = async () => {
@@ -219,25 +214,13 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   }
 
   return (
-    <Grid container className={classes.layout}>
-      <Grid item xs={12}>
-        <CatalogHeader title="Strain Catalog" />
-      </Grid>
-      <Grid item xs={12}>
-        <CatalogAppBar
-          leftDropdownItems={leftDropdownItems}
-          rightDropdownItems={rightDropdownItems}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        {loading && (
-          <div className={classes.spinner}>
-            <CircularProgress data-testid="catalog-spinner" size={100} />
-          </div>
-        )}
-        {content}
-      </Grid>
-    </Grid>
+    <CatalogDisplay
+      stockType="Strain"
+      leftDropdownItems={leftDropdownItems}
+      rightDropdownItems={rightDropdownItems}
+      loading={loading}>
+      {content}
+    </CatalogDisplay>
   )
 }
 
