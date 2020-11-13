@@ -57,7 +57,7 @@ const rightDropdownItems = [
 
 type Strain = {
   id: string
-  name: string
+  label: string
   summary: string
   in_stock: boolean
 }
@@ -241,4 +241,5 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   )
 }
 
+export { normalizeBacterialStrainsData }
 export default StrainCatalogContainer
