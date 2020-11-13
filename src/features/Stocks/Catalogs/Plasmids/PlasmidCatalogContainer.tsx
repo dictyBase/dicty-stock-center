@@ -2,7 +2,9 @@ import React from "react"
 import { useQuery } from "@apollo/client"
 import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
-import PlasmidCatalogList from "./PlasmidCatalogList"
+import VirtualizedList from "common/components/VirtualizedList"
+import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader"
+import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
@@ -80,11 +82,13 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
   if (data) {
     const normalizedData = normalizeDataObject(data)
     content = (
-      <PlasmidCatalogList
+      <VirtualizedList
         data={normalizedData.plasmids}
         loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
-      />
+        headerComponent={<CatalogListHeader stockType="plasmid" />}>
+        {PlasmidCatalogListItem}
+      </VirtualizedList>
     )
   }
 
