@@ -12,6 +12,7 @@ import {
   GET_STRAIN_LIST,
   GET_BACTERIAL_STRAIN_LIST,
 } from "common/graphql/queries"
+import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
 const leftDropdownItems = [
   {
@@ -122,15 +123,22 @@ const dispatchStrainList = (
 }
 
 /**
- * getStrainsArray returns only the list of strains from a
- * GraphQL data response object.
+ * normalizeDataObject converts the GraphQL data response into a normalized object.
  */
-const getStrainsArray = (data: any) => {
-  if (data.bacterialFoodSource) {
-    const bacterial = normalizeBacterialStrainsData(data)
-    return bacterial.listStrains.strains
+const normalizeDataObject = (data: any) => {
+  let convertedData = data
+
+  if (data.listStrains) {
+    convertedData = data.listStrains
   }
-  return data.listStrains.strains
+  if (data.bacterialFoodSource) {
+    convertedData = normalizeBacterialStrainsData(data).listStrains
+  }
+  if (data.listStrainsWithAnnotation) {
+    convertedData = data.listStrainsWithAnnotation
+  }
+
+  return convertedData
 }
 
 type Props = {
@@ -144,7 +152,6 @@ type Props = {
  */
 
 const StrainCatalogContainer = ({ filter }: Props) => {
-  const [hasMore, setHasMore] = React.useState(true)
   const {
     state: { query, queryVariables },
     dispatch,
@@ -152,6 +159,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
+  const { loadMoreItems, hasMore } = useLoadMoreItems()
 
   React.useEffect(() => {
     const updateData = async () => {
@@ -180,34 +188,16 @@ const StrainCatalogContainer = ({ filter }: Props) => {
 
   let content = <div />
 
-  if (error) {
+  if (error && !loading) {
     content = <CatalogErrorMessage error={error} />
   }
 
-  const loadMoreItems = async () => {
-    if (!data.listStrains) {
-      return
-    }
-    const newCursor = data.listStrains.nextCursor
-    if (newCursor === 0) {
-      setHasMore(false)
-      return
-    }
-    await fetchMore({
-      query,
-      variables: {
-        cursor: data.listStrains.nextCursor,
-        filter: queryVariables.filter,
-        limit: queryVariables.limit,
-      },
-    })
-  }
-
   if (data) {
+    const normalizedData = normalizeDataObject(data)
     content = (
       <StrainCatalogList
-        data={getStrainsArray(data)}
-        loadMoreItems={loadMoreItems}
+        data={normalizedData.strains}
+        loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
       />
     )

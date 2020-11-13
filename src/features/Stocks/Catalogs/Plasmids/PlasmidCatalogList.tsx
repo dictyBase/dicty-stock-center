@@ -6,7 +6,7 @@ import { CartItem } from "features/Stocks/Catalogs/types/cart"
 
 type Props = {
   data: Array<CartItem>
-  loadMoreItems: any
+  loadMoreItems: (startIndex: number, stopIndex: number) => Promise<any> | null
   hasMore: boolean
 }
 

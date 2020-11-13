@@ -4,6 +4,7 @@ import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
 import PlasmidCatalogList from "./PlasmidCatalogList"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
+import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
 const leftDropdownItems = [
   {
@@ -35,6 +36,22 @@ const rightDropdownItems = [
   },
 ]
 
+/**
+ * normalizeDataObject converts the GraphQL data response into a normalized object.
+ */
+const normalizeDataObject = (data: any) => {
+  let convertedData = data
+
+  if (data.listPlasmids) {
+    convertedData = data.listPlasmids
+  }
+  if (data.listPlasmidsWithAnnotation) {
+    convertedData = data.listPlasmidsWithAnnotation
+  }
+
+  return convertedData
+}
+
 type Props = {
   /** Search query 'filter' from URL */
   filter: string | null
@@ -46,13 +63,13 @@ type Props = {
  */
 
 const PlasmidCatalogContainer = ({ filter }: Props) => {
-  const [hasMore, setHasMore] = React.useState(true)
   const {
     state: { query, queryVariables },
   } = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
+  const { loadMoreItems, hasMore } = useLoadMoreItems()
 
   let content = <div />
 
@@ -60,27 +77,12 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
     content = <CatalogErrorMessage error={error} />
   }
 
-  const loadMoreItems = async () => {
-    const newCursor = data.listPlasmids.nextCursor
-    if (newCursor === 0) {
-      setHasMore(false)
-      return
-    }
-    await fetchMore({
-      query: query,
-      variables: {
-        cursor: data.listPlasmids.nextCursor,
-        filter: queryVariables.filter,
-        limit: queryVariables.limit,
-      },
-    })
-  }
-
   if (data) {
+    const normalizedData = normalizeDataObject(data)
     content = (
       <PlasmidCatalogList
-        data={data.listPlasmids.plasmids}
-        loadMoreItems={loadMoreItems}
+        data={normalizedData.plasmids}
+        loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
       />
     )

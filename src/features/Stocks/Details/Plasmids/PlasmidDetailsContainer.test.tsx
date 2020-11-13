@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom"
 import wait from "waait"
 import { PlasmidDetailsContainer } from "./PlasmidDetailsContainer"
 import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
-import PlasmidDetailsRightColumn from "./PlasmidDetailsRightColumn"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import { CartProvider } from "features/ShoppingCart/CartStore"
@@ -58,7 +57,6 @@ describe("Stocks/Plasmids/PlasmidDetailsContainer", () => {
       wrapper.update()
       expect(wrapper.find(DetailsHeader)).toHaveLength(1)
       expect(wrapper.find(PlasmidDetailsLeftCard)).toHaveLength(1)
-      expect(wrapper.find(PlasmidDetailsRightColumn)).toHaveLength(1)
     })
   })
 })
