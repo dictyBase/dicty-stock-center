@@ -2,7 +2,9 @@ import React from "react"
 import { useQuery } from "@apollo/client"
 import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
-import StrainCatalogList from "./StrainCatalogList"
+import VirtualizedList from "common/components/VirtualizedList"
+import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader"
+import StrainCatalogListItem from "./StrainCatalogListItem"
 import {
   CatalogActionType,
   Action as CatalogAction,
@@ -195,11 +197,13 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   if (data) {
     const normalizedData = normalizeDataObject(data)
     content = (
-      <StrainCatalogList
+      <VirtualizedList
         data={normalizedData.strains}
         loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
-      />
+        headerComponent={<CatalogListHeader stockType="plasmid" />}>
+        {StrainCatalogListItem}
+      </VirtualizedList>
     )
   }
 
