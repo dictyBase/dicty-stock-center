@@ -2,11 +2,13 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
-import StrainCatalogContainer from "./StrainCatalogContainer"
+import StrainCatalogContainer, {
+  normalizeBacterialStrainsData,
+} from "./StrainCatalogContainer"
 import { GET_STRAIN_LIST } from "common/graphql/queries"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { lastFiveStrainCatalogItems } from "./mockData"
+import { lastFiveStrainCatalogItems, mockBacterialStrains } from "./mockData"
 
 jest.mock("react-virtualized-auto-sizer", () => ({ children }: any) =>
   children({ height: 535, width: 600 }),
@@ -117,6 +119,15 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       // wait for error message to load...
       const errorMsg = await screen.findByText(/No strains found/)
       expect(errorMsg).toBeInTheDocument()
+    })
+  })
+
+  describe("normalizeBacterialStrainsData function", () => {
+    it("should normalize bacterial strains data", () => {
+      const convertedData = normalizeBacterialStrainsData(mockBacterialStrains)
+
+      expect(convertedData.listStrains.totalCount).toBe(21)
+      expect(convertedData.listStrains.strains).toHaveLength(21)
     })
   })
 })

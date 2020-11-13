@@ -208,8 +208,193 @@ const lastFiveStrainCatalogItems = {
   __typename: "StrainListWithCursor",
 }
 
+const mockBacterialStrains = {
+  bacterialFoodSource: {
+    totalCount: 18,
+    nextCursor: 0,
+    strains: [
+      {
+        id: "DBS0351098",
+        label: "K. pneumoniae",
+        summary:
+          "bacterial strain Klebsiella pneumoniae, formerly Klebsiella aerogenes and Aerobacter aerogenes; strain is avirulent (P1 security level Europe); genome has been completely sequenced (Lima et al., 2018); Cosson laboratory strain",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0349837",
+        label: "K. aerogenes GFP",
+        summary:
+          "bacterial strain Klebsiella aerogenes, formerly Aerobacter aerogenes, now Klebsiella pneumoniae; biosafety level 2 (USA); this Ka strain expressing GFP was obtained by introducing the GFP-expressing plasmid pANT5 (Lee and Falkow, 1998) into the Cosson laboratory strain, ampR",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305928",
+        label: "K. aerogenes",
+        summary:
+          "bacterial strain Klebsiella aerogenes, formerly known as Aerobacter aerogenes, now also known as Klebsiella pneumoniae; biosafety level 2 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305925",
+        label: "E. coli B/r neoR",
+        summary:
+          "bacterial strain Escherichia coli B/r-1, neoR; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305923",
+        label: "B. subtilis LS-3",
+        summary:
+          "bacterial strain Bacillus subtilis LS-3; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305929",
+        label: "K. aerogenes cobR",
+        summary:
+          "bacterial strain Klebsiella aerogenes, cobR; biosafety level 2 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305931",
+        label: "K. aerogenes neoR",
+        summary:
+          "bacterial strain Klebsiella aerogenes, neoR; biosafety level 2 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305930",
+        label: "K. aerogenes hygR",
+        summary:
+          "bacterial strain Klebsiella aerogenes, hygR; biosafety level 2 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305933",
+        label: "M. luteus",
+        summary: "bacterial strain Micrococcus luteus; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305932",
+        label: "K. planticola",
+        summary:
+          "bacterial strain Klebsiella planticola; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305926",
+        label: "E. coli B/r neoR",
+        summary:
+          "bacterial strain Escherichia coli B/r, neoR; transformed with plasmid pUC4K; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305927",
+        label: "E. coli 281",
+        summary:
+          "bacterial strain Escherichia coli 281 (originally from Raper); biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305924",
+        label: "E. coli B/r",
+        summary:
+          "bacterial strain Escherichia coli B/r; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0305922",
+        label: "B. subtilis 36.1",
+        summary:
+          "bacterial strain Bacillus subtilis 36.1; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0348878",
+        label: "E. coli B/r",
+        summary:
+          "bacterial strain Escherichia coli B/r; biosafety level 1 (USA)",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0350636",
+        label: "E. coli DB",
+        summary:
+          "bacterial strain Escherichia coli that has been found to be an excellent food source for both axenic and wild D. discoideum strains; strain can be grown almost exclusively at RT on SM/5 plates; strain has been identified as most closely related to E. coli by PCR using 16S primers and sequencing the resultant 400bp PCR product however, the strain has not been fully sequenced.",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0349820",
+        label: "K. aerogenes WaaQ- kanaR",
+        summary:
+          "bacterial strain Klebsiella aerogenes, formerly Aerobacter aerogenes, now Klebsiella pneumoniae; biosafety level 2 (USA); this strain is mutated in WaaQ (a gene responsible for biosynthesis of the bacterial cell surface); kanamycin resistant; good food source for the phg1- and kil1- mutants; kanamycin resistant.",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0349838",
+        label: "K. aerogenes",
+        summary:
+          "bacterial strain Klebsiella aerogenes, formerly Aerobacter aerogenes, now Klebsiella pneumoniae; biosafety level 2 (USA); Cosson laboratory strain",
+        in_stock: true,
+        __typename: "Strain",
+      },
+    ],
+    __typename: "StrainListWithCursor",
+  },
+  symbioticFarmerBacterium: {
+    totalCount: 3,
+    nextCursor: 0,
+    strains: [
+      {
+        id: "DBS0351127",
+        label: "B. bonniea",
+        summary:
+          "non-food bacterium, colonizes Dictyostelium and drives the farming phenomenon;  isolated as a symbiont of the wild strain QS859 in August 2014, which was collected from the Mountain Lake Biological Station; growth at 30\u0026#730;C, week growth at 22\u0026#730;C and no growth at 4\u0026#730;C, 37\u0026#730;C, or 45\u0026#730;C",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0351125",
+        label: "B. agricolaris",
+        summary:
+          "non-food bacterium; colonizes Dictyostelium and drives the farming phenomenon; isolated as a symbiont of the wild strain QS159 in May 2008, which was collected from the Mountain Lake Biological Station; optimal growth at 30\u0026#730;C, week growth at 22\u0026#730;C and 37\u0026#730;C, and no growth at 4\u0026#730;C or 45\u0026#730;C",
+        in_stock: true,
+        __typename: "Strain",
+      },
+      {
+        id: "DBS0351126",
+        label: "B. hayleyella",
+        summary:
+          "non-food bacterium, colonizes Dictyostelium and drives the farming phenomenon; isolated as a symbiont of the wild D.d. strain QS11 in February 2008, which was collected from the Mountain Lake Biological Station; growth at 30\u0026#730;C, week growth at 22\u0026#730;C and no growth at 4\u0026#730;C, 37\u0026#730;C, or 45\u0026#730;C",
+        in_stock: true,
+        __typename: "Strain",
+      },
+    ],
+    __typename: "StrainListWithCursor",
+  },
+}
+
 export {
   firstTenStrainCatalogItems,
   nextTenStrainCatalogItems,
   lastFiveStrainCatalogItems,
+  mockBacterialStrains,
 }
