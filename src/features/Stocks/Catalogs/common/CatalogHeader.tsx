@@ -5,7 +5,10 @@ import Typography from "@material-ui/core/Typography"
 const useStyles = makeStyles({
   header: {
     textAlign: "center",
-    paddingBottom: "5px",
+    paddingBottom: "10px",
+  },
+  notice: {
+    color: "rgb(208, 2, 27)",
   },
 })
 
@@ -22,9 +25,13 @@ const CatalogHeader = ({ title }: Props) => {
   const classes = useStyles()
 
   return (
-    <Typography variant="h4" className={classes.header}>
-      {title}
-    </Typography>
+    <div className={classes.header}>
+      <Typography variant="h4">{title}</Typography>
+      <Typography variant="body1" className={classes.notice}>
+        PLEASE DO NOT ORDER FROM THIS TEST SITE. THIS IS FOR INTERNAL TESTING
+        ONLY. THANKS!
+      </Typography>
+    </div>
   )
 }
 
