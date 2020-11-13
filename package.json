@@ -4,7 +4,7 @@
   "description": "The Dicty Stock Center app rebuilt with React and Redux!",
   "main": "index.js",
   "engines": {
-    "node": "14.15.0"
+    "node": ">= 14"
   },
   "homepage": "/stockcenter",
   "scripts": {
