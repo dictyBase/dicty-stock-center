@@ -11,7 +11,6 @@ import {
   Action as CatalogAction,
 } from "features/Stocks/Catalogs/context/CatalogContext"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
-import useSearchQuery from "common/hooks/useSearchQuery"
 import {
   GET_STRAIN_LIST,
   GET_BACTERIAL_STRAIN_LIST,
@@ -75,6 +74,10 @@ type BacterialStrainsData = {
   symbioticFarmerBacterium: CatalogQueryResponse
 }
 
+type ListStrainsData = {
+  listStrains: CatalogQueryResponse
+}
+
 /**
  * normalizeBacterialStrainsData normalizes the bacterial strain data
  * response into the standard listStrains object. This is necessary since
@@ -134,14 +137,17 @@ const getStrainsArray = (data: any) => {
   return data.listStrains.strains
 }
 
+type Props = {
+  /** Search query 'filter' from URL */
+  filter: string | null
+}
+
 /**
  * StrainCatalogContainer is the main component for the strain catalog page.
  * It is responsible for fetching the data and passing it down to more specific features.
  */
 
-const StrainCatalogContainer = () => {
-  const searchQuery = useSearchQuery()
-  const filter = searchQuery.get("filter")
+const StrainCatalogContainer = ({ filter }: Props) => {
   const [hasMore, setHasMore] = React.useState(true)
   const {
     state: { query, queryVariables },

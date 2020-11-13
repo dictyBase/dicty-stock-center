@@ -47,7 +47,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           <CatalogProvider>
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
-                <StrainCatalogContainer />
+                <StrainCatalogContainer filter="all" />
               </BrowserRouter>
             </MockedProvider>
           </CatalogProvider>
@@ -105,7 +105,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           <CatalogProvider>
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
-                <StrainCatalogContainer />
+                <StrainCatalogContainer filter="all" />
               </BrowserRouter>
             </MockedProvider>
           </CatalogProvider>

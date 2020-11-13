@@ -47,7 +47,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           <CatalogProvider stockType="plasmid">
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
-                <PlasmidCatalogContainer />
+                <PlasmidCatalogContainer filter="all" />
               </BrowserRouter>
             </MockedProvider>
           </CatalogProvider>
@@ -105,7 +105,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
           <CatalogProvider stockType="plasmid">
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
-                <PlasmidCatalogContainer />
+                <PlasmidCatalogContainer filter="all" />
               </BrowserRouter>
             </MockedProvider>
           </CatalogProvider>
