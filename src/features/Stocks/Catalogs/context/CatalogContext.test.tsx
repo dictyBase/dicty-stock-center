@@ -1,5 +1,14 @@
-import { catalogReducer, CatalogActionType } from "./CatalogContext"
-import { GET_STRAIN_LIST } from "common/graphql/queries"
+import {
+  catalogReducer,
+  CatalogActionType,
+  getGraphQLFilterFromSearchQuery,
+  getGraphQLQueryFromSearchQuery,
+} from "./CatalogContext"
+import {
+  GET_STRAIN_LIST,
+  GET_PLASMID_LIST,
+  GET_BACTERIAL_STRAIN_LIST,
+} from "common/graphql/queries"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {
@@ -116,6 +125,54 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
           payload,
         }),
       ).toEqual(expectedState)
+    })
+  })
+
+  describe("getGraphQLQueryFromSearchQuery", () => {
+    it("should return query for bacterial strain", () => {
+      const params = new URLSearchParams("?filter=bacterial")
+      expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
+        GET_BACTERIAL_STRAIN_LIST,
+      )
+    })
+    it("should return query for all plasmids", () => {
+      const params = new URLSearchParams("?filter=all")
+      expect(getGraphQLQueryFromSearchQuery("plasmid", params)).toBe(
+        GET_PLASMID_LIST,
+      )
+    })
+    it("should return query for all strains", () => {
+      const params = new URLSearchParams("?filter=gwdi")
+      expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
+        GET_STRAIN_LIST,
+      )
+    })
+  })
+
+  describe("getGraphQLFilterFromSearchQuery", () => {
+    it("should return filter for label", () => {
+      const params = new URLSearchParams("?filter=all&label=gwdi")
+      expect(getGraphQLFilterFromSearchQuery(params)).toBe("label=~gwdi")
+    })
+    it("should return filter for summary", () => {
+      const params = new URLSearchParams("?filter=all&summary=tester")
+      expect(getGraphQLFilterFromSearchQuery(params)).toBe("summary=~tester")
+    })
+    it("should return filter for ID", () => {
+      const params = new URLSearchParams("?filter=all&id=999")
+      expect(getGraphQLFilterFromSearchQuery(params)).toBe("id=~999")
+    })
+    it("should return filter for plasmid name", () => {
+      const params = new URLSearchParams("?filter=all&plasmid_name=pDM314")
+      expect(getGraphQLFilterFromSearchQuery(params)).toBe(
+        "plasmid_name=~pDM314",
+      )
+    })
+    it("should return filter for description", () => {
+      const params = new URLSearchParams("?filter=all&description=vector")
+      expect(getGraphQLFilterFromSearchQuery(params)).toBe(
+        "description=~vector",
+      )
     })
   })
 })
