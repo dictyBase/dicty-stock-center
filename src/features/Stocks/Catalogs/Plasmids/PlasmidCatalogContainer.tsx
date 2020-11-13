@@ -39,12 +39,17 @@ const rightDropdownItems = [
   },
 ]
 
+type Props = {
+  /** Search query 'filter' from URL */
+  filter: string | null
+}
+
 /**
  * PlasmidCatalogContainer is the main component for the plasmid catalog page.
  * It is responsible for fetching the data and passing it down to more specific features.
  */
 
-const PlasmidCatalogContainer = () => {
+const PlasmidCatalogContainer = ({ filter }: Props) => {
   const [hasMore, setHasMore] = React.useState(true)
   const {
     state: { query, queryVariables },
