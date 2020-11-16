@@ -31,7 +31,7 @@ const StrainDetailsContainer = () => {
   })
 
   if (loading) return <DetailsLoader />
-  if (error && !data) return <GraphQLErrorPage error={error} />
+  if (error) return <GraphQLErrorPage error={error} />
 
   const label = characterConverter(data.strain.label)
   let title = `Strain Details for ${label}`
