@@ -13,6 +13,7 @@ import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import {
   GET_STRAIN_LIST,
   GET_BACTERIAL_STRAIN_LIST,
+  GET_STRAIN_INVENTORY_LIST,
 } from "common/graphql/queries"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
@@ -28,10 +29,6 @@ const leftDropdownItems = [
   {
     name: "Available Strains",
     value: "available",
-  },
-  {
-    name: "Unavailable Strains",
-    value: "unavailable",
   },
   {
     name: "Bacterial Strains",
@@ -178,7 +175,18 @@ const StrainCatalogContainer = ({ filter }: Props) => {
           break
         case "available":
         case "unavailable":
-          console.log("inventory query")
+          dispatch({
+            type: CatalogActionType.SET_QUERY,
+            payload: GET_STRAIN_INVENTORY_LIST,
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY_VARIABLES,
+            payload: {
+              cursor: 0,
+              limit: 10,
+              filter: "",
+            },
+          })
           break
         default:
           return

@@ -4,13 +4,15 @@ import {
   GET_STRAIN_LIST,
   GET_PLASMID_LIST,
   GET_BACTERIAL_STRAIN_LIST,
+  GET_STRAIN_INVENTORY_LIST,
+  GET_PLASMID_INVENTORY_LIST,
 } from "common/graphql/queries"
 import useSearchQuery from "common/hooks/useSearchQuery"
 
 type QueryVariables = {
   cursor: number
   limit: number
-  filter: string
+  filter?: string
 }
 
 type CatalogState = {
@@ -43,11 +45,7 @@ enum CatalogActionType {
 type Action =
   | {
       type: CatalogActionType.SET_QUERY_VARIABLES
-      payload: {
-        limit: number
-        cursor: number
-        filter: string
-      }
+      payload: QueryVariables
     }
   | {
       type: CatalogActionType.SET_QUERY
@@ -176,14 +174,21 @@ const getGraphQLQueryFromSearchQuery = (
   stockType: string,
   query: URLSearchParams,
 ) => {
+  let gqlQuery = GET_STRAIN_LIST
   const filter = query.get("filter")
   if (filter === "bacterial") {
-    return GET_BACTERIAL_STRAIN_LIST
+    gqlQuery = GET_BACTERIAL_STRAIN_LIST
+  }
+  if (filter === "available") {
+    gqlQuery =
+      stockType === "strain"
+        ? GET_STRAIN_INVENTORY_LIST
+        : GET_PLASMID_INVENTORY_LIST
   }
   if (stockType === "plasmid") {
-    return GET_PLASMID_LIST
+    gqlQuery = GET_PLASMID_LIST
   }
-  return GET_STRAIN_LIST
+  return gqlQuery
 }
 
 /**
