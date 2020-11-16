@@ -98,6 +98,56 @@ const GET_BACTERIAL_STRAIN_LIST = gql`
   }
 `
 
+const GET_STRAIN_INVENTORY_LIST = gql`
+  query ListStrainsInventory(
+    $cursor: Int!
+    $limit: Int!
+    $type: String!
+    $annotation: String!
+  ) {
+    listStrainsWithAnnotation(
+      cursor: $cursor
+      limit: $limit
+      type: $type
+      annotation: $annotation
+    ) {
+      totalCount
+      nextCursor
+      strains {
+        id
+        label
+        summary
+        in_stock
+      }
+    }
+  }
+`
+
+const GET_PLASMID_INVENTORY_LIST = gql`
+  query ListPlasmidsInventory(
+    $cursor: Int!
+    $limit: Int!
+    $type: String!
+    $annotation: String!
+  ) {
+    listPlasmidsWithAnnotation(
+      cursor: $cursor
+      limit: $limit
+      type: $type
+      annotation: $annotation
+    ) {
+      totalCount
+      nextCursor
+      plasmids {
+        id
+        name
+        summary
+        in_stock
+      }
+    }
+  }
+`
+
 const GET_PLASMID_LIST = gql`
   query PlasmidListFilter($cursor: Int!, $limit: Int!, $filter: String!) {
     listPlasmids(cursor: $cursor, limit: $limit, filter: $filter) {
@@ -248,6 +298,8 @@ export {
   GET_STRAIN_LIST,
   GET_STRAIN_LIST_WITH_PHENOTYPE,
   GET_BACTERIAL_STRAIN_LIST,
+  GET_STRAIN_INVENTORY_LIST,
+  GET_PLASMID_INVENTORY_LIST,
   GET_PLASMID_LIST,
   GET_RELATED_STRAINS,
   GET_STRAIN,
