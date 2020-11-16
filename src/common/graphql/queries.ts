@@ -99,17 +99,12 @@ const GET_BACTERIAL_STRAIN_LIST = gql`
 `
 
 const GET_STRAIN_INVENTORY_LIST = gql`
-  query ListStrainsInventory(
-    $cursor: Int!
-    $limit: Int!
-    $type: String!
-    $annotation: String!
-  ) {
+  query ListStrainsInventory($cursor: Int!, $limit: Int!) {
     listStrainsWithAnnotation(
       cursor: $cursor
       limit: $limit
-      type: $type
-      annotation: $annotation
+      type: "strain_inventory"
+      annotation: "strain_inventory"
     ) {
       totalCount
       nextCursor
@@ -124,17 +119,12 @@ const GET_STRAIN_INVENTORY_LIST = gql`
 `
 
 const GET_PLASMID_INVENTORY_LIST = gql`
-  query ListPlasmidsInventory(
-    $cursor: Int!
-    $limit: Int!
-    $type: String!
-    $annotation: String!
-  ) {
+  query ListPlasmidsInventory($cursor: Int!, $limit: Int!) {
     listPlasmidsWithAnnotation(
       cursor: $cursor
       limit: $limit
-      type: $type
-      annotation: $annotation
+      type: "plasmid inventory"
+      annotation: "plasmid inventory"
     ) {
       totalCount
       nextCursor
