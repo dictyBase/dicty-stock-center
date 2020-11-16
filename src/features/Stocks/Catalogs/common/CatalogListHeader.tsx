@@ -34,8 +34,8 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  /** Type of stock (strain or plasmid) */
-  stockType: string
+  /** Type of stock */
+  stockType: "strain" | "plasmid"
 }
 
 /**

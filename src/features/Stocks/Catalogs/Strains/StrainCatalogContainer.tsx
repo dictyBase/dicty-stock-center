@@ -201,7 +201,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         data={normalizedData.strains}
         loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
-        headerComponent={<CatalogListHeader stockType="plasmid" />}>
+        headerComponent={<CatalogListHeader stockType="strain" />}>
         {StrainCatalogListItem}
       </VirtualizedList>
     )
