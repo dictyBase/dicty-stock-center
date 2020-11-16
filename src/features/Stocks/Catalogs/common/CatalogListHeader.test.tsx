@@ -26,13 +26,10 @@ jest.mock("react-router-dom", () => {
 
 describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render for strain", () => {
-    const props = {
-      stockType: "strain",
-    }
     const wrapper = mount(
       <CartProvider>
         <CatalogProvider>
-          <CatalogListHeader {...props} />
+          <CatalogListHeader stockType="strain" />
         </CatalogProvider>
       </CartProvider>,
     )
@@ -44,13 +41,10 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
     })
   })
   describe("initial render for plasmids", () => {
-    const props = {
-      stockType: "plasmid",
-    }
     const wrapper = mount(
       <CartProvider>
         <CatalogProvider>
-          <CatalogListHeader {...props} />
+          <CatalogListHeader stockType="plasmid" />
         </CatalogProvider>
       </CartProvider>,
     )
