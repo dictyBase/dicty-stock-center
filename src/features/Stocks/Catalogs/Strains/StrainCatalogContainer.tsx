@@ -14,7 +14,7 @@ import {
   GET_STRAIN_LIST,
   GET_BACTERIAL_STRAIN_LIST,
   GET_STRAIN_INVENTORY_LIST,
-} from "common/graphql/queries"
+} from "common/graphql/queries/stocks/lists"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
 const leftDropdownItems = [

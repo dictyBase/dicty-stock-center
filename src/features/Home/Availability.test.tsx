@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import wait from "waait"
 import Availability from "./Availability"
 import PanelLoader from "./PanelLoader"
-import { GET_STOCK_TOTALS } from "common/graphql/queries"
+import { GET_STOCK_TOTALS } from "common/graphql/queries/stocks/lists"
 
 describe("Home/Availability", () => {
   describe("initial render", () => {

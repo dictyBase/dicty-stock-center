@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks"
 import useCatalogDispatch from "./useCatalogDispatch"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { CatalogActionType } from "./CatalogContext"
-import { GET_STRAIN_LIST } from "common/graphql/queries"
+import { GET_STRAIN_LIST } from "common/graphql/queries/stocks/lists"
 
 const mockDispatch = jest.fn()
 

@@ -4,7 +4,7 @@ import wait from "waait"
 import OtherMaterials from "./OtherMaterials"
 import InlineEditor from "features/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
+import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import { MockAuthProvider } from "common/utils/testing"
 
 describe("Home/OtherMaterials", () => {

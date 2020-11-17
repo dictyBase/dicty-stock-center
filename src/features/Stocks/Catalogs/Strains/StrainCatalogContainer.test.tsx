@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import StrainCatalogContainer, {
   normalizeBacterialStrainsData,
 } from "./StrainCatalogContainer"
-import { GET_STRAIN_LIST } from "common/graphql/queries"
+import { GET_STRAIN_LIST } from "common/graphql/queries/stocks/lists"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { lastFiveStrainCatalogItems, mockBacterialStrains } from "./mockData"

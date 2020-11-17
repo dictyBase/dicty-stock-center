@@ -4,7 +4,7 @@ import { InMemoryCache } from "@apollo/client"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
-import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
+import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/lists"
 import { first50, second50, lastItems } from "./mockData"
 import { listStrainsWithAnnotationPagination } from "common/graphql/pagination"
 

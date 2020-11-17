@@ -8,7 +8,7 @@ import AvailabilityCard from "features/Stocks/Details/common/AvailabilityCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
-import { GET_PLASMID } from "common/graphql/queries"
+import { GET_PLASMID } from "common/graphql/queries/stocks/details"
 import useStyles from "features/Stocks/Details/styles"
 
 type Params = {

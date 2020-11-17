@@ -8,7 +8,7 @@ import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
 import AvailabilityCard from "features/Stocks/Details/common/AvailabilityCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
-import { GET_STRAIN } from "common/graphql/queries"
+import { GET_STRAIN } from "common/graphql/queries/stocks/details"
 import characterConverter from "common/utils/characterConverter"
 import useStyles from "features/Stocks/Details/styles"
 
