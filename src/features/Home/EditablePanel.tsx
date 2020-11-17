@@ -2,7 +2,7 @@ import React from "react"
 import { useQuery } from "@apollo/client"
 import InlineEditor from "features/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
+import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 
 type Props = {
   /** The slug name for the data to fetch */

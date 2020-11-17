@@ -8,7 +8,7 @@ import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
 import * as auth from "features/Authentication/AuthStore"
 import { MockAuthProvider } from "common/utils/testing"
-import { GET_REFRESH_TOKEN } from "common/graphql/queries"
+import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
 import waitForExpect from "wait-for-expect"
 
 describe("App component", () => {

@@ -6,7 +6,7 @@ import Loader from "common/components/Loader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import InfoPageView from "./InfoPageView"
 import { pageTitleLookup } from "common/utils/convertPageTitles"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries"
+import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import NAMESPACE from "common/constants/namespace"
 
 const metaContent =

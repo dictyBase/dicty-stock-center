@@ -8,7 +8,7 @@ import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
 import PhenotypeList from "./PhenotypeList"
-import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries"
+import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/lists"
 import { ListStrainsWithAnnotation } from "common/graphql/pagination"
 
 const useStyles = makeStyles({

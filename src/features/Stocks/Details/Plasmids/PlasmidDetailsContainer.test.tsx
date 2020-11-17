@@ -8,7 +8,7 @@ import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { GET_PLASMID } from "common/graphql/queries"
+import { GET_PLASMID } from "common/graphql/queries/stocks/details"
 import { data } from "./mockPlasmidData"
 
 const mockID = "DBS0236123"

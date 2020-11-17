@@ -8,7 +8,7 @@ import {
   GET_STRAIN_LIST,
   GET_PLASMID_LIST,
   GET_BACTERIAL_STRAIN_LIST,
-} from "common/graphql/queries"
+} from "common/graphql/queries/stocks/lists"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {

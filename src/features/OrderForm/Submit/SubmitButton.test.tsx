@@ -3,7 +3,7 @@ import { mount } from "enzyme"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
-import { GET_USER_BY_EMAIL } from "common/graphql/queries"
+import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import {
   CREATE_ORDER,
   CREATE_USER,

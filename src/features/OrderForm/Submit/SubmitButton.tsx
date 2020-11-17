@@ -10,7 +10,7 @@ import {
   CREATE_USER,
   UPDATE_USER,
 } from "common/graphql/mutations"
-import { GET_USER_BY_EMAIL } from "common/graphql/queries"
+import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import useStyles from "../formStyles"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "../types"

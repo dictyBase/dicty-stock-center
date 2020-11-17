@@ -1,7 +1,7 @@
 import React from "react"
 import { useQuery } from "@apollo/client"
 import PanelLoader from "./PanelLoader"
-import { GET_STOCK_TOTALS } from "common/graphql/queries"
+import { GET_STOCK_TOTALS } from "common/graphql/queries/stocks/lists"
 import useStyles from "./homeStyles"
 
 /**

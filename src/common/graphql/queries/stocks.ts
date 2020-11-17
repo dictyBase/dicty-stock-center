@@ -153,17 +153,6 @@ const GET_PLASMID_LIST = gql`
   }
 `
 
-const GET_RELATED_STRAINS = gql`
-  query StrainList($filter: String!) {
-    listStrains(limit: 10, filter: $filter) {
-      strains {
-        id
-        label
-      }
-    }
-  }
-`
-
 const GET_PLASMID = gql`
   query Plasmid($id: ID!) {
     plasmid(id: $id) {
@@ -226,63 +215,6 @@ const GET_STRAIN = gql`
   }
 `
 
-const GET_CONTENT_BY_SLUG = gql`
-  query contentBySlug($slug: String!) {
-    contentBySlug(slug: $slug) {
-      id
-      content
-      name
-      slug
-      updated_at
-      updated_by {
-        id
-        email
-        first_name
-        last_name
-        roles {
-          role
-          permissions {
-            permission
-            resource
-          }
-        }
-      }
-    }
-  }
-`
-
-const GET_REFRESH_TOKEN = gql`
-  query GetRefreshToken($token: String!) {
-    getRefreshToken(token: $token) {
-      token
-      user {
-        id
-        email
-        first_name
-        last_name
-        roles {
-          role
-          permissions {
-            permission
-            resource
-          }
-        }
-      }
-      identity {
-        provider
-      }
-    }
-  }
-`
-
-const GET_USER_BY_EMAIL = gql`
-  query UserByEmail($email: String!) {
-    userByEmail(email: $email) {
-      id
-    }
-  }
-`
-
 export {
   GET_STOCK_TOTALS,
   GET_STRAIN_LIST,
@@ -291,10 +223,6 @@ export {
   GET_STRAIN_INVENTORY_LIST,
   GET_PLASMID_INVENTORY_LIST,
   GET_PLASMID_LIST,
-  GET_RELATED_STRAINS,
   GET_STRAIN,
   GET_PLASMID,
-  GET_CONTENT_BY_SLUG,
-  GET_REFRESH_TOKEN,
-  GET_USER_BY_EMAIL,
 }
