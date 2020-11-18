@@ -102,6 +102,7 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
             payload: {
               cursor: 0,
               limit: 10,
+              filter: "",
             },
           })
           break
@@ -109,12 +110,13 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
           return
       }
     }
+
     updateData()
   }, [dispatch, filter])
 
   let content = <div />
 
-  if (error) {
+  if (error && !loading) {
     content = <CatalogErrorMessage error={error} />
   }
 
