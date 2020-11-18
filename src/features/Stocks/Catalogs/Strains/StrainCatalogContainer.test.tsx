@@ -46,7 +46,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     it("should render fetched data", async () => {
       render(
         <CartProvider>
-          <CatalogProvider>
+          <CatalogProvider stockType="strain">
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
                 <StrainCatalogContainer filter="all" />
@@ -104,7 +104,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     it("displays error message", async () => {
       render(
         <CartProvider>
-          <CatalogProvider>
+          <CatalogProvider stockType="strain">
             <MockedProvider mocks={mocks} addTypename={false}>
               <BrowserRouter>
                 <StrainCatalogContainer filter="all" />

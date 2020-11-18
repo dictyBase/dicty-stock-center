@@ -30,7 +30,7 @@ describe("hooks/useCheckboxes", () => {
 
   it("handles unchecked item correctly", () => {
     const wrapper = ({ children }: any) => (
-      <CatalogProvider>{children}</CatalogProvider>
+      <CatalogProvider stockType="strain">{children}</CatalogProvider>
     )
     const {
       result: { current },

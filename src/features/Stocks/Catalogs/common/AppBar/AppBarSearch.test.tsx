@@ -65,12 +65,12 @@ const dropdownItems = [
   },
 ]
 
-describe("Stocks/Strains/Catalog/AppBarSearch", () => {
+describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   const props = {
     dropdownItems,
   }
   const MockComponent = () => (
-    <CatalogProvider>
+    <CatalogProvider stockType="strain">
       <AppBarSearch {...props} />
     </CatalogProvider>
   )
