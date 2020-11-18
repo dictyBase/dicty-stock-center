@@ -33,7 +33,7 @@ describe("Stocks/Catalogs/common/CatalogAppBar", () => {
     }
     const wrapper = createMount()(
       <ThemeProvider theme={theme}>
-        <CatalogProvider>
+        <CatalogProvider stockType="strain">
           <CatalogAppBar {...props} />
         </CatalogProvider>
       </ThemeProvider>,

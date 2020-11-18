@@ -35,7 +35,7 @@ describe("Stocks/Plasmids/Catalog/PlasmidCatalogListItem", () => {
       style: {},
     }
     const wrapper = mount(
-      <CatalogProvider>
+      <CatalogProvider stockType="plasmid">
         <CartProvider>
           <BrowserRouter>
             <PlasmidCatalogListItem {...props} />

@@ -28,7 +28,7 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render for strain", () => {
     const wrapper = mount(
       <CartProvider>
-        <CatalogProvider>
+        <CatalogProvider stockType="strain">
           <CatalogListHeader stockType="strain" />
         </CatalogProvider>
       </CartProvider>,
@@ -43,7 +43,7 @@ describe("Stocks/Catalogs/common/CatalogListHeader", () => {
   describe("initial render for plasmids", () => {
     const wrapper = mount(
       <CartProvider>
-        <CatalogProvider>
+        <CatalogProvider stockType="plasmid">
           <CatalogListHeader stockType="plasmid" />
         </CatalogProvider>
       </CartProvider>,
