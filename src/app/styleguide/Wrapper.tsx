@@ -11,14 +11,14 @@ import useApolloClient from "common/hooks/useApolloClient"
  * This is a wrapper component used for all styleguidist documentation.
  */
 
-const Wrapper = ({ children }: any) => {
+const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const client = useApolloClient()
 
   return (
     <ApolloProvider client={client}>
       <AuthProvider>
         <CartProvider>
-          <CatalogProvider>
+          <CatalogProvider stockType="strain">
             <BrowserRouter>
               <Formik initialValues={{}} onSubmit={() => {}}>
                 {children}
