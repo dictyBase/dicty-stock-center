@@ -25,6 +25,17 @@ jest.mock("react-router-dom", () => {
 })
 
 describe("Stocks/Strains/StrainCatalogContainer", () => {
+  const MockComponent = ({ mocks }: any) => (
+    <CartProvider>
+      <CatalogProvider stockType="strain">
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>
+            <StrainCatalogContainer filter="all" />
+          </BrowserRouter>
+        </MockedProvider>
+      </CatalogProvider>
+    </CartProvider>
+  )
   describe("initial render", () => {
     const mocks = [
       {
@@ -44,17 +55,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     it("should render fetched data", async () => {
-      render(
-        <CartProvider>
-          <CatalogProvider stockType="strain">
-            <MockedProvider mocks={mocks} addTypename={false}>
-              <BrowserRouter>
-                <StrainCatalogContainer filter="all" />
-              </BrowserRouter>
-            </MockedProvider>
-          </CatalogProvider>
-        </CartProvider>,
-      )
+      render(<MockComponent mocks={mocks} />)
       // displays spinner first
       expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
       // wait for data to load...
@@ -68,7 +69,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(lastRow).toBeInTheDocument()
 
       const listItems = await screen.findAllByRole("listitem")
-      // should have 51 list items -> 50 rows of data + list header
+      // should have 6 list items -> 5 rows of data + list header
       expect(listItems).toHaveLength(6)
     })
   })
@@ -102,17 +103,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       },
     ]
     it("displays error message", async () => {
-      render(
-        <CartProvider>
-          <CatalogProvider stockType="strain">
-            <MockedProvider mocks={mocks} addTypename={false}>
-              <BrowserRouter>
-                <StrainCatalogContainer filter="all" />
-              </BrowserRouter>
-            </MockedProvider>
-          </CatalogProvider>
-        </CartProvider>,
-      )
+      render(<MockComponent mocks={mocks} />)
       // displays spinner first
       expect(screen.getByTestId("catalog-spinner")).toBeInTheDocument()
 
