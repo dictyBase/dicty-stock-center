@@ -170,24 +170,38 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
   return filter
 }
 
+const getPlasmidQuery = (filter: string | null) => {
+  if (filter === "available") {
+    return GET_PLASMID_INVENTORY_LIST
+  }
+  return GET_PLASMID_LIST
+}
+
+const getStrainQuery = (filter: string | null) => {
+  if (filter === "bacterial") {
+    return GET_BACTERIAL_STRAIN_LIST
+  }
+  if (filter === "available") {
+    return GET_STRAIN_INVENTORY_LIST
+  }
+  return GET_STRAIN_LIST
+}
+
 const getGraphQLQueryFromSearchQuery = (
   stockType: string,
   query: URLSearchParams,
 ) => {
-  let gqlQuery = GET_STRAIN_LIST
   const filter = query.get("filter")
-  if (filter === "bacterial") {
-    gqlQuery = GET_BACTERIAL_STRAIN_LIST
-  }
-  if (filter === "available") {
-    gqlQuery =
-      stockType === "strain"
-        ? GET_STRAIN_INVENTORY_LIST
-        : GET_PLASMID_INVENTORY_LIST
-  }
+  let gqlQuery = GET_STRAIN_LIST
+
   if (stockType === "plasmid") {
-    gqlQuery = GET_PLASMID_LIST
+    gqlQuery = getPlasmidQuery(filter)
   }
+
+  if (stockType === "strain") {
+    gqlQuery = getStrainQuery(filter)
+  }
+
   return gqlQuery
 }
 
@@ -200,7 +214,7 @@ const CatalogProvider = ({
   stockType,
 }: {
   children: React.ReactNode
-  stockType?: string
+  stockType: string
 }) => {
   // initial state varies based on stock or plasmid
   const initialState =
@@ -209,7 +223,7 @@ const CatalogProvider = ({
   const searchQuery = useSearchQuery()
   const [state, dispatch] = useReducer(catalogReducer, {
     ...initialState,
-    query: getGraphQLQueryFromSearchQuery(stockType || "strain", searchQuery),
+    query: getGraphQLQueryFromSearchQuery(stockType, searchQuery),
     queryVariables: {
       cursor: 0,
       limit: 10,
