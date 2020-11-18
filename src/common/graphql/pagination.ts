@@ -19,6 +19,15 @@ interface ListStrainsWithAnnotation extends SearchInfo {
   strains: Array<StrainWithPhenotype>
 }
 
+interface ListPlasmidsWithAnnotation extends SearchInfo {
+  plasmids: Array<{
+    id: string
+    name: string
+    summary: Array<string>
+    in_stock: boolean
+  }>
+}
+
 interface ListStrains extends SearchInfo {
   strains: Array<StrainItem>
 }
@@ -74,6 +83,33 @@ const listStrainsPagination = () => ({
   },
 })
 
+const listPlasmidsWithAnnotationPagination = () => ({
+  keyArgs: ["type", "annotation"],
+  merge(
+    existing: ListPlasmidsWithAnnotation,
+    incoming: ListPlasmidsWithAnnotation,
+  ) {
+    let plasmids: ListPlasmidsWithAnnotation["plasmids"] = []
+    let totalCount: ListPlasmidsWithAnnotation["totalCount"] = 0
+    if (existing) {
+      plasmids = plasmids.concat(existing.plasmids)
+      totalCount = existing.totalCount
+    }
+    if (incoming) {
+      plasmids = plasmids.concat(incoming.plasmids)
+      totalCount = totalCount + incoming.totalCount
+    }
+    return {
+      ...incoming,
+      plasmids,
+      totalCount,
+    }
+  },
+  read(existing: ListPlasmidsWithAnnotation) {
+    return existing
+  },
+})
+
 const listPlasmidsPagination = () => ({
   keyArgs: ["filter"],
   merge(existing: ListPlasmids, incoming: ListPlasmids) {
@@ -97,6 +133,7 @@ const listPlasmidsPagination = () => ({
 export type { ListStrainsWithAnnotation }
 export {
   listStrainsWithAnnotationPagination,
+  listPlasmidsWithAnnotationPagination,
   listStrainsPagination,
   listPlasmidsPagination,
 }

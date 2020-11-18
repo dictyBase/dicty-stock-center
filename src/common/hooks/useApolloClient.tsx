@@ -3,6 +3,7 @@ import { setContext } from "@apollo/client/link/context"
 import { mutationList } from "common/graphql/mutations"
 import {
   listStrainsWithAnnotationPagination,
+  listPlasmidsWithAnnotationPagination,
   listStrainsPagination,
   listPlasmidsPagination,
 } from "common/graphql/pagination"
@@ -28,6 +29,7 @@ const cache = new InMemoryCache({
         listPlasmids: listPlasmidsPagination(),
         listStrains: listStrainsPagination(),
         listStrainsWithAnnotation: listStrainsWithAnnotationPagination(),
+        listPlasmidsWithAnnotation: listPlasmidsWithAnnotationPagination(),
       },
     },
   },
