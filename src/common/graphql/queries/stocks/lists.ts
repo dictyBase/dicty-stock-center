@@ -123,7 +123,7 @@ const GET_PLASMID_INVENTORY_LIST = gql`
     listPlasmidsWithAnnotation(
       cursor: $cursor
       limit: $limit
-      type: "plasmid inventory"
+      type: "plasmid_inventory"
       annotation: "plasmid inventory"
     ) {
       totalCount

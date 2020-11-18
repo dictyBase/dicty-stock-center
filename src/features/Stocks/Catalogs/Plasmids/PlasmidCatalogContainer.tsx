@@ -7,6 +7,11 @@ import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader
 import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
+import {
+  GET_PLASMID_INVENTORY_LIST,
+  GET_PLASMID_LIST,
+} from "common/graphql/queries/stocks/lists"
+import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 
 const leftDropdownItems = [
   {
@@ -16,10 +21,6 @@ const leftDropdownItems = [
   {
     name: "Available Plasmids",
     value: "available",
-  },
-  {
-    name: "Unavailable Plasmids",
-    value: "unavailable",
   },
 ]
 
@@ -67,11 +68,49 @@ type Props = {
 const PlasmidCatalogContainer = ({ filter }: Props) => {
   const {
     state: { query, queryVariables },
+    dispatch,
   } = useCatalogStore()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
   const { loadMoreItems, hasMore } = useLoadMoreItems()
+
+  React.useEffect(() => {
+    const updateData = async () => {
+      switch (filter) {
+        case "all":
+          dispatch({
+            type: CatalogActionType.SET_QUERY,
+            payload: GET_PLASMID_LIST,
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY_VARIABLES,
+            payload: {
+              cursor: 0,
+              limit: 10,
+              filter: "",
+            },
+          })
+          break
+        case "available":
+          dispatch({
+            type: CatalogActionType.SET_QUERY,
+            payload: GET_PLASMID_INVENTORY_LIST,
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY_VARIABLES,
+            payload: {
+              cursor: 0,
+              limit: 10,
+            },
+          })
+          break
+        default:
+          return
+      }
+    }
+    updateData()
+  }, [dispatch, filter])
 
   let content = <div />
 

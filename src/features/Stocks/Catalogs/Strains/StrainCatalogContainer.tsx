@@ -174,7 +174,6 @@ const StrainCatalogContainer = ({ filter }: Props) => {
           })
           break
         case "available":
-        case "unavailable":
           dispatch({
             type: CatalogActionType.SET_QUERY,
             payload: GET_STRAIN_INVENTORY_LIST,
@@ -184,7 +183,6 @@ const StrainCatalogContainer = ({ filter }: Props) => {
             payload: {
               cursor: 0,
               limit: 10,
-              filter: "",
             },
           })
           break
