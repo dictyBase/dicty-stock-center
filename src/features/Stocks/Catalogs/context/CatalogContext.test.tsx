@@ -8,6 +8,7 @@ import {
   GET_STRAIN_LIST,
   GET_PLASMID_LIST,
   GET_BACTERIAL_STRAIN_LIST,
+  GET_STRAIN_INVENTORY_LIST,
 } from "common/graphql/queries/stocks/lists"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
@@ -24,7 +25,8 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
     it("returns initial state if no changes", () => {
       expect(
         catalogReducer(initialState, {
-          type: CatalogActionType.SET_HELP_DIALOG_OPEN,
+          // @ts-ignore
+          type: "NOT_A_REAL_ACTION",
           payload: false,
         }),
       ).toEqual(initialState)
@@ -145,6 +147,12 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
       const params = new URLSearchParams("?filter=gwdi")
       expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
         GET_STRAIN_LIST,
+      )
+    })
+    it("should return query for available strains", () => {
+      const params = new URLSearchParams("?filter=available")
+      expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
+        GET_STRAIN_INVENTORY_LIST,
       )
     })
   })
