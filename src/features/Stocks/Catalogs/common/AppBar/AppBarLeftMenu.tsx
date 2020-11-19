@@ -58,6 +58,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
         handleChange={handleChange}
         dropdownValue={leftDropdownValue}
         dropdownItems={dropdownItems}
+        inputName="catalog-filter"
       />
     </Paper>
   )

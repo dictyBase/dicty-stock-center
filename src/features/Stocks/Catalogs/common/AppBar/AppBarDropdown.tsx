@@ -13,14 +13,19 @@ const useStyles = makeStyles({
 })
 
 type Props = {
+  /** List of items to display in dropdown */
   dropdownItems: Array<{
     value: string
     name: string
   }>
+  /** The currently selected dropdown value */
   dropdownValue: string
+  /** Function to call on item select */
   handleChange: (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => void
+  /** Name used to identify dropdown box */
+  inputName: string
 }
 
 /**
@@ -31,6 +36,7 @@ const AppBarDropdown = ({
   dropdownItems,
   dropdownValue,
   handleChange,
+  inputName,
 }: Props) => {
   const classes = useStyles()
 
@@ -43,8 +49,8 @@ const AppBarDropdown = ({
         input={
           <Input
             disableUnderline
-            name="catalog-search"
-            id="search-filter"
+            name={inputName}
+            data-testid={inputName}
             classes={{
               input: classes.select,
             }}
