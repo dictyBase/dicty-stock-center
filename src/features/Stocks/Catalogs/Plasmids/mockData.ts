@@ -176,7 +176,7 @@ const nextTenPlasmidCatalogItems = {
 
 const lastFivePlasmidCatalogItems = {
   nextCursor: 0,
-  totalCount: 11,
+  totalCount: 5,
   plasmids: [
     {
       id: "DBP0001049",
@@ -222,8 +222,41 @@ const lastFivePlasmidCatalogItems = {
   __typename: "PlasmidListWithCursor",
 }
 
+const availablePlasmids = {
+  nextCursor: 0,
+  totalCount: 3,
+  plasmids: [
+    {
+      id: "DBP0001068",
+      name: "pSigK/lacZ",
+      summary:
+        "The construct was made by sub-cloning the DDB_G0267476 promoter as a 655 bp XbaI/BglII fragment into XbaI/BglII restricted pDdGal-17. This fragment consists of the region -632_+24 bp from the DDB_G0267476 start and restriction sites. This includes the full intergenic region before DDB_G0267476. The construct drives the expression of \u0026#946;-gal when activated; parental vector: pDdGAI-17; vector length: 9137 bp.",
+      in_stock: true,
+      __typename: "Plasmid",
+    },
+    {
+      id: "DBP0001067",
+      name: "pBeiB/YFP",
+      summary:
+        "Reporter construct expressing YFP under control of the beiB promoter; Parental vector: pDV-CYFP; Insert length: 1kb; Total vector length: 8.2kb;  Bacteria used: E. coli (XL1-Blue); dictyBase gene: beiB(DDB_G0278537);",
+      in_stock: true,
+      __typename: "Plasmid",
+    },
+    {
+      id: "DBP0001066",
+      name: "pDDB_G0276687/lacZ",
+      summary:
+        "The construct was made by sub-cloning the DDB_G0276687 promoter as a 905 bp XbaI/BglII fragment into XbaI/BglII restricted pDdGal-17;This fragment consists of the region -892 to +9 bp from theDDB_G0276687 start and restriction sites; The construct drives the expression of \u0026#946;-gal when activated; Parental vector: pDdGal-17; Insert length: 905kb; Total vector length: 9387kb; Bacteria used: E. coli (XL1-Blue); dictyBase gene: beiE (DDB_G0276687);",
+      in_stock: true,
+      __typename: "Plasmid",
+    },
+  ],
+  __typename: "PlasmidListWithCursor",
+}
+
 export {
   firstTenPlasmidCatalogItems,
   nextTenPlasmidCatalogItems,
   lastFivePlasmidCatalogItems,
+  availablePlasmids,
 }
