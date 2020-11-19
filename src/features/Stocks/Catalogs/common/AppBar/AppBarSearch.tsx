@@ -118,6 +118,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             dropdownItems={dropdownItems}
             handleChange={handleDropdownChange}
             dropdownValue={searchBoxDropdownValue}
+            inputName="catalog-search-filter"
           />
         </Grid>
       </Paper>
