@@ -45,7 +45,9 @@ const GET_STRAIN_LIST_WITH_PHENOTYPE = gql`
       strains {
         id
         label
-        genes
+        genes {
+          name
+        }
         publications {
           id
           pub_date
