@@ -7,7 +7,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("initial render", () => {
     const props = {
       strain: {
-        genes: ["abcd"],
+        genes: [{ name: "abcd" }],
         id: "DBS123456",
         label: "test1",
         publications: [
@@ -58,7 +58,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("render without publications", () => {
     const props = {
       strain: {
-        genes: ["abcd"],
+        genes: [{ name: "abcd" }],
         id: "DBS123456",
         label: "counting strain",
         publications: [],

@@ -18,7 +18,7 @@ export const data = {
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11130075"],
   publications: [{ id: "11130075", doi: "10.1038/35047099" }],
-  genes: ["aarA"],
+  genes: [{ name: "aarA" }],
   in_stock: true,
 }
 
@@ -37,7 +37,7 @@ export const strainWithPhenotype = {
   },
   plasmid: "pSpaA-KO",
   dbxrefs: ["29704004"],
-  genes: ["spaA"],
+  genes: [{ name: "spaA" }],
   publications: [],
   depositor: "Yoko Yamada (Pauline Schaap)",
   species: "Dictyostelium discoideum",
@@ -75,7 +75,7 @@ export const gwdiData = {
     label: "AX4",
   },
   plasmid: "Blasticidin S resistance cassette",
-  genes: ["gxcAA"],
+  genes: [{ name: "gxcAA" }],
   dbxrefs: [],
   depositor: "Amy Baldwin (Hardwood and Thompson labs)",
   species: "Dictyostelium discoideum",
