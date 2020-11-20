@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import GenesDisplay from "./GenesDisplay"
+import GenesDisplay, { Gene } from "./GenesDisplay"
 import LinkTag from "common/components/LinkTag"
 
 describe("Stocks/Details/common/GenesDisplay", () => {
@@ -12,7 +12,7 @@ describe("Stocks/Details/common/GenesDisplay", () => {
     })
   })
   describe("initial render with empty gene array", () => {
-    const genes = []
+    const genes = [] as Gene[]
     const wrapper = shallow(<GenesDisplay genes={genes} />)
     it("renders no LinkTags if gene list is empty", () => {
       expect(wrapper.find(LinkTag)).toHaveLength(0)

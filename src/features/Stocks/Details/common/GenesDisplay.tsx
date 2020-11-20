@@ -1,11 +1,14 @@
 import React from "react"
 import LinkTag from "common/components/LinkTag"
 
+type Gene = {
+  /** Gene name */
+  name: string
+}
+
 type Props = {
   /** List of gene IDs */
-  genes: Array<{
-    name: string
-  }>
+  genes: Gene[]
 }
 
 const GenesDisplay = ({ genes }: Props) => {
@@ -22,4 +25,5 @@ const GenesDisplay = ({ genes }: Props) => {
   )
 }
 
+export type { Gene }
 export default GenesDisplay
