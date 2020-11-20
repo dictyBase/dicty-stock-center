@@ -2,7 +2,7 @@ const first50 = [
   {
     id: "DBS0266721",
     label: "Dd5P4-/[act15]:Hs-OCRL(D422A)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12464622",
@@ -130,7 +130,7 @@ const first50 = [
   {
     id: "DBS0351304",
     label: "[act15]:rheb",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "31100984",
@@ -222,7 +222,7 @@ const first50 = [
   {
     id: "DBS0349844",
     label: "myoK-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "10652255",
@@ -255,7 +255,7 @@ const first50 = [
   {
     id: "DBS0350594",
     label: "[act15]:GFP:cepL(1-1114)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "25607232",
@@ -312,7 +312,7 @@ const first50 = [
   {
     id: "DBS0350979",
     label: "[AS]deeJ",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "28819044",
@@ -381,7 +381,7 @@ const first50 = [
   {
     id: "DBS0351226",
     label: "[act15]:YFP:iqgC",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "30622175",
@@ -430,7 +430,7 @@ const first50 = [
   {
     id: "DBS0309040",
     label: "sadA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "22219373",
@@ -523,7 +523,7 @@ const first50 = [
   {
     id: "DBS0350111",
     label: "[act15]:GFP:rheb(Q64L)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "22266904",
@@ -595,7 +595,7 @@ const first50 = [
   {
     id: "DBS0350101",
     label: "sec7-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "23915312",
@@ -658,7 +658,7 @@ const first50 = [
   {
     id: "DBS0304868",
     label: "phg1A-/[act15]:phg1B",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12857872",
@@ -697,7 +697,7 @@ const first50 = [
   {
     id: "DBS0350295",
     label: "psenB-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "15507682",
@@ -904,7 +904,7 @@ const first50 = [
   {
     id: "DBS0349846",
     label: "myoK-/[act15]:YFP:myoK(1-121:262-858)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20200225",
@@ -1051,7 +1051,7 @@ const first50 = [
   {
     id: "DBS0351222",
     label: "atg8a-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "28413119",
@@ -1084,7 +1084,7 @@ const first50 = [
   {
     id: "DBS0350128",
     label: "fcsB-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "22647904",
@@ -1120,7 +1120,7 @@ const first50 = [
   {
     id: "DBS0350113",
     label: "pkbA-/[act15]:GFP:rheb(Q64L)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "22266904",
@@ -1156,7 +1156,7 @@ const first50 = [
   {
     id: "DBS0350438",
     label: "ibrA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "24463811",
@@ -1234,7 +1234,7 @@ const first50 = [
   {
     id: "DBS0350585",
     label: "[dscB]:rapA(S19N)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "9087168",
@@ -1392,7 +1392,7 @@ const first50 = [
   {
     id: "DBS0350288",
     label: "[act15]:GFP:forF(1-1087)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "24331584",
@@ -1428,7 +1428,7 @@ const first50 = [
   {
     id: "DBS0350337",
     label: "[act15]:GFP:pakA(797-1197)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12952073",
@@ -1464,7 +1464,7 @@ const first50 = [
   {
     id: "DBS0350942",
     label: "[disc]:HA:rab14(N121I)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12186956",
@@ -1512,7 +1512,7 @@ const first50 = [
   {
     id: "DBS0351073",
     label: "[act15]:GFP:rac1A(G12V)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "10825297",
@@ -1542,7 +1542,7 @@ const first50 = [
   {
     id: "DBS0349863",
     label: "wshA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "21606208",
@@ -1590,7 +1590,7 @@ const first50 = [
   {
     id: "DBS0350595",
     label: "[act15]:GFP:cepL(1-763)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "25607232",
@@ -1664,7 +1664,7 @@ const first50 = [
   {
     id: "DBS0266720",
     label: "Dd5P4-/[act15]:Hs-OCRL",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12464622",
@@ -1748,7 +1748,7 @@ const first50 = [
   {
     id: "DBS0350298",
     label: "psenB-/psenA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20699477",
@@ -1778,7 +1778,7 @@ const first50 = [
   {
     id: "DBS0238511",
     label: "drkC-/[act15]:drkC(1-497):YFP",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "17664333",
@@ -1889,7 +1889,7 @@ const second50 = [
   {
     id: "DBS0350903",
     label: "[dscB]:HA:rapB(G12V)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12796292",
@@ -1921,7 +1921,7 @@ const second50 = [
   {
     id: "DBS0350239",
     label: "washc5-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "23369714",
@@ -1966,7 +1966,7 @@ const second50 = [
   {
     id: "DBS0351228",
     label: "[act15]:T7:rasG(G12T)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "10906762",
@@ -1990,7 +1990,7 @@ const second50 = [
   {
     id: "DBS0350304",
     label: "psenA-/psenB-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "24463814",
@@ -2128,7 +2128,7 @@ const second50 = [
   {
     id: "DBS0351224",
     label: "atg8a-/atg8b-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "28413119",
@@ -2161,7 +2161,7 @@ const second50 = [
   {
     id: "DBS0252637",
     label: "aip1-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "10427097",
@@ -2197,7 +2197,7 @@ const second50 = [
   {
     id: "DBS0350593",
     label: "[act15]:GFP:cepL",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "25607232",
@@ -2233,7 +2233,7 @@ const second50 = [
   {
     id: "DBS0349860",
     label: "[act15]:ndkC",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "21991393",
@@ -2275,7 +2275,7 @@ const second50 = [
   {
     id: "DBS0238474",
     label: "drkC-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "17664333",
@@ -2436,7 +2436,7 @@ const second50 = [
   {
     id: "DBS0350497",
     label: "[act6]:GFP:rab2A",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "25157910",
@@ -2463,7 +2463,7 @@ const second50 = [
   {
     id: "DBS0351357",
     label: "aph1-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "30806144",
@@ -2499,7 +2499,7 @@ const second50 = [
   {
     id: "DBS0304866",
     label: "phg1B-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12857872",
@@ -2538,7 +2538,7 @@ const second50 = [
   {
     id: "DBS0349847",
     label: "[act15]:myoK:Myc",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20200225",
@@ -2616,7 +2616,7 @@ const second50 = [
   {
     id: "DBS0350813",
     label: "[act15]:HA:rab7A(T22N)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "9243512",
@@ -2649,7 +2649,7 @@ const second50 = [
   {
     id: "DBS0351232",
     label: "atg12-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "30669443",
@@ -2691,7 +2691,7 @@ const second50 = [
   {
     id: "DBS0266692",
     label: "Dd5P4-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12464622",
@@ -2727,7 +2727,7 @@ const second50 = [
   {
     id: "DBS0349852",
     label: "abpE-/[act15]:abpE",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20200225",
@@ -2778,7 +2778,7 @@ const second50 = [
   {
     id: "DBS0350986",
     label: "[act15]:YFP:myoC(G395A)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "21712373",
@@ -2877,7 +2877,7 @@ const second50 = [
   {
     id: "DBS0350299",
     label: "aph1-/ncstn-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20699477",
@@ -2931,7 +2931,7 @@ const second50 = [
   {
     id: "DBS0350470",
     label: "gpbA-/[act15]:GFP:cap",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "19010323",
@@ -2991,7 +2991,7 @@ const second50 = [
   {
     id: "DBS0350835",
     label: "forG-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "27821733",
@@ -3037,7 +3037,7 @@ const second50 = [
   {
     id: "DBS0349855",
     label: "[act15]:pakB(1-337:563-852)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20200225",
@@ -3088,7 +3088,7 @@ const second50 = [
   {
     id: "DBS0252652",
     label: "pikA-/pikB-/pikC-/pikF-/pikG-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "17462897",
@@ -3111,7 +3111,7 @@ const second50 = [
   {
     id: "DBS0304869",
     label: "phg1A-/[act15]:phg1A(1-276):phg1B221-587)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12857872",
@@ -3318,7 +3318,7 @@ const second50 = [
   {
     id: "DBS0351074",
     label: "[act15]:GFP:rac1C(G12V)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "10825297",
@@ -3375,7 +3375,7 @@ const second50 = [
   {
     id: "DBS0305977",
     label: "atg9-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "20070309",
@@ -3491,7 +3491,7 @@ const second50 = [
   {
     id: "DBS0350836",
     label: "rasB-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "27821733",
@@ -3537,7 +3537,7 @@ const second50 = [
   {
     id: "DBS0304872",
     label: "phg1A-/phg1B-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12857872",
@@ -3656,7 +3656,7 @@ const second50 = [
   {
     id: "DBS0350891",
     label: "spdA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "27512991",
@@ -3692,7 +3692,7 @@ const second50 = [
   {
     id: "DBS0351233",
     label: "tipD-/atg12-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "30669443",
@@ -3734,7 +3734,7 @@ const second50 = [
   {
     id: "DBS0302653",
     label: "sibC-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "18676957",
@@ -3761,7 +3761,7 @@ const second50 = [
   {
     id: "DBS0238225",
     label: "rpkA-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "17481898",
@@ -3797,7 +3797,7 @@ const second50 = [
   {
     id: "DBS0350107",
     label: "DDB_G0280527-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "22266904",
@@ -3833,7 +3833,7 @@ const second50 = [
   {
     id: "DBS0350936",
     label: "abpC-",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "1310321",
@@ -3872,7 +3872,7 @@ const lastItems = [
   {
     id: "DBS0238513",
     label: "drkC-/[act15]:drkC(K518R):YFP",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "17664333",
@@ -3908,7 +3908,7 @@ const lastItems = [
   {
     id: "DBS0304870",
     label: "phg1A-/[act15]:phg1B(1-220):phg1a(277-642)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "12857872",
@@ -3947,7 +3947,7 @@ const lastItems = [
   {
     id: "DBS0266890",
     label: "myoI-/[act15]:GFP:myoI(809-1154)",
-    genes: [""],
+    genes: [],
     publications: [
       {
         id: "11267868",
