@@ -32,7 +32,9 @@ type StrainDetails = {
     id: string
   }>
   dbxrefs: Array<string>
-  genes: Array<string>
+  genes: Array<{
+    name: string
+  }>
   phenotypes: Array<PhenotypeData>
   in_stock: boolean
 }
@@ -51,7 +53,9 @@ type PlasmidDetails = {
     doi: string
   }>
   dbxrefs: Array<string>
-  genes: Array<string>
+  genes: Array<{
+    name: string
+  }>
   image_map: string
   sequence: string
   keywords: Array<string>
@@ -71,7 +75,9 @@ type PhenotypeProps = {
 type StrainWithPhenotype = {
   id: string
   label: string
-  genes: Array<string>
+  genes: Array<{
+    name: string
+  }>
   publications: Array<Publication>
 }
 

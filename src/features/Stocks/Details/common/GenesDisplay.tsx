@@ -3,18 +3,23 @@ import LinkTag from "common/components/LinkTag"
 
 type Props = {
   /** List of gene IDs */
-  genes: Array<string>
+  genes: Array<{
+    name: string
+  }>
 }
 
-const GenesDisplay = ({ genes }: Props) => (
-  <>
-    {/* if not an array with an empty string, display links */}
-    {genes[0] !== ""
-      ? genes.map<any>((gene) => (
-          <LinkTag key={gene} item={gene} route="gene" />
-        ))
-      : ""}
-  </>
-)
+const GenesDisplay = ({ genes }: Props) => {
+  if (genes.length === 0) {
+    return <div />
+  }
+
+  return (
+    <>
+      {genes.map<any>((gene, index: number) => (
+        <LinkTag key={index} item={gene.name} route="gene" />
+      ))}
+    </>
+  )
+}
 
 export default GenesDisplay
