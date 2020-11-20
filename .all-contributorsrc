@@ -29,7 +29,8 @@
         "code",
         "doc",
         "maintenance",
-        "test"
+        "test",
+        "content"
       ]
     }
   ],
