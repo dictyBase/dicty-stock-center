@@ -12,7 +12,9 @@ const GET_PLASMID = gql`
         doi
       }
       dbxrefs
-      genes
+      genes {
+        name
+      }
       image_map
       sequence
       keywords
@@ -40,7 +42,9 @@ const GET_STRAIN = gql`
         id
         doi
       }
-      genes
+      genes {
+        name
+      }
       in_stock
       systematic_name
       genotypes
