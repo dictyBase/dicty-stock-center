@@ -62,7 +62,7 @@
     "react-window-infinite-loader": "^1.0.5",
     "string.prototype.includes": "^2.0.0",
     "typescript": "^4.0.5",
-    "yup": "^0.29.3"
+    "yup": "^0.30.0"
   },
   "devDependencies": {
     "@percy/cypress": "^2.3.1",
