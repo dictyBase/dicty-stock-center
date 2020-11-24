@@ -30,7 +30,7 @@ type Props = {
   url: string
 }
 
-const AddPageButtons = ({ name, subname, url }: Props) => {
+const AddPageButton = ({ name, subname, url }: Props) => {
   const classes = useStyles()
 
   return (
@@ -59,4 +59,4 @@ const AddPageButtons = ({ name, subname, url }: Props) => {
   )
 }
 
-export default AddPageButtons
+export default AddPageButton

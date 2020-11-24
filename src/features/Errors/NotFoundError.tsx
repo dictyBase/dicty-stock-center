@@ -5,7 +5,7 @@ import BackToHomepageButton from "common/components/BackToHomepageButton"
 import useAuthorization from "common/hooks/useAuthorization"
 import sadDicty from "common/assets/sad-dicty.png"
 import useStyles from "./errorStyles"
-import AddPageButtons from "features/EditablePages/AddPageButtons"
+import AddPageButton from "features/EditablePages/AddPageButton"
 
 type Params = {
   /** Name param in URL */
@@ -41,7 +41,7 @@ const NotFoundError = () => {
           </p>
           <BackToHomepageButton />
           {authorizedUser && (
-            <AddPageButtons
+            <AddPageButton
               name={name}
               subname={subname}
               url={location.pathname}
