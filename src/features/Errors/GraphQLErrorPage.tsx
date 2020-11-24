@@ -41,11 +41,7 @@ const GraphQLErrorPage = ({ error }: Props) => {
 
   if (errorCode === "NotFound" && errorMsg) {
     console.error(printError)
-    return (
-      <NotFoundError
-        error={errorMsg.charAt(0).toUpperCase() + errorMsg.slice(1)}
-      />
-    )
+    return <NotFoundError />
   }
 
   console.error(printError)

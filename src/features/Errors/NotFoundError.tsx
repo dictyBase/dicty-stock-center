@@ -7,11 +7,6 @@ import sadDicty from "common/assets/sad-dicty.png"
 import useStyles from "./errorStyles"
 import AddPageButtons from "features/EditablePages/AddPageButtons"
 
-type Props = {
-  /** Error message to display*/
-  error: string
-}
-
 type Params = {
   /** Name param in URL */
   name: string
@@ -23,7 +18,7 @@ type Params = {
  * UI display when a page was not found.
  */
 
-const NotFoundError = ({ error }: Props) => {
+const NotFoundError = () => {
   const { name, subname } = useParams<Params>()
   const location = useLocation()
   const { canEditPages, verifiedToken } = useAuthorization()
