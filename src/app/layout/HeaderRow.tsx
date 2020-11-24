@@ -1,8 +1,6 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CartIcon from "features/ShoppingCart/CartIcon"
 
 const useStyles = makeStyles({
