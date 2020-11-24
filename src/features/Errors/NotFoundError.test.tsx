@@ -1,21 +1,46 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import { BrowserRouter } from "react-router-dom"
 import NotFoundError from "./NotFoundError"
-import Grid from "@material-ui/core/Grid"
-import BackToHomepageButton from "common/components/BackToHomepageButton"
+import { MockAuthProvider } from "common/utils/testing"
+
+// https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom")
+  return {
+    ...originalModule,
+    useParams: () => ({
+      name: "order",
+    }),
+  }
+})
 
 describe("Errors/NotFoundError", () => {
-  const props = {
-    error: "Strain not found",
-  }
-  const wrapper = shallow(<NotFoundError {...props} />)
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toHaveLength(2)
-      expect(wrapper.find(BackToHomepageButton)).toHaveLength(1)
+    it("renders add page button when authorized", () => {
+      render(
+        <MockAuthProvider mocks={[]} validToken>
+          <BrowserRouter>
+            <NotFoundError />
+          </BrowserRouter>
+        </MockAuthProvider>,
+      )
+      expect(screen.getByText(/Page Not Found/)).toBeInTheDocument()
+      expect(screen.getByText(/Add a page to this route/)).toBeInTheDocument()
     })
-    it("displays error message", () => {
-      expect(wrapper.find("h3").text()).toBe(props.error)
+
+    it("does not show add page button when unauthorized", () => {
+      render(
+        <MockAuthProvider mocks={[]} validToken={false}>
+          <BrowserRouter>
+            <NotFoundError />
+          </BrowserRouter>
+        </MockAuthProvider>,
+      )
+      expect(screen.getByText(/Page Not Found/)).toBeInTheDocument()
+      expect(
+        screen.queryByText(/Add a page to this route/),
+      ).not.toBeInTheDocument()
     })
   })
 })
