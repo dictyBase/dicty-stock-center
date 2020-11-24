@@ -29,7 +29,7 @@ const CartIcon = () => {
   }, [getItemsFromStorage])
 
   return (
-    <Link to="/cart">
+    <Link to="/cart" aria-label="View shopping cart">
       <FontAwesomeIcon icon="shopping-cart" size="2x" /> ({addedItems.length}){" "}
       {maxItemsInCart && <span className={classes.cartFull}>* cart full</span>}
     </Link>
