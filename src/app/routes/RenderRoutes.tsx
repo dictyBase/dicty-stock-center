@@ -45,6 +45,13 @@ const EditInfoPage = lazy(
     ),
 )
 
+const AddPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "EditInfoPage" */ "features/EditablePages/AddPage"
+    ),
+)
+
 // strain routes
 const StrainCatalogWrapper = lazy(
   () =>
@@ -125,13 +132,14 @@ const RenderRoutes = () => (
       <Route exact path="/load/auth" component={AuthLoader} />
       <PrivateRoute exact path="/logout" component={Logout} />
       <PrivateRoute exact path="/mydsc" component={MyDscPage} />
-      {/* infopage routes */}
+      {/* editable page routes */}
       <Route exact path="/information/:name" component={InfoPageContainer} />
       <PrivateRoute
         exact
         path="/information/:name/edit"
         component={EditInfoPage}
       />
+      <PrivateRoute exact path="/addpage" component={AddPage} />
       {/* order form routes */}
       <Route exact path="/order/checkout" component={OrderForm} />
       <Route exact path="/order/submitted" component={OrderConfirmation} />
