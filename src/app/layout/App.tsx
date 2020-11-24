@@ -11,7 +11,7 @@ import {
   loggedHeaderItems,
   generateLinks,
 } from "common/utils/headerItems"
-import CartIcon from "features/ShoppingCart/CartIcon"
+import HeaderRow from "./HeaderRow"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
@@ -120,7 +120,7 @@ const App = () => {
       <br />
       <CartProvider>
         <main className={classes.main}>
-          <CartIcon />
+          <HeaderRow />
           <ErrorBoundary>
             <RenderRoutes />
           </ErrorBoundary>
