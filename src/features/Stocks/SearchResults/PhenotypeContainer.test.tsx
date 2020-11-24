@@ -7,6 +7,7 @@ import PhenotypeContainer from "./PhenotypeContainer"
 import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/lists"
 import { first50, second50, lastItems } from "./mockData"
 import { listStrainsWithAnnotationPagination } from "common/graphql/pagination"
+import { MockAuthProvider } from "common/utils/testing"
 
 const mockParams = "abolished+protein+phosphorylation"
 
@@ -230,7 +231,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         result: {
           errors: [
             {
-              message: "No strains found",
+              message: "Page Not Found",
               path: [],
               extensions: { code: "NotFound" },
               locations: undefined,
@@ -246,17 +247,17 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
     ]
     it("displays error message", async () => {
       render(
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockAuthProvider mocks={mocks}>
           <BrowserRouter>
             <PhenotypeContainer />
           </BrowserRouter>
-        </MockedProvider>,
+        </MockAuthProvider>,
       )
       // displays loading skeleton first
       expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
 
       // wait for error message to load...
-      const errorMsg = await screen.findByText(/No strains found/)
+      const errorMsg = await screen.findByText(/Page Not Found/)
       expect(errorMsg).toBeInTheDocument()
     })
   })

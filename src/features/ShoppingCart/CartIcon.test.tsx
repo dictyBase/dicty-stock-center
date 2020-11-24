@@ -1,10 +1,7 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import CartIcon from "./CartIcon"
-import Grid from "@material-ui/core/Grid"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom"
 import { CartContext, cartReducer } from "./CartStore"
 
 describe("ShoppingCart/CartIcon", () => {
@@ -24,6 +21,7 @@ describe("ShoppingCart/CartIcon", () => {
       </CartContext.Provider>
     )
   }
+
   describe("initial render with items", () => {
     const cartItems = [
       {
@@ -37,24 +35,20 @@ describe("ShoppingCart/CartIcon", () => {
         fee: "$15.00",
       },
     ]
-    const wrapper = mount(<MockComponent items={cartItems} />)
     it("correctly indicates items in cart", () => {
-      expect(wrapper.find(Grid).exists()).toBe(true)
-      expect(wrapper.find(Link)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-      expect(wrapper.text()).toContain("(2)")
+      render(<MockComponent items={cartItems} />)
+      expect(screen.getByText("(2)")).toBeInTheDocument()
     })
     it("displays notice if cart is full", () => {
-      expect(wrapper.find("span").text()).toBe("* cart full")
+      render(<MockComponent items={cartItems} />)
+      expect(screen.getByText("* cart full")).toBeInTheDocument()
     })
   })
+
   describe("initial render with no items in cart", () => {
-    const wrapper = mount(<MockComponent items={[]} />)
     it("correctly indicates no items in cart", () => {
-      expect(wrapper.find(Grid).exists()).toBe(true)
-      expect(wrapper.find(Link)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-      expect(wrapper.text()).toContain("(0)")
+      render(<MockComponent items={[]} />)
+      expect(screen.getByText("(0)")).toBeInTheDocument()
     })
   })
 })
