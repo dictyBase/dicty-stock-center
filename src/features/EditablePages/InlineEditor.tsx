@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 
 type Props = {
   data: {
-    id: string
+    id: number
     content: string
     slug: string
     updated_by: {
@@ -78,7 +78,7 @@ const InlineEditor = ({ data }: Props) => {
     setReadOnly(true)
   }
 
-  const validEditor = canEditPages && verifiedToken
+  const authorizedUser = canEditPages && verifiedToken
 
   return (
     <div>
@@ -90,7 +90,7 @@ const InlineEditor = ({ data }: Props) => {
         onCancel={onCancel}
         inline
       />
-      {validEditor && (
+      {authorizedUser && (
         <span>
           <Button
             className={classes.editButton}
