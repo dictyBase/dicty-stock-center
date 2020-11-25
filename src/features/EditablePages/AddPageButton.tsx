@@ -5,6 +5,9 @@ import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles(() => ({
+  container: {
+    marginTop: "5px",
+  },
   link: {
     color: "#428bca",
     textDecoration: "none",
@@ -34,8 +37,7 @@ const AddPageButton = ({ name, subname, url }: Props) => {
   const classes = useStyles()
 
   return (
-    <div>
-      <br />
+    <div className={classes.container}>
       <Link
         className={classes.link}
         to={{
