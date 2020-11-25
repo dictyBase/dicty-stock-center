@@ -1,19 +1,16 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
-import Grid from "@material-ui/core/Grid"
-import Tooltip from "@material-ui/core/Tooltip"
-import IconButton from "@material-ui/core/IconButton"
-import ErrorNotification from "features/Authentication/ErrorNotification"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { MockAuthProvider } from "common/utils/testing"
 
 describe("EditablePages/InfoPageViewToolbar", () => {
   describe("user has editing permission and verified token", () => {
+    const mockHandleClick = jest.fn()
     const props = {
       lastUpdate: "2020-01-01T17:50:12.427Z",
       user: {
-        id: "1234",
+        id: 1234,
         first_name: "Art",
         last_name: "Vandelay",
         roles: [
@@ -22,22 +19,27 @@ describe("EditablePages/InfoPageViewToolbar", () => {
           },
         ],
       },
-      handleClick: jest.fn(),
+      handleClick: mockHandleClick,
     }
-    const wrapper = mount(
-      <MockAuthProvider mocks={[]}>
-        <InfoPageViewToolbar {...props} />
-      </MockAuthProvider>,
-    )
-    it("renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(Tooltip)).toHaveLength(1)
+
+    it("displays expected name", () => {
+      render(
+        <MockAuthProvider mocks={[]}>
+          <InfoPageViewToolbar {...props} />
+        </MockAuthProvider>,
+      )
+      const text = screen.getByTestId("info-page-toolbar")
+      expect(text).toHaveTextContent("Art Vandelay edited")
     })
     it("calls handleClick when edit icon clicked", () => {
-      wrapper.find(IconButton).simulate("click")
-      expect(props.handleClick).toHaveBeenCalledTimes(1)
+      render(
+        <MockAuthProvider mocks={[]}>
+          <InfoPageViewToolbar {...props} />
+        </MockAuthProvider>,
+      )
+      const btn = screen.getByRole("button")
+      userEvent.click(btn)
+      expect(mockHandleClick).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -45,7 +47,7 @@ describe("EditablePages/InfoPageViewToolbar", () => {
     const props = {
       lastUpdate: "2020-01-01T17:50:12.427Z",
       user: {
-        id: "1234",
+        id: 1234,
         first_name: "Art",
         last_name: "Vandelay",
         roles: [
@@ -56,18 +58,27 @@ describe("EditablePages/InfoPageViewToolbar", () => {
       },
       handleClick: jest.fn(),
     }
-    const wrapper = mount(
-      <MockAuthProvider mocks={[]} validToken={false}>
-        <InfoPageViewToolbar {...props} />
-      </MockAuthProvider>,
-    )
-    it("renders expected error components", () => {
-      expect(wrapper.find(ErrorNotification)).toHaveLength(1)
+
+    it("renders expected error message", () => {
+      render(
+        <MockAuthProvider mocks={[]} validToken={false}>
+          <InfoPageViewToolbar {...props} />
+        </MockAuthProvider>,
+      )
+      expect(
+        screen.getByText(
+          /Your login token has expired. Please log out and then log back in to regain full user access./,
+        ),
+      ).toBeInTheDocument()
     })
     it("does not render edit button", () => {
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-      expect(wrapper.find(IconButton)).not.toExist()
-      expect(wrapper.find(Tooltip)).not.toExist()
+      render(
+        <MockAuthProvider mocks={[]} validToken={false}>
+          <InfoPageViewToolbar {...props} />
+        </MockAuthProvider>,
+      )
+      const editButton = screen.queryByRole("button")
+      expect(editButton).not.toBeInTheDocument()
     })
   })
 })

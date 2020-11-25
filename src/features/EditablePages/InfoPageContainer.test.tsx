@@ -1,11 +1,8 @@
 import React from "react"
-import { mount } from "enzyme"
-import wait from "waait"
-import InfoPageContainer from "./InfoPageContainer"
+import { render, screen } from "@testing-library/react"
+import waitForExpect from "wait-for-expect"
 import { Helmet } from "react-helmet"
-import Loader from "common/components/Loader"
-import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
-import InfoPageView from "./InfoPageView"
+import InfoPageContainer from "./InfoPageContainer"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import { MockAuthProvider } from "common/utils/testing"
 
@@ -14,7 +11,6 @@ const mockName = "payment"
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
-
   return {
     ...originalModule,
     useParams: () => ({
@@ -23,8 +19,41 @@ jest.mock("react-router-dom", () => {
   }
 })
 
-describe("EditablePages/InfoPageContainer", () => {
-  describe("initial render", () => {
+const mockContent = {
+  object: "value",
+  document: {
+    object: "document",
+    data: {},
+    nodes: [
+      {
+        object: "block",
+        type: "paragraph",
+        data: {},
+        nodes: [
+          {
+            object: "text",
+            leaves: [
+              {
+                object: "leaf",
+                text: "Test Content",
+                marks: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+}
+
+describe("features/EditablePages/InfoPageContainer", () => {
+  const MockComponent = ({ mocks }: any) => (
+    <MockAuthProvider mocks={mocks}>
+      <InfoPageContainer />
+    </MockAuthProvider>
+  )
+
+  describe("initial render with fetched data", () => {
     const mocks = [
       {
         request: {
@@ -37,20 +66,7 @@ describe("EditablePages/InfoPageContainer", () => {
           data: {
             contentBySlug: {
               id: "1",
-              content: JSON.stringify({
-                object: "block",
-                type: "paragraph",
-                nodes: [
-                  {
-                    object: "text",
-                    leaves: [
-                      {
-                        text: "Test content",
-                      },
-                    ],
-                  },
-                ],
-              }),
+              content: JSON.stringify(mockContent),
               name: mockName,
               slug: "dsc-payment",
               updated_at: "2020-01-01T17:50:12.427Z",
@@ -74,20 +90,15 @@ describe("EditablePages/InfoPageContainer", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
-        <InfoPageContainer />
-      </MockAuthProvider>,
-    )
-    it("renders loading component first", () => {
-      expect(wrapper.find(Loader)).toExist()
-    })
-    it("renders expected components after receiving data", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(Helmet)).toHaveLength(1)
-      expect(wrapper.find(InfoPageView)).toHaveLength(1)
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(0)
+
+    it("renders fetched data", async () => {
+      render(<MockComponent mocks={mocks} />)
+      // shows loading skeleton first
+      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+
+      // wait for data to load...
+      const content = await screen.findByText(/Test Content/)
+      expect(content).toBeInTheDocument()
     })
   })
 
@@ -103,7 +114,7 @@ describe("EditablePages/InfoPageContainer", () => {
         result: {
           errors: [
             {
-              message: "Content not found",
+              message: "Page Not Found",
               path: [],
               extensions: { code: "NotFound" },
               locations: undefined,
@@ -117,15 +128,14 @@ describe("EditablePages/InfoPageContainer", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
-        <InfoPageContainer />
-      </MockAuthProvider>,
-    )
     it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(GraphQLErrorPage)).toHaveLength(1)
+      render(<MockComponent mocks={mocks} />)
+      // displays loading skeleton first
+      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+
+      // wait for error message to load...
+      const errorMsg = await screen.findByText(/Page Not Found/)
+      expect(errorMsg).toBeInTheDocument()
     })
   })
 })
