@@ -26,7 +26,6 @@ type Props = {
   location: {
     state: {
       name: string
-      subname?: string
       url: string
     }
   }
@@ -37,10 +36,6 @@ type Props = {
  */
 
 const AddPage = ({ location }: Props) => {
-  const slug = location.state.subname
-    ? location.state.subname
-    : location.state.name
-
   const [{ token }] = useAuthStore()
   const { user, canEditPages, verifiedToken } = useAuthorization()
   const history = useHistory()
@@ -59,7 +54,7 @@ const AddPage = ({ location }: Props) => {
     createContent({
       variables: {
         input: {
-          name: slug,
+          name: location.state.name,
           created_by: user.id,
           content: JSON.stringify(value.toJSON()),
           namespace: NAMESPACE,

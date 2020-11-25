@@ -1,7 +1,5 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import waitForExpect from "wait-for-expect"
-import { Helmet } from "react-helmet"
 import InfoPageContainer from "./InfoPageContainer"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import { MockAuthProvider } from "common/utils/testing"
