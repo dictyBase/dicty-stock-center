@@ -1,8 +1,13 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import { BrowserRouter } from "react-router-dom"
+import userEvent from "@testing-library/user-event"
+import { BrowserRouter, useHistory } from "react-router-dom"
 import AddPage from "./AddPage"
+import waitForExpect from "wait-for-expect"
+import { CREATE_CONTENT } from "common/graphql/mutations"
 import { MockAuthProvider } from "common/utils/testing"
+
+const mockHistoryPush = jest.fn()
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock("react-router-dom", () => {
@@ -12,40 +17,117 @@ jest.mock("react-router-dom", () => {
     useParams: () => ({
       name: "order",
     }),
+    useHistory: jest.fn(),
   }
 })
 
+window.getSelection = jest.fn()
+
+const mockContent = {
+  object: "value",
+  document: {
+    object: "document",
+    data: {},
+    nodes: [
+      {
+        object: "block",
+        type: "paragraph",
+        data: {},
+        nodes: [
+          {
+            object: "text",
+            leaves: [
+              {
+                object: "leaf",
+                text: "Add your page content here...",
+                marks: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+}
+
 describe("features/EditablePages/AddPage", () => {
-  beforeEach(() => {
-    // @ts-ignore
-    window.getSelection = () => ({
-      removeAllRanges: () => {},
-    })
-  })
+  const props = {
+    location: {
+      state: {
+        name: "shipping",
+        url: "/information/shipping",
+      },
+    },
+  }
+
+  const MockComponent = ({ mocks }: any) => (
+    <MockAuthProvider mocks={mocks} validToken>
+      <BrowserRouter>
+        <AddPage {...props} />
+      </BrowserRouter>
+    </MockAuthProvider>
+  )
 
   describe("initial render", () => {
-    const props = {
-      location: {
-        state: {
-          name: "shipping",
-          url: "/information/shipping",
-        },
-      },
-    }
-
     it("displays correct route", () => {
-      render(
-        <MockAuthProvider mocks={[]} validToken>
-          <BrowserRouter>
-            <AddPage {...props} />
-          </BrowserRouter>
-        </MockAuthProvider>,
-      )
+      render(<MockComponent mocks={[]} />)
       expect(
         screen.getByText(/Add Editable Page for Route:/),
       ).toBeInTheDocument()
       expect(screen.getByText("/information/shipping")).toBeInTheDocument()
-      screen.debug()
+    })
+
+    it("should save data and redirect on click", async () => {
+      const mocks = [
+        {
+          request: {
+            query: CREATE_CONTENT,
+            variables: {
+              input: {
+                name: "shipping",
+                created_by: 999,
+                content: JSON.stringify(mockContent),
+                namespace: "dsc",
+              },
+            },
+          },
+          result: {
+            data: {
+              createContent: {
+                name: "shipping",
+                created_by: {
+                  id: 999,
+                },
+                content: JSON.stringify(mockContent),
+                namespace: "dsc",
+              },
+            },
+          },
+        },
+      ]
+      ;(useHistory as jest.Mock).mockReturnValueOnce({
+        push: mockHistoryPush,
+      })
+      render(<MockComponent mocks={mocks} />)
+      // there are two save buttons, one in toolbar and one at bottom
+      const saveButtons = screen.getAllByText("Save")
+      userEvent.click(saveButtons[0])
+      await waitForExpect(() => {
+        expect(
+          screen.getByText(/Add your page content here.../),
+        ).toBeInTheDocument()
+        expect(mockHistoryPush).toHaveBeenCalledWith(props.location.state.url)
+      })
+    })
+
+    it("should go back to previous URL on cancel", () => {
+      ;(useHistory as jest.Mock).mockReturnValueOnce({
+        push: mockHistoryPush,
+      })
+      render(<MockComponent mocks={[]} />)
+      const cancelButton = screen.getByText("Cancel")
+      userEvent.click(cancelButton)
+      expect(mockHistoryPush).toHaveBeenCalledWith(props.location.state.url)
     })
   })
 })
