@@ -1,11 +1,11 @@
 type Content = {
-  id: string
+  id: number
   content: string
   slug: string
   name: string
   updated_at: string
   created_by?: {
-    id: string
+    id: number
     first_name: string
     last_name: string
     roles: Array<{
@@ -17,7 +17,7 @@ type Content = {
 }
 
 type UpdatedByUser = {
-  id: string
+  id: number
   first_name: string
   last_name: string
   roles: Array<{
