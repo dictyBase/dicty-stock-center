@@ -15,7 +15,7 @@ jest.mock("react-router-dom", () => {
   return {
     ...originalModule,
     useParams: () => ({
-      name: "order",
+      name: "shipping",
     }),
     useHistory: jest.fn(),
   }
@@ -76,7 +76,9 @@ describe("features/EditablePages/AddPage", () => {
       ).toBeInTheDocument()
       expect(screen.getByText("/information/shipping")).toBeInTheDocument()
     })
+  })
 
+  describe("button clicking", () => {
     it("should save data and redirect on click", async () => {
       const mocks = [
         {
