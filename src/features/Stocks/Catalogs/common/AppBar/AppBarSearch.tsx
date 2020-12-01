@@ -29,6 +29,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+/** getDetailsURL uses regex to check if a stock ID has been entered into the
+ * catalog search box. It returns the URL to redirect to.
+ */
+const getDetailsURL = (id: string) => {
+  const strainID = /DBS\d{7}/
+  const plasmidID = /DBP\d{7}/
+
+  if (strainID.test(id)) {
+    return `/strains/${id}`
+  }
+
+  if (plasmidID.test(id)) {
+    return `/plasmids/${id}`
+  }
+
+  return ""
+}
+
 type Props = {
   /** List of dropdown items next to search box */
   dropdownItems: Array<{
@@ -68,9 +86,16 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       limit: 10,
       filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
-    history.push(
-      `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
-    )
+    if (searchBoxDropdownValue === "id") {
+      const idCheck = getDetailsURL(searchValue)
+      if (idCheck !== "") {
+        history.push(idCheck)
+      }
+    } else {
+      history.push(
+        `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
+      )
+    }
   }
 
   const handleDropdownChange = (
