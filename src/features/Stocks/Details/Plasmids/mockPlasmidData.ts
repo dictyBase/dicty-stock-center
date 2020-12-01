@@ -1,4 +1,4 @@
-export const data = {
+const data = {
   summary: "Knockout plasmid for acgA",
   id: "DBP0000385",
   name: "pACG-KO",
@@ -12,3 +12,5 @@ export const data = {
   keywords: [],
   genbank_accession: "",
 }
+
+export { data }

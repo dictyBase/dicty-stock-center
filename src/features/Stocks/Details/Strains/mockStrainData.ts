@@ -1,4 +1,4 @@
-export const data = {
+const availableStrain = {
   label: "aarA-",
   id: "DBS0236123",
   names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
@@ -22,7 +22,31 @@ export const data = {
   in_stock: true,
 }
 
-export const strainWithPhenotype = {
+const unavailableStrain = {
+  label: "aarA-",
+  id: "DBS0236123",
+  names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
+  systematic_name: "HAD186",
+  characteristics: ["blasticidin resistant", "axenic", "null mutant"],
+  summary: "aarA (aardvark) null mutant (β-catenin knock-out)",
+  editable_summary: "aarA (aardvark) null mutant (β-catenin knock-out)",
+  genotypes: ["axeA2", "axeB2", "axeC2", "aarA-[aarA-KO]", "bsR"],
+  genetic_modification: "endogenous insertion",
+  mutagenesis_method: "Homologous Recombination",
+  species: "Dictyostelium discoideum",
+  parent: {
+    id: "DBS0350762",
+    label: "AX2",
+  },
+  depositor: "Adrian Harwood",
+  plasmid: "aar-KO (aar cDNA with bsR cassette)",
+  dbxrefs: ["11130075"],
+  publications: [{ id: "11130075", doi: "10.1038/35047099" }],
+  genes: [{ name: "aarA" }],
+  in_stock: true,
+}
+
+const strainWithPhenotype = {
   id: "DBS0350966",
   label: "spaA-",
   names: ["spaA-KO"],
@@ -58,7 +82,7 @@ export const strainWithPhenotype = {
   in_stock: true,
 }
 
-export const gwdiData = {
+const gwdiData = {
   id: "DBS0351107",
   label: "gxcAA-",
   names: ["GWDI_409_E_8"],
@@ -81,3 +105,5 @@ export const gwdiData = {
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Restriction Enzyme-Mediated Integration",
 }
+
+export { availableStrain, unavailableStrain, strainWithPhenotype, gwdiData }
