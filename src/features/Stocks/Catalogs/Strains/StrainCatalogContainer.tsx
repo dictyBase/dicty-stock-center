@@ -70,10 +70,6 @@ type BacterialStrainsData = {
   symbioticFarmerBacterium: CatalogQueryResponse
 }
 
-type ListStrainsData = {
-  listStrains: CatalogQueryResponse
-}
-
 /**
  * normalizeBacterialStrainsData normalizes the bacterial strain data
  * response into the standard listStrains object. This is necessary since
