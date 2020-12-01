@@ -1,11 +1,11 @@
 import React from "react"
 import { useLocation, useParams } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
-import BackToHomepageButton from "common/components/BackToHomepageButton"
+import { Link } from "react-router-dom"
+import AddPageButton from "features/EditablePages/AddPageButton"
 import useAuthorization from "common/hooks/useAuthorization"
 import sadDicty from "common/assets/sad-dicty.png"
 import useStyles from "./errorStyles"
-import AddPageButton from "features/EditablePages/AddPageButton"
 
 type Params = {
   /** Name param in URL */
@@ -14,11 +14,16 @@ type Params = {
   subname: string
 }
 
+type Props = {
+  /** Error message to display */
+  error: string
+}
+
 /**
  * UI display when a page was not found.
  */
 
-const NotFoundError = () => {
+const NotFoundError = ({ error }: Props) => {
   const { name, subname } = useParams<Params>()
   const location = useLocation()
   const { canEditPages, verifiedToken } = useAuthorization()
@@ -30,17 +35,16 @@ const NotFoundError = () => {
     <Grid container className={classes.mainGrid} justify="center">
       <Grid item xs={10} md={8}>
         <div className={classes.error400}>
-          <img src={sadDicty} alt="Sad Dicty -- Page Not Found" />
-          <h3>Page Not Found</h3>
+          <img src={sadDicty} alt="Sad Dicty -- Not Found" />
+          <h2>Not Found</h2>
           <p className={classes.paragraph}>
-            Sorry! We can&apos;t find that page.
+            <em>{error}</em>
           </p>
           <p className={classes.paragraph}>
-            You can try one of the links in our navbar above, or head back to
-            the homepage.
+            Try a different link or navigate back to the{" "}
+            <Link to={"/"}>DSC homepage</Link>.
           </p>
-          <BackToHomepageButton />
-          {authorizedUser && (
+          {authorizedUser && location.pathname.includes("information") && (
             <AddPageButton
               name={name}
               subname={subname}
