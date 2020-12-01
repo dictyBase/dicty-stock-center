@@ -55,7 +55,7 @@ const StrainDetailsContainer = () => {
       />
       <StrainDetailsLeftCard data={data.strain} />
       <Grid item xs={12} md={3} lg={2}>
-        <AvailabilityCard data={data} stockType="strain" />
+        <AvailabilityCard data={data.strain} />
       </Grid>
     </Grid>
   )

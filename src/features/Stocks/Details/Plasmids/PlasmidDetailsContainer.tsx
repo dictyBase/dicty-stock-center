@@ -49,7 +49,7 @@ const PlasmidDetailsContainer = () => {
       />
       <PlasmidDetailsLeftCard data={data.plasmid} />
       <Grid item xs={12} md={3} lg={2}>
-        <AvailabilityCard data={data} stockType="plasmid" />
+        <AvailabilityCard data={data.plasmid} />
       </Grid>
     </Grid>
   )

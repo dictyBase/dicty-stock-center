@@ -3,18 +3,14 @@ import Card from "@material-ui/core/Card"
 import useStyles from "features/Stocks/Details/styles"
 import AvailableCardDisplay from "./AvailableCardDisplay"
 import UnavailableCardDisplay from "./UnavailableCardDisplay"
+import {
+  StrainDetails,
+  PlasmidDetails,
+} from "features/Stocks/Details/types/props"
 
 type Props = {
   /** Stock data */
-  data: {
-    id: string
-    summary: string
-    label?: string
-    name?: string
-    in_stock: boolean
-  }
-  /** strain or plasmid */
-  stockType: string
+  data: StrainDetails | PlasmidDetails
 }
 
 /**
@@ -22,24 +18,25 @@ type Props = {
  * details page.
  */
 
-const AvailabilityCard = ({ data, stockType }: Props) => {
+const AvailabilityCard = ({ data }: Props) => {
   const classes = useStyles()
 
   let label = ""
 
-  if (stockType === "strain" && data.label !== undefined) {
-    label = data.label
-  }
-
-  if (stockType === "plasmid" && data.name !== undefined) {
-    label = data.name
+  switch (data.type) {
+    case "strain":
+      label = data.label
+      break
+    case "plasmid":
+      label = data.name
+      break
   }
 
   const cartData = {
     id: data.id,
     name: label,
     summary: data.summary,
-    type: stockType,
+    type: data.type,
   }
 
   return (
