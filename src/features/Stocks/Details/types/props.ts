@@ -10,6 +10,7 @@ type PhenotypeData = {
 }
 
 type StrainDetails = {
+  type: "strain"
   id: string
   label: string
   names: Array<string>
@@ -44,6 +45,7 @@ type StrainDetailsProps = {
 }
 
 type PlasmidDetails = {
+  type: "plasmid"
   id: string
   name: string
   summary: string
