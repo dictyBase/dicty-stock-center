@@ -44,24 +44,16 @@ mockedUseCatalogStore.mockReturnValue({
 
 const dropdownItems = [
   {
-    name: "All Strains",
-    value: "all",
+    name: "Descriptor",
+    value: "label",
   },
   {
-    name: "GWDI Strains",
-    value: "gwdi",
+    name: "Summary",
+    value: "summary",
   },
   {
-    name: "Available Strains",
-    value: "available",
-  },
-  {
-    name: "Unavailable Strains",
-    value: "unavailable",
-  },
-  {
-    name: "Bacterial Strains",
-    value: "bacterial",
+    name: "ID",
+    value: "id",
   },
 ]
 
@@ -75,6 +67,16 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     </CatalogProvider>
   )
 
+  beforeEach(() => {
+    ;(useHistory as jest.Mock).mockReturnValue({
+      push: mockHistoryPush,
+    })
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe("initial render", () => {
     it("should render one search box", () => {
       render(<MockComponent />)
@@ -84,10 +86,10 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("button")).toHaveLength(2)
     })
-    it("should render one dropdown with five items", () => {
+    it("should render one dropdown with three items", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("combobox")).toHaveLength(1)
-      expect(screen.getAllByRole("option")).toHaveLength(5)
+      expect(screen.getAllByRole("option")).toHaveLength(3)
     })
   })
 
@@ -108,8 +110,12 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
 
   describe("search button", () => {
     it("should update query variables and URL", () => {
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
+      mockedUseCatalogStore.mockReturnValueOnce({
+        state: {
+          searchValue: "GWDI",
+          leftDropdownValue: "all",
+          searchBoxDropdownValue: "label",
+        },
       })
       render(<MockComponent />)
       const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
@@ -125,14 +131,79 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       })
       expect(mockHistoryPush).toHaveBeenCalledWith("?filter=all&label=GWDI")
     })
+
+    it("should redirect to details page when valid strain ID is entered", () => {
+      const strainID = "DBS0351367"
+      mockedUseCatalogStore.mockReturnValue({
+        state: {
+          searchValue: strainID,
+          leftDropdownValue: "all",
+          searchBoxDropdownValue: "id",
+        },
+      })
+      render(<MockComponent />)
+      const dropdown = screen.getByRole("combobox")
+      userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const searchButton = screen.getByRole("button", {
+        name: /Catalog search icon/,
+      })
+      userEvent.type(input, strainID)
+      userEvent.click(searchButton)
+      expect(mockHistoryPush).toHaveBeenCalledWith(`/strains/${strainID}`)
+    })
+
+    it("should redirect to details page when valid plasmid ID is entered", () => {
+      const plasmidID = "DBP0001070"
+      mockedUseCatalogStore.mockReturnValue({
+        state: {
+          searchValue: plasmidID,
+          leftDropdownValue: "all",
+          searchBoxDropdownValue: "id",
+        },
+      })
+      render(<MockComponent />)
+      const dropdown = screen.getByRole("combobox")
+      userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const searchButton = screen.getByRole("button", {
+        name: /Catalog search icon/,
+      })
+      userEvent.type(input, plasmidID)
+      userEvent.click(searchButton)
+      expect(mockHistoryPush).toHaveBeenCalledWith(`/plasmids/${plasmidID}`)
+    })
+
+    it("should not redirect to details page when invalid ID is entered", () => {
+      const fakeStrainID = "notanid"
+      mockedUseCatalogStore.mockReturnValue({
+        state: {
+          searchValue: fakeStrainID,
+          leftDropdownValue: "all",
+          searchBoxDropdownValue: "id",
+        },
+      })
+      render(<MockComponent />)
+      const dropdown = screen.getByRole("combobox")
+      userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const searchButton = screen.getByRole("button", {
+        name: /Catalog search icon/,
+      })
+      userEvent.type(input, fakeStrainID)
+      userEvent.click(searchButton)
+      expect(mockHistoryPush).toHaveBeenCalledWith(
+        `?filter=all&id=${fakeStrainID}`,
+      )
+    })
   })
 
   describe("dropdown select", () => {
     it("should change searchbox dropdown value", () => {
       render(<MockComponent />)
       const dropdown = screen.getByRole("combobox")
-      userEvent.selectOptions(dropdown, "gwdi")
-      expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("gwdi")
+      userEvent.selectOptions(dropdown, "summary")
+      expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
     })
   })
 })
