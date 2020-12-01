@@ -1,4 +1,5 @@
 const availableStrain = {
+  type: "strain",
   label: "aarA-",
   id: "DBS0236123",
   names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
@@ -19,10 +20,12 @@ const availableStrain = {
   dbxrefs: ["11130075"],
   publications: [{ id: "11130075", doi: "10.1038/35047099" }],
   genes: [{ name: "aarA" }],
+  phenotypes: [],
   in_stock: true,
 }
 
 const unavailableStrain = {
+  type: "strain",
   label: "aarA-",
   id: "DBS0236123",
   names: ["aar-", "aardvark null", "HAD 186", "catenin null"],
@@ -43,10 +46,12 @@ const unavailableStrain = {
   dbxrefs: ["11130075"],
   publications: [{ id: "11130075", doi: "10.1038/35047099" }],
   genes: [{ name: "aarA" }],
-  in_stock: true,
+  phenotypes: [],
+  in_stock: false,
 }
 
 const strainWithPhenotype = {
+  type: "strain",
   id: "DBS0350966",
   label: "spaA-",
   names: ["spaA-KO"],
@@ -83,6 +88,7 @@ const strainWithPhenotype = {
 }
 
 const gwdiData = {
+  type: "strain",
   id: "DBS0351107",
   label: "gxcAA-",
   names: ["GWDI_409_E_8"],
