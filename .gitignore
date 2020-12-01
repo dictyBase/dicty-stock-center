@@ -9,6 +9,7 @@ client/
 /build
 .vscode
 
+.eslintcache
 .env.development.local
 .env.production.local
 clientConfig.ts
