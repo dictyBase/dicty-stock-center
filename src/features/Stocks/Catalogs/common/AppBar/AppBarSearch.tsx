@@ -47,34 +47,31 @@ const getDetailsURL = (id: string) => {
   return ""
 }
 
-type Props = {
-  /** List of dropdown items next to search box */
-  dropdownItems: Array<{
-    value: string
-    name: string
-  }>
-}
-
-/**
- * AppBarSearch is the search box found on a stock catalog page.
- */
-
-const AppBarSearch = ({ dropdownItems }: Props) => {
+const useAppBarSearch = () => {
   const {
     state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
   } = useCatalogStore()
   const {
+    setQueryVariables,
     setSearchValue,
     setSearchBoxDropdownValue,
-    setQueryVariables,
   } = useCatalogDispatch()
-  const classes = useStyles()
   const history = useHistory()
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>,
   ) => {
     setSearchValue(event.target.value)
+  }
+
+  const handleDropdownChange = (
+    event: React.ChangeEvent<{ name?: string; value: any }>,
+  ) => {
+    setSearchBoxDropdownValue(event.target.value)
+  }
+
+  const clearSearch = () => {
+    setSearchValue("")
   }
 
   const handleSubmit = (
@@ -98,15 +95,37 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     }
   }
 
-  const handleDropdownChange = (
-    event: React.ChangeEvent<{ name?: string; value: any }>,
-  ) => {
-    setSearchBoxDropdownValue(event.target.value)
+  return {
+    handleChange,
+    handleDropdownChange,
+    handleSubmit,
+    clearSearch,
   }
+}
 
-  const clearSearch = () => {
-    setSearchValue("")
-  }
+type Props = {
+  /** List of dropdown items next to search box */
+  dropdownItems: Array<{
+    value: string
+    name: string
+  }>
+}
+
+/**
+ * AppBarSearch is the search box found on a stock catalog page.
+ */
+
+const AppBarSearch = ({ dropdownItems }: Props) => {
+  const {
+    state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
+  } = useCatalogStore()
+  const classes = useStyles()
+  const {
+    handleChange,
+    handleDropdownChange,
+    handleSubmit,
+    clearSearch,
+  } = useAppBarSearch()
 
   // remove this when filtering is available on the backend
   if (leftDropdownValue !== "all") {
