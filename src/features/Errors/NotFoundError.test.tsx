@@ -12,6 +12,9 @@ jest.mock("react-router-dom", () => {
     useParams: () => ({
       name: "order",
     }),
+    useLocation: () => ({
+      pathname: "/information/order",
+    }),
   }
 })
 
@@ -21,7 +24,7 @@ describe("Errors/NotFoundError", () => {
       render(
         <MockAuthProvider mocks={[]} validToken>
           <BrowserRouter>
-            <NotFoundError />
+            <NotFoundError error="Page Not Found" />
           </BrowserRouter>
         </MockAuthProvider>,
       )
@@ -33,7 +36,7 @@ describe("Errors/NotFoundError", () => {
       render(
         <MockAuthProvider mocks={[]} validToken={false}>
           <BrowserRouter>
-            <NotFoundError />
+            <NotFoundError error="Page Not Found" />
           </BrowserRouter>
         </MockAuthProvider>,
       )
