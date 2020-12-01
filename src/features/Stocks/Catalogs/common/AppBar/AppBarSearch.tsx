@@ -83,11 +83,8 @@ const useAppBarSearch = () => {
       limit: 10,
       filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
-    if (searchBoxDropdownValue === "id") {
-      const idCheck = getDetailsURL(searchValue)
-      if (idCheck !== "") {
-        history.push(idCheck)
-      }
+    if (searchBoxDropdownValue === "id" && getDetailsURL(searchValue) !== "") {
+      history.push(getDetailsURL(searchValue))
     } else {
       history.push(
         `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
