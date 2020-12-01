@@ -10,8 +10,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom-fourteen",
-    "test-coverage": "CI=true react-scripts test --env=jsdom-fourteen --coverage",
+    "test": "react-scripts test",
+    "test-coverage": "CI=true react-scripts test --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "tsc": "tsc",
@@ -56,7 +56,7 @@
     "react-loading-skeleton": "^2.0.1",
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.5",
@@ -128,7 +128,8 @@
       "!src/**/types.{js,jsx,ts,tsx}",
       "!src/**/*Styles.{js,jsx,ts,tsx}",
       "!src/**/clientConfig*.{js,jsx,ts,tsx}"
-    ]
+    ],
+    "resetMocks": false
   },
   "lint-staged": {
     "*.{js,jsx,json,css}": [
