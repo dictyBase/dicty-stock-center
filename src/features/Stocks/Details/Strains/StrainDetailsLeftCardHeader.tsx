@@ -13,8 +13,6 @@ const a11yProps = (index: number) => ({
 
 const useStyles = makeStyles(() => ({
   root: {
-    border: "1px solid #d4d4d4",
-    borderBottom: "none",
     "&:not(:first-of-type)": {
       marginLeft: -1,
     },
@@ -32,9 +30,6 @@ const useStyles = makeStyles(() => ({
   },
   wrapper: {
     opacity: 0.7,
-  },
-  indicator: {
-    display: "none",
   },
 }))
 
@@ -72,7 +67,7 @@ const StrainDetailsLeftCardHeader = ({
   if (phenotypeLength > 0) {
     content = (
       <Tabs
-        classes={{ indicator: classes.indicator }}
+        indicatorColor="primary"
         value={value}
         onChange={handleChange}
         aria-label="strain details tabs">
