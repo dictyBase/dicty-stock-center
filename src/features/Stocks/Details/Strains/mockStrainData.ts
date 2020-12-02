@@ -1,3 +1,5 @@
+import { StrainDetails } from "features/Stocks/Details/types/props"
+
 const availableStrain = {
   type: "strain",
   label: "aarA-",
@@ -22,7 +24,7 @@ const availableStrain = {
   genes: [{ name: "aarA" }],
   phenotypes: [],
   in_stock: true,
-}
+} as StrainDetails
 
 const unavailableStrain = {
   type: "strain",
@@ -48,7 +50,7 @@ const unavailableStrain = {
   genes: [{ name: "aarA" }],
   phenotypes: [],
   in_stock: false,
-}
+} as StrainDetails
 
 const strainWithPhenotype = {
   type: "strain",
@@ -85,7 +87,7 @@ const strainWithPhenotype = {
     },
   ],
   in_stock: true,
-}
+} as StrainDetails
 
 const gwdiData = {
   type: "strain",
@@ -110,6 +112,9 @@ const gwdiData = {
   depositor: "Amy Baldwin (Hardwood and Thompson labs)",
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Restriction Enzyme-Mediated Integration",
-}
+  phenotypes: [],
+  publications: [],
+  in_stock: true,
+} as StrainDetails
 
 export { availableStrain, unavailableStrain, strainWithPhenotype, gwdiData }
