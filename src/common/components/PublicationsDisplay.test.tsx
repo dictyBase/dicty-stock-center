@@ -1,45 +1,47 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import PhenotypePublicationDisplay, {
+import PublicationsDisplay, {
   listAuthors,
   getYearFromTimestamp,
-} from "./PhenotypePublicationDisplay"
+} from "./PublicationsDisplay"
 
-describe("features/Stocks/SearchResults/PhenotypePublicationDisplay", () => {
+describe("common/components/PublicationDisplay", () => {
   describe("initial render with publication", () => {
     const props = {
-      publication: {
-        id: "20008082",
-        pub_date: "2009-12-11T00:00:00.000Z",
-        title:
-          "WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.",
-        journal: "Eukaryotic cell",
-        volume: "9",
-        pages: "344-349",
-        authors: [
-          {
-            last_name: "Franklin",
-          },
-          {
-            last_name: "Hyatt",
-          },
-          {
-            last_name: "Chowdhury",
-          },
-          {
-            last_name: "Steimle",
-          },
-        ],
-      },
+      publications: [
+        {
+          id: "20008082",
+          pub_date: "2009-12-11T00:00:00.000Z",
+          title:
+            "WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.",
+          journal: "Eukaryotic cell",
+          volume: "9",
+          pages: "344-349",
+          authors: [
+            {
+              last_name: "Franklin",
+            },
+            {
+              last_name: "Hyatt",
+            },
+            {
+              last_name: "Chowdhury",
+            },
+            {
+              last_name: "Steimle",
+            },
+          ],
+        },
+      ],
     }
 
     it("includes link to publication page", () => {
-      render(<PhenotypePublicationDisplay {...props} />)
+      render(<PublicationsDisplay {...props} />)
       const link = screen.getByRole("link")
       expect(link).toHaveAttribute("href", "/publication/20008082")
     })
     it("should match expected reference format", () => {
-      render(<PhenotypePublicationDisplay {...props} />)
+      render(<PublicationsDisplay {...props} />)
       const pubDisplay = screen.getByTestId("phenotype-publication-display")
       expect(pubDisplay).toHaveTextContent(
         "Franklin, Hyatt, Chowdhury & Steimle (2009) 'WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.' Eukaryotic cell 9:344-349",
@@ -49,7 +51,7 @@ describe("features/Stocks/SearchResults/PhenotypePublicationDisplay", () => {
 
   describe("initial render without publication", () => {
     it("should not display publication link", () => {
-      render(<PhenotypePublicationDisplay />)
+      render(<PublicationsDisplay />)
       const link = screen.queryByRole("link")
       expect(link).toBeFalsy()
     })

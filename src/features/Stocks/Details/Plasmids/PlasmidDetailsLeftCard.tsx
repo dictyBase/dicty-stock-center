@@ -1,7 +1,7 @@
 import React from "react"
 import LeftCardDisplay from "features/Stocks/Details/common/LeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
+import PublicationsDisplay from "common/components/PublicationsDisplay"
 import {
   PlasmidDetails,
   PlasmidDetailsProps,

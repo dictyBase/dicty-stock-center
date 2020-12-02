@@ -3,10 +3,7 @@ type PhenotypeData = {
   note: string
   assay?: string
   environment?: string
-  publication: {
-    doi: string
-    id: string
-  }
+  publication: Publication
 }
 
 type StrainDetails = {
@@ -28,10 +25,7 @@ type StrainDetails = {
   }
   depositor: string
   plasmid: string
-  publications: Array<{
-    doi: string
-    id: string
-  }>
+  publications: Array<Publication>
   dbxrefs: Array<string>
   genes: Array<{
     name: string
@@ -50,10 +44,7 @@ type PlasmidDetails = {
   name: string
   summary: string
   depositor: string
-  publications: Array<{
-    id: string
-    doi: string
-  }>
+  publications: Array<Publication>
   dbxrefs: Array<string>
   genes: Array<{
     name: string

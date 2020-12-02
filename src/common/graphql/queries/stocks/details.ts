@@ -9,7 +9,14 @@ const GET_PLASMID = gql`
       depositor
       publications {
         id
-        doi
+        pub_date
+        title
+        journal
+        volume
+        pages
+        authors {
+          last_name
+        }
       }
       dbxrefs
       genes {
@@ -40,7 +47,14 @@ const GET_STRAIN = gql`
       dbxrefs
       publications {
         id
-        doi
+        pub_date
+        title
+        journal
+        volume
+        pages
+        authors {
+          last_name
+        }
       }
       genes {
         name
@@ -58,8 +72,15 @@ const GET_STRAIN = gql`
         assay
         environment
         publication {
-          doi
           id
+          pub_date
+          title
+          journal
+          volume
+          pages
+          authors {
+            last_name
+          }
         }
       }
     }
