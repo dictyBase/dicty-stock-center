@@ -30,10 +30,10 @@ type Props = {
 
 const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
   const classes = useStyles()
-  const [value, setValue] = React.useState(0)
+  const [tabValue, setTabValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue)
+    setTabValue(newValue)
   }
 
   return (
@@ -43,18 +43,18 @@ const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
           <List className={classes.list}>
             <ListItem divider className={classes.cardHeader}>
               <StrainDetailsLeftCardHeader
-                value={value}
+                value={tabValue}
                 handleChange={handleChange}
                 species={species}
                 phenotypeLength={phenotypes.length}
               />
             </ListItem>
-            <TabPanel value={value} index={0}>
+            <TabPanel value={tabValue} index={0}>
               {rows.map((data: any) => (
                 <DetailsListItem data={data} key={data.id} />
               ))}
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={tabValue} index={1}>
               <PhenotypeList phenotypes={phenotypes} />
             </TabPanel>
           </List>
