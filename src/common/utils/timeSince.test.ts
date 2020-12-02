@@ -27,7 +27,7 @@ describe("utils/timeSince", () => {
   it("should return hours", () => {
     expect(timeSince("2020-01-02T09:01:58.135Z")).toBe("2 hours")
   })
-  it("should return hours", () => {
+  it("should return minutes", () => {
     expect(timeSince("2020-01-02T10:59:48.135Z")).toBe("2 minutes")
   })
   it("should return seconds", () => {
