@@ -1,12 +1,9 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import StrainDetailsLeftCardHeader from "./StrainDetailsLeftCardHeader"
-import Grid from "@material-ui/core/Grid"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import Typography from "@material-ui/core/Typography"
 
-describe("Stock/Details/Strains/StrainDetailsLeftCardHeader", () => {
+describe("features/Stocks/Details/Strains/StrainDetailsLeftCardHeader", () => {
   const handleChangeSpy = jest.fn()
   const props = {
     species: "Dictyostelium discoideum",
@@ -14,20 +11,33 @@ describe("Stock/Details/Strains/StrainDetailsLeftCardHeader", () => {
     handleChange: handleChangeSpy,
     phenotypeLength: 3,
   }
-  const wrapper = shallow(<StrainDetailsLeftCardHeader {...props} />)
+
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Grid).exists()).toBe(true)
-      expect(wrapper.find(Typography).exists()).toBe(true)
-      expect(wrapper.find(Tabs).exists()).toBe(true)
-      expect(wrapper.find(Tab)).toHaveLength(2)
+    it("renders expected tabs", () => {
+      render(<StrainDetailsLeftCardHeader {...props} />)
+      const tabs = screen.getAllByRole("tab")
+      expect(tabs).toHaveLength(2)
+      expect(
+        screen.getByRole("tab", { name: "Strain Details" }),
+      ).toBeInTheDocument()
+      expect(
+        screen.getByRole("tab", { name: "Phenotypes (3)" }),
+      ).toBeInTheDocument()
+    })
+
+    it("displays species name", () => {
+      render(<StrainDetailsLeftCardHeader {...props} />)
+      expect(screen.getByTestId("strain-species")).toHaveTextContent(
+        props.species,
+      )
     })
   })
   describe("tab interaction", () => {
     it("calls handleChange on tab click", () => {
-      wrapper.find(Tabs).simulate("change")
-      wrapper.update()
-      expect(handleChangeSpy).toHaveBeenCalled()
+      render(<StrainDetailsLeftCardHeader {...props} />)
+      const phenotypeTab = screen.getByRole("tab", { name: "Phenotypes (3)" })
+      userEvent.click(phenotypeTab)
+      expect(handleChangeSpy).toHaveBeenCalledTimes(1)
     })
   })
 })
