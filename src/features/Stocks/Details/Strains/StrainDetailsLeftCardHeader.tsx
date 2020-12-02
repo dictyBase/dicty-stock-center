@@ -94,7 +94,9 @@ const StrainDetailsLeftCardHeader = ({
       <Grid container justify="space-between" alignItems="center">
         <Grid item>{content}</Grid>
         <Grid item>
-          <Typography variant="body1">{species}</Typography>
+          <Typography variant="body1" data-testid="strain-species">
+            {species}
+          </Typography>
         </Grid>
       </Grid>
     </Grid>
