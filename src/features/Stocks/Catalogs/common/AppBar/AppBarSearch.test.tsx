@@ -80,7 +80,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   describe("initial render", () => {
     it("should render one search box", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("textbox")).toHaveLength(1)
+      expect(screen.getByRole("textbox")).toBeInTheDocument()
     })
     it("should render two buttons", () => {
       render(<MockComponent />)
@@ -88,7 +88,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
     it("should render one dropdown with three items", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("combobox")).toHaveLength(1)
+      expect(screen.getByRole("combobox")).toBeInTheDocument()
       expect(screen.getAllByRole("option")).toHaveLength(3)
     })
   })

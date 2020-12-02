@@ -18,8 +18,8 @@ describe("Stocks/Details/common/GenesDisplay", () => {
     const genes = [] as Gene[]
     it("renders no LinkTags if gene list is empty", () => {
       render(<GenesDisplay genes={genes} />)
-      const links = screen.queryAllByRole("link")
-      expect(links).toHaveLength(0)
+      const links = screen.queryByRole("link")
+      expect(links).not.toBeInTheDocument()
     })
   })
 })
