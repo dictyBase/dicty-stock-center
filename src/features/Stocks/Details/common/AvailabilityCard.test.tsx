@@ -5,6 +5,7 @@ import {
   availableStrain,
   unavailableStrain,
 } from "features/Stocks/Details/Strains/mockStrainData"
+import { availablePlasmid } from "features/Stocks/Details/Plasmids/mockPlasmidData"
 import { MockCartProvider } from "common/utils/testing"
 
 describe("Stocks/Details/common/AvailabilityCard", () => {
@@ -13,6 +14,17 @@ describe("Stocks/Details/common/AvailabilityCard", () => {
       render(
         <MockCartProvider mocks={[]} addedItems={[]}>
           <AvailabilityCard data={availableStrain} />
+        </MockCartProvider>,
+      )
+      expect(screen.getByText(/Available/)).toBeInTheDocument()
+    })
+  })
+
+  describe("available plasmid", () => {
+    it("provides available card if in stock", () => {
+      render(
+        <MockCartProvider mocks={[]} addedItems={[]}>
+          <AvailabilityCard data={availablePlasmid} />
         </MockCartProvider>,
       )
       expect(screen.getByText(/Available/)).toBeInTheDocument()
