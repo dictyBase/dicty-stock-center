@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PhenotypePublicationDisplay from "./PhenotypePublicationDisplay"
+import PublicationDisplay from "common/components/PublicationsDisplay"
 import characterConverter from "common/utils/characterConverter"
 import { StrainWithPhenotype } from "../Details/types/props"
 
@@ -31,9 +31,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
 
   let pubDisplay
   if (strain.publications && strain.publications.length) {
-    pubDisplay = (
-      <PhenotypePublicationDisplay publication={strain.publications[0]} />
-    )
+    pubDisplay = <PublicationDisplay publications={strain.publications} />
   } else {
     pubDisplay = <React.Fragment />
   }

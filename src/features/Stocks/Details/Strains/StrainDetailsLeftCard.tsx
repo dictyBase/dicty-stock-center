@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
-import PublicationsDisplay from "features/Stocks/Details/common/PublicationsDisplay"
+import PublicationsDisplay from "common/components/PublicationsDisplay"
 import {
   StrainDetails,
   StrainDetailsProps,

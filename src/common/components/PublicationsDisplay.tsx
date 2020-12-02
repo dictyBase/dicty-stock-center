@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import ExternalLinkIcon from "common/components/ExternalLinkIcon"
-import { Publication } from "../Details/types/props"
+import { Publication } from "features/Stocks/Details/types/props"
 
 const useStyles = makeStyles({
   bold: {
@@ -24,31 +24,35 @@ const getYearFromTimestamp = (date: string) => {
 }
 
 type Props = {
-  publication?: Publication
+  publications?: Array<Publication>
 }
 
-const PhenotypePublicationDisplay = ({ publication }: Props) => {
+const PublicationsDisplay = ({ publications }: Props) => {
   const classes = useStyles()
 
-  if (!publication) {
+  if (!publications) {
     return <div />
   }
 
   return (
-    <span data-testid="phenotype-publication-display">
-      <span className={classes.bold}>
-        {listAuthors(publication.authors)} (
-        {getYearFromTimestamp(publication.pub_date)})
-      </span>{" "}
-      '{publication.title}' <em>{publication.journal}</em> {publication.volume}:
-      {publication.pages}{" "}
-      <ExternalLinkIcon
-        url={`/publication/${publication.id}`}
-        title="Visit dictyBase publication page"
-      />
-    </span>
+    <div>
+      {publications.map((publication, index) => (
+        <span data-testid="phenotype-publication-display">
+          <span className={classes.bold}>
+            {listAuthors(publication.authors)} (
+            {getYearFromTimestamp(publication.pub_date)})
+          </span>{" "}
+          '{publication.title}' <em>{publication.journal}</em>{" "}
+          {publication.volume}:{publication.pages}{" "}
+          <ExternalLinkIcon
+            url={`/publication/${publication.id}`}
+            title="Visit dictyBase publication page"
+          />
+        </span>
+      ))}
+    </div>
   )
 }
 
 export { listAuthors, getYearFromTimestamp }
-export default PhenotypePublicationDisplay
+export default PublicationsDisplay

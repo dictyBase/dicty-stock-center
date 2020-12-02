@@ -19,8 +19,32 @@ const availableStrain = {
   },
   depositor: "Adrian Harwood",
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
-  dbxrefs: ["11130075"],
-  publications: [{ id: "11130075", doi: "10.1038/35047099" }],
+  dbxrefs: ["11084033"],
+  publications: [
+    {
+      id: "11084033",
+      pub_date: "2000-11-17T00:00:00.000Z",
+      title:
+        "Myosin I phosphorylation is increased by chemotactic stimulation.",
+      journal: "The Journal of biological chemistry",
+      volume: "276",
+      pages: "5235-5239",
+      authors: [
+        {
+          last_name: "Gliksman",
+        },
+        {
+          last_name: "Santoyo",
+        },
+        {
+          last_name: "Novak",
+        },
+        {
+          last_name: "Titus",
+        },
+      ],
+    },
+  ],
   genes: [{ name: "aarA" }],
   phenotypes: [],
   in_stock: true,
@@ -46,7 +70,31 @@ const unavailableStrain = {
   depositor: "Adrian Harwood",
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11130075"],
-  publications: [{ id: "11130075", doi: "10.1038/35047099" }],
+  publications: [
+    {
+      id: "11084033",
+      pub_date: "2000-11-17T00:00:00.000Z",
+      title:
+        "Myosin I phosphorylation is increased by chemotactic stimulation.",
+      journal: "The Journal of biological chemistry",
+      volume: "276",
+      pages: "5235-5239",
+      authors: [
+        {
+          last_name: "Gliksman",
+        },
+        {
+          last_name: "Santoyo",
+        },
+        {
+          last_name: "Novak",
+        },
+        {
+          last_name: "Titus",
+        },
+      ],
+    },
+  ],
   genes: [{ name: "aarA" }],
   phenotypes: [],
   in_stock: false,
@@ -81,8 +129,27 @@ const strainWithPhenotype = {
       assay: "fruiting body development",
       environment: "on non-nutrient agar",
       publication: {
-        id: "29704004",
-        doi: "10.1038/s41598-018-24915-w",
+        id: "11084033",
+        pub_date: "2000-11-17T00:00:00.000Z",
+        title:
+          "Myosin I phosphorylation is increased by chemotactic stimulation.",
+        journal: "The Journal of biological chemistry",
+        volume: "276",
+        pages: "5235-5239",
+        authors: [
+          {
+            last_name: "Gliksman",
+          },
+          {
+            last_name: "Santoyo",
+          },
+          {
+            last_name: "Novak",
+          },
+          {
+            last_name: "Titus",
+          },
+        ],
       },
     },
   ],
