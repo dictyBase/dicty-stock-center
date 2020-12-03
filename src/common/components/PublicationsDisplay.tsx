@@ -37,7 +37,7 @@ const PublicationsDisplay = ({ publications }: Props) => {
   return (
     <div>
       {publications.map((publication, index) => (
-        <span data-testid="phenotype-publication-display">
+        <span data-testid="phenotype-publication-display" key={index}>
           <span className={classes.bold}>
             {listAuthors(publication.authors)} (
             {getYearFromTimestamp(publication.pub_date)})
