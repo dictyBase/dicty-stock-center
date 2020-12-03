@@ -8,6 +8,32 @@ import {
   StrainDetailsProps,
 } from "features/Stocks/Details/types/props"
 
+/**
+ * genotypeFormatter converts a given genotype string into correctly formatted
+ * italics with drug resistance at the end
+ */
+const genotypeFormatter = (genotype: string) => {
+  const drugResistances = ["neoR", "bsR", "hygR", "tetR", "phleoR", "bleoR"]
+
+  const splitGenotype = genotype.split(",")
+
+  // get array of italicized genotypes
+  const nonDrugResistance = splitGenotype
+    .filter((item: string) => !drugResistances.includes(item))
+    .map((item) => <em>{item},</em>)
+
+  // get array of drug resistances then join them with commas except for last one
+  const drugResistanceItems = splitGenotype.filter((item: string) =>
+    drugResistances.includes(item),
+  )
+  const lastItem = drugResistanceItems[drugResistanceItems.length - 1]
+  const lastItems = drugResistanceItems.length
+    ? drugResistanceItems.join(",")
+    : lastItem
+
+  return [nonDrugResistance, lastItems]
+}
+
 const strainRowsGenerator = (
   data: StrainDetails,
   parent: any,
@@ -67,7 +93,7 @@ const strainRowsGenerator = (
   {
     id: 10,
     title: "Genotypes",
-    content: data.genotypes,
+    content: genotypeFormatter(data.genotypes[0]),
   },
   {
     id: 11,
