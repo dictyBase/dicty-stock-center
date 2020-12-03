@@ -16,12 +16,10 @@ const genotypeFormatter = (genotype: string) => {
   const drugResistances = ["neoR", "bsR", "hygR", "tetR", "phleoR", "bleoR"]
 
   const splitGenotype = genotype.split(",")
-
   // get array of italicized genotypes
   const nonDrugResistance = splitGenotype
     .filter((item: string) => !drugResistances.includes(item))
     .map((item) => <em>{item},</em>)
-
   // get array of drug resistances then join them with commas except for last one
   const drugResistanceItems = splitGenotype.filter((item: string) =>
     drugResistances.includes(item),
@@ -130,4 +128,5 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   )
 }
 
+export { genotypeFormatter }
 export default StrainDetailsLeftCard
