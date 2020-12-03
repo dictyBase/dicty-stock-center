@@ -48,6 +48,12 @@ const infoLinks = [
     routerAware: true,
     newWindow: false,
   },
+  {
+    name: "Shipping Information",
+    to: "/information/shipping",
+    routerAware: true,
+    newWindow: false,
+  },
 ]
 
 const materialsLinks = [
