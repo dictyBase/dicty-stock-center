@@ -11,7 +11,7 @@ import {
 
 const strainRowsGenerator = (
   data: StrainDetails,
-  parent: any,
+  parent: string | JSX.Element,
   publications: JSX.Element,
   genes: JSX.Element,
   genotypes: JSX.Element,
