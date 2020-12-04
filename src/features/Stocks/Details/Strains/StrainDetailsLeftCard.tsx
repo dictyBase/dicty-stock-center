@@ -3,40 +3,18 @@ import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
 import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
+import GenotypesDisplay from "common/components/GenotypesDisplay"
 import {
   StrainDetails,
   StrainDetailsProps,
 } from "features/Stocks/Details/types/props"
-
-/**
- * genotypeFormatter converts a given genotype string into correctly formatted
- * italics with drug resistance at the end
- */
-const genotypeFormatter = (genotype: string) => {
-  const drugResistances = ["neoR", "bsR", "hygR", "tetR", "phleoR", "bleoR"]
-
-  const splitGenotype = genotype.split(",")
-  // get array of italicized genotypes
-  const nonDrugResistance = splitGenotype
-    .filter((item: string) => !drugResistances.includes(item))
-    .map((item) => <em>{item},</em>)
-  // get array of drug resistances then join them with commas except for last one
-  const drugResistanceItems = splitGenotype.filter((item: string) =>
-    drugResistances.includes(item),
-  )
-  const lastItem = drugResistanceItems[drugResistanceItems.length - 1]
-  const lastItems = drugResistanceItems.length
-    ? drugResistanceItems.join(",")
-    : lastItem
-
-  return [nonDrugResistance, lastItems]
-}
 
 const strainRowsGenerator = (
   data: StrainDetails,
   parent: any,
   publications: JSX.Element,
   genes: JSX.Element,
+  genotypes: JSX.Element,
 ) => [
   {
     id: 0,
@@ -91,7 +69,7 @@ const strainRowsGenerator = (
   {
     id: 10,
     title: "Genotypes",
-    content: genotypeFormatter(data.genotypes[0]),
+    content: genotypes,
   },
   {
     id: 11,
@@ -117,6 +95,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
     parent,
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
+    <GenotypesDisplay genotypes={data.genotypes[0]} />,
   )
 
   return (
@@ -128,5 +107,4 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   )
 }
 
-export { genotypeFormatter }
 export default StrainDetailsLeftCard
