@@ -14,8 +14,8 @@ const GenotypesDisplay = ({ genotypes }: Props) => {
   const { nonDrugResistances, drugResistances } = useGenotypes(genotypes)
 
   return (
-    <span>
-      <em>
+    <span data-testid="all-genotypes">
+      <em data-testid="italicized-genotypes">
         {nonDrugResistances.map((item: string, index: number) =>
           drugResistances.length ? `${item},` : formatElements(item, index),
         )}
