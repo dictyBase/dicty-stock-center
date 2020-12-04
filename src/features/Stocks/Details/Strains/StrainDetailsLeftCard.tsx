@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
-import GenesDisplay from "features/Stocks/Details/common/GenesDisplay"
+import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
 import {
