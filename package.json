@@ -86,7 +86,7 @@
     "@types/react-window-infinite-loader": "^1.0.3",
     "@types/sinon": "^9.0.9",
     "@types/testing-library__react-hooks": "^3.4.1",
-    "@types/yup": "^0.29.9",
+    "@types/yup": "^0.29.10",
     "apollo-boost": "^0.4.8",
     "core-js": "^3.8.0",
     "cypress": "^5.5.0",
