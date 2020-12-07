@@ -10,16 +10,6 @@ import { UPDATE_CONTENT } from "common/graphql/mutations"
 import { Content } from "./types"
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    width: "75%",
-    [theme.breakpoints.up("xl")]: {
-      width: "1100px",
-    },
-  },
   editor: {
     "& a": {
       cursor: "pointer",
@@ -85,7 +75,7 @@ const EditInfoPage = ({ location }: Props) => {
 
   return (
     <Grid container justify="center">
-      <Grid item xs={11} lg={8}>
+      <Grid item>
         <div className={classes.editor}>
           <PageEditor
             pageContent={data.content}

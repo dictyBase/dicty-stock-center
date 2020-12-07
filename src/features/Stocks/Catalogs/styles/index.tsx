@@ -4,10 +4,6 @@ const useStyles = makeStyles({
   appBar: {
     backgroundColor: "#0059b3 !important",
   },
-  layout: {
-    width: "95%",
-    margin: "auto",
-  },
   catalogPaper: {
     height: 600,
     width: "100%",

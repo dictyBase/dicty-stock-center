@@ -2,12 +2,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import { Theme } from "@material-ui/core"
 
 const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-  },
   btnGrid: {
     marginTop: "20px",
     marginRight: "5px",
@@ -49,19 +43,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     minWidth: 0,
   },
   itemsContainer: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    width: "75%",
     "& tr": {
       padding: "10px",
     },
     "& td": {
       fontSize: "1rem",
-    },
-    [theme.breakpoints.up("xl")]: {
-      width: "1270px",
     },
   },
   itemsHeader: {

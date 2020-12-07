@@ -20,18 +20,6 @@ const useStyles = makeStyles((theme) => ({
   sopLink: {
     color: "#961818",
   },
-  container: {
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    width: "80%",
-    lineHeight: 1.6,
-
-    [theme.breakpoints.up("xl")]: {
-      width: "1350px",
-    },
-  },
   header: {
     paddingBottom: "0px !important",
     "& h1": {

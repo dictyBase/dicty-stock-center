@@ -1,11 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
-  layout: {
-    width: "85%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   header: {
     fontSize: "32px",
     marginTop: "25px",

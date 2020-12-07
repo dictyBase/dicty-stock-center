@@ -10,7 +10,6 @@ import AvailabilityCard from "features/Stocks/Details/common/AvailabilityCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN } from "common/graphql/queries/stocks/details"
 import characterConverter from "common/utils/characterConverter"
-import useStyles from "features/Stocks/Details/styles"
 
 type Params = {
   /** Stock ID from URL */
@@ -24,7 +23,6 @@ type Params = {
 
 const StrainDetailsContainer = () => {
   const { id } = useParams<Params>()
-  const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STRAIN, {
     variables: { id },
     errorPolicy: "all",
@@ -40,7 +38,7 @@ const StrainDetailsContainer = () => {
   }
 
   return (
-    <Grid container className={classes.root} spacing={2} justify="center">
+    <Grid container spacing={2} justify="center">
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta

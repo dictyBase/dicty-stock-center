@@ -9,7 +9,6 @@ import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_PLASMID } from "common/graphql/queries/stocks/details"
-import useStyles from "features/Stocks/Details/styles"
 
 type Params = {
   /** Stock ID from URL */
@@ -23,7 +22,6 @@ type Params = {
 
 const PlasmidDetailsContainer = () => {
   const { id } = useParams<Params>()
-  const classes = useStyles()
   const { loading, error, data } = useQuery(GET_PLASMID, {
     variables: { id },
   })
@@ -34,7 +32,7 @@ const PlasmidDetailsContainer = () => {
   const title = `Plasmid Details for ${data.plasmid.name}`
 
   return (
-    <Grid container spacing={2} className={classes.root}>
+    <Grid container spacing={2}>
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta
@@ -55,5 +53,4 @@ const PlasmidDetailsContainer = () => {
   )
 }
 
-export { PlasmidDetailsContainer }
 export default PlasmidDetailsContainer
