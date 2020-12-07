@@ -42,7 +42,7 @@ const Homepage = () => {
     unsupportedBrowser = true
   }
   return (
-    <div className={classes.container}>
+    <div>
       <Helmet>
         <title>Dicty Stock Center</title>
         <meta name="description" content={metaDesc} />

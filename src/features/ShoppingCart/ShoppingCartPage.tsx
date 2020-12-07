@@ -14,7 +14,7 @@ const ShoppingCartPage = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
+    <div>
       <Helmet>
         <title>Shopping Cart - Dicty Stock Center</title>
         <meta

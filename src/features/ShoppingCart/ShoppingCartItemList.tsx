@@ -7,11 +7,6 @@ import ShoppingCartItem from "./ShoppingCartItem"
 import { useCartStore } from "./CartStore"
 
 const useStyles = makeStyles({
-  layout: {
-    width: "85%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   itemsHeader: {
     padding: "15px",
     color: "#fff",
@@ -50,7 +45,7 @@ const ShoppingCartItemList = () => {
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.layout}>
+    <Grid container>
       <Grid item xs={12} className={classes.itemsHeader}>
         Your Current Order
       </Grid>

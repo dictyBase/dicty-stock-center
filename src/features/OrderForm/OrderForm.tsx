@@ -58,7 +58,7 @@ const OrderForm = () => {
   }
 
   return (
-    <Grid container spacing={2} className={classes.layout}>
+    <Grid container spacing={2}>
       <Helmet>
         <title>Order Form - Dicty Stock Center</title>
         <meta name="description" content="Order form for Dicty Stock Center" />

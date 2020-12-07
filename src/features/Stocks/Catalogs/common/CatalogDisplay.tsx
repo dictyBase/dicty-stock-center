@@ -32,7 +32,7 @@ const CatalogDisplay = ({
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.layout}>
+    <Grid container>
       <Grid item xs={12}>
         <CatalogHeader title={`${stockType} Catalog`} />
       </Grid>

@@ -12,9 +12,7 @@ import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/li
 import { ListStrainsWithAnnotation } from "common/graphql/pagination"
 
 const useStyles = makeStyles({
-  layout: {
-    width: "95%",
-    margin: "auto",
+  container: {
     textAlign: "center",
   },
   gridItem: {
@@ -128,7 +126,7 @@ const PhenotypeContainer = () => {
           content={`Dicty Stock Center search results for strains with ${phenotype}`}
         />
       </Helmet>
-      <Grid container className={classes.layout}>
+      <Grid container className={classes.container}>
         <Grid item xs={12} className={classes.gridItem}>
           <ResultsHeader property="Phenotype" description={phenotype} />
         </Grid>
