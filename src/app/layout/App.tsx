@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from "react"
+import Container from "@material-ui/core/Container"
 import { useQuery } from "@apollo/client"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
@@ -117,13 +118,14 @@ const App = () => {
         {(items: Array<HeaderProps>) => items.map(generateLinks)}
       </Header>
       <Navbar items={navbarData} theme={navTheme} />
-      <br />
       <CartProvider>
         <main className={classes.main}>
-          <HeaderRow />
-          <ErrorBoundary>
-            <RenderRoutes />
-          </ErrorBoundary>
+          <Container maxWidth="lg">
+            <HeaderRow />
+            <ErrorBoundary>
+              <RenderRoutes />
+            </ErrorBoundary>
+          </Container>
         </main>
       </CartProvider>
       <Footer items={footerData} />
