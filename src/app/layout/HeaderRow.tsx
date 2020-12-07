@@ -1,12 +1,13 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Breadcrumbs from "common/components/Breadcrumbs"
 import CartIcon from "features/ShoppingCart/CartIcon"
 
 const useStyles = makeStyles({
   container: {
-    margin: "auto",
-    width: "95%",
+    // margin: "auto",
+    // width: "95%",
   },
 })
 
@@ -19,8 +20,11 @@ const HeaderRow = () => {
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.container}>
-      <Grid item container justify="flex-end">
+    <Grid container justify="space-between" className={classes.container}>
+      <Grid item>
+        <Breadcrumbs />
+      </Grid>
+      <Grid item>
         <CartIcon />
       </Grid>
     </Grid>
