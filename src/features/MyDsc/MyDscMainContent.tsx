@@ -18,13 +18,16 @@ type Props = {
 
 const MyDscMainContent = ({ data, provider }: Props) => {
   const classes = useStyles()
-  const name = `${data.first_name} ${data.last_name}`
+
+  const { first_name, last_name, id, email } = data
+
+  const name = `${first_name} ${last_name}`
 
   return (
     <PanelWrapper title="Personal Information">
       <div className={classes.innerPanel}>
-        <h3>Id: {data.id}</h3>
-        <h3>Email: {data.email}</h3>
+        <h3>Id: {id}</h3>
+        <h3>Email: {email}</h3>
         <h3>Name: {name}</h3>
         <h3>Provider: {provider}</h3>
       </div>
