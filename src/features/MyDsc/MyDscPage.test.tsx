@@ -3,7 +3,6 @@ import { mount } from "enzyme"
 import MyDscPage from "./MyDscPage"
 import { BrowserRouter } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
-import MyDscBreadcrumbs from "./MyDscBreadcrumbs"
 import MyDscHeader from "./MyDscHeader"
 import MyDscMainContent from "./MyDscMainContent"
 import { AuthContext, authReducer } from "features/Authentication/AuthStore"
@@ -31,7 +30,6 @@ describe("MyDsc/MyDscPage", () => {
   describe("initial render", () => {
     const wrapper = mount(<MockProvider />)
     it("always renders initial components", () => {
-      expect(wrapper.find(MyDscBreadcrumbs)).toHaveLength(1)
       expect(wrapper.find(MyDscHeader)).toHaveLength(1)
       expect(wrapper.find(MyDscMainContent)).toHaveLength(1)
       expect(wrapper.find(Grid)).toExist()
