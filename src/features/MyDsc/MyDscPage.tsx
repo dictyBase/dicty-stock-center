@@ -1,6 +1,5 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import MyDscBreadcrumbs from "./MyDscBreadcrumbs"
 import MyDscHeader from "./MyDscHeader"
 import MyDscMainContent from "./MyDscMainContent"
 import { useAuthStore } from "features/Authentication/AuthStore"
@@ -18,9 +17,6 @@ const MyDscPage = () => {
     <Grid container justify="center" className={classes.container}>
       <Grid item xs={12}>
         <MyDscHeader />
-      </Grid>
-      <Grid item xs={12}>
-        <MyDscBreadcrumbs />
       </Grid>
       <Grid item xs={8}>
         <MyDscMainContent data={user} provider={provider} />
