@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   gridItem: {
+    marginTop: "10px",
     marginBottom: "20px",
   },
   resultsText: {

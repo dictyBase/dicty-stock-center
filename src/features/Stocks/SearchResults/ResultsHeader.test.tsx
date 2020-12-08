@@ -10,10 +10,9 @@ describe("Stocks/SearchResults/ResultsHeader", () => {
   render(<ResultsHeader {...props} />)
   describe("initial render", () => {
     it("renders header with expected text", () => {
-      const header = screen.getByRole("heading")
-      expect(header).toHaveTextContent(
-        "Phenotype Search Results for abolished protein phosphorylation",
-      )
+      const headers = screen.getAllByRole("heading")
+      expect(headers[0]).toHaveTextContent("Phenotype Search Results")
+      expect(headers[1]).toHaveTextContent("abolished protein phosphorylation")
     })
   })
 })

@@ -1,5 +1,12 @@
 import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
+
+const useStyles = makeStyles({
+  title: {
+    marginBottom: "10px",
+  },
+})
 
 type Props = {
   /** Type of search results */
@@ -8,10 +15,19 @@ type Props = {
   description: string
 }
 
-const ResultsHeader = ({ property, description }: Props) => (
-  <Typography variant="h5">
-    {property} Search Results for {description}
-  </Typography>
-)
+const ResultsHeader = ({ property, description }: Props) => {
+  const classes = useStyles()
+
+  return (
+    <>
+      <Typography variant="h4" className={classes.title}>
+        {property} Search Results
+      </Typography>
+      <Typography variant="h6" color="textSecondary">
+        <em>{description}</em>
+      </Typography>
+    </>
+  )
+}
 
 export default ResultsHeader
