@@ -1,8 +1,8 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import ExpansionPanel from "@material-ui/core/ExpansionPanel"
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"
+import Accordion from "@material-ui/core/Accordion"
+import AccordionSummary from "@material-ui/core/AccordionSummary"
+import AccordionDetails from "@material-ui/core/AccordionDetails"
 import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +31,7 @@ type Props = {
   /** The title to display for the panel */
   title: string
   /** Children passed to component */
-  children: any
+  children: React.ReactNode
 }
 
 /**
@@ -44,16 +44,21 @@ const PanelWrapper = ({ title, children }: Props) => {
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel defaultExpanded>
-        <ExpansionPanelSummary className={classes.summary}>
-          <Typography className={classes.heading} component={"div"}>
+      <Accordion defaultExpanded>
+        <AccordionSummary className={classes.summary}>
+          <Typography
+            className={classes.heading}
+            component={"div"}
+            data-testid="panel-title">
             <h3>{title}</h3>
           </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
+        </AccordionSummary>
+        <AccordionDetails
+          className={classes.details}
+          data-testid="panel-details">
           <div className={classes.innerContent}>{children}</div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     </div>
   )
 }
