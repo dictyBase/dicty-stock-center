@@ -46,11 +46,7 @@ const StrainDetailsContainer = () => {
           content={`Dicty Stock Center strain details page for ${label}`}
         />
       </Helmet>
-      <DetailsHeader
-        stockType="strain"
-        id={data.strain.id}
-        name={data.strain.label}
-      />
+      <DetailsHeader id={data.strain.id} name={data.strain.label} />
       <StrainDetailsLeftCard data={data.strain} />
       <Grid item xs={12} md={3} lg={2}>
         <AvailabilityCard data={data.strain} />

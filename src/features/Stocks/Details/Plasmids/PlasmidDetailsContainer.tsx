@@ -40,11 +40,7 @@ const PlasmidDetailsContainer = () => {
           content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
         />
       </Helmet>
-      <DetailsHeader
-        stockType="plasmid"
-        id={data.plasmid.id}
-        name={data.plasmid.name}
-      />
+      <DetailsHeader id={data.plasmid.id} name={data.plasmid.name} />
       <PlasmidDetailsLeftCard data={data.plasmid} />
       <Grid item xs={12} md={3} lg={2}>
         <AvailabilityCard data={data.plasmid} />

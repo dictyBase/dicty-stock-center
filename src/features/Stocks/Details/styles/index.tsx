@@ -6,15 +6,6 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   header: {
     textAlign: "center",
   },
-  backButton: {
-    marginTop: "10px",
-    textAlign: "left",
-    color: "#5f6368",
-    "&:hover": {
-      backgroundColor: "transparent",
-      color: "inherit",
-    },
-  },
   cardHeader: {
     paddingTop: "5px",
     color: "#002f5e",
