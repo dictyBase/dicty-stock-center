@@ -1,9 +1,17 @@
 import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import { default as MuiBreadCrumbs } from "@material-ui/core/Breadcrumbs"
 import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import { useLocation, Link as RouterLink } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import capitalizeString from "common/utils/capitalizeString"
+
+const useStyles = makeStyles({
+  icon: {
+    marginRight: "5px",
+  },
+})
 
 const breadcrumbNameMap: { [key: string]: string } = {
   "/information": "Information",
@@ -15,6 +23,7 @@ const breadcrumbNameMap: { [key: string]: string } = {
 }
 
 const Breadcrumbs = () => {
+  const classes = useStyles()
   const location = useLocation()
   // get list of pathnames, filter out empty strings
   const pathnames = location.pathname.split("/").filter((x) => x)
@@ -23,6 +32,7 @@ const Breadcrumbs = () => {
     <MuiBreadCrumbs aria-label="breadcrumb">
       {pathnames.length > 0 && (
         <Link color="inherit" component={RouterLink} to="/">
+          <FontAwesomeIcon icon="home" className={classes.icon} />
           Home
         </Link>
       )}
@@ -30,7 +40,7 @@ const Breadcrumbs = () => {
         const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`
         const isLast = index === pathnames.length - 1
         return isLast ? (
-          <Typography key={routeTo}>
+          <Typography key={routeTo} color="textPrimary">
             {capitalizeString(name).replaceAll("+", " ")}
           </Typography>
         ) : (
