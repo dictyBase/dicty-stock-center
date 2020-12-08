@@ -28,7 +28,7 @@ type Props = {
 const BreadcrumbsLink = ({ pathname }: Props) => {
   if (nonClickableRoutes.includes(pathname)) {
     return (
-      <Typography color="textPrimary">
+      <Typography color="textPrimary" data-testid="breadcrumbs-text">
         {capitalizeFirstCharacter(pathname)}
       </Typography>
     )
