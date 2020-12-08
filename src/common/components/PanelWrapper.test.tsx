@@ -1,19 +1,18 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import PanelWrapper from "./PanelWrapper"
-import ExpansionPanel from "@material-ui/core/ExpansionPanel"
 
-describe("PanelWrapper", () => {
-  const props = {
-    title: "Shipping Address Information",
-  }
-  const wrapper = shallow(<PanelWrapper {...props}>Example panel</PanelWrapper>)
-  const panel = wrapper.find(ExpansionPanel)
-
-  it("always renders one ExpansionPanel component", () => {
-    expect(panel.length).toBe(1)
-  })
+describe("common/components/PanelWrapper", () => {
   it("displays the correct text", () => {
-    expect(panel.contains("Example panel")).toBe(true)
+    render(
+      <PanelWrapper title="Shipping Address Information">
+        Example panel
+      </PanelWrapper>,
+    )
+    const title = screen.getByTestId("panel-title")
+    const content = screen.getByTestId("panel-details")
+
+    expect(title).toHaveTextContent("Shipping Address Information")
+    expect(content).toHaveTextContent("Example panel")
   })
 })
