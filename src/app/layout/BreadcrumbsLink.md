@@ -1,0 +1,3 @@
+```js
+<BreadcrumbsLink pathname="strains" />
+```
