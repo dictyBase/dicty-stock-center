@@ -5,7 +5,8 @@ import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import { useLocation, Link as RouterLink } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import capitalizeString from "common/utils/capitalizeString"
+import BreadcrumbsLink from "./BreadcrumbsLink"
+import { capitalizeEveryWordInString } from "common/utils/stringCapitalizations"
 
 const useStyles = makeStyles({
   icon: {
@@ -13,14 +14,31 @@ const useStyles = makeStyles({
   },
 })
 
-const breadcrumbNameMap: { [key: string]: string } = {
-  "/information": "Information",
-  "/order": "Order",
-  "/mydsc": "MyDSC",
-  "/strains": "Strains",
-  "/plasmids": "Plasmids",
-  "/phenotypes": "Phenotypes",
+/**
+ * convertBreadcrumbTitle takes a given breadcrumb and converts it into
+ * the desired format
+ */
+const convertBreadcrumbTitle = (crumb: string) => {
+  if (crumb === "faq") {
+    return "FAQs"
+  }
+  if (crumb === "mydsc") {
+    return "MyDSC"
+  }
+  const cleanString = crumb.replaceAll("+", " ").replaceAll("-", " ")
+  /** don't return uppercase words if crumb is for phenotype
+   * i.e. abolished+protein+phosphorylation
+   */
+  if (crumb.includes("+")) {
+    return cleanString
+  }
+  // for everything else, capitalize
+  return capitalizeEveryWordInString(cleanString)
 }
+
+/**
+ * Breadcrumbs displays navigation breadcrumbs for the DSC app.
+ */
 
 const Breadcrumbs = () => {
   const classes = useStyles()
@@ -33,20 +51,17 @@ const Breadcrumbs = () => {
       {pathnames.length > 0 && (
         <Link color="inherit" component={RouterLink} to="/">
           <FontAwesomeIcon icon="home" className={classes.icon} />
-          Home
+          DSC Home
         </Link>
       )}
-      {pathnames.map((name, index) => {
-        const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`
+      {pathnames.map((pathname, index) => {
         const isLast = index === pathnames.length - 1
         return isLast ? (
-          <Typography key={routeTo} color="textPrimary">
-            {capitalizeString(name).replaceAll("+", " ")}
+          <Typography key={pathname} color="textPrimary">
+            {convertBreadcrumbTitle(pathname)}
           </Typography>
         ) : (
-          <Link color="inherit" key={name} component={RouterLink} to={routeTo}>
-            {breadcrumbNameMap[routeTo]}
-          </Link>
+          <BreadcrumbsLink key={pathname} pathname={pathname} />
         )
       })}
     </MuiBreadCrumbs>

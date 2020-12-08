@@ -6,6 +6,7 @@ const pageTitles = {
   order: "Order Information",
   "other-stock-centers": "Other Stock Centers",
   payment: "Payment Information",
+  shipping: "Shipping Information",
 }
 
 /**
