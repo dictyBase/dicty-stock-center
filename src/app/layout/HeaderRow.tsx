@@ -1,6 +1,6 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import Breadcrumbs from "common/components/Breadcrumbs"
+import Breadcrumbs from "./Breadcrumbs"
 import CartIcon from "features/ShoppingCart/CartIcon"
 
 /**
