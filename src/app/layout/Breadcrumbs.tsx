@@ -49,7 +49,11 @@ const Breadcrumbs = () => {
   return (
     <MuiBreadCrumbs aria-label="breadcrumb">
       {pathnames.length > 0 && (
-        <Link color="inherit" component={RouterLink} to="/">
+        <Link
+          color="inherit"
+          component={RouterLink}
+          to="/"
+          data-testid="breadcrumbs-home">
           <FontAwesomeIcon icon="home" className={classes.icon} />
           DSC Home
         </Link>
@@ -57,7 +61,10 @@ const Breadcrumbs = () => {
       {pathnames.map((pathname, index) => {
         const isLast = index === pathnames.length - 1
         return isLast ? (
-          <Typography key={pathname} color="textPrimary">
+          <Typography
+            key={pathname}
+            color="textPrimary"
+            data-testid="breadcrumbs-last">
             {convertBreadcrumbTitle(pathname)}
           </Typography>
         ) : (
