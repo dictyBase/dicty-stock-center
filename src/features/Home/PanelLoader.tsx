@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 
 type Props = {
+  /** Number of lines to show in skeleton */
   skeletonCount: number
 }
 
@@ -12,7 +13,7 @@ type Props = {
  */
 
 const PanelLoader = ({ skeletonCount }: Props) => (
-  <Grid container justify="center">
+  <Grid container justify="center" data-testid="panel-loader">
     <Grid item xs={12}>
       <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
         <Skeleton count={skeletonCount} />
