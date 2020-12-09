@@ -12,8 +12,9 @@ const Availability = () => {
   const classes = useStyles()
   const { loading, error, data } = useQuery(GET_STOCK_TOTALS, {
     variables: {
-      limit: 80000,
+      limit: 100000,
     },
+    fetchPolicy: "network-only",
   })
 
   if (loading) return <PanelLoader skeletonCount={5} />
