@@ -1,86 +1,93 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
-import wait from "waait"
 import Availability from "./Availability"
-import PanelLoader from "./PanelLoader"
 import { GET_STOCK_TOTALS } from "common/graphql/queries/stocks/lists"
 
-describe("Home/Availability", () => {
+jest.mock("@apollo/client", () => {
+  const originalModule = jest.requireActual("@apollo/client")
+  return {
+    ...originalModule,
+    useQuery: (query: any, options: any) =>
+      jest.requireActual("@apollo/client").useQuery(query, {
+        ...options,
+        fetchPolicy: "network-only",
+      }),
+  }
+})
+
+describe("features/Home/Availability", () => {
+  const MockComponent = ({ mocks }: any) => (
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <BrowserRouter>
+        <Availability />
+      </BrowserRouter>
+    </MockedProvider>
+  )
   describe("initial render", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_STOCK_TOTALS,
-          variables: { limit: 80000 },
-        },
-        result: {
-          data: {
-            listPlasmids: {
-              totalCount: 900,
-            },
-            listStrains: {
-              totalCount: 26000,
+    it("should render expected stock totals", async () => {
+      const mocks = [
+        {
+          request: {
+            query: GET_STOCK_TOTALS,
+            variables: { limit: 100000 },
+          },
+          result: {
+            data: {
+              listPlasmids: {
+                totalCount: 900,
+              },
+              listStrains: {
+                totalCount: 26000,
+              },
             },
           },
         },
-      },
-    ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <BrowserRouter>
-          <Availability />
-        </BrowserRouter>
-      </MockedProvider>,
-    )
-    it("renders loading component first", () => {
-      expect(wrapper.find(PanelLoader)).toHaveLength(1)
-    })
-    it("renders expected components after receiving data", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find("h5").at(0).text()).toBe("26000 Strains")
-      expect(wrapper.find("h5").at(1).text()).toBe("900 Plasmids")
+      ]
+      render(<MockComponent mocks={mocks} />)
+      // displays loading skeleton first
+      expect(screen.getByTestId("panel-loader")).toBeInTheDocument()
+      // wait for data to load...
+      const headers = await screen.findAllByRole("heading")
+      expect(headers[0]).toHaveTextContent("Strain & Plasmid Availability")
+      expect(headers[1]).toHaveTextContent("26000 Strains")
+      expect(headers[2]).toHaveTextContent("900 Plasmids")
     })
   })
   describe("error handling", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_STOCK_TOTALS,
-          variables: { limit: 80000 },
-        },
-        result: {
-          errors: [
-            {
-              message: "could not get list",
-              path: ["stocks"],
-              extensions: { code: "NotFound" },
-              locations: undefined,
-              nodes: undefined,
-              source: undefined,
-              positions: undefined,
-              originalError: undefined,
-              name: "",
-            },
-          ],
-        },
-      },
-    ]
-    const wrapper = mount(
-      <BrowserRouter>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <Availability />
-        </MockedProvider>
-      </BrowserRouter>,
-    )
     it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find("div").text()).toBe(
+      const mocks = [
+        {
+          request: {
+            query: GET_STOCK_TOTALS,
+            variables: { limit: 100000 },
+          },
+          result: {
+            errors: [
+              {
+                message: "could not get list",
+                path: ["stocks"],
+                extensions: { code: "NotFound" },
+                locations: undefined,
+                nodes: undefined,
+                source: undefined,
+                positions: undefined,
+                originalError: undefined,
+                name: "",
+              },
+            ],
+          },
+        },
+      ]
+
+      render(<MockComponent mocks={mocks} />)
+      // displays spinner first
+      expect(screen.getByTestId("panel-loader")).toBeInTheDocument()
+      const errMsg = await screen.findByText(
         "Error fetching number of strains and plasmids",
       )
+      expect(errMsg).toBeInTheDocument()
     })
   })
 })
