@@ -24,7 +24,9 @@ describe("app/layout/Breadcrumbs", () => {
         pathname: "/vandelay",
       })
       render(<MockComponent />)
-      expect(screen.getByRole("link")).toHaveTextContent("DSC Home")
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
       expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent(
         "Vandelay",
       )
@@ -35,7 +37,9 @@ describe("app/layout/Breadcrumbs", () => {
         pathname: "/information/faq",
       })
       render(<MockComponent />)
-      expect(screen.getByRole("link")).toHaveTextContent("DSC Home")
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
       expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
         "Information",
       )
@@ -47,7 +51,9 @@ describe("app/layout/Breadcrumbs", () => {
         pathname: "/mydsc",
       })
       render(<MockComponent />)
-      expect(screen.getByRole("link")).toHaveTextContent("DSC Home")
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
       expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent("MyDSC")
     })
 
@@ -56,7 +62,9 @@ describe("app/layout/Breadcrumbs", () => {
         pathname: "/phenotypes/abolished+protein+phosphorylation",
       })
       render(<MockComponent />)
-      expect(screen.getByRole("link")).toHaveTextContent("DSC Home")
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
       expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
         "Phenotypes",
       )
@@ -70,7 +78,9 @@ describe("app/layout/Breadcrumbs", () => {
         pathname: "/information/other-stock-centers",
       })
       render(<MockComponent />)
-      expect(screen.getByRole("link")).toHaveTextContent("DSC Home")
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
       expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
         "Information",
       )
