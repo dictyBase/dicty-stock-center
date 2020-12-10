@@ -17,8 +17,6 @@ type Props = {
     title: string
     content: any
   }>
-  /** Strain species */
-  species: string
   /** List of phenotypes */
   phenotypes: Array<PhenotypeData>
 }
@@ -28,7 +26,7 @@ type Props = {
  * strain details page (tab version).
  */
 
-const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
+const StrainDetailsLeftCardDisplay = ({ rows, phenotypes }: Props) => {
   const classes = useStyles()
   const [tabValue, setTabValue] = React.useState(0)
 
@@ -45,7 +43,6 @@ const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
               <StrainDetailsLeftCardHeader
                 value={tabValue}
                 handleChange={handleChange}
-                species={species}
                 phenotypeLength={phenotypes.length}
               />
             </ListItem>

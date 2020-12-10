@@ -76,8 +76,9 @@ const strainRowsGenerator = (
     title: "Depositor",
     content: data.depositor,
   },
+  { id: 12, title: "Species", content: data.species },
   {
-    id: 12,
+    id: 13,
     title: "Reference(s)",
     content: publications,
   },
@@ -99,11 +100,7 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   )
 
   return (
-    <StrainDetailsLeftCardDisplay
-      rows={rows}
-      species={data.species}
-      phenotypes={data.phenotypes}
-    />
+    <StrainDetailsLeftCardDisplay rows={rows} phenotypes={data.phenotypes} />
   )
 }
 
