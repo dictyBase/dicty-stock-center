@@ -26,14 +26,14 @@ export const AddToCartButton = ({
   size = "medium",
 }: AddToCartProps) => {
   const [{ showCartDialog, maxItemsInCart }] = useCartStore()
-  const { addToCart } = useCartItems(data)
+  const { addToCart } = useCartItems()
   const classes = useStyles()
 
   let button = (
     <IconButton
       size={size}
       className={classes.cartButton}
-      onClick={addToCart}
+      onClick={() => addToCart(data)}
       title="Add to cart"
       aria-label="Add to shopping cart">
       <FontAwesomeIcon icon="cart-plus" />

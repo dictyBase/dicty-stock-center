@@ -46,7 +46,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
   const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
-  const { addToCart } = useCartItems(Array(quantity).fill(cartData))
+  const { addToCart } = useCartItems()
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setQuantity(Number(event.target.value))
@@ -77,7 +77,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
           <SecondaryButton
             variant="contained"
             color="secondary"
-            onClick={addToCart}>
+            onClick={() => addToCart(Array(quantity).fill(cartData))}>
             Add to Cart
           </SecondaryButton>
         </Grid>

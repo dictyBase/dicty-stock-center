@@ -27,10 +27,10 @@ type CartItem = {
  * helper methods for them.
  */
 
-const useCartItems = (items: Array<CartItem>) => {
+const useCartItems = () => {
   const [{ addedItems }, dispatch] = useCartStore()
 
-  const addToCart = () =>
+  const addToCart = (items: Array<CartItem>) =>
     items.forEach((item) =>
       dispatch({
         type: CartActionType.ADD_TO_CART,
@@ -44,7 +44,7 @@ const useCartItems = (items: Array<CartItem>) => {
       }),
     )
 
-  const removeFromCart = () =>
+  const removeFromCart = (items: Array<CartItem>) =>
     items.forEach((item) =>
       dispatch({
         type: CartActionType.REMOVE_FROM_CART,

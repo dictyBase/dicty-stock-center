@@ -24,7 +24,7 @@ type Props = {
  */
 
 const ShoppingCartItem = ({ item }: Props) => {
-  const { removeFromCart } = useCartItems([item])
+  const { removeFromCart } = useCartItems()
   const classes = useStyles()
 
   return (
@@ -51,7 +51,7 @@ const ShoppingCartItem = ({ item }: Props) => {
             <TrashButton
               variant="contained"
               className={classes.trashBtn}
-              onClick={removeFromCart}>
+              onClick={() => removeFromCart([item])}>
               <FontAwesomeIcon icon="trash" />
             </TrashButton>
           </Grid>
