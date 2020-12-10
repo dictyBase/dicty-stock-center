@@ -1,3 +1,0 @@
-```js
-<LeftCardHeader stockType="Plasmid" />
-```

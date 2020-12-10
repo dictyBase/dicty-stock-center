@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import Grid from "@material-ui/core/Grid"
-import PlasmidDetailsLeftCard from "./PlasmidDetailsLeftCard"
-import AvailabilityCard from "features/Stocks/Details/common/AvailabilityCard"
+import PlasmidDetailsCard from "./PlasmidDetailsCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
@@ -41,10 +40,7 @@ const PlasmidDetailsContainer = () => {
         />
       </Helmet>
       <DetailsHeader id={data.plasmid.id} name={data.plasmid.name} />
-      <PlasmidDetailsLeftCard data={data.plasmid} />
-      <Grid item xs={12} md={3} lg={2}>
-        <AvailabilityCard data={data.plasmid} />
-      </Grid>
+      <PlasmidDetailsCard data={data.plasmid} />
     </Grid>
   )
 }
