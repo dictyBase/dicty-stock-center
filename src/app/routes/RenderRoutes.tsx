@@ -141,6 +141,7 @@ const RenderRoutes = () => (
       />
       <PrivateRoute exact path="/addpage" component={AddPage} />
       {/* order form routes */}
+      <Route exact path="/order" component={OrderForm} />
       <Route exact path="/order/checkout" component={OrderForm} />
       <Route exact path="/order/submitted" component={OrderConfirmation} />
       {/* strain routes */}
