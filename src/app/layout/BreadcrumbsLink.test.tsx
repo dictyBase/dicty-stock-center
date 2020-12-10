@@ -5,12 +5,6 @@ import BreadcrumbsLink from "./BreadcrumbsLink"
 
 describe("app/layout/BreadcrumbsLink", () => {
   describe("non-clickable breadcrumbs", () => {
-    it("renders plain text for information pages", () => {
-      render(<BreadcrumbsLink pathname="information" />)
-      expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
-        "Information",
-      )
-    })
     it("renders plain text for phenotypes", () => {
       render(<BreadcrumbsLink pathname="phenotypes" />)
       expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
@@ -40,6 +34,15 @@ describe("app/layout/BreadcrumbsLink", () => {
         </BrowserRouter>,
       )
       expect(screen.getByRole("link")).toHaveTextContent("Plasmids")
+    })
+
+    it("renders link for information", () => {
+      render(
+        <BrowserRouter>
+          <BreadcrumbsLink pathname="information" />
+        </BrowserRouter>,
+      )
+      expect(screen.getByRole("link")).toHaveTextContent("Information")
     })
 
     it("renders empty link for non-existent routes", () => {

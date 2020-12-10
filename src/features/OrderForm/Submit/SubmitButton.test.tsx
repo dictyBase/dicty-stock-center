@@ -253,7 +253,7 @@ describe("SubmitButton/SubmitButton", () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-        expect(useCartItems).toHaveBeenCalledWith(addedItems)
+        expect(useCartItems).toHaveBeenCalled()
       })
     })
   })
@@ -344,7 +344,7 @@ describe("SubmitButton/SubmitButton", () => {
       wrapper.find("button").first().simulate("click")
       await waitForExpect(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
-        expect(useCartItems).toHaveBeenCalledWith(addedItems)
+        expect(useCartItems).toHaveBeenCalled()
       })
     })
   })

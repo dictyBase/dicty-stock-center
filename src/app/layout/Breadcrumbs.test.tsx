@@ -40,7 +40,7 @@ describe("app/layout/Breadcrumbs", () => {
       expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
         "DSC Home",
       )
-      expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
+      expect(screen.getByTestId("breadcrumbs-link")).toHaveTextContent(
         "Information",
       )
       expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent("FAQs")
@@ -81,7 +81,7 @@ describe("app/layout/Breadcrumbs", () => {
       expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
         "DSC Home",
       )
-      expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent(
+      expect(screen.getByTestId("breadcrumbs-link")).toHaveTextContent(
         "Information",
       )
       expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent(
