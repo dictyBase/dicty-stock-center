@@ -1,6 +1,5 @@
 ```jsx
-<StrainDetailsLeftCardHeader
-  species="Dictyostelium discoideum"
+<StrainDetailsCardHeader
   value={0}
   handleChange={() => {}}
   phenotypeLength={3}
