@@ -1,15 +1,12 @@
 import React from "react"
-import { makeStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import Tooltip from "@material-ui/core/Tooltip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles(({ palette }: Theme) => ({
-  cartFull: {
-    color: palette.secondary.main,
-  },
+const useStyles = makeStyles(() => ({
   cartFullSlash: {
-    color: "#000",
+    color: "#8a8a8a",
   },
 }))
 
@@ -36,16 +33,10 @@ export const UnavailableButton = ({
   return (
     <Tooltip title={title}>
       <span>
-        <IconButton disabled size={size} aria-label={title}>
+        <IconButton disabled size={size} aria-label={title} color="default">
           <span className="fa-layers fa-fw">
-            <FontAwesomeIcon
-              icon="cart-plus"
-              className={cartFull ? classes.cartFull : ""}
-            />
-            <FontAwesomeIcon
-              icon="slash"
-              className={cartFull ? classes.cartFullSlash : ""}
-            />
+            <FontAwesomeIcon icon="cart-plus" />
+            <FontAwesomeIcon icon="slash" className={classes.cartFullSlash} />
           </span>
         </IconButton>
       </span>

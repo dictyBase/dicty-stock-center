@@ -99,6 +99,7 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
                 />
                 {itemIsInCart(addedItems, strain.id) && (
                   <IconButton
+                    className={classes.trashBtn}
                     color="secondary"
                     size={size}
                     onClick={handleRemoveItemClick}>

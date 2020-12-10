@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   appBar: {
     backgroundColor: "#0059b3 !important",
   },
@@ -34,6 +34,9 @@ const useStyles = makeStyles({
     marginTop: "200px",
     marginBottom: "200px",
   },
-})
+  trashBtn: {
+    color: palette.error.main,
+  },
+}))
 
 export default useStyles
