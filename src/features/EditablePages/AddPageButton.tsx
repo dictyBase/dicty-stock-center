@@ -4,22 +4,16 @@ import { Link } from "react-router-dom"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ palette }) => ({
   container: {
     marginTop: "5px",
   },
-  link: {
-    color: "#428bca",
-    textDecoration: "none",
-  },
   addPageButton: {
-    width: "25%",
     marginTop: "25px",
     padding: "25px",
-    textTransform: "none",
-    backgroundColor: "#FF6347",
+    backgroundColor: palette.secondary.main,
     "&:hover": {
-      backgroundColor: "#cc381e",
+      backgroundColor: palette.secondary.dark,
     },
   },
 }))
@@ -39,7 +33,6 @@ const AddPageButton = ({ name, subname, url }: Props) => {
   return (
     <div className={classes.container}>
       <Link
-        className={classes.link}
         to={{
           pathname: "/addpage",
           state: {
@@ -53,7 +46,7 @@ const AddPageButton = ({ name, subname, url }: Props) => {
           size="small"
           variant="contained"
           color="primary">
-          <FontAwesomeIcon icon="plus" />
+          <FontAwesomeIcon icon="plus" size="lg" />
           &nbsp; Add a page to this route
         </Button>
       </Link>
