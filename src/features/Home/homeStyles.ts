@@ -1,24 +1,32 @@
 import { makeStyles } from "@material-ui/core/styles"
+import { blue, grey } from "@material-ui/core/colors"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
   panelGray: {
-    backgroundColor: "#f2f2f2",
-    border: "1px solid #f2f2f2",
-    margin: "15px auto",
+    backgroundColor: grey[100],
+    border: "1px",
+    borderStyle: "solid",
+    borderColor: grey[50],
+    marginBottom: "24px",
     padding: "15px",
     borderRadius: "10px",
     width: "100%",
   },
   panelBlue: {
-    backgroundColor: "#e6f2ff",
-    border: "1px solid #e6f2ff",
-    margin: "15px auto",
+    backgroundColor: blue[50],
+    border: "1px",
+    borderStyle: "solid",
+    borderColor: blue[50],
+    marginBottom: "24px",
     padding: "15px",
     borderRadius: "10px",
     width: "100%",
   },
   sopLink: {
-    color: "#961818",
+    color: palette.error.dark,
+    "&:hover": {
+      color: palette.error.main,
+    },
   },
   header: {
     paddingBottom: "0px !important",
