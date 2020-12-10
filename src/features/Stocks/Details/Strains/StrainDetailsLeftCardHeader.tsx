@@ -35,8 +35,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 type Props = {
-  /** Strain species */
-  species: string
   /** Tab value */
   value: number
   /** Function for handling tab changes */
@@ -50,7 +48,6 @@ type Props = {
  */
 
 const StrainDetailsLeftCardHeader = ({
-  species,
   value,
   handleChange,
   phenotypeLength,
@@ -95,9 +92,6 @@ const StrainDetailsLeftCardHeader = ({
       <Grid container justify="space-between" alignItems="center">
         <Grid item>{content}</Grid>
         <Grid item>
-          {/* <Typography variant="body1" data-testid="strain-species">
-            {species}
-          </Typography> */}
           <Availability
             cartData={{
               id: "DBS123456",
