@@ -37,7 +37,7 @@ const StrainDetailsLeftCardDisplay = ({ rows, species, phenotypes }: Props) => {
   }
 
   return (
-    <Grid item xs={12} md={9} lg={10} className={classes.header}>
+    <Grid item xs={12} className={classes.header}>
       <Card raised>
         <Grid container>
           <List className={classes.list}>

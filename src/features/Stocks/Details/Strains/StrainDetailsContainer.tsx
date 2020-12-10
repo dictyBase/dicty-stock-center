@@ -48,9 +48,9 @@ const StrainDetailsContainer = () => {
       </Helmet>
       <DetailsHeader id={data.strain.id} name={data.strain.label} />
       <StrainDetailsLeftCard data={data.strain} />
-      <Grid item xs={12} md={3} lg={2}>
+      {/* <Grid item xs={12} md={3} lg={2}>
         <AvailabilityCard data={data.strain} />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

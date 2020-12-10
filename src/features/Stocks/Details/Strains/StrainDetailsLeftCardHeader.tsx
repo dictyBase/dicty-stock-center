@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
+import Availability from "./Availability"
 
 // accessibility helper function
 const a11yProps = (index: number) => ({
@@ -94,9 +95,17 @@ const StrainDetailsLeftCardHeader = ({
       <Grid container justify="space-between" alignItems="center">
         <Grid item>{content}</Grid>
         <Grid item>
-          <Typography variant="body1" data-testid="strain-species">
+          {/* <Typography variant="body1" data-testid="strain-species">
             {species}
-          </Typography>
+          </Typography> */}
+          <Availability
+            cartData={{
+              id: "DBS123456",
+              name: "abc",
+              summary: "boo",
+              type: "strain",
+            }}
+          />
         </Grid>
       </Grid>
     </Grid>
