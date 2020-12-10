@@ -155,7 +155,7 @@ type Props = {
 
 const SubmitButton = ({ formData, setSubmitError }: Props) => {
   const [{ addedItems }] = useCartStore()
-  const { emptyCart } = useCartItems(addedItems)
+  const { emptyCart } = useCartItems()
   const history = useHistory()
   const [createOrder] = useMutation(CREATE_ORDER)
   const [createUser] = useMutation(CREATE_USER)

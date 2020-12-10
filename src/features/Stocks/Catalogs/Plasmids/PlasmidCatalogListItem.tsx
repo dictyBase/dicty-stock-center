@@ -41,14 +41,14 @@ const PlasmidCatalogListItem = ({
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
   const [{ addedItems }] = useCartStore()
-  const { removeFromCart } = useCartItems([cartData])
+  const { removeFromCart } = useCartItems()
   const { hover, setHover, bind } = useHover()
   const theme = useTheme()
   const smallWindow = useMediaQuery(theme.breakpoints.down("md"))
   const classes = useStyles()
 
   const handleRemoveItemClick = () => {
-    removeFromCart()
+    removeFromCart([cartData])
     setHover(false)
   }
 
