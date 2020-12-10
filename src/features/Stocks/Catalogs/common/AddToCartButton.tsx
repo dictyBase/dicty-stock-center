@@ -1,7 +1,6 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
-import { green } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import UnavailableButton from "./UnavailableButton"
 import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
@@ -9,9 +8,9 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { AddToCartProps } from "../types/cart"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
   cartButton: {
-    color: green[600],
+    color: palette.secondary.main,
   },
 }))
 
