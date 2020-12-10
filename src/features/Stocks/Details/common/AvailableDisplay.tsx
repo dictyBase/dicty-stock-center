@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button"
 import MenuItem from "@material-ui/core/MenuItem"
 import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
-// import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
 import CartCapacityFullMessage from "features/Stocks/Details/common/CartCapacityFullMessage"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 
@@ -51,7 +50,7 @@ type Props = {
   }
 }
 
-const Availability = ({ cartData }: Props) => {
+const AvailableDisplay = ({ cartData }: Props) => {
   const [{ addedItems, maxItemsInCart }] = useCartStore()
   const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
@@ -99,4 +98,4 @@ const Availability = ({ cartData }: Props) => {
   )
 }
 
-export default Availability
+export default AvailableDisplay

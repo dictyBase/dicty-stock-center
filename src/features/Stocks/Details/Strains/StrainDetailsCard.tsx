@@ -114,6 +114,13 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     <GenotypesDisplay genotypes={data.genotypes[0]} />,
   )
 
+  const cartData = {
+    id: data.id,
+    name: data.label,
+    summary: data.summary,
+    type: "strain",
+  }
+
   return (
     <Grid item xs={12} className={classes.header}>
       <Card raised>
@@ -124,6 +131,8 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
                 value={tabValue}
                 handleChange={handleChange}
                 phenotypeLength={data.phenotypes.length}
+                cartData={cartData}
+                inStock={data.in_stock}
               />
             </ListItem>
             <TabPanel value={tabValue} index={0}>

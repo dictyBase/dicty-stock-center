@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
-import Availability from "./Availability"
+import Availability from "features/Stocks/Details/common/Availability"
 
 // accessibility helper function
 const a11yProps = (index: number) => ({
@@ -41,16 +41,25 @@ type Props = {
   handleChange: (event: ChangeEvent<{}>, value: any) => void
   /** Number of phenotypes */
   phenotypeLength: number
+  cartData: {
+    id: string
+    name: string
+    summary: string
+    type: string
+  }
+  inStock: boolean
 }
 
-/** StrainDetailsLeftCardHeader displays the header at the top of the left card
+/** StrainDetailsCardHeader displays the header at the top of the  card
  * on the strain details page.
  */
 
-const StrainDetailsLeftCardHeader = ({
+const StrainDetailsCardHeader = ({
   value,
   handleChange,
   phenotypeLength,
+  cartData,
+  inStock,
 }: Props) => {
   const classes = useStyles()
 
@@ -92,18 +101,11 @@ const StrainDetailsLeftCardHeader = ({
       <Grid container justify="space-between" alignItems="center">
         <Grid item>{content}</Grid>
         <Grid item>
-          <Availability
-            cartData={{
-              id: "DBS123456",
-              name: "abc",
-              summary: "boo",
-              type: "strain",
-            }}
-          />
+          <Availability cartData={cartData} inStock={inStock} />
         </Grid>
       </Grid>
     </Grid>
   )
 }
 
-export default StrainDetailsLeftCardHeader
+export default StrainDetailsCardHeader
