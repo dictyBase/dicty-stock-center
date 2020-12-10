@@ -37,7 +37,11 @@ const BreadcrumbsLink = ({ pathname }: Props) => {
   const route = `/${pathname}`
 
   return (
-    <Link color="inherit" component={RouterLink} to={route}>
+    <Link
+      color="inherit"
+      component={RouterLink}
+      to={route}
+      data-testid="breadcrumbs-link">
       {breadcrumbNameMap[route]}
     </Link>
   )
