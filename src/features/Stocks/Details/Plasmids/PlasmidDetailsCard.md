@@ -4,5 +4,5 @@ import { data } from "./mockPlasmidData.ts"
 
 ```jsx
 import { data } from "./mockPlasmidData.ts"
-;<PlasmidDetailsLeftCard data={data} />
+;<PlasmidDetailsCard data={data} />
 ```
