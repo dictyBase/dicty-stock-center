@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: "20px",
     border: "1px solid transparent",
     borderRadius: "4px",
-    color: "#a94442",
+    color: theme.palette.error.main,
     backgroundColor: "#f2dede",
     borderColor: "#ebccd1",
     textAlign: "center",

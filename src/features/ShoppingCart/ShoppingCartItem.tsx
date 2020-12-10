@@ -1,20 +1,14 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
-
-const useStyles = makeStyles({
-  trashBtn: {
-    minWidth: 0,
-  },
-})
+import useStyles from "./shoppingCartStyles"
 
 type Props = {
   item: {
@@ -54,13 +48,12 @@ const ShoppingCartItem = ({ item }: Props) => {
             <Typography noWrap>${item.fee}</Typography>
           </Grid>
           <Grid item xs={1}>
-            <Button
+            <TrashButton
               variant="contained"
-              color="secondary"
               className={classes.trashBtn}
               onClick={removeFromCart}>
               <FontAwesomeIcon icon="trash" />
-            </Button>
+            </TrashButton>
           </Grid>
         </Grid>
       </ListItem>
