@@ -8,7 +8,7 @@ import useCartItems from "common/hooks/useCartItems"
 const useStyles = makeStyles(({ palette }) => ({
   cartFull: {
     fontSize: "0.7rem",
-    color: palette.secondary.main,
+    color: palette.error.main,
   },
 }))
 
