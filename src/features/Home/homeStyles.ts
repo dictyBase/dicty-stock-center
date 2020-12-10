@@ -6,7 +6,7 @@ const useStyles = makeStyles(({ palette }) => ({
     backgroundColor: grey[100],
     border: "1px",
     borderStyle: "solid",
-    borderColor: grey[50],
+    borderColor: grey[100],
     marginBottom: "24px",
     padding: "15px",
     borderRadius: "10px",
