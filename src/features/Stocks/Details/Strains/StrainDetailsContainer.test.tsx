@@ -4,7 +4,7 @@ import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import wait from "waait"
 import { StrainDetailsContainer } from "./StrainDetailsContainer"
-import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
+import StrainDetailsCard from "./StrainDetailsCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import { CartProvider } from "features/ShoppingCart/CartStore"
@@ -56,7 +56,7 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
       await wait()
       wrapper.update()
       expect(wrapper.find(DetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(StrainDetailsLeftCard)).toHaveLength(1)
+      expect(wrapper.find(StrainDetailsCard)).toHaveLength(1)
     })
   })
 })

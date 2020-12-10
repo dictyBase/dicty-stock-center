@@ -1,12 +1,11 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import StrainDetailsLeftCardHeader from "./StrainDetailsLeftCardHeader"
+import StrainDetailsCardHeader from "./StrainDetailsCardHeader"
 
-describe("features/Stocks/Details/Strains/StrainDetailsLeftCardHeader", () => {
+describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
   const handleChangeSpy = jest.fn()
   const props = {
-    species: "Dictyostelium discoideum",
     value: 0,
     handleChange: handleChangeSpy,
     phenotypeLength: 3,
@@ -14,7 +13,7 @@ describe("features/Stocks/Details/Strains/StrainDetailsLeftCardHeader", () => {
 
   describe("initial render", () => {
     it("renders expected tabs", () => {
-      render(<StrainDetailsLeftCardHeader {...props} />)
+      render(<StrainDetailsCardHeader {...props} />)
       const tabs = screen.getAllByRole("tab")
       expect(tabs).toHaveLength(2)
       expect(
@@ -24,17 +23,10 @@ describe("features/Stocks/Details/Strains/StrainDetailsLeftCardHeader", () => {
         screen.getByRole("tab", { name: "Phenotypes (3)" }),
       ).toBeInTheDocument()
     })
-
-    it("displays species name", () => {
-      render(<StrainDetailsLeftCardHeader {...props} />)
-      expect(screen.getByTestId("strain-species")).toHaveTextContent(
-        props.species,
-      )
-    })
   })
   describe("tab interaction", () => {
     it("calls handleChange on tab click", () => {
-      render(<StrainDetailsLeftCardHeader {...props} />)
+      render(<StrainDetailsCardHeader {...props} />)
       const phenotypeTab = screen.getByRole("tab", { name: "Phenotypes (3)" })
       userEvent.click(phenotypeTab)
       expect(handleChangeSpy).toHaveBeenCalledTimes(1)

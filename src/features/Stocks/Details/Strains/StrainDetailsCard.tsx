@@ -1,6 +1,14 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import StrainDetailsLeftCardDisplay from "./StrainDetailsLeftCardDisplay"
+import Grid from "@material-ui/core/Grid"
+import Card from "@material-ui/core/Card"
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import StrainDetailsCardHeader from "features/Stocks/Details/Strains/StrainDetailsCardHeader"
+import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
+import PhenotypeList from "./Phenotypes/PhenotypeList"
+import useStyles from "features/Stocks/Details/styles"
+import TabPanel from "common/components/TabPanel"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
@@ -84,7 +92,14 @@ const strainRowsGenerator = (
   },
 ]
 
-const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
+const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
+  const classes = useStyles()
+  const [tabValue, setTabValue] = React.useState(0)
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setTabValue(newValue)
+  }
+
   const parent = data.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
   ) : (
@@ -100,8 +115,30 @@ const StrainDetailsLeftCard = ({ data }: StrainDetailsProps) => {
   )
 
   return (
-    <StrainDetailsLeftCardDisplay rows={rows} phenotypes={data.phenotypes} />
+    <Grid item xs={12} className={classes.header}>
+      <Card raised>
+        <Grid container>
+          <List className={classes.list}>
+            <ListItem divider className={classes.cardHeader}>
+              <StrainDetailsCardHeader
+                value={tabValue}
+                handleChange={handleChange}
+                phenotypeLength={data.phenotypes.length}
+              />
+            </ListItem>
+            <TabPanel value={tabValue} index={0}>
+              {rows.map((data: any) => (
+                <DetailsListItem data={data} key={data.id} />
+              ))}
+            </TabPanel>
+            <TabPanel value={tabValue} index={1}>
+              <PhenotypeList phenotypes={data.phenotypes} />
+            </TabPanel>
+          </List>
+        </Grid>
+      </Card>
+    </Grid>
   )
 }
 
-export default StrainDetailsLeftCard
+export default StrainDetailsCard

@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
   quantity: {
     marginRight: "18px",
-    minWidth: 100,
+    minWidth: 70,
   },
 })
 

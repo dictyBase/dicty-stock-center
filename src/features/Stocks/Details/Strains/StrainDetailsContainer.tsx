@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client"
 import Grid from "@material-ui/core/Grid"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
-import StrainDetailsLeftCard from "./StrainDetailsLeftCard"
+import StrainDetailsCard from "./StrainDetailsCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import { GET_STRAIN } from "common/graphql/queries/stocks/details"
 import characterConverter from "common/utils/characterConverter"
@@ -46,7 +46,7 @@ const StrainDetailsContainer = () => {
         />
       </Helmet>
       <DetailsHeader id={data.strain.id} name={data.strain.label} />
-      <StrainDetailsLeftCard data={data.strain} />
+      <StrainDetailsCard data={data.strain} />
     </Grid>
   )
 }
