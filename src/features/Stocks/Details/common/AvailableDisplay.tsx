@@ -1,12 +1,13 @@
 import React from "react"
-import { makeStyles, withStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import FormControl from "@material-ui/core/FormControl"
-import Button from "@material-ui/core/Button"
 import MenuItem from "@material-ui/core/MenuItem"
 import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
 import CartCapacityFullMessage from "features/Stocks/Details/common/CartCapacityFullMessage"
+import SecondaryButton from "common/components/SecondaryButton"
+import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 
 const useStyles = makeStyles({
@@ -18,16 +19,6 @@ const useStyles = makeStyles({
     minWidth: 70,
   },
 })
-
-const ColorButton = withStyles((theme: Theme) => ({
-  root: {
-    color: theme.palette.getContrastText(theme.palette.secondary.main),
-    backgroundColor: theme.palette.secondary.main,
-    "&:hover": {
-      backgroundColor: theme.palette.secondary.dark,
-    },
-  },
-}))(Button)
 
 const createQuantityArray = (numItems: number) => {
   const qty = 13 - numItems // quantity of items available to add to cart
@@ -55,6 +46,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
   const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
+  const { addToCart } = useCartItems(Array(quantity).fill(cartData))
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setQuantity(Number(event.target.value))
@@ -81,11 +73,13 @@ const AvailableDisplay = ({ cartData }: Props) => {
             </Select>
           </FormControl>
         </Grid>
-        {/* <AddToCartButton data={Array(quantity).fill(cartData)} inStock={true} /> */}
         <Grid item>
-          <ColorButton variant="contained" color="secondary">
+          <SecondaryButton
+            variant="contained"
+            color="secondary"
+            onClick={addToCart}>
             Add to Cart
-          </ColorButton>
+          </SecondaryButton>
         </Grid>
       </React.Fragment>
     )

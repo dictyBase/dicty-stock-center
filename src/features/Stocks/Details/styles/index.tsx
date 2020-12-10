@@ -98,12 +98,12 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     justifyContent: "center !important",
   },
   addToCartBtn: {
-    backgroundColor: green[600],
+    backgroundColor: palette.secondary.main,
     color: "#fff",
     paddingLeft: "16px",
     paddingRight: "16px",
     "&:hover": {
-      backgroundColor: green[700],
+      backgroundColor: palette.secondary.dark,
       color: "#fff",
     },
   },
@@ -117,7 +117,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     padding: "16px",
   },
   maxItems: {
-    color: palette.secondary.main,
+    color: palette.error.main,
   },
   moreInfoText: {
     marginTop: "4px",
@@ -129,7 +129,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     color: "rgb(97, 26, 21)",
   },
   error: {
-    color: "#cc0000",
+    color: palette.error.main,
   },
 }))
 
