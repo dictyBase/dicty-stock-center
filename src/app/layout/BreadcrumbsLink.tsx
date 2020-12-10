@@ -13,7 +13,7 @@ const breadcrumbNameMap: { [key: string]: string } = {
   "/phenotypes": "Phenotypes",
 }
 
-const nonClickableRoutes = ["information", "order", "phenotypes"]
+const nonClickableRoutes = ["order", "phenotypes"]
 
 type Props = {
   /** Pathname from URL (i.e. information) */
