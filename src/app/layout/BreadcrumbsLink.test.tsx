@@ -11,10 +11,6 @@ describe("app/layout/BreadcrumbsLink", () => {
         "Phenotypes",
       )
     })
-    it("renders plain text for order form", () => {
-      render(<BreadcrumbsLink pathname="order" />)
-      expect(screen.getByTestId("breadcrumbs-text")).toHaveTextContent("Order")
-    })
   })
 
   describe("breadcrumb links", () => {
