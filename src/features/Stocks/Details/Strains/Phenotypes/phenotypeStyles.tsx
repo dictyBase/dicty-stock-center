@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
   listHeaders: {
     borderBottom: "1px solid #888",
-    backgroundColor: "#f6f9fc",
+    backgroundColor: "#f4f6f8",
     color: "#525f7f",
     fontWeight: 600,
   },
