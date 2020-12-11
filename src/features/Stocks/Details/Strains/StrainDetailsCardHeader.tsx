@@ -34,6 +34,9 @@ const useStyles = makeStyles(({ palette }) => ({
   wrapper: {
     opacity: 0.7,
   },
+  indicator: {
+    display: "none",
+  },
   number: {
     background: palette.primary.main,
     borderRadius: "0.8em",
@@ -87,9 +90,9 @@ const StrainDetailsCardHeader = ({
   if (phenotypeLength > 0) {
     content = (
       <Tabs
-        indicatorColor="primary"
         value={value}
         onChange={handleChange}
+        classes={{ indicator: classes.indicator }}
         aria-label="strain details tabs">
         <Tab
           classes={tabStyles}
