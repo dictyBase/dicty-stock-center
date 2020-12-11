@@ -2,8 +2,8 @@
  * This file contains functions to handle pagination for queries that use infinite scroll.
  * https://www.apollographql.com/docs/react/pagination/core-api/
  */
-import { StrainWithPhenotype } from "features/Stocks/Details/types/props"
-import { StrainItem, PlasmidItem } from "features/Stocks/Catalogs/types/list"
+import { StrainWithPhenotype } from "features/Stocks/Details/types"
+import { StrainItem, PlasmidItem } from "features/Stocks/Catalogs/types"
 
 /**
  * Using interfaces rather than types so SearchInfo can be extended.

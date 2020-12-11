@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationDisplay from "common/components/PublicationsDisplay"
 import characterConverter from "common/utils/characterConverter"
-import { StrainWithPhenotype } from "../Details/types/props"
+import { StrainWithPhenotype } from "../Details/types"
 
 const useStyles = makeStyles({
   row: {

@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import ExternalLinkIcon from "common/components/ExternalLinkIcon"
-import { Publication } from "features/Stocks/Details/types/props"
+import { Publication } from "features/Stocks/Details/types"
 
 const useStyles = makeStyles({
   bold: {

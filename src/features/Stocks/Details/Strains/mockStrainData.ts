@@ -1,4 +1,4 @@
-import { StrainDetails } from "features/Stocks/Details/types/props"
+import { StrainDetails } from "features/Stocks/Details/types"
 
 const availableStrain = {
   type: "strain",

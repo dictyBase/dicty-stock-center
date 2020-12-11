@@ -6,7 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 import { useIntersectionObserver } from "dicty-hooks"
 import PhenotypeListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
-import { StrainWithPhenotype } from "../Details/types/props"
+import { StrainWithPhenotype } from "../Details/types"
 
 const useStyles = makeStyles(({ palette }) => ({
   list: {

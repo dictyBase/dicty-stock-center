@@ -1,4 +1,4 @@
-import { PlasmidDetails } from "features/Stocks/Details/types/props"
+import { PlasmidDetails } from "features/Stocks/Details/types"
 
 const availablePlasmid = {
   type: "plasmid",
