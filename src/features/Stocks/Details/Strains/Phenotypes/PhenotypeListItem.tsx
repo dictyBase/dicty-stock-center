@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import useStyles from "./phenotypeStyles"
-import { PhenotypeData } from "features/Stocks/Details/types/props"
+import { PhenotypeData } from "features/Stocks/Details/types"
 
 type Props = {
   /** Phenotype data object */

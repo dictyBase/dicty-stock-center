@@ -16,7 +16,7 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "common/utils/characterConverter"
 import itemIsInCart from "common/utils/itemIsInCart"
-import { StrainListItemProps } from "features/Stocks/Catalogs/types/list"
+import { StrainListItemProps } from "features/Stocks/Catalogs/types"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 /**
@@ -30,7 +30,6 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
-    type: "strain" as const,
   }
   const checkboxData = {
     ...cartData,

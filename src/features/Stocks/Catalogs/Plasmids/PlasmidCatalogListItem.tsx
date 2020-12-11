@@ -16,7 +16,7 @@ import useCartItems from "common/hooks/useCartItems"
 import useHover from "common/hooks/useHover"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import itemIsInCart from "common/utils/itemIsInCart"
-import { PlasmidListItemProps } from "features/Stocks/Catalogs/types/list"
+import { PlasmidListItemProps } from "features/Stocks/Catalogs/types"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 /**

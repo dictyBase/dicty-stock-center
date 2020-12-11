@@ -15,7 +15,7 @@ import GenotypesDisplay from "common/components/GenotypesDisplay"
 import {
   StrainDetails,
   StrainDetailsProps,
-} from "features/Stocks/Details/types/props"
+} from "features/Stocks/Details/types"
 
 const strainRowsGenerator = (
   data: StrainDetails,

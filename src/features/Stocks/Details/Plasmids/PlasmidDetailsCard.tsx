@@ -12,7 +12,7 @@ import useStyles from "features/Stocks/Details/styles"
 import {
   PlasmidDetails,
   PlasmidDetailsProps,
-} from "features/Stocks/Details/types/props"
+} from "features/Stocks/Details/types"
 
 const plasmidRowGenerator = (
   data: PlasmidDetails,
