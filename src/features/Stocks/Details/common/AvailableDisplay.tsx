@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
-import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
 import CartCapacityFullMessage from "features/Stocks/Details/common/CartCapacityFullMessage"
 import SecondaryButton from "common/components/SecondaryButton"
@@ -12,10 +11,10 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 
 const useStyles = makeStyles({
   container: {
-    // border: "1px solid black",
+    paddingRight: "5px",
   },
   quantity: {
-    marginRight: "18px",
+    marginRight: "10px",
     minWidth: 70,
   },
 })
@@ -58,8 +57,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
     content = (
       <React.Fragment>
         <Grid item>
-          <FormControl className={classes.quantity}>
-            <InputLabel id="quantity-select-label">Quantity</InputLabel>
+          <FormControl className={classes.quantity} variant="outlined">
             <Select
               labelId="quantity-select-label"
               id="quantity-select"

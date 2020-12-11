@@ -15,16 +15,19 @@ const a11yProps = (index: number) => ({
 const useStyles = makeStyles(() => ({
   root: {
     "&:not(:first-of-type)": {
-      marginLeft: -1,
+      marginLeft: "5px",
     },
-    background: "#f7f7f7",
     color: "#002f5e",
     opacity: 1,
-    textTransform: "none",
+    borderTopLeftRadius: "8px",
+    borderTopRightRadius: "8px",
+    border: "1px #e4e4e4 solid",
+    borderBottomWidth: 0,
   },
   selected: {
+    background: "#f4f6f8",
+    border: "none",
     borderBottomWidth: 0,
-    background: "#ffffff",
     "& $wrapper": {
       opacity: 1,
     },
