@@ -121,20 +121,27 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     type: "strain",
   }
 
+  const header = (
+    <StrainDetailsCardHeader
+      value={tabValue}
+      handleChange={handleChange}
+      phenotypeLength={data.phenotypes.length}
+      cartData={cartData}
+      inStock={data.in_stock}
+    />
+  )
+
   return (
     <Grid item xs={12} className={classes.header}>
+      {data.phenotypes.length > 0 && header}
       <Card raised>
         <Grid container>
           <List className={classes.list}>
-            <ListItem divider className={classes.cardHeader}>
-              <StrainDetailsCardHeader
-                value={tabValue}
-                handleChange={handleChange}
-                phenotypeLength={data.phenotypes.length}
-                cartData={cartData}
-                inStock={data.in_stock}
-              />
-            </ListItem>
+            {data.phenotypes.length < 1 && (
+              <ListItem divider className={classes.cardHeader}>
+                {header}
+              </ListItem>
+            )}
             <TabPanel value={tabValue} index={0}>
               {rows.map((data: any) => (
                 <DetailsListItem data={data} key={data.id} />
