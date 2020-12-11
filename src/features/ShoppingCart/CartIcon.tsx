@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
+import Badge from "@material-ui/core/Badge"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCartStore } from "./CartStore"
 import useCartItems from "common/hooks/useCartItems"
@@ -9,6 +10,9 @@ const useStyles = makeStyles(({ palette }) => ({
   cartFull: {
     fontSize: "0.7rem",
     color: palette.error.main,
+  },
+  colorPrimary: {
+    background: palette.secondary.light,
   },
 }))
 
@@ -29,10 +33,17 @@ const CartIcon = () => {
   }, [getItemsFromStorage])
 
   return (
-    <Link to="/cart" aria-label="View shopping cart">
-      <FontAwesomeIcon icon="shopping-cart" size="2x" /> ({addedItems.length}){" "}
+    <React.Fragment>
+      <Link to="/cart" aria-label="shopping cart">
+        <Badge
+          classes={{ colorPrimary: classes.colorPrimary }}
+          badgeContent={addedItems.length}
+          color="primary">
+          <FontAwesomeIcon icon="shopping-cart" size="2x" />
+        </Badge>
+      </Link>
       {maxItemsInCart && <span className={classes.cartFull}>* cart full</span>}
-    </Link>
+    </React.Fragment>
   )
 }
 
