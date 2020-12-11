@@ -4,7 +4,7 @@ import { Formik } from "formik"
 import { MockedProvider, MockedResponse } from "@apollo/client/testing"
 import { AuthContext, authReducer } from "features/Authentication/AuthStore"
 import { CartContext, cartReducer } from "features/ShoppingCart/CartStore"
-import { User } from "common/types"
+import { CartItemWithFee, User } from "common/types"
 
 type AuthProps = {
   children: React.ReactNode
@@ -14,18 +14,10 @@ type AuthProps = {
   validToken?: boolean
 }
 
-type CartItem = {
-  id: string
-  name: string
-  summary: string
-  type?: string
-  fee: string
-}
-
 type CartProps = {
   children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
-  addedItems: Array<CartItem>
+  addedItems: Array<CartItemWithFee>
 }
 
 const MockSuperuser = {

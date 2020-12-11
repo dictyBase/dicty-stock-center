@@ -11,7 +11,7 @@ describe("features/Stocks/Details/common/Availability", () => {
           id: "DBS123456",
           name: "test1",
           summary: "this is the best test strain in the world",
-          type: "strain",
+          type: "strain" as const,
         },
         inStock: true,
       }
@@ -31,7 +31,7 @@ describe("features/Stocks/Details/common/Availability", () => {
           id: "DBS123456",
           name: "test1",
           summary: "this is the best test strain in the world",
-          type: "strain",
+          type: "strain" as const,
         },
         inStock: false,
       }
