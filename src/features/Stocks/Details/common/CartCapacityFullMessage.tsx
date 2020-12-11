@@ -11,13 +11,9 @@ const CartCapacityFullMessage = () => {
   const classes = useStyles()
 
   return (
-    <div>
-      <div className={classes.maxItems}>Cart capacity is full</div>
-      <div className={classes.moreInfoText}>
-        For more information, visit the{" "}
-        <Link to="/information/order">Ordering Information</Link> page.
-      </div>
-    </div>
+    <Link to="/information/order" className={classes.maxItems}>
+      Cart capacity is full
+    </Link>
   )
 }
 

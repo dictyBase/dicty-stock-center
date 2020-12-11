@@ -58,11 +58,9 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   },
   maxItems: {
     color: palette.error.main,
-  },
-  moreInfoText: {
-    marginTop: "4px",
-    fontSize: "0.75rem",
-    color: "#000",
+    "&:hover": {
+      color: palette.error.dark,
+    },
   },
   error: {
     color: palette.error.main,
