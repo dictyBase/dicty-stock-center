@@ -12,7 +12,7 @@ const a11yProps = (index: number) => ({
   "aria-controls": `strain-details-tabpanel-${index}`,
 })
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ palette }) => ({
   root: {
     "&:not(:first-of-type)": {
       marginLeft: "5px",
@@ -27,13 +27,23 @@ const useStyles = makeStyles(() => ({
   selected: {
     background: "#f4f6f8",
     border: "none",
-    borderBottomWidth: 0,
     "& $wrapper": {
       opacity: 1,
     },
   },
   wrapper: {
     opacity: 0.7,
+  },
+  number: {
+    background: palette.primary.main,
+    borderRadius: "0.8em",
+    color: "#ffffff",
+    display: "inline-block",
+    fontWeight: 700,
+    fontSize: "0.8rem",
+    marginLeft: "5px",
+    textAlign: "center",
+    width: "1.5em",
   },
 }))
 
@@ -90,7 +100,8 @@ const StrainDetailsCardHeader = ({
           classes={tabStyles}
           label={
             <Typography variant="body1">
-              Phenotypes ({phenotypeLength})
+              Phenotypes
+              <span className={classes.number}>{phenotypeLength}</span>
             </Typography>
           }
           {...a11yProps(1)}
