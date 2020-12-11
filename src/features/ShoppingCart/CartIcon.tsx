@@ -38,6 +38,7 @@ const CartIcon = () => {
         <Badge
           classes={{ colorPrimary: classes.colorPrimary }}
           badgeContent={addedItems.length}
+          showZero
           color="primary">
           <FontAwesomeIcon icon="shopping-cart" size="2x" />
         </Badge>
