@@ -57,6 +57,11 @@ const AvailableDisplay = ({ cartData }: Props) => {
     setQuantity(Number(event.target.value))
   }
 
+  const handleClick = () => {
+    addToCart(Array(quantity).fill(cartData))
+    setQuantity(values[0])
+  }
+
   let content = (
     <Link to="/information/order" className={classes.maxItems}>
       Cart capacity is full
@@ -85,7 +90,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
           <SecondaryButton
             variant="contained"
             color="secondary"
-            onClick={() => addToCart(Array(quantity).fill(cartData))}>
+            onClick={handleClick}>
             Add to Cart
           </SecondaryButton>
         </Grid>
