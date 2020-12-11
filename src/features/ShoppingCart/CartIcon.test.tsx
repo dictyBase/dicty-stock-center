@@ -37,7 +37,7 @@ describe("ShoppingCart/CartIcon", () => {
     ]
     it("correctly indicates items in cart", () => {
       render(<MockComponent items={cartItems} />)
-      expect(screen.getByText("(2)")).toBeInTheDocument()
+      expect(screen.getByText("2")).toBeInTheDocument()
     })
     it("displays notice if cart is full", () => {
       render(<MockComponent items={cartItems} />)
@@ -48,7 +48,7 @@ describe("ShoppingCart/CartIcon", () => {
   describe("initial render with no items in cart", () => {
     it("correctly indicates no items in cart", () => {
       render(<MockComponent items={[]} />)
-      expect(screen.getByText("(0)")).toBeInTheDocument()
+      expect(screen.getByText("0")).toBeInTheDocument()
     })
   })
 })
