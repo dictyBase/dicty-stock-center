@@ -9,7 +9,7 @@ import useCartItems from "common/hooks/useCartItems"
 const useStyles = makeStyles(({ palette }) => ({
   cartFull: {
     fontSize: "0.7rem",
-    color: palette.error.main,
+    color: palette.secondary.dark,
   },
   colorPrimary: {
     background: palette.secondary.light,
