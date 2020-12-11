@@ -17,7 +17,7 @@ import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
-import { User } from "common/@types/user"
+import { User } from "common/types"
 import { useStyles, navTheme } from "./appStyles"
 
 type HeaderProps = {
