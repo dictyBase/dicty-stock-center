@@ -14,7 +14,7 @@ describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
       id: "DBS123456",
       name: "test1",
       summary: "this is the best test strain in the world",
-      type: "strain",
+      type: "strain" as const,
     },
     inStock: true,
   }

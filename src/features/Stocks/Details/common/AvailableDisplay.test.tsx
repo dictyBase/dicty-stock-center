@@ -12,7 +12,7 @@ describe("features/Stocks/Details/common/AvailableDisplay", () => {
           id: "DBS123456",
           name: "test1",
           summary: "this is the best test strain in the world",
-          type: "strain",
+          type: "strain" as const,
         },
       }
       render(

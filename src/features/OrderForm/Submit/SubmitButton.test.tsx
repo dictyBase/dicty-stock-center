@@ -12,7 +12,7 @@ import {
 import { MockCartProvider } from "common/utils/testing"
 import useCartItems from "common/hooks/useCartItems"
 import waitForExpect from "wait-for-expect"
-import { CartItem } from "../types"
+import { CartItemWithFee } from "common/types"
 
 const mockValues = {
   firstName: "Art",
@@ -68,7 +68,7 @@ mockedUseCartItems.mockReturnValue({
   emptyCart: jest.fn(),
 })
 
-let addedItems = [] as Array<CartItem>
+let addedItems = [] as Array<CartItemWithFee>
 addedItems.fill(
   {
     id: "DBS1234",
