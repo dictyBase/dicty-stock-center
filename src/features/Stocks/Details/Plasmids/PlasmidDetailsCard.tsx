@@ -87,7 +87,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
     id: data.id,
     name: data.name,
     summary: data.summary,
-    type: "plasmid",
+    type: "plasmid" as const,
   }
 
   return (

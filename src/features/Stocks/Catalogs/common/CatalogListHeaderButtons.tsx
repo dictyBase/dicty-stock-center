@@ -1,16 +1,16 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { useCartStore } from "features/ShoppingCart/CartStore"
-import { CartItem } from "../types/cart"
+import { CartItemWithStatus } from "common/types"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
   button: {
-    color: "#004080",
+    color: palette.primary.main,
   },
 }))
 
@@ -36,7 +36,7 @@ const CatalogListHeaderButtons = () => {
   let cartButtonDisplay = true
   const maxItems = addedItems.length + checkedItemsLength > 12
   const includesUnavailableStocks = checkedItems.some(
-    (item: CartItem) => item.in_stock === false,
+    (item: CartItemWithStatus) => item.in_stock === false,
   )
 
   if (maxItems || includesUnavailableStocks) {

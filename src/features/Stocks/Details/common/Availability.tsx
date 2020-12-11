@@ -1,14 +1,10 @@
 import React from "react"
 import Typography from "@material-ui/core/Typography"
 import AvailableDisplay from "./AvailableDisplay"
+import { CartItem } from "common/types"
 
 type Props = {
-  cartData: {
-    id: string
-    name: string
-    summary: string
-    type: string
-  }
+  cartData: CartItem
   inStock: boolean
 }
 

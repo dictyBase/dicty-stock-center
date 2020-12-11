@@ -118,7 +118,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     id: data.id,
     name: data.label,
     summary: data.summary,
-    type: "strain",
+    type: "strain" as const,
   }
 
   const header = (

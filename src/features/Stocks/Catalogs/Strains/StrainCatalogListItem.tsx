@@ -30,6 +30,7 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
+    type: "strain" as const,
   }
   const checkboxData = {
     ...cartData,
