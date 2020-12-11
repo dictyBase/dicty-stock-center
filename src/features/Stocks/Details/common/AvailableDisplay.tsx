@@ -1,15 +1,15 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
 import Select from "@material-ui/core/Select"
-import CartCapacityFullMessage from "features/Stocks/Details/common/CartCapacityFullMessage"
 import SecondaryButton from "common/components/SecondaryButton"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   container: {
     paddingRight: "5px",
   },
@@ -17,7 +17,13 @@ const useStyles = makeStyles({
     marginRight: "10px",
     minWidth: 70,
   },
-})
+  maxItems: {
+    color: palette.error.main,
+    "&:hover": {
+      color: palette.error.dark,
+    },
+  },
+}))
 
 const createQuantityArray = (numItems: number) => {
   const qty = 13 - numItems // quantity of items available to add to cart
@@ -51,7 +57,11 @@ const AvailableDisplay = ({ cartData }: Props) => {
     setQuantity(Number(event.target.value))
   }
 
-  let content = <CartCapacityFullMessage />
+  let content = (
+    <Link to="/information/order" className={classes.maxItems}>
+      Cart capacity is full
+    </Link>
+  )
 
   if (!maxItemsInCart) {
     content = (
