@@ -6,13 +6,24 @@ import UnavailableButton from "./UnavailableButton"
 import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
-import { AddToCartProps } from "../types/cart"
+import { CartItem } from "common/types"
 
 const useStyles = makeStyles(({ palette }) => ({
   cartButton: {
     color: palette.secondary.main,
   },
 }))
+
+type Props = {
+  /** Stock data */
+  data: Array<CartItem>
+  /** Stock inventory status */
+  inStock: boolean
+  /** Function to add to checked items array */
+  setCheckedItems?: (arg0: Array<CartItem>) => void
+  /** Size of icon */
+  size?: "small" | "medium" | undefined
+}
 
 /**
  * AddToCartButton appears on the catalog page if the stock is available
@@ -24,7 +35,7 @@ export const AddToCartButton = ({
   inStock,
   setCheckedItems,
   size = "medium",
-}: AddToCartProps) => {
+}: Props) => {
   const [{ showCartDialog, maxItemsInCart }] = useCartStore()
   const { addToCart } = useCartItems()
   const classes = useStyles()

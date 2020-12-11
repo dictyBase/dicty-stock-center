@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
 import Availability from "features/Stocks/Details/common/Availability"
+import { CartItem } from "common/types"
 
 // accessibility helper function
 const a11yProps = (index: number) => ({
@@ -57,12 +58,7 @@ type Props = {
   handleChange: (event: ChangeEvent<{}>, value: any) => void
   /** Number of phenotypes */
   phenotypeLength: number
-  cartData: {
-    id: string
-    name: string
-    summary: string
-    type: string
-  }
+  cartData: CartItem
   inStock: boolean
 }
 

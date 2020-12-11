@@ -1,11 +1,3 @@
-type CartItem = {
-  id: string
-  name: string
-  summary: string
-  type?: string
-  fee: string
-}
-
 type PageProps = {
   /** Current order form page number */
   pageNum: number
@@ -15,4 +7,4 @@ type PageProps = {
   setSubmitError: Function
 }
 
-export type { CartItem, PageProps }
+export type { PageProps }

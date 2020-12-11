@@ -1,6 +1,7 @@
 import { useCartStore, CartActionType } from "features/ShoppingCart/CartStore"
 import { fees } from "common/constants/fees"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
+import { CartItem } from "common/types"
 
 const { STRAIN_FEE, PLASMID_FEE, OTHER_FEE } = fees
 
@@ -13,13 +14,6 @@ const getFee = (item: string) => {
     default:
       return OTHER_FEE
   }
-}
-
-type CartItem = {
-  id: string
-  name: string
-  summary: string
-  type?: string
 }
 
 /**

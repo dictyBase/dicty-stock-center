@@ -34,6 +34,7 @@ const PlasmidCatalogListItem = ({
     id: plasmid.id,
     name: plasmid.name,
     summary: plasmid.summary,
+    type: "plasmid" as const,
   }
   const checkboxData = {
     ...cartData,

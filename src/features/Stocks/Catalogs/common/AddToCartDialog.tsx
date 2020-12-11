@@ -4,21 +4,13 @@ import DialogTitleDisplay from "common/components/DialogTitleDisplay"
 import AddToCartDialogContent from "./AddToCartDialogContent"
 import AddToCartDialogActions from "./AddToCartDialogActions"
 import { useCartStore, CartActionType } from "features/ShoppingCart/CartStore"
+import { CartItem } from "common/types"
 
 type Props = {
   /** Strain data */
-  data: Array<{
-    /** Strain ID number */
-    id: string
-    /** Strain label (name) */
-    name: string
-    /** Strain summary */
-    summary: string
-    /** strain or plasmid */
-    type?: string
-  }>
+  data: Array<CartItem>
   /** Function to add to checked items array */
-  setCheckedItems?: Function
+  setCheckedItems?: (arg0: Array<CartItem>) => void
 }
 
 /**

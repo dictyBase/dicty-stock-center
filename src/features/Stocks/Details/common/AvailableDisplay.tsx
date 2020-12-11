@@ -8,6 +8,7 @@ import Select from "@material-ui/core/Select"
 import SecondaryButton from "common/components/SecondaryButton"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
+import { CartItem } from "common/types"
 
 const useStyles = makeStyles(({ palette }) => ({
   container: {
@@ -34,16 +35,7 @@ const createQuantityArray = (numItems: number) => {
 }
 
 type Props = {
-  cartData: {
-    /** Stock ID */
-    id: string
-    /** Stock name (label/descriptor) */
-    name: string
-    /** Stock summary */
-    summary: string
-    /** Strain or plasmid */
-    type: string
-  }
+  cartData: CartItem
 }
 
 const AvailableDisplay = ({ cartData }: Props) => {
