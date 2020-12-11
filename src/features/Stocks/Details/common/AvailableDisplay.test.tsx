@@ -24,7 +24,7 @@ describe("features/Stocks/Details/common/AvailableDisplay", () => {
       )
       const cartButton = screen.getByText(/Add to Cart/)
       expect(cartButton).toBeInTheDocument()
-      const dropdown = screen.getByRole("button", { name: "Quantity 1" })
+      const dropdown = screen.getByRole("button", { name: "1" })
       userEvent.click(dropdown)
       const listbox = within(screen.getByRole("listbox"))
       userEvent.click(listbox.getByText("2"))

@@ -32,7 +32,7 @@ describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
         screen.getByRole("tab", { name: "Strain Details" }),
       ).toBeInTheDocument()
       expect(
-        screen.getByRole("tab", { name: "Phenotypes (3)" }),
+        screen.getByRole("tab", { name: "Phenotypes 3" }),
       ).toBeInTheDocument()
     })
   })
@@ -43,7 +43,7 @@ describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
           <StrainDetailsCardHeader {...props} />
         </MockCartProvider>,
       )
-      const phenotypeTab = screen.getByRole("tab", { name: "Phenotypes (3)" })
+      const phenotypeTab = screen.getByRole("tab", { name: "Phenotypes 3" })
       userEvent.click(phenotypeTab)
       expect(handleChangeSpy).toHaveBeenCalledTimes(1)
     })
