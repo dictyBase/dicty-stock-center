@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from "@material-ui/core/styles"
-import { green } from "@material-ui/core/colors"
 
 // @ts-ignore <-- necessary to include the !important attributes
 const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
@@ -66,7 +65,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   },
   snackbar: {
     width: "300px",
-    backgroundColor: green[600],
+    backgroundColor: palette.secondary.main,
     fontSize: "0.8rem",
     display: "flex",
     alignItems: "center",
@@ -122,6 +121,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   moreInfoText: {
     marginTop: "4px",
     fontSize: "0.75rem",
+    color: "#000",
   },
   unavailableContainer: {
     backgroundColor: "rgb(253, 236, 234)",
