@@ -43,7 +43,7 @@
     "dicty-hooks": "github:dictyBase/dicty-hooks#1.1.1",
     "element-remove": "^1.0.4",
     "fontsource-roboto": "^3.0.3",
-    "formik": "^2.2.2",
+    "formik": "^2.2.6",
     "graphql": "^15.4.0",
     "history": "^5.0.0",
     "immutable": "^3.8.2",
