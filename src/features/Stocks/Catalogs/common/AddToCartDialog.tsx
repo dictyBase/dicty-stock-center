@@ -19,7 +19,7 @@ type Props = {
  */
 
 export const AddToCartDialog = ({ data, setCheckedItems }: Props) => {
-  const [, dispatch] = useCartStore()
+  const { dispatch } = useCartStore()
 
   const handleClose = () => {
     dispatch({

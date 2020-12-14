@@ -36,7 +36,9 @@ export const AddToCartButton = ({
   setCheckedItems,
   size = "medium",
 }: Props) => {
-  const [{ showCartDialog, maxItemsInCart }] = useCartStore()
+  const {
+    state: { showCartDialog, maxItemsInCart },
+  } = useCartStore()
   const { addToCart } = useCartItems()
   const classes = useStyles()
 

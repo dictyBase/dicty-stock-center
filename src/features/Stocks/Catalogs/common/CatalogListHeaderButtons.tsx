@@ -20,7 +20,9 @@ const useStyles = makeStyles(({ palette }) => ({
  */
 
 const CatalogListHeaderButtons = () => {
-  const [{ addedItems }] = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
   const {
     state: { checkedItems },
   } = useCatalogStore()

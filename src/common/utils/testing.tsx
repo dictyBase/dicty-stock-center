@@ -68,7 +68,7 @@ const MockCartProvider = ({ children, mocks, addedItems }: CartProps) => {
     maxItemsInCart: false,
   })
   return (
-    <CartContext.Provider value={[state, dispatch]}>
+    <CartContext.Provider value={{ state, dispatch }}>
       <MockedProvider mocks={mocks} addTypename={false}>
         <BrowserRouter>{children}</BrowserRouter>
       </MockedProvider>

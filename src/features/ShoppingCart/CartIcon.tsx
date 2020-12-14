@@ -22,7 +22,9 @@ const useStyles = makeStyles(({ palette }) => ({
  */
 
 const CartIcon = () => {
-  const [{ addedItems, maxItemsInCart }] = useCartStore()
+  const {
+    state: { addedItems, maxItemsInCart },
+  } = useCartStore()
   const { getItemsFromStorage } = useCartItems()
   const classes = useStyles()
 

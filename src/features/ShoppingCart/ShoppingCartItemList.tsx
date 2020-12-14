@@ -35,7 +35,9 @@ const getCartTotal = (items: Array<CartItemWithFee>) =>
  */
 
 const ShoppingCartItemList = () => {
-  const [{ addedItems }] = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
   const classes = useStyles()
 
   return (

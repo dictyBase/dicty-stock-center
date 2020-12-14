@@ -36,7 +36,9 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     in_stock: strain.in_stock,
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
-  const [{ addedItems }] = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
   const { removeFromCart } = useCartItems()
   const { hover, setHover, bind } = useHover()
   const theme = useTheme()

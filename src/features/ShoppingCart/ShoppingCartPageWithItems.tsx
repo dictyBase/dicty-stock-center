@@ -8,7 +8,9 @@ import { useCartStore } from "./CartStore"
 import useStyles from "./shoppingCartStyles"
 
 const ShoppingCartPageWithItems = () => {
-  const [{ maxItemsInCart }] = useCartStore()
+  const {
+    state: { maxItemsInCart },
+  } = useCartStore()
   const classes = useStyles()
 
   return (

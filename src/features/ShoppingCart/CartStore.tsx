@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react"
+import { CartItemWithFee } from "common/types"
 
 const storageKey = "dscCart"
 const maxKey = "dscMaxItems"
@@ -11,18 +12,10 @@ enum CartActionType {
   GET_ITEMS_FROM_STORAGE = "GET_ITEMS_FROM_STORAGE",
 }
 
-type CartItem = {
-  id: string
-  name: string
-  summary: string
-  type?: string
-  fee: string
-}
-
 type Action =
   | {
       type: CartActionType.ADD_TO_CART
-      payload: CartItem
+      payload: CartItemWithFee
     }
   | {
       type: CartActionType.REMOVE_FROM_CART
@@ -41,12 +34,17 @@ type Action =
     }
 
 type CartState = {
-  addedItems: Array<CartItem>
+  addedItems: Array<CartItemWithFee>
   showCartDialog: boolean
   maxItemsInCart: boolean
 }
 
-const CartContext = createContext({} as any)
+type CartStateContextProps = {
+  state: CartState
+  dispatch: React.Dispatch<Action>
+}
+
+const CartContext = createContext({} as CartStateContextProps)
 
 const initialState = {
   addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
@@ -120,11 +118,11 @@ const cartReducer = (state: CartState, action: Action) => {
  * CartProvider contains global state used for the shopping cart.
  */
 
-const CartProvider = ({ children }: any) => {
+const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
   return (
-    <CartContext.Provider value={[state, dispatch]}>
+    <CartContext.Provider value={{ state, dispatch }}>
       {children}
     </CartContext.Provider>
   )
