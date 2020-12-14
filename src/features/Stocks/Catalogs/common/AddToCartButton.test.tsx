@@ -58,12 +58,11 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
       const [state, dispatch] = React.useReducer(cartReducer, {
         addedItems: [],
         maxItemsInCart: true,
-        showCartDialog: false,
       })
 
       return (
         <CartProvider>
-          <CartContext.Provider value={[state, dispatch]}>
+          <CartContext.Provider value={{ state, dispatch }}>
             <AddToCartButton {...inStockProps} />
           </CartContext.Provider>
         </CartProvider>

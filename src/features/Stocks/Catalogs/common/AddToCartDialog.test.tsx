@@ -1,14 +1,12 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom"
 import AddToCartDialog from "./AddToCartDialog"
-import Dialog from "@material-ui/core/Dialog"
-import DialogTitleDisplay from "common/components/DialogTitleDisplay"
-import AddToCartDialogContent from "./AddToCartDialogContent"
-import AddToCartDialogActions from "./AddToCartDialogActions"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
-describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
+describe("features/Stocks/Catalogs/common/AddToCartDialog", () => {
+  const setShowDialogSpy = jest.fn()
   const setCheckedItemsSpy = jest.fn()
   const props = {
     data: [
@@ -19,28 +17,22 @@ describe("Stocks/CatalogPageItems/AddToCartDialog", () => {
       },
     ],
     setCheckedItems: setCheckedItemsSpy,
+    setShowDialog: setShowDialogSpy,
   }
-  const wrapper = mount(
-    <CartProvider>
-      <BrowserRouter>
-        <AddToCartDialog {...props} />
-      </BrowserRouter>
-    </CartProvider>,
-  )
-  describe("initial render with one item in cart", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Dialog)).toHaveLength(1)
-      expect(wrapper.find(DialogTitleDisplay)).toHaveLength(1)
-      expect(wrapper.find(AddToCartDialogContent)).toHaveLength(1)
-      expect(wrapper.find(AddToCartDialogActions)).toHaveLength(1)
-    })
-  })
-  describe("it should handle close correctly", () => {
-    it("should call setCheckedItems on close", () => {
-      // @ts-ignore
-      wrapper.find(Dialog).prop("onClose")("handleClose")
-      wrapper.update()
+
+  describe("closing dialog", () => {
+    it("calls functions when clicking close button", () => {
+      render(
+        <CartProvider>
+          <BrowserRouter>
+            <AddToCartDialog {...props} />
+          </BrowserRouter>
+        </CartProvider>,
+      )
+      const button = screen.getByRole("button", { name: "View Cart" })
+      userEvent.click(button)
       expect(setCheckedItemsSpy).toHaveBeenCalledTimes(1)
+      expect(setShowDialogSpy).toHaveBeenCalledTimes(1)
     })
   })
 })
