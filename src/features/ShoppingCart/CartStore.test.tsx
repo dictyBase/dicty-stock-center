@@ -15,7 +15,7 @@ describe("cartReducer", () => {
     id: "DBS1234567",
     name: "Test Strain",
     summary: "this is just a test summary",
-    type: "strain",
+    type: "strain" as const,
   }
 
   it("should add a new item to cart", () => {
@@ -69,7 +69,7 @@ describe("cartReducer", () => {
       addedItems: [
         {
           ...newItem,
-          type: "strain",
+          type: "strain" as const,
           fee: "30.00",
         },
       ],
