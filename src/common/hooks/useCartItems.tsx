@@ -22,7 +22,10 @@ const getFee = (item: string) => {
  */
 
 const useCartItems = () => {
-  const [{ addedItems }, dispatch] = useCartStore()
+  const {
+    state: { addedItems },
+    dispatch,
+  } = useCartStore()
 
   const addToCart = (items: Array<CartItem>) =>
     items.forEach((item) =>
@@ -30,7 +33,7 @@ const useCartItems = () => {
         type: CartActionType.ADD_TO_CART,
         payload: {
           fee: getFee(strainOrPlasmid(item.id)),
-          type: strainOrPlasmid(item.id),
+          type: strainOrPlasmid(item.id) as any,
           id: item.id,
           name: item.name,
           summary: item.summary,

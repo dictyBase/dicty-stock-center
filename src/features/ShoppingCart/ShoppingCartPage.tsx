@@ -10,7 +10,9 @@ import { useCartStore } from "./CartStore"
  *  there are currently items in the cart. **/
 
 const ShoppingCartPage = () => {
-  const [{ addedItems }] = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
   const classes = useStyles()
 
   return (

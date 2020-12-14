@@ -39,7 +39,9 @@ type Props = {
 }
 
 const AvailableDisplay = ({ cartData }: Props) => {
-  const [{ addedItems, maxItemsInCart }] = useCartStore()
+  const {
+    state: { addedItems, maxItemsInCart },
+  } = useCartStore()
   const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
