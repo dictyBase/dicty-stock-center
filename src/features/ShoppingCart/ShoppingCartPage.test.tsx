@@ -10,11 +10,10 @@ describe("ShoppingCart/ShoppingCartPage", () => {
   const MockProvider = ({ items }: any) => {
     const [state, dispatch] = React.useReducer(cartReducer, {
       addedItems: items,
-      showCartDialog: false,
       maxItemsInCart: false,
     })
     return (
-      <CartContext.Provider value={[state, dispatch]}>
+      <CartContext.Provider value={{ state, dispatch }}>
         <BrowserRouter>
           <ShoppingCartPage />
         </BrowserRouter>

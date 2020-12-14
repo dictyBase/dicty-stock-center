@@ -31,6 +31,7 @@ export const AddToCartDialogActions = ({ handleClose }: Props) => {
         Continue Shopping
       </Button>
       <Button
+        onClick={handleClose}
         component={Link}
         to="/cart"
         className={classes.cartDialogButton}

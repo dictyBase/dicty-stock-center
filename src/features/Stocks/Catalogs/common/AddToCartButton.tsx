@@ -37,16 +37,22 @@ export const AddToCartButton = ({
   size = "medium",
 }: Props) => {
   const {
-    state: { showCartDialog, maxItemsInCart },
+    state: { maxItemsInCart },
   } = useCartStore()
   const { addToCart } = useCartItems()
   const classes = useStyles()
+  const [showDialog, setShowDialog] = React.useState(false)
+
+  const handleClick = () => {
+    addToCart(data)
+    setShowDialog(true)
+  }
 
   let button = (
     <IconButton
       size={size}
       className={classes.cartButton}
-      onClick={() => addToCart(data)}
+      onClick={handleClick}
       title="Add to cart"
       aria-label="Add to shopping cart">
       <FontAwesomeIcon icon="cart-plus" />
@@ -68,8 +74,12 @@ export const AddToCartButton = ({
   return (
     <>
       <strong>{button}</strong>
-      {showCartDialog && (
-        <AddToCartDialog data={data} setCheckedItems={setCheckedItems} />
+      {showDialog && (
+        <AddToCartDialog
+          data={data}
+          setCheckedItems={setCheckedItems}
+          setShowDialog={setShowDialog}
+        />
       )}
     </>
   )
