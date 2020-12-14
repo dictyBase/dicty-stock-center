@@ -36,7 +36,7 @@ const ShoppingCartPageWithItems = () => {
           <Button
             component={Link}
             to="/order/checkout"
-            color="primary"
+            color="secondary"
             variant="contained"
             size="large"
             className={classes.checkoutBtn}>
