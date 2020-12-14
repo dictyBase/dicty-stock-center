@@ -11,10 +11,9 @@ describe("ShoppingCart/CartIcon", () => {
     const [state, dispatch] = React.useReducer(cartReducer, {
       addedItems: items,
       maxItemsInCart: maxItems,
-      showCartDialog: false,
     })
     return (
-      <CartContext.Provider value={[state, dispatch]}>
+      <CartContext.Provider value={{ state, dispatch }}>
         <BrowserRouter>
           <CartIcon />
         </BrowserRouter>

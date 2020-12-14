@@ -8,7 +8,6 @@ enum CartActionType {
   ADD_TO_CART = "ADD_TO_CART",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
   EMPTY_CART = "EMPTY_CART",
-  HIDE_CART_DIALOG = "HIDE_CART_DIALOG",
   GET_ITEMS_FROM_STORAGE = "GET_ITEMS_FROM_STORAGE",
 }
 
@@ -27,15 +26,11 @@ type Action =
       type: CartActionType.EMPTY_CART
     }
   | {
-      type: CartActionType.HIDE_CART_DIALOG
-    }
-  | {
       type: CartActionType.GET_ITEMS_FROM_STORAGE
     }
 
 type CartState = {
   addedItems: Array<CartItemWithFee>
-  showCartDialog: boolean
   maxItemsInCart: boolean
 }
 
@@ -48,7 +43,6 @@ const CartContext = createContext({} as CartStateContextProps)
 
 const initialState = {
   addedItems: JSON.parse(localStorage.getItem(storageKey) || "[]"),
-  showCartDialog: false,
   maxItemsInCart: JSON.parse(localStorage.getItem(maxKey) || "false"),
 }
 
@@ -69,13 +63,11 @@ const cartReducer = (state: CartState, action: Action) => {
         localStorage.setItem(maxKey, "true")
         return {
           addedItems: newItems,
-          showCartDialog: true,
           maxItemsInCart: true,
         }
       }
       return {
         addedItems: newItems,
-        showCartDialog: true,
         maxItemsInCart: false,
       }
     case CartActionType.REMOVE_FROM_CART:
@@ -88,7 +80,6 @@ const cartReducer = (state: CartState, action: Action) => {
       return {
         addedItems: updatedItems,
         maxItemsInCart: false,
-        showCartDialog: false,
       }
     case CartActionType.EMPTY_CART:
       localStorage.setItem(storageKey, "[]")
@@ -96,12 +87,6 @@ const cartReducer = (state: CartState, action: Action) => {
       return {
         addedItems: [],
         maxItemsInCart: false,
-        showCartDialog: false,
-      }
-    case CartActionType.HIDE_CART_DIALOG:
-      return {
-        ...state,
-        showCartDialog: false,
       }
     case CartActionType.GET_ITEMS_FROM_STORAGE:
       const latestItems = localStorage.getItem(storageKey) || "[]"

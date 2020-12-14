@@ -21,7 +21,6 @@ describe("cartReducer", () => {
   it("should add a new item to cart", () => {
     const state = {
       addedItems: [],
-      showCartDialog: false,
       maxItemsInCart: false,
     }
     expect(
@@ -39,7 +38,6 @@ describe("cartReducer", () => {
           fee: "30.00",
         },
       ],
-      showCartDialog: true,
       maxItemsInCart: false,
     })
   })
@@ -48,7 +46,6 @@ describe("cartReducer", () => {
     const items = new Array(12).fill(newItem)
     const state = {
       addedItems: items,
-      showCartDialog: false,
       maxItemsInCart: false,
     }
     expect(
@@ -56,12 +53,12 @@ describe("cartReducer", () => {
         type: CartActionType.ADD_TO_CART,
         payload: {
           ...newItem,
+          type: "strain",
           fee: "30.00",
         },
       }),
     ).toStrictEqual({
       addedItems: items,
-      showCartDialog: true,
       maxItemsInCart: true,
     })
     expect(localStorage.setItem).toBeCalledWith(maxKey, "true")
@@ -72,10 +69,10 @@ describe("cartReducer", () => {
       addedItems: [
         {
           ...newItem,
+          type: "strain",
           fee: "30.00",
         },
       ],
-      showCartDialog: false,
       maxItemsInCart: false,
     }
     expect(
@@ -88,7 +85,6 @@ describe("cartReducer", () => {
     ).toStrictEqual({
       addedItems: [],
       maxItemsInCart: false,
-      showCartDialog: false,
     })
     expect(localStorage.setItem).toBeCalledWith(storageKey, "[]")
     expect(localStorage.setItem).toBeCalledWith(maxKey, "false")
@@ -110,7 +106,6 @@ describe("cartReducer", () => {
           fee: "30.00",
         },
       ],
-      showCartDialog: false,
       maxItemsInCart: false,
     }
     expect(
@@ -120,33 +115,15 @@ describe("cartReducer", () => {
     ).toStrictEqual({
       addedItems: [],
       maxItemsInCart: false,
-      showCartDialog: false,
     })
     expect(localStorage.setItem).toBeCalledWith(storageKey, "[]")
     expect(localStorage.setItem).toBeCalledWith(maxKey, "false")
   })
 
-  it("should hide cart dialog", () => {
-    const state = {
-      addedItems: [],
-      showCartDialog: true,
-      maxItemsInCart: false,
-    }
-    expect(
-      cartReducer(state, {
-        type: CartActionType.HIDE_CART_DIALOG,
-      }),
-    ).toStrictEqual({
-      addedItems: [],
-      showCartDialog: false,
-      maxItemsInCart: false,
-    })
-  })
-
   it("should get items from local storage", () => {
     const state = {
       addedItems: [],
-      showCartDialog: false,
+
       maxItemsInCart: false,
     }
     expect(
@@ -155,7 +132,6 @@ describe("cartReducer", () => {
       }),
     ).toStrictEqual({
       addedItems: [],
-      showCartDialog: false,
       maxItemsInCart: false,
     })
     expect(localStorage.getItem).toBeCalledWith(storageKey)

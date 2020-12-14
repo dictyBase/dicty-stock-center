@@ -64,7 +64,6 @@ const MockAuthProvider = ({
 const MockCartProvider = ({ children, mocks, addedItems }: CartProps) => {
   const [state, dispatch] = React.useReducer(cartReducer, {
     addedItems: addedItems,
-    showCartDialog: false,
     maxItemsInCart: false,
   })
   return (

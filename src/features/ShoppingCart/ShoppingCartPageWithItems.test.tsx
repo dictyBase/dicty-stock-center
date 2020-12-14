@@ -8,7 +8,6 @@ import ShoppingCartItemList from "./ShoppingCartItemList"
 import { CartContext, cartReducer } from "./CartStore"
 
 const MockFullComponent = () => {
-  // @ts-ignore
   const [state, dispatch] = React.useReducer(cartReducer, {
     addedItems: [
       {
@@ -18,10 +17,9 @@ const MockFullComponent = () => {
       },
     ],
     maxItemsInCart: true,
-    showCartDialog: false,
   })
   return (
-    <CartContext.Provider value={[state, dispatch]}>
+    <CartContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
         <ShoppingCartPageWithItems />
       </BrowserRouter>
@@ -30,7 +28,6 @@ const MockFullComponent = () => {
 }
 
 const MockEmptyComponent = () => {
-  // @ts-ignore
   const [state, dispatch] = React.useReducer(cartReducer, {
     addedItems: [
       {
@@ -40,10 +37,9 @@ const MockEmptyComponent = () => {
       },
     ],
     maxItemsInCart: false,
-    showCartDialog: false,
   })
   return (
-    <CartContext.Provider value={[state, dispatch]}>
+    <CartContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
         <ShoppingCartPageWithItems />
       </BrowserRouter>

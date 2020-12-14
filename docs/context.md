@@ -14,7 +14,6 @@ addedItems: [
     fee: string,
   }
 ],
-showCartDialog: boolean,
 maxItemsInCart: boolean, // check for ensuring no more than 12 items in cart
 ```
 
@@ -32,12 +31,4 @@ checkedItems: [
     summary: string,
   }
 ]
-```
-
-### AppBar
-
-```
-filter: string,
-searchValue: string,
-helpDialogOpen: boolean
 ```
