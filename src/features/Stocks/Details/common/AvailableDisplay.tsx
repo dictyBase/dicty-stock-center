@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
 import Select from "@material-ui/core/Select"
 import SecondaryButton from "common/components/SecondaryButton"
+import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import { CartItem } from "common/types"
@@ -45,6 +46,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
   const values = createQuantityArray(addedItems.length)
   const classes = useStyles()
   const [quantity, setQuantity] = React.useState(values[0])
+  const [showDialog, setShowDialog] = React.useState(false)
   const { addToCart } = useCartItems()
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -53,6 +55,7 @@ const AvailableDisplay = ({ cartData }: Props) => {
 
   const handleClick = () => {
     addToCart(Array(quantity).fill(cartData))
+    setShowDialog(true)
     setQuantity(values[0])
   }
 
@@ -95,6 +98,12 @@ const AvailableDisplay = ({ cartData }: Props) => {
   return (
     <Grid item container alignItems="center" className={classes.container}>
       {content}
+      {showDialog && (
+        <AddToCartDialog
+          data={Array(quantity).fill(cartData)}
+          setShowDialog={setShowDialog}
+        />
+      )}
     </Grid>
   )
 }
