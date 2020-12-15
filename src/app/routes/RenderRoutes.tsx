@@ -32,6 +32,12 @@ const MyDscPage = lazy(
 )
 
 // editable page routes
+const InformationContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Information" */ "features/EditablePages/Information"
+    ),
+)
 const InfoPageContainer = lazy(
   () =>
     import(
@@ -133,6 +139,7 @@ const RenderRoutes = () => (
       <PrivateRoute exact path="/logout" component={Logout} />
       <PrivateRoute exact path="/mydsc" component={MyDscPage} />
       {/* editable page routes */}
+      <Route exact path="/information" component={InformationContainer} />
       <Route exact path="/information/:name" component={InfoPageContainer} />
       <PrivateRoute
         exact
