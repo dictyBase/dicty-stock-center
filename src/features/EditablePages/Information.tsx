@@ -5,6 +5,9 @@ import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import useAuthorization from "common/hooks/useAuthorization"
 
 const informationLinks = [
   {
@@ -41,14 +44,26 @@ const informationLinks = [
   },
 ]
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   root: {
     justifyContent: "center",
   },
-})
+  addPageButton: {
+    padding: "10px 20px 10px 20px",
+    marginTop: "10px",
+    backgroundColor: palette.secondary.main,
+    "&:hover": {
+      backgroundColor: palette.secondary.dark,
+      color: "#fff",
+    },
+  },
+}))
 
 const Information = () => {
+  const { canEditPages, verifiedToken } = useAuthorization()
   const classes = useStyles()
+
+  const authorizedUser = canEditPages && verifiedToken
 
   return (
     <Grid container justify="center">
@@ -60,6 +75,20 @@ const Information = () => {
               <Link to={`/information${item.route}`}>{item.name}</Link>
             </ListItem>
           ))}
+          <ListItem classes={{ root: classes.root }}>
+            {authorizedUser && (
+              <Button
+                component={Link}
+                to="/addpage"
+                className={classes.addPageButton}
+                size="medium"
+                variant="contained"
+                color="secondary">
+                <FontAwesomeIcon icon="plus" size="lg" />
+                &nbsp; Add new page
+              </Button>
+            )}
+          </ListItem>
         </List>
       </Grid>
     </Grid>
