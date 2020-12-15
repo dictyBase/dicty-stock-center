@@ -57,6 +57,19 @@ describe("app/layout/Breadcrumbs", () => {
       expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent("MyDSC")
     })
 
+    it("should display Add Page for /addpage subroute", () => {
+      ;(useLocation as jest.Mock).mockReturnValueOnce({
+        pathname: "/addpage",
+      })
+      render(<MockComponent />)
+      expect(screen.queryByTestId("breadcrumbs-home")).toHaveTextContent(
+        "DSC Home",
+      )
+      expect(screen.getByTestId("breadcrumbs-last")).toHaveTextContent(
+        "Add Page",
+      )
+    })
+
     it("should remove extra characters from phenotypes breadcrumb", () => {
       ;(useLocation as jest.Mock).mockReturnValueOnce({
         pathname: "/phenotypes/abolished+protein+phosphorylation",
