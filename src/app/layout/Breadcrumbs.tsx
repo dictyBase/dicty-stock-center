@@ -19,24 +19,29 @@ const useStyles = makeStyles({
  * the desired format
  */
 const convertBreadcrumbTitle = (crumb: string) => {
-  if (crumb === "faq") {
-    return "FAQs"
+  let title = crumb
+  switch (crumb) {
+    case "faq":
+      title = "FAQs"
+      break
+    case "mydsc":
+      title = "MyDSC"
+      break
+    case "addpage":
+      title = "Add Page"
+      break
+    default:
+      const cleanString = crumb.replaceAll("+", " ").replaceAll("-", " ")
+      /** don't return uppercase words if crumb is for phenotype
+       * i.e. abolished+protein+phosphorylation
+       */
+      if (crumb.includes("+")) {
+        return cleanString
+      }
+      // for everything else, capitalize
+      return capitalizeEveryWordInString(cleanString)
   }
-  if (crumb === "mydsc") {
-    return "MyDSC"
-  }
-  if (crumb === "addpage") {
-    return "Add Page"
-  }
-  const cleanString = crumb.replaceAll("+", " ").replaceAll("-", " ")
-  /** don't return uppercase words if crumb is for phenotype
-   * i.e. abolished+protein+phosphorylation
-   */
-  if (crumb.includes("+")) {
-    return cleanString
-  }
-  // for everything else, capitalize
-  return capitalizeEveryWordInString(cleanString)
+  return title
 }
 
 /**
