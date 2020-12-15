@@ -66,4 +66,5 @@ const Information = () => {
   )
 }
 
+export { informationLinks }
 export default Information
