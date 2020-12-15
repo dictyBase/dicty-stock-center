@@ -43,6 +43,9 @@ const newTheme = createMuiTheme({
 const error =
   "Your login token is expired. Please log out and then log back in to regain full user access."
 
+const filterText = (text: string) =>
+  text.replace(/[^a-zA-Z^\d- ]/g, "").toLowerCase()
+
 /**
  * This is the view component so an authorized user can add a new page.
  */
@@ -94,7 +97,10 @@ const AddPage = () => {
                 id="add-page-route"
                 variant="outlined"
                 value={textValue}
-                onChange={(event) => setTextValue(event.target.value)}
+                autoFocus
+                onChange={(event) =>
+                  setTextValue(filterText(event.target.value))
+                }
               />
             </h3>
           </div>
