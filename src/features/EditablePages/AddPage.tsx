@@ -1,34 +1,15 @@
 import React from "react"
 import { useMutation } from "@apollo/client"
 import { useHistory } from "react-router-dom"
-import {
-  makeStyles,
-  ThemeProvider,
-  createMuiTheme,
-} from "@material-ui/core/styles"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import TextField from "@material-ui/core/TextField"
-import Typography from "@material-ui/core/Typography"
 import { PageEditor } from "dicty-components-page-editor"
-import ErrorNotification from "features/Authentication/ErrorNotification"
+import AddPageBanner from "./AddPageBanner"
 import { useAuthStore } from "features/Authentication/AuthStore"
 import useAuthorization from "common/hooks/useAuthorization"
 import { CREATE_CONTENT } from "common/graphql/mutations"
 import NAMESPACE from "common/constants/namespace"
 import { theme } from "app/layout/AppProviders"
-
-const useStyles = makeStyles(() => ({
-  banner: {
-    minHeight: "45px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  route: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}))
 
 const newTheme = createMuiTheme({
   ...theme,
@@ -41,21 +22,14 @@ const newTheme = createMuiTheme({
   },
 })
 
-const error =
-  "Your login token is expired. Please log out and then log back in to regain full user access."
-
-const filterText = (text: string) =>
-  text.replace(/[^a-zA-Z^\d- ]/g, "").toLowerCase()
-
 /**
  * This is the view component so an authorized user can add a new page.
  */
 
 const AddPage = () => {
   const [{ token }] = useAuthStore()
-  const { user, canEditPages, verifiedToken } = useAuthorization()
+  const { user } = useAuthorization()
   const history = useHistory()
-  const classes = useStyles()
   const [createContent] = useMutation(CREATE_CONTENT, {
     context: {
       headers: {
@@ -90,43 +64,16 @@ const AddPage = () => {
     history.push("/information")
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTextValue(filterText(event.target.value))
-    if (textValue !== "") {
-      setTextValueError(false)
-    }
-  }
-
   return (
     <ThemeProvider theme={newTheme}>
-      {canEditPages && !verifiedToken && <ErrorNotification error={error} />}
       <Grid container wrap="wrap" justify="center">
         <Grid item xs={12}>
-          <div className={classes.banner}>
-            <h2>Add Editable Page for Route:</h2>
-            <h3 className={classes.route}>
-              /information/
-              <TextField
-                id="add-page-route"
-                variant="outlined"
-                value={textValue}
-                autoFocus
-                onChange={handleChange}
-                placeholder="Enter route here..."
-              />
-            </h3>
-            <Typography variant="body2" color="inherit">
-              <em>
-                Only lowercase letters, numbers and hyphens are allowed for
-                routes
-              </em>
-            </Typography>
-            {textValueError && (
-              <Typography variant="body1" color="error">
-                Please enter a route before saving
-              </Typography>
-            )}
-          </div>
+          <AddPageBanner
+            textValue={textValue}
+            setTextValue={setTextValue}
+            textValueError={textValueError}
+            setTextValueError={setTextValueError}
+          />
         </Grid>
         <br />
         <Grid item xs={12}>
