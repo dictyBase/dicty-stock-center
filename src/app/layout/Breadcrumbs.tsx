@@ -25,6 +25,9 @@ const convertBreadcrumbTitle = (crumb: string) => {
   if (crumb === "mydsc") {
     return "MyDSC"
   }
+  if (crumb === "addpage") {
+    return "Add Page"
+  }
   const cleanString = crumb.replaceAll("+", " ").replaceAll("-", " ")
   /** don't return uppercase words if crumb is for phenotype
    * i.e. abolished+protein+phosphorylation
