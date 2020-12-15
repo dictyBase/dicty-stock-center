@@ -14,9 +14,6 @@ jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
   return {
     ...originalModule,
-    useParams: () => ({
-      name: "shipping",
-    }),
     useHistory: jest.fn(),
   }
 })
@@ -51,42 +48,43 @@ const mockContent = {
 }
 
 describe("features/EditablePages/AddPage", () => {
-  const props = {
-    location: {
-      state: {
-        name: "shipping",
-        url: "/information/shipping",
-      },
-    },
-  }
-
   const MockComponent = ({ mocks }: any) => (
     <MockAuthProvider mocks={mocks} validToken>
       <BrowserRouter>
-        <AddPage {...props} />
+        <AddPage />
       </BrowserRouter>
     </MockAuthProvider>
   )
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe("initial render", () => {
-    it("displays correct route", () => {
+    it("displays header and textbox", () => {
       render(<MockComponent mocks={[]} />)
       expect(
         screen.getByText(/Add Editable Page for Route:/),
       ).toBeInTheDocument()
-      expect(screen.getByText("/information/shipping")).toBeInTheDocument()
+      const textbox = screen.getByPlaceholderText(/Enter route here.../)
+      expect(textbox).toBeInTheDocument()
+      expect(textbox).toBeEmptyDOMElement()
     })
   })
 
   describe("button clicking", () => {
     it("should save data and redirect on click", async () => {
+      ;(useHistory as jest.Mock).mockReturnValueOnce({
+        push: mockHistoryPush,
+      })
+      const textInput = "shipping"
       const mocks = [
         {
           request: {
             query: CREATE_CONTENT,
             variables: {
               input: {
-                name: "shipping",
+                name: textInput,
                 created_by: 999,
                 content: JSON.stringify(mockContent),
                 namespace: "dsc",
@@ -96,7 +94,7 @@ describe("features/EditablePages/AddPage", () => {
           result: {
             data: {
               createContent: {
-                name: "shipping",
+                name: textInput,
                 created_by: {
                   id: 999,
                 },
@@ -107,10 +105,9 @@ describe("features/EditablePages/AddPage", () => {
           },
         },
       ]
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
-      })
       render(<MockComponent mocks={mocks} />)
+      const textbox = screen.getByPlaceholderText(/Enter route here.../)
+      userEvent.type(textbox, textInput)
       // there are two save buttons, one in toolbar and one at bottom
       const saveButtons = screen.getAllByText("Save")
       userEvent.click(saveButtons[0])
@@ -118,18 +115,23 @@ describe("features/EditablePages/AddPage", () => {
         expect(
           screen.getByText(/Add your page content here.../),
         ).toBeInTheDocument()
-        expect(mockHistoryPush).toHaveBeenCalledWith(props.location.state.url)
+        // need to use timer to match component behavior
+        setTimeout(() => {
+          expect(mockHistoryPush).toHaveBeenCalledWith(
+            `/information/${textInput}`,
+          )
+        }, 1000)
       })
     })
 
-    it("should go back to previous URL on cancel", () => {
+    it("should go back to information page on cancel", () => {
       ;(useHistory as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
       })
       render(<MockComponent mocks={[]} />)
       const cancelButton = screen.getByText("Cancel")
       userEvent.click(cancelButton)
-      expect(mockHistoryPush).toHaveBeenCalledWith(props.location.state.url)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/information")
     })
   })
 })
