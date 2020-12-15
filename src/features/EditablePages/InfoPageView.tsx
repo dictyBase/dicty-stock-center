@@ -28,20 +28,18 @@ const InfoPageView = ({ data }: Props) => {
   }
 
   return (
-    <div key={data.content}>
-      <Grid container justify="center">
-        <Grid item xs={12}>
-          <InfoPageViewToolbar
-            handleClick={handleClick}
-            lastUpdate={data.updated_at}
-            user={data.updated_by}
-          />
-          <div>
-            <PageEditor pageContent={data.content} readOnly />
-          </div>
-        </Grid>
+    <Grid container justify="center">
+      <Grid item xs={12}>
+        <InfoPageViewToolbar
+          handleClick={handleClick}
+          lastUpdate={data.updated_at}
+          user={data.updated_by}
+        />
+        <div>
+          <PageEditor pageContent={data.content} readOnly />
+        </div>
       </Grid>
-    </div>
+    </Grid>
   )
 }
 
