@@ -112,6 +112,7 @@ const AddPage = () => {
                 value={textValue}
                 autoFocus
                 onChange={handleChange}
+                placeholder="Enter route here..."
               />
             </h3>
             <Typography variant="body2" color="inherit">
