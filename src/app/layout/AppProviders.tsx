@@ -41,12 +41,6 @@ const theme = createMuiTheme({
         },
       },
     },
-    MuiOutlinedInput: {
-      input: {
-        padding: "6px 0px 7px 0px",
-        textAlign: "center",
-      },
-    },
   },
 })
 
@@ -64,4 +58,5 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
   )
 }
 
+export { theme }
 export default AppProviders
