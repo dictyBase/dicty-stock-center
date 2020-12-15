@@ -124,6 +124,16 @@ describe("features/EditablePages/AddPage", () => {
       })
     })
 
+    it("should display error message if saving empty route", () => {
+      render(<MockComponent mocks={[]} />)
+      // there are two save buttons, one in toolbar and one at bottom
+      const saveButtons = screen.getAllByText("Save")
+      userEvent.click(saveButtons[0])
+      expect(
+        screen.getByText(/Please enter a route before saving/),
+      ).toBeInTheDocument()
+    })
+
     it("should go back to information page on cancel", () => {
       ;(useHistory as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
