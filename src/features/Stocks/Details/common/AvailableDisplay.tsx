@@ -1,6 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
@@ -9,6 +13,7 @@ import SecondaryButton from "common/components/SecondaryButton"
 import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
+import { theme } from "app/layout/AppProviders"
 import { CartItem } from "common/types"
 
 const useStyles = makeStyles(({ palette }) => ({
@@ -26,6 +31,18 @@ const useStyles = makeStyles(({ palette }) => ({
     },
   },
 }))
+
+const newTheme = createMuiTheme({
+  ...theme,
+  overrides: {
+    MuiOutlinedInput: {
+      input: {
+        padding: "6px 0px 7px 0px",
+        textAlign: "center",
+      },
+    },
+  },
+})
 
 const createQuantityArray = (numItems: number) => {
   const qty = 13 - numItems // quantity of items available to add to cart
@@ -96,15 +113,17 @@ const AvailableDisplay = ({ cartData }: Props) => {
   }
 
   return (
-    <Grid item container alignItems="center" className={classes.container}>
-      {content}
-      {showDialog && (
-        <AddToCartDialog
-          data={Array(quantity).fill(cartData)}
-          setShowDialog={setShowDialog}
-        />
-      )}
-    </Grid>
+    <MuiThemeProvider theme={newTheme}>
+      <Grid item container alignItems="center" className={classes.container}>
+        {content}
+        {showDialog && (
+          <AddToCartDialog
+            data={Array(quantity).fill(cartData)}
+            setShowDialog={setShowDialog}
+          />
+        )}
+      </Grid>
+    </MuiThemeProvider>
   )
 }
 
