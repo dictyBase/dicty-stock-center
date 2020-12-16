@@ -9,6 +9,9 @@ const useStyles = makeStyles({
   header: {
     textAlign: "center",
   },
+  name: {
+    marginBottom: "10px",
+  },
 })
 
 type Props = {
@@ -29,10 +32,10 @@ const DetailsHeader = ({ name, id }: Props) => {
     <Grid item xs={12} className={classes.header}>
       <Grid container justify="center">
         <Grid item>
-          <Typography variant="h1" noWrap>
+          <Typography className={classes.name} variant="h1" noWrap>
             {characterConverter(name)}
           </Typography>
-          <Typography variant="h4" color="textSecondary">
+          <Typography variant="h3" color="textSecondary">
             <em>{id}</em>
             <DetailsHeaderCopyIcon id={id} />
           </Typography>

@@ -29,24 +29,10 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   id: {
     display: "flex",
     justifyContent: "center",
-  },
-  snackbar: {
-    width: "400px",
-    backgroundColor: palette.secondary.main,
-    fontSize: "0.8rem",
-    display: "flex",
-    alignItems: "center",
-    paddingTop: "0px",
-    paddingBottom: "0px",
-  },
-  checkIcon: {
-    fontSize: "0.8rem",
-    marginRight: spacing(1),
-  },
-  closeIcon: {
-    fontSize: "0.9rem",
+    marginTop: "5px",
   },
   copyIcon: {
+    marginLeft: "5px",
     "&:hover": {
       backgroundColor: "transparent",
       color: "rgba(0, 0, 0, 0.87)",
@@ -55,7 +41,6 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   detailsItem: {
     fontWeight: 420,
   },
-
   error: {
     color: palette.error.main,
   },
