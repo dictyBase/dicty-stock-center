@@ -3,19 +3,16 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 
-const useStyles = makeStyles({
-  button: {
-    width: "25%",
-    padding: "20px",
-    textTransform: "none",
-    backgroundColor: "#15317e",
-    color: "#e3e3e3",
+const useStyles = makeStyles(({ palette }) => ({
+  root: {
+    color: palette.getContrastText(palette.primary.main),
+    backgroundColor: palette.primary.main,
     "&:hover": {
-      backgroundColor: "#1a3d9e",
-      color: "#e3e3e3",
+      color: palette.getContrastText(palette.primary.main),
+      backgroundColor: palette.primary.dark,
     },
   },
-})
+}))
 
 /**
  * BackToHomePageButton is a simple button that links back to the homepage.
@@ -26,9 +23,9 @@ const BackToHomePageButton = () => {
 
   return (
     <Button
+      classes={{ root: classes.root }}
       component={Link}
       to="/"
-      className={classes.button}
       size="small"
       variant="contained"
       color="primary">

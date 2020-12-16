@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
   error400: {
     backgroundColor: "#eff8fb",
     textAlign: "center",
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
   },
   error500: {
-    backgroundColor: "#a63232",
+    backgroundColor: palette.error.dark,
     textAlign: "center",
     paddingTop: 40,
     paddingBottom: 40,
