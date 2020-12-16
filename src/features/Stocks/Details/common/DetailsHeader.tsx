@@ -8,8 +8,12 @@ import characterConverter from "common/utils/characterConverter"
 const useStyles = makeStyles({
   header: {
     textAlign: "center",
+    marginTop: "10px",
   },
   name: {
+    marginBottom: "16px",
+  },
+  id: {
     marginBottom: "10px",
   },
 })
@@ -35,7 +39,7 @@ const DetailsHeader = ({ name, id }: Props) => {
           <Typography className={classes.name} variant="h1" noWrap>
             {characterConverter(name)}
           </Typography>
-          <Typography variant="h3" color="textSecondary">
+          <Typography className={classes.id} variant="h3" color="textSecondary">
             <em>{id}</em>
             <DetailsHeaderCopyIcon id={id} />
           </Typography>
