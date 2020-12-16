@@ -106,6 +106,7 @@ const PlasmidCatalogListItem = ({
                 />
                 {itemIsInCart(addedItems, plasmid.id) && (
                   <IconButton
+                    className={classes.trashBtn}
                     size={size}
                     color="secondary"
                     onClick={handleRemoveItemClick}>
