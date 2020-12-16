@@ -1,7 +1,7 @@
 import React from "react"
+import Alert from "@material-ui/lab/Alert"
 import IconButton from "@material-ui/core/IconButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import DetailsHeaderSnackbar from "./DetailsHeaderSnackbar"
 import useStyles from "features/Stocks/Details/styles"
 
 type Props = {
@@ -32,13 +32,14 @@ const DetailsHeaderCopyIcon = ({ id }: Props) => {
       <IconButton
         onClick={handleClick}
         className={classes.copyIcon}
+        size="small"
         title="Copy ID to clipboard"
         aria-label="copy icon">
         <FontAwesomeIcon icon="copy" size="xs" />
       </IconButton>
       <div className={classes.id}>
         {snackbarOpen && (
-          <DetailsHeaderSnackbar id={id} setSnackbarOpen={setSnackbarOpen} />
+          <Alert severity="success">ID successfully copied to clipboard</Alert>
         )}
       </div>
     </>
