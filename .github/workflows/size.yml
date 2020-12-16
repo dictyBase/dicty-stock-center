@@ -1,4 +1,4 @@
-name: Package size report
+name: App size report
 on:
   pull_request:
     types: [edited, labeled, opened, synchronize, reopened]
