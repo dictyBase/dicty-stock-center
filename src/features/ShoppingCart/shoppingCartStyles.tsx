@@ -6,16 +6,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "20px",
     marginRight: "5px",
   },
-  alertBox: {
-    padding: "15px",
-    marginBottom: "20px",
-    border: "1px solid transparent",
-    borderRadius: "4px",
-    color: theme.palette.error.main,
-    backgroundColor: "#f2dede",
-    borderColor: "#ebccd1",
-    textAlign: "center",
-  },
   header: {
     fontSize: "3rem",
     marginTop: "25px",

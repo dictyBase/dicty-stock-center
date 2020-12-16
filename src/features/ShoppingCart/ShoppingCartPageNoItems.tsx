@@ -1,24 +1,28 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import useStyles from "./shoppingCartStyles"
+import Alert from "@material-ui/lab/Alert"
+import Typography from "@material-ui/core/Typography"
+
+const useStyles = makeStyles(() => ({
+  alert: {
+    marginBottom: "20px",
+  },
+}))
 
 const ShoppingCartPageNoItems = () => {
   const classes = useStyles()
 
   return (
     <Grid container justify="center">
-      <Grid item xs={11} sm={7}>
-        <div className={classes.alertBox}>
-          <strong>
-            <FontAwesomeIcon icon="exclamation-circle" />
-          </strong>{" "}
+      <Grid item>
+        <Alert className={classes.alert} severity="error">
           There are no items in your cart.
-        </div>
+        </Alert>
         <Grid container justify="center">
           <Grid item>
-            <h2>Browse our catalogs</h2>
+            <Typography variant="h2">Browse our catalogs</Typography>
             <ul>
               <li>
                 <Link to="/strains">Strains Catalog</Link>
