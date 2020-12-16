@@ -147,7 +147,7 @@
   "size-limit": [
     {
       "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
-      "limit": "5 s"
+      "limit": "3000 KB"
     }
   ]
 }
