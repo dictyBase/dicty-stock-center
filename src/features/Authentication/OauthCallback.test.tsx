@@ -1,10 +1,9 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import OauthCallback from "./OauthCallback"
 import { BrowserRouter } from "react-router-dom"
-import Grid from "@material-ui/core/Grid"
 
-describe("authentication/OauthCallback", () => {
+describe("features/Authentication/OauthCallback", () => {
   const globalAny = global as any
   const postMessageMock = jest.fn()
   const closeMock = jest.fn()
@@ -13,28 +12,26 @@ describe("authentication/OauthCallback", () => {
   }
   globalAny.close = closeMock
   process.env.REACT_APP_BASENAME = "/stockcenter"
-  const wrapper = mount(
-    <BrowserRouter>
-      <OauthCallback />
-    </BrowserRouter>,
-  )
   describe("initial render", () => {
-    it("renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
-    })
-    it("renders expected text", () => {
-      expect(wrapper.find("h1").text()).toBe(
-        "Transferring to login system ........",
+    it("renders text notification", () => {
+      render(
+        <BrowserRouter>
+          <OauthCallback />
+        </BrowserRouter>,
       )
+      expect(
+        screen.getByText(/Transferring to login system ......../),
+      ).toBeInTheDocument()
     })
   })
   describe("window behavior", () => {
     it("should call post message on mount", () => {
+      render(
+        <BrowserRouter>
+          <OauthCallback />
+        </BrowserRouter>,
+      )
       expect(postMessageMock).toHaveBeenCalled()
-    })
-    it("should close on unmount", () => {
-      wrapper.unmount()
-      expect(closeMock).toHaveBeenCalled()
     })
   })
 })

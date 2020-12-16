@@ -1,17 +1,39 @@
 import React from "react"
-import { mount } from "enzyme"
-import wait from "waait"
+import { render, screen } from "@testing-library/react"
 import OtherMaterials from "./OtherMaterials"
-import InlineEditor from "features/EditablePages/InlineEditor"
-import PanelLoader from "./PanelLoader"
 import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import { MockAuthProvider } from "common/utils/testing"
 
-describe("Home/OtherMaterials", () => {
-  beforeEach(() => {
-    // @ts-ignore
-    window.getSelection = jest.fn()
-  })
+window.getSelection = jest.fn()
+
+const mockContent = {
+  object: "value",
+  document: {
+    object: "document",
+    data: {},
+    nodes: [
+      {
+        object: "block",
+        type: "paragraph",
+        data: {},
+        nodes: [
+          {
+            object: "text",
+            leaves: [
+              {
+                object: "leaf",
+                text: "Test Content",
+                marks: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+}
+
+describe("features/Home/OtherMaterials", () => {
   describe("initial render", () => {
     const mocks = [
       {
@@ -25,20 +47,7 @@ describe("Home/OtherMaterials", () => {
           data: {
             contentBySlug: {
               id: "1",
-              content: JSON.stringify({
-                object: "block",
-                type: "paragraph",
-                nodes: [
-                  {
-                    object: "text",
-                    leaves: [
-                      {
-                        text: "Test content",
-                      },
-                    ],
-                  },
-                ],
-              }),
+              content: JSON.stringify(mockContent),
               name: "other-materials",
               slug: "dsc-other-materials",
               updated_at: "2020",
@@ -62,18 +71,17 @@ describe("Home/OtherMaterials", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
-        <OtherMaterials />
-      </MockAuthProvider>,
-    )
-    it("renders loading component first", () => {
-      expect(wrapper.find(PanelLoader)).toExist()
-    })
-    it("renders expected components after receiving data", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(InlineEditor)).toHaveLength(1)
+    it("displays fetched data", async () => {
+      render(
+        <MockAuthProvider mocks={mocks}>
+          <OtherMaterials />
+        </MockAuthProvider>,
+      )
+      // displays loading skeleton first
+      expect(screen.getByTestId("panel-loader")).toBeInTheDocument()
+      // wait for data to load...
+      const content = await screen.findByText(/Test Content/)
+      expect(content).toBeInTheDocument()
     })
   })
 
@@ -103,17 +111,19 @@ describe("Home/OtherMaterials", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockAuthProvider mocks={mocks}>
-        <OtherMaterials />
-      </MockAuthProvider>,
-    )
     it("handles errors as expected", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find("div").text()).toBe(
-        "Error fetching other materials information",
+      render(
+        <MockAuthProvider mocks={mocks}>
+          <OtherMaterials />
+        </MockAuthProvider>,
       )
+      // displays loading skeleton first
+      expect(screen.getByTestId("panel-loader")).toBeInTheDocument()
+      // wait for error message to load...
+      const errorMsg = await screen.findByText(
+        /Error fetching other materials information/,
+      )
+      expect(errorMsg).toBeInTheDocument()
     })
   })
 })

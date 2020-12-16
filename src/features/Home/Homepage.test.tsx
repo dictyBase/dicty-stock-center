@@ -1,7 +1,6 @@
 import React from "react"
 import { mount } from "enzyme"
 import Homepage from "./Homepage"
-import Grid from "@material-ui/core/Grid"
 import EditablePanel from "./EditablePanel"
 import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
@@ -15,7 +14,6 @@ describe("Home/Homepage", () => {
       </MockAuthProvider>,
     )
     it("renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(EditablePanel)).toHaveLength(2)
       expect(wrapper.find(HomepageColumn)).toHaveLength(3)
     })

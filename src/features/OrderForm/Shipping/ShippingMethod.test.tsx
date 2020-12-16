@@ -1,7 +1,6 @@
 import * as React from "react"
 import { shallow } from "enzyme"
 import ShippingMethod from "./ShippingMethod"
-import Grid from "@material-ui/core/Grid"
 import TextField from "../TextField"
 import ShippingMethodRadioGroup from "./ShippingMethodRadioGroup"
 import ShippingMethodPrepaidNotice from "./ShippingMethodPrepaidNotice"
@@ -10,7 +9,6 @@ describe("OrderForm/Shipping/ShippingMethod", () => {
   describe("initial render", () => {
     const wrapper = shallow(<ShippingMethod />)
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(TextField)).toHaveLength(1)
       expect(wrapper.find(ShippingMethodRadioGroup)).toHaveLength(1)
     })
