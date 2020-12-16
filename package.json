@@ -146,8 +146,8 @@
   ],
   "size-limit": [
     {
-      "path": "build/static/js/*.js",
-      "limit": "800 ms"
+      "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
+      "limit": "5 s"
     }
   ]
 }
