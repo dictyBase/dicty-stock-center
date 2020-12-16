@@ -1,16 +1,20 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   header: {
     textAlign: "center",
     paddingBottom: "10px",
   },
   notice: {
-    color: "rgb(208, 2, 27)",
+    color: palette.error.main,
+    marginBottom: "10px",
   },
-})
+  title: {
+    marginBottom: "16px",
+  },
+}))
 
 type Props = {
   /** The title of the page (either Strain Catalog or Plasmid Catalog) */
@@ -26,7 +30,9 @@ const CatalogHeader = ({ title }: Props) => {
 
   return (
     <div className={classes.header}>
-      <Typography variant="h1">{title}</Typography>
+      <Typography className={classes.title} variant="h1">
+        {title}
+      </Typography>
       <Typography variant="body1" className={classes.notice}>
         PLEASE DO NOT ORDER FROM THIS TEST SITE. THIS IS FOR INTERNAL TESTING
         ONLY. THANKS!
