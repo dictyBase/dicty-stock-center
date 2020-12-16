@@ -21,7 +21,8 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "cypress:open": "cypress open",
     "cypress:run": "percy exec -- cypress run",
-    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run"
+    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run",
+    "size": "yarn build && size-limit"
   },
   "repository": {
     "type": "git",
@@ -67,6 +68,7 @@
   "devDependencies": {
     "@percy/cypress": "^2.3.1",
     "@semantic-release/git": "^9.0.0",
+    "@size-limit/preset-app": "^4.9.1",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
@@ -106,6 +108,7 @@
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.2.4",
     "sinon": "^9.2.2",
+    "size-limit": "^4.9.1",
     "source-map-explorer": "^2.5.1",
     "start-server-and-test": "^1.11.6",
     "waait": "^1.0.5",
@@ -143,8 +146,8 @@
   ],
   "size-limit": [
     {
-      "path": "build/index.js",
-      "limit": "4500 ms"
+      "path": "build/*.js",
+      "limit": "800 ms"
     }
   ]
 }
