@@ -1,7 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
 import OrderConfirmation from "./OrderConfirmation"
-import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import Alert from "@material-ui/lab/Alert"
 import AlertTitle from "@material-ui/lab/AlertTitle"
@@ -19,7 +18,6 @@ describe("OrderForm/OrderConfirmation", () => {
     }
     const wrapper = shallow(<OrderConfirmation {...props} />)
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(Button)).toHaveLength(1)
       expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
     })
@@ -38,7 +36,6 @@ describe("OrderForm/OrderConfirmation", () => {
     }
     const wrapper = shallow(<OrderConfirmation {...props} />)
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(Button)).toHaveLength(1)
       expect(wrapper.find(Alert)).toHaveLength(1)
       expect(wrapper.find(AlertTitle)).toHaveLength(1)

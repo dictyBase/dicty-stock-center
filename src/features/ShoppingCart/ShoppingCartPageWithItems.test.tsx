@@ -2,7 +2,6 @@ import React from "react"
 import { mount } from "enzyme"
 import { BrowserRouter } from "react-router-dom"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
-import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import ShoppingCartItemList from "./ShoppingCartItemList"
 import { CartContext, cartReducer } from "./CartStore"
@@ -51,7 +50,6 @@ describe("ShoppingCart/ShoppingCartPageWithItems", () => {
   describe("initial render, non-full cart", () => {
     const wrapper = mount(<MockEmptyComponent />)
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(ShoppingCartItemList)).toHaveLength(1)
     })
     it("should find continue shopping button", () => {
@@ -64,7 +62,6 @@ describe("ShoppingCart/ShoppingCartPageWithItems", () => {
   describe("initial render, full cart", () => {
     const wrapper = mount(<MockFullComponent />)
     it("always renders initial components", () => {
-      expect(wrapper.find(Grid)).toExist()
       expect(wrapper.find(ShoppingCartItemList)).toHaveLength(1)
     })
     it("should find checkout button", () => {
