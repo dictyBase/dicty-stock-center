@@ -140,5 +140,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
+  ],
+  "size-limit": [
+    {
+      "path": "build/index.js",
+      "limit": "4500 ms"
+    }
   ]
 }
