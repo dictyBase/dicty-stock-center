@@ -99,7 +99,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
               <Grid item xs={12} className={classes.cardHeader}>
                 <Grid container justify="space-between" alignItems="center">
                   <Grid item>
-                    <Typography variant="h6">Plasmid Details</Typography>
+                    <Typography variant="h2">Plasmid Details</Typography>
                   </Grid>
                   <Grid item>
                     <Availability cartData={cartData} inStock={data.in_stock} />

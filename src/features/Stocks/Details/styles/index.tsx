@@ -31,7 +31,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     justifyContent: "center",
   },
   snackbar: {
-    width: "300px",
+    width: "400px",
     backgroundColor: palette.secondary.main,
     fontSize: "0.8rem",
     display: "flex",
@@ -47,7 +47,6 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     fontSize: "0.9rem",
   },
   copyIcon: {
-    fontSize: "0.8rem",
     "&:hover": {
       backgroundColor: "transparent",
       color: "rgba(0, 0, 0, 0.87)",

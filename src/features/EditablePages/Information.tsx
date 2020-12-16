@@ -68,7 +68,7 @@ const Information = () => {
   return (
     <Grid container justify="center">
       <Grid item>
-        <Typography variant="h4">List of Information Pages</Typography>
+        <Typography variant="h1">List of Information Pages</Typography>
         <List>
           {informationLinks.map((item, index) => (
             <ListItem key={index} classes={{ root: classes.root }}>
