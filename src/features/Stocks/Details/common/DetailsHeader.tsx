@@ -29,10 +29,10 @@ const DetailsHeader = ({ name, id }: Props) => {
     <Grid item xs={12} className={classes.header}>
       <Grid container justify="center">
         <Grid item>
-          <Typography variant="h4" noWrap>
+          <Typography variant="h1" noWrap>
             {characterConverter(name)}
           </Typography>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h4" color="textSecondary">
             <em>{id}</em>
             <DetailsHeaderCopyIcon id={id} />
           </Typography>

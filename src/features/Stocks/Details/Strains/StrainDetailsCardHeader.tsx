@@ -81,7 +81,7 @@ const StrainDetailsCardHeader = ({
     wrapper: classes.wrapper,
   }
 
-  let content = <Typography variant="h6">Strain Details</Typography>
+  let content = <Typography variant="h2">Strain Details</Typography>
 
   if (phenotypeLength > 0) {
     content = (

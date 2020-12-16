@@ -34,7 +34,7 @@ const DetailsHeaderCopyIcon = ({ id }: Props) => {
         className={classes.copyIcon}
         title="Copy ID to clipboard"
         aria-label="copy icon">
-        <FontAwesomeIcon icon="copy" />
+        <FontAwesomeIcon icon="copy" size="xs" />
       </IconButton>
       <div className={classes.id}>
         {snackbarOpen && (

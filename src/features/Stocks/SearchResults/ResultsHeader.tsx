@@ -20,10 +20,10 @@ const ResultsHeader = ({ property, description }: Props) => {
 
   return (
     <>
-      <Typography variant="h4" className={classes.title}>
+      <Typography variant="h1" className={classes.title}>
         {property} Search Results
       </Typography>
-      <Typography variant="h6" color="textSecondary">
+      <Typography variant="h3" color="textSecondary">
         <em>{description}</em>
       </Typography>
     </>

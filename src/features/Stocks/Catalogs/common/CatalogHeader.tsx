@@ -26,7 +26,7 @@ const CatalogHeader = ({ title }: Props) => {
 
   return (
     <div className={classes.header}>
-      <Typography variant="h4">{title}</Typography>
+      <Typography variant="h1">{title}</Typography>
       <Typography variant="body1" className={classes.notice}>
         PLEASE DO NOT ORDER FROM THIS TEST SITE. THIS IS FOR INTERNAL TESTING
         ONLY. THANKS!
