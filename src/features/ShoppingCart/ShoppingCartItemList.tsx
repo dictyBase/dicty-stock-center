@@ -5,7 +5,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ShoppingCartItem from "./ShoppingCartItem"
 import { useCartStore } from "./CartStore"
-import { CartItem } from "common/types"
+import { CartItem, CartItemWithQuantity } from "common/types"
 
 const useStyles = makeStyles({
   itemsHeader: {
@@ -31,6 +31,25 @@ const getCartTotal = (items: Array<CartItem>) =>
     .reduce((acc, val) => acc + val)
 
 /**
+ * addQuantityToCartItem creates a map of added items then increases
+ * the quantity value for every duplicate item in the cart.
+ */
+const addQuantityToCartItem = (items: Array<CartItem>) => {
+  const itemMap = new Map(
+    items.map((item) => [
+      item.id,
+      {
+        ...item,
+        quantity: 0,
+      },
+    ]),
+  )
+
+  for (const { id } of items) itemMap.get(id)!.quantity++
+  return Array.from(itemMap.values())
+}
+
+/**
  * ShoppingCartItemList lists all of the items in the user's cart.
  */
 
@@ -39,7 +58,9 @@ const ShoppingCartItemList = () => {
     state: { addedItems },
   } = useCartStore()
   const classes = useStyles()
-  console.log(addedItems)
+
+  const itemsWithQuantity = addQuantityToCartItem(addedItems)
+
   return (
     <Grid container>
       <Grid item xs={12} className={classes.itemsHeader}>
@@ -47,9 +68,11 @@ const ShoppingCartItemList = () => {
       </Grid>
       <Grid item xs={12}>
         <List>
-          {addedItems.map((item: CartItem, index: number) => (
-            <ShoppingCartItem key={index} item={item} />
-          ))}
+          {itemsWithQuantity.map(
+            (item: CartItemWithQuantity, index: number) => (
+              <ShoppingCartItem key={index} item={item} />
+            ),
+          )}
           <ListItem>
             <Grid item xs={12}>
               <Grid container>

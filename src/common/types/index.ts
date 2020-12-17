@@ -9,6 +9,11 @@ type CartItem = {
   fee: string
 }
 
+interface CartItemWithQuantity extends CartItem {
+  /** Quantity of a given item in the cart */
+  quantity: number
+}
+
 type User = {
   id: number
   first_name: string
@@ -25,4 +30,4 @@ type User = {
   }>
 }
 
-export type { CartItem, User }
+export type { CartItem, CartItemWithQuantity, User }
