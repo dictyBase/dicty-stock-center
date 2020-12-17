@@ -404,14 +404,12 @@ describe("SubmitButton/getIDs", () => {
         name: "test",
         summary: "test summary",
         fee: fees.STRAIN_FEE,
-        quantity: 1,
       },
       {
         id: "DBS456",
         name: "test",
         summary: "test summary",
         fee: fees.STRAIN_FEE,
-        quantity: 1,
       },
     ]
     const ids = ["DBS123", "DBS456"]

@@ -16,7 +16,6 @@ describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
       name: "test1",
       summary: "this is the best test strain in the world",
       fee: fees.STRAIN_FEE,
-      quantity: 1,
     },
     inStock: true,
   }

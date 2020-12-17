@@ -16,7 +16,6 @@ describe("features/Stocks/Catalogs/common/AddToCartDialog", () => {
         name: "test strain",
         summary: "test summary",
         fee: fees.STRAIN_FEE,
-        quantity: 1,
       },
     ],
     setCheckedItems: setCheckedItemsSpy,

@@ -17,7 +17,6 @@ describe("cartReducer", () => {
     name: "Test Strain",
     summary: "this is just a test summary",
     fee: fees.STRAIN_FEE,
-    quantity: 1,
   }
 
   it("should add a new item to cart", () => {

@@ -31,7 +31,6 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
-    quantity: 1,
     fee: fees.STRAIN_FEE,
   }
   const checkboxData = {

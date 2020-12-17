@@ -119,7 +119,6 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     id: data.id,
     name: data.label,
     summary: data.summary,
-    quantity: 1,
     fee: fees.STRAIN_FEE,
   }
 

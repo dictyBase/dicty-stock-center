@@ -14,7 +14,6 @@ const cartData = {
   name: "test strain",
   summary: "a test strain summary",
   fee: fees.STRAIN_FEE,
-  quantity: 1,
   in_stock: true,
 }
 
