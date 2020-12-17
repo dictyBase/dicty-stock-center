@@ -8,7 +8,6 @@ describe("utils/itemIsInCart", () => {
       name: "jerry",
       summary: "comedian",
       fee: fees.STRAIN_FEE,
-      quantity: 1,
     },
   ]
   it("should return true for matching item", () => {

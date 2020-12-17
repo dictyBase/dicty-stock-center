@@ -7,8 +7,6 @@ type CartItem = {
   summary: string
   /** Price of stock */
   fee: string
-  /** Quantity added to cart */
-  quantity: number
 }
 
 type User = {

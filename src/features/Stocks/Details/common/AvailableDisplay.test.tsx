@@ -14,7 +14,6 @@ describe("features/Stocks/Details/common/AvailableDisplay", () => {
           name: "test1",
           summary: "this is the best test strain in the world",
           fee: fees.STRAIN_FEE,
-          quantity: 1,
         },
       }
       render(

@@ -88,7 +88,6 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
     id: data.id,
     name: data.name,
     summary: data.summary,
-    quantity: 1,
     fee: fees.PLASMID_FEE,
   }
 
