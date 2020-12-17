@@ -39,7 +39,7 @@ const ShoppingCartItemList = () => {
     state: { addedItems },
   } = useCartStore()
   const classes = useStyles()
-
+  console.log(addedItems)
   return (
     <Grid container>
       <Grid item xs={12} className={classes.itemsHeader}>

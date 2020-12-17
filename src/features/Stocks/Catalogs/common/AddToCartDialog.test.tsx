@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom"
 import AddToCartDialog from "./AddToCartDialog"
+import { fees } from "common/constants/fees"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
 describe("features/Stocks/Catalogs/common/AddToCartDialog", () => {
@@ -14,6 +15,8 @@ describe("features/Stocks/Catalogs/common/AddToCartDialog", () => {
         id: "DBS1234",
         name: "test strain",
         summary: "test summary",
+        fee: fees.STRAIN_FEE,
+        quantity: 1,
       },
     ],
     setCheckedItems: setCheckedItemsSpy,

@@ -1,6 +1,7 @@
 // import React from "react"
 // import { renderHook } from "@testing-library/react-hooks"
 import { cartReducer, CartActionType } from "./CartStore"
+import { fees } from "common/constants/fees"
 
 const storageKey = "dscCart"
 const maxKey = "dscMaxItems"
@@ -15,7 +16,8 @@ describe("cartReducer", () => {
     id: "DBS1234567",
     name: "Test Strain",
     summary: "this is just a test summary",
-    type: "strain" as const,
+    fee: fees.STRAIN_FEE,
+    quantity: 1,
   }
 
   it("should add a new item to cart", () => {
@@ -51,11 +53,7 @@ describe("cartReducer", () => {
     expect(
       cartReducer(state, {
         type: CartActionType.ADD_TO_CART,
-        payload: {
-          ...newItem,
-          type: "strain",
-          fee: "30.00",
-        },
+        payload: newItem,
       }),
     ).toStrictEqual({
       addedItems: items,
@@ -66,13 +64,7 @@ describe("cartReducer", () => {
 
   it("should remove an item from cart", () => {
     const state = {
-      addedItems: [
-        {
-          ...newItem,
-          type: "strain" as const,
-          fee: "30.00",
-        },
-      ],
+      addedItems: [newItem],
       maxItemsInCart: false,
     }
     expect(
@@ -92,20 +84,7 @@ describe("cartReducer", () => {
 
   it("should empty entire cart", () => {
     const state = {
-      addedItems: [
-        {
-          ...newItem,
-          fee: "30.00",
-        },
-        {
-          ...newItem,
-          fee: "30.00",
-        },
-        {
-          ...newItem,
-          fee: "30.00",
-        },
-      ],
+      addedItems: [newItem, newItem, newItem],
       maxItemsInCart: false,
     }
     expect(

@@ -2,6 +2,7 @@ import React from "react"
 import { mount } from "enzyme"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import waitForExpect from "wait-for-expect"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
 import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import {
@@ -11,8 +12,8 @@ import {
 } from "common/graphql/mutations"
 import { MockCartProvider } from "common/utils/testing"
 import useCartItems from "common/hooks/useCartItems"
-import waitForExpect from "wait-for-expect"
-import { CartItemWithFee } from "common/types"
+import { fees } from "common/constants/fees"
+import { CartItem } from "common/types"
 
 const mockValues = {
   firstName: "Art",
@@ -68,13 +69,14 @@ mockedUseCartItems.mockReturnValue({
   emptyCart: jest.fn(),
 })
 
-let addedItems = [] as Array<CartItemWithFee>
+let addedItems = [] as Array<CartItem>
 addedItems.fill(
   {
     id: "DBS1234",
     name: "test strain",
     summary: "this is a test strain",
-    fee: "30.00",
+    fee: fees.STRAIN_FEE,
+    quantity: 1,
   },
   0,
   10,
@@ -401,13 +403,15 @@ describe("SubmitButton/getIDs", () => {
         id: "DBS123",
         name: "test",
         summary: "test summary",
-        fee: "30.00",
+        fee: fees.STRAIN_FEE,
+        quantity: 1,
       },
       {
         id: "DBS456",
         name: "test",
         summary: "test summary",
-        fee: "30.00",
+        fee: fees.STRAIN_FEE,
+        quantity: 1,
       },
     ]
     const ids = ["DBS123", "DBS456"]

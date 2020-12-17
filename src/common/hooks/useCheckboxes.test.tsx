@@ -7,11 +7,14 @@ import {
   catalogReducer,
   strainInitialState,
 } from "features/Stocks/Catalogs/context/CatalogContext"
+import { fees } from "common/constants/fees"
 
 const cartData = {
   id: "DBS123456",
   name: "test strain",
   summary: "a test strain summary",
+  fee: fees.STRAIN_FEE,
+  quantity: 1,
   in_stock: true,
 }
 
@@ -34,11 +37,11 @@ describe("hooks/useCheckboxes", () => {
     )
     const {
       result: { current },
-    } = renderHook(() => useCheckboxes(cartData), { wrapper })
-    expect(current.itemIsChecked).toBe(false)
+    } = renderHook(() => useCheckboxes(), { wrapper })
+    expect(current.itemIsChecked(cartData)).toBeFalsy()
 
-    act(() => current.handleCheckboxChange())
-    expect(current.itemIsChecked).toBe(false)
+    act(() => current.handleCheckboxChange(cartData))
+    expect(current.itemIsChecked(cartData)).toBeFalsy()
   })
 
   it("handles checked item correctly", () => {
@@ -56,11 +59,11 @@ describe("hooks/useCheckboxes", () => {
 
     const {
       result: { current },
-    } = renderHook(() => useCheckboxes(cartData), { wrapper: MockProvider })
+    } = renderHook(() => useCheckboxes(), { wrapper: MockProvider })
 
-    expect(current.itemIsChecked).toBe(true)
-    act(() => current.handleCheckboxChange())
-    expect(current.itemIsChecked).toBe(true)
+    expect(current.itemIsChecked(cartData)).toBeTruthy()
+    act(() => current.handleCheckboxChange(cartData))
+    expect(current.itemIsChecked(cartData)).toBeTruthy()
   })
 
   it("resets all checked items correctly", () => {
@@ -76,12 +79,12 @@ describe("hooks/useCheckboxes", () => {
       )
     }
 
-    const { result } = renderHook(() => useCheckboxes(cartData), {
+    const { result } = renderHook(() => useCheckboxes(), {
       wrapper: MockProvider,
     })
 
-    expect(result.current.itemIsChecked).toBe(true)
+    expect(result.current.itemIsChecked(cartData)).toBeTruthy()
     act(() => result.current.handleCheckAllChange())
-    expect(result.current.itemIsChecked).toBe(false)
+    expect(result.current.itemIsChecked(cartData)).toBeFalsy()
   })
 })

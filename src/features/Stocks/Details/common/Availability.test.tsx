@@ -1,6 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import Availability from "./Availability"
+import { fees } from "common/constants/fees"
 import { MockCartProvider } from "common/utils/testing"
 
 describe("features/Stocks/Details/common/Availability", () => {
@@ -11,7 +12,8 @@ describe("features/Stocks/Details/common/Availability", () => {
           id: "DBS123456",
           name: "test1",
           summary: "this is the best test strain in the world",
-          type: "strain" as const,
+          fee: fees.STRAIN_FEE,
+          quantity: 1,
         },
         inStock: true,
       }
@@ -31,7 +33,8 @@ describe("features/Stocks/Details/common/Availability", () => {
           id: "DBS123456",
           name: "test1",
           summary: "this is the best test strain in the world",
-          type: "strain" as const,
+          fee: fees.STRAIN_FEE,
+          quantity: 1,
         },
         inStock: false,
       }
