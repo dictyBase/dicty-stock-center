@@ -2,7 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
-import ShoppingCartPageNoItems from "./ShoppingCartPageNoItems"
+import EmptyCartPage from "./EmptyCartPage"
 import useStyles from "./shoppingCartStyles"
 import { useCartStore } from "./CartStore"
 
@@ -32,7 +32,7 @@ const ShoppingCartPage = () => {
       {addedItems.length > 0 ? (
         <ShoppingCartPageWithItems />
       ) : (
-        <ShoppingCartPageNoItems />
+        <EmptyCartPage />
       )}
     </div>
   )

@@ -27,7 +27,7 @@ const ShoppingCartItem = ({ item }: Props) => {
     <>
       <ListItem>
         <Grid container spacing={0} alignItems="center">
-          <Grid item xs={10}>
+          <Grid item xs={9}>
             <Typography noWrap>
               <strong>
                 <Link to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
@@ -39,6 +39,9 @@ const ShoppingCartItem = ({ item }: Props) => {
               <br />
               {item.id}
             </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            Qty: 1
           </Grid>
           <Grid item xs={1}>
             <Typography noWrap>${item.fee}</Typography>
