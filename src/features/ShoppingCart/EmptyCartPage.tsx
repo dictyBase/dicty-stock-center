@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const ShoppingCartPageNoItems = () => {
+const EmptyCartPage = () => {
   const classes = useStyles()
 
   return (
@@ -38,4 +38,4 @@ const ShoppingCartPageNoItems = () => {
   )
 }
 
-export default ShoppingCartPageNoItems
+export default EmptyCartPage
