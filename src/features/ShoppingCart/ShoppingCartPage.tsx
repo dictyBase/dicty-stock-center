@@ -11,13 +11,11 @@ import { useCartStore } from "./CartStore"
  *  there are currently items in the cart. **/
 
 const ShoppingCartPage = () => {
-  const {
-    state: { addedItems },
-  } = useCartStore()
+  const { state } = useCartStore()
   const classes = useStyles()
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet>
         <title>Shopping Cart - Dicty Stock Center</title>
         <meta
@@ -32,12 +30,12 @@ const ShoppingCartPage = () => {
           </Typography>
         </Grid>
       </Grid>
-      {addedItems.length > 0 ? (
+      {state.addedItems.length > 0 ? (
         <ShoppingCartPageWithItems />
       ) : (
         <EmptyCartPage />
       )}
-    </div>
+    </React.Fragment>
   )
 }
 
