@@ -5,7 +5,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ShoppingCartItem from "./ShoppingCartItem"
 import { useCartStore } from "./CartStore"
-import { CartItemWithFee } from "common/types"
+import { CartItem } from "common/types"
 
 const useStyles = makeStyles({
   itemsHeader: {
@@ -25,9 +25,9 @@ const useStyles = makeStyles({
 })
 
 // get the total fee for combined items in cart
-const getCartTotal = (items: Array<CartItemWithFee>) =>
+const getCartTotal = (items: Array<CartItem>) =>
   items
-    .map((item: CartItemWithFee) => Number(item.fee))
+    .map((item: CartItem) => Number(item.fee))
     .reduce((acc, val) => acc + val)
 
 /**
@@ -47,7 +47,7 @@ const ShoppingCartItemList = () => {
       </Grid>
       <Grid item xs={12}>
         <List>
-          {addedItems.map((item: CartItemWithFee, index: number) => (
+          {addedItems.map((item: CartItem, index: number) => (
             <ShoppingCartItem key={index} item={item} />
           ))}
           <ListItem>

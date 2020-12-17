@@ -8,6 +8,7 @@ import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import Availability from "features/Stocks/Details/common/Availability"
+import { fees } from "common/constants/fees"
 import useStyles from "features/Stocks/Details/styles"
 import {
   PlasmidDetails,
@@ -87,7 +88,8 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
     id: data.id,
     name: data.name,
     summary: data.summary,
-    type: "plasmid" as const,
+    quantity: 1,
+    fee: fees.PLASMID_FEE,
   }
 
   return (

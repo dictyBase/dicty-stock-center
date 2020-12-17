@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     margin: 0,
     padding: "16px",
+    fontSize: "2rem",
   },
   closeButton: {
     position: "absolute",
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   title: string
-  handleClose: any
+  handleClose: () => void
 }
 
 /**

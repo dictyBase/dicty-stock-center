@@ -16,6 +16,7 @@ import useCartItems from "common/hooks/useCartItems"
 import useHover from "common/hooks/useHover"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import itemIsInCart from "common/utils/itemIsInCart"
+import { fees } from "common/constants/fees"
 import { PlasmidListItemProps } from "features/Stocks/Catalogs/types"
 import useStyles from "features/Stocks/Catalogs/styles"
 
@@ -34,13 +35,14 @@ const PlasmidCatalogListItem = ({
     id: plasmid.id,
     name: plasmid.name,
     summary: plasmid.summary,
-    type: "plasmid" as const,
+    quantity: 1,
+    fee: fees.PLASMID_FEE,
   }
   const checkboxData = {
     ...cartData,
     in_stock: plasmid.in_stock,
   }
-  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
+  const { handleCheckboxChange, itemIsChecked } = useCheckboxes()
   const {
     state: { addedItems },
   } = useCartStore()
@@ -68,8 +70,8 @@ const PlasmidCatalogListItem = ({
         <Hidden xsDown>
           <Grid item sm={1}>
             <Checkbox
-              checked={itemIsChecked}
-              onChange={handleCheckboxChange}
+              checked={itemIsChecked(checkboxData)}
+              onChange={() => handleCheckboxChange(checkboxData)}
               color="default"
               value={plasmid.id}
               inputProps={{

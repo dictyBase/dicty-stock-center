@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react"
-import { CartItemWithFee } from "common/types"
+import { CartItem } from "common/types"
 
 const storageKey = "dscCart"
 const maxKey = "dscMaxItems"
@@ -14,7 +14,7 @@ enum CartActionType {
 type Action =
   | {
       type: CartActionType.ADD_TO_CART
-      payload: CartItemWithFee
+      payload: CartItem
     }
   | {
       type: CartActionType.REMOVE_FROM_CART
@@ -30,7 +30,7 @@ type Action =
     }
 
 type CartState = {
-  addedItems: Array<CartItemWithFee>
+  addedItems: Array<CartItem>
   maxItemsInCart: boolean
 }
 
@@ -49,15 +49,7 @@ const initialState = {
 const cartReducer = (state: CartState, action: Action) => {
   switch (action.type) {
     case CartActionType.ADD_TO_CART:
-      const newItems = state.addedItems
-        .concat({
-          id: action.payload.id,
-          name: action.payload.name,
-          summary: action.payload.summary,
-          fee: action.payload.fee,
-          type: action.payload.type,
-        })
-        .slice(0, 12)
+      const newItems = state.addedItems.concat(action.payload).slice(0, 12)
       localStorage.setItem(storageKey, JSON.stringify(newItems))
       if (newItems.length === 12) {
         localStorage.setItem(maxKey, "true")

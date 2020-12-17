@@ -47,12 +47,7 @@ const CatalogListHeader = ({ stockType }: Props) => {
   const {
     state: { checkedItems },
   } = useCatalogStore()
-  const { handleCheckAllChange } = useCheckboxes({
-    id: "",
-    name: "",
-    summary: "",
-    in_stock: false,
-  })
+  const { handleCheckAllChange } = useCheckboxes()
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 

@@ -16,6 +16,7 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
 import characterConverter from "common/utils/characterConverter"
 import itemIsInCart from "common/utils/itemIsInCart"
+import { fees } from "common/constants/fees"
 import { StrainListItemProps } from "features/Stocks/Catalogs/types"
 import useStyles from "features/Stocks/Catalogs/styles"
 
@@ -30,12 +31,14 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
     id: strain.id,
     name: strain.label,
     summary: strain.summary,
+    quantity: 1,
+    fee: fees.STRAIN_FEE,
   }
   const checkboxData = {
     ...cartData,
     in_stock: strain.in_stock,
   }
-  const { handleCheckboxChange, itemIsChecked } = useCheckboxes(checkboxData)
+  const { handleCheckboxChange, itemIsChecked } = useCheckboxes()
   const {
     state: { addedItems },
   } = useCartStore()
@@ -63,8 +66,8 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
         <Hidden xsDown>
           <Grid item sm={1}>
             <Checkbox
-              checked={itemIsChecked}
-              onChange={handleCheckboxChange}
+              checked={itemIsChecked(checkboxData)}
+              onChange={() => handleCheckboxChange(checkboxData)}
               color="default"
               value={strain.id}
               inputProps={{

@@ -6,7 +6,11 @@ import AddToCartButton from "./AddToCartButton"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { useCartStore } from "features/ShoppingCart/CartStore"
-import { CartItemWithStatus } from "common/types"
+import { CartItem } from "common/types"
+
+interface CartItemWithStatus extends CartItem {
+  in_stock: boolean
+}
 
 const useStyles = makeStyles(({ palette }) => ({
   button: {
@@ -26,12 +30,7 @@ const CatalogListHeaderButtons = () => {
   const {
     state: { checkedItems },
   } = useCatalogStore()
-  const { resetCheckedItems } = useCheckboxes({
-    id: "",
-    name: "",
-    summary: "",
-    in_stock: false,
-  })
+  const { resetCheckedItems } = useCheckboxes()
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
