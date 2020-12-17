@@ -76,7 +76,6 @@ addedItems.fill(
     name: "test strain",
     summary: "this is a test strain",
     fee: fees.STRAIN_FEE,
-    quantity: 1,
   },
   0,
   10,
