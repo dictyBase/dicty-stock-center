@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: "5px",
   },
   header: {
-    fontSize: "3rem",
+    fontSize: "2rem",
     marginTop: "25px",
     marginBottom: "25px",
     borderBottom: "1px solid #eee",
