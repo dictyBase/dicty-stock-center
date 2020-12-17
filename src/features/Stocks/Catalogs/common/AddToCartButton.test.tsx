@@ -11,6 +11,7 @@ import {
 } from "features/ShoppingCart/CartStore"
 import AddToCartDialog from "./AddToCartDialog"
 import UnavailableButton from "./UnavailableButton"
+import { fees } from "common/constants/fees"
 
 const inStockProps = {
   data: [
@@ -18,6 +19,8 @@ const inStockProps = {
       id: "DBS123456",
       name: "test1",
       summary: "this is a test summary",
+      fee: fees.STRAIN_FEE,
+      quantity: 1,
     },
   ],
   inStock: true,
@@ -30,6 +33,8 @@ const unavailableProps = {
       id: "DBS123456",
       name: "test1",
       summary: "this is a test summary",
+      fee: fees.STRAIN_FEE,
+      quantity: 1,
     },
   ],
   inStock: false,

@@ -2,6 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import StrainDetailsCardHeader from "./StrainDetailsCardHeader"
+import { fees } from "common/constants/fees"
 import { MockCartProvider } from "common/utils/testing"
 
 describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
@@ -14,7 +15,8 @@ describe("features/Stocks/Details/Strains/StrainDetailsCardHeader", () => {
       id: "DBS123456",
       name: "test1",
       summary: "this is the best test strain in the world",
-      type: "strain" as const,
+      fee: fees.STRAIN_FEE,
+      quantity: 1,
     },
     inStock: true,
   }
