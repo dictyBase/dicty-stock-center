@@ -12,6 +12,7 @@ import TabPanel from "common/components/TabPanel"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
+import { fees } from "common/constants/fees"
 import {
   StrainDetails,
   StrainDetailsProps,
@@ -118,7 +119,8 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     id: data.id,
     name: data.label,
     summary: data.summary,
-    type: "strain" as const,
+    quantity: 1,
+    fee: fees.STRAIN_FEE,
   }
 
   const header = (

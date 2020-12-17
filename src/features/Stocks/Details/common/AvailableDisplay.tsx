@@ -70,8 +70,13 @@ const AvailableDisplay = ({ cartData }: Props) => {
     setQuantity(Number(event.target.value))
   }
 
+  const updatedCartData = {
+    ...cartData,
+    quantity: quantity,
+  }
+
   const handleClick = () => {
-    addToCart(Array(quantity).fill(cartData))
+    addToCart(Array(quantity).fill(updatedCartData))
     setShowDialog(true)
     setQuantity(values[0])
   }

@@ -9,10 +9,10 @@ import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
 import useStyles from "./shoppingCartStyles"
-import { CartItemWithFee } from "common/types"
+import { CartItem } from "common/types"
 
 type Props = {
-  item: CartItemWithFee
+  item: CartItem
 }
 
 /**

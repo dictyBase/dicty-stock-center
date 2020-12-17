@@ -13,13 +13,13 @@ import {
 import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import useStyles from "../formStyles"
 import { FormikValues } from "../utils/initialValues"
-import { CartItemWithFee } from "common/types"
+import { CartItem } from "common/types"
 
 /**
  * getIDs creates a new array of just stock IDs
  */
-const getIDs = (items: Array<CartItemWithFee>) =>
-  items.map((item: CartItemWithFee) => item.id)
+const getIDs = (items: Array<CartItem>) =>
+  items.map((item: CartItem) => item.id)
 
 const getConsumerVariables = (formData: FormikValues) => ({
   first_name: formData.firstName,
@@ -86,7 +86,7 @@ const getUserVariables = (
  */
 const getOrderVariables = (
   formData: FormikValues,
-  addedItems: Array<CartItemWithFee>,
+  addedItems: Array<CartItem>,
 ) => ({
   variables: {
     input: {

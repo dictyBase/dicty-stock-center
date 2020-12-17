@@ -1,12 +1,16 @@
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
-import { CartItemWithStatus } from "common/types"
+import { CartItem } from "common/types"
+
+interface CartItemWithStatus extends CartItem {
+  in_stock: boolean
+}
 
 /**
  * useCheckboxes is a hook for handling checkbox state.
  */
 
-const useCheckboxes = (cartData: CartItemWithStatus) => {
+const useCheckboxes = () => {
   const {
     state: { checkedItems },
     dispatch,
@@ -25,13 +29,12 @@ const useCheckboxes = (cartData: CartItemWithStatus) => {
   }
 
   // if item is checked, then return true for checkbox
-  const itemIsChecked = checkedItems.some(
-    (item: CartItemWithStatus) => item.id === cartData.id,
-  )
+  const itemIsChecked = (cartData: CartItemWithStatus) =>
+    checkedItems.some((item: CartItemWithStatus) => item.id === cartData.id)
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChange = (cartData: CartItemWithStatus) => {
     // if checkbox is already checked, remove that item from state
-    if (itemIsChecked) {
+    if (itemIsChecked(cartData)) {
       dispatch({
         type: CatalogActionType.SET_CHECKED_ITEMS,
         payload: checkedItems.filter(
