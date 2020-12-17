@@ -9,10 +9,10 @@ import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
 import useStyles from "./shoppingCartStyles"
-import { CartItem } from "common/types"
+import { CartItemWithQuantity } from "common/types"
 
 type Props = {
-  item: CartItem
+  item: CartItemWithQuantity
 }
 
 /**
@@ -41,10 +41,12 @@ const ShoppingCartItem = ({ item }: Props) => {
             </Typography>
           </Grid>
           <Grid item xs={1}>
-            Qty: 1
+            Qty: {item.quantity}
           </Grid>
           <Grid item xs={1}>
-            <Typography noWrap>${item.fee}</Typography>
+            <Typography noWrap>
+              ${Number(item.fee) * item.quantity}.00
+            </Typography>
           </Grid>
           <Grid item xs={1}>
             <TrashButton
