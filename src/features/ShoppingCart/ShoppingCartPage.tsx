@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import EmptyCartPage from "./EmptyCartPage"
 import useStyles from "./shoppingCartStyles"
@@ -26,7 +27,9 @@ const ShoppingCartPage = () => {
       </Helmet>
       <Grid container justify="center">
         <Grid item>
-          <h2 className={classes.header}>Shopping Cart</h2>
+          <Typography variant="h1" className={classes.header}>
+            Shopping Cart
+          </Typography>
         </Grid>
       </Grid>
       {addedItems.length > 0 ? (
