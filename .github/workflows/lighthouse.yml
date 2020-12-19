@@ -13,7 +13,7 @@ jobs:
         with:
           ref: ${{ github.event.deployment.ref }}
       - name: setup nodejs
-        uses: actions/setup-node@v2.1.3
+        uses: actions/setup-node@v2.1.4
         with:
           node-version: 14.15.0
       - name: install lhci 
@@ -38,7 +38,7 @@ jobs:
         with:
           ref: ${{ github.event.deployment.ref }}
       - name: setup nodejs
-        uses: actions/setup-node@v2.1.3
+        uses: actions/setup-node@v2.1.4
         with:
           node-version: 14.15.0
       - name: install lhci
