@@ -18,6 +18,7 @@ type CartProps = {
   children: React.ReactNode
   mocks: ReadonlyArray<MockedResponse>
   addedItems: Array<CartItem>
+  maxItemsInCart?: boolean
 }
 
 const MockSuperuser = {
@@ -61,10 +62,15 @@ const MockAuthProvider = ({
   )
 }
 
-const MockCartProvider = ({ children, mocks, addedItems }: CartProps) => {
+const MockCartProvider = ({
+  children,
+  mocks,
+  addedItems,
+  maxItemsInCart = false,
+}: CartProps) => {
   const [state, dispatch] = React.useReducer(cartReducer, {
-    addedItems: addedItems,
-    maxItemsInCart: false,
+    addedItems,
+    maxItemsInCart,
   })
   return (
     <CartContext.Provider value={{ state, dispatch }}>
