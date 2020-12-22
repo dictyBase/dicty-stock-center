@@ -1,11 +1,18 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import ShoppingCartItemList from "./ShoppingCartItemList"
 import { MockCartProvider } from "common/utils/testing"
 import { fees } from "common/constants/fees"
 
 describe("features/ShoppingCart/ShoppingCartItemList", () => {
   const addedItems = [
+    {
+      id: "DBS123456",
+      name: "jerry seinfeld",
+      summary: "comedian",
+      fee: fees.STRAIN_FEE,
+    },
     {
       id: "DBS123456",
       name: "jerry seinfeld",
@@ -32,9 +39,27 @@ describe("features/ShoppingCart/ShoppingCartItemList", () => {
           <ShoppingCartItemList />
         </MockCartProvider>,
       )
-      // two strains ($30 each) + one plasmid ($15) = $75
-      const total = screen.getByText("$75.00")
+      // three strains ($30 each) + one plasmid ($15) = $75
+      const total = screen.getByText("$105.00")
       expect(total).toBeInTheDocument()
+    })
+  })
+  describe("button clicking", () => {
+    it("updates quantity on trash button click", () => {
+      render(
+        <MockCartProvider mocks={[]} addedItems={addedItems}>
+          <ShoppingCartItemList />
+        </MockCartProvider>,
+      )
+      const strainQuantity = screen.getByText(/Qty: 3/)
+      expect(strainQuantity).toBeInTheDocument()
+      const trashButtons = screen.getAllByRole("button")
+      // should have two buttons - one for each item row
+      expect(trashButtons).toHaveLength(2)
+      // click trash button on row with multiple of strain
+      userEvent.click(trashButtons[0])
+      const updatedQuantity = screen.getByText(/Qty: 2/)
+      expect(updatedQuantity).toBeInTheDocument()
     })
   })
 })
