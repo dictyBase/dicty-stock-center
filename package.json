@@ -85,7 +85,7 @@
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
     "@types/react-window-infinite-loader": "^1.0.3",
-    "@types/sinon": "^9.0.9",
+    "@types/sinon": "^9.0.10",
     "@types/testing-library__react-hooks": "^3.4.1",
     "@types/yup": "^0.29.10",
     "apollo-boost": "^0.4.8",
