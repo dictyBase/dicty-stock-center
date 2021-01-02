@@ -106,7 +106,7 @@
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.2.4",
     "source-map-explorer": "^2.5.1",
-    "start-server-and-test": "^1.11.6",
+    "start-server-and-test": "^1.11.7",
     "waait": "^1.0.5",
     "wait-for-expect": "^3.0.2"
   },
