@@ -97,7 +97,6 @@
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest-dom": "^3.6.5",
     "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-testing-library": "^3.10.1",
     "husky": "4.3.6",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.0",
