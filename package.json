@@ -10,8 +10,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom-fourteen",
-    "test-coverage": "CI=true react-scripts test --env=jsdom-fourteen --coverage",
+    "test": "react-scripts test",
+    "test-coverage": "CI=true react-scripts test --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "tsc": "tsc",
@@ -21,8 +21,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "cypress:open": "cypress open",
     "cypress:run": "percy exec -- cypress run",
-    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run",
-    "size": "yarn build && size-limit"
+    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "repository": {
     "type": "git",
@@ -57,7 +56,7 @@
     "react-loading-skeleton": "^2.0.1",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.1",
     "react-virtualized-auto-sizer": "^1.0.3",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.5",
@@ -97,7 +96,6 @@
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest-dom": "^3.6.5",
     "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-testing-library": "^3.10.1",
     "husky": "4.3.6",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.0",
@@ -140,10 +138,30 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "size-limit": [
-    {
-      "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
-      "limit": "3000 KB"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:cypress/recommended",
+      "prettier",
+      "plugin:jest-dom/recommended"
+    ],
+    "plugins": [
+      "prettier",
+      "jest-dom"
+    ],
+    "rules": {
+      "import/exports-last": [
+        "error"
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "semi": false,
+          "trailingComma": "all",
+          "jsxBracketSameLine": true
+        }
+      ]
     }
-  ]
+  }
 }

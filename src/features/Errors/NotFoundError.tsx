@@ -4,13 +4,6 @@ import { Link } from "react-router-dom"
 import sadDicty from "common/assets/sad-dicty.png"
 import useStyles from "./errorStyles"
 
-type Params = {
-  /** Name param in URL */
-  name: string
-  /** Subname param in URL */
-  subname: string
-}
-
 type Props = {
   /** Error message to display */
   error: string
