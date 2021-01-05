@@ -152,18 +152,7 @@
       "jest-dom"
     ],
     "rules": {
-      "quotes": [
-        "error",
-        "double"
-      ],
-      "semi": [
-        "error",
-        "never"
-      ],
       "import/exports-last": [
-        "error"
-      ],
-      "prettier/prettier": [
         "error"
       ]
     }
