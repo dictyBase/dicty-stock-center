@@ -139,10 +139,25 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "size-limit": [
-    {
-      "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
-      "limit": "3000 KB"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:cypress/recommended",
+      "prettier",
+      "plugin:jest-dom/recommended"
+    ],
+    "plugins": [
+      "prettier",
+      "jest-dom"
+    ],
+    "rules": {
+      "import/exports-last": [
+        "error"
+      ],
+      "prettier/prettier": [
+        "error"
+      ]
     }
-  ]
+  }
 }
