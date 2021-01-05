@@ -156,9 +156,10 @@
       ],
       "prettier/prettier": [
         "error",
-        {},
         {
-          "usePrettierrc": true
+          "semi": false,
+          "trailingComma": "all",
+          "jsxBracketSameLine": true
         }
       ]
     }
