@@ -1,8 +1,7 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import DialogTitleDisplay from "./DialogTitleDisplay"
-import DialogTitle from "@material-ui/core/DialogTitle"
-import IconButton from "@material-ui/core/IconButton"
 
 describe("DialogTitleDisplay", () => {
   const handleCloseSpy = jest.fn()
@@ -10,15 +9,21 @@ describe("DialogTitleDisplay", () => {
     title: "Strain Details",
     handleClose: handleCloseSpy,
   }
-  const wrapper = shallow(<DialogTitleDisplay {...props} />)
-  it("always renders one IconButton", () => {
-    expect(wrapper.find(IconButton)).toHaveLength(1)
+
+  it("renders one button", () => {
+    render(<DialogTitleDisplay {...props} />)
+    expect(screen.getByRole("button")).toBeInTheDocument()
   })
-  it("displays the correct text", () => {
-    expect(wrapper.find(DialogTitle).text()).toContain(props.title)
+
+  it("renders correct title", () => {
+    render(<DialogTitleDisplay {...props} />)
+    expect(screen.getByRole("heading")).toHaveTextContent(props.title)
   })
+
   it("calls handleClose on button click", () => {
-    wrapper.find(IconButton).simulate("click")
+    render(<DialogTitleDisplay {...props} />)
+    const button = screen.getByRole("button")
+    userEvent.click(button)
     expect(handleCloseSpy).toHaveBeenCalledTimes(1)
   })
 })

@@ -1,14 +1,13 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { BrowserRouter } from "react-router-dom"
+import { render, screen } from "@testing-library/react"
 import BackToHomepageButton from "./BackToHomepageButton"
-import Button from "@material-ui/core/Button"
 
-describe("BackToHomepageButton", () => {
-  const wrapper = shallow(<BackToHomepageButton />)
-  it("always renders one Button", () => {
-    expect(wrapper.find(Button)).toHaveLength(1)
-  })
-  it("displays the correct text", () => {
-    expect(wrapper.find(Button).text()).toBe("Back to Homepage")
+describe("common/components/BackToHomepageButton", () => {
+  it("renders one button with expected text", () => {
+    render(<BackToHomepageButton />, { wrapper: BrowserRouter })
+    const button = screen.getByRole("button")
+    expect(button).toBeInTheDocument()
+    expect(button).toHaveTextContent(/Back to Homepage/)
   })
 })

@@ -1,27 +1,24 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import Login, {
   createOauthURL,
   openOauthWindow,
   generateErrorDisplayMessage,
 } from "./Login"
-import { Login as LoginContainer } from "dicty-components-login"
-import OauthSignHandler from "features/Authentication/OauthSignHandler"
 import { MockAuthProvider } from "common/utils/testing"
 
-describe("authentication/Login", () => {
+describe("features/Authentication/Login", () => {
   const globalAny = global as any
   const openMock = jest.fn()
   globalAny.open = openMock
-  const wrapper = mount(
+  render(
     <MockAuthProvider mocks={[]}>
       <Login />
     </MockAuthProvider>,
   )
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(LoginContainer)).toHaveLength(1)
-      expect(wrapper.find(OauthSignHandler)).toHaveLength(1)
+    it("displays login header", () => {
+      expect(screen.getByText(/Log in/)).toBeInTheDocument()
     })
   })
   describe("createOauthURL function", () => {

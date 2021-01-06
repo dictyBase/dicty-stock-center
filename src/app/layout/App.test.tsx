@@ -1,15 +1,9 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, waitFor } from "@testing-library/react"
 import App, { getTokenIntervalDelayInMS } from "./App"
-import { Header, Footer } from "dicty-components-header-footer"
-import { Navbar } from "dicty-components-navbar"
-import CartIcon from "features/ShoppingCart/CartIcon"
-import ErrorBoundary from "features/Errors/ErrorBoundary"
-import RenderRoutes from "app/routes/RenderRoutes"
 import * as auth from "features/Authentication/AuthStore"
 import { MockAuthProvider } from "common/utils/testing"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
-import waitForExpect from "wait-for-expect"
 
 describe("App component", () => {
   const mockState = {
@@ -58,22 +52,15 @@ describe("App component", () => {
       },
     },
   ]
-  const wrapper = mount(
-    <MockAuthProvider mocks={mocks}>
-      <App />
-    </MockAuthProvider>,
-  )
+
   describe("initial render when logged in", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Header)).toHaveLength(1)
-      expect(wrapper.find(Footer)).toHaveLength(1)
-      expect(wrapper.find(Navbar)).toHaveLength(1)
-      expect(wrapper.find(CartIcon)).toHaveLength(1)
-      expect(wrapper.find(ErrorBoundary)).toHaveLength(1)
-      expect(wrapper.find(RenderRoutes)).toHaveLength(1)
-    })
     it("should call dispatch after receiving data", async () => {
-      await waitForExpect(() => {
+      render(
+        <MockAuthProvider mocks={mocks}>
+          <App />
+        </MockAuthProvider>,
+      )
+      await waitFor(() => {
         expect(mockDispatch).toHaveBeenCalledTimes(1)
       })
     })
