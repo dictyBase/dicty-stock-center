@@ -1,11 +1,9 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { BrowserRouter } from "react-router-dom"
+import { render, screen } from "@testing-library/react"
 import GraphQLErrorPage from "./GraphQLErrorPage"
-import ServerError from "./ServerError"
-import NotFoundError from "./NotFoundError"
-import OtherError from "./OtherError"
 
-describe("Errors/GraphQLErrorPage", () => {
+describe("features/Errors/GraphQLErrorPage", () => {
   const networkErrProps = {
     error: {
       message: "Network error",
@@ -89,24 +87,32 @@ describe("Errors/GraphQLErrorPage", () => {
   }
   describe("error handling", () => {
     it("renders correct component for network errors", () => {
-      const wrapper = shallow(<GraphQLErrorPage {...networkErrProps} />)
-      expect(wrapper.find(ServerError)).toHaveLength(1)
+      render(<GraphQLErrorPage {...networkErrProps} />, {
+        wrapper: BrowserRouter,
+      })
+      expect(
+        screen.getByText(/Sorry! There was a server error./),
+      ).toBeInTheDocument()
     })
     it("renders correct component for unavailable errors", () => {
-      const wrapper = shallow(<GraphQLErrorPage {...unavailableErrProps} />)
-      expect(wrapper.find(ServerError)).toHaveLength(1)
+      render(<GraphQLErrorPage {...unavailableErrProps} />, {
+        wrapper: BrowserRouter,
+      })
+      expect(
+        screen.getByText(/Sorry! There was a server error./),
+      ).toBeInTheDocument()
     })
     it("renders correct component for not found errors", () => {
-      const wrapper = shallow(<GraphQLErrorPage {...notFoundErrProps} />)
-      expect(wrapper.find(NotFoundError)).toHaveLength(1)
+      render(<GraphQLErrorPage {...notFoundErrProps} />, {
+        wrapper: BrowserRouter,
+      })
+      expect(screen.getByText(/Not Found/)).toBeInTheDocument()
     })
     it("renders correct component for other errors", () => {
-      const wrapper = shallow(<GraphQLErrorPage {...otherErrProps} />)
-      expect(wrapper.find(OtherError)).toHaveLength(1)
-    })
-    it("does not render error component if no error passed", () => {
-      const wrapper = shallow(<GraphQLErrorPage />)
-      expect(wrapper.find(OtherError)).toHaveLength(0)
+      render(<GraphQLErrorPage {...otherErrProps} />, {
+        wrapper: BrowserRouter,
+      })
+      expect(screen.getByText(/Error/)).toBeInTheDocument()
     })
   })
 })
