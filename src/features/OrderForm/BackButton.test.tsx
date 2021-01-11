@@ -1,25 +1,16 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import BackButton from "./BackButton"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-describe("OrderForm/BackButton", () => {
-  const prevStepSpy = jest.fn()
-  const props = {
-    prevStep: prevStepSpy,
-  }
-  const wrapper = shallow(<BackButton {...props} />)
-  describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(Button)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-    })
-  })
+describe("features/OrderForm/BackButton", () => {
   describe("clicking back button", () => {
     it("should update step number on click", () => {
-      const btn = wrapper.find(Button).first()
-      btn.simulate("click")
+      const prevStepSpy = jest.fn()
+      render(<BackButton prevStep={prevStepSpy} />)
+      const button = screen.getByRole("button")
+      expect(button).toBeInTheDocument()
+      userEvent.click(button)
       expect(prevStepSpy).toBeCalledTimes(1)
     })
   })
