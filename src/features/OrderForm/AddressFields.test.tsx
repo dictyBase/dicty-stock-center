@@ -1,10 +1,9 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import AddressFields, { checkIfCountry } from "./AddressFields"
-import CountryDropdown from "./CountryDropdown"
-import TextField from "./TextField"
+import { OrderFormWrapper } from "common/utils/testing"
 
-describe("OrderForm/AddressFields", () => {
+describe("features/OrderForm/AddressFields", () => {
   describe("initial render with country", () => {
     const props = {
       fields: [
@@ -26,12 +25,19 @@ describe("OrderForm/AddressFields", () => {
       ],
       countryName: "country",
     }
-    const wrapper = shallow(<AddressFields {...props} />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(CountryDropdown)).toHaveLength(1)
-      expect(wrapper.find(TextField)).toHaveLength(2)
+    it("displays all expected text fields", () => {
+      render(
+        <OrderFormWrapper>
+          <AddressFields {...props} />
+        </OrderFormWrapper>,
+      )
+      props.fields.forEach((item) => {
+        expect(screen.getByText(`${item.field}:`)).toBeInTheDocument()
+      })
+      expect(screen.getAllByRole("textbox")).toHaveLength(3)
     })
   })
+
   describe("initial render without country", () => {
     const props = {
       fields: [
@@ -48,15 +54,21 @@ describe("OrderForm/AddressFields", () => {
       ],
       countryName: "country",
     }
-    const wrapper = shallow(<AddressFields {...props} />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(CountryDropdown)).toHaveLength(0)
-      expect(wrapper.find(TextField)).toHaveLength(2)
+    it("displays all expected text fields", () => {
+      render(
+        <OrderFormWrapper>
+          <AddressFields {...props} />
+        </OrderFormWrapper>,
+      )
+      props.fields.forEach((item) => {
+        expect(screen.getByText(`${item.field}:`)).toBeInTheDocument()
+      })
+      expect(screen.getAllByRole("textbox")).toHaveLength(2)
     })
   })
 })
 
-describe("checkIfCountry", () => {
+describe("checkIfCountry function", () => {
   it("should return true for expected country fields", () => {
     expect(checkIfCountry("country")).toBeTruthy()
     expect(checkIfCountry("payerCountry")).toBeTruthy()
