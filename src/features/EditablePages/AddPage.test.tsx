@@ -1,9 +1,8 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter, useHistory } from "react-router-dom"
 import AddPage from "./AddPage"
-import waitForExpect from "wait-for-expect"
 import { CREATE_CONTENT } from "common/graphql/mutations"
 import { MockAuthProvider } from "common/utils/testing"
 
@@ -111,7 +110,7 @@ describe("features/EditablePages/AddPage", () => {
       // there are two save buttons, one in toolbar and one at bottom
       const saveButtons = screen.getAllByText("Save")
       userEvent.click(saveButtons[0])
-      await waitForExpect(() => {
+      await waitFor(() => {
         expect(
           screen.getByText(/Add your page content here.../),
         ).toBeInTheDocument()

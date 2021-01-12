@@ -1,8 +1,7 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter, useHistory } from "react-router-dom"
-import waitForExpect from "wait-for-expect"
 import EditInfoPage from "./EditInfoPage"
 import { MockAuthProvider } from "common/utils/testing"
 import { UPDATE_CONTENT } from "common/graphql/mutations"
@@ -126,7 +125,7 @@ describe("features/EditablePages/EditInfoPage", () => {
       // there are two save buttons, one in toolbar and one at bottom
       const saveButtons = screen.getAllByText("Save")
       userEvent.click(saveButtons[0])
-      await waitForExpect(() => {
+      await waitFor(() => {
         expect(mockHistoryPush).toHaveBeenCalledWith(
           `/information/${mockParamsName}`,
         )
