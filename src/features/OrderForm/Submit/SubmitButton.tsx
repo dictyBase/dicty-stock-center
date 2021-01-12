@@ -200,6 +200,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
 
   return (
     <Button
+      aria-label="Submit"
       type="submit"
       size="large"
       className={classes.submitBtn}
