@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import Alert from "@material-ui/lab/Alert"
 import AlertTitle from "@material-ui/lab/AlertTitle"
+import Typography from "@material-ui/core/Typography"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useStyles from "./formStyles"
 
@@ -37,7 +38,7 @@ const OrderConfirmation = ({ location }: LocationProps) => {
   if (location.state !== undefined) {
     content = (
       <div className={classes.alertBox}>
-        <h1>Success!</h1>
+        <Typography variant="h1">Success!</Typography>
         <FontAwesomeIcon icon="check-circle" size="4x" />
         <p className={classes.confirmation}>
           <strong>Order ID: {location.state.orderID}</strong>
