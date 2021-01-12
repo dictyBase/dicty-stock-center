@@ -1,9 +1,6 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AddToCartButton from "./AddToCartButton"
 import {
   CatalogContext,
   catalogReducer,
@@ -11,9 +8,9 @@ import {
 } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 
-describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
+describe("features/Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
   describe("initial render with checkedItems", () => {
-    const MockedComponent = () => {
+    const MockComponent = () => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
         ...strainInitialState,
         checkedItems: [
@@ -38,19 +35,24 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
         </CartProvider>
       )
     }
-    const wrapper = mount(<MockedComponent />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(AddToCartButton)).toHaveLength(1)
-      expect(wrapper.find(IconButton).exists()).toBe(true)
-      expect(wrapper.find(FontAwesomeIcon).exists()).toBe(true)
+    it("renders two buttons", () => {
+      render(<MockComponent />)
+      expect(screen.getAllByRole("button")).toHaveLength(2)
+      expect(
+        screen.getByRole("button", { name: "Add to shopping cart" }),
+      ).toBeInTheDocument()
+      expect(
+        screen.getByRole("button", { name: "Download PDF" }),
+      ).toBeInTheDocument()
     })
     it("displays correct text", () => {
-      expect(wrapper.find("span").at(0).text()).toContain("2 items selected")
+      render(<MockComponent />)
+      expect(screen.getByText(/2 items selected/)).toBeInTheDocument()
     })
   })
 
   describe("render with >12 items", () => {
-    const MockedComponent = () => {
+    const MockComponent = () => {
       const [state, dispatch] = React.useReducer(catalogReducer, {
         ...strainInitialState,
         checkedItems: new Array(13).fill({
@@ -68,9 +70,11 @@ describe("Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
         </CartProvider>
       )
     }
-    const wrapper = mount(<MockedComponent />)
     it("should not display cart button if combined items is more than 12", () => {
-      expect(wrapper.find(AddToCartButton)).toHaveLength(0)
+      render(<MockComponent />)
+      expect(
+        screen.queryByRole("button", { name: "Add to shopping cart" }),
+      ).not.toBeInTheDocument()
     })
   })
 })

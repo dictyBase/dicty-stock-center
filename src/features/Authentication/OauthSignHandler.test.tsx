@@ -1,6 +1,5 @@
 import React from "react"
-import { mount } from "enzyme"
-import wait from "waait"
+import { render, waitFor } from "@testing-library/react"
 import OauthSignHandler from "./OauthSignHandler"
 import { LOGIN } from "common/graphql/mutations"
 import { MockAuthProvider } from "common/utils/testing"
@@ -88,34 +87,40 @@ describe("authentication/OauthSignHandler", () => {
     },
   ]
 
-  const wrapper = mount(
-    <MockAuthProvider mocks={mocks}>
-      <OauthSignHandler />
-    </MockAuthProvider>,
-  )
+  const MockComponent = ({ mocks }: any) => {
+    return (
+      <MockAuthProvider mocks={mocks}>
+        <OauthSignHandler />
+      </MockAuthProvider>
+    )
+  }
 
   beforeEach(() => {
     loginMutationCalled = false
   })
 
   describe("initial render", () => {
-    it("renders null", () => {
-      expect(wrapper.isEmptyRender()).toBeTruthy()
+    it("renders empty div", () => {
+      const { container } = render(<MockComponent mocks={mocks} />)
+      expect(container).toBeEmptyDOMElement()
     })
   })
 
   describe("window behavior", () => {
     it("should add event listener on mount", () => {
+      render(<MockComponent mocks={mocks} />)
       expect(globalAny.addEventListener).toHaveBeenCalled()
     })
     it("should remove event listener on unmount", () => {
-      wrapper.unmount()
+      const { unmount } = render(<MockComponent mocks={mocks} />)
+      unmount()
       expect(globalAny.removeEventListener).toHaveBeenCalled()
     })
   })
 
   describe("login mutation", () => {
     it("should return early if no provider included in event data", async () => {
+      render(<MockComponent mocks={mocks} />)
       map.message({
         data: {
           query: `?code=${code}`,
@@ -124,10 +129,12 @@ describe("authentication/OauthSignHandler", () => {
         preventDefault: jest.fn(),
         stopPropagation: jest.fn(),
       })
-      await wait(0)
-      expect(loginMutationCalled).toBeFalsy()
+      await waitFor(() => {
+        expect(loginMutationCalled).toBeFalsy()
+      })
     })
     it("should call login mutation and redirect to urls", async () => {
+      render(<MockComponent mocks={mocks} />)
       map.message({
         data: {
           provider: "google",
@@ -137,11 +144,14 @@ describe("authentication/OauthSignHandler", () => {
         preventDefault: jest.fn(),
         stopPropagation: jest.fn(),
       })
-      await wait(0)
-      expect(loginMutationCalled).toBeTruthy()
-      await wait(0)
-      expect(mockHistoryPush).toHaveBeenCalledWith("/load/auth")
-      expect(mockHistoryPush).toHaveBeenCalledWith("/mydsc")
+      await waitFor(() => {
+        expect(loginMutationCalled).toBeTruthy()
+      })
+
+      await waitFor(() => {
+        expect(mockHistoryPush).toHaveBeenCalledWith("/load/auth")
+        expect(mockHistoryPush).toHaveBeenCalledWith("/mydsc")
+      })
     })
   })
 })

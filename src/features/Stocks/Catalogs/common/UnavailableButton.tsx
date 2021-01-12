@@ -13,8 +13,6 @@ const useStyles = makeStyles(() => ({
 type Props = {
   /** Title used for button tooltip and aria-label */
   title: string
-  /** Indicates if shopping cart is full */
-  cartFull?: boolean
   /** Size of icon */
   size?: "small" | "medium" | undefined
 }
@@ -23,11 +21,7 @@ type Props = {
  * is not in stock.
  */
 
-export const UnavailableButton = ({
-  title,
-  cartFull,
-  size = "medium",
-}: Props) => {
+export const UnavailableButton = ({ title, size = "medium" }: Props) => {
   const classes = useStyles()
 
   return (

@@ -27,7 +27,11 @@ export const AddToCartDialogActions = ({ handleClose }: Props) => {
 
   return (
     <DialogActions>
-      <Button onClick={handleClose} variant="outlined" color="default">
+      <Button
+        onClick={handleClose}
+        variant="outlined"
+        color="default"
+        aria-label="Continue Shopping">
         Continue Shopping
       </Button>
       <Button
@@ -36,7 +40,8 @@ export const AddToCartDialogActions = ({ handleClose }: Props) => {
         to="/cart"
         className={classes.cartDialogButton}
         variant="contained"
-        color="primary">
+        color="primary"
+        aria-label="View Cart">
         View Cart
       </Button>
     </DialogActions>

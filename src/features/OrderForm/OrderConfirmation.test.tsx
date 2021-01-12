@@ -1,10 +1,7 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import { BrowserRouter } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
-import Button from "@material-ui/core/Button"
-import Alert from "@material-ui/lab/Alert"
-import AlertTitle from "@material-ui/lab/AlertTitle"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 describe("OrderForm/OrderConfirmation", () => {
   describe("render with location state prop", () => {
@@ -16,17 +13,21 @@ describe("OrderForm/OrderConfirmation", () => {
         },
       },
     }
-    const wrapper = shallow(<OrderConfirmation {...props} />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(Button)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(2)
-    })
-    it("includes order ID number in display", () => {
-      expect(wrapper.find("p").first().text()).toContain(
-        `Order ID: ${props.location.state.orderID}`,
+    it("renders success message for valid order IDs", () => {
+      render(
+        <BrowserRouter>
+          <OrderConfirmation {...props} />
+        </BrowserRouter>,
       )
+      expect(
+        screen.getByRole("heading", { name: "Success!" }),
+      ).toBeInTheDocument()
+      expect(
+        screen.getByText(`Order ID: ${props.location.state.orderID}`),
+      ).toBeInTheDocument()
     })
   })
+
   describe("render with location state undefined", () => {
     const props = {
       location: {
@@ -34,14 +35,13 @@ describe("OrderForm/OrderConfirmation", () => {
         state: undefined,
       },
     }
-    const wrapper = shallow(<OrderConfirmation {...props} />)
-    it("always renders initial components", () => {
-      expect(wrapper.find(Button)).toHaveLength(1)
-      expect(wrapper.find(Alert)).toHaveLength(1)
-      expect(wrapper.find(AlertTitle)).toHaveLength(1)
-    })
-    it("includes Unavailable text in display", () => {
-      expect(wrapper.find(AlertTitle).first().text()).toContain("Unavailable")
+    it("renders unavailable message", () => {
+      render(
+        <BrowserRouter>
+          <OrderConfirmation {...props} />
+        </BrowserRouter>,
+      )
+      expect(screen.getByText(/Unavailable/)).toBeInTheDocument()
     })
   })
 })

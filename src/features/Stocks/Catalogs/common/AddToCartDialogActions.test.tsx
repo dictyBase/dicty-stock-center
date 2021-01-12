@@ -1,21 +1,10 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import { BrowserRouter } from "react-router-dom"
 import AddToCartDialogActions from "./AddToCartDialogActions"
-import Button from "@material-ui/core/Button"
-import DialogActions from "@material-ui/core/DialogActions"
 
-describe("Stocks/Catalogs/common/AddToCartDialogActions", () => {
-  describe("initial render", () => {
-    const props = {
-      handleClose: jest.fn(),
-    }
-    const wrapper = shallow(<AddToCartDialogActions {...props} />)
-
-    it("always renders initial components", () => {
-      expect(wrapper.find(DialogActions)).toHaveLength(1)
-      expect(wrapper.find(Button)).toHaveLength(2)
-    })
-  })
+describe("features/Stocks/Catalogs/common/AddToCartDialogActions", () => {
   describe("button clicking", () => {
     const handleCloseSpy = jest.fn()
 
@@ -23,9 +12,14 @@ describe("Stocks/Catalogs/common/AddToCartDialogActions", () => {
       const props = {
         handleClose: handleCloseSpy,
       }
-      const wrapper = shallow(<AddToCartDialogActions {...props} />)
-      wrapper.find(Button).first().simulate("click")
-      expect(handleCloseSpy).toHaveBeenCalled()
+      render(
+        <BrowserRouter>
+          <AddToCartDialogActions {...props} />
+        </BrowserRouter>,
+      )
+      const button = screen.getByRole("button", { name: "Continue Shopping" })
+      userEvent.click(button)
+      expect(handleCloseSpy).toHaveBeenCalledTimes(1)
     })
   })
 })

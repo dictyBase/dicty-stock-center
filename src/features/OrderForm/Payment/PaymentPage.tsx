@@ -41,11 +41,11 @@ type Props = {
   /** Full object of form data (shipping and payment) */
   formData: FormikValues
   /** Function to set form data */
-  setFormData: Function
-  /** Function to move to previous step */
-  prevStep: Function
+  setFormData: (arg0: FormikValues) => void
   /** Function to move to next step */
-  nextStep: Function
+  nextStep: () => void
+  /** Function to move to previous step */
+  prevStep: () => void
 }
 
 /**
