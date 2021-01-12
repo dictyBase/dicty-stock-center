@@ -1,8 +1,7 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import PaymentMethodRadioGroup from "./PaymentMethodRadioGroup"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
 
 const mockSetFieldValue = jest.fn()
 
@@ -28,60 +27,55 @@ describe("OrderForm/Payment/PaymentMethodRadioGroup", () => {
     setPurchaseOrderNum: setPurchaseOrderNumSpy,
     setWaiverRequested: setWaiverRequestedSpy,
   }
-  const wrapper = shallow(<PaymentMethodRadioGroup {...props} />)
+
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(RadioGroup)).toHaveLength(1)
-      expect(wrapper.find(FormControlLabel)).toHaveLength(4)
+    it("renders radio buttons", () => {
+      render(<PaymentMethodRadioGroup {...props} />)
+      const radios = screen.getAllByRole("radio")
+      expect(radios).toHaveLength(4)
     })
   })
+
   describe("radio button interactions", () => {
     it("sets field value when clicking first two radio buttons", () => {
-      // click credit card button
-      const cc = wrapper.find(FormControlLabel).first()
-      cc.simulate("change", {
-        target: {
-          value: "credit",
-        },
-      })
-      expect(mockSetFieldValue).toBeCalledTimes(1)
-      expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
-      expect(setPurchaseOrderNumSpy).toBeCalledTimes(1)
-      expect(setWaiverRequestedSpy).toBeCalledWith(false)
-      expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
+      render(<PaymentMethodRadioGroup {...props} />)
       // click wire transfer button
-      const wire = wrapper.find(FormControlLabel).at(1)
-      wire.simulate("change", {
-        target: {
-          value: "wire",
-        },
+      const wire = screen.getByRole("radio", {
+        name: "Wire Transfer",
       })
-      expect(setPurchaseOrderNumSpy).toBeCalledTimes(2)
+      userEvent.click(wire)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
       expect(setWaiverRequestedSpy).toBeCalledWith(false)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
-      expect(mockSetFieldValue).toBeCalledTimes(2)
-    })
-    it("does not set field value when clicking Purchase Order radio button", () => {
-      // click purchase order button
-      const po = wrapper.find(FormControlLabel).at(2)
-      po.simulate("change", {
-        target: {
-          value: "purchaseOrder",
-        },
+      // click credit card button
+      const cc = screen.getByRole("radio", {
+        name: "Credit Card",
       })
+      userEvent.click(cc)
+      expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")
+      expect(setWaiverRequestedSpy).toBeCalledWith(false)
+      expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
+    })
+
+    it("does not set field value when clicking Purchase Order radio button", () => {
+      render(<PaymentMethodRadioGroup {...props} />)
+      // click purchase order button
+      const po = screen.getByRole("radio", {
+        name: "Purchase Order (PO)",
+      })
+      userEvent.click(po)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(true)
       expect(setWaiverRequestedSpy).toBeCalledWith(false)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "")
     })
+
     it("does not set field value when clicking Waiver radio button", () => {
+      render(<PaymentMethodRadioGroup {...props} />)
       // click waiver button
-      const po = wrapper.find(FormControlLabel).at(3)
-      po.simulate("change", {
-        target: {
-          value: "waiver",
-        },
+      const waiver = screen.getByRole("radio", {
+        name: "Waiver Requested",
       })
+      userEvent.click(waiver)
       expect(setWaiverRequestedSpy).toBeCalledWith(true)
       expect(setPurchaseOrderNumSpy).toBeCalledWith(false)
       expect(mockSetFieldValue).toBeCalledWith("purchaseOrderNum", "N/A")

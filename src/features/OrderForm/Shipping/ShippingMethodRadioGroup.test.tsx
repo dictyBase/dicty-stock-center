@@ -1,8 +1,7 @@
 import React from "react"
-import { shallow } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import ShippingMethodRadioGroup from "./ShippingMethodRadioGroup"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
 
 const mockSetFieldValue = jest.fn()
 
@@ -34,18 +33,22 @@ describe("OrderForm/Shipping/ShippingMethodRadioGroup", () => {
     setPrepaidNotice: setPrepaidNoticeSpy,
   }
 
-  const wrapper = shallow(<ShippingMethodRadioGroup {...props} />)
   describe("initial render", () => {
-    it("always renders initial components", () => {
-      expect(wrapper.find(RadioGroup)).toHaveLength(1)
-      expect(wrapper.find(FormControlLabel)).toHaveLength(4)
+    it("renders radio buttons", () => {
+      render(<ShippingMethodRadioGroup {...props} />)
+      const radios = screen.getAllByRole("radio")
+      expect(radios).toHaveLength(4)
     })
   })
+
   describe("radio button interactions", () => {
     it("sets field value when clicking prepaid shipping label", () => {
+      render(<ShippingMethodRadioGroup {...props} />)
       // click prepaid label button
-      const label = wrapper.find(FormControlLabel).last()
-      label.simulate("change")
+      const label = screen.getByRole("radio", {
+        name: "Send prepaid shipping label",
+      })
+      userEvent.click(label)
       expect(mockSetFieldValue).toBeCalledTimes(1)
       expect(mockSetFieldValue).toBeCalledWith(
         "shippingAccountNumber",
@@ -57,32 +60,30 @@ describe("OrderForm/Shipping/ShippingMethodRadioGroup", () => {
       expect(setPrepaidNoticeSpy).toBeCalledWith(true)
     })
     it("does not set field value when clicking others", () => {
-      // click fedex button
-      const fedex = wrapper.find(FormControlLabel).first()
-      fedex.simulate("change")
-      expect(mockSetFieldValue).toBeCalledTimes(1)
-      expect(mockSetFieldValue).toBeCalledWith("shippingAccountNumber", "")
-      expect(setShipAccountNumSpy).toBeCalledTimes(1)
-      expect(setShipAccountNumSpy).toBeCalledWith(true)
-      expect(setPrepaidNoticeSpy).toBeCalledTimes(1)
-      expect(setPrepaidNoticeSpy).toBeCalledWith(false)
+      render(<ShippingMethodRadioGroup {...props} />)
       // click UPS button
-      const ups = wrapper.find(FormControlLabel).at(1)
-      ups.simulate("change")
-      expect(mockSetFieldValue).toBeCalledTimes(2)
+      const ups = screen.getByRole("radio", {
+        name: "UPS",
+      })
+      userEvent.click(ups)
       expect(mockSetFieldValue).toBeCalledWith("shippingAccountNumber", "")
-      expect(setShipAccountNumSpy).toBeCalledTimes(2)
       expect(setShipAccountNumSpy).toBeCalledWith(true)
-      expect(setPrepaidNoticeSpy).toBeCalledTimes(2)
+      expect(setPrepaidNoticeSpy).toBeCalledWith(false)
+      // click FedEx button
+      const fedex = screen.getByRole("radio", {
+        name: "FedEx",
+      })
+      userEvent.click(fedex)
+      expect(mockSetFieldValue).toBeCalledWith("shippingAccountNumber", "")
+      expect(setShipAccountNumSpy).toBeCalledWith(true)
       expect(setPrepaidNoticeSpy).toBeCalledWith(false)
       // click DHL button
-      const dhl = wrapper.find(FormControlLabel).at(2)
-      dhl.simulate("change")
-      expect(mockSetFieldValue).toBeCalledTimes(3)
+      const dhl = screen.getByRole("radio", {
+        name: "DHL",
+      })
+      userEvent.click(dhl)
       expect(mockSetFieldValue).toBeCalledWith("shippingAccountNumber", "")
-      expect(setShipAccountNumSpy).toBeCalledTimes(3)
       expect(setShipAccountNumSpy).toBeCalledWith(true)
-      expect(setPrepaidNoticeSpy).toBeCalledTimes(3)
       expect(setPrepaidNoticeSpy).toBeCalledWith(false)
     })
   })
