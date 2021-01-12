@@ -11,12 +11,14 @@ const ContinueButton = () => {
   const classes = useStyles()
 
   return (
-    <>
-      <Button type="submit" size="large" className={classes.continueBtn}>
-        Continue &nbsp;
-        <FontAwesomeIcon icon="arrow-circle-right" />
-      </Button>
-    </>
+    <Button
+      aria-label="Continue Button"
+      type="submit"
+      size="large"
+      className={classes.continueBtn}>
+      Continue &nbsp;
+      <FontAwesomeIcon icon="arrow-circle-right" />
+    </Button>
   )
 }
 

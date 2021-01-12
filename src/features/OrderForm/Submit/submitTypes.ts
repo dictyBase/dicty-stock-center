@@ -4,7 +4,7 @@ export type SubmitProps = {
   /** Full object of form data (shipping and payment) */
   formData: FormikValues
   /** Function to move to previous step */
-  prevStep: Function
+  prevStep: () => void
   /** Function to set a submit error (bool) */
-  setSubmitError: Function
+  setSubmitError: (arg0: boolean) => void
 }

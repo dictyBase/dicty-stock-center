@@ -21,8 +21,8 @@ const couriers = [
 ]
 
 type Props = {
-  setShipAccountNum: Function
-  setPrepaidNotice: Function
+  setShipAccountNum: (arg0: boolean) => void
+  setPrepaidNotice: (arg0: boolean) => void
 }
 
 /**
@@ -33,8 +33,11 @@ const ShippingMethodRadioGroup = ({
   setShipAccountNum,
   setPrepaidNotice,
 }: Props) => {
-  // eslint-disable-next-line
-  const { values, setFieldValue, handleChange } = useFormikContext<FormikValues>()
+  const {
+    values,
+    setFieldValue,
+    handleChange,
+  } = useFormikContext<FormikValues>()
 
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
