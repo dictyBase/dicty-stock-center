@@ -1,8 +1,6 @@
 import React from "react"
-import { mount } from "enzyme"
-import Button from "@material-ui/core/Button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import waitForExpect from "wait-for-expect"
+import { render, screen, waitFor } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
 import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import {
@@ -49,7 +47,6 @@ const mockValues = {
 
 // set up all of our mocks
 const mockHistoryPush = jest.fn()
-
 jest.mock("common/hooks/useCartItems")
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
@@ -152,24 +149,11 @@ const createOrderVariables = {
 
 const mockSetSubmitError = jest.fn()
 
-describe("SubmitButton/SubmitButton", () => {
+describe("features/OrderForm/SubmitButton", () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
-  describe("initial render", () => {
-    const wrapper = mount(
-      <MockCartProvider mocks={[]} addedItems={[]}>
-        <SubmitButton
-          formData={mockValues}
-          setSubmitError={mockSetSubmitError}
-        />
-      </MockCartProvider>,
-    )
-    it("always renders initial components", () => {
-      expect(wrapper.find(Button)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-    })
-  })
+
   describe("order submission with existing user", () => {
     const mocks = [
       {
@@ -242,17 +226,18 @@ describe("SubmitButton/SubmitButton", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockCartProvider mocks={mocks} addedItems={addedItems}>
-        <SubmitButton
-          formData={mockValues}
-          setSubmitError={mockSetSubmitError}
-        />
-      </MockCartProvider>,
-    )
     it("should process order when updating existing user", async () => {
-      wrapper.find("button").first().simulate("click")
-      await waitForExpect(() => {
+      render(
+        <MockCartProvider mocks={mocks} addedItems={addedItems}>
+          <SubmitButton
+            formData={mockValues}
+            setSubmitError={mockSetSubmitError}
+          />
+        </MockCartProvider>,
+      )
+      const submitButton = screen.getByRole("button", { name: "Submit" })
+      userEvent.click(submitButton)
+      await waitFor(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalled()
       })
@@ -332,18 +317,19 @@ describe("SubmitButton/SubmitButton", () => {
         },
       },
     ]
-    const wrapper = mount(
-      //@ts-ignore
-      <MockCartProvider mocks={mocks} addedItems={addedItems}>
-        <SubmitButton
-          formData={mockValues}
-          setSubmitError={mockSetSubmitError}
-        />
-      </MockCartProvider>,
-    )
-    it("should process order while creating new user", async () => {
-      wrapper.find("button").first().simulate("click")
-      await waitForExpect(() => {
+    it("should process order when creating new user", async () => {
+      render(
+        //@ts-ignore
+        <MockCartProvider mocks={mocks} addedItems={addedItems}>
+          <SubmitButton
+            formData={mockValues}
+            setSubmitError={mockSetSubmitError}
+          />
+        </MockCartProvider>,
+      )
+      const submitButton = screen.getByRole("button", { name: "Submit" })
+      userEvent.click(submitButton)
+      await waitFor(() => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(1)
         expect(useCartItems).toHaveBeenCalled()
       })
@@ -370,26 +356,41 @@ describe("SubmitButton/SubmitButton", () => {
         },
       },
     ]
-    const wrapper = mount(
-      //@ts-ignore
-      <MockCartProvider mocks={mocks} addedItems={[]}>
-        <SubmitButton
-          formData={mockValues}
-          setSubmitError={mockSetSubmitError}
-        />
-      </MockCartProvider>,
-    )
     it("should not call functions designated for successful submit", async () => {
-      wrapper.find("button").first().simulate("click")
-      await waitForExpect(() => {
-        expect(mockHistoryPush).toHaveBeenCalledTimes(0)
-        expect(useCartItems).toHaveBeenCalledTimes(0)
+      render(
+        //@ts-ignore
+        <MockCartProvider mocks={mocks} addedItems={[]}>
+          <SubmitButton
+            formData={mockValues}
+            setSubmitError={mockSetSubmitError}
+          />
+        </MockCartProvider>,
+      )
+      const submitButton = screen.getByRole("button", {
+        name: "Submit",
+      })
+      userEvent.click(submitButton)
+      await waitFor(() => {
+        expect(mockHistoryPush).not.toHaveBeenCalled()
+        expect(useCartItems).toHaveBeenCalled()
       })
     })
     it("should call setSubmitError if error fetching user", async () => {
-      wrapper.find("button").first().simulate("click")
-      await waitForExpect(() => {
-        expect(mockSetSubmitError).toHaveBeenCalledTimes(1)
+      render(
+        //@ts-ignore
+        <MockCartProvider mocks={mocks} addedItems={[]}>
+          <SubmitButton
+            formData={mockValues}
+            setSubmitError={mockSetSubmitError}
+          />
+        </MockCartProvider>,
+      )
+      const submitButton = screen.getByRole("button", {
+        name: "Submit",
+      })
+      userEvent.click(submitButton)
+      await waitFor(() => {
+        expect(mockSetSubmitError).toHaveBeenCalled()
       })
     })
   })
