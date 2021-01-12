@@ -1,12 +1,8 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
-import wait from "waait"
-import { StrainDetailsContainer } from "./StrainDetailsContainer"
-import StrainDetailsCard from "./StrainDetailsCard"
-import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
-import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
+import StrainDetailsContainer from "./StrainDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries/stocks/details"
 import { strainWithPhenotype } from "./mockStrainData"
@@ -25,7 +21,7 @@ jest.mock("react-router-dom", () => {
   }
 })
 
-describe("Stocks/Strains/StrainDetailsContainer", () => {
+describe("features/Stocks/Strains/StrainDetailsContainer", () => {
   describe("initial render", () => {
     const mocks = [
       {
@@ -40,23 +36,28 @@ describe("Stocks/Strains/StrainDetailsContainer", () => {
         },
       },
     ]
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <CartProvider>
-          <BrowserRouter>
-            <StrainDetailsContainer />
-          </BrowserRouter>
-        </CartProvider>
-      </MockedProvider>,
-    )
-    it("renders loading component first", () => {
-      expect(wrapper.find(DetailsLoader)).toHaveLength(1)
-    })
-    it("renders expected components after receiving data", async () => {
-      await wait()
-      wrapper.update()
-      expect(wrapper.find(DetailsHeader)).toHaveLength(1)
-      expect(wrapper.find(StrainDetailsCard)).toHaveLength(1)
+
+    const MockComponent = ({ mocks }: any) => {
+      return (
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <CartProvider>
+            <BrowserRouter>
+              <StrainDetailsContainer />
+            </BrowserRouter>
+          </CartProvider>
+        </MockedProvider>
+      )
+    }
+
+    it("displays expected data", async () => {
+      render(<MockComponent mocks={mocks} />)
+      // displays loading skeleton first
+      expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
+      // wait for data to load...
+      const strain = await screen.findByRole("heading", {
+        name: strainWithPhenotype.label,
+      })
+      expect(strain).toBeInTheDocument()
     })
   })
 })
