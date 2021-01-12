@@ -1,16 +1,13 @@
 import React from "react"
-import { mount } from "enzyme"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom"
 import AddToCartButton from "./AddToCartButton"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   CartProvider,
   CartContext,
   cartReducer,
 } from "features/ShoppingCart/CartStore"
-import AddToCartDialog from "./AddToCartDialog"
-import UnavailableButton from "./UnavailableButton"
 import { fees } from "common/constants/fees"
 
 const inStockProps = {
@@ -38,26 +35,44 @@ const unavailableProps = {
   inStock: false,
 }
 
+type Props = typeof inStockProps | typeof unavailableProps
+
 describe("Stocks/Catalogs/common/AddToCartButton", () => {
-  describe("button clicking", () => {
-    const wrapper = mount(
+  const MockComponent = (props: Props) => {
+    return (
       <CartProvider>
         <BrowserRouter>
-          <AddToCartButton {...inStockProps} />
+          <AddToCartButton {...props} />
         </BrowserRouter>
-      </CartProvider>,
+      </CartProvider>
     )
-    it("renders expected initial components", () => {
-      expect(wrapper.find(IconButton)).toHaveLength(1)
-      expect(wrapper.find(FontAwesomeIcon)).toHaveLength(1)
-    })
-    it("should display AddToCartDialog on click", () => {
-      wrapper.find(IconButton).simulate("click")
-      expect(wrapper.find(AddToCartDialog)).toHaveLength(1)
+  }
+
+  describe("button clicking", () => {
+    it("should display dialog on button click", () => {
+      render(<MockComponent {...inStockProps} />)
+      const button = screen.getByRole("button", {
+        name: "Add to shopping cart",
+      })
+      expect(button).toBeInTheDocument()
+      userEvent.click(button)
+      expect(screen.getByText(/Added to Cart/)).toBeInTheDocument()
     })
   })
+
+  describe("button display when item is unavailable", () => {
+    it("should display unavailable button if item unavailable", () => {
+      render(<MockComponent {...unavailableProps} />)
+      const button = screen.getByRole("button", {
+        name: "Item is currently unavailable",
+      })
+      expect(button).toBeInTheDocument()
+      expect(button).toBeDisabled()
+    })
+  })
+
   describe("button display when cart is full", () => {
-    const MockedComponent = () => {
+    const MockFullComponent = () => {
       const [state, dispatch] = React.useReducer(cartReducer, {
         addedItems: [],
         maxItemsInCart: true,
@@ -71,24 +86,13 @@ describe("Stocks/Catalogs/common/AddToCartButton", () => {
         </CartProvider>
       )
     }
-
-    const wrapper = mount(<MockedComponent />)
-
-    it("should display expected components if cart is full", () => {
-      expect(wrapper.find(UnavailableButton)).toHaveLength(1)
-    })
-  })
-
-  describe("button display when item is unavailable", () => {
-    const wrapper = mount(
-      <CartProvider>
-        <BrowserRouter>
-          <AddToCartButton {...unavailableProps} />
-        </BrowserRouter>
-      </CartProvider>,
-    )
-    it("should display unavailable button if item unavailable", () => {
-      expect(wrapper.find(UnavailableButton)).toHaveLength(1)
+    it("should display disabled button if cart is full", () => {
+      render(<MockFullComponent />)
+      const button = screen.getByRole("button", {
+        name: "Shopping cart is full",
+      })
+      expect(button).toBeInTheDocument()
+      expect(button).toBeDisabled()
     })
   })
 })
