@@ -1,5 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
+import Bowser from "bowser"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Availability from "./Availability"
@@ -11,7 +12,7 @@ import HomepageColumn from "./HomepageColumn"
 import LinkList from "./LinkList"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { useAuthStore } from "features/Authentication/AuthStore"
-import useSupportedBrowsers from "common/hooks/useSupportedBrowsers"
+import verifyBrowserSupport from "common/utils/verifyBrowserSupport"
 import {
   downloadLinks,
   infoLinks,
@@ -30,7 +31,11 @@ const metaDesc =
 const Homepage = () => {
   const classes = useStyles()
   const [{ isAuthenticated, user }] = useAuthStore()
-  const { supportedBrowser } = useSupportedBrowsers()
+  const browser = Bowser.getParser(window.navigator.userAgent)
+  const supportedBrowser = verifyBrowserSupport(
+    browser.getBrowserName(),
+    browser.getBrowserVersion(),
+  )
   const fullName = `${user.first_name} ${user.last_name}`
 
   return (
