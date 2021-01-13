@@ -1,4 +1,7 @@
-import "common/utils/polyfills" // necessary for IE11
+import "react-app-polyfill/ie11"
+import "react-app-polyfill/stable"
+import "string.prototype.includes"
+import "element-remove"
 import React from "react"
 import ReactDOM from "react-dom"
 import CssBaseline from "@material-ui/core/CssBaseline"
