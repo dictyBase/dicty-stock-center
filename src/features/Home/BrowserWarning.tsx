@@ -3,14 +3,11 @@ import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
 import DialogTitle from "@material-ui/core/DialogTitle"
-import Slide from "@material-ui/core/Slide"
+import Typography from "@material-ui/core/Typography"
 import BrowserWarningContent from "./BrowserWarningContent"
 
-const Transition = (props: any) => <Slide direction="up" {...props} />
-
 /**
- * BrowserWarning tells the user to upgrade if they are using an outdated version (i.e. IE10 or below).
- * It uses Material-UI's Dialog component and Slide animation.
+ * BrowserWarning tells the user to upgrade if they are using an outdated browser and/or version.
  */
 
 const BrowserWarning = () => {
@@ -21,14 +18,12 @@ const BrowserWarning = () => {
   }
 
   return (
-    <>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}>
-        <DialogTitle id="outdated-browser-warning">
-          {"You are using an outdated browser!"}
+    <div>
+      <Dialog open={open} keepMounted onClose={handleClose}>
+        <DialogTitle disableTypography id="outdated-browser-warning">
+          <Typography variant="h1">
+            You are using an outdated browser!
+          </Typography>
         </DialogTitle>
         <BrowserWarningContent />
         <DialogActions>
@@ -37,7 +32,7 @@ const BrowserWarning = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   )
 }
 

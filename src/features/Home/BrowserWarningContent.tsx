@@ -8,26 +8,26 @@ import DialogContentText from "@material-ui/core/DialogContentText"
  */
 
 const BrowserWarningContent = () => (
-  <DialogContent>
-    <DialogContentText id="browser-warning-description">
-      <p>Dicty Stock Center may not work as expected on your browser.</p>
-      <p>
-        Please consider upgrading to a more modern browser such as{" "}
-        <a
-          href="https://www.mozilla.org/en-US/firefox/new/"
-          target="_blank"
-          rel="noopener noreferrer">
-          Mozilla Firefox
-        </a>{" "}
-        or{" "}
-        <a
-          href="https://www.google.com/chrome/"
-          target="_blank"
-          rel="noopener noreferrer">
-          Google Chrome
-        </a>
-        .
-      </p>
+  <DialogContent id="browser-warning-description">
+    <DialogContentText>
+      Dicty Stock Center may not work as expected on your browser.
+    </DialogContentText>
+    <DialogContentText>
+      Please consider upgrading to a more modern browser such as{" "}
+      <a
+        href="https://www.mozilla.org/en-US/firefox/new/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Mozilla Firefox
+      </a>{" "}
+      or{" "}
+      <a
+        href="https://www.google.com/chrome/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Google Chrome
+      </a>
+      .
     </DialogContentText>
   </DialogContent>
 )

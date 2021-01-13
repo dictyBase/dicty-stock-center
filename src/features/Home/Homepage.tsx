@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
-import Bowser from "bowser"
+import Typography from "@material-ui/core/Typography"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
 import Slideshow from "./Slideshow"
@@ -11,6 +11,7 @@ import HomepageColumn from "./HomepageColumn"
 import LinkList from "./LinkList"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { useAuthStore } from "features/Authentication/AuthStore"
+import useSupportedBrowsers from "common/hooks/useSupportedBrowsers"
 import {
   downloadLinks,
   infoLinks,
@@ -29,18 +30,9 @@ const metaDesc =
 const Homepage = () => {
   const classes = useStyles()
   const [{ isAuthenticated, user }] = useAuthStore()
+  const { supportedBrowser } = useSupportedBrowsers()
   const fullName = `${user.first_name} ${user.last_name}`
 
-  const browser = Bowser.getParser(window.navigator.userAgent)
-  let unsupportedBrowser = false
-
-  if (
-    browser.getBrowser().name === "Internet Explorer" &&
-    // @ts-ignore
-    browser.getBrowser().version <= "10.0"
-  ) {
-    unsupportedBrowser = true
-  }
   return (
     <div>
       <Helmet>
@@ -52,10 +44,12 @@ const Homepage = () => {
           <h3>Hello, {`${fullName}!`}</h3>
         </span>
       )}
-      {unsupportedBrowser && <BrowserWarning />}
+      {!supportedBrowser && <BrowserWarning />}
       <Grid container justify="space-between" spacing={3}>
         <Grid item className={classes.header}>
-          <h1>Welcome to Dicty Stock Center (DSC)</h1>
+          <Typography variant="h1">
+            Welcome to Dicty Stock Center (DSC)
+          </Typography>
         </Grid>
         <Grid item xs={12} className={classes.intro}>
           <EditablePanel slug="dsc-intro" skeletonCount={5} />
