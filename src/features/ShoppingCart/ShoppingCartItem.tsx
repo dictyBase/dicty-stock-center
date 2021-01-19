@@ -52,6 +52,7 @@ const ShoppingCartItem = ({ item }: Props) => {
           </Grid>
           <Grid item xs={1}>
             <TrashButton
+              aria-label="Remove Item"
               variant="contained"
               className={classes.trashBtn}
               onClick={() => removeFromCart([item])}>
