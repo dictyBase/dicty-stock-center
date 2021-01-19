@@ -74,12 +74,11 @@ const QuantityDropdown = ({ currentQuantity, id }: Props) => {
   const values = getDropdownValues(addedItems.length, matchingItems.length)
   const { addToCart, removeFromCart } = useCartItems()
   const classes = useStyles()
-  const [quantity, setQuantity] = React.useState(matchingItems.length)
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const qtyNum = Number(event.target.value)
-    const qtyDiff = qtyNum - quantity
-    setQuantity(qtyNum)
+    const qtyDiff = qtyNum - matchingItems.length
+
     // need to add check for qty diff = zero
 
     if (qtyDiff < 0) {
@@ -97,7 +96,7 @@ const QuantityDropdown = ({ currentQuantity, id }: Props) => {
         <Select
           labelId="quantity-select-label"
           id="quantity-select"
-          value={quantity}
+          value={matchingItems.length}
           onChange={handleChange}>
           {values.map((option) => (
             <MenuItem key={option} value={option}>
