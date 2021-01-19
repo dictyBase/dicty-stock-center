@@ -51,15 +51,16 @@ describe("features/ShoppingCart/ShoppingCartItemList", () => {
           <ShoppingCartItemList />
         </MockCartProvider>,
       )
-      const strainQuantity = screen.getByText(/Qty: 3/)
-      expect(strainQuantity).toBeInTheDocument()
-      const trashButtons = screen.getAllByRole("button")
+      const strainQuantity = screen.getAllByTestId("cart-quantity")[0]
+      expect(strainQuantity).toHaveTextContent(/Qty:3/)
+      const trashButtons = screen.getAllByRole("button", {
+        name: "Remove Item",
+      })
       // should have two buttons - one for each item row
       expect(trashButtons).toHaveLength(2)
       // click trash button on row with multiple of strain
       userEvent.click(trashButtons[0])
-      const updatedQuantity = screen.getByText(/Qty: 2/)
-      expect(updatedQuantity).toBeInTheDocument()
+      expect(strainQuantity).toHaveTextContent(/Qty:2/)
     })
   })
 })
