@@ -109,4 +109,5 @@ const QuantityDropdown = ({ currentQuantity, id }: Props) => {
   )
 }
 
+export { getDropdownValues }
 export default QuantityDropdown
