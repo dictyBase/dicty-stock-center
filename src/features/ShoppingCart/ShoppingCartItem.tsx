@@ -41,7 +41,7 @@ const ShoppingCartItem = ({ item }: Props) => {
               {item.id}
             </Typography>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={1} data-testid="cart-quantity">
             Qty:
             <QuantityDropdown id={item.id} currentQuantity={item.quantity} />
           </Grid>
