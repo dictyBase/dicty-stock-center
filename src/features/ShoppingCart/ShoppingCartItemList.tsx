@@ -46,13 +46,13 @@ const addQuantityToCartItem = (items: Array<CartItem>) => {
   )
 
   for (const { id } of items) itemMap.get(id)!.quantity++
+
   return Array.from(itemMap.values())
 }
 
 /**
  * ShoppingCartItemList lists all of the items in the user's cart.
  */
-
 const ShoppingCartItemList = () => {
   const {
     state: { addedItems },

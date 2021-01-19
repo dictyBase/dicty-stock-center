@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import QuantityDropdown from "./QuantityDropdown"
 import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
@@ -12,13 +13,13 @@ import useStyles from "./shoppingCartStyles"
 import { CartItemWithQuantity } from "common/types"
 
 type Props = {
+  /** Individual cart item with given quantity */
   item: CartItemWithQuantity
 }
 
 /**
  * ShoppingCartItem is an individual item displayed in ShoppingCartList.
  */
-
 const ShoppingCartItem = ({ item }: Props) => {
   const { removeFromCart } = useCartItems()
   const classes = useStyles()
@@ -41,7 +42,8 @@ const ShoppingCartItem = ({ item }: Props) => {
             </Typography>
           </Grid>
           <Grid item xs={1}>
-            Qty: {item.quantity}
+            Qty:
+            <QuantityDropdown id={item.id} currentQuantity={item.quantity} />
           </Grid>
           <Grid item xs={1}>
             <Typography noWrap>

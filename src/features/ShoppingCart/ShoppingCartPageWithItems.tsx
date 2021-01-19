@@ -8,9 +8,7 @@ import { useCartStore } from "./CartStore"
 import useStyles from "./shoppingCartStyles"
 
 const ShoppingCartPageWithItems = () => {
-  const {
-    state: { maxItemsInCart },
-  } = useCartStore()
+  const { state } = useCartStore()
   const classes = useStyles()
 
   return (
@@ -22,7 +20,7 @@ const ShoppingCartPageWithItems = () => {
       </Grid>
       <Grid container justify="center">
         <Grid item className={classes.btnGrid}>
-          {!maxItemsInCart && (
+          {!state.maxItemsInCart && (
             <Button
               component={Link}
               to="/strains"
