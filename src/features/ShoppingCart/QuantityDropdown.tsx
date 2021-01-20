@@ -1,43 +1,11 @@
 import React from "react"
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  makeStyles,
-} from "@material-ui/core/styles"
 import FormControl from "@material-ui/core/FormControl"
+import InputLabel from "@material-ui/core/InputLabel"
+import OutlinedInput from "@material-ui/core/OutlinedInput"
 import MenuItem from "@material-ui/core/MenuItem"
 import Select from "@material-ui/core/Select"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
-import { theme } from "app/layout/AppProviders"
-
-const useStyles = makeStyles(({ palette }) => ({
-  container: {
-    paddingRight: "5px",
-  },
-  quantity: {
-    marginRight: "10px",
-    minWidth: 60,
-  },
-  maxItems: {
-    color: palette.error.main,
-    "&:hover": {
-      color: palette.error.dark,
-    },
-  },
-}))
-
-const newTheme = createMuiTheme({
-  ...theme,
-  overrides: {
-    MuiOutlinedInput: {
-      input: {
-        padding: "6px 0px 7px 0px",
-        textAlign: "center",
-      },
-    },
-  },
-})
 
 const getDropdownValues = (numItemsInCart: number, currentQuantity: number) => {
   const availableToAdd = 12 - numItemsInCart
@@ -71,7 +39,8 @@ const QuantityDropdown = ({ id }: Props) => {
   const matchingItems = addedItems.filter((item) => item.id === id)
   const values = getDropdownValues(addedItems.length, matchingItems.length)
   const { addToCart, removeFromCart } = useCartItems()
-  const classes = useStyles()
+  const labelRef = React.useRef<HTMLLabelElement>(null)
+  const labelWidth = labelRef.current ? labelRef.current.clientWidth : 0
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const qtyNum = Number(event.target.value)
@@ -89,21 +58,31 @@ const QuantityDropdown = ({ id }: Props) => {
   }
 
   return (
-    <MuiThemeProvider theme={newTheme}>
-      <FormControl className={classes.quantity} variant="outlined">
-        <Select
-          labelId="quantity-select-label"
-          id="quantity-select"
-          value={matchingItems.length}
-          onChange={handleChange}>
-          {values.map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </MuiThemeProvider>
+    <FormControl variant="outlined">
+      <InputLabel ref={labelRef} shrink id="quantity-select-label">
+        Quantity
+      </InputLabel>
+      <Select
+        labelId="quantity-select-label"
+        id="quantity-select"
+        value={matchingItems.length}
+        onChange={handleChange}
+        input={
+          <OutlinedInput
+            notched
+            name="age"
+            id="outlined-age-always-notched"
+            margin="dense"
+            labelWidth={labelWidth}
+          />
+        }>
+        {values.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   )
 }
 
