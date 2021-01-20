@@ -8,6 +8,7 @@ import OutlinedDropdown from "common/components/OutlinedDropdown"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
+import { maxItemsInCart } from "common/constants/cart"
 import { CartItemWithQuantity } from "common/types"
 
 /**
@@ -29,7 +30,7 @@ const getDropdownValues = (numItemsInCart: number, currentQuantity: number) => {
   }
 
   const secondArr = []
-  const availableToAdd = 12 - numItemsInCart
+  const availableToAdd = maxItemsInCart - numItemsInCart
   for (let i = currentQuantity; i <= currentQuantity + availableToAdd; i++) {
     secondArr.push(i)
   }
