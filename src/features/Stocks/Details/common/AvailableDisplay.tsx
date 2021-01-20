@@ -1,19 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  makeStyles,
-} from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import FormControl from "@material-ui/core/FormControl"
-import MenuItem from "@material-ui/core/MenuItem"
-import Select from "@material-ui/core/Select"
+import OutlinedDropdown from "common/components/OutlinedDropdown"
 import SecondaryButton from "common/components/SecondaryButton"
 import AddToCartDialog from "features/Stocks/Catalogs/common/AddToCartDialog"
 import useCartItems from "common/hooks/useCartItems"
 import { useCartStore } from "features/ShoppingCart/CartStore"
-import { theme } from "app/layout/AppProviders"
 import { CartItem } from "common/types"
 
 const useStyles = makeStyles(({ palette }) => ({
@@ -22,7 +15,6 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   quantity: {
     marginRight: "10px",
-    minWidth: 70,
   },
   maxItems: {
     color: palette.error.main,
@@ -31,18 +23,6 @@ const useStyles = makeStyles(({ palette }) => ({
     },
   },
 }))
-
-const newTheme = createMuiTheme({
-  ...theme,
-  overrides: {
-    MuiOutlinedInput: {
-      input: {
-        padding: "6px 0px 7px 0px",
-        textAlign: "center",
-      },
-    },
-  },
-})
 
 const createQuantityArray = (numItems: number) => {
   const qty = 13 - numItems // quantity of items available to add to cart
@@ -85,20 +65,13 @@ const AvailableDisplay = ({ cartData }: Props) => {
   if (!maxItemsInCart) {
     content = (
       <React.Fragment>
-        <Grid item>
-          <FormControl className={classes.quantity} variant="outlined">
-            <Select
-              labelId="quantity-select-label"
-              id="quantity-select"
-              value={quantity}
-              onChange={handleChange}>
-              {values.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Grid item className={classes.quantity}>
+          <OutlinedDropdown
+            label="Qty"
+            handleChange={handleChange}
+            dropdownValues={values}
+            inputValue={quantity}
+          />
         </Grid>
         <Grid item>
           <SecondaryButton
@@ -113,17 +86,15 @@ const AvailableDisplay = ({ cartData }: Props) => {
   }
 
   return (
-    <MuiThemeProvider theme={newTheme}>
-      <Grid item container alignItems="center" className={classes.container}>
-        {content}
-        {showDialog && (
-          <AddToCartDialog
-            data={Array(quantity).fill(cartData)}
-            setShowDialog={setShowDialog}
-          />
-        )}
-      </Grid>
-    </MuiThemeProvider>
+    <Grid item container alignItems="center" className={classes.container}>
+      {content}
+      {showDialog && (
+        <AddToCartDialog
+          data={Array(quantity).fill(cartData)}
+          setShowDialog={setShowDialog}
+        />
+      )}
+    </Grid>
   )
 }
 
