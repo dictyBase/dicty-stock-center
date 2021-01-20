@@ -17,7 +17,7 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   quantity: {
     marginRight: "10px",
-    minWidth: 70,
+    minWidth: 60,
   },
   maxItems: {
     color: palette.error.main,
@@ -59,13 +59,11 @@ const getDropdownValues = (numItemsInCart: number, currentQuantity: number) => {
 }
 
 type Props = {
-  /** Quantity of this item currently in the cart */
-  currentQuantity: number
   /** Stock ID */
   id: string
 }
 
-const QuantityDropdown = ({ currentQuantity, id }: Props) => {
+const QuantityDropdown = ({ id }: Props) => {
   const {
     state: { addedItems },
   } = useCartStore()
@@ -79,7 +77,7 @@ const QuantityDropdown = ({ currentQuantity, id }: Props) => {
     const qtyNum = Number(event.target.value)
     const qtyDiff = qtyNum - matchingItems.length
 
-    // need to add check for qty diff = zero
+    if (qtyDiff === 0) return
 
     if (qtyDiff < 0) {
       const removableItems = matchingItems.splice(0, Math.abs(qtyDiff))
