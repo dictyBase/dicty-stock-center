@@ -41,7 +41,6 @@ const ShoppingCartItem = ({ item }: Props) => {
             justify="flex-end"
             alignItems="center"
             data-testid="cart-quantity">
-            Qty: &nbsp;
             <QuantityDropdown id={item.id} />
           </Grid>
           <Grid item xs={1} container justify="flex-end">
