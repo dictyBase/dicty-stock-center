@@ -21,9 +21,9 @@ const getDropdownValues = (numItemsInCart: number, currentQuantity: number) => {
 
   const finalArr = arr.concat(secondArr)
 
-  return finalArr
-    .filter((item, index) => finalArr.indexOf(item) === index)
-    .filter((x) => x !== 0)
+  return finalArr.filter(
+    (item, index) => finalArr.indexOf(item) === index && item !== 0,
+  )
 }
 
 type Props = {
@@ -70,8 +70,8 @@ const QuantityDropdown = ({ id }: Props) => {
         input={
           <OutlinedInput
             notched
-            name="age"
-            id="outlined-age-always-notched"
+            name="quantity"
+            id="outlined-input"
             margin="dense"
             labelWidth={labelWidth}
           />
