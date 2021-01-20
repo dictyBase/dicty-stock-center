@@ -68,11 +68,9 @@ const ShoppingCartItemList = () => {
       </Grid>
       <Grid item xs={12}>
         <List>
-          {itemsWithQuantity.map(
-            (item: CartItemWithQuantity, index: number) => (
-              <ShoppingCartItem key={index} item={item} />
-            ),
-          )}
+          {itemsWithQuantity.map((item: CartItemWithQuantity) => (
+            <ShoppingCartItem key={item.id} item={item} />
+          ))}
           <ListItem>
             <Grid item xs={12}>
               <Grid container>
