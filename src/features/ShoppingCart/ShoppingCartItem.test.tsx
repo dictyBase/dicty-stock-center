@@ -28,7 +28,7 @@ describe("features/ShoppingCart/ShoppingCartPage", () => {
       expect(cartItem).toHaveAttribute("href", "/strains/DBS123456")
       // shows correct quantity
       const quantity = screen.getByTestId("cart-quantity")
-      expect(quantity).toHaveTextContent(/Quantity5/)
+      expect(quantity).toHaveTextContent(/Qty5/)
     })
   })
 })
