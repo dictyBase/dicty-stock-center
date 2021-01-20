@@ -10,23 +10,31 @@ import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
 import { CartItemWithQuantity } from "common/types"
 
+/**
+ * getDropdownValues generates a list of possible numbers based on how
+ * many items are in the cart.
+ */
 const getDropdownValues = (numItemsInCart: number, currentQuantity: number) => {
-  const availableToAdd = 12 - numItemsInCart
+  /**
+   * Process for generating values:
+   * 1. Create array of values from 1 to the current number of selected item in
+   *    cart (i.e. 1-4)
+   * 2. Create array of values from current quantity number (i.e. 4) to the
+   *    maximum allowed in cart (12 - 4, which would create an array of 4-8)
+   * 3. Merge these arrays
+   */
   const arr = []
-  for (let i = 1; i <= currentQuantity; i++) {
+  for (let i = 1; i < currentQuantity; i++) {
     arr.push(i)
   }
 
   const secondArr = []
+  const availableToAdd = 12 - numItemsInCart
   for (let i = currentQuantity; i <= currentQuantity + availableToAdd; i++) {
     secondArr.push(i)
   }
 
-  const finalArr = arr.concat(secondArr)
-
-  return finalArr.filter(
-    (item, index) => finalArr.indexOf(item) === index && item !== 0,
-  )
+  return arr.concat(secondArr)
 }
 
 type Props = {
