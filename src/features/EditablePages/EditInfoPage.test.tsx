@@ -125,11 +125,14 @@ describe("features/EditablePages/EditInfoPage", () => {
       // there are two save buttons, one in toolbar and one at bottom
       const saveButtons = screen.getAllByText("Save")
       userEvent.click(saveButtons[0])
-      await waitFor(() => {
-        expect(mockHistoryPush).toHaveBeenCalledWith(
-          `/information/${mockParamsName}`,
-        )
-      })
+      await waitFor(
+        () => {
+          expect(mockHistoryPush).toHaveBeenCalledWith(
+            `/information/${mockParamsName}`,
+          )
+        },
+        { timeout: 2000 },
+      )
     })
 
     it("should go back to previous URL on cancel", () => {
