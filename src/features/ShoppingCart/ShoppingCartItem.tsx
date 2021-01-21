@@ -4,10 +4,13 @@ import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import OutlinedDropdown from "common/components/OutlinedDropdown"
 import { useCartStore } from "features/ShoppingCart/CartStore"
+import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
+import useStyles from "./shoppingCartStyles"
 import { maxItemsInCart } from "common/constants/cart"
 import { CartItemWithQuantity } from "common/types"
 
@@ -50,10 +53,10 @@ const ShoppingCartItem = ({ item }: Props) => {
   const {
     state: { addedItems },
   } = useCartStore()
-
   const matchingItems = addedItems.filter((val) => val.id === item.id)
   const values = getDropdownValues(addedItems.length, matchingItems.length)
   const { addToCart, removeFromCart } = useCartItems()
+  const classes = useStyles()
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const qtyNum = Number(event.target.value)
@@ -73,7 +76,7 @@ const ShoppingCartItem = ({ item }: Props) => {
     <>
       <ListItem>
         <Grid container spacing={0} alignItems="center">
-          <Grid item xs={10}>
+          <Grid item xs={9}>
             <Typography noWrap>
               <strong>
                 <Link to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
@@ -104,6 +107,15 @@ const ShoppingCartItem = ({ item }: Props) => {
             <Typography noWrap>
               ${Number(item.fee) * item.quantity}.00
             </Typography>
+          </Grid>
+          <Grid item xs={1} container justify="flex-end">
+            <TrashButton
+              aria-label="Remove Item"
+              variant="contained"
+              className={classes.trashBtn}
+              onClick={() => removeFromCart(matchingItems)}>
+              <FontAwesomeIcon icon="trash" />
+            </TrashButton>
           </Grid>
         </Grid>
       </ListItem>

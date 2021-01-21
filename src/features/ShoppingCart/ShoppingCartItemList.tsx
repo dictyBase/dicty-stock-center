@@ -79,12 +79,13 @@ const ShoppingCartItemList = () => {
                 </Grid>
                 <Grid
                   item
-                  xs={2}
+                  xs={1}
                   container
                   justify="flex-end"
                   className={classes.totalFee}>
                   <strong>${getCartTotal(addedItems)}.00</strong>
                 </Grid>
+                <Grid item xs={1} />
               </Grid>
             </Grid>
           </ListItem>
