@@ -46,10 +46,26 @@ const initialState = {
   maxItemsInCart: JSON.parse(localStorage.getItem(maxKey) || "false"),
 }
 
+// sortCartItems is used to sort any added items and ensure they are
+// grouped together. This helps prevent ordering issues when adding/removing
+// items simultaneously in the cart.
+const sortCartItems = (a: CartItem, b: CartItem) => {
+  if (a.id < b.id) {
+    return -1
+  }
+  if (a.id > b.id) {
+    return 1
+  }
+  return 0
+}
+
 const cartReducer = (state: CartState, action: Action) => {
   switch (action.type) {
     case CartActionType.ADD_TO_CART:
-      const newItems = state.addedItems.concat(action.payload).slice(0, 12)
+      const newItems = state.addedItems
+        .concat(action.payload)
+        .slice(0, 12)
+        .sort(sortCartItems)
       localStorage.setItem(storageKey, JSON.stringify(newItems))
       if (newItems.length === 12) {
         localStorage.setItem(maxKey, "true")
@@ -63,9 +79,12 @@ const cartReducer = (state: CartState, action: Action) => {
         maxItemsInCart: false,
       }
     case CartActionType.REMOVE_FROM_CART:
+      const {
+        payload: { removeIndex },
+      } = action
       const updatedItems = [
-        ...state.addedItems.slice(0, action.payload.removeIndex),
-        ...state.addedItems.slice(action.payload.removeIndex + 1),
+        ...state.addedItems.slice(0, removeIndex),
+        ...state.addedItems.slice(removeIndex + 1),
       ]
       localStorage.setItem(storageKey, JSON.stringify(updatedItems))
       localStorage.setItem(maxKey, "false")
