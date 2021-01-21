@@ -1,5 +1,6 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import ShoppingCartItem, { getDropdownValues } from "./ShoppingCartItem"
 import { MockCartProvider } from "common/utils/testing"
 import { fees } from "common/constants/fees"
@@ -29,6 +30,37 @@ describe("features/ShoppingCart/ShoppingCartPage", () => {
       // shows correct quantity
       const quantity = screen.getByTestId("cart-quantity")
       expect(quantity).toHaveTextContent(/Qty5/)
+    })
+  })
+
+  describe("changing quantity", () => {
+    xit("updates fee when quantity is changed", async () => {
+      const item = {
+        id: "DBS123456",
+        name: "jerry seinfeld",
+        summary: "comedian",
+        fee: fees.STRAIN_FEE,
+      }
+      const cartItems = new Array(5).fill(item)
+      const itemWithQuantity = {
+        ...item,
+        quantity: 5,
+      }
+      render(
+        <MockCartProvider mocks={[]} addedItems={cartItems}>
+          <ShoppingCartItem item={itemWithQuantity} />
+        </MockCartProvider>,
+      )
+      // should list $150.00 for five strains ($30 each)
+      expect(screen.getByTestId("fee")).toHaveTextContent("$150.00")
+
+      // select 2 from quantity dropdown
+      userEvent.click(screen.getByLabelText(/Qty/))
+      userEvent.click(screen.getByTestId("option-2"))
+      // should show $60.00 for two strains in cart
+      await waitFor(() => {
+        expect(screen.getByTestId("fee")).toHaveTextContent("$60.00")
+      })
     })
   })
 })
