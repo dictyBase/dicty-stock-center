@@ -49,7 +49,10 @@ const OutlinedDropdown = ({
           />
         }>
         {dropdownValues.map((option) => (
-          <MenuItem key={option} value={option}>
+          <MenuItem
+            key={option}
+            value={option}
+            data-testid={`option-${option}`}>
             {option}
           </MenuItem>
         ))}
