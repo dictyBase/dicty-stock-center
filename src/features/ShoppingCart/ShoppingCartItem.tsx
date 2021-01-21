@@ -103,7 +103,7 @@ const ShoppingCartItem = ({ item }: Props) => {
               label="Qty"
             />
           </Grid>
-          <Grid item xs={1} container justify="flex-end">
+          <Grid item xs={1} container justify="flex-end" data-testid="fee">
             <Typography noWrap>
               ${Number(item.fee) * item.quantity}.00
             </Typography>
