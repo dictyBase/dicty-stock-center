@@ -85,7 +85,7 @@
     "@types/react-window-infinite-loader": "^1.0.3",
     "@types/yup": "^0.29.10",
     "core-js": "^3.8.0",
-    "cypress": "^5.5.0",
+    "cypress": "^6.3.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest-dom": "^3.6.5",
