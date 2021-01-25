@@ -33,13 +33,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "1rem",
     },
   },
-  itemsHeader: {
-    padding: "15px",
-    color: "#fff",
-    backgroundColor: "rgb(46, 109, 164)",
-    textAlign: "center",
-    fontWeight: 400,
-  },
 }))
 
 export default useStyles
