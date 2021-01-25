@@ -36,7 +36,7 @@ const ShoppingCartItemList = () => {
   const itemsWithQuantity = addQuantityToCartItem(addedItems)
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={9}>
         <List>
           {itemsWithQuantity.map((item: CartItemWithQuantity) => (

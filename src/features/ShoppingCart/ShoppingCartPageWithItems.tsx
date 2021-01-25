@@ -31,15 +31,6 @@ const ShoppingCartPageWithItems = () => {
               <FontAwesomeIcon icon="share" /> &nbsp; Continue Shopping
             </Button>
           )}
-          <Button
-            component={Link}
-            to="/order/checkout"
-            color="secondary"
-            variant="contained"
-            size="large"
-            className={classes.checkoutBtn}>
-            <FontAwesomeIcon icon="shopping-cart" /> &nbsp; Checkout
-          </Button>
         </Grid>
       </Grid>
     </>

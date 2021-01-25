@@ -1,18 +1,26 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { Link } from "react-router-dom"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Card from "@material-ui/core/Card"
+import CardActions from "@material-ui/core/CardActions"
+import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCartStore } from "./CartStore"
 import { CartItem } from "common/types"
 
-const useStyles = makeStyles({
-  total: {
-    color: "rgba(0, 0, 0, 0.54)",
-    fontSize: "1.4rem",
+const useStyles = makeStyles((theme) => ({
+  container: {
+    minHeight: "200px",
+    padding: theme.spacing(2),
   },
-  totalFee: {
-    fontSize: "1.4rem",
+  checkoutBtn: {
+    "&:hover": {
+      color: "#fff",
+    },
   },
-})
+}))
 
 // get the total fee for combined items in cart
 const getCartTotal = (items: Array<CartItem>) =>
@@ -31,20 +39,33 @@ const ShoppingCartTotalCard = () => {
   const classes = useStyles()
 
   return (
-    <Grid container>
-      <Grid item xs={10} className={classes.total}>
-        Total
+    <Card className={classes.container}>
+      <Grid container>
+        <Grid item xs={10}>
+          <Typography variant="body1" component="span">
+            Total &nbsp;
+          </Typography>
+          <Typography variant="body2" component="span">
+            ({addedItems.length} items):
+          </Typography>
+        </Grid>
+        <Grid item xs={2} container justify="flex-end">
+          <strong>${getCartTotal(addedItems)}.00</strong>
+        </Grid>
       </Grid>
-      <Grid
-        item
-        xs={1}
-        container
-        justify="flex-end"
-        className={classes.totalFee}>
-        <strong>${getCartTotal(addedItems)}.00</strong>
-      </Grid>
-      <Grid item xs={1} />
-    </Grid>
+      <CardActions>
+        <Button
+          component={Link}
+          to="/order/checkout"
+          color="secondary"
+          variant="contained"
+          size="large"
+          startIcon={<FontAwesomeIcon icon="shopping-cart" />}
+          className={classes.checkoutBtn}>
+          Proceed to Checkout
+        </Button>
+      </CardActions>
+    </Card>
   )
 }
 
