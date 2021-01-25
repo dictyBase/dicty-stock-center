@@ -1,18 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import Bowser from "bowser"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Availability from "./Availability"
 import OtherMaterials from "./OtherMaterials"
 import Slideshow from "./Slideshow"
 import EditablePanel from "./EditablePanel"
-import BrowserWarning from "./BrowserWarning"
 import HomepageColumn from "./HomepageColumn"
 import LinkList from "./LinkList"
 import StandardOperatingProcedures from "./StandardOperatingProcedures"
 import { useAuthStore } from "features/Authentication/AuthStore"
-import verifyBrowserSupport from "common/utils/verifyBrowserSupport"
 import {
   downloadLinks,
   infoLinks,
@@ -31,11 +28,6 @@ const metaDesc =
 const Homepage = () => {
   const classes = useStyles()
   const [{ isAuthenticated, user }] = useAuthStore()
-  const browser = Bowser.getParser(window.navigator.userAgent)
-  const supportedBrowser = verifyBrowserSupport(
-    browser.getBrowserName(),
-    browser.getBrowserVersion(),
-  )
   const fullName = `${user.first_name} ${user.last_name}`
 
   return (
@@ -49,7 +41,6 @@ const Homepage = () => {
           <h3>Hello, {`${fullName}!`}</h3>
         </span>
       )}
-      {!supportedBrowser && <BrowserWarning />}
       <Grid container justify="space-between" spacing={3}>
         <Grid item className={classes.header}>
           <Typography variant="h1">
