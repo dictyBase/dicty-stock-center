@@ -89,7 +89,6 @@ const App = () => {
 
   // set skip to true so the query is only run once
   // then update the refresh token in our global state
-  // https://github.com/trojanowski/react-apollo-hooks/issues/157#issuecomment-491151909
   React.useEffect(() => {
     if (!loading && data && data.getRefreshToken) {
       setSkip(true)
