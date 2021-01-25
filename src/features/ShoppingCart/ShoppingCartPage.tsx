@@ -1,10 +1,9 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import EmptyCartPage from "./EmptyCartPage"
-import useStyles from "./shoppingCartStyles"
 import { useCartStore } from "./CartStore"
 
 /** ShoppingCartPage displays different UIs based on whether
@@ -12,7 +11,6 @@ import { useCartStore } from "./CartStore"
 
 const ShoppingCartPage = () => {
   const { state } = useCartStore()
-  const classes = useStyles()
 
   return (
     <React.Fragment>
@@ -23,13 +21,9 @@ const ShoppingCartPage = () => {
           content="Shopping cart page for Dicty Stock Center"
         />
       </Helmet>
-      <Grid container justify="center">
-        <Grid item>
-          <Typography variant="h1" className={classes.header}>
-            Shopping Cart
-          </Typography>
-        </Grid>
-      </Grid>
+      <Box marginTop={3} marginBottom={3}>
+        <Typography variant="h1">Your Shopping Cart</Typography>
+      </Box>
       {state.addedItems.length > 0 ? (
         <ShoppingCartPageWithItems />
       ) : (
