@@ -53,20 +53,29 @@ const ShoppingCartItem = ({ item }: Props) => {
   const {
     state: { addedItems },
   } = useCartStore()
+  // get array of all items with given ID
   const matchingItems = addedItems.filter((val) => val.id === item.id)
+  // generate values to display in quantity dropdown
   const values = getDropdownValues(addedItems.length, matchingItems.length)
   const { addToCart, removeFromCart } = useCartItems()
   const classes = useStyles()
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    // get quantity from dropdown selection
     const qtyNum = Number(event.target.value)
+    // calculate the difference between how many of this item are in the cart and
+    // the quantity now selected in the dropdown
     const qtyDiff = qtyNum - matchingItems.length
 
+    // if there's no change in quantity then do nothing
     if (qtyDiff === 0) return
+    // negative quantity difference means the user is removing items
     if (qtyDiff < 0) {
       const removableItems = matchingItems.splice(0, Math.abs(qtyDiff))
       removeFromCart(removableItems)
     } else {
+      // if positive, generate an array of the same item with new quantity
+      // and add those items to the cart
       const addableItems = Array(qtyDiff).fill(matchingItems[0])
       addToCart(addableItems)
     }
