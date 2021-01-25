@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react"
 import { Route, Switch } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
 import Loader from "common/components/Loader"
+import useGoogleAnalytics from "common/hooks/useGoogleAnalytics"
 
 const Homepage = lazy(
   () => import(/* webpackChunkName: "Homepage" */ "features/Home/Homepage"),
@@ -128,55 +129,59 @@ const PageNotReady = lazy(
     ),
 )
 
-const RenderRoutes = () => (
-  <Suspense fallback={<Loader />}>
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      {/* authentication routes */}
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/:provider/callback" component={OauthCallback} />
-      <Route exact path="/load/auth" component={AuthLoader} />
-      <PrivateRoute exact path="/logout" component={Logout} />
-      <PrivateRoute exact path="/mydsc" component={MyDscPage} />
-      {/* editable page routes */}
-      <Route exact path="/information" component={InformationContainer} />
-      <Route exact path="/information/:name" component={InfoPageContainer} />
-      <PrivateRoute
-        exact
-        path="/information/:name/edit"
-        component={EditInfoPage}
-      />
-      <PrivateRoute exact path="/addpage" component={AddPage} />
-      {/* order form routes */}
-      <Route exact path="/order" component={OrderForm} />
-      <Route exact path="/order/checkout" component={OrderForm} />
-      <Route exact path="/order/submitted" component={OrderConfirmation} />
-      {/* strain routes */}
-      <Route
-        exact
-        path="/strains"
-        render={(props) => (
-          <StrainCatalogWrapper {...props} stockType="strain" />
-        )}
-      />
-      <Route exact path="/strains/:id" component={StrainDetailsContainer} />
-      {/* phenotype routes */}
-      <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
-      {/* plasmid routes */}
-      <Route
-        exact
-        path="/plasmids"
-        render={(props) => (
-          <PlasmidCatalogWrapper {...props} stockType="plasmid" />
-        )}
-      />
-      <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
-      {/* misc routes */}
-      <Route exact path="/contact" component={ContactPage} />
-      <Route exact path="/cart" component={ShoppingCartPage} />
-      <Route exact path="*" component={PageNotReady} />
-    </Switch>
-  </Suspense>
-)
+const RenderRoutes = () => {
+  useGoogleAnalytics()
+
+  return (
+    <Suspense fallback={<Loader />}>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        {/* authentication routes */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/:provider/callback" component={OauthCallback} />
+        <Route exact path="/load/auth" component={AuthLoader} />
+        <PrivateRoute exact path="/logout" component={Logout} />
+        <PrivateRoute exact path="/mydsc" component={MyDscPage} />
+        {/* editable page routes */}
+        <Route exact path="/information" component={InformationContainer} />
+        <Route exact path="/information/:name" component={InfoPageContainer} />
+        <PrivateRoute
+          exact
+          path="/information/:name/edit"
+          component={EditInfoPage}
+        />
+        <PrivateRoute exact path="/addpage" component={AddPage} />
+        {/* order form routes */}
+        <Route exact path="/order" component={OrderForm} />
+        <Route exact path="/order/checkout" component={OrderForm} />
+        <Route exact path="/order/submitted" component={OrderConfirmation} />
+        {/* strain routes */}
+        <Route
+          exact
+          path="/strains"
+          render={(props) => (
+            <StrainCatalogWrapper {...props} stockType="strain" />
+          )}
+        />
+        <Route exact path="/strains/:id" component={StrainDetailsContainer} />
+        {/* phenotype routes */}
+        <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
+        {/* plasmid routes */}
+        <Route
+          exact
+          path="/plasmids"
+          render={(props) => (
+            <PlasmidCatalogWrapper {...props} stockType="plasmid" />
+          )}
+        />
+        <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
+        {/* misc routes */}
+        <Route exact path="/contact" component={ContactPage} />
+        <Route exact path="/cart" component={ShoppingCartPage} />
+        <Route exact path="*" component={PageNotReady} />
+      </Switch>
+    </Suspense>
+  )
+}
 
 export default RenderRoutes
