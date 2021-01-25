@@ -6,13 +6,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "20px",
     marginRight: "5px",
   },
-  header: {
-    fontSize: "2rem",
-    marginTop: "25px",
-    marginBottom: "25px",
-    borderBottom: "1px solid #eee",
-    textAlign: "center",
-  },
   continueBtn: {
     marginBottom: "10px",
     marginRight: "10px",
