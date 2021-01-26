@@ -52,14 +52,14 @@ const ShoppingCartTotalCard = () => {
     <Card className={classes.container}>
       {strains.length > 0 && (
         <ShoppingCartTotalRow
-          leftValue="Strain"
+          leftValue="Strains"
           numItems={strains.length}
           total={getCartTotal(strains)}
         />
       )}
       {plasmids.length > 0 && (
         <ShoppingCartTotalRow
-          leftValue="Plasmid"
+          leftValue="Plasmids"
           numItems={plasmids.length}
           total={getCartTotal(plasmids)}
         />
