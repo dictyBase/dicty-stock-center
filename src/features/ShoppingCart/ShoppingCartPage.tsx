@@ -10,7 +10,9 @@ import { useCartStore } from "./CartStore"
  *  there are currently items in the cart. **/
 
 const ShoppingCartPage = () => {
-  const { state } = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
 
   return (
     <React.Fragment>
@@ -24,7 +26,7 @@ const ShoppingCartPage = () => {
       <Box marginTop={3} marginBottom={3}>
         <Typography variant="h1">Your Shopping Cart</Typography>
       </Box>
-      {state.addedItems.length > 0 ? (
+      {addedItems.length > 0 ? (
         <ShoppingCartPageWithItems />
       ) : (
         <EmptyCartPage />
