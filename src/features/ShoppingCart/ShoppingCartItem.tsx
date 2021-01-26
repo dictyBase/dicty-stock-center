@@ -1,18 +1,36 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Card from "@material-ui/core/Card"
+import CardHeader from "@material-ui/core/CardHeader"
+import Avatar from "@material-ui/core/Avatar"
 import ListItem from "@material-ui/core/ListItem"
+import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
-import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import OutlinedDropdown from "common/components/OutlinedDropdown"
 import { useCartStore } from "features/ShoppingCart/CartStore"
-import TrashButton from "common/components/TrashButton"
 import useCartItems from "common/hooks/useCartItems"
 import strainOrPlasmid from "common/utils/strainOrPlasmid"
-import useStyles from "./shoppingCartStyles"
 import { maxItemsInCart } from "common/constants/cart"
 import { CartItemWithQuantity } from "common/types"
+
+const useStyles = makeStyles((theme) => ({
+  avatar: {
+    background: theme.palette.primary.light,
+  },
+  container: {
+    minHeight: "100px",
+    borderRadius: "0px",
+    border: "1px solid rgb(221, 221, 221)",
+  },
+  fee: {
+    color: theme.palette.error.main,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
+}))
 
 /**
  * getDropdownValues generates a list of possible numbers based on how
@@ -81,29 +99,50 @@ const ShoppingCartItem = ({ item }: Props) => {
     }
   }
 
+  const stock = strainOrPlasmid(item.id)
+
   return (
-    <>
+    <Card className={classes.container}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="stock" className={classes.avatar}>
+            {stock === "strains" ? "S" : "P"}
+          </Avatar>
+        }
+        action={
+          <IconButton
+            aria-label="Remove Item"
+            onClick={() => removeFromCart(matchingItems)}>
+            <FontAwesomeIcon icon="times" />
+          </IconButton>
+        }
+        title={
+          <Typography variant="h2">
+            <Link to={`/${stock}/${item.id}`}>{item.name}</Link>
+          </Typography>
+        }
+        disableTypography
+      />
       <ListItem>
-        <Grid container spacing={0} alignItems="center">
-          <Grid item xs={9}>
+        <Grid container spacing={0}>
+          <Grid item xs={10}>
             <Typography noWrap>
-              <strong>
-                <Link to={`/${strainOrPlasmid(item.id)}/${item.id}`}>
-                  {item.name}
-                </Link>
-              </strong>
-              <br />
               <em>{item.summary}</em>
-              <br />
-              {item.id}
+            </Typography>
+            <Typography noWrap>{item.id}</Typography>
+            <Typography
+              variant="h3"
+              noWrap
+              className={classes.fee}
+              data-testid="fee">
+              ${Number(item.fee) * item.quantity}.00
             </Typography>
           </Grid>
           <Grid
             item
-            xs={1}
+            xs={2}
             container
-            justify="flex-end"
-            alignItems="center"
+            justify="center"
             data-testid="cart-quantity">
             <OutlinedDropdown
               handleChange={handleChange}
@@ -112,24 +151,9 @@ const ShoppingCartItem = ({ item }: Props) => {
               label="Qty"
             />
           </Grid>
-          <Grid item xs={1} container justify="flex-end" data-testid="fee">
-            <Typography noWrap>
-              ${Number(item.fee) * item.quantity}.00
-            </Typography>
-          </Grid>
-          <Grid item xs={1} container justify="flex-end">
-            <TrashButton
-              aria-label="Remove Item"
-              variant="contained"
-              className={classes.trashBtn}
-              onClick={() => removeFromCart(matchingItems)}>
-              <FontAwesomeIcon icon="trash" />
-            </TrashButton>
-          </Grid>
         </Grid>
       </ListItem>
-      <Divider />
-    </>
+    </Card>
   )
 }
 

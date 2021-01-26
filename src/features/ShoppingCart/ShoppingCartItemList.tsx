@@ -1,10 +1,17 @@
 import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
 import ShoppingCartItem from "./ShoppingCartItem"
 import ShoppingCartTotalCard from "./ShoppingCartTotalCard"
 import { useCartStore } from "./CartStore"
 import { CartItem, CartItemWithQuantity } from "common/types"
+
+const useStyles = makeStyles({
+  list: {
+    paddingTop: "0px",
+  },
+})
 
 /**
  * addQuantityToCartItem creates a map of added items then increases
@@ -34,11 +41,12 @@ const ShoppingCartItemList = () => {
     state: { addedItems },
   } = useCartStore()
   const itemsWithQuantity = addQuantityToCartItem(addedItems)
+  const classes = useStyles()
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={9}>
-        <List>
+        <List className={classes.list}>
           {itemsWithQuantity.map((item: CartItemWithQuantity) => (
             <ShoppingCartItem key={item.id} item={item} />
           ))}
