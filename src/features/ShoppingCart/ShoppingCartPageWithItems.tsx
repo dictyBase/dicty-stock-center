@@ -10,7 +10,8 @@ import { useCartStore } from "./CartStore"
 const useStyles = makeStyles((theme) => ({
   continueBtn: {
     fontWeight: 1000,
-    margin: theme.spacing(2),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
 }))
 
