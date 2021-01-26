@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import CardHeader from "@material-ui/core/CardHeader"
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: "100px",
     borderRadius: "0px",
-    border: "1px solid rgb(221, 221, 221)",
+    border: `1px solid ${grey[200]}`,
   },
   fee: {
     color: theme.palette.error.main,
