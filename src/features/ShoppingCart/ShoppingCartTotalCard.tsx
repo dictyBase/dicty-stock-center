@@ -55,6 +55,7 @@ const ShoppingCartTotalCard = () => {
           leftValue="Strains"
           numItems={strains.length}
           total={getCartTotal(strains)}
+          variant="body2"
         />
       )}
       {plasmids.length > 0 && (
@@ -62,6 +63,7 @@ const ShoppingCartTotalCard = () => {
           leftValue="Plasmids"
           numItems={plasmids.length}
           total={getCartTotal(plasmids)}
+          variant="body2"
         />
       )}
       <Divider className={classes.divider} />
@@ -69,6 +71,7 @@ const ShoppingCartTotalCard = () => {
         leftValue="Total"
         numItems={addedItems.length}
         total={getCartTotal(addedItems)}
+        variant="h3"
       />
       <CardActions>
         <Button
