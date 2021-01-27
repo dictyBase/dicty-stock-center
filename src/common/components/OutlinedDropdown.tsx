@@ -27,7 +27,13 @@ const OutlinedDropdown = ({
   label,
 }: Props) => {
   const labelRef = React.useRef<HTMLLabelElement>(null)
-  const labelWidth = labelRef.current ? labelRef.current.clientWidth : 0
+  const [labelWidth, setLabelWidth] = React.useState(0)
+
+  React.useEffect(() => {
+    if (labelRef && labelRef.current) {
+      setLabelWidth(labelRef.current.offsetWidth)
+    }
+  }, [])
 
   return (
     <FormControl variant="outlined">
