@@ -18,7 +18,6 @@ const TextField = ({
   const [field, meta] = useField(props as any)
 
   return (
-    // @ts-ignore
     <MuiTextField
       {...field}
       type="text"
