@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fee: {
     color: theme.palette.error.main,
+    fontSize: "1.5rem",
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
