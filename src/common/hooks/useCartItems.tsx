@@ -41,7 +41,20 @@ const useCartItems = () => {
     dispatch({ type: CartActionType.GET_ITEMS_FROM_STORAGE })
   }
 
-  return { addToCart, removeFromCart, emptyCart, getItemsFromStorage }
+  const getCartTotal = (items: Array<CartItem>) => {
+    const total = items
+      .map((item: CartItem) => Number(item.fee))
+      .reduce((acc, val) => acc + val)
+    return `$${total}.00`
+  }
+
+  return {
+    addToCart,
+    removeFromCart,
+    emptyCart,
+    getItemsFromStorage,
+    getCartTotal,
+  }
 }
 
 export default useCartItems
