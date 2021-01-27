@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,9 +10,12 @@ import { useCartStore } from "./CartStore"
 
 const useStyles = makeStyles((theme) => ({
   continueBtn: {
-    fontWeight: 1000,
+    fontWeight: 600,
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(1),
+    "&:hover": {
+      color: grey[900],
+    },
   },
 }))
 
