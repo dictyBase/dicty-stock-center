@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 import EmptyCartPage from "./EmptyCartPage"
 
 describe("features/ShoppingCart/EmptyCartPage", () => {
-  describe("initial render", () => {
+  describe("initial component render", () => {
     it("displays empty notification", () => {
       render(
         <Router>
@@ -15,7 +15,7 @@ describe("features/ShoppingCart/EmptyCartPage", () => {
         screen.getByText(/Your shopping cart is empty./),
       ).toBeInTheDocument()
     })
-    it("displays links to catalogs", () => {
+    it("displays button links to catalogs", () => {
       render(
         <Router>
           <EmptyCartPage />
