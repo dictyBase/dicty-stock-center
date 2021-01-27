@@ -1,12 +1,11 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Grid from "@material-ui/core/Grid"
-import Alert from "@material-ui/lab/Alert"
-import AlertTitle from "@material-ui/lab/AlertTitle"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
 import OrderFormStepper from "./OrderFormStepper"
+import SubmitError from "./Submit/SubmitError"
 import initialValues from "./utils/initialValues"
 import useStyles from "./formStyles"
 
@@ -68,22 +67,7 @@ const OrderForm = () => {
           <h1>Checkout</h1>
         </div>
         <OrderFormStepper step={step} />
-        {submitError && (
-          <Alert className={classes.submitAlert} severity="error">
-            <AlertTitle>Error</AlertTitle>
-            <p>
-              There was an error submitting your order. This is most likely a
-              problem on our end. If the problem persists, please email us at
-              &nbsp;
-              <a
-                href="mailto:dictystocks@northwestern.edu?Subject=Question"
-                target="_top">
-                dictystocks@northwestern.edu
-              </a>
-              .
-            </p>
-          </Alert>
-        )}
+        {submitError && <SubmitError />}
         {pageContent}
       </Grid>
     </Grid>
