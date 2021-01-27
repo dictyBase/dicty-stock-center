@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import ShoppingCartItem, { getDropdownValues } from "./ShoppingCartItem"
+import ShoppingCartItem from "./ShoppingCartItem"
 import { MockCartProvider } from "common/utils/testing"
 import { fees } from "common/constants/fees"
 
@@ -66,36 +66,5 @@ describe("features/ShoppingCart/ShoppingCartPage", () => {
         // expect(screen.getByTestId("fee")).toHaveTextContent("$60.00")
       })
     })
-  })
-})
-
-describe("getDropdownValues function", () => {
-  it("should return 1-12 for item with 6 quantity and 6 items in cart", () => {
-    expect(getDropdownValues(6, 6)).toStrictEqual([
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-    ])
-  })
-  it("should return 1-5 for item with 4 quantity and 11 items in cart", () => {
-    expect(getDropdownValues(11, 4)).toStrictEqual([1, 2, 3, 4, 5])
-  })
-  it("should return 1-5 for item with 1 quantity and 8 items in cart", () => {
-    expect(getDropdownValues(8, 1)).toStrictEqual([1, 2, 3, 4, 5])
-  })
-  it("should return 1 for item with 1 quantity and 12 items in cart", () => {
-    expect(getDropdownValues(12, 1)).toStrictEqual([1])
-  })
-  it("should return 1-2 for item with 1 quantity and 11 items in cart", () => {
-    expect(getDropdownValues(11, 1)).toStrictEqual([1, 2])
   })
 })
