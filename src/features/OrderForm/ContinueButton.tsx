@@ -15,7 +15,8 @@ const ContinueButton = () => {
       aria-label="Continue Button"
       type="submit"
       size="large"
-      fullWidth
+      color="primary"
+      variant="contained"
       endIcon={<FontAwesomeIcon icon="arrow-circle-right" />}
       className={classes.continueBtn}>
       Continue

@@ -1,7 +1,8 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
 import OrderSummary from "./OrderSummary"
-import SubmitPageBottomButtons from "./SubmitPageBottomButtons"
+import BackButton from "../BackButton"
+import SubmitButton from "./SubmitButton"
 import useStyles from "../formStyles"
 import { SubmitProps } from "./submitTypes"
 
@@ -16,11 +17,12 @@ const SubmitPage = ({ formData, prevStep, setSubmitError }: SubmitProps) => {
     <Grid container spacing={2} className={classes.innerForm}>
       <Grid item xs={12}>
         <OrderSummary formData={formData} />
-        <SubmitPageBottomButtons
-          formData={formData}
-          prevStep={prevStep}
-          setSubmitError={setSubmitError}
-        />
+        <Grid container justify="flex-end">
+          <Grid item>
+            <BackButton prevStep={prevStep} />
+            <SubmitButton formData={formData} setSubmitError={setSubmitError} />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   )

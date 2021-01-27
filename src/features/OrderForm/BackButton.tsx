@@ -17,8 +17,9 @@ const BackButton = ({ prevStep }: Props) => {
 
   return (
     <Button
-      color="primary"
+      color="default"
       size="large"
+      variant="contained"
       className={classes.backBtn}
       startIcon={<FontAwesomeIcon icon="arrow-circle-left" />}
       onClick={() => prevStep()}>
