@@ -204,9 +204,9 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
       type="submit"
       size="large"
       className={classes.submitBtn}
+      endIcon={<FontAwesomeIcon icon="check-circle" />}
       onClick={handleSubmit}>
-      Submit Order &nbsp;
-      <FontAwesomeIcon icon="check-circle" />
+      Submit Order
     </Button>
   )
 }

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   header: {
     fontSize: "32px",
     marginTop: "25px",
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     marginTop: "20px",
   },
   requiredText: {
-    color: "#dc3545 !important",
+    color: theme.palette.error.main,
   },
   panelBlue: {
     backgroundColor: "#e6f2ff",
@@ -30,11 +30,10 @@ const useStyles = makeStyles({
     marginBottom: "40px",
   },
   continueBtn: {
-    width: "100%",
-    color: "#fff !important",
-    backgroundColor: "rgb(46, 109, 164) !important",
+    color: "#fff",
+    backgroundColor: "rgb(46, 109, 164)",
     "&:hover": {
-      backgroundColor: "#0073e6 !important",
+      backgroundColor: "#0073e6",
     },
   },
   backBtn: {
@@ -54,8 +53,11 @@ const useStyles = makeStyles({
     },
   },
   paymentBtn: {
-    color: "#b23c17 !important",
-    fontSize: "1.2em !important",
+    color: theme.palette.error.main,
+    fontSize: "1.2em",
+    "&:hover": {
+      color: theme.palette.error.dark,
+    },
   },
   alertBox: {
     padding: "15px",
@@ -91,6 +93,6 @@ const useStyles = makeStyles({
     margin: "0px auto 22px auto",
     width: "60%",
   },
-})
+}))
 
 export default useStyles
