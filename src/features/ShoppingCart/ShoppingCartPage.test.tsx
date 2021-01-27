@@ -32,7 +32,7 @@ describe("features/ShoppingCart/ShoppingCartPage", () => {
         </MockCartProvider>,
       )
       expect(
-        screen.getByText(/There are no items in your cart./),
+        screen.getByText(/Your shopping cart is empty./),
       ).toBeInTheDocument()
     })
   })
