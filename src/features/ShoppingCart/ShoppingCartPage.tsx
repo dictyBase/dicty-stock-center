@@ -14,6 +14,11 @@ const ShoppingCartPage = () => {
     state: { addedItems },
   } = useCartStore()
 
+  let content = <EmptyCartPage />
+  if (addedItems.length > 0) {
+    content = <ShoppingCartPageWithItems />
+  }
+
   return (
     <React.Fragment>
       <Helmet>
@@ -26,11 +31,7 @@ const ShoppingCartPage = () => {
       <Box marginTop={3} marginBottom={3}>
         <Typography variant="h1">Your Shopping Cart</Typography>
       </Box>
-      {addedItems.length > 0 ? (
-        <ShoppingCartPageWithItems />
-      ) : (
-        <EmptyCartPage />
-      )}
+      {content}
     </React.Fragment>
   )
 }
