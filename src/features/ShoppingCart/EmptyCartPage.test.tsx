@@ -5,14 +5,14 @@ import EmptyCartPage from "./EmptyCartPage"
 
 describe("features/ShoppingCart/EmptyCartPage", () => {
   describe("initial render", () => {
-    it("displays alert message", () => {
+    it("displays empty notification", () => {
       render(
         <Router>
           <EmptyCartPage />
         </Router>,
       )
       expect(
-        screen.getByText(/There are no items in your cart./),
+        screen.getByText(/Your shopping cart is empty./),
       ).toBeInTheDocument()
     })
     it("displays links to catalogs", () => {
@@ -22,10 +22,10 @@ describe("features/ShoppingCart/EmptyCartPage", () => {
         </Router>,
       )
       expect(
-        screen.getByRole("link", { name: "Strains Catalog" }),
+        screen.getByRole("button", { name: "Strain Catalog" }),
       ).toBeInTheDocument()
       expect(
-        screen.getByRole("link", { name: "Plasmids Catalog" }),
+        screen.getByRole("button", { name: "Plasmid Catalog" }),
       ).toBeInTheDocument()
     })
   })
