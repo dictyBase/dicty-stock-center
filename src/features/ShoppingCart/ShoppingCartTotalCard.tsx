@@ -8,7 +8,7 @@ import Divider from "@material-ui/core/Divider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ShoppingCartTotalRow from "./ShoppingCartTotalRow"
 import { useCartStore } from "./CartStore"
-import { CartItem } from "common/types"
+import useCartItems from "common/hooks/useCartItems"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,14 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-// get the total fee for combined items in cart
-const getCartTotal = (items: Array<CartItem>) => {
-  const total = items
-    .map((item: CartItem) => Number(item.fee))
-    .reduce((acc, val) => acc + val)
-  return `$${total}.00`
-}
-
 /**
  * ShoppingCartTotalCard displays information about the cart total with a
  * link to checkout.
@@ -43,6 +35,7 @@ const ShoppingCartTotalCard = () => {
   const {
     state: { addedItems },
   } = useCartStore()
+  const { getCartTotal } = useCartItems()
   const classes = useStyles()
 
   const strains = addedItems.filter((item) => item.id.slice(0, 3) === "DBS")
