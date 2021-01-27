@@ -69,10 +69,6 @@ const useStyles = makeStyles((theme) => ({
   centerText: {
     textAlign: "center",
   },
-  submitAlert: {
-    width: "50%",
-    margin: "auto",
-  },
   confirmation: {
     fontSize: "1.2em",
   },
