@@ -21,11 +21,9 @@ const PaymentPageRightColumn = ({ prevStep }: Props) => (
     <Grid item xs={12}>
       <PaymentInfoBox />
     </Grid>
-    <Grid container justify="center" spacing={2}>
-      <Grid item xs={12} sm={6}>
+    <Grid container justify="flex-end">
+      <Grid item>
         <BackButton prevStep={prevStep} />
-      </Grid>
-      <Grid item xs={12} sm={6}>
         <ContinueButton />
       </Grid>
     </Grid>

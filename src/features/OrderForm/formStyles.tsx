@@ -30,27 +30,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "40px",
   },
   continueBtn: {
-    color: "#fff",
-    backgroundColor: "rgb(46, 109, 164)",
-    "&:hover": {
-      backgroundColor: "#0073e6",
-    },
+    minWidth: "200px",
   },
   backBtn: {
-    width: "100%",
-    color: "#fff !important",
-    backgroundColor: "#5cb85c !important",
-    "&:hover": {
-      backgroundColor: "#449d44 !important",
-    },
+    minWidth: "200px",
+    marginRight: theme.spacing(1),
   },
   submitBtn: {
-    width: "100%",
-    color: "#fff !important",
-    backgroundColor: "rgb(46, 109, 164) !important",
-    "&:hover": {
-      backgroundColor: "#0073e6 !important",
-    },
+    minWidth: "200px",
   },
   paymentBtn: {
     color: theme.palette.error.main,

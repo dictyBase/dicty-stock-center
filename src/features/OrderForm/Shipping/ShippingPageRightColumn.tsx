@@ -16,7 +16,7 @@ const ShippingPageRightColumn = () => (
       title="Additional Information"
       component={<AdditionalInformation />}
     />
-    <Grid item xs={12}>
+    <Grid container item justify="flex-end">
       <ContinueButton />
     </Grid>
   </>

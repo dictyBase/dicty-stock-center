@@ -203,6 +203,8 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
       aria-label="Submit"
       type="submit"
       size="large"
+      variant="contained"
+      color="primary"
       className={classes.submitBtn}
       endIcon={<FontAwesomeIcon icon="check-circle" />}
       onClick={handleSubmit}>
