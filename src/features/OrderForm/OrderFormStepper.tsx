@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 0, 5),
   },
   icon: {
-    color: "rgb(46, 109, 164) !important",
+    color: theme.palette.primary.light,
   },
 }))
 
