@@ -9,6 +9,7 @@ import Divider from "@material-ui/core/Divider"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
+import { capitalizeFirstCharacter } from "common/utils/stringCapitalizations"
 
 // generate array of strings to display for shipping section
 const getShippingValues = ({
@@ -49,7 +50,7 @@ const getShippingValues = ({
     cityStateZip,
     phone,
     email,
-    shippingAcct,
+    capitalizeFirstCharacter(shippingAcct),
   ]
 }
 
@@ -93,7 +94,7 @@ const getPaymentValues = ({
     cityStateZip,
     payerPhone,
     payerEmail,
-    payment,
+    capitalizeFirstCharacter(payment),
   ]
 }
 
