@@ -5,20 +5,7 @@ import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import { FormikValues } from "../utils/initialValues"
 
-const couriers = [
-  {
-    value: "fedex",
-    label: "FedEx",
-  },
-  {
-    value: "ups",
-    label: "UPS",
-  },
-  {
-    value: "dhl",
-    label: "DHL",
-  },
-]
+const couriers = ["DHL", "FedEx", "UPS"]
 
 type Props = {
   setShipAccountNum: (arg0: boolean) => void
@@ -57,14 +44,14 @@ const ShippingMethodRadioGroup = ({
       name="shippingAccount"
       onChange={handleChange}
       row>
-      {couriers.map((item) => (
+      {couriers.map((item: string) => (
         <FormControlLabel
-          key={item.value}
-          value={item.value}
+          key={item}
+          value={item}
           control={<Radio />}
-          label={item.label}
+          label={item}
           onChange={handleShipAccountChange}
-          checked={values["shippingAccount"] === item.value}
+          checked={values["shippingAccount"] === item}
         />
       ))}
       <FormControlLabel

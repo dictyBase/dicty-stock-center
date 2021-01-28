@@ -14,7 +14,7 @@ jest.mock("formik", () => {
       setFieldValue: mockSetFieldValue,
       handleChange: jest.fn(),
       values: {
-        shippingAccount: "fedex",
+        shippingAccount: "FedEx",
       },
     }),
   }
