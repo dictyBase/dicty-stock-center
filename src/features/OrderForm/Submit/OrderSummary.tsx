@@ -1,10 +1,11 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
-import Grid from "@material-ui/core/Grid"
+import Divider from "@material-ui/core/Divider"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
@@ -147,6 +148,7 @@ const OrderSummary = ({ formData }: Props) => {
           </Typography>
         </ListItem>
       </List>
+      <Divider />
       <Grid container spacing={2} className={classes.details}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h2" gutterBottom className={classes.title}>
