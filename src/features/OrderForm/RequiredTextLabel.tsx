@@ -1,18 +1,24 @@
 import React from "react"
-import Grid from "@material-ui/core/Grid"
-import useStyles from "./formStyles"
+import Typography, { TypographyProps } from "@material-ui/core/Typography"
 
 type Props = {
+  /** Required label to display */
   title: string
+  /** Typography variant for title */
+  variant?: TypographyProps["variant"]
 }
 
-const RequiredTextLabel = ({ title }: Props) => {
-  const classes = useStyles()
-
+const RequiredTextLabel = ({ title, variant = "body1" }: Props) => {
   return (
-    <Grid item xs={12} md={3}>
-      <span className={classes.requiredText}>*</span> {title}:
-    </Grid>
+    <React.Fragment>
+      <Typography component="span" color="error">
+        *
+      </Typography>
+      &nbsp;
+      <Typography variant={variant} component="span">
+        {title}:
+      </Typography>
+    </React.Fragment>
   )
 }
 
