@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, Redirect } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography"
 import { grey } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   container: {
     backgroundColor: grey[200],
     margin: theme.spacing(2, 0, 2, 0),

@@ -38,7 +38,7 @@ const PaymentMethod = () => {
         <TextField name="purchaseOrderNum" placeholder="PO Number" />
       )}
       {waiverRequested && (
-        <Typography component="p" className={classes.waiver}>
+        <Typography className={classes.waiver}>
           Please send an email to{" "}
           <a href="mailto:dictystocks@northwestern.edu" target="_top">
             dictystocks@northwestern.edu

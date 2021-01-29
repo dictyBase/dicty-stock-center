@@ -1,13 +1,20 @@
 import React from "react"
 import { Helmet } from "react-helmet"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
 import ShippingPage from "./Shipping/ShippingPage"
 import PaymentPage from "./Payment/PaymentPage"
 import SubmitPage from "./Submit/SubmitPage"
 import OrderFormStepper from "./OrderFormStepper"
 import SubmitError from "./Submit/SubmitError"
 import initialValues from "./utils/initialValues"
-import useStyles from "./formStyles"
+
+const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    marginBottom: theme.spacing(4),
+  },
+}))
 
 /**
  * OrderForm is the main component used for the checkout process.
@@ -57,15 +64,15 @@ const OrderForm = () => {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} className={classes.container}>
       <Helmet>
         <title>Order Form - Dicty Stock Center</title>
         <meta name="description" content="Order form for Dicty Stock Center" />
       </Helmet>
       <Grid item xs={12}>
-        <div className={classes.centerText}>
-          <h1>Checkout</h1>
-        </div>
+        <Typography variant="h1" align="center">
+          Checkout
+        </Typography>
         <OrderFormStepper step={step} />
         {submitError && <SubmitError />}
         {pageContent}
