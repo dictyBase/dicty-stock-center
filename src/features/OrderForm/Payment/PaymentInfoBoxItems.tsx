@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography"
  */
 
 const PaymentInfoBoxItems = () => (
-  <Box>
+  <Box mb={1}>
     <Typography gutterBottom>
       <strong>Credit Card: </strong>
       Secure payment when billed. Incurs a <strong>3.5% service fee.</strong>
