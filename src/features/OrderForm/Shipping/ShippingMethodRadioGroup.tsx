@@ -1,5 +1,6 @@
 import React from "react"
 import { useFormikContext } from "formik"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -7,8 +8,19 @@ import { FormikValues } from "../utils/initialValues"
 
 const couriers = ["DHL", "FedEx", "UPS"]
 
+const useStyles = makeStyles((theme: Theme) => ({
+  radio: {
+    "&$checked": {
+      color: theme.palette.error.main,
+    },
+  },
+  checked: {},
+}))
+
 type Props = {
+  /** Function to change shipping account number */
   setShipAccountNum: (arg0: boolean) => void
+  /** Function to set the prepaid notice */
   setPrepaidNotice: (arg0: boolean) => void
 }
 
@@ -25,6 +37,7 @@ const ShippingMethodRadioGroup = ({
     setFieldValue,
     handleChange,
   } = useFormikContext<FormikValues>()
+  const classes = useStyles()
 
   const handleShipAccountChange = () => {
     setShipAccountNum(true)
@@ -48,7 +61,11 @@ const ShippingMethodRadioGroup = ({
         <FormControlLabel
           key={item}
           value={item}
-          control={<Radio />}
+          control={
+            <Radio
+              classes={{ root: classes.radio, checked: classes.checked }}
+            />
+          }
           label={item}
           onChange={handleShipAccountChange}
           checked={values["shippingAccount"] === item}
@@ -56,7 +73,9 @@ const ShippingMethodRadioGroup = ({
       ))}
       <FormControlLabel
         value="prepaid"
-        control={<Radio />}
+        control={
+          <Radio classes={{ root: classes.radio, checked: classes.checked }} />
+        }
         label="Send prepaid shipping label"
         onChange={handlePrepaidLabelChange}
         checked={values["shippingAccount"] === "prepaid"}

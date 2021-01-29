@@ -1,5 +1,6 @@
 import React from "react"
 import { useFormikContext } from "formik"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -24,6 +25,15 @@ const radioValues = [
   },
 ]
 
+const useStyles = makeStyles((theme: Theme) => ({
+  radio: {
+    "&$checked": {
+      color: theme.palette.error.main,
+    },
+  },
+  checked: {},
+}))
+
 type Props = {
   /** Function to toggle selection of Purchase Order Number radio button */
   setPurchaseOrderNum: (arg0: boolean) => void
@@ -39,8 +49,12 @@ const PaymentMethodRadioGroup = ({
   setPurchaseOrderNum,
   setWaiverRequested,
 }: Props) => {
-  // eslint-disable-next-line
-  const { values, setFieldValue, handleChange } = useFormikContext<FormikValues>()
+  const {
+    values,
+    setFieldValue,
+    handleChange,
+  } = useFormikContext<FormikValues>()
+  const classes = useStyles()
 
   const handlePaymentChange = (event: React.ChangeEvent<any>) => {
     switch (event.target.value) {
@@ -71,7 +85,11 @@ const PaymentMethodRadioGroup = ({
         <FormControlLabel
           key={item.value}
           value={item.value}
-          control={<Radio />}
+          control={
+            <Radio
+              classes={{ root: classes.radio, checked: classes.checked }}
+            />
+          }
           label={item.label}
           onChange={handlePaymentChange}
           checked={values["paymentMethod"] === item.value}
