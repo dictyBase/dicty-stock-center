@@ -1,4 +1,5 @@
 import React from "react"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useMutation, useQuery } from "@apollo/client"
@@ -11,7 +12,6 @@ import {
   UPDATE_USER,
 } from "common/graphql/mutations"
 import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
-import useStyles from "../formStyles"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
 
@@ -140,6 +140,12 @@ const updateOrCreateUser = async (
   }
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+  button: {
+    minWidth: "200px",
+  },
+}))
+
 type Props = {
   /** Full object of form data (shipping and payment) */
   formData: FormikValues
@@ -205,7 +211,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
       size="large"
       variant="contained"
       color="primary"
-      className={classes.submitBtn}
+      className={classes.button}
       endIcon={<FontAwesomeIcon icon="check-circle" />}
       onClick={handleSubmit}>
       Submit Order
