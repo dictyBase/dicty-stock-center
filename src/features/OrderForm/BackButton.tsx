@@ -1,7 +1,14 @@
 import React from "react"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import useStyles from "./formStyles"
+
+const useStyles = makeStyles((theme: Theme) => ({
+  button: {
+    marginLeft: theme.spacing(1),
+    minWidth: "200px",
+  },
+}))
 
 type Props = {
   /** Function to move to previous step */
@@ -20,7 +27,7 @@ const BackButton = ({ prevStep }: Props) => {
       color="default"
       size="large"
       variant="contained"
-      className={classes.backBtn}
+      className={classes.button}
       startIcon={<FontAwesomeIcon icon="arrow-circle-left" />}
       onClick={() => prevStep()}>
       Back

@@ -1,7 +1,13 @@
 import React from "react"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import useStyles from "./formStyles"
+
+const useStyles = makeStyles((theme: Theme) => ({
+  button: {
+    minWidth: "200px",
+  },
+}))
 
 /**
  * ContinueButton displays the continue button on each order form page.
@@ -18,7 +24,7 @@ const ContinueButton = () => {
       color="primary"
       variant="contained"
       endIcon={<FontAwesomeIcon icon="arrow-circle-right" />}
-      className={classes.continueBtn}>
+      className={classes.button}>
       Continue
     </Button>
   )
