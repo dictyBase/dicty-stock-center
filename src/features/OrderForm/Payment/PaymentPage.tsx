@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Form, Formik } from "formik"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
@@ -37,6 +38,15 @@ const paymentAddressFields = [
   "payerPhone",
 ]
 
+const useStyles = makeStyles((theme: Theme) => ({
+  radio: {
+    "&$checked": {
+      color: theme.palette.error.main,
+    },
+  },
+  checked: {},
+}))
+
 type Props = {
   /** Full object of form data (shipping and payment) */
   formData: FormikValues
@@ -53,6 +63,7 @@ type Props = {
  */
 
 const PaymentPage = ({ formData, setFormData, prevStep, nextStep }: Props) => {
+  const classes = useStyles()
   const [checkbox, toggleCheckbox] = useState(false)
 
   const handleChange = (values: any, setFieldValue: any) => {
@@ -84,6 +95,7 @@ const PaymentPage = ({ formData, setFormData, prevStep, nextStep }: Props) => {
                     checked={checkbox}
                     onChange={() => handleChange(values, setFieldValue)}
                     value="sameAsShipping"
+                    classes={{ root: classes.radio, checked: classes.checked }}
                   />
                 }
                 label="Same as shipping (click here if payer address is the same as shipping address)"
