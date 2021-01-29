@@ -1,5 +1,5 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
 
@@ -20,10 +20,13 @@ describe("OrderForm/OrderConfirmation", () => {
         </BrowserRouter>,
       )
       expect(
-        screen.getByRole("heading", { name: "Success!" }),
+        screen.getByRole("heading", { name: "Thank you for your order" }),
       ).toBeInTheDocument()
       expect(
         screen.getByText(`Order ID: ${props.location.state.orderID}`),
+      ).toBeInTheDocument()
+      expect(
+        screen.getByRole("button", { name: "DSC Home" }),
       ).toBeInTheDocument()
     })
   })
@@ -35,13 +38,19 @@ describe("OrderForm/OrderConfirmation", () => {
         state: undefined,
       },
     }
-    it("renders unavailable message", () => {
+    it("does not display confirmation page", () => {
       render(
         <BrowserRouter>
           <OrderConfirmation {...props} />
         </BrowserRouter>,
       )
-      expect(screen.getByText(/Unavailable/)).toBeInTheDocument()
+      expect(
+        screen.queryByRole("heading", { name: "Thank you for your order" }),
+      ).not.toBeInTheDocument()
+      expect(screen.queryByText(/Order ID/)).not.toBeInTheDocument()
+      expect(
+        screen.queryByRole("button", { name: "DSC Home" }),
+      ).not.toBeInTheDocument()
     })
   })
 })
