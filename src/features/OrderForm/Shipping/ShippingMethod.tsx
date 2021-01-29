@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import Box from "@material-ui/core/Box"
 import TextField from "../TextField"
 import RequiredTextLabel from "../RequiredTextLabel"
-import useStyles from "../formStyles"
 import ShippingMethodPrepaidNotice from "./ShippingMethodPrepaidNotice"
 import ShippingMethodRadioGroup from "./ShippingMethodRadioGroup"
 
@@ -13,32 +13,27 @@ import ShippingMethodRadioGroup from "./ShippingMethodRadioGroup"
 const ShippingMethod = () => {
   const [shipAccountNum, setShipAccountNum] = useState(true)
   const [prepaidNotice, setPrepaidNotice] = useState(false)
-  const classes = useStyles()
 
   return (
-    <Grid
-      container
-      justify="center"
-      alignItems="center"
-      className={classes.innerForm}>
-      <RequiredTextLabel title="Shipping Account" />
-      <Grid item xs={12} md={8}>
-        <ShippingMethodRadioGroup
-          setShipAccountNum={setShipAccountNum}
-          setPrepaidNotice={setPrepaidNotice}
+    <Box mt={1} mb={2} p={2}>
+      <RequiredTextLabel title="Shipping Account" variant="h3" />
+      <Box mt={1} />
+      <ShippingMethodRadioGroup
+        setShipAccountNum={setShipAccountNum}
+        setPrepaidNotice={setPrepaidNotice}
+      />
+      {shipAccountNum && (
+        <TextField
+          name="shippingAccountNumber"
+          placeholder="Shipping Account Number"
         />
-        {shipAccountNum && (
-          <TextField
-            name="shippingAccountNumber"
-            placeholder="Shipping Account Number"
-          />
-        )}
-        {prepaidNotice && <ShippingMethodPrepaidNotice />}
-        <p>
-          <em>Note: credit card is not allowed for shipment</em>
-        </p>
-      </Grid>
-    </Grid>
+      )}
+      {prepaidNotice && <ShippingMethodPrepaidNotice />}
+      <Box mt={1} />
+      <Typography component="p">
+        <em>Note: credit card is not allowed for shipment</em>
+      </Typography>
+    </Box>
   )
 }
 
