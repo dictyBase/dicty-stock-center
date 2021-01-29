@@ -12,38 +12,7 @@ import { MockCartProvider } from "common/utils/testing"
 import useCartItems from "common/hooks/useCartItems"
 import { fees } from "common/constants/fees"
 import { CartItem } from "common/types"
-
-const mockValues = {
-  firstName: "Art",
-  lastName: "Vandelay",
-  email: "art@vandelayindustries.com",
-  organization: "Vandelay Industries",
-  lab: "Steinbrenner",
-  address1: "123 Main St",
-  address2: "",
-  city: "New York City",
-  state: "NY",
-  zip: "10001",
-  country: "USA",
-  phone: "123-456-7890",
-  shippingAccount: "FedEx",
-  shippingAccountNumber: "99999999",
-  comments: "test comment",
-  payerFirstName: "Art",
-  payerLastName: "Vandelay",
-  payerEmail: "art@vandelayindustries.com",
-  payerOrganization: "Vandelay Industries",
-  payerLab: "Steinbrenner",
-  payerAddress1: "123 Main St",
-  payerAddress2: "",
-  payerCity: "New York City",
-  payerState: "NY",
-  payerZip: "10010",
-  payerCountry: "USA",
-  payerPhone: "123-456-7890",
-  paymentMethod: "Credit card",
-  purchaseOrderNum: "99999",
-}
+import mockValues from "../utils/mockValues"
 
 // set up all of our mocks
 const mockHistoryPush = jest.fn()
