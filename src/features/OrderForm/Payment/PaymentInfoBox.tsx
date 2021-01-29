@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import { blue } from "@material-ui/core/colors"
 import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import PaymentInfoBoxItems from "./PaymentInfoBoxItems"
@@ -17,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     color: theme.palette.error.main,
-    fontSize: "1.2em",
     "&:hover": {
       color: theme.palette.error.dark,
     },
@@ -34,6 +34,7 @@ const PaymentInfoBox = () => {
     <Grid container>
       <Grid item xs={12} className={classes.panel}>
         <PaymentInfoBoxItems />
+        <Box mb={2} />
         <Button
           component={Link}
           to="/information/payment"
