@@ -20,7 +20,7 @@ const HomepageColumn = ({ components }: Props) => {
 
   return (
     <Grid item xs={12} sm={4} className={classes.column}>
-      <Grid container direction="column">
+      <Grid container direction="column" spacing={1}>
         {content}
       </Grid>
     </Grid>
