@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
-    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     minWidth: "200px",
   },
 }))
