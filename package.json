@@ -43,7 +43,7 @@
     "element-remove": "^1.0.4",
     "fontsource-roboto": "^3.0.3",
     "formik": "^2.2.2",
-    "graphql": "^15.4.0",
+    "graphql": "^15.5.0",
     "history": "^5.0.0",
     "immutable": "^3.8.2",
     "intersection-observer": "^0.12.0",
