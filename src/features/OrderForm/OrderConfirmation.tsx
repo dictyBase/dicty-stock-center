@@ -83,7 +83,7 @@ const OrderConfirmation = ({ location }: LocationProps) => {
               complete payment.
             </Typography>
           </Box>
-          <PDFViewer width={window.innerHeight} height={window.innerHeight}>
+          <PDFViewer width={window.innerHeight} height={500}>
             <OrderSummaryPDF
               cartItems={state.cartItems}
               formData={state.formData}
