@@ -9,94 +9,7 @@ import Divider from "@material-ui/core/Divider"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
-import { capitalizeFirstCharacter } from "common/utils/stringCapitalizations"
-
-// generate array of strings to display for shipping section
-const getShippingValues = ({
-  firstName,
-  lastName,
-  address1,
-  address2,
-  organization,
-  lab,
-  city,
-  country,
-  state,
-  zip,
-  phone,
-  email,
-  shippingAccount,
-  shippingAccountNumber,
-}: FormikValues) => {
-  const name = `${firstName} ${lastName}`
-  // only show second address line if it exists
-  const address = address2 !== "" ? `${address1}, ${address2}` : address1
-  // only show state if it exists
-  const cityStateZip =
-    state !== ""
-      ? `${city}, ${state}, ${country} ${zip}`
-      : `${city}, ${country} ${zip}`
-  // show account + number unless prepaid
-  const shippingAcct =
-    shippingAccount === "prepaid"
-      ? shippingAccountNumber
-      : `${shippingAccount} ${shippingAccountNumber}`
-
-  return [
-    name,
-    organization,
-    lab,
-    address,
-    cityStateZip,
-    phone,
-    email,
-    capitalizeFirstCharacter(shippingAcct),
-  ]
-}
-
-// generate array of strings to display for payment section
-const getPaymentValues = ({
-  payerFirstName,
-  payerLastName,
-  payerLab,
-  payerOrganization,
-  payerAddress1,
-  payerAddress2,
-  payerCity,
-  payerState,
-  payerCountry,
-  payerZip,
-  payerPhone,
-  payerEmail,
-  paymentMethod,
-  purchaseOrderNum,
-}: FormikValues) => {
-  const name = `${payerFirstName} ${payerLastName}`
-  // only show second address line if it exists
-  const address =
-    payerAddress2 !== "" ? `${payerAddress1}, ${payerAddress2}` : payerAddress1
-  // only show state if it exists
-  const cityStateZip =
-    payerState !== ""
-      ? `${payerCity}, ${payerState}, ${payerCountry} ${payerZip}`
-      : `${payerCity}, ${payerCountry} ${payerZip}`
-  // show account + number unless prepaid
-  const payment =
-    purchaseOrderNum !== "N/A"
-      ? `${paymentMethod} ${purchaseOrderNum}`
-      : paymentMethod
-
-  return [
-    name,
-    payerOrganization,
-    payerLab,
-    address,
-    cityStateZip,
-    payerPhone,
-    payerEmail,
-    capitalizeFirstCharacter(payment),
-  ]
-}
+import { getShippingValues, getPaymentValues } from "../utils/getListValues"
 
 const useStyles = makeStyles((theme: Theme) => ({
   details: {
@@ -120,7 +33,9 @@ type Props = {
 
 const OrderSummary = ({ formData }: Props) => {
   const classes = useStyles()
-  const { state } = useCartStore()
+  const {
+    state: { addedItems },
+  } = useCartStore()
   const { getCartTotal } = useCartItems()
 
   return (
@@ -129,7 +44,7 @@ const OrderSummary = ({ formData }: Props) => {
         Order Summary
       </Typography>
       <List disablePadding>
-        {state.addedItems.map((item, index) => (
+        {addedItems.map((item, index) => (
           <ListItem className={classes.listItem} key={index}>
             <ListItemText primary={item.name} secondary={item.id} />
             <Typography variant="body2">{item.fee}</Typography>
@@ -145,7 +60,7 @@ const OrderSummary = ({ formData }: Props) => {
             }
           />
           <Typography variant="h3" className={classes.total}>
-            {getCartTotal(state.addedItems)}
+            {getCartTotal(addedItems)}
           </Typography>
         </ListItem>
       </List>
