@@ -7,6 +7,10 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import { grey } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { PDFViewer } from "@react-pdf/renderer"
+import OrderSummaryPDF from "./Submit/OrderSummaryPDF"
+import { CartItem } from "common/types"
+import { FormikValues } from "./utils/initialValues"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -28,9 +32,16 @@ type LocationProps = {
   location: {
     /** URL Pathname */
     pathname: string
+    /** State passed as props from history.push */
     state?: {
       /** Submitted order ID */
       orderID: string
+      /** Object containing all entered form data */
+      formData: FormikValues
+      /** All items from this order */
+      cartItems: CartItem[]
+      /** Total cost of items in cart */
+      cartTotal: string
     }
   }
 }
@@ -41,8 +52,9 @@ type LocationProps = {
 
 const OrderConfirmation = ({ location }: LocationProps) => {
   const classes = useStyles()
+  const { state } = location
 
-  if (location.state === undefined) {
+  if (state === undefined) {
     return <Redirect to="/" />
   }
 
@@ -58,7 +70,7 @@ const OrderConfirmation = ({ location }: LocationProps) => {
               gutterBottom
               component="p"
               className={classes.confirmation}>
-              <strong>Order ID: {location.state.orderID}</strong>
+              <strong>Order ID: {state.orderID}</strong>
             </Typography>
           </Box>
           <Box mb={3}>
@@ -71,6 +83,14 @@ const OrderConfirmation = ({ location }: LocationProps) => {
               complete payment.
             </Typography>
           </Box>
+          <PDFViewer width={window.innerHeight} height={window.innerHeight}>
+            <OrderSummaryPDF
+              cartItems={state.cartItems}
+              formData={state.formData}
+              cartTotal={state.cartTotal}
+              orderID={state.orderID}
+            />
+          </PDFViewer>
           <Button
             component={Link}
             to="/"

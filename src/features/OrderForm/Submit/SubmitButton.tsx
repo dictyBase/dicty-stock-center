@@ -163,7 +163,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
   const {
     state: { addedItems },
   } = useCartStore()
-  const { emptyCart } = useCartItems()
+  const { emptyCart, getCartTotal } = useCartItems()
   const history = useHistory()
   const [createOrder] = useMutation(CREATE_ORDER)
   const [createUser] = useMutation(CREATE_USER)
@@ -197,6 +197,9 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
       const order = await createOrder(getOrderVariables(formData, addedItems))
       history.push("/order/submitted", {
         orderID: order.data.createOrder.id,
+        formData,
+        cartItems: addedItems,
+        cartTotal: getCartTotal(addedItems),
       })
       emptyCart()
     } catch (error) {
