@@ -1,5 +1,8 @@
 import "common/utils/polyfills"
 import React from "react"
+import "react-app-polyfill/ie11"
+import "react-app-polyfill/stable"
+import "intersection-observer"
 import ReactDOM from "react-dom"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { AuthProvider } from "features/Authentication/AuthStore"
