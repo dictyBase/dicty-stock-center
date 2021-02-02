@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button"
 const useStyles = makeStyles(() => ({
   button: {
     minWidth: "250px",
+    marginRight: "20px",
   },
 }))
 
@@ -33,8 +34,6 @@ const EmptyCartPage = () => {
           to="/strains">
           Strain Catalog
         </Button>
-      </Box>
-      <Box marginBottom={4}>
         <Button
           className={classes.button}
           color="primary"
