@@ -33,6 +33,7 @@ mockedUseCartItems.mockReturnValue({
   addToCart: jest.fn(),
   removeFromCart: jest.fn(),
   emptyCart: jest.fn(),
+  getCartTotal: jest.fn(),
 })
 
 let addedItems = [] as Array<CartItem>

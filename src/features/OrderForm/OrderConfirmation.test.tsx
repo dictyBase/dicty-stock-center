@@ -1,7 +1,15 @@
 import React from "react"
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
+import mockValues from "./utils/mockValues"
+
+jest.mock("@react-pdf/renderer", () => ({
+  PDFViewer: jest.fn(() => null),
+  StyleSheet: {
+    create: jest.fn(() => null),
+  },
+}))
 
 describe("OrderForm/OrderConfirmation", () => {
   describe("render with location state prop", () => {
@@ -10,6 +18,9 @@ describe("OrderForm/OrderConfirmation", () => {
         pathname: "/order/submitted",
         state: {
           orderID: "123456",
+          cartItems: [],
+          formData: mockValues,
+          cartTotal: "$0.00",
         },
       },
     }
@@ -26,7 +37,7 @@ describe("OrderForm/OrderConfirmation", () => {
         screen.getByText(`Order ID: ${props.location.state.orderID}`),
       ).toBeInTheDocument()
       expect(
-        screen.getByRole("button", { name: "DSC Home" }),
+        screen.getByRole("button", { name: "Back to DSC homepage" }),
       ).toBeInTheDocument()
     })
   })
@@ -49,7 +60,7 @@ describe("OrderForm/OrderConfirmation", () => {
       ).not.toBeInTheDocument()
       expect(screen.queryByText(/Order ID/)).not.toBeInTheDocument()
       expect(
-        screen.queryByRole("button", { name: "DSC Home" }),
+        screen.queryByRole("button", { name: "Back to DSC homepage" }),
       ).not.toBeInTheDocument()
     })
   })
