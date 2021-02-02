@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   button: {
     "&:hover": {
-      color: "#fff",
+      color: theme.palette.getContrastText(theme.palette.primary.main),
     },
   },
   confirmation: {
@@ -98,7 +98,7 @@ const OrderConfirmation = ({ location }: LocationProps) => {
           <Button
             component={Link}
             to="/"
-            color="secondary"
+            color="primary"
             variant="contained"
             size="large"
             className={classes.button}
