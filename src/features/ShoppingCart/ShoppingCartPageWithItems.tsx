@@ -6,7 +6,8 @@ import ShoppingCartItem from "./ShoppingCartItem"
 import ShoppingCartTotalCard from "./ShoppingCartTotalCard"
 import ContinueShoppingCard from "./ContinueShoppingCard"
 import { useCartStore } from "./CartStore"
-import { CartItem, CartItemWithQuantity } from "common/types"
+import useCartItems from "common/hooks/useCartItems"
+import { CartItemWithQuantity } from "common/types"
 
 const useStyles = makeStyles((theme: Theme) => ({
   list: {
@@ -15,34 +16,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 /**
- * addQuantityToCartItem creates a map of added items then increases
- * the quantity value for every duplicate item in the cart.
- */
-const addQuantityToCartItem = (items: Array<CartItem>) => {
-  const itemMap = new Map(
-    items.map((item) => [
-      item.id,
-      {
-        ...item,
-        quantity: 0,
-      },
-    ]),
-  )
-
-  for (const { id } of items) itemMap.get(id)!.quantity++
-
-  return Array.from(itemMap.values())
-}
-
-/**
  * ShoppingCartPageWithItems is the display for the cart page when there are
  * items in the cart.
  */
 const ShoppingCartPageWithItems = () => {
-  const {
-    state: { addedItems, maxItemsInCart },
-  } = useCartStore()
-  const itemsWithQuantity = addQuantityToCartItem(addedItems)
+  const { state } = useCartStore()
+  const { itemsWithQuantity } = useCartItems()
   const classes = useStyles()
 
   return (
@@ -56,7 +35,7 @@ const ShoppingCartPageWithItems = () => {
       </Grid>
       <Grid item xs={3}>
         <ShoppingCartTotalCard />
-        {!maxItemsInCart && <ContinueShoppingCard />}
+        {!state.maxItemsInCart && <ContinueShoppingCard />}
       </Grid>
     </Grid>
   )
