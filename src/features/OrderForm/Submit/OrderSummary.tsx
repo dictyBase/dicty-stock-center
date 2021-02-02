@@ -1,6 +1,5 @@
 import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
-import { grey } from "@material-ui/core/colors"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import List from "@material-ui/core/List"
@@ -24,12 +23,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     marginTop: theme.spacing(2),
-    backgroundColor: grey[400],
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
     padding: theme.spacing(1),
   },
   subheader: {
-    backgroundColor: grey[400],
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
     padding: theme.spacing(1),
+  },
+  quantity: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    minWidth: "40px",
   },
 }))
 
@@ -43,7 +49,7 @@ const OrderSummary = ({ formData }: Props) => {
   const {
     state: { addedItems },
   } = useCartStore()
-  const { getCartTotal } = useCartItems()
+  const { getCartTotal, itemsWithQuantity } = useCartItems()
 
   return (
     <React.Fragment>
@@ -51,10 +57,25 @@ const OrderSummary = ({ formData }: Props) => {
         Order Summary
       </Typography>
       <List disablePadding>
-        {addedItems.map((item, index) => (
+        {itemsWithQuantity.map((item, index) => (
           <ListItem className={classes.listItem} key={index}>
-            <ListItemText primary={item.name} secondary={item.id} />
-            <Typography variant="body2">{item.fee}</Typography>
+            <ListItemText
+              primary={item.name}
+              secondary={
+                <React.Fragment>
+                  <Typography noWrap>
+                    <em>{item.summary}</em>
+                  </Typography>
+                  <Typography>{item.id}</Typography>
+                </React.Fragment>
+              }
+            />
+            <Typography className={classes.quantity} variant="body2">
+              Qty: {item.quantity}
+            </Typography>
+            <Typography variant="body1">
+              ${Number(item.fee) * item.quantity}.00
+            </Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
