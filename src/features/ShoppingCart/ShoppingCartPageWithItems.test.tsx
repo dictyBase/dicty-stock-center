@@ -1,11 +1,11 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import ShoppingCartItemList from "./ShoppingCartItemList"
+import ShoppingCartPageWithItems from "./ShoppingCartPageWithItems"
 import { MockCartProvider } from "common/utils/testing"
 import { fees } from "common/constants/fees"
 
-describe("features/ShoppingCart/ShoppingCartItemList", () => {
+describe("features/ShoppingCart/ShoppingCartPageWithItems", () => {
   const addedItems = [
     {
       id: "DBS123456",
@@ -36,7 +36,7 @@ describe("features/ShoppingCart/ShoppingCartItemList", () => {
     it("displays correct total", () => {
       render(
         <MockCartProvider mocks={[]} addedItems={addedItems}>
-          <ShoppingCartItemList />
+          <ShoppingCartPageWithItems />
         </MockCartProvider>,
       )
       // three strains ($30 each) + one plasmid ($15) = $75
@@ -49,7 +49,7 @@ describe("features/ShoppingCart/ShoppingCartItemList", () => {
     it("updates quantity on trash button click", () => {
       render(
         <MockCartProvider mocks={[]} addedItems={addedItems}>
-          <ShoppingCartItemList />
+          <ShoppingCartPageWithItems />
         </MockCartProvider>,
       )
       const strainQuantity = screen.getAllByTestId("cart-quantity")[0]
