@@ -1,5 +1,6 @@
 import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import List from "@material-ui/core/List"
@@ -23,6 +24,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     marginTop: theme.spacing(2),
+    backgroundColor: grey[400],
+    padding: theme.spacing(1),
+  },
+  subheader: {
+    backgroundColor: grey[400],
+    padding: theme.spacing(1),
   },
 }))
 
@@ -40,7 +47,7 @@ const OrderSummary = ({ formData }: Props) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h2" gutterBottom>
+      <Typography className={classes.subheader} variant="h2" gutterBottom>
         Order Summary
       </Typography>
       <List disablePadding>
