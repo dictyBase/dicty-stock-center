@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "3px",
   },
   summary: {
-    backgroundColor: "rgb(46, 109, 164)",
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
     marginTop: "0px",
   },
   details: {
