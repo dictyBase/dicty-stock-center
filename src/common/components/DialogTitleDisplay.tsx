@@ -1,15 +1,15 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   dialogTitle: {
-    backgroundColor: "#0059b3",
+    backgroundColor: theme.palette.primary.main,
     color: "#fff",
     margin: 0,
-    padding: "16px",
+    padding: theme.spacing(2),
     fontSize: "2rem",
   },
   closeButton: {
@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
+  /** Title to display at top of dialog */
   title: string
+  /** Function to call when close button is clicked */
   handleClose: () => void
 }
 
