@@ -1,27 +1,22 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: "#fff",
     borderTopLeftRadius: "3px",
     borderTopRightRadius: "3px",
   },
   summary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.getContrastText(theme.palette.primary.main),
-    marginTop: "0px",
   },
   details: {
-    padding: 0,
+    padding: "0px",
   },
   innerContent: {
     width: "100%",
@@ -44,14 +39,15 @@ const PanelWrapper = ({ title, children }: Props) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
+    <Box>
       <Accordion defaultExpanded>
         <AccordionSummary className={classes.summary}>
           <Typography
+            variant="h2"
             className={classes.heading}
             component={"div"}
             data-testid="panel-title">
-            <h3>{title}</h3>
+            {title}
           </Typography>
         </AccordionSummary>
         <AccordionDetails
@@ -60,7 +56,7 @@ const PanelWrapper = ({ title, children }: Props) => {
           <div className={classes.innerContent}>{children}</div>
         </AccordionDetails>
       </Accordion>
-    </div>
+    </Box>
   )
 }
 
