@@ -70,7 +70,10 @@ const OrderSummary = ({ formData }: Props) => {
                 </React.Fragment>
               }
             />
-            <Typography className={classes.quantity} variant="body2">
+            <Typography
+              className={classes.quantity}
+              variant="body2"
+              data-testid="quantity">
               Qty: {item.quantity}
             </Typography>
             <Typography variant="body1">
