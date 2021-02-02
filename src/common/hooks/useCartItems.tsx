@@ -2,6 +2,25 @@ import { useCartStore, CartActionType } from "features/ShoppingCart/CartStore"
 import { CartItem } from "common/types"
 
 /**
+ * addQuantityToCartItem creates a map of added items then increases
+ * the quantity value for every duplicate item in the cart.
+ */
+const addQuantityToCartItem = (items: Array<CartItem>) => {
+  const itemMap = new Map(
+    items.map((item) => [
+      item.id,
+      {
+        ...item,
+        quantity: 0,
+      },
+    ]),
+  )
+  for (const { id } of items) itemMap.get(id)!.quantity++
+
+  return Array.from(itemMap.values())
+}
+
+/**
  * useCartItems is a hook for manipulating cart items and providing
  * helper methods for them.
  */
@@ -54,6 +73,7 @@ const useCartItems = () => {
     emptyCart,
     getItemsFromStorage,
     getCartTotal,
+    itemsWithQuantity: addQuantityToCartItem(addedItems),
   }
 }
 
