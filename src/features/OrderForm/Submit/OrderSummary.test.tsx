@@ -32,8 +32,8 @@ describe("features/OrderForm/Submit/OrderSummary", () => {
         <OrderSummary formData={mockValues} />
       </MockCartProvider>,
     )
-    // strain should be listed twice (matches quantity in cart)
-    expect(screen.getAllByText(items[0].id)).toHaveLength(2)
+    // strain should show price for quantity of 2
+    expect(screen.getAllByTestId("quantity")[0]).toHaveTextContent(/Qty: 2/)
     // one plasmid
     expect(screen.getByText(items[2].id)).toBeInTheDocument()
     // correct total (30+30+15)
