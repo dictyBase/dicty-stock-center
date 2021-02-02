@@ -3,23 +3,28 @@ import Grid from "@material-ui/core/Grid"
 import ShippingMethod from "./ShippingMethod"
 import AdditionalInformation from "./AdditionalInformation"
 import ContinueButton from "../ContinueButton"
-import OrderFormPanel from "../OrderFormPanel"
+import PanelWrapper from "common/components/PanelWrapper"
 
 /**
  * ShippingPageRightColumn displays the right column of the shipping page.
  */
 
 const ShippingPageRightColumn = () => (
-  <>
-    <OrderFormPanel title="Shipping Method" component={<ShippingMethod />} />
-    <OrderFormPanel
-      title="Additional Information"
-      component={<AdditionalInformation />}
-    />
+  <React.Fragment>
+    <Grid item xs={12}>
+      <PanelWrapper title="Shipping Method">
+        <ShippingMethod />
+      </PanelWrapper>
+    </Grid>
+    <Grid item xs={12}>
+      <PanelWrapper title="Additional Information">
+        <AdditionalInformation />
+      </PanelWrapper>
+    </Grid>
     <Grid container item justify="flex-end">
       <ContinueButton />
     </Grid>
-  </>
+  </React.Fragment>
 )
 
 export default ShippingPageRightColumn

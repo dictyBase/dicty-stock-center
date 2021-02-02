@@ -4,11 +4,11 @@ import PaymentMethod from "./PaymentMethod"
 import PaymentInfoBox from "./PaymentInfoBox"
 import ContinueButton from "../ContinueButton"
 import BackButton from "../BackButton"
-import OrderFormPanel from "../OrderFormPanel"
+import PanelWrapper from "common/components/PanelWrapper"
 
 type Props = {
   /** Function to move to previous step */
-  prevStep: Function
+  prevStep: () => void
 }
 
 /**
@@ -16,8 +16,12 @@ type Props = {
  */
 
 const PaymentPageRightColumn = ({ prevStep }: Props) => (
-  <>
-    <OrderFormPanel title="Payment Method" component={<PaymentMethod />} />
+  <React.Fragment>
+    <Grid item xs={12}>
+      <PanelWrapper title="Payment Method">
+        <PaymentMethod />
+      </PanelWrapper>
+    </Grid>
     <Grid item xs={12}>
       <PaymentInfoBox />
     </Grid>
@@ -27,7 +31,7 @@ const PaymentPageRightColumn = ({ prevStep }: Props) => (
         <ContinueButton />
       </Grid>
     </Grid>
-  </>
+  </React.Fragment>
 )
 
 export default PaymentPageRightColumn
