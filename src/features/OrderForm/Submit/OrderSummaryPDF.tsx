@@ -1,5 +1,12 @@
-import React from "react"
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  Link,
+  StyleSheet,
+} from "@react-pdf/renderer"
+import { grey } from "@material-ui/core/colors"
 import { getShippingValues, getPaymentValues } from "../utils/getListValues"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
@@ -20,14 +27,23 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexDirection: "row",
   },
+  items: {
+    marginBottom: 8,
+    fontSize: 16,
+    flexDirection: "row",
+  },
   header: {
     flexGrow: 1,
-    fontSize: 24,
+    fontSize: 26,
     marginTop: 16,
     marginBottom: 16,
+    backgroundColor: grey[200],
+    padding: 8,
   },
   subheader: {
-    fontSize: 18,
+    fontSize: 24,
+    marginBottom: 14,
+    textDecoration: "underline",
   },
   leftPanel: {
     width: "50%",
@@ -35,8 +51,15 @@ const styles = StyleSheet.create({
   rightPanel: {
     width: "50%",
   },
-  italic: {
-    fontStyle: "italic",
+  id: {
+    fontSize: 12,
+  },
+  total: {
+    fontSize: 24,
+  },
+  address: {
+    fontSize: 16,
+    marginBottom: 4,
   },
 })
 
@@ -69,13 +92,25 @@ const OrderSummaryPDF = ({
         <View>
           {cartItems.map((item, index) => {
             return (
-              <View key={index}>
-                <Text>{item.name}</Text>
-                <Text style={styles.italic}>{item.id}</Text>
+              <View key={index} style={styles.items}>
+                <View style={styles.leftPanel}>
+                  <Text>{item.name}</Text>
+                  <Text style={styles.id}>{item.id}</Text>
+                </View>
+                <View style={styles.rightPanel}>
+                  <Text>${item.fee}</Text>
+                </View>
               </View>
             )
           })}
-          <Text>Total: {cartTotal}</Text>
+          <View style={styles.row}>
+            <View style={styles.leftPanel}>
+              <Text style={styles.total}>Total</Text>
+            </View>
+            <View style={styles.rightPanel}>
+              <Text style={styles.total}>{cartTotal}</Text>
+            </View>
+          </View>
         </View>
         <View style={styles.header}>
           <Text>Shipping and Billing Information</Text>
@@ -84,15 +119,30 @@ const OrderSummaryPDF = ({
           <View style={styles.leftPanel}>
             <Text style={styles.subheader}>Shipping Address</Text>
             {getShippingValues(formData).map((item, index) => (
-              <Text key={index}>{item}</Text>
+              <Text key={index} style={styles.address}>
+                {item}
+              </Text>
             ))}
           </View>
           <View style={styles.rightPanel}>
             <Text style={styles.subheader}>Payment Details</Text>
             {getPaymentValues(formData).map((item, index) => (
-              <Text key={index}>{item}</Text>
+              <Text key={index} style={styles.address}>
+                {item}
+              </Text>
             ))}
           </View>
+        </View>
+        <View style={styles.header}>
+          <Text>Payment Information</Text>
+        </View>
+        <View style={styles.row}>
+          <Text>
+            Payment information is available at the{" "}
+            <Link src="https://dictycr.org/stockcenter/information/payment">
+              DSC website.
+            </Link>
+          </Text>
         </View>
       </View>
     </Page>
