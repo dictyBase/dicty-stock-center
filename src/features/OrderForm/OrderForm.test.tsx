@@ -8,7 +8,7 @@ describe("features/OrderForm/OrderForm", () => {
     it("should display warnings on empty submit", async () => {
       render(<OrderForm />)
       expect(
-        screen.getByRole("heading", { name: "Shipping Address" }),
+        screen.getByRole("button", { name: "Shipping Address" }),
       ).toBeInTheDocument()
       const button = screen.getByRole("button", { name: "Continue Button" })
       expect(button).toBeInTheDocument()
