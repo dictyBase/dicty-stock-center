@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.light,
   },
   container: {
-    minHeight: "200px",
+    minHeight: "170px",
     borderRadius: "0px",
     border: `1px solid ${grey[200]}`,
   },

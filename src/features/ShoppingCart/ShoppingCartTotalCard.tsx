@@ -12,7 +12,7 @@ import useCartItems from "common/hooks/useCartItems"
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: "200px",
+    minHeight: "170px",
     padding: theme.spacing(2),
   },
   checkoutBtn: {
