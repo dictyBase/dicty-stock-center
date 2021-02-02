@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 16,
     backgroundColor: grey[200],
-    padding: 8,
+    padding: 12,
   },
   subheader: {
     fontSize: 24,
@@ -59,13 +59,39 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   total: {
-    fontSize: 24,
+    fontSize: 22,
   },
   address: {
     fontSize: 16,
     marginBottom: 4,
   },
 })
+
+// generate display for list of items in order
+const getItemsList = (items: CartItem[]) => {
+  return items.map((item: CartItem, index: number) => {
+    return (
+      <View key={index} style={styles.items}>
+        <View style={styles.leftPanel}>
+          <Text>{item.name}</Text>
+          <Text style={styles.id}>{item.id}</Text>
+        </View>
+        <View style={styles.rightPanel}>
+          <Text>${item.fee}</Text>
+        </View>
+      </View>
+    )
+  })
+}
+
+// generate address list
+const getAddressList = (items: string[]) => {
+  return items.map((item: string, index: number) => (
+    <Text key={index} style={styles.address}>
+      {item}
+    </Text>
+  ))
+}
 
 type Props = {
   /** Object containing all entered form data */
@@ -96,19 +122,7 @@ const OrderSummaryPDF = ({
             <Text>Order Summary</Text>
           </View>
           <View>
-            {cartItems.map((item, index) => {
-              return (
-                <View key={index} style={styles.items}>
-                  <View style={styles.leftPanel}>
-                    <Text>{item.name}</Text>
-                    <Text style={styles.id}>{item.id}</Text>
-                  </View>
-                  <View style={styles.rightPanel}>
-                    <Text>${item.fee}</Text>
-                  </View>
-                </View>
-              )
-            })}
+            {getItemsList(cartItems)}
             <View style={styles.row}>
               <View style={styles.leftPanel}>
                 <Text style={styles.total}>Total</Text>
@@ -124,19 +138,11 @@ const OrderSummaryPDF = ({
           <View style={styles.row}>
             <View style={styles.leftPanel}>
               <Text style={styles.subheader}>Shipping Address</Text>
-              {getShippingValues(formData).map((item, index) => (
-                <Text key={index} style={styles.address}>
-                  {item}
-                </Text>
-              ))}
+              {getAddressList(getShippingValues(formData))}
             </View>
             <View style={styles.rightPanel}>
               <Text style={styles.subheader}>Payment Details</Text>
-              {getPaymentValues(formData).map((item, index) => (
-                <Text key={index} style={styles.address}>
-                  {item}
-                </Text>
-              ))}
+              {getAddressList(getPaymentValues(formData))}
             </View>
           </View>
           <View style={styles.header}>
