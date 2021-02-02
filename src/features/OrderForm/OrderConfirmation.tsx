@@ -91,15 +91,19 @@ const OrderConfirmation = ({ location }: LocationProps) => {
               orderID={state.orderID}
             />
           </PDFViewer>
+        </Box>
+      </Grid>
+      <Grid item>
+        <Box margin={2}>
           <Button
             component={Link}
             to="/"
-            color="primary"
+            color="secondary"
             variant="contained"
             size="large"
             className={classes.button}
             startIcon={<FontAwesomeIcon icon="home" />}>
-            DSC Home
+            Back to DSC homepage
           </Button>
         </Box>
       </Grid>
