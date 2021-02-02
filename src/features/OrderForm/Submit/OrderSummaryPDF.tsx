@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
   rightPanel: {
     width: "50%",
   },
+  date: {
+    marginTop: 8,
+    fontSize: 16,
+  },
   id: {
     fontSize: 12,
   },
@@ -79,74 +83,77 @@ const OrderSummaryPDF = ({
   cartItems,
   cartTotal,
   orderID,
-}: Props) => (
-  <Document title="DSC Order Summary">
-    <Page size="A3">
-      <View style={styles.body}>
-        <View style={styles.title}>
-          <Text>DSC Order #{orderID}</Text>
-        </View>
-        <View style={styles.header}>
-          <Text>Order Summary</Text>
-        </View>
-        <View>
-          {cartItems.map((item, index) => {
-            return (
-              <View key={index} style={styles.items}>
-                <View style={styles.leftPanel}>
-                  <Text>{item.name}</Text>
-                  <Text style={styles.id}>{item.id}</Text>
+}: Props) => {
+  return (
+    <Document title="DSC Order Summary">
+      <Page size="A3">
+        <View style={styles.body}>
+          <View style={styles.title}>
+            <Text>DSC Order #{orderID}</Text>
+            <Text style={styles.date}>{new Date().toDateString()}</Text>
+          </View>
+          <View style={styles.header}>
+            <Text>Order Summary</Text>
+          </View>
+          <View>
+            {cartItems.map((item, index) => {
+              return (
+                <View key={index} style={styles.items}>
+                  <View style={styles.leftPanel}>
+                    <Text>{item.name}</Text>
+                    <Text style={styles.id}>{item.id}</Text>
+                  </View>
+                  <View style={styles.rightPanel}>
+                    <Text>${item.fee}</Text>
+                  </View>
                 </View>
-                <View style={styles.rightPanel}>
-                  <Text>${item.fee}</Text>
-                </View>
+              )
+            })}
+            <View style={styles.row}>
+              <View style={styles.leftPanel}>
+                <Text style={styles.total}>Total</Text>
               </View>
-            )
-          })}
+              <View style={styles.rightPanel}>
+                <Text style={styles.total}>{cartTotal}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.header}>
+            <Text>Shipping and Billing Information</Text>
+          </View>
           <View style={styles.row}>
             <View style={styles.leftPanel}>
-              <Text style={styles.total}>Total</Text>
+              <Text style={styles.subheader}>Shipping Address</Text>
+              {getShippingValues(formData).map((item, index) => (
+                <Text key={index} style={styles.address}>
+                  {item}
+                </Text>
+              ))}
             </View>
             <View style={styles.rightPanel}>
-              <Text style={styles.total}>{cartTotal}</Text>
+              <Text style={styles.subheader}>Payment Details</Text>
+              {getPaymentValues(formData).map((item, index) => (
+                <Text key={index} style={styles.address}>
+                  {item}
+                </Text>
+              ))}
             </View>
           </View>
-        </View>
-        <View style={styles.header}>
-          <Text>Shipping and Billing Information</Text>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.leftPanel}>
-            <Text style={styles.subheader}>Shipping Address</Text>
-            {getShippingValues(formData).map((item, index) => (
-              <Text key={index} style={styles.address}>
-                {item}
-              </Text>
-            ))}
+          <View style={styles.header}>
+            <Text>Payment Information</Text>
           </View>
-          <View style={styles.rightPanel}>
-            <Text style={styles.subheader}>Payment Details</Text>
-            {getPaymentValues(formData).map((item, index) => (
-              <Text key={index} style={styles.address}>
-                {item}
-              </Text>
-            ))}
+          <View style={styles.row}>
+            <Text>
+              Payment information is available at the{" "}
+              <Link src="https://dictycr.org/stockcenter/information/payment">
+                DSC website.
+              </Link>
+            </Text>
           </View>
         </View>
-        <View style={styles.header}>
-          <Text>Payment Information</Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            Payment information is available at the{" "}
-            <Link src="https://dictycr.org/stockcenter/information/payment">
-              DSC website.
-            </Link>
-          </Text>
-        </View>
-      </View>
-    </Page>
-  </Document>
-)
+      </Page>
+    </Document>
+  )
+}
 
 export default OrderSummaryPDF
