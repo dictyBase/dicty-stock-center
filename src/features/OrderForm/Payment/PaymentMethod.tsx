@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
  */
 
 const PaymentMethod = () => {
-  const [purchaseOrderNum, setPurchaseOrderNum] = useState(false)
+  const [purchaseOrderNum, setPurchaseOrderNum] = useState(true)
   const [waiverRequested, setWaiverRequested] = useState(false)
   const classes = useStyles()
 

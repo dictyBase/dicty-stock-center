@@ -15,12 +15,12 @@ const radioValues = [
     label: "Wire Transfer",
   },
   {
-    value: "purchaseOrder",
-    label: "Purchase Order (PO)",
-  },
-  {
     value: "waiver",
     label: "Waiver Requested",
+  },
+  {
+    value: "purchaseOrder",
+    label: "Purchase Order (PO)",
   },
 ]
 
