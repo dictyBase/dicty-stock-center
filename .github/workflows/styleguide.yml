@@ -13,7 +13,7 @@ jobs:
         run: |
           mv src/common/utils/clientConfig.sample.ts src/common/utils/clientConfig.ts
           yarn install
-          yarn styleguide:build
+          FAST_REFRESH=false yarn styleguide:build
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
