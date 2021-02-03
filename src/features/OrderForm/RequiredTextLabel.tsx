@@ -8,6 +8,10 @@ type Props = {
   variant?: TypographyProps["variant"]
 }
 
+/**
+ * RequiredTextLabel is the text display for any field that is required for
+ * submission.
+ */
 const RequiredTextLabel = ({ title, variant = "body1" }: Props) => {
   return (
     <React.Fragment>

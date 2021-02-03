@@ -19,7 +19,10 @@ type Props = {
   // Page number the user is on (0, 1, 2)
   step: number
 }
-
+/**
+ * OrderFormStepper is the display for the steps at the top of the order form
+ * page.
+ */
 const OrderFormStepper = ({ step }: Props) => {
   const classes = useStyles()
 

@@ -8,7 +8,6 @@ import MuiTextField, {
  * TextField is a wrapper component that puts all Formik and MUI props
  * on the Material-UI TextField component.
  */
-
 const TextField = ({
   margin = "dense",
   variant = "outlined",

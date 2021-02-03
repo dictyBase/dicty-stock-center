@@ -16,9 +16,8 @@ type Props = {
 }
 
 /**
- * BackButton displays the Back button on each order form page.
+ * BackButton displays the Back button on each page of the order form.
  */
-
 const BackButton = ({ prevStep }: Props) => {
   const classes = useStyles()
 
