@@ -18,7 +18,6 @@ type Props = {
  * VirtualizedList provides a virtualized list of data
  * (via react-window).
  */
-
 const VirtualizedList = ({
   data,
   loadMoreItems,

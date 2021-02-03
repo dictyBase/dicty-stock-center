@@ -10,6 +10,10 @@ type Props = {
   genotypes: string
 }
 
+/**
+ * GenotypesDisplay organizes genotypes with non drug resistances italicized
+ * and with drug resistances at the end
+ */
 const GenotypesDisplay = ({ genotypes }: Props) => {
   const { nonDrugResistances, drugResistances } = useGenotypes(genotypes)
 

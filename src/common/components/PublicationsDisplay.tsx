@@ -24,9 +24,14 @@ const getYearFromTimestamp = (date: string) => {
 }
 
 type Props = {
+  /** List of publications */
   publications?: Array<Publication>
 }
 
+/**
+ * PublicationsDisplay handles the display of publications, primarily for use
+ * on the stock details pages.
+ */
 const PublicationsDisplay = ({ publications }: Props) => {
   const classes = useStyles()
 
