@@ -1,4 +1,5 @@
 import React from "react"
+import { MuiThemeProvider } from "@material-ui/core/styles"
 import { ApolloProvider } from "@apollo/client"
 import { BrowserRouter } from "react-router-dom"
 import { Formik } from "formik"
@@ -6,6 +7,7 @@ import { AuthProvider } from "features/Authentication/AuthStore"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import useApolloClient from "common/hooks/useApolloClient"
+import { theme } from "app/layout/AppProviders"
 
 /**
  * This is a wrapper component used for all styleguidist documentation.
@@ -15,19 +17,21 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const client = useApolloClient()
 
   return (
-    <ApolloProvider client={client}>
-      <AuthProvider>
-        <CartProvider>
-          <CatalogProvider stockType="strain">
-            <BrowserRouter>
-              <Formik initialValues={{}} onSubmit={() => {}}>
-                {children}
-              </Formik>
-            </BrowserRouter>
-          </CatalogProvider>
-        </CartProvider>
-      </AuthProvider>
-    </ApolloProvider>
+    <MuiThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <AuthProvider>
+            <CartProvider>
+              <CatalogProvider stockType="strain">
+                <Formik initialValues={{}} onSubmit={() => {}}>
+                  {children}
+                </Formik>
+              </CatalogProvider>
+            </CartProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </ApolloProvider>
+    </MuiThemeProvider>
   )
 }
 
