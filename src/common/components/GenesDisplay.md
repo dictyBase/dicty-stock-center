@@ -1,3 +1,3 @@
-```js
-<GenesDisplay genes={["gflB", "sadA"]} />
+```jsx
+<GenesDisplay genes={[{ name: "gflB" }, { name: "sadA" }]} />
 ```
