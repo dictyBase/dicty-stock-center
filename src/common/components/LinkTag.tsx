@@ -1,17 +1,18 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import { blue } from "@material-ui/core/colors"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: "#cce6ff",
+    backgroundColor: blue[100],
     borderRadius: "16px",
     lineHeight: 1.5,
     "&:hover, &.Mui-focusVisible": {
       "& $icon": {
-        color: palette.primary.dark,
-        marginLeft: spacing(1),
+        color: theme.palette.primary.dark,
+        marginLeft: theme.spacing(1),
         visibility: "visible",
         opacity: 1,
       },
@@ -26,8 +27,8 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     visibility: "hidden",
     opacity: 0,
     transition: "0.3s",
-    color: palette.common.white,
-    marginLeft: -spacing(1.5),
+    color: theme.palette.common.white,
+    marginLeft: -theme.spacing(1.5),
     "& .MuiIcon--fa": {
       padding: 0,
     },
@@ -41,6 +42,9 @@ type Props = {
   route: string
 }
 
+/**
+ * LinkTag is a tag-style display for showing links.
+ */
 const LinkTag = ({ item, route }: Props) => {
   const classes = useStyles()
 
