@@ -15,6 +15,14 @@ const useGoogleAnalytics = () => {
         ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID)
         ReactGA.set({ page: page, anonymizeIp: true })
         ReactGA.pageview(page)
+
+        // also make sure to detect pageviews from bfcache
+        // https://web.dev/bfcache/#how-bfcache-affects-analytics-and-performance-measurement
+        window.addEventListener("pageshow", (event) => {
+          if (event.persisted === true) {
+            ReactGA.pageview(page)
+          }
+        })
       } catch (e) {
         console.error("could not load react-ga module", JSON.stringify(e))
       }
