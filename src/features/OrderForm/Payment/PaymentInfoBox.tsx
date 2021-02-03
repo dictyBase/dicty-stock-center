@@ -16,12 +16,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     padding: theme.spacing(3),
   },
-  button: {
-    color: theme.palette.error.main,
-    "&:hover": {
-      color: theme.palette.error.dark,
-    },
-  },
 }))
 
 /**
@@ -41,8 +35,8 @@ const PaymentInfoBox = () => {
           target="_blank"
           rel="noopener noreferrer"
           variant="outlined"
-          endIcon={<FontAwesomeIcon icon="external-link-alt" size="sm" />}
-          className={classes.button}>
+          color="primary"
+          endIcon={<FontAwesomeIcon icon="external-link-alt" />}>
           Payment Information
         </Button>
       </Grid>
