@@ -32,7 +32,8 @@ type Props = {
 }
 
 /**
- * ShippingPage is the display component for when the user is entering shipping information.
+ * ShippingPage is the display component for when the user is entering shipping
+ * information.
  */
 
 const ShippingPage = ({ formData, setFormData, nextStep }: Props) => (

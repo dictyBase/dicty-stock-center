@@ -49,9 +49,9 @@ type Props = {
 }
 
 /**
- * PaymentPage is the display component for when the user is entering payment information.
+ * PaymentPage is the display component for when the user is entering
+ * payment information.
  */
-
 const PaymentPage = ({ formData, setFormData, prevStep, nextStep }: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
 

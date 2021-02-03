@@ -3,9 +3,9 @@ import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 
 /**
- * PaymentInfoBoxItems contains the payment methods listed on the payment page.
+ * PaymentInfoBoxItems displays information about the payment methods listed
+ * on the payment page.
  */
-
 const PaymentInfoBoxItems = () => (
   <Box mb={1}>
     <Typography gutterBottom>
@@ -14,7 +14,7 @@ const PaymentInfoBoxItems = () => (
     </Typography>
     <Typography gutterBottom>
       <strong>Wire Transfer: </strong>
-      Northwestern bank information will be emailed
+      Northwestern bank information will be emailed.
     </Typography>
     <Typography gutterBottom>
       <strong>PO: </strong>

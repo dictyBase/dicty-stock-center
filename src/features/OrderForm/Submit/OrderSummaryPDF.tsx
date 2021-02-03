@@ -104,6 +104,10 @@ type Props = {
   orderID: string
 }
 
+/**
+ * OrderSummaryPDF displays a PDF version of the user's order summary. It is
+ * presented after a successful order submission.
+ */
 const OrderSummaryPDF = ({
   formData,
   cartItems,

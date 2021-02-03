@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 /**
- * PaymentMethod contains radio buttons and a text field for listing payment method information.
+ * PaymentMethod contains radio buttons and a text field for listing payment
+ * method information.
  */
-
 const PaymentMethod = () => {
   const [purchaseOrderNum, setPurchaseOrderNum] = useState(true)
   const [waiverRequested, setWaiverRequested] = useState(false)
