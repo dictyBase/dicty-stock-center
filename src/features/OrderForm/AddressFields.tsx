@@ -10,7 +10,7 @@ const checkIfCountry = (name: string) =>
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    paddingBottom: theme.spacing(1),
+    padding: theme.spacing(0, 1, 1, 1),
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
@@ -27,9 +27,8 @@ type Props = {
 }
 
 /**
- * AddressFields contains text fields for entering a user address.
+ * AddressFields displays a list of address fields with corresponding labels.
  */
-
 const AddressFields = ({ fields, countryName }: Props) => {
   const classes = useStyles()
 
