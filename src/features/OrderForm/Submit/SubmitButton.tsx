@@ -158,7 +158,6 @@ type Props = {
  * appears on the last page of the order form, and it contains the
  * necessary logic for GraphQL queries and mutations.
  */
-
 const SubmitButton = ({ formData, setSubmitError }: Props) => {
   const {
     state: { addedItems },

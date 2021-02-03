@@ -34,7 +34,6 @@ type Props = {
 /**
  * PaymentMethodRadioGroup contains radio buttons for payment methods.
  */
-
 const PaymentMethodRadioGroup = ({
   setPurchaseOrderNum,
   setWaiverRequested,

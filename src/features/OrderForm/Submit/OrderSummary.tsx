@@ -44,6 +44,10 @@ type Props = {
   formData: FormikValues
 }
 
+/**
+ * OrderSummary is the display component for the final page (Review your order)
+ * before the user submits their order.
+ */
 const OrderSummary = ({ formData }: Props) => {
   const classes = useStyles()
   const {

@@ -8,7 +8,6 @@ import { SubmitProps } from "./submitTypes"
 /**
  * SubmitPage is the final page the user sees before submitting the order.
  */
-
 const SubmitPage = ({ formData, prevStep, setSubmitError }: SubmitProps) => {
   return (
     <Box mt={1} mb={2} p={2}>

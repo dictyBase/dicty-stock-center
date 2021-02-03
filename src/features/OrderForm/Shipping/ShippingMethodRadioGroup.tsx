@@ -15,9 +15,9 @@ type Props = {
 }
 
 /**
- * ShippingMethodRadioGroup contains the radio buttons for listing courier information.
+ * ShippingMethodRadioGroup contains the radio buttons for listing courier
+ * information.
  */
-
 const ShippingMethodRadioGroup = ({
   setShipAccountNum,
   setPrepaidNotice,

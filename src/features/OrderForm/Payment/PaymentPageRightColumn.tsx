@@ -14,7 +14,6 @@ type Props = {
 /**
  * PaymentPageRightColumn displays the right column of the Payment page.
  */
-
 const PaymentPageRightColumn = ({ prevStep }: Props) => (
   <React.Fragment>
     <Grid item xs={12}>

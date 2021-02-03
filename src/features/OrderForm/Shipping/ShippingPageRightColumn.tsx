@@ -8,7 +8,6 @@ import PanelWrapper from "common/components/PanelWrapper"
 /**
  * ShippingPageRightColumn displays the right column of the shipping page.
  */
-
 const ShippingPageRightColumn = () => (
   <React.Fragment>
     <Grid item xs={12}>
