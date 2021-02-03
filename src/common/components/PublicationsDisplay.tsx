@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import ExternalLinkIcon from "common/components/ExternalLinkIcon"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Publication } from "features/Stocks/Details/types"
 
 const useStyles = makeStyles({
@@ -44,10 +44,11 @@ const PublicationsDisplay = ({ publications }: Props) => {
           </span>{" "}
           '{publication.title}' <em>{publication.journal}</em>{" "}
           {publication.volume}:{publication.pages}{" "}
-          <ExternalLinkIcon
-            url={`/publication/${publication.id}`}
-            title="Visit dictyBase publication page"
-          />
+          <a
+            href={`/publication/${publication.id}`}
+            title="Visit dictyBase publication page">
+            <FontAwesomeIcon icon="external-link-alt" size="sm" />
+          </a>
         </span>
       ))}
     </div>
