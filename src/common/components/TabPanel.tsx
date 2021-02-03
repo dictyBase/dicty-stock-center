@@ -14,7 +14,6 @@ type Props = {
 /**
  * TabPanel is a simple wrapper for content inside of tab panels.
  */
-
 const TabPanel = ({ children, value, index, ...other }: Props) => (
   <Typography
     component="div"

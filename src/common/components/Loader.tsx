@@ -2,6 +2,9 @@ import React from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import Grid from "@material-ui/core/Grid"
 
+/**
+ * Loader is the default loading skeleton component.
+ */
 const Loader = () => (
   <Grid container justify="center" data-testid="skeleton-loader">
     <Grid item xs={12}>

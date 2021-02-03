@@ -31,10 +31,9 @@ type Props = {
 }
 
 /**
- * This is a basic panel wrapper that uses Material-UI for the design.
- * It is used for all panel implementations.
+ * PanelWrapper is a basic panel wrapper that uses Material-UI for the design.
+ * It is used for all panel/accordion implementations.
  */
-
 const PanelWrapper = ({ title, children }: Props) => {
   const classes = useStyles()
 
