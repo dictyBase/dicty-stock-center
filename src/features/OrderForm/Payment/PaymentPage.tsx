@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Form, Formik } from "formik"
+import { Form, Formik, FormikHelpers } from "formik"
 import Grid from "@material-ui/core/Grid"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
@@ -9,17 +9,19 @@ import PaymentPageRightColumn from "./PaymentPageRightColumn"
 import { FormikValues } from "../utils/initialValues"
 
 const validationSchema = Yup.object().shape({
-  payerFirstName: Yup.string().required("First name is required"),
-  payerLastName: Yup.string().required("Last name is required"),
-  payerEmail: Yup.string().required("Email is required"),
-  payerOrganization: Yup.string().required("Organization is required"),
-  payerLab: Yup.string().required("Lab/Group is required"),
-  payerAddress1: Yup.string().required("Address is required"),
-  payerCity: Yup.string().required("City is required"),
-  payerZip: Yup.string().required("Zip code is required"),
-  payerCountry: Yup.string().required("Country is required"),
-  payerPhone: Yup.string().required("Phone number is required"),
-  purchaseOrderNum: Yup.string().required("Purchase order number is required"),
+  payerFirstName: Yup.string().required("* First name is required"),
+  payerLastName: Yup.string().required("* Last name is required"),
+  payerEmail: Yup.string().required("* Email is required"),
+  payerOrganization: Yup.string().required("* Organization is required"),
+  payerLab: Yup.string().required("* Lab/Group is required"),
+  payerAddress1: Yup.string().required("* Address is required"),
+  payerCity: Yup.string().required("* City is required"),
+  payerZip: Yup.number().required("* Zip code is required"),
+  payerCountry: Yup.string().required("* Country is required"),
+  payerPhone: Yup.string().required("* Phone number is required"),
+  purchaseOrderNum: Yup.string().required(
+    "* Purchase order number is required",
+  ),
 })
 
 const paymentAddressFields = [
@@ -55,7 +57,10 @@ type Props = {
 const PaymentPage = ({ formData, setFormData, prevStep, nextStep }: Props) => {
   const [checkbox, toggleCheckbox] = useState(false)
 
-  const handleChange = (values: any, setFieldValue: any) => {
+  const handleChange = (
+    values: FormikValues,
+    setFieldValue: FormikHelpers<FormikValues>["setFieldValue"],
+  ) => {
     toggleCheckbox(!checkbox)
     paymentAddressFields.forEach((item) => {
       // convert "payerFirstName" to "firstName",  etc
