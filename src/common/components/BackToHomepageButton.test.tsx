@@ -8,6 +8,6 @@ describe("common/components/BackToHomepageButton", () => {
     render(<BackToHomepageButton />, { wrapper: BrowserRouter })
     const button = screen.getByRole("button")
     expect(button).toBeInTheDocument()
-    expect(button).toHaveTextContent(/Back to Homepage/)
+    expect(button).toHaveTextContent(/Back to DSC Homepage/)
   })
 })
