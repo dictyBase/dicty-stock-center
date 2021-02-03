@@ -10,9 +10,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 /**
- * ContinueButton displays the continue button on each order form page.
+ * ContinueButton displays the continue button on each page of the order form.
  */
-
 const ContinueButton = () => {
   const classes = useStyles()
 

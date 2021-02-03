@@ -29,9 +29,9 @@ type Props = {
 }
 
 /**
- * CountryDropdown is the reusable dropdown component for selecting a country.
+ * CountryDropdown is an Autocomplete component for selecting a user's
+ * country.
  */
-
 const CountryDropdown = ({ name }: Props) => {
   const { values, setFieldValue } = useFormikContext<FormikValues>()
 
@@ -49,10 +49,10 @@ const CountryDropdown = ({ name }: Props) => {
       onChange={handleChange}
       inputValue={values[name]}
       renderOption={(option) => (
-        <>
-          <span>{countryToFlag(option.code)}</span>&nbsp;
+        <span>
+          {countryToFlag(option.code)}&nbsp;
           {option.label}
-        </>
+        </span>
       )}
       renderInput={(props) => <TextField {...props} name={name} />}
     />

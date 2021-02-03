@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
@@ -19,10 +19,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 type Props = {
   /** Array of fields to display */
   fields: Array<{
+    /** Label display for field (i.e. Country, Zip Code, etc) */
     field: string
+    /** Internal name of field (i.e. firstName, payerFirstName, etc.) */
     name: string
+    /** Denotes if field requires a value to advance */
     required: boolean
   }>
+  /** Name of country */
   countryName: string
 }
 
@@ -39,7 +43,7 @@ const AddressFields = ({ fields, countryName }: Props) => {
       alignItems="center"
       className={classes.container}>
       {fields.map((item, index) => (
-        <Fragment key={index}>
+        <React.Fragment key={index}>
           <Grid item xs={12} md={3}>
             {item.required && (
               <Typography component="span" color="error">
@@ -55,7 +59,7 @@ const AddressFields = ({ fields, countryName }: Props) => {
               <TextField name={item.name} />
             )}
           </Grid>
-        </Fragment>
+        </React.Fragment>
       ))}
     </Grid>
   )
