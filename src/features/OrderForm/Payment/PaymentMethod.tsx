@@ -4,7 +4,6 @@ import { grey } from "@material-ui/core/colors"
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 import TextField from "../TextField"
-import RequiredTextLabel from "../RequiredTextLabel"
 import PaymentMethodRadioGroup from "./PaymentMethodRadioGroup"
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -28,7 +27,7 @@ const PaymentMethod = () => {
 
   return (
     <Box mt={1} mb={2} p={2}>
-      <RequiredTextLabel title="Payment Account" variant="h3" />
+      <Typography variant="h3">Payment Account:</Typography>
       <Box mt={1} />
       <PaymentMethodRadioGroup
         setPurchaseOrderNum={setPurchaseOrderNum}
