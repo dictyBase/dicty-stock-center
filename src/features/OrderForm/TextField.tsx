@@ -1,8 +1,18 @@
 import React from "react"
-import { useField } from "formik"
+import { useField, FieldAttributes } from "formik"
 import MuiTextField, {
   TextFieldProps as MuiTextFieldProps,
 } from "@material-ui/core/TextField"
+
+type Props = {
+  /** Margin for MUI TextField */
+  margin?: string
+  /** Variant for MUI TextField */
+  variant?: string
+  /** fullWidth for MUI TextField */
+  fullWidth?: boolean
+} & FieldAttributes<{}> &
+  MuiTextFieldProps
 
 /**
  * TextField is a wrapper component that puts all Formik and MUI props
@@ -13,8 +23,8 @@ const TextField = ({
   variant = "outlined",
   fullWidth = true,
   ...props
-}: MuiTextFieldProps) => {
-  const [field, meta] = useField(props as any)
+}: Props) => {
+  const [field, meta] = useField<{}>(props)
 
   return (
     <MuiTextField
