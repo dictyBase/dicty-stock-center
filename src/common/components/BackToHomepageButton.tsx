@@ -15,10 +15,10 @@ const useStyles = makeStyles(({ palette }) => ({
 }))
 
 /**
- * BackToHomePageButton is a simple button that links back to the homepage.
+ * BackToHomepageButton is a simple button that links back to the homepage.
  */
 
-const BackToHomePageButton = () => {
+const BackToHomepageButton = () => {
   const classes = useStyles()
 
   return (
@@ -29,9 +29,9 @@ const BackToHomePageButton = () => {
       size="small"
       variant="contained"
       color="primary">
-      Back to Homepage
+      Back to DSC Homepage
     </Button>
   )
 }
 
-export default BackToHomePageButton
+export default BackToHomepageButton
