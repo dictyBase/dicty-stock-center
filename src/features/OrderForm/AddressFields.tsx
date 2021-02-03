@@ -1,7 +1,6 @@
 import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
 import TextField from "./TextField"
 import CountryDropdown from "./CountryDropdown"
 
@@ -45,11 +44,6 @@ const AddressFields = ({ fields, countryName }: Props) => {
       {fields.map((item, index) => (
         <React.Fragment key={index}>
           <Grid item xs={12} md={3}>
-            {item.required && (
-              <Typography component="span" color="error">
-                *
-              </Typography>
-            )}{" "}
             {item.field}:
           </Grid>
           <Grid item xs={12} md={8}>
