@@ -19,9 +19,7 @@ const validationSchema = Yup.object().shape({
   payerZip: Yup.number().required("* Zip code is required"),
   payerCountry: Yup.string().required("* Country is required"),
   payerPhone: Yup.string().required("* Phone number is required"),
-  purchaseOrderNum: Yup.string().required(
-    "* Purchase order number is required",
-  ),
+  purchaseOrderNum: Yup.string().required("* Payment method is required"),
 })
 
 const paymentAddressFields = [
