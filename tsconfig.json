@@ -19,8 +19,7 @@
     "target": "es5",
     "noEmit": true,
     "downlevelIteration": true,
-    "noFallthroughCasesInSwitch": true,
-    "types": ["cypress", "@testing-library/cypress"]
+    "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules"],
   "include": ["src"]
