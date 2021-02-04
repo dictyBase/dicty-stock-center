@@ -1,4 +1,5 @@
 import "@percy/cypress"
+import "@testing-library/cypress/add-commands"
 
 Cypress.Commands.add("login", (overrides = {}) => {
   Cypress.log({
