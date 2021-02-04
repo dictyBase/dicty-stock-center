@@ -10,13 +10,31 @@ import App from "app/layout/App"
 import "common/utils/icons" // fontawesome library
 import "fontsource-roboto"
 
-// AuthProvider needs to be outermost so ApolloProvider can access its token
-ReactDOM.render(
-  <AuthProvider>
-    <AppProviders>
-      <CssBaseline />
-      <App />
-    </AppProviders>
-  </AuthProvider>,
-  document.getElementById("root"),
-)
+async function main() {
+  if (process.env.NODE_ENV === "development") {
+    if (window.location.pathname === "/stockcenter") {
+      window.location.pathname = "/stockcenter/"
+      return
+    }
+
+    const { worker } = require("./mocks/browser")
+    await worker.start({
+      serviceWorker: {
+        url: "/stockcenter/mockServiceWorker.js",
+      },
+    })
+  }
+
+  // AuthProvider needs to be outermost so ApolloProvider can access its token
+  ReactDOM.render(
+    <AuthProvider>
+      <AppProviders>
+        <CssBaseline />
+        <App />
+      </AppProviders>
+    </AuthProvider>,
+    document.getElementById("root"),
+  )
+}
+
+main()
