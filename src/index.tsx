@@ -10,6 +10,9 @@ import App from "app/layout/App"
 import "common/utils/icons" // fontawesome library
 import "fontsource-roboto"
 
+// need to reconfigure homepage path in order to initiate mock service
+// worker used for testing purposes
+// https://mswjs.io/docs/getting-started/integrate/browser
 async function main() {
   if (process.env.NODE_ENV === "development") {
     if (window.location.pathname === "/stockcenter") {
