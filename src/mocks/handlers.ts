@@ -1,4 +1,4 @@
-import { graphql, context } from "msw"
+import { graphql } from "msw"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
 
