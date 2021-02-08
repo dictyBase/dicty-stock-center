@@ -1,4 +1,14 @@
 import { graphql } from "msw"
+import {
+  firstTenStrainCatalogItems,
+  nextTenStrainCatalogItems,
+  lastFiveStrainCatalogItems,
+} from "./mockStrainLists"
+import {
+  firstTenPlasmidCatalogItems,
+  nextTenPlasmidCatalogItems,
+  lastFivePlasmidCatalogItems,
+} from "./mockPlasmidLists"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
 
@@ -16,6 +26,54 @@ export const handlers = [
         },
       }),
     )
+  }),
+  graphql.query("StrainList", (req, res, ctx) => {
+    const cursor = req.body?.variables.cursor
+    if (cursor === 0) {
+      return res(
+        ctx.data({
+          listStrains: firstTenStrainCatalogItems,
+        }),
+      )
+    }
+    if (cursor === firstTenStrainCatalogItems.nextCursor) {
+      return res(
+        ctx.data({
+          listStrains: nextTenStrainCatalogItems,
+        }),
+      )
+    }
+    if (cursor === nextTenStrainCatalogItems.nextCursor) {
+      return res(
+        ctx.data({
+          listStrains: lastFiveStrainCatalogItems,
+        }),
+      )
+    }
+  }),
+  graphql.query("PlasmidListFilter", (req, res, ctx) => {
+    const cursor = req.body?.variables.cursor
+    if (cursor === 0) {
+      return res(
+        ctx.data({
+          listPlasmids: firstTenPlasmidCatalogItems,
+        }),
+      )
+    }
+    if (cursor === firstTenPlasmidCatalogItems.nextCursor) {
+      return res(
+        ctx.data({
+          listPlasmids: nextTenPlasmidCatalogItems,
+        }),
+      )
+    }
+    if (cursor === nextTenPlasmidCatalogItems.nextCursor) {
+      return res(
+        ctx.data({
+          listPlasmids: lastFivePlasmidCatalogItems,
+        }),
+      )
+    }
   }),
   graphql.query("GetRefreshToken", (req, res, ctx) => {
     if (!req.body?.variables.token) {
