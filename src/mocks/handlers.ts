@@ -3,14 +3,22 @@ import {
   firstTenStrainCatalogItems,
   nextTenStrainCatalogItems,
   lastFiveStrainCatalogItems,
+  mockBacterialStrains,
 } from "./mockStrainLists"
 import {
   firstTenPlasmidCatalogItems,
   nextTenPlasmidCatalogItems,
   lastFivePlasmidCatalogItems,
 } from "./mockPlasmidLists"
+import {
+  availableStrain,
+  unavailableStrain,
+  strainWithPhenotype,
+  gwdiData,
+} from "./mockStrain"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
+import { availablePlasmid } from "features/Stocks/Details/Plasmids/mockPlasmidData"
 
 export const handlers = [
   graphql.query("StockList", (req, res, ctx) => {
@@ -51,6 +59,9 @@ export const handlers = [
       )
     }
   }),
+  graphql.query("ListBacterialStrains", (req, res, ctx) => {
+    return res(ctx.data(mockBacterialStrains))
+  }),
   graphql.query("PlasmidListFilter", (req, res, ctx) => {
     const cursor = req.body?.variables.cursor
     if (cursor === 0) {
@@ -71,6 +82,47 @@ export const handlers = [
       return res(
         ctx.data({
           listPlasmids: lastFivePlasmidCatalogItems,
+        }),
+      )
+    }
+  }),
+  graphql.query("Strain", (req, res, ctx) => {
+    const id = req.body?.variables.id
+    if (id === availableStrain.id) {
+      return res(
+        ctx.data({
+          strain: availableStrain,
+        }),
+      )
+    }
+    if (id === unavailableStrain.id) {
+      return res(
+        ctx.data({
+          strain: unavailableStrain,
+        }),
+      )
+    }
+    if (id === strainWithPhenotype.id) {
+      return res(
+        ctx.data({
+          strain: strainWithPhenotype,
+        }),
+      )
+    }
+    if (id === gwdiData.id) {
+      return res(
+        ctx.data({
+          strain: gwdiData,
+        }),
+      )
+    }
+  }),
+  graphql.query("Plasmid", (req, res, ctx) => {
+    const id = req.body?.variables.id
+    if (id === availablePlasmid.id) {
+      return res(
+        ctx.data({
+          plasmid: availablePlasmid,
         }),
       )
     }
