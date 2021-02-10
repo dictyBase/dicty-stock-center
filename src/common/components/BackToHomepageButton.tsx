@@ -5,11 +5,8 @@ import Button from "@material-ui/core/Button"
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
-    color: palette.getContrastText(palette.primary.main),
-    backgroundColor: palette.primary.main,
     "&:hover": {
       color: palette.getContrastText(palette.primary.main),
-      backgroundColor: palette.primary.dark,
     },
   },
 }))
@@ -26,7 +23,7 @@ const BackToHomepageButton = () => {
       classes={{ root: classes.root }}
       component={Link}
       to="/"
-      size="small"
+      size="medium"
       variant="contained"
       color="primary">
       Back to DSC Homepage
