@@ -83,7 +83,7 @@ const strainRowsGenerator = (
   {
     id: 11,
     title: "Depositor",
-    content: data.depositor,
+    content: `${data.depositor.first_name} ${data.depositor.last_name}`,
   },
   { id: 12, title: "Species", content: data.species },
   {
