@@ -3,6 +3,7 @@ import ServerError from "./ServerError"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
 import { ApolloError } from "@apollo/client"
+import { capitalizeFirstCharacter } from "common/utils/stringCapitalizations"
 
 type Props = {
   /** GraphQL error object */
@@ -15,41 +16,35 @@ type Props = {
  */
 
 const GraphQLErrorPage = ({ error }: Props) => {
-  if (!error || !error.message) return null
-
   if (error.networkError) {
     console.error(error.networkError)
     return <ServerError />
   }
+  let errorCode, errorMsg, content
 
-  let errorCode, errorMsg
-
-  if (error.graphQLErrors && error.graphQLErrors[0].extensions) {
+  if (error.graphQLErrors[0].extensions) {
     errorCode = error.graphQLErrors[0].extensions.code
     errorMsg = error.graphQLErrors[0].message
+    console.error(`
+     error: ${errorMsg}
+     code: ${errorCode}
+    `)
   }
 
-  const printError = `
-  error: ${errorMsg}
-  code: ${errorCode}
-  `
-
-  if (errorCode === "Unavailable") {
-    console.error(printError)
-    return <ServerError />
+  switch (errorCode) {
+    case "Unavailable":
+      content = <ServerError />
+      break
+    case "NotFound":
+      if (errorMsg) {
+        content = <NotFoundError error={capitalizeFirstCharacter(errorMsg)} />
+      }
+      break
+    default:
+      content = <OtherError />
   }
 
-  if (errorCode === "NotFound" && errorMsg) {
-    console.error(printError)
-    return (
-      <NotFoundError
-        error={errorMsg.charAt(0).toUpperCase() + errorMsg.slice(1)}
-      />
-    )
-  }
-
-  console.error(printError)
-  return <OtherError />
+  return content || null
 }
 
 GraphQLErrorPage.defaultProps = {
