@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   error400: {
     backgroundColor: "#eff8fb",
     textAlign: "center",
@@ -10,20 +10,16 @@ const useStyles = makeStyles(({ palette }) => ({
     borderRadius: 5,
   },
   error500: {
-    backgroundColor: palette.error.dark,
-    textAlign: "center",
-    paddingTop: 40,
-    paddingBottom: 40,
-    marginBottom: 30,
+    backgroundColor: theme.palette.error.dark,
+    // textAlign: "center",
+    padding: theme.spacing(3),
+    marginBottom: theme.spacing(3),
     borderRadius: 5,
-    color: "#e3e3e3",
-  },
-  link500: {
-    color: "#e0e0e0",
-    textDecoration: "none",
+    color: theme.palette.getContrastText(theme.palette.error.dark),
+    minHeight: "300px",
   },
   mainGrid: {
-    marginTop: "40px",
+    marginTop: theme.spacing(3),
   },
   paragraph: {
     padding: "10px",

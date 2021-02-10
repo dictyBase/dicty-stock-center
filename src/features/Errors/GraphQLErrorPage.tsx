@@ -1,4 +1,5 @@
 import React from "react"
+import Box from "@material-ui/core/Box"
 import ServerError from "./ServerError"
 import NotFoundError from "./NotFoundError"
 import OtherError from "./OtherError"
