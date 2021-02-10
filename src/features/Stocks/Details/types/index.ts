@@ -23,7 +23,10 @@ type StrainDetails = {
     id: string
     label: string
   }
-  depositor: string
+  depositor: {
+    first_name: string
+    last_name: string
+  }
   plasmid: string
   publications: Array<Publication>
   dbxrefs: Array<string>
@@ -43,7 +46,10 @@ type PlasmidDetails = {
   id: string
   name: string
   summary: string
-  depositor: string
+  depositor: {
+    first_name: string
+    last_name: string
+  }
   publications: Array<Publication>
   dbxrefs: Array<string>
   genes: Array<{

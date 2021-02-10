@@ -39,7 +39,7 @@ const plasmidRowGenerator = (
   {
     id: 3,
     title: "Depositor",
-    content: data.depositor,
+    content: `${data.depositor.first_name} ${data.depositor.last_name}`,
   },
   {
     id: 4,
