@@ -36,7 +36,7 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
       const type = CatalogActionType.SET_QUERY_VARIABLES
       const payload = {
         cursor: 0,
-        filter: "label~=GWDI",
+        filter: "name@=~GWDI",
         limit: 10,
       }
       const expectedState = {
