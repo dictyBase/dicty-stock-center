@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import StrainDetailsContainer from "./StrainDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries/stocks/details"
-import { strainWithPhenotype } from "./mockStrainData"
+import { strainWithPhenotype } from "mocks/mockStrain"
 
 const mockID = "DBS0350966"
 
@@ -29,11 +29,7 @@ describe("features/Stocks/Strains/StrainDetailsContainer", () => {
           query: GET_STRAIN,
           variables: { id: mockID },
         },
-        result: {
-          data: {
-            strain: strainWithPhenotype,
-          },
-        },
+        result: strainWithPhenotype,
       },
     ]
 
