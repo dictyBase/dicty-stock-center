@@ -86,21 +86,18 @@ describe("features/Errors/GraphQLErrorPage", () => {
     },
   }
   describe("error handling", () => {
+    const serverErrMsg = "We seem to be having server issues."
     it("renders correct component for network errors", () => {
       render(<GraphQLErrorPage {...networkErrProps} />, {
         wrapper: BrowserRouter,
       })
-      expect(
-        screen.getByText(/Sorry! There was a server error./),
-      ).toBeInTheDocument()
+      expect(screen.getByText(serverErrMsg)).toBeInTheDocument()
     })
     it("renders correct component for unavailable errors", () => {
       render(<GraphQLErrorPage {...unavailableErrProps} />, {
         wrapper: BrowserRouter,
       })
-      expect(
-        screen.getByText(/Sorry! There was a server error./),
-      ).toBeInTheDocument()
+      expect(screen.getByText(serverErrMsg)).toBeInTheDocument()
     })
     it("renders correct component for not found errors", () => {
       render(<GraphQLErrorPage {...notFoundErrProps} />, {
