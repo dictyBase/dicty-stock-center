@@ -17,7 +17,10 @@ const availableStrain = {
     id: "DBS0350762",
     label: "AX2",
   },
-  depositor: "Adrian Harwood",
+  depositor: {
+    first_name: "Adrian",
+    last_name: "Harwood",
+  },
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11084033"],
   publications: [
@@ -67,7 +70,10 @@ const unavailableStrain = {
     id: "DBS0350762",
     label: "AX2",
   },
-  depositor: "Adrian Harwood",
+  depositor: {
+    first_name: "Adrian",
+    last_name: "Harwood",
+  },
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11130075"],
   publications: [
@@ -118,7 +124,10 @@ const strainWithPhenotype = {
   dbxrefs: ["29704004"],
   genes: [{ name: "spaA" }],
   publications: [],
-  depositor: "Yoko Yamada (Pauline Schaap)",
+  depositor: {
+    first_name: "Yoko",
+    last_name: "Yamada",
+  },
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Homologous Recombination",
   phenotypes: [
@@ -176,7 +185,10 @@ const gwdiData = {
   plasmid: "Blasticidin S resistance cassette",
   genes: [{ name: "gxcAA" }],
   dbxrefs: [],
-  depositor: "Amy Baldwin (Hardwood and Thompson labs)",
+  depositor: {
+    first_name: "Amy",
+    last_name: "Baldwin",
+  },
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Restriction Enzyme-Mediated Integration",
   phenotypes: [],
