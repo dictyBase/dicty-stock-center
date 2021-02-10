@@ -24,7 +24,7 @@ const StrainDetailsContainer = () => {
   const { id } = useParams<Params>()
   const { loading, error, data } = useQuery(GET_STRAIN, {
     variables: { id },
-    errorPolicy: "all",
+    errorPolicy: "ignore",
   })
 
   if (loading) return <DetailsLoader />
