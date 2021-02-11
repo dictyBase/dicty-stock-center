@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
@@ -145,7 +146,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
   )
 
   return (
-    <Grid item xs={12} className={classes.header}>
+    <Box textAlign="center" mb={3}>
       {data.phenotypes.length > 0 && header}
       <Card raised>
         <Grid container>
@@ -170,7 +171,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
           </List>
         </Grid>
       </Card>
-    </Grid>
+    </Box>
   )
 }
 

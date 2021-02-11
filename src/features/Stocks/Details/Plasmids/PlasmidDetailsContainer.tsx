@@ -2,7 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import PlasmidDetailsCard from "./PlasmidDetailsCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
@@ -32,7 +32,7 @@ const PlasmidDetailsContainer = () => {
   const title = `Plasmid Details for ${data.plasmid.name}`
 
   return (
-    <Grid container spacing={2}>
+    <Box textAlign="center">
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta
@@ -42,7 +42,7 @@ const PlasmidDetailsContainer = () => {
       </Helmet>
       <DetailsHeader id={data.plasmid.id} name={data.plasmid.name} />
       <PlasmidDetailsCard data={data.plasmid} />
-    </Grid>
+    </Box>
   )
 }
 

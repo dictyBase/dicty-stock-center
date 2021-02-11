@@ -2,7 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import StrainDetailsCard from "./StrainDetailsCard"
@@ -37,7 +37,7 @@ const StrainDetailsContainer = () => {
   }
 
   return (
-    <Grid container spacing={2} justify="center">
+    <Box textAlign="center">
       <Helmet>
         <title>{title} - Dicty Stock Center</title>
         <meta
@@ -47,7 +47,7 @@ const StrainDetailsContainer = () => {
       </Helmet>
       <DetailsHeader id={data.strain.id} name={data.strain.label} />
       <StrainDetailsCard data={data.strain} />
-    </Grid>
+    </Box>
   )
 }
 
