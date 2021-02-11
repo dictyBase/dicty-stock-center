@@ -1,4 +1,5 @@
 import React from "react"
+import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
@@ -70,8 +71,11 @@ const plasmidRowGenerator = (
 ]
 
 type Row = {
+  /** Data object ID */
   id: number
+  /** Title for row */
   title: string
+  /** Content to display in row */
   content: string | JSX.Element
 }
 
@@ -104,7 +108,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
   }
 
   return (
-    <Grid item xs={12} className={classes.header}>
+    <Box textAlign="center" mb={3}>
       <Card raised>
         <Grid container>
           <List className={classes.list}>
@@ -130,7 +134,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
           </List>
         </Grid>
       </Card>
-    </Grid>
+    </Box>
   )
 }
 

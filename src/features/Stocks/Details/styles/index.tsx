@@ -1,10 +1,7 @@
 import { makeStyles, Theme } from "@material-ui/core/styles"
 
 // @ts-ignore <-- necessary to include the !important attributes
-const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
-  header: {
-    textAlign: "center",
-  },
+const useStyles = makeStyles((theme: Theme) => ({
   cardHeader: {
     color: "#002f5e",
     paddingRight: "8px",
@@ -42,7 +39,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     fontWeight: 420,
   },
   error: {
-    color: palette.error.main,
+    color: theme.palette.error.main,
   },
 }))
 
