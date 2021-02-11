@@ -58,6 +58,11 @@ describe("features/Stocks/Plasmids/PlasmidDetailsContainer", () => {
         name: availablePlasmid.data.name,
       })
       expect(strain).toBeInTheDocument()
+      // shows depositor
+      const { depositor } = availablePlasmid.data
+      expect(
+        screen.getByText(`${depositor.first_name} ${depositor.last_name}`),
+      ).toBeInTheDocument()
     })
   })
 })
