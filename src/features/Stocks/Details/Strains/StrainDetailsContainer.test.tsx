@@ -58,6 +58,11 @@ describe("features/Stocks/Strains/StrainDetailsContainer", () => {
         name: strainWithPhenotype.label,
       })
       expect(strain).toBeInTheDocument()
+      // shows depositor
+      const { depositor } = strainWithPhenotype
+      expect(
+        screen.getByText(`${depositor.first_name} ${depositor.last_name}`),
+      ).toBeInTheDocument()
     })
   })
 })
