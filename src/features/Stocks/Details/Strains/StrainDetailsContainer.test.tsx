@@ -29,7 +29,11 @@ describe("features/Stocks/Strains/StrainDetailsContainer", () => {
           query: GET_STRAIN,
           variables: { id: mockID },
         },
-        result: strainWithPhenotype,
+        result: {
+          data: {
+            strain: strainWithPhenotype,
+          },
+        },
       },
     ]
 

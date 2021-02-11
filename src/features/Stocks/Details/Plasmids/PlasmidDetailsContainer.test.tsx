@@ -29,7 +29,11 @@ describe("features/Stocks/Plasmids/PlasmidDetailsContainer", () => {
           query: GET_PLASMID,
           variables: { id: mockID },
         },
-        result: availablePlasmid,
+        result: {
+          data: {
+            plasmid: availablePlasmid.data,
+          },
+        },
       },
     ]
 
