@@ -6,33 +6,31 @@ import characterConverter from "common/utils/characterConverter"
 import useStyles from "../styles"
 
 type Props = {
-  data: {
-    /** Type of content to display (i.e. Strain Descriptor, Genotypes, etc.) */
-    title: string
-    /** The actual data for that field */
-    content: any
-  }
+  /** Type of content to display (i.e. Strain Descriptor, Genotypes, etc.) */
+  title: string
+  /** The actual data for that field */
+  content: string | JSX.Element
 }
 
-const DetailsListItem = ({ data }: Props) => {
+const DetailsListItem = ({ title, content }: Props) => {
   const classes = useStyles()
 
-  let content = data.content
-  if (typeof content === "string") {
+  let display = content
+  if (typeof display === "string") {
     // convert any html entities
-    content = characterConverter(content)
+    display = characterConverter(display)
   }
 
   return (
     <ListItem className={classes.details} divider>
       <Grid item xs={12} sm={3} className={classes.listItem}>
         <Typography variant="body2" className={classes.detailsItem}>
-          {data.title}
+          {title}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Typography component={"span"} variant="body1">
-          {content}
+          {display}
         </Typography>
       </Grid>
     </ListItem>
