@@ -17,6 +17,7 @@ import {
 
 const plasmidRowGenerator = (
   data: PlasmidDetails,
+  depositor: string,
   imageMap: any,
   publications: JSX.Element,
   genes: JSX.Element,
@@ -39,7 +40,7 @@ const plasmidRowGenerator = (
   {
     id: 3,
     title: "Depositor",
-    content: `${data.depositor.first_name} ${data.depositor.last_name}`,
+    content: depositor,
   },
   {
     id: 4,
@@ -68,6 +69,12 @@ const plasmidRowGenerator = (
   },
 ]
 
+type Row = {
+  id: number
+  title: string
+  content: string | JSX.Element
+}
+
 const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
   const classes = useStyles()
 
@@ -77,8 +84,13 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
     ""
   )
 
+  const depositor = data.depositor
+    ? `${data.depositor.first_name} ${data.depositor.last_name}`
+    : ""
+
   const rows = plasmidRowGenerator(
     data,
+    depositor,
     imageMap,
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
@@ -108,8 +120,12 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
                 </Grid>
               </Grid>
             </ListItem>
-            {rows.map((data) => (
-              <DetailsListItem data={data} key={data.id} />
+            {rows.map((data: Row) => (
+              <DetailsListItem
+                title={data.title}
+                content={data.content}
+                key={data.id}
+              />
             ))}
           </List>
         </Grid>

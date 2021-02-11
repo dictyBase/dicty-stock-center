@@ -21,6 +21,7 @@ import {
 const strainRowsGenerator = (
   data: StrainDetails,
   parent: string | JSX.Element,
+  depositor: string,
   publications: JSX.Element,
   genes: JSX.Element,
   genotypes: JSX.Element,
@@ -80,18 +81,24 @@ const strainRowsGenerator = (
     title: "Genotypes",
     content: genotypes,
   },
+  { id: 11, title: "Species", content: data.species },
   {
-    id: 11,
+    id: 12,
     title: "Depositor",
-    content: `${data.depositor.first_name} ${data.depositor.last_name}`,
+    content: depositor,
   },
-  { id: 12, title: "Species", content: data.species },
   {
     id: 13,
     title: "Reference(s)",
     content: publications,
   },
 ]
+
+type Row = {
+  id: number
+  title: string
+  content: string | JSX.Element
+}
 
 const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
   const classes = useStyles()
@@ -107,9 +114,14 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     ""
   )
 
+  const depositor = data.depositor
+    ? `${data.depositor.first_name} ${data.depositor.last_name}`
+    : ""
+
   const rows = strainRowsGenerator(
     data,
     parent,
+    depositor,
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
     <GenotypesDisplay genotypes={data.genotypes[0]} />,
@@ -144,8 +156,12 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
               </ListItem>
             )}
             <TabPanel value={tabValue} index={0}>
-              {rows.map((data: any) => (
-                <DetailsListItem data={data} key={data.id} />
+              {rows.map((data: Row) => (
+                <DetailsListItem
+                  title={data.title}
+                  content={data.content}
+                  key={data.id}
+                />
               ))}
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
