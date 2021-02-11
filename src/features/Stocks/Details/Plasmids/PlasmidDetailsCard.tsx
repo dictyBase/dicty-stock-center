@@ -9,6 +9,7 @@ import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import Availability from "features/Stocks/Details/common/Availability"
+import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
 import useStyles from "features/Stocks/Details/styles"
 import {
@@ -80,13 +81,9 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
     ""
   )
 
-  const depositor = data.depositor
-    ? `${data.depositor.first_name} ${data.depositor.last_name}`
-    : ""
-
   const rows = plasmidRowGenerator(
     data,
-    depositor,
+    getDepositorName(data.depositor),
     imageMap,
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,

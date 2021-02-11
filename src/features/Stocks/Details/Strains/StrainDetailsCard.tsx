@@ -13,6 +13,7 @@ import TabPanel from "common/components/TabPanel"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
+import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
 import {
   StrainDetails,
@@ -110,14 +111,10 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     ""
   )
 
-  const depositor = data.depositor
-    ? `${data.depositor.first_name} ${data.depositor.last_name}`
-    : ""
-
   const rows = strainRowsGenerator(
     data,
     parent,
-    depositor,
+    getDepositorName(data.depositor),
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
     <GenotypesDisplay genotypes={data.genotypes[0]} />,
