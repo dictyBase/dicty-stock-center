@@ -92,6 +92,15 @@ type Publication = {
   }>
 }
 
+type DetailsRow = {
+  /** Data object ID */
+  id: number
+  /** Title for row */
+  title: string
+  /** Content to display in row */
+  content: string | JSX.Element
+}
+
 export type {
   PhenotypeData,
   StrainDetails,
@@ -101,4 +110,5 @@ export type {
   PhenotypeProps,
   StrainWithPhenotype,
   Publication,
+  DetailsRow,
 }

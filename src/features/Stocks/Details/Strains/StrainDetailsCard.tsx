@@ -17,6 +17,7 @@ import { fees } from "common/constants/fees"
 import {
   StrainDetails,
   StrainDetailsProps,
+  DetailsRow,
 } from "features/Stocks/Details/types"
 
 const strainRowsGenerator = (
@@ -95,15 +96,6 @@ const strainRowsGenerator = (
   },
 ]
 
-type Row = {
-  /** Data object ID */
-  id: number
-  /** Title for row */
-  title: string
-  /** Content to display in row */
-  content: string | JSX.Element
-}
-
 const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
   const classes = useStyles()
   const [tabValue, setTabValue] = React.useState(0)
@@ -160,7 +152,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
               </ListItem>
             )}
             <TabPanel value={tabValue} index={0}>
-              {rows.map((data: Row) => (
+              {rows.map((data: DetailsRow) => (
                 <DetailsListItem
                   title={data.title}
                   content={data.content}
