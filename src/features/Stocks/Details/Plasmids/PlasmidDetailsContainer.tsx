@@ -23,6 +23,7 @@ const PlasmidDetailsContainer = () => {
   const { id } = useParams<Params>()
   const { loading, error, data } = useQuery(GET_PLASMID, {
     variables: { id },
+    errorPolicy: "ignore",
   })
 
   if (loading) return <DetailsLoader />
