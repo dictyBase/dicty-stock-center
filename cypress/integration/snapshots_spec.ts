@@ -41,11 +41,11 @@ describe("DSC snapshots", () => {
       widths: screenWidths,
     })
   })
-  it("visits a phenotype search results page", () => {
-    cy.visit("/phenotypes/abolished+protein+phosphorylation")
-    cy.contains("gskA-")
-    cy.percySnapshot("phenotype search results", {
-      widths: screenWidths,
-    })
-  })
+  // it("visits a phenotype search results page", () => {
+  //   cy.visit("/phenotypes/abolished+protein+phosphorylation")
+  //   cy.contains("gskA-")
+  //   cy.percySnapshot("phenotype search results", {
+  //     widths: screenWidths,
+  //   })
+  // })
 })
