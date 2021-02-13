@@ -97,7 +97,7 @@
     "react-docgen-typescript": "^1.21.0",
     "react-styleguidist": "^11.1.5",
     "react-test-renderer": "^16.13.1",
-    "semantic-release": "^17.3.7",
+    "semantic-release": "^17.3.9",
     "source-map-explorer": "^2.5.1",
     "start-server-and-test": "^1.11.7"
   },
