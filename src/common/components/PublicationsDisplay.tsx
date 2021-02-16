@@ -1,11 +1,14 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
+import Typography from "@material-ui/core/Typography"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Publication } from "features/Stocks/Details/types"
 
 const useStyles = makeStyles({
-  bold: {
-    fontWeight: 700,
+  authors: {
+    color: grey[800],
+    fontWeight: 600,
   },
 })
 
@@ -50,15 +53,18 @@ const PublicationsDisplay = ({ publications }: Props) => {
   return (
     <React.Fragment>
       {publications.map((pub, index) => (
-        <span data-testid="publication-display" key={index}>
-          <span className={classes.bold}>
+        <Typography
+          component="span"
+          data-testid="publication-display"
+          key={index}>
+          <Typography component="span" className={classes.authors}>
             {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
-          </span>{" "}
+          </Typography>{" "}
           '{pub.title}' <em>{pub.journal}</em> {pub.volume}:{pub.pages}{" "}
           <a href={getPubLink(pub.id, pub.doi)} title="Visit publication page">
             <FontAwesomeIcon icon="external-link-alt" size="sm" />
           </a>
-        </span>
+        </Typography>
       ))}
     </React.Fragment>
   )
