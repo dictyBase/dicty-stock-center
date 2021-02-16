@@ -32,6 +32,7 @@ const availableStrain = {
       journal: "The Journal of biological chemistry",
       volume: "276",
       pages: "5235-5239",
+      doi: "10.1074/jbc.m008319200",
       authors: [
         {
           last_name: "Gliksman",
@@ -85,6 +86,7 @@ const unavailableStrain = {
       journal: "The Journal of biological chemistry",
       volume: "276",
       pages: "5235-5239",
+      doi: "10.1074/jbc.m008319200",
       authors: [
         {
           last_name: "Gliksman",
@@ -145,6 +147,7 @@ const strainWithPhenotype = {
         journal: "The Journal of biological chemistry",
         volume: "276",
         pages: "5235-5239",
+        doi: "10.1074/jbc.m008319200",
         authors: [
           {
             last_name: "Gliksman",
