@@ -79,5 +79,5 @@ const PublicationsDisplay = ({ publications }: Props) => {
   )
 }
 
-export { listAuthors, getYearFromTimestamp }
+export { listAuthors, getYearFromTimestamp, getPubLink, getJournalInfo }
 export default PublicationsDisplay
