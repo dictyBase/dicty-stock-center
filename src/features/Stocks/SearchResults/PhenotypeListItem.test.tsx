@@ -19,6 +19,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
             journal: "Eukaryotic cell",
             volume: "9",
             pages: "344-349",
+            doi: "10.1128/ec.00242-09",
             authors: [
               {
                 last_name: "Franklin",
@@ -70,7 +71,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
           <PhenotypeListItem {...props} />
         </BrowserRouter>,
       )
-      const pubDisplay = screen.queryByTestId("phenotype-publication-display")
+      const pubDisplay = screen.queryByTestId("publication-display")
       expect(pubDisplay).toBeFalsy()
     })
   })

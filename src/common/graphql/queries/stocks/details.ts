@@ -58,6 +58,7 @@ const GET_STRAIN = gql`
         journal
         volume
         pages
+        doi
         authors {
           last_name
         }

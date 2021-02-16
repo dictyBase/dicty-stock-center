@@ -87,6 +87,7 @@ type Publication = {
   journal: string
   volume: string
   pages: string
+  doi: string
   authors: Array<{
     last_name: string
   }>
