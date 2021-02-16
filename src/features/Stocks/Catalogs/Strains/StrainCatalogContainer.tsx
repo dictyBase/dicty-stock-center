@@ -105,7 +105,7 @@ const dispatchStrainList = (
     payload: GET_STRAIN_LIST,
   })
   if (filter === "gwdi") {
-    gqlFilter = "label=~gwdi"
+    gqlFilter = "name@=~GWDI"
   }
   dispatch({
     type: CatalogActionType.SET_QUERY_VARIABLES,

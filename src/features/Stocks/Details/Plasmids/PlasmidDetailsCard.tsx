@@ -1,4 +1,5 @@
 import React from "react"
+import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
@@ -8,15 +9,18 @@ import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import Availability from "features/Stocks/Details/common/Availability"
+import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
 import useStyles from "features/Stocks/Details/styles"
 import {
   PlasmidDetails,
   PlasmidDetailsProps,
+  DetailsRow,
 } from "features/Stocks/Details/types"
 
 const plasmidRowGenerator = (
   data: PlasmidDetails,
+  depositor: string,
   imageMap: any,
   publications: JSX.Element,
   genes: JSX.Element,
@@ -39,7 +43,7 @@ const plasmidRowGenerator = (
   {
     id: 3,
     title: "Depositor",
-    content: data.depositor,
+    content: depositor,
   },
   {
     id: 4,
@@ -79,6 +83,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
 
   const rows = plasmidRowGenerator(
     data,
+    getDepositorName(data.depositor),
     imageMap,
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
@@ -92,7 +97,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
   }
 
   return (
-    <Grid item xs={12} className={classes.header}>
+    <Box textAlign="center" mb={3}>
       <Card raised>
         <Grid container>
           <List className={classes.list}>
@@ -108,13 +113,17 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
                 </Grid>
               </Grid>
             </ListItem>
-            {rows.map((data) => (
-              <DetailsListItem data={data} key={data.id} />
+            {rows.map((data: DetailsRow) => (
+              <DetailsListItem
+                title={data.title}
+                content={data.content}
+                key={data.id}
+              />
             ))}
           </List>
         </Grid>
       </Card>
-    </Grid>
+    </Box>
   )
 }
 

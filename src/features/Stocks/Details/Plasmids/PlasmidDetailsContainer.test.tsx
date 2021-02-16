@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import PlasmidDetailsContainer from "./PlasmidDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_PLASMID } from "common/graphql/queries/stocks/details"
-import { availablePlasmid } from "./mockPlasmidData"
+import { availablePlasmid } from "mocks/mockPlasmid"
 
 const mockID = "DBP0236123"
 
@@ -31,7 +31,7 @@ describe("features/Stocks/Plasmids/PlasmidDetailsContainer", () => {
         },
         result: {
           data: {
-            plasmid: availablePlasmid,
+            plasmid: availablePlasmid.data,
           },
         },
       },
@@ -55,9 +55,14 @@ describe("features/Stocks/Plasmids/PlasmidDetailsContainer", () => {
       expect(screen.getByTestId("skeleton-loader")).toBeInTheDocument()
       // wait for data to load...
       const strain = await screen.findByRole("heading", {
-        name: availablePlasmid.name,
+        name: availablePlasmid.data.name,
       })
       expect(strain).toBeInTheDocument()
+      // shows depositor
+      const { depositor } = availablePlasmid.data
+      expect(
+        screen.getByText(`${depositor.first_name} ${depositor.last_name}`),
+      ).toBeInTheDocument()
     })
   })
 })

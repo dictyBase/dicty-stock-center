@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react"
 import PublicationsDisplay, {
   listAuthors,
   getYearFromTimestamp,
+  getPubLink,
+  getJournalInfo,
 } from "./PublicationsDisplay"
 
 describe("common/components/PublicationDisplay", () => {
@@ -17,6 +19,7 @@ describe("common/components/PublicationDisplay", () => {
           journal: "Eukaryotic cell",
           volume: "9",
           pages: "344-349",
+          doi: "10.1128/ec.00242-09",
           authors: [
             {
               last_name: "Franklin",
@@ -42,7 +45,7 @@ describe("common/components/PublicationDisplay", () => {
     })
     it("should match expected reference format", () => {
       render(<PublicationsDisplay {...props} />)
-      const pubDisplay = screen.getByTestId("phenotype-publication-display")
+      const pubDisplay = screen.getByTestId("publication-display")
       expect(pubDisplay).toHaveTextContent(
         "Franklin, Hyatt, Chowdhury & Steimle (2009) 'WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.' Eukaryotic cell 9:344-349",
       )
@@ -88,5 +91,25 @@ describe("listAuthors", () => {
 describe("getYearFromTimestamp", () => {
   it("should extract year from timestamp", () => {
     expect(getYearFromTimestamp("2004-06-11T00:00:00.000Z")).toBe(2004)
+  })
+})
+
+describe("getPubLink", () => {
+  it("should return doi link", () => {
+    expect(getPubLink("", "10.1074/jbc.m008319200")).toEqual(
+      "https://doi.org/10.1074/jbc.m008319200",
+    )
+    expect(getPubLink("11084033", "10.1074/jbc.m008319200")).toEqual(
+      "/publication/11084033",
+    )
+  })
+})
+
+describe("getJournalInfo", () => {
+  it("should return empty string", () => {
+    expect(getJournalInfo("", "")).toBeFalsy()
+  })
+  it("should return volume and pages", () => {
+    expect(getJournalInfo("276", "5235-5239")).toEqual("276:5235-5239")
   })
 })

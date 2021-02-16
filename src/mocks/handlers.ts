@@ -1,8 +1,8 @@
 import { graphql } from "msw"
 import {
-  firstTenStrainCatalogItems,
-  nextTenStrainCatalogItems,
-  lastFiveStrainCatalogItems,
+  // firstTenStrainCatalogItems,
+  // nextTenStrainCatalogItems,
+  // lastFiveStrainCatalogItems,
   mockBacterialStrains,
 } from "./mockStrainLists"
 import {
@@ -18,47 +18,47 @@ import {
 } from "./mockStrain"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
-import { availablePlasmid } from "features/Stocks/Details/Plasmids/mockPlasmidData"
+import { availablePlasmid } from "./mockPlasmid"
 
 export const handlers = [
-  graphql.query("StockList", (req, res, ctx) => {
-    return res(
-      ctx.data({
-        listPlasmids: {
-          totalCount: 947,
-          __typename: "PlasmidListWithCursor",
-        },
-        listStrains: {
-          totalCount: 6643,
-          __typename: "StrainListWithCursor",
-        },
-      }),
-    )
-  }),
-  graphql.query("StrainList", (req, res, ctx) => {
-    const cursor = req.body?.variables.cursor
-    if (cursor === 0) {
-      return res(
-        ctx.data({
-          listStrains: firstTenStrainCatalogItems,
-        }),
-      )
-    }
-    if (cursor === firstTenStrainCatalogItems.nextCursor) {
-      return res(
-        ctx.data({
-          listStrains: nextTenStrainCatalogItems,
-        }),
-      )
-    }
-    if (cursor === nextTenStrainCatalogItems.nextCursor) {
-      return res(
-        ctx.data({
-          listStrains: lastFiveStrainCatalogItems,
-        }),
-      )
-    }
-  }),
+  // graphql.query("StockList", (req, res, ctx) => {
+  //   return res(
+  //     ctx.data({
+  //       listPlasmids: {
+  //         totalCount: 947,
+  //         __typename: "PlasmidListWithCursor",
+  //       },
+  //       listStrains: {
+  //         totalCount: 6643,
+  //         __typename: "StrainListWithCursor",
+  //       },
+  //     }),
+  //   )
+  // }),
+  // graphql.query("StrainList", (req, res, ctx) => {
+  //   const cursor = req.body?.variables.cursor
+  //   if (cursor === 0) {
+  //     return res(
+  //       ctx.data({
+  //         listStrains: firstTenStrainCatalogItems,
+  //       }),
+  //     )
+  //   }
+  //   if (cursor === firstTenStrainCatalogItems.nextCursor) {
+  //     return res(
+  //       ctx.data({
+  //         listStrains: nextTenStrainCatalogItems,
+  //       }),
+  //     )
+  //   }
+  //   if (cursor === nextTenStrainCatalogItems.nextCursor) {
+  //     return res(
+  //       ctx.data({
+  //         listStrains: lastFiveStrainCatalogItems,
+  //       }),
+  //     )
+  //   }
+  // }),
   graphql.query("ListBacterialStrains", (req, res, ctx) => {
     return res(ctx.data(mockBacterialStrains))
   }),
@@ -119,12 +119,8 @@ export const handlers = [
   }),
   graphql.query("Plasmid", (req, res, ctx) => {
     const id = req.body?.variables.id
-    if (id === availablePlasmid.id) {
-      return res(
-        ctx.data({
-          plasmid: availablePlasmid,
-        }),
-      )
+    if (id === availablePlasmid.data.id) {
+      return res(ctx.data(availablePlasmid))
     }
   }),
   graphql.query("GetRefreshToken", (req, res, ctx) => {

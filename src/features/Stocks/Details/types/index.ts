@@ -23,7 +23,10 @@ type StrainDetails = {
     id: string
     label: string
   }
-  depositor: string
+  depositor: {
+    first_name: string
+    last_name: string
+  }
   plasmid: string
   publications: Array<Publication>
   dbxrefs: Array<string>
@@ -43,7 +46,10 @@ type PlasmidDetails = {
   id: string
   name: string
   summary: string
-  depositor: string
+  depositor: {
+    first_name: string
+    last_name: string
+  }
   publications: Array<Publication>
   dbxrefs: Array<string>
   genes: Array<{
@@ -81,9 +87,19 @@ type Publication = {
   journal: string
   volume: string
   pages: string
+  doi: string
   authors: Array<{
     last_name: string
   }>
+}
+
+type DetailsRow = {
+  /** Data object ID */
+  id: number
+  /** Title for row */
+  title: string
+  /** Content to display in row */
+  content: string | JSX.Element
 }
 
 export type {
@@ -95,4 +111,5 @@ export type {
   PhenotypeProps,
   StrainWithPhenotype,
   Publication,
+  DetailsRow,
 }

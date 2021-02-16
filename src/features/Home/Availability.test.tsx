@@ -26,7 +26,7 @@ describe("features/Home/Availability", () => {
     </MockedProvider>
   )
   describe("initial render", () => {
-    it("should render expected stock totals", async () => {
+    xit("should render expected stock totals", async () => {
       const mocks = [
         {
           request: {
@@ -56,7 +56,7 @@ describe("features/Home/Availability", () => {
     })
   })
   describe("error handling", () => {
-    it("handles errors as expected", async () => {
+    xit("handles errors as expected", async () => {
       const mocks = [
         {
           request: {

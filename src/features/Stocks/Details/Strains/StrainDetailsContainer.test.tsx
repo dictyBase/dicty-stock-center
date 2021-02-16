@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import StrainDetailsContainer from "./StrainDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { GET_STRAIN } from "common/graphql/queries/stocks/details"
-import { strainWithPhenotype } from "./mockStrainData"
+import { strainWithPhenotype } from "mocks/mockStrain"
 
 const mockID = "DBS0350966"
 
@@ -58,6 +58,11 @@ describe("features/Stocks/Strains/StrainDetailsContainer", () => {
         name: strainWithPhenotype.label,
       })
       expect(strain).toBeInTheDocument()
+      // shows depositor
+      const { depositor } = strainWithPhenotype
+      expect(
+        screen.getByText(`${depositor.first_name} ${depositor.last_name}`),
+      ).toBeInTheDocument()
     })
   })
 })

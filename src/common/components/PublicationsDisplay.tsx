@@ -1,11 +1,14 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
+import Typography from "@material-ui/core/Typography"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Publication } from "features/Stocks/Details/types"
 
 const useStyles = makeStyles({
-  bold: {
-    fontWeight: 700,
+  authors: {
+    color: grey[800],
+    fontWeight: 600,
   },
 })
 
@@ -21,6 +24,22 @@ const listAuthors = (authors: Publication["authors"]) => {
 const getYearFromTimestamp = (date: string) => {
   const newDate = new Date(date)
   return newDate.getFullYear()
+}
+
+// getPubLink returns a doi url if the pubmed id is missing
+const getPubLink = (id: string, doi: string) => {
+  if (id === "") {
+    return `https://doi.org/${doi}`
+  }
+  return `/publication/${id}`
+}
+
+// getJournalInfo displays the volume and pages if that info exists
+const getJournalInfo = (volume: string, pages: string) => {
+  if (volume !== "" && pages !== "") {
+    return `${volume}:${pages}`
+  }
+  return ""
 }
 
 type Props = {
@@ -40,25 +59,25 @@ const PublicationsDisplay = ({ publications }: Props) => {
   }
 
   return (
-    <div>
-      {publications.map((publication, index) => (
-        <span data-testid="phenotype-publication-display" key={index}>
-          <span className={classes.bold}>
-            {listAuthors(publication.authors)} (
-            {getYearFromTimestamp(publication.pub_date)})
-          </span>{" "}
-          '{publication.title}' <em>{publication.journal}</em>{" "}
-          {publication.volume}:{publication.pages}{" "}
-          <a
-            href={`/publication/${publication.id}`}
-            title="Visit dictyBase publication page">
+    <React.Fragment>
+      {publications.map((pub, index) => (
+        <Typography
+          component="span"
+          data-testid="publication-display"
+          key={index}>
+          <Typography component="span" className={classes.authors}>
+            {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
+          </Typography>{" "}
+          '{pub.title}' <em>{pub.journal}</em>{" "}
+          {getJournalInfo(pub.volume, pub.pages)}{" "}
+          <a href={getPubLink(pub.id, pub.doi)} title="Visit publication page">
             <FontAwesomeIcon icon="external-link-alt" size="sm" />
           </a>
-        </span>
+        </Typography>
       ))}
-    </div>
+    </React.Fragment>
   )
 }
 
-export { listAuthors, getYearFromTimestamp }
+export { listAuthors, getYearFromTimestamp, getPubLink, getJournalInfo }
 export default PublicationsDisplay

@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
@@ -12,15 +13,18 @@ import TabPanel from "common/components/TabPanel"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
+import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
 import {
   StrainDetails,
   StrainDetailsProps,
+  DetailsRow,
 } from "features/Stocks/Details/types"
 
 const strainRowsGenerator = (
   data: StrainDetails,
   parent: string | JSX.Element,
+  depositor: string,
   publications: JSX.Element,
   genes: JSX.Element,
   genotypes: JSX.Element,
@@ -80,12 +84,12 @@ const strainRowsGenerator = (
     title: "Genotypes",
     content: genotypes,
   },
+  { id: 11, title: "Species", content: data.species },
   {
-    id: 11,
+    id: 12,
     title: "Depositor",
-    content: data.depositor,
+    content: depositor,
   },
-  { id: 12, title: "Species", content: data.species },
   {
     id: 13,
     title: "Reference(s)",
@@ -110,6 +114,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
   const rows = strainRowsGenerator(
     data,
     parent,
+    getDepositorName(data.depositor),
     <PublicationsDisplay publications={data.publications} />,
     <GenesDisplay genes={data.genes} />,
     <GenotypesDisplay genotypes={data.genotypes[0]} />,
@@ -133,7 +138,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
   )
 
   return (
-    <Grid item xs={12} className={classes.header}>
+    <Box textAlign="center" mb={3}>
       {data.phenotypes.length > 0 && header}
       <Card raised>
         <Grid container>
@@ -144,8 +149,12 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
               </ListItem>
             )}
             <TabPanel value={tabValue} index={0}>
-              {rows.map((data: any) => (
-                <DetailsListItem data={data} key={data.id} />
+              {rows.map((data: DetailsRow) => (
+                <DetailsListItem
+                  title={data.title}
+                  content={data.content}
+                  key={data.id}
+                />
               ))}
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
@@ -154,7 +163,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
           </List>
         </Grid>
       </Card>
-    </Grid>
+    </Box>
   )
 }
 

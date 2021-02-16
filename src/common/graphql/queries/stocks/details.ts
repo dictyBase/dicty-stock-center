@@ -6,7 +6,10 @@ const GET_PLASMID = gql`
       id
       name
       summary
-      depositor
+      depositor {
+        first_name
+        last_name
+      }
       publications {
         id
         pub_date
@@ -42,7 +45,10 @@ const GET_STRAIN = gql`
         id
         label
       }
-      depositor
+      depositor {
+        first_name
+        last_name
+      }
       plasmid
       dbxrefs
       publications {
@@ -52,6 +58,7 @@ const GET_STRAIN = gql`
         journal
         volume
         pages
+        doi
         authors {
           last_name
         }

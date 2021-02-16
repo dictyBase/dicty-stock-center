@@ -4,7 +4,10 @@ const availablePlasmid = {
     summary: "Knockout plasmid for acgA",
     id: "DBP0000385",
     name: "pACG-KO",
-    depositor: "Karin Weening (Pauline Schaap)",
+    depositor: {
+      first_name: "Karin",
+      last_name: "Weening",
+    },
     dbxrefs: ["17267449"],
     genes: [{ name: "acgA" }],
     image_map: "http://dictybase.org/data/plasmid/images/385.jpg",
