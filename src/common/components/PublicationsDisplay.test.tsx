@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react"
 import PublicationsDisplay, {
   listAuthors,
   getYearFromTimestamp,
+  getPubLink,
+  getJournalInfo,
 } from "./PublicationsDisplay"
 
 describe("common/components/PublicationDisplay", () => {
@@ -89,5 +91,25 @@ describe("listAuthors", () => {
 describe("getYearFromTimestamp", () => {
   it("should extract year from timestamp", () => {
     expect(getYearFromTimestamp("2004-06-11T00:00:00.000Z")).toBe(2004)
+  })
+})
+
+describe("getPubLink", () => {
+  it("should return doi link", () => {
+    expect(getPubLink("", "10.1074/jbc.m008319200")).toEqual(
+      "https://doi.org/10.1074/jbc.m008319200",
+    )
+    expect(getPubLink("11084033", "10.1074/jbc.m008319200")).toEqual(
+      "/publication/11084033",
+    )
+  })
+})
+
+describe("getJournalInfo", () => {
+  it("should return empty string", () => {
+    expect(getJournalInfo("", "")).toBeFalsy()
+  })
+  it("should return volume and pages", () => {
+    expect(getJournalInfo("276", "5235-5239")).toEqual("276:5235-5239")
   })
 })
