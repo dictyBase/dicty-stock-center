@@ -17,6 +17,7 @@ describe("common/components/PublicationDisplay", () => {
           journal: "Eukaryotic cell",
           volume: "9",
           pages: "344-349",
+          doi: "10.1128/ec.00242-09",
           authors: [
             {
               last_name: "Franklin",
@@ -42,7 +43,7 @@ describe("common/components/PublicationDisplay", () => {
     })
     it("should match expected reference format", () => {
       render(<PublicationsDisplay {...props} />)
-      const pubDisplay = screen.getByTestId("phenotype-publication-display")
+      const pubDisplay = screen.getByTestId("publication-display")
       expect(pubDisplay).toHaveTextContent(
         "Franklin, Hyatt, Chowdhury & Steimle (2009) 'WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.' Eukaryotic cell 9:344-349",
       )

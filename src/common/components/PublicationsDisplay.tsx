@@ -23,6 +23,14 @@ const getYearFromTimestamp = (date: string) => {
   return newDate.getFullYear()
 }
 
+// getPubLink returns a doi url if the pubmed id is missing
+const getPubLink = (id: string, doi: string) => {
+  if (id === "") {
+    return `https://doi.org/${doi}`
+  }
+  return `/publication/${id}`
+}
+
 type Props = {
   /** List of publications */
   publications?: Array<Publication>
@@ -40,23 +48,19 @@ const PublicationsDisplay = ({ publications }: Props) => {
   }
 
   return (
-    <div>
-      {publications.map((publication, index) => (
-        <span data-testid="phenotype-publication-display" key={index}>
+    <React.Fragment>
+      {publications.map((pub, index) => (
+        <span data-testid="publication-display" key={index}>
           <span className={classes.bold}>
-            {listAuthors(publication.authors)} (
-            {getYearFromTimestamp(publication.pub_date)})
+            {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
           </span>{" "}
-          '{publication.title}' <em>{publication.journal}</em>{" "}
-          {publication.volume}:{publication.pages}{" "}
-          <a
-            href={`/publication/${publication.id}`}
-            title="Visit dictyBase publication page">
+          '{pub.title}' <em>{pub.journal}</em> {pub.volume}:{pub.pages}{" "}
+          <a href={getPubLink(pub.id, pub.doi)} title="Visit publication page">
             <FontAwesomeIcon icon="external-link-alt" size="sm" />
           </a>
         </span>
       ))}
-    </div>
+    </React.Fragment>
   )
 }
 
