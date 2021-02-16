@@ -34,6 +34,14 @@ const getPubLink = (id: string, doi: string) => {
   return `/publication/${id}`
 }
 
+// getJournalInfo displays the volume and pages if that info exists
+const getJournalInfo = (volume: string, pages: string) => {
+  if (volume !== "" && pages !== "") {
+    return `${volume}:${pages}`
+  }
+  return ""
+}
+
 type Props = {
   /** List of publications */
   publications?: Array<Publication>
@@ -60,7 +68,8 @@ const PublicationsDisplay = ({ publications }: Props) => {
           <Typography component="span" className={classes.authors}>
             {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
           </Typography>{" "}
-          '{pub.title}' <em>{pub.journal}</em> {pub.volume}:{pub.pages}{" "}
+          '{pub.title}' <em>{pub.journal}</em>{" "}
+          {getJournalInfo(pub.volume, pub.pages)}{" "}
           <a href={getPubLink(pub.id, pub.doi)} title="Visit publication page">
             <FontAwesomeIcon icon="external-link-alt" size="sm" />
           </a>
