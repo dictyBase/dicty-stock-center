@@ -15,13 +15,17 @@ import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogConte
 
 const leftDropdownItems = [
   {
-    name: "All Plasmids",
-    value: "all",
+    name: "Regular Plasmids",
+    value: "regular",
   },
   {
     name: "Available Plasmids",
     value: "available",
   },
+  // {
+  //   name: "GoldenBraid Plasmids",
+  //   value: "goldenbraid",
+  // },
 ]
 
 const rightDropdownItems = [
@@ -78,7 +82,7 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
   React.useEffect(() => {
     const updateData = async () => {
       switch (filter) {
-        case "all":
+        case "regular":
           dispatch({
             type: CatalogActionType.SET_QUERY,
             payload: GET_PLASMID_LIST,

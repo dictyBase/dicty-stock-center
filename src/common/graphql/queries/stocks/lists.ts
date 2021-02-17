@@ -105,6 +105,7 @@ const GET_STRAIN_INVENTORY_LIST = gql`
     listStrainsWithAnnotation(
       cursor: $cursor
       limit: $limit
+      # filter: "name!~GWDI;label!=AX4"
       type: "strain_inventory"
       annotation: "strain_inventory"
     ) {
