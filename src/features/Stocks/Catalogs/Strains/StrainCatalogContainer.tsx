@@ -19,15 +19,15 @@ import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
 const leftDropdownItems = [
   {
-    name: "All Strains",
-    value: "all",
+    name: "Regular Strains",
+    value: "regular",
   },
   {
     name: "GWDI Strains",
     value: "gwdi",
   },
   {
-    name: "Available Strains",
+    name: "Available Regular Strains",
     value: "available",
   },
   {
@@ -99,13 +99,14 @@ const dispatchStrainList = (
   dispatch: (arg0: CatalogAction) => void,
   filter: string,
 ) => {
-  let gqlFilter = ""
+  // default filter for regular strains
+  let gqlFilter = "name!~GWDI;label!=AX4"
   dispatch({
     type: CatalogActionType.SET_QUERY,
     payload: GET_STRAIN_LIST,
   })
   if (filter === "gwdi") {
-    gqlFilter = "name@=~GWDI"
+    gqlFilter = "name=~GWDI"
   }
   dispatch({
     type: CatalogActionType.SET_QUERY_VARIABLES,
@@ -159,7 +160,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   React.useEffect(() => {
     const updateData = async () => {
       switch (filter) {
-        case "all":
+        case "regular":
         case "gwdi":
           dispatchStrainList(dispatch, filter)
           break

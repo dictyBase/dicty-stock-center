@@ -5,9 +5,7 @@ import StrainCatalogContainer from "../Strains/StrainCatalogContainer"
 import PlasmidCatalogContainer from "../Plasmids/PlasmidCatalogContainer"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import useSearchQuery from "common/hooks/useSearchQuery"
-
-const capitalizeFirstLetter = (str: string) =>
-  str.charAt(0).toUpperCase() + str.slice(1)
+import { capitalizeFirstCharacter } from "common/utils/stringCapitalizations"
 
 type Props = {
   /** Type of stock catalog */
@@ -25,7 +23,7 @@ const CatalogWrapper = ({ stockType }: Props) => {
   const filter = searchQuery.get("filter")
 
   if (!filter) {
-    history.push(`${stockType}s?filter=all`)
+    history.push(`${stockType}s?filter=regular`)
   }
 
   let catalog = <StrainCatalogContainer filter={filter} />
@@ -37,7 +35,7 @@ const CatalogWrapper = ({ stockType }: Props) => {
     <CatalogProvider stockType={stockType}>
       <Helmet>
         <title>
-          {capitalizeFirstLetter(stockType)} Catalog - Dicty Stock Center
+          {capitalizeFirstCharacter(stockType)} Catalog - Dicty Stock Center
         </title>
         <meta
           name="description"
