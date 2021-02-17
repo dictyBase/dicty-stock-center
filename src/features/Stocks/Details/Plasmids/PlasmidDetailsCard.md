@@ -1,8 +1,8 @@
 ```jsx noeditor
-import { data } from "./mockPlasmidData.ts"
+import { availablePlasmid } from "../../../../mocks/mockPlasmid.ts"
 ```
 
 ```jsx
-import { data } from "./mockPlasmidData.ts"
-;<PlasmidDetailsCard data={data} />
+import { availablePlasmid } from "../../../../mocks/mockPlasmid.ts"
+;<PlasmidDetailsCard data={availablePlasmid} />
 ```
