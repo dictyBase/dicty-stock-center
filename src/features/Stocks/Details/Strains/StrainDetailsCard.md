@@ -1,8 +1,8 @@
 ```jsx noeditor
-import { data } from "./mockStrainData.ts"
+import { availableStrain } from "../../../../mocks/mockStrain.ts"
 ```
 
 ```jsx
-import { data } from "./mockStrainData.ts"
-;<StrainDetailsCard data={data} />
+import { availableStrain } from "../../../../mocks/mockStrain.ts"
+;<StrainDetailsCard data={availableStrain} />
 ```
