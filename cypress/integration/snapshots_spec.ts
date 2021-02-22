@@ -3,7 +3,7 @@ const screenWidths = [375, 768, 1280]
 describe("DSC snapshots", () => {
   it("visits the DSC homepage", () => {
     cy.visit("/")
-    cy.contains("Additional DSC Materials﻿")
+    cy.contains("Additional DSC Materials")
     cy.percySnapshot("DSC homepage", { widths: screenWidths })
   })
   it("visits the order information page", () => {
