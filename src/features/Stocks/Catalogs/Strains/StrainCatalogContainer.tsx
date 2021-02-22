@@ -222,5 +222,5 @@ const StrainCatalogContainer = ({ filter }: Props) => {
   )
 }
 
-export { normalizeBacterialStrainsData }
+export { dispatchStrainList, normalizeBacterialStrainsData }
 export default StrainCatalogContainer
