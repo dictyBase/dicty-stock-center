@@ -96,7 +96,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   describe("clear button", () => {
     it("should clear text box", () => {
       render(<MockComponent />)
-      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const input = screen.getByPlaceholderText(
+        "Search entire catalog...",
+      ) as HTMLInputElement
       const clearButton = screen.getByRole("button", {
         name: /clear search box/,
       })
@@ -118,7 +120,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         },
       })
       render(<MockComponent />)
-      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const input = screen.getByPlaceholderText(
+        "Search entire catalog...",
+      ) as HTMLInputElement
       const searchButton = screen.getByRole("button", {
         name: /Catalog search icon/,
       })
@@ -144,7 +148,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       const dropdown = screen.getByRole("combobox")
       userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const input = screen.getByPlaceholderText(
+        "Search entire catalog...",
+      ) as HTMLInputElement
       const searchButton = screen.getByRole("button", {
         name: /Catalog search icon/,
       })
@@ -165,7 +171,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       const dropdown = screen.getByRole("combobox")
       userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const input = screen.getByPlaceholderText(
+        "Search entire catalog...",
+      ) as HTMLInputElement
       const searchButton = screen.getByRole("button", {
         name: /Catalog search icon/,
       })
@@ -186,7 +194,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       const dropdown = screen.getByRole("combobox")
       userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText("Search...") as HTMLInputElement
+      const input = screen.getByPlaceholderText(
+        "Search entire catalog...",
+      ) as HTMLInputElement
       const searchButton = screen.getByRole("button", {
         name: /Catalog search icon/,
       })
