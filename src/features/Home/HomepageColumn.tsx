@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid"
 import useStyles from "./homeStyles"
 
 type Props = {
-  components: any
+  components: Array<React.ReactNode>
 }
 
 /**
@@ -12,7 +12,7 @@ type Props = {
 
 const HomepageColumn = ({ components }: Props) => {
   const classes = useStyles()
-  const content = components.map((item: React.FC, index: number) => (
+  const content = components.map((item: React.ReactNode, index: number) => (
     <Grid item key={index}>
       {item}
     </Grid>
