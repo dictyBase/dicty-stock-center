@@ -14,7 +14,7 @@ jest.mock("react-router-dom", () => {
   return {
     ...originalModule,
     useLocation: () => ({
-      search: "?filter=all",
+      search: "?filter=regular",
     }),
     useHistory: jest.fn(),
   }
@@ -37,7 +37,7 @@ const mockedUseCatalogStore = useCatalogStore as jest.Mock
 mockedUseCatalogStore.mockReturnValue({
   state: {
     searchValue: "GWDI",
-    leftDropdownValue: "all",
+    leftDropdownValue: "regular",
     searchBoxDropdownValue: "label",
   },
 })
@@ -113,7 +113,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       mockedUseCatalogStore.mockReturnValueOnce({
         state: {
           searchValue: "GWDI",
-          leftDropdownValue: "all",
+          leftDropdownValue: "regular",
           searchBoxDropdownValue: "label",
         },
       })
@@ -129,7 +129,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         limit: 10,
         filter: "label=~GWDI",
       })
-      expect(mockHistoryPush).toHaveBeenCalledWith("?filter=all&label=GWDI")
+      expect(mockHistoryPush).toHaveBeenCalledWith("?filter=regular&label=GWDI")
     })
 
     it("should redirect to details page when valid strain ID is entered", () => {
@@ -137,7 +137,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       mockedUseCatalogStore.mockReturnValue({
         state: {
           searchValue: strainID,
-          leftDropdownValue: "all",
+          leftDropdownValue: "regular",
           searchBoxDropdownValue: "id",
         },
       })
@@ -158,7 +158,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       mockedUseCatalogStore.mockReturnValue({
         state: {
           searchValue: plasmidID,
-          leftDropdownValue: "all",
+          leftDropdownValue: "regular",
           searchBoxDropdownValue: "id",
         },
       })
@@ -179,7 +179,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       mockedUseCatalogStore.mockReturnValue({
         state: {
           searchValue: fakeStrainID,
-          leftDropdownValue: "all",
+          leftDropdownValue: "regular",
           searchBoxDropdownValue: "id",
         },
       })
@@ -193,7 +193,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       userEvent.type(input, fakeStrainID)
       userEvent.click(searchButton)
       expect(mockHistoryPush).toHaveBeenCalledWith(
-        `?filter=all&id=${fakeStrainID}`,
+        `?filter=regular&id=${fakeStrainID}`,
       )
     })
   })
