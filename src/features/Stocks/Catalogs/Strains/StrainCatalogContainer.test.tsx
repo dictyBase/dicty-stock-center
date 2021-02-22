@@ -211,7 +211,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
 
   describe("dispatchStrainList function", () => {
     it("should dispatch regular strains", () => {
-      const mockDispatch = jest.fn(() => true)
+      const mockDispatch = jest.fn()
       dispatchStrainList(mockDispatch, "regular")
       expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith({
@@ -229,7 +229,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     })
 
     it("should dispatch gwdi strains", () => {
-      const mockDispatch = jest.fn(() => true)
+      const mockDispatch = jest.fn()
       dispatchStrainList(mockDispatch, "gwdi")
       expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith({
