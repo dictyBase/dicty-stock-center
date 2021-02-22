@@ -81,6 +81,19 @@ const materialsLinks = [
     routerAware: true,
     newWindow: false,
   },
+  {
+    name: "GWDI Catalog",
+    to: "https://remi-seq.org/home/remi-seq/gwdi-bank/",
+    routerAware: false,
+    newWindow: true,
+  },
+  {
+    name: "GoldenBraid List",
+    to:
+      "https://docs.google.com/spreadsheets/d/1zg50MmBUKZx_AwDJ2-sNcxIvl_Lc1RfC/edit#gid=1498603553",
+    routerAware: false,
+    newWindow: true,
+  },
 ]
 
 const miscLinks = [
