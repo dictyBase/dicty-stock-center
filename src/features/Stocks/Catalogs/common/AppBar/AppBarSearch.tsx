@@ -114,7 +114,7 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
+    state: { searchValue, searchBoxDropdownValue },
   } = useCatalogStore()
   const classes = useStyles()
   const {
@@ -124,11 +124,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     clearSearch,
   } = useAppBarSearch()
 
-  // remove this when filtering is available on the backend
-  if (leftDropdownValue !== "all") {
-    return null
-  }
-
   return (
     <form onSubmit={handleSubmit}>
       <Paper>
@@ -136,13 +131,13 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
           <IconButton
             className={classes.iconButton}
             aria-label="Catalog search icon"
-            title="Search catalog"
+            title="Search entire catalog"
             onClick={handleSubmit}>
             <FontAwesomeIcon icon="search" size="sm" />
           </IconButton>
           <InputBase
             className={classes.input}
-            placeholder="Search..."
+            placeholder="Search entire catalog..."
             inputProps={{ "aria-label": "search" }}
             onChange={handleChange}
             value={searchValue}
