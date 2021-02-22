@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter, useLocation } from "react-router-dom"
 import StrainCatalogContainer, {
+  dispatchStrainList,
   normalizeBacterialStrainsData,
 } from "./StrainCatalogContainer"
 import {
@@ -10,7 +11,10 @@ import {
   GET_STRAIN_INVENTORY_LIST,
   GET_STRAIN_LIST,
 } from "common/graphql/queries/stocks/lists"
-import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
+import {
+  CatalogProvider,
+  CatalogActionType,
+} from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import {
   lastFiveStrainCatalogItems,
@@ -202,6 +206,44 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
 
       expect(convertedData.listStrains.totalCount).toBe(21)
       expect(convertedData.listStrains.strains).toHaveLength(21)
+    })
+  })
+
+  describe("dispatchStrainList function", () => {
+    it("should dispatch regular strains", () => {
+      const mockDispatch = jest.fn(() => true)
+      dispatchStrainList(mockDispatch, "regular")
+      expect(mockDispatch).toHaveBeenCalledTimes(2)
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: CatalogActionType.SET_QUERY,
+        payload: GET_STRAIN_LIST,
+      })
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: CatalogActionType.SET_QUERY_VARIABLES,
+        payload: {
+          cursor: 0,
+          limit: 10,
+          filter: "name!~GWDI;label!=AX4",
+        },
+      })
+    })
+
+    it("should dispatch gwdi strains", () => {
+      const mockDispatch = jest.fn(() => true)
+      dispatchStrainList(mockDispatch, "gwdi")
+      expect(mockDispatch).toHaveBeenCalledTimes(2)
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: CatalogActionType.SET_QUERY,
+        payload: GET_STRAIN_LIST,
+      })
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: CatalogActionType.SET_QUERY_VARIABLES,
+        payload: {
+          cursor: 0,
+          limit: 10,
+          filter: "name=~GWDI",
+        },
+      })
     })
   })
 })
