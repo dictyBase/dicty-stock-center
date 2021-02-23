@@ -26,10 +26,10 @@ const leftDropdownItems = [
     name: "GWDI Strains",
     value: "gwdi",
   },
-  {
-    name: "Available Regular Strains",
-    value: "available",
-  },
+  // {
+  //   name: "Available Regular Strains",
+  //   value: "available",
+  // },
   {
     name: "Bacterial Strains",
     value: "bacterial",
