@@ -1,7 +1,4 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "./AddToCartButton"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
@@ -11,12 +8,6 @@ import { CartItem } from "common/types"
 interface CartItemWithStatus extends CartItem {
   in_stock: boolean
 }
-
-const useStyles = makeStyles(({ palette }) => ({
-  button: {
-    color: palette.primary.main,
-  },
-}))
 
 /**
  * CatalogListHeaderButtons contains the list of headers (i.e.
@@ -31,7 +22,6 @@ const CatalogListHeaderButtons = () => {
     state: { checkedItems },
   } = useCatalogStore()
   const { resetCheckedItems } = useCheckboxes()
-  const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
   let cartButtonDisplay = true
@@ -54,14 +44,14 @@ const CatalogListHeaderButtons = () => {
           inStock={true}
         />
       )}
-      <IconButton
+      {/* <IconButton
         size="medium"
         className={classes.button}
         onClick={() => {}}
         title="Download PDF"
         aria-label="Download PDF">
         <FontAwesomeIcon icon="download" />
-      </IconButton>
+      </IconButton> */}
     </span>
   )
 }
