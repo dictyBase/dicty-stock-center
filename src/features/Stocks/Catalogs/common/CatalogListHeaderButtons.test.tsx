@@ -35,14 +35,10 @@ describe("features/Stocks/Catalogs/common/CatalogListHeaderButtons", () => {
         </CartProvider>
       )
     }
-    it("renders two buttons", () => {
+    it("renders shopping cart button", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("button")).toHaveLength(2)
       expect(
         screen.getByRole("button", { name: "Add to shopping cart" }),
-      ).toBeInTheDocument()
-      expect(
-        screen.getByRole("button", { name: "Download PDF" }),
       ).toBeInTheDocument()
     })
     it("displays correct text", () => {
