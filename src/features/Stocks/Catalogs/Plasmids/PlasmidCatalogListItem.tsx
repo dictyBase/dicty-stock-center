@@ -4,12 +4,11 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
-import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { useTheme } from "@material-ui/core/styles"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
+import RemoveFromCartButton from "features/Stocks/Catalogs/common/RemoveFromCartButton"
 import characterConverter from "common/utils/characterConverter"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCartItems from "common/hooks/useCartItems"
@@ -106,16 +105,7 @@ const PlasmidCatalogListItem = ({
                   inStock={plasmid.in_stock}
                 />
                 {itemIsInCart(addedItems, plasmid.id) && (
-                  <IconButton
-                    className={classes.trashBtn}
-                    size={size}
-                    color="secondary"
-                    onClick={handleRemoveItemClick}>
-                    <FontAwesomeIcon
-                      icon="trash"
-                      size={smallWindow ? "xs" : "sm"}
-                    />
-                  </IconButton>
+                  <RemoveFromCartButton handleClick={handleRemoveItemClick} />
                 )}
               </span>
             )}

@@ -4,16 +4,15 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
-import IconButton from "@material-ui/core/IconButton"
 import Hidden from "@material-ui/core/Hidden"
 import { useTheme } from "@material-ui/core/styles"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCartItems from "common/hooks/useCartItems"
 import useHover from "common/hooks/useHover"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import AddToCartButton from "features/Stocks/Catalogs/common/AddToCartButton"
+import RemoveFromCartButton from "features/Stocks/Catalogs/common/RemoveFromCartButton"
 import characterConverter from "common/utils/characterConverter"
 import itemIsInCart from "common/utils/itemIsInCart"
 import { fees } from "common/constants/fees"
@@ -102,16 +101,7 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
                   inStock={strain.in_stock}
                 />
                 {itemIsInCart(addedItems, strain.id) && (
-                  <IconButton
-                    className={classes.trashBtn}
-                    color="secondary"
-                    size={size}
-                    onClick={handleRemoveItemClick}>
-                    <FontAwesomeIcon
-                      icon="trash"
-                      size={smallWindow ? "xs" : "sm"}
-                    />
-                  </IconButton>
+                  <RemoveFromCartButton handleClick={handleRemoveItemClick} />
                 )}
               </span>
             )}
