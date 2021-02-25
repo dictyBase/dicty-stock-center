@@ -1,8 +1,9 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import { blue } from "@material-ui/core/colors"
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
-    backgroundColor: "#0059b3 !important",
+    backgroundColor: blue[800],
   },
   catalogPaper: {
     height: 600,
@@ -27,15 +28,10 @@ const useStyles = makeStyles(({ palette }) => ({
     },
   },
   item: {
-    paddingRight: "10px",
-  },
-  spinner: {
-    textAlign: "center",
-    marginTop: "200px",
-    marginBottom: "200px",
+    paddingRight: theme.spacing(1),
   },
   trashBtn: {
-    color: palette.error.main,
+    color: theme.palette.error.main,
   },
 }))
 
