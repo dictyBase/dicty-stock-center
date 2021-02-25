@@ -75,7 +75,7 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
             />
           </Grid>
         </Hidden>
-        <Grid item xs={8} sm={2} md={3} className={classes.item}>
+        <Grid item xs={8} sm={2} className={classes.item}>
           <Typography noWrap>
             <Link to={`/strains/${strain.id}`}>
               {characterConverter(strain.label)}
@@ -83,12 +83,12 @@ const StrainCatalogListItem = ({ index, style, data }: StrainListItemProps) => {
           </Typography>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={6} md={5} lg={6} className={classes.item}>
+          <Grid item sm={7} className={classes.item}>
             <Typography noWrap>{strain.summary}</Typography>
           </Grid>
         </Hidden>
         <Hidden xsDown>
-          <Grid item sm={2} lg={1}>
+          <Grid item sm={1}>
             <Typography noWrap>{strain.id}</Typography>
           </Grid>
         </Hidden>

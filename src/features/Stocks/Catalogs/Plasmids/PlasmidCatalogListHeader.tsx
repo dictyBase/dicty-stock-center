@@ -9,16 +9,16 @@ import Hidden from "@material-ui/core/Hidden"
 
 const PlasmidCatalogListHeader = () => (
   <>
-    <Grid item xs={12} sm={2} lg={3}>
+    <Grid item xs={12} sm={2}>
       Plasmid Name
     </Grid>
     <Hidden xsDown>
-      <Grid item sm={6}>
+      <Grid item sm={7}>
         Description
       </Grid>
     </Hidden>
     <Hidden xsDown>
-      <Grid item sm={2} lg={1}>
+      <Grid item sm={1}>
         Plasmid ID
       </Grid>
     </Hidden>
