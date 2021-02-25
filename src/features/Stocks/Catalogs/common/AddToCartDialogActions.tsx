@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import DialogActions from "@material-ui/core/DialogActions"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   cartDialogButton: {
     "&:hover": {
-      color: "#fff",
+      color: theme.palette.primary.contrastText,
     },
   },
 }))
