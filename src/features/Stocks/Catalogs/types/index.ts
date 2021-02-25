@@ -1,8 +1,6 @@
 interface CatalogItemProps {
   index: number
   style: Object
-  cartItems?: Array<Object>
-  removeItem?: Function
 }
 
 interface StrainItem {
@@ -14,6 +12,7 @@ interface StrainItem {
 
 interface StrainListItemProps extends CatalogItemProps {
   data: {
+    stockType: "strains"
     item: Array<StrainItem>
   }
 }
@@ -27,6 +26,7 @@ interface PlasmidItem {
 
 interface PlasmidListItemProps extends CatalogItemProps {
   data: {
+    stockType: "plasmids"
     item: Array<PlasmidItem>
   }
 }

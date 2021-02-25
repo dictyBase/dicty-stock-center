@@ -15,30 +15,37 @@ import useCartItems from "common/hooks/useCartItems"
 import useHover from "common/hooks/useHover"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import itemIsInCart from "common/utils/itemIsInCart"
+import {
+  StrainListItemProps,
+  PlasmidListItemProps,
+  StrainItem,
+  PlasmidItem,
+} from "features/Stocks/Catalogs/types"
 import { fees } from "common/constants/fees"
-import { PlasmidListItemProps } from "features/Stocks/Catalogs/types"
 import useStyles from "features/Stocks/Catalogs/styles"
 
+type Props = StrainListItemProps | PlasmidListItemProps
+
 /**
- * PlasmidCatalogListItem handles the display of an individual
- * row of data in the plasmid catalog.
+ * CatalogListItem handles the display of an individual
+ * row of data in a stock catalog.
  */
 
-const PlasmidCatalogListItem = ({
-  index,
-  style,
-  data,
-}: PlasmidListItemProps) => {
-  const plasmid = data.item[index]
+const CatalogListItem = ({ index, style, data }: Props) => {
+  const stock = data.item[index]
+  const { label } = stock as StrainItem
+  const { name } = stock as PlasmidItem
+  const stockName = data.stockType === "strains" ? label : name
+
   const cartData = {
-    id: plasmid.id,
-    name: plasmid.name,
-    summary: plasmid.summary,
+    id: stock.id,
+    name: stockName,
+    summary: stock.summary,
     fee: fees.PLASMID_FEE,
   }
   const checkboxData = {
     ...cartData,
-    in_stock: plasmid.in_stock,
+    in_stock: stock.in_stock,
   }
   const { handleCheckboxChange, itemIsChecked } = useCheckboxes()
   const {
@@ -59,7 +66,7 @@ const PlasmidCatalogListItem = ({
 
   return (
     <ListItem
-      key={plasmid.id}
+      key={stock.id}
       className={classes.row}
       style={style}
       {...bind}
@@ -71,7 +78,7 @@ const PlasmidCatalogListItem = ({
               checked={itemIsChecked(checkboxData)}
               onChange={() => handleCheckboxChange(checkboxData)}
               color="default"
-              value={plasmid.id}
+              value={stock.id}
               inputProps={{
                 "aria-label": "Plasmid catalog checkbox",
               }}
@@ -80,19 +87,19 @@ const PlasmidCatalogListItem = ({
         </Hidden>
         <Grid item xs={8} sm={2} className={classes.item}>
           <Typography noWrap>
-            <Link to={`/plasmids/${plasmid.id}`}>
-              {characterConverter(plasmid.name)}
+            <Link to={`/${data.stockType}/${stock.id}`}>
+              {characterConverter(stockName)}
             </Link>
           </Typography>
         </Grid>
         <Hidden xsDown>
           <Grid item sm={7} className={classes.item}>
-            <Typography noWrap>{plasmid.summary}</Typography>
+            <Typography noWrap>{stock.summary}</Typography>
           </Grid>
         </Hidden>
         <Hidden xsDown>
           <Grid item sm={1}>
-            <Typography noWrap>{plasmid.id}</Typography>
+            <Typography noWrap>{stock.id}</Typography>
           </Grid>
         </Hidden>
         <Grid item xs={4} sm={1}>
@@ -102,9 +109,9 @@ const PlasmidCatalogListItem = ({
                 <AddToCartButton
                   data={[cartData]}
                   size={size}
-                  inStock={plasmid.in_stock}
+                  inStock={stock.in_stock}
                 />
-                {itemIsInCart(addedItems, plasmid.id) && (
+                {itemIsInCart(addedItems, stock.id) && (
                   <RemoveFromCartButton handleClick={handleRemoveItemClick} />
                 )}
               </span>
@@ -116,4 +123,4 @@ const PlasmidCatalogListItem = ({
   )
 }
 
-export default PlasmidCatalogListItem
+export default CatalogListItem

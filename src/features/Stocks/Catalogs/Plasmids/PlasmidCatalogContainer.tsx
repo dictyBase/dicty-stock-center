@@ -4,7 +4,7 @@ import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
 import VirtualizedList from "common/components/VirtualizedList"
 import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader"
-import PlasmidCatalogListItem from "./PlasmidCatalogListItem"
+import CatalogListItem from "features/Stocks/Catalogs/common/CatalogListItem"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 import {
@@ -132,7 +132,7 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
         loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
         headerComponent={<CatalogListHeader stockType="plasmid" />}>
-        {PlasmidCatalogListItem}
+        {CatalogListItem}
       </VirtualizedList>
     )
   }
