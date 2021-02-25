@@ -27,7 +27,7 @@ const CatalogHeader = ({ title }: Props) => {
 
   return (
     <Box textAlign="center" p={1}>
-      <Typography className={classes.title} variant="h1">
+      <Typography variant="h1" className={classes.title}>
         {title}
       </Typography>
       <Typography variant="body1" className={classes.notice}>

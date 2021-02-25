@@ -1,9 +1,8 @@
 import React from "react"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import CatalogHeader from "features/Stocks/Catalogs/common/CatalogHeader"
 import CatalogAppBar from "features/Stocks/Catalogs/common/CatalogAppBar"
-import useStyles from "features/Stocks/Catalogs/styles"
 
 type DropdownItem = {
   value: string
@@ -29,30 +28,22 @@ const CatalogDisplay = ({
   loading,
   children,
 }: Props) => {
-  const classes = useStyles()
-
   const title = `${stockType} Catalog` as const
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <CatalogHeader title={title} />
-      </Grid>
-      <Grid item xs={12}>
-        <CatalogAppBar
-          leftDropdownItems={leftDropdownItems}
-          rightDropdownItems={rightDropdownItems}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        {loading && (
-          <div className={classes.spinner}>
-            <CircularProgress data-testid="catalog-spinner" size={100} />
-          </div>
-        )}
-        {children}
-      </Grid>
-    </Grid>
+    <Box>
+      <CatalogHeader title={title} />
+      <CatalogAppBar
+        leftDropdownItems={leftDropdownItems}
+        rightDropdownItems={rightDropdownItems}
+      />
+      {loading && (
+        <Box textAlign="center" mt={20} mb={20}>
+          <CircularProgress data-testid="catalog-spinner" size={100} />
+        </Box>
+      )}
+      {children}
+    </Box>
   )
 }
 
