@@ -23,7 +23,7 @@ const CatalogErrorMessage = ({ error }: Props) => {
 
   let errorCode, errorMsg
 
-  if (error.graphQLErrors && error.graphQLErrors[0].extensions) {
+  if (error?.graphQLErrors[0]?.extensions) {
     errorCode = error.graphQLErrors[0].extensions.code
     errorMsg = error.graphQLErrors[0].message
   }
