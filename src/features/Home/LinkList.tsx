@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Typography from "@material-ui/core/Typography"
 import useStyles from "./homeStyles"
 
 type LinkItem = {
@@ -48,7 +49,11 @@ const LinkList = ({ list, bgColor }: Props) => {
 
   return (
     <div className={bgColor === "gray" ? classes.panelGray : classes.panelBlue}>
-      {isDownloadPanel && <h3>Download / View</h3>}
+      {isDownloadPanel && (
+        <Typography variant="h3" gutterBottom>
+          Download / View
+        </Typography>
+      )}
       <ul className={classes.list}>
         {list.map((link, index) => (
           <li key={index}>{getLinkType(link)}</li>
