@@ -1,31 +1,29 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import { blue, grey } from "@material-ui/core/colors"
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   panelGray: {
     backgroundColor: grey[100],
     border: "1px",
     borderStyle: "solid",
     borderColor: grey[100],
-    marginBottom: "24px",
-    padding: "15px",
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
     borderRadius: "10px",
-    width: "100%",
   },
   panelBlue: {
     backgroundColor: blue[50],
     border: "1px",
     borderStyle: "solid",
     borderColor: blue[50],
-    marginBottom: "24px",
-    padding: "15px",
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
     borderRadius: "10px",
-    width: "100%",
   },
   sopLink: {
-    color: palette.error.dark,
+    color: theme.palette.error.dark,
     "&:hover": {
-      color: palette.error.main,
+      color: theme.palette.error.main,
     },
   },
   header: {
@@ -38,8 +36,8 @@ const useStyles = makeStyles(({ palette }) => ({
     },
   },
   list: {
-    margin: 0,
-    padding: 0,
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
     listStyle: "none",
   },
   intro: {
@@ -47,7 +45,7 @@ const useStyles = makeStyles(({ palette }) => ({
     paddingBottom: "12px !important",
   },
   column: {
-    paddingTop: "0px !important",
+    paddingTop: theme.spacing(1),
   },
 }))
 
