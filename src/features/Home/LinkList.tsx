@@ -40,7 +40,7 @@ const getLinkType = (link: LinkItem) => {
  */
 
 const LinkList = ({ list, bgColor }: Props) => {
-  const classes = useStyles()
+  const classes = useStyles({ panelBackground: bgColor })
 
   // add simple header if the link list is for downloads panel
   const isDownloadPanel = list.some(
@@ -48,7 +48,7 @@ const LinkList = ({ list, bgColor }: Props) => {
   )
 
   return (
-    <div className={bgColor === "gray" ? classes.panelGray : classes.panelBlue}>
+    <div className={classes.panel}>
       {isDownloadPanel && (
         <Typography variant="h3" gutterBottom>
           Download / View

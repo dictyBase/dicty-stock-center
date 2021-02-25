@@ -1,4 +1,5 @@
 import React from "react"
+import Box from "@material-ui/core/Box"
 import useStyles from "./homeStyles"
 
 /**
@@ -6,10 +7,10 @@ import useStyles from "./homeStyles"
  */
 
 const StandardOperatingProcedures = () => {
-  const classes = useStyles()
+  const classes = useStyles({ panelBackground: "grey" })
 
   return (
-    <div className={classes.panelGray}>
+    <Box className={classes.panel}>
       <a
         className={classes.sopLink}
         href="https://northwestern.box.com/s/p0f8m70whgiuib2u0wt8gtn497ncmq8i"
@@ -17,7 +18,7 @@ const StandardOperatingProcedures = () => {
         target="_blank">
         Standard Operating Procedures
       </a>
-    </div>
+    </Box>
   )
 }
 

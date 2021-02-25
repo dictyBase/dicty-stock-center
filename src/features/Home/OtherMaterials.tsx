@@ -12,7 +12,7 @@ const slugName = "dsc-other-materials"
  */
 
 const OtherMaterials = () => {
-  const classes = useStyles()
+  const classes = useStyles({ panelBackground: "blue" })
   const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
     variables: {
       slug: slugName,
@@ -25,14 +25,14 @@ const OtherMaterials = () => {
 
   if (error) {
     return (
-      <div className={classes.panelBlue}>
+      <div className={classes.panel}>
         Error fetching other materials information
       </div>
     )
   }
 
   return (
-    <div className={classes.panelBlue}>
+    <div className={classes.panel}>
       <InlineEditor data={data.contentBySlug} />
     </div>
   )

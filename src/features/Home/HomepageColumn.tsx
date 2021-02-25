@@ -11,7 +11,7 @@ type Props = {
  */
 
 const HomepageColumn = ({ components }: Props) => {
-  const classes = useStyles()
+  const classes = useStyles({})
   const content = components.map((item: React.ReactNode, index: number) => (
     <Grid item key={index}>
       {item}

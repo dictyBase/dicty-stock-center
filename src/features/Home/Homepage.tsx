@@ -26,7 +26,7 @@ const metaDesc =
  */
 
 const Homepage = () => {
-  const classes = useStyles()
+  const classes = useStyles({})
   const [{ isAuthenticated, user }] = useAuthStore()
   const fullName = `${user.first_name} ${user.last_name}`
 
