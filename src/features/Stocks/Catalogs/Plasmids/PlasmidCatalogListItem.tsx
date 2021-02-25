@@ -79,7 +79,7 @@ const PlasmidCatalogListItem = ({
             />
           </Grid>
         </Hidden>
-        <Grid item xs={8} sm={2} lg={3} className={classes.item}>
+        <Grid item xs={8} sm={2} className={classes.item}>
           <Typography noWrap>
             <Link to={`/plasmids/${plasmid.id}`}>
               {characterConverter(plasmid.name)}
@@ -87,12 +87,12 @@ const PlasmidCatalogListItem = ({
           </Typography>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={6} className={classes.item}>
+          <Grid item sm={7} className={classes.item}>
             <Typography noWrap>{plasmid.summary}</Typography>
           </Grid>
         </Hidden>
         <Hidden xsDown>
-          <Grid item sm={2} lg={1}>
+          <Grid item sm={1}>
             <Typography noWrap>{plasmid.id}</Typography>
           </Grid>
         </Hidden>
