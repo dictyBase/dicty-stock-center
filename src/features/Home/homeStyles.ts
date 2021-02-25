@@ -1,21 +1,19 @@
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import { blue, grey } from "@material-ui/core/colors"
 
+type Props = {
+  /** Background color for panel */
+  panelBackground?: string
+}
+
 const useStyles = makeStyles((theme: Theme) => ({
-  panelGray: {
-    backgroundColor: grey[100],
+  panel: {
+    backgroundColor: ({ panelBackground }: Props) =>
+      panelBackground === "blue" ? blue[50] : grey[100],
     border: "1px",
     borderStyle: "solid",
-    borderColor: grey[100],
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    borderRadius: "10px",
-  },
-  panelBlue: {
-    backgroundColor: blue[50],
-    border: "1px",
-    borderStyle: "solid",
-    borderColor: blue[50],
+    borderColor: ({ panelBackground }: Props) =>
+      panelBackground === "blue" ? blue[50] : grey[100],
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     borderRadius: "10px",

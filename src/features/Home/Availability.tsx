@@ -10,7 +10,7 @@ import useStyles from "./homeStyles"
  */
 
 const Availability = () => {
-  const classes = useStyles()
+  const classes = useStyles({ panelBackground: "grey" })
   // const { loading, error, data } = useQuery(GET_STOCK_TOTALS, {
   //   variables: {
   //     limit: 20000,
@@ -28,7 +28,7 @@ const Availability = () => {
   //   )
 
   return (
-    <div className={classes.panelGray}>
+    <div className={classes.panel}>
       <Typography variant="h4" gutterBottom>
         Strain & Plasmid Availability
       </Typography>
