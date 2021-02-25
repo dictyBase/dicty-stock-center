@@ -29,7 +29,7 @@ describe("Stocks/Catalogs/common/HelpDialog", () => {
     )
     expect(
       screen.getByText(
-        /The catalog page data is provided as as infinite scroll./,
+        /The stock catalogs can be browsed by using the available dropdown menus/,
       ),
     ).toBeInTheDocument()
   })
