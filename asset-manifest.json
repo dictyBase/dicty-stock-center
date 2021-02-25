@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/stockcenter/build/main.59095ece.js",
+    "main.js": "/stockcenter/build/main.1d104831.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
-    "vendors~main.js": "/stockcenter/build/vendors~main.430022dc.js",
+    "vendors~main.js": "/stockcenter/build/vendors~main.c561b04e.js",
     "index.html": "/stockcenter/index.html",
     "static/media/ctr9-mutant-DG1071.png": "/stockcenter/static/media/ctr9-mutant-DG1071.0abd389e.png",
     "static/media/gbqA-mutant-DG1120.png": "/stockcenter/static/media/gbqA-mutant-DG1120.46eef2b0.png",
@@ -95,7 +95,7 @@
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/vendors~main.430022dc.js",
-    "build/main.59095ece.js"
+    "build/vendors~main.c561b04e.js",
+    "build/main.1d104831.js"
   ]
 }
