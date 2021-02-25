@@ -1,24 +1,21 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 
-const useStyles = makeStyles(({ palette }) => ({
-  header: {
-    textAlign: "center",
-    paddingBottom: "10px",
-  },
+const useStyles = makeStyles((theme: Theme) => ({
   notice: {
-    color: palette.error.main,
-    marginBottom: "10px",
+    color: theme.palette.error.main,
+    marginBottom: theme.spacing(1),
   },
   title: {
-    marginBottom: "16px",
+    marginBottom: theme.spacing(2),
   },
 }))
 
 type Props = {
-  /** The title of the page (either Strain Catalog or Plasmid Catalog) */
-  title: string
+  /** Title of catalog page */
+  title: "Strain Catalog" | "Plasmid Catalog"
 }
 
 /**
@@ -29,7 +26,7 @@ const CatalogHeader = ({ title }: Props) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.header}>
+    <Box textAlign="center" p={1}>
       <Typography className={classes.title} variant="h1">
         {title}
       </Typography>
@@ -37,7 +34,7 @@ const CatalogHeader = ({ title }: Props) => {
         PLEASE DO NOT ORDER FROM THIS TEST SITE. THIS IS FOR INTERNAL TESTING
         ONLY. THANKS!
       </Typography>
-    </div>
+    </Box>
   )
 }
 

@@ -31,10 +31,12 @@ const CatalogDisplay = ({
 }: Props) => {
   const classes = useStyles()
 
+  const title = `${stockType} Catalog` as const
+
   return (
     <Grid container>
       <Grid item xs={12}>
-        <CatalogHeader title={`${stockType} Catalog`} />
+        <CatalogHeader title={title} />
       </Grid>
       <Grid item xs={12}>
         <CatalogAppBar
