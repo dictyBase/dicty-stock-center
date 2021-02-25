@@ -5,7 +5,7 @@ import CatalogHeader from "./CatalogHeader"
 describe("Stocks/CatalogPageItems/CatalogHeader", () => {
   it("displays expected text", () => {
     const props = {
-      title: "Strain Catalog",
+      title: "Strain Catalog" as const,
     }
     render(<CatalogHeader {...props} />)
     const header = screen.getByRole("heading")
