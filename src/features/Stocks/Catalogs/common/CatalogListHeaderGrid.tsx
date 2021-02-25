@@ -2,30 +2,35 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Hidden from "@material-ui/core/Hidden"
 
+type Props = {
+  /** List header values to display */
+  values: Array<string>
+}
+
 /**
- * StrainCatalogListHeader displays the header at the top of the catalog list
+ * CatalogListHeaderGrid displays the header row at the top of the catalog list
  * display.
  */
 
-const StrainCatalogListHeader = () => (
-  <>
+const CatalogListHeaderGrid = ({ values }: Props) => (
+  <React.Fragment>
     <Grid item xs={12} sm={2}>
-      Strain Descriptor
+      {values[0]}
     </Grid>
     <Hidden xsDown>
       <Grid item sm={7}>
-        Strain Summary
+        {values[1]}
       </Grid>
     </Hidden>
     <Hidden xsDown>
       <Grid item sm={1}>
-        Strain ID
+        {values[2]}
       </Grid>
     </Hidden>
     <Hidden xsDown>
       <Grid item xs={4} sm={1}></Grid>
     </Hidden>
-  </>
+  </React.Fragment>
 )
 
-export default StrainCatalogListHeader
+export default CatalogListHeaderGrid

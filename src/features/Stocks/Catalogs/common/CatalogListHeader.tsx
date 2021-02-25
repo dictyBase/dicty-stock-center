@@ -1,24 +1,16 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Checkbox from "@material-ui/core/Checkbox"
 import Hidden from "@material-ui/core/Hidden"
 import CatalogListHeaderButtons from "./CatalogListHeaderButtons"
-import StrainCatalogListHeader from "features/Stocks/Catalogs/Strains/StrainCatalogListHeader"
-import PlasmidCatalogListHeader from "features/Stocks/Catalogs/Plasmids/PlasmidCatalogListHeader"
+import CatalogListHeaderGrid from "./CatalogListHeaderGrid"
 import useCheckboxes from "common/hooks/useCheckboxes"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 
-const headerSelector = (type: string) => {
-  if (type === "strain") {
-    return <StrainCatalogListHeader />
-  }
-  return <PlasmidCatalogListHeader />
-}
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   listHeaders: {
     borderBottom: "1px solid #888",
     backgroundColor: "#f6f9fc",
@@ -29,9 +21,9 @@ const useStyles = makeStyles({
     },
   },
   list: {
-    padding: 0,
+    padding: theme.spacing(0),
   },
-})
+}))
 
 type Props = {
   /** Type of stock */
@@ -51,7 +43,14 @@ const CatalogListHeader = ({ stockType }: Props) => {
   const classes = useStyles()
   const checkedItemsLength = checkedItems.length
 
-  let content = headerSelector(stockType)
+  let headerValues = [] as Array<string>
+  if (stockType === "strain") {
+    headerValues = ["Strain Descriptor", "Strain Summary", "Strain ID"]
+  } else {
+    headerValues = ["Plasmid Name", "Description", "Plasmid ID"]
+  }
+
+  let content = <CatalogListHeaderGrid values={headerValues} />
 
   if (checkedItemsLength > 0) {
     content = <CatalogListHeaderButtons />
