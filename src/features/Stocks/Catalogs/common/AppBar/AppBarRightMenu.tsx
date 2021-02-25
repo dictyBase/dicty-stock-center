@@ -1,14 +1,14 @@
 import React, { useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AppBarHelp from "./AppBarHelp"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   icon: {
     color: "#fff",
-    paddingRight: "5px",
+    paddingRight: theme.spacing(1),
   },
   menuItem: {
     fontSize: "0.8rem",
