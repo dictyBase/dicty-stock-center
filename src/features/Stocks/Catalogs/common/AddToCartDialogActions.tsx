@@ -40,7 +40,7 @@ export const AddToCartDialogActions = ({ handleClose }: Props) => {
         to="/cart"
         className={classes.cartDialogButton}
         variant="contained"
-        color="primary"
+        color="secondary"
         aria-label="View Cart">
         View Cart
       </Button>
