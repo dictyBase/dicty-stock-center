@@ -3,6 +3,7 @@ import { FixedSizeList } from "react-window"
 import AutoSizer from "react-virtualized-auto-sizer"
 import InfiniteLoader from "react-window-infinite-loader"
 import Paper from "@material-ui/core/Paper"
+import strainOrPlasmid from "common/utils/strainOrPlasmid"
 import useStyles from "features/Stocks/Catalogs/styles"
 
 type Props = {
@@ -51,6 +52,7 @@ const VirtualizedList = ({
                 // pass props to list item via itemData
                 itemData={{
                   item: data,
+                  stockType: strainOrPlasmid(data[0].id),
                 }}>
                 {children}
               </FixedSizeList>

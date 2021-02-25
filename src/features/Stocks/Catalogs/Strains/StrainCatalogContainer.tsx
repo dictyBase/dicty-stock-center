@@ -4,7 +4,7 @@ import CatalogDisplay from "features/Stocks/Catalogs/common/CatalogDisplay"
 import CatalogErrorMessage from "features/Stocks/Catalogs/common/CatalogErrorMessage"
 import VirtualizedList from "common/components/VirtualizedList"
 import CatalogListHeader from "features/Stocks/Catalogs/common/CatalogListHeader"
-import StrainCatalogListItem from "./StrainCatalogListItem"
+import CatalogListItem from "features/Stocks/Catalogs/common/CatalogListItem"
 import {
   CatalogActionType,
   Action as CatalogAction,
@@ -206,7 +206,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         loadMoreItems={() => loadMoreItems(normalizedData, fetchMore)}
         hasMore={hasMore}
         headerComponent={<CatalogListHeader stockType="strain" />}>
-        {StrainCatalogListItem}
+        {CatalogListItem}
       </VirtualizedList>
     )
   }
