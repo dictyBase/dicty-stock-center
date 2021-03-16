@@ -81,7 +81,7 @@ const strainRowsGenerator = (
   },
   {
     id: 10,
-    title: "Genotypes",
+    title: "Genotype",
     content: genotypes,
   },
   { id: 11, title: "Species", content: data.species },
