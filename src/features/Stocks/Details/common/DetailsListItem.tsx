@@ -6,7 +6,7 @@ import characterConverter from "common/utils/characterConverter"
 import useStyles from "../styles"
 
 type Props = {
-  /** Type of content to display (i.e. Strain Descriptor, Genotypes, etc.) */
+  /** Type of content to display (i.e. Strain Descriptor, Genotype, etc.) */
   title: string
   /** The actual data for that field */
   content: string | JSX.Element
