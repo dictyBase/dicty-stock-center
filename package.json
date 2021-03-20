@@ -99,7 +99,7 @@
     "pinst": "^2.1.6",
     "prettier": "^2.2.0",
     "react-docgen-typescript": "^1.21.0",
-    "react-styleguidist": "^11.1.5",
+    "react-styleguidist": "^11.1.6",
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.4.2",
     "source-map-explorer": "^2.5.1",
