@@ -47,7 +47,7 @@ const plasmidRowGenerator = (
   },
   {
     id: 4,
-    title: "Associated Genes",
+    title: "Associated Gene(s)",
     content: genes,
   },
   {

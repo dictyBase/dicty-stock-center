@@ -76,7 +76,7 @@ const strainRowsGenerator = (
   },
   {
     id: 9,
-    title: "Associated Genes",
+    title: "Associated Gene(s)",
     content: genes,
   },
   {
