@@ -16,7 +16,7 @@ type Props = {
  */
 const GenesDisplay = ({ genes }: Props) => {
   if (genes.length === 0) {
-    return <div />
+    return <React.Fragment />
   }
 
   return (
