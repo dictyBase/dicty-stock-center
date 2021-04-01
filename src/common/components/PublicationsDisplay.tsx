@@ -55,7 +55,7 @@ const PublicationsDisplay = ({ publications }: Props) => {
   const classes = useStyles()
 
   if (!publications) {
-    return <div />
+    return <React.Fragment />
   }
 
   return (
