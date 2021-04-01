@@ -50,18 +50,14 @@ const PhenotypeList = ({
   isLoadingMore,
   totalCount,
 }: Props) => {
-  const targetRef = React.useRef<HTMLDivElement>(null)
-  const visible = useIntersectionObserver({
-    ref: targetRef,
-    hasMore,
-  })
+  const { intersecting, ref } = useIntersectionObserver()
   const classes = useStyles()
 
   React.useEffect(() => {
-    if (visible && hasMore) {
+    if (intersecting && hasMore) {
       loadMore()
     }
-  }, [hasMore, loadMore, visible])
+  }, [hasMore, loadMore, intersecting])
 
   return (
     <React.Fragment>
@@ -71,7 +67,7 @@ const PhenotypeList = ({
           {data.map((item: StrainWithPhenotype, index: number) => (
             <PhenotypeListItem key={index} strain={item} />
           ))}
-          <div ref={targetRef} />
+          <div ref={ref} />
         </List>
       </Paper>
       {isLoadingMore && <CircularProgress className={classes.spinner} />}
