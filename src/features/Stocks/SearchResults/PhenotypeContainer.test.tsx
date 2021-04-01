@@ -22,18 +22,18 @@ jest.mock("react-router-dom", () => {
   }
 })
 
-describe("Stocks/SearchResults/PhenotypeContainer", () => {
+describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
   const window = global as any
   let mockObserve: jest.Mock
-  let mockUnobserve: jest.Mock
+  let mockDisconnect: jest.Mock
   beforeEach(() => {
     mockObserve = jest.fn()
-    mockUnobserve = jest.fn()
+    mockDisconnect = jest.fn()
   })
   beforeAll(() => {
     window.IntersectionObserver = jest.fn((callback, options) => ({
       observe: mockObserve,
-      unobserve: mockUnobserve,
+      disconnect: mockDisconnect,
     }))
     jest.setTimeout(30000)
   })
@@ -193,7 +193,7 @@ describe("Stocks/SearchResults/PhenotypeContainer", () => {
         callback([{ isIntersecting: true }])
         return {
           observe: mockObserve,
-          unobserve: mockUnobserve,
+          disconnect: mockDisconnect,
         }
       })
       render(
