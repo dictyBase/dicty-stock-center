@@ -2,6 +2,9 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
   body: {
+    display: "flex",
+    minHeight: "100vh",
+    flexDirection: "column",
     fontSize: "16px",
     color: "#333",
     backgroundColor: "#fff",
@@ -15,6 +18,7 @@ const useStyles = makeStyles({
     },
   },
   main: {
+    flex: 1,
     marginTop: "15px",
     marginBottom: "25px",
   },
