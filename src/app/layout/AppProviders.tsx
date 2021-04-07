@@ -54,9 +54,6 @@ const theme = createMuiTheme({
         a: {
           textDecoration: "none",
           color: "#004080",
-          "&:hover": {
-            color: "#001b53",
-          },
         },
       },
     },
