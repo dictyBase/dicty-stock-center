@@ -6070,7 +6070,7 @@ dfa@^1.0.0:
 
 "dicty-components-header-footer@github:dictyBase/dicty-components-header-footer#develop":
   version "0.0.0-semantically-released"
-  resolved "https://codeload.github.com/dictyBase/dicty-components-header-footer/tar.gz/3d99eb33ad48893e49a446534af30d32bacecd6c"
+  resolved "https://codeload.github.com/dictyBase/dicty-components-header-footer/tar.gz/226f60bf16c586e4b0e3a88e0bc61d90d8217539"
 
 "dicty-components-login@github:dictyBase/dicty-components-login#3.1.1":
   version "0.0.0-semantically-released"
