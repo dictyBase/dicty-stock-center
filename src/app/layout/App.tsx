@@ -5,12 +5,11 @@ import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { IconProp } from "@fortawesome/fontawesome-svg-core"
 import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
 import {
   headerItems,
   loggedHeaderItems,
-  generateLinks,
+  HeaderLinks,
 } from "common/utils/headerItems"
 import HeaderRow from "./HeaderRow"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
@@ -18,18 +17,7 @@ import RenderRoutes from "app/routes/RenderRoutes"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
 import { User } from "common/types"
-import { useStyles, navTheme } from "./appStyles"
-
-type HeaderProps = {
-  /** Identifies if header link should use React Router */
-  isRouter?: boolean
-  /** Text to display in link */
-  text: string
-  /** Font Awesome Icon to display */
-  icon: IconProp
-  /** URL of link */
-  url: string
-}
+import { useStyles, navTheme, headerTheme, footerTheme } from "./appStyles"
 
 const getTokenIntervalDelayInMS = (token: string) => {
   if (token === "") {
@@ -113,9 +101,7 @@ const App = () => {
 
   return (
     <div className={classes.body}>
-      <Header items={headerContent}>
-        {(items: Array<HeaderProps>) => items.map(generateLinks)}
-      </Header>
+      <Header items={headerContent} render={HeaderLinks} theme={headerTheme} />
       <Navbar items={navbarData} theme={navTheme} />
       <CartProvider>
         <main className={classes.main}>
@@ -127,7 +113,7 @@ const App = () => {
           </Container>
         </main>
       </CartProvider>
-      <Footer items={footerData} />
+      <Footer items={footerData} theme={footerTheme} />
     </div>
   )
 }
