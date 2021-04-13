@@ -14,6 +14,8 @@ declare global {
       REACT_APP_ALT_GRAPHQL_SERVER: string
       // used to differentiate between deploy environments, specifically for using correct GraphQL URL
       DEPLOY_ENV: "development" | "staging" | "production"
+      // determines if mock service worker should be used
+      REACT_APP_API_MOCKING: boolean
     }
   }
 }
