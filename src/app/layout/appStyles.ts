@@ -29,4 +29,16 @@ const navTheme = {
   secondary: "#0059b3",
 }
 
-export { useStyles, navTheme }
+const footerTheme = {
+  primary: "#004080",
+  secondary: "#ebe97a",
+  text: "#d8d8d8",
+}
+
+const headerTheme = {
+  primary: "#004080",
+  secondary: "#001b53",
+  text: "#004080",
+}
+
+export { useStyles, navTheme, footerTheme, headerTheme }
