@@ -122,10 +122,10 @@ const ShoppingCartPage = lazy(
 )
 
 // custom 404 route
-const PageNotReady = lazy(
+const PageNotFound = lazy(
   () =>
     import(
-      /* webpackChunkName: "PageNotReady" */ "features/Errors/PageNotReady"
+      /* webpackChunkName: "PageNotFound" */ "features/Errors/PageNotFound"
     ),
 )
 
@@ -178,7 +178,7 @@ const RenderRoutes = () => {
         {/* misc routes */}
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/cart" component={ShoppingCartPage} />
-        <Route exact path="*" component={PageNotReady} />
+        <Route exact path="*" component={PageNotFound} />
       </Switch>
     </Suspense>
   )
