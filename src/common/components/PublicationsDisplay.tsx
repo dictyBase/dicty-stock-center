@@ -28,10 +28,19 @@ const getYearFromTimestamp = (date: string) => {
 
 // getPubLink returns a doi url if the pubmed id is missing
 const getPubLink = (id: string, doi: string) => {
-  if (id === "") {
+  const emptyID = id === ""
+
+  if (!emptyID) {
+    return `/publication/${id}`
+  }
+  // check if doi exists and already includes domain
+  const domainIncluded = doi !== undefined && doi.includes("https://doi.org/")
+
+  if (domainIncluded) {
+    return doi
+  } else {
     return `https://doi.org/${doi}`
   }
-  return `/publication/${id}`
 }
 
 // getJournalInfo displays the volume and pages if that info exists

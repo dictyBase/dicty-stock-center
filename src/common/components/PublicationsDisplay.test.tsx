@@ -99,6 +99,9 @@ describe("getPubLink", () => {
     expect(getPubLink("", "10.1074/jbc.m008319200")).toEqual(
       "https://doi.org/10.1074/jbc.m008319200",
     )
+    expect(getPubLink("", "https://doi.org/10.1074/jbc.m008319200")).toEqual(
+      "https://doi.org/10.1074/jbc.m008319200",
+    )
     expect(getPubLink("11084033", "10.1074/jbc.m008319200")).toEqual(
       "/publication/11084033",
     )
