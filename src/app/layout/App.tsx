@@ -5,7 +5,7 @@ import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { useFetchRefreshToken, useFooter, useNavbar } from "dicty-hooks"
+import { useFetchRefreshToken, useNavbar } from "dicty-hooks"
 import {
   headerItems,
   loggedHeaderItems,
@@ -61,11 +61,49 @@ const updateToken = (
     },
   })
 
+const footerLinks = [
+  {
+    url: "/",
+    description: "Techniques",
+  },
+  {
+    url: "/",
+    description: "Teaching Protocols",
+  },
+  {
+    url: "/",
+    description: "Dicty Stock Center",
+  },
+  {
+    url: "/",
+    description: "Genome Browser",
+  },
+  {
+    url: "/",
+    description: "dictyAccess",
+  },
+  {
+    url: "/",
+    description: "Conference",
+  },
+  {
+    url: "/",
+    description: "Labs",
+  },
+  {
+    url: "/",
+    description: "About",
+  },
+  {
+    url: "/",
+    description: "Contact",
+  },
+]
+
 const App = () => {
   const [skip, setSkip] = React.useState(false)
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
-  const { footerData } = useFooter()
   const classes = useStyles()
   const { loading, refetch, data } = useQuery(GET_REFRESH_TOKEN, {
     variables: { token: token },
@@ -113,7 +151,7 @@ const App = () => {
           </Container>
         </main>
       </CartProvider>
-      <Footer items={footerData} theme={footerTheme} />
+      <Footer links={footerLinks} theme={footerTheme} />
     </div>
   )
 }
