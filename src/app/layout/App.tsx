@@ -6,14 +6,15 @@ import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { useFetchRefreshToken, useNavbar } from "dicty-hooks"
+import HeaderRow from "./HeaderRow"
+import ErrorBoundary from "features/Errors/ErrorBoundary"
+import RenderRoutes from "app/routes/RenderRoutes"
 import {
   headerItems,
   loggedHeaderItems,
   HeaderLinks,
 } from "common/utils/headerItems"
-import HeaderRow from "./HeaderRow"
-import ErrorBoundary from "features/Errors/ErrorBoundary"
-import RenderRoutes from "app/routes/RenderRoutes"
+import footerItems from "common/utils/footerItems"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
 import { User } from "common/types"
@@ -60,45 +61,6 @@ const updateToken = (
       user: data.user,
     },
   })
-
-const footerLinks = [
-  {
-    url: "/",
-    description: "Techniques",
-  },
-  {
-    url: "/",
-    description: "Teaching Protocols",
-  },
-  {
-    url: "/",
-    description: "Dicty Stock Center",
-  },
-  {
-    url: "/",
-    description: "Genome Browser",
-  },
-  {
-    url: "/",
-    description: "dictyAccess",
-  },
-  {
-    url: "/",
-    description: "Conference",
-  },
-  {
-    url: "/",
-    description: "Labs",
-  },
-  {
-    url: "/",
-    description: "About",
-  },
-  {
-    url: "/",
-    description: "Contact",
-  },
-]
 
 const App = () => {
   const [skip, setSkip] = React.useState(false)
@@ -151,7 +113,7 @@ const App = () => {
           </Container>
         </main>
       </CartProvider>
-      <Footer links={footerLinks} theme={footerTheme} />
+      <Footer links={footerItems} theme={footerTheme} />
     </div>
   )
 }
