@@ -1,10 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   body: {
-    display: "flex",
-    minHeight: "100vh",
-    flexDirection: "column",
     fontSize: "16px",
     color: "#333",
     backgroundColor: "#fff",
@@ -13,16 +10,15 @@ const useStyles = makeStyles({
       lineHeight: 1.1,
     },
     "& h4, h5, h6": {
-      marginTop: "10px",
-      marginBottom: "10px",
+      marginTop: theme.spacing(1.2),
+      marginBottom: theme.spacing(1.2),
     },
   },
   main: {
-    flex: 1,
-    marginTop: "15px",
-    marginBottom: "25px",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(4),
   },
-})
+}))
 
 const navTheme = {
   primary: "#004080",
