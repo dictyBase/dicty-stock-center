@@ -7,6 +7,9 @@ on:
     # only run when src files have changed
     paths:
       - "src/**"
+  push:
+    branches:
+      - develop
 jobs:
   percy:
     runs-on: ubuntu-20.04
