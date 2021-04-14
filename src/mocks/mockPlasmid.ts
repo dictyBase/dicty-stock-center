@@ -20,6 +20,7 @@ const availablePlasmid = {
         journal: "The Journal of biological chemistry",
         volume: "276",
         pages: "5235-5239",
+        doi: "10.1242/dev.02775",
         authors: [
           {
             last_name: "Gliksman",

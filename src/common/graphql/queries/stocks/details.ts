@@ -17,6 +17,7 @@ const GET_PLASMID = gql`
         journal
         volume
         pages
+        doi
         authors {
           last_name
         }
