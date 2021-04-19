@@ -8,7 +8,7 @@ import { AuthProvider } from "features/Authentication/AuthStore"
 import AppProviders from "app/layout/AppProviders"
 import App from "app/layout/App"
 import "common/utils/icons" // fontawesome library
-import "fontsource-roboto"
+import "@fontsource/roboto"
 
 // need to reconfigure homepage path in order to initiate mock service
 // worker used for testing purposes
