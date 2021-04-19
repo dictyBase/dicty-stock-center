@@ -1,5 +1,6 @@
 import React from "react"
 import { MuiThemeProvider } from "@material-ui/core/styles"
+import CircularProgress from "@material-ui/core/CircularProgress"
 import { ApolloProvider } from "@apollo/client"
 import { BrowserRouter } from "react-router-dom"
 import { Formik } from "formik"
@@ -14,7 +15,11 @@ import { theme } from "app/layout/AppProviders"
  */
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  const client = useApolloClient()
+  const { client, cacheInitializing } = useApolloClient()
+
+  if (cacheInitializing) {
+    return <CircularProgress />
+  }
 
   return (
     <MuiThemeProvider theme={theme}>

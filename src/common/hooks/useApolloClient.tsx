@@ -1,5 +1,8 @@
+import React from "react"
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
+import { persistCache, LocalStorageWrapper } from "apollo3-cache-persist"
+import localForage from "localforage"
 import { mutationList } from "common/graphql/mutations"
 import {
   listStrainsWithAnnotationPagination,
@@ -35,16 +38,18 @@ const cache = new InMemoryCache({
   },
 })
 
+const authLink = setContext((request, { headers }) => {
+  const mutation = isMutation(request.operationName || "")
+  return {
+    headers: {
+      ...headers,
+      "X-GraphQL-Method": mutation ? "Mutation" : "Query",
+    },
+  }
+})
+
 const useApolloClient = () => {
-  const authLink = setContext((request, { headers }) => {
-    const mutation = isMutation(request.operationName || "")
-    return {
-      headers: {
-        ...headers,
-        "X-GraphQL-Method": mutation ? "Mutation" : "Query",
-      },
-    }
-  })
+  const [cacheInitializing, setCacheInitializing] = React.useState(true)
 
   const server = getGraphQLServer(
     process.env.REACT_APP_GRAPHQL_SERVER,
@@ -59,10 +64,25 @@ const useApolloClient = () => {
     }),
   )
 
-  return new ApolloClient({
+  React.useEffect(() => {
+    const initializeCache = async () => {
+      await persistCache({
+        cache,
+        storage: new LocalStorageWrapper(localForage),
+        key: "dsc-apollo-cache-persist",
+      })
+      setCacheInitializing(false)
+    }
+
+    initializeCache()
+  }, [])
+
+  const client = new ApolloClient({
     cache,
     link,
   })
+
+  return { client, cacheInitializing }
 }
 
 export { isMutation, getGraphQLServer }
