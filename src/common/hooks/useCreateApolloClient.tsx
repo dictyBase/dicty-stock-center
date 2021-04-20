@@ -17,7 +17,6 @@ import { useAuthStore } from "features/Authentication/AuthStore"
 const SCHEMA_VERSION = "1" // Must be a string.
 const SCHEMA_VERSION_KEY = "dsc-apollo-schema-version"
 const DSC_CACHE_KEY = "dsc-apollo-cache-persist"
-const DSC_AUTH_CACHE_KEY = "dsc-auth-apollo-cache-persist"
 
 const isMutation = (value: string) => {
   if (mutationList.includes(value)) {
@@ -78,7 +77,7 @@ const useCreateApolloClient = () => {
       const persistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(localForage),
-        key: isAuthenticated ? DSC_AUTH_CACHE_KEY : DSC_CACHE_KEY,
+        key: DSC_CACHE_KEY,
       })
       const currentVersion = await localForage.getItem(SCHEMA_VERSION_KEY)
       if (currentVersion === SCHEMA_VERSION) {
@@ -95,7 +94,7 @@ const useCreateApolloClient = () => {
     }
 
     initializeCache()
-  }, [isAuthenticated])
+  }, [])
 
   const client = new ApolloClient({
     cache,
