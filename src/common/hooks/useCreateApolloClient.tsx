@@ -10,7 +10,6 @@ import {
   listStrainsPagination,
   listPlasmidsPagination,
 } from "common/graphql/pagination"
-import { useAuthStore } from "features/Authentication/AuthStore"
 
 // SCHEMA_VERSION needs to be manually updated when there is a breaking schema change.
 // "1" is linked to https://github.com/dictyBase/graphql-schema/tree/17f3fda1bffe1c8348690ee9b9e4be6fc653d4f4
@@ -69,7 +68,6 @@ const link = authLink.concat(
 )
 
 const useCreateApolloClient = () => {
-  const [{ isAuthenticated }] = useAuthStore()
   const [cacheInitializing, setCacheInitializing] = React.useState(true)
 
   React.useEffect(() => {
