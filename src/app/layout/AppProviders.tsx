@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import useApolloClient from "common/hooks/useApolloClient"
+import useCreateApolloClient from "common/hooks/useCreateApolloClient"
 
 const theme = createMuiTheme({
   // use color tool for palette -- https://material.io/resources/color/
@@ -62,7 +62,7 @@ const theme = createMuiTheme({
 })
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => {
-  const { client, cacheInitializing } = useApolloClient()
+  const { client, cacheInitializing } = useCreateApolloClient()
 
   if (cacheInitializing) {
     return <CircularProgress />

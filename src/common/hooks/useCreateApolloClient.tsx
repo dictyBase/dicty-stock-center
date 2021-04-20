@@ -48,7 +48,7 @@ const authLink = setContext((request, { headers }) => {
   }
 })
 
-const useApolloClient = () => {
+const useCreateApolloClient = () => {
   const [cacheInitializing, setCacheInitializing] = React.useState(true)
 
   const server = getGraphQLServer(
@@ -86,4 +86,4 @@ const useApolloClient = () => {
 }
 
 export { isMutation, getGraphQLServer }
-export default useApolloClient
+export default useCreateApolloClient

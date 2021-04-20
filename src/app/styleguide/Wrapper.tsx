@@ -7,7 +7,7 @@ import { Formik } from "formik"
 import { AuthProvider } from "features/Authentication/AuthStore"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import useApolloClient from "common/hooks/useApolloClient"
+import useCreateApolloClient from "common/hooks/useCreateApolloClient"
 import { theme } from "app/layout/AppProviders"
 
 /**
@@ -15,7 +15,7 @@ import { theme } from "app/layout/AppProviders"
  */
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  const { client, cacheInitializing } = useApolloClient()
+  const { client, cacheInitializing } = useCreateApolloClient()
 
   if (cacheInitializing) {
     return <CircularProgress />
