@@ -55,7 +55,6 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
         annotation: phenotype,
       },
       errorPolicy: "all",
-      fetchPolicy: "cache-and-network",
     },
   )
 
