@@ -6162,6 +6162,10 @@ dfa@^1.0.0:
     slate-react "^0.21.20"
     slate-schema-violations "^0.1.39"
 
+dicty-graphql-schema@dictybase/dicty-graphql-schema#1.0.1:
+  version "1.0.1"
+  resolved "https://codeload.github.com/dictybase/dicty-graphql-schema/tar.gz/70ea5f78fca0c76622686f152b4781b8619587bc"
+
 dicty-hooks@dictybase/dicty-hooks#2.0.0:
   version "0.0.0-semantically-released"
   resolved "https://codeload.github.com/dictybase/dicty-hooks/tar.gz/454bfebf21ac3633f76e4e5a73106d3d308f1f2f"
