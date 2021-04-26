@@ -1,12 +1,11 @@
 import React from "react"
-import { useQuery } from "@apollo/client"
 import { useParams } from "react-router-dom"
 import { Helmet } from "react-helmet"
+import { useContentBySlugQuery } from "dicty-graphql-schema"
 import Loader from "common/components/Loader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import InfoPageView from "./InfoPageView"
 import { pageTitleLookup } from "common/utils/convertPageTitles"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import NAMESPACE from "common/constants/namespace"
 
 const metaContent =
@@ -23,7 +22,7 @@ type Params = {
 
 const InfoPageContainer = () => {
   const { name } = useParams<Params>()
-  const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
+  const { loading, error, data } = useContentBySlugQuery({
     variables: {
       slug: `${NAMESPACE}-${name}`,
     },
@@ -44,7 +43,7 @@ const InfoPageContainer = () => {
         <title>{pageTitleLookup(name)} - Dicty Stock Center</title>
         <meta name="description" content={metaContent} />
       </Helmet>
-      <InfoPageView data={data.contentBySlug} />
+      <InfoPageView data={data?.contentBySlug} />
     </>
   )
 }

@@ -1,8 +1,7 @@
 import React from "react"
-import { useQuery } from "@apollo/client"
 import InlineEditor from "features/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
+import { useContentBySlugQuery } from "dicty-graphql-schema"
 
 type Props = {
   /** The slug name for the data to fetch */
@@ -18,7 +17,7 @@ type Props = {
  */
 
 const EditablePanel = ({ slug, skeletonCount }: Props) => {
-  const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
+  const { loading, error, data } = useContentBySlugQuery({
     variables: {
       slug: slug,
     },
@@ -32,7 +31,7 @@ const EditablePanel = ({ slug, skeletonCount }: Props) => {
     return <div>Error fetching data</div>
   }
 
-  return <InlineEditor data={data.contentBySlug} />
+  return <InlineEditor data={data?.contentBySlug} />
 }
 
 export default EditablePanel
