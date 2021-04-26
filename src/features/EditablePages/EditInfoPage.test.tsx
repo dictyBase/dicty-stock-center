@@ -2,9 +2,9 @@ import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter, useHistory } from "react-router-dom"
+import { UpdateContentDocument } from "dicty-graphql-schema"
 import EditInfoPage from "./EditInfoPage"
 import { MockAuthProvider } from "common/utils/testing"
-import { UPDATE_CONTENT } from "common/graphql/mutations"
 
 const mockHistoryPush = jest.fn()
 const mockParamsName = "order"
@@ -54,15 +54,16 @@ describe("features/EditablePages/EditInfoPage", () => {
     location: {
       state: {
         data: {
-          id: 99,
+          id: "99",
           name: "payment",
           slug: "dsc-payment",
           content: JSON.stringify(mockContent),
           updated_at: "2020-01-01T17:50:12.427Z",
           updated_by: {
-            id: 999,
+            id: "999",
             first_name: "Art",
             last_name: "Vandelay",
+            email: "art@vandelayindustries.com",
             roles: [
               {
                 role: "Latex Salesman",
@@ -96,7 +97,7 @@ describe("features/EditablePages/EditInfoPage", () => {
       const mocks = [
         {
           request: {
-            query: UPDATE_CONTENT,
+            query: UpdateContentDocument,
             variables: {
               input: {
                 id: props.location.state.data.id,
