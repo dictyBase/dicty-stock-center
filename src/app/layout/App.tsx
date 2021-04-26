@@ -70,6 +70,8 @@ const App = () => {
   const { loading, refetch, data } = useQuery(GET_REFRESH_TOKEN, {
     variables: { token: token },
     errorPolicy: "ignore",
+    fetchPolicy: "no-cache",
+    nextFetchPolicy: "no-cache",
     skip, // only run query once
   })
   const interval = useRef<any>(null)

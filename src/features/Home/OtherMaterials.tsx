@@ -17,6 +17,7 @@ const OtherMaterials = () => {
     variables: {
       slug: slugName,
     },
+    fetchPolicy: "cache-and-network",
   })
 
   if (loading) {

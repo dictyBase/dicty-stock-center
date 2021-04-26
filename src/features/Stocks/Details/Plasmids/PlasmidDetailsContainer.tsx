@@ -24,6 +24,7 @@ const PlasmidDetailsContainer = () => {
   const { loading, error, data } = useQuery(GET_PLASMID, {
     variables: { id },
     errorPolicy: "ignore",
+    fetchPolicy: "cache-and-network",
   })
 
   if (loading) return <DetailsLoader />
