@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import InfoPageContainer from "./InfoPageContainer"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
+import { ContentBySlugDocument } from "dicty-graphql-schema"
 import { MockAuthProvider } from "common/utils/testing"
 
 window.getSelection = jest.fn()
@@ -55,7 +55,7 @@ describe("features/EditablePages/InfoPageContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_CONTENT_BY_SLUG,
+          query: ContentBySlugDocument,
           variables: {
             slug: "dsc-payment",
           },
@@ -104,7 +104,7 @@ describe("features/EditablePages/InfoPageContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_CONTENT_BY_SLUG,
+          query: ContentBySlugDocument,
           variables: {
             slug: "dsc-payment",
           },

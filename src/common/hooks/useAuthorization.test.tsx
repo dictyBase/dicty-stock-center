@@ -77,16 +77,29 @@ describe("hooks/useAuthorization", () => {
 
     describe("useAuthorization with non-superuser logged in", () => {
       const MockAdmin = {
-        id: 999,
+        id: "999",
         first_name: "Art",
         last_name: "Vandelay",
         email: "george@vandelayindustries.com",
+        is_active: true,
+        created_at: "123456",
+        updated_at: "123456",
         roles: [
           {
-            id: 1,
+            id: "1",
             role: "curator",
+            description: "dicty curator",
+            created_at: 123456,
+            updated_at: 678900,
             permissions: [
-              { id: 1, permission: "write", resource: "dsccontent" },
+              {
+                id: "1",
+                permission: "write",
+                description: "a test permission",
+                resource: "dsccontent",
+                created_at: 123456,
+                updated_at: 678900,
+              },
             ],
           },
         ],
