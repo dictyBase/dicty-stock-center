@@ -3,6 +3,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist"
 import localForage from "localforage"
+import { version as schema_version } from "dicty-graphql-schema/package.json"
 import { mutationList } from "common/graphql/mutations"
 import {
   listStrainsWithAnnotationPagination,
@@ -11,9 +12,8 @@ import {
   listPlasmidsPagination,
 } from "common/graphql/pagination"
 
-// SCHEMA_VERSION needs to be manually updated when there is a breaking schema change.
-// "1" is linked to https://github.com/dictyBase/graphql-schema/tree/17f3fda1bffe1c8348690ee9b9e4be6fc653d4f4
-const SCHEMA_VERSION = "1" // Must be a string.
+// SCHEMA_VERSION is tied directly to the latest version of the dicty-graphql-schema library.
+const SCHEMA_VERSION = schema_version
 const SCHEMA_VERSION_KEY = "dsc-apollo-schema-version"
 const DSC_CACHE_KEY = "dsc-apollo-cache-persist"
 
