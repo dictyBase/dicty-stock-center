@@ -1,8 +1,7 @@
 import React from "react"
-import { useQuery } from "@apollo/client"
+import { useContentBySlugQuery } from "dicty-graphql-schema"
 import InlineEditor from "features/EditablePages/InlineEditor"
 import PanelLoader from "./PanelLoader"
-import { GET_CONTENT_BY_SLUG } from "common/graphql/queries/content"
 import useStyles from "./homeStyles"
 
 const slugName = "dsc-other-materials"
@@ -13,7 +12,7 @@ const slugName = "dsc-other-materials"
 
 const OtherMaterials = () => {
   const classes = useStyles({ panelBackground: "blue" })
-  const { loading, error, data } = useQuery(GET_CONTENT_BY_SLUG, {
+  const { loading, error, data } = useContentBySlugQuery({
     variables: {
       slug: slugName,
     },
@@ -34,7 +33,7 @@ const OtherMaterials = () => {
 
   return (
     <div className={classes.panel}>
-      <InlineEditor data={data.contentBySlug} />
+      <InlineEditor data={data?.contentBySlug} />
     </div>
   )
 }

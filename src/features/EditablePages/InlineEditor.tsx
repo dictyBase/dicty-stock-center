@@ -1,12 +1,14 @@
 import React, { useState } from "react"
-import { useMutation } from "@apollo/client"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PageEditor } from "dicty-components-page-editor"
 import useAuthorization from "common/hooks/useAuthorization"
 import { useAuthStore } from "features/Authentication/AuthStore"
-import { UPDATE_CONTENT } from "common/graphql/mutations"
+import {
+  ContentBySlugQuery,
+  useUpdateContentMutation,
+} from "dicty-graphql-schema"
 
 const useStyles = makeStyles(() => ({
   editButton: {
@@ -21,24 +23,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 type Props = {
-  data: {
-    id: number
-    content: string
-    slug: string
-    updated_by: {
-      email: string
-      first_name: string
-      last_name: string
-      updated_at: string
-      roles?: Array<{
-        role: string
-        permissions?: Array<{
-          permission: string
-          resource: string
-        }>
-      }>
-    }
-  }
+  data: ContentBySlugQuery["contentBySlug"]
 }
 
 /**
@@ -47,10 +32,10 @@ type Props = {
 
 const InlineEditor = ({ data }: Props) => {
   const [readOnly, setReadOnly] = React.useState(true)
-  const [value, setValue] = useState(data.content)
+  const [value, setValue] = useState(data?.content)
   const [{ token }] = useAuthStore()
   const { canEditPages, verifiedToken, user } = useAuthorization()
-  const [updateContent] = useMutation(UPDATE_CONTENT, {
+  const [updateContent] = useUpdateContentMutation({
     context: {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -61,6 +46,9 @@ const InlineEditor = ({ data }: Props) => {
 
   const onSave = (value: any) => {
     const valueStr = JSON.stringify(value.toJSON())
+    if (data?.id === undefined) {
+      return
+    }
     updateContent({
       variables: {
         input: {

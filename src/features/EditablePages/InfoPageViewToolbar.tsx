@@ -8,7 +8,8 @@ import ErrorNotification from "features/Authentication/ErrorNotification"
 import timeSince from "common/utils/timeSince"
 import { useAuthStore } from "features/Authentication/AuthStore"
 import useAuthorization from "common/hooks/useAuthorization"
-import { UpdatedByUser } from "./types"
+import { capitalizeFirstCharacter } from "common/utils/stringCapitalizations"
+import { UpdatedByUser } from "common/types"
 
 const useStyles = makeStyles(() => ({
   grid: {
@@ -84,49 +85,44 @@ const InfoPageViewToolbar = ({ handleClick, lastUpdate, user }: Props) => {
   const { canEditPages, verifiedToken } = useAuthorization()
 
   const fullName = `${user.first_name} ${user.last_name}`
-  const role = `${user.roles[0].role}`
-  const uppercaseRole = role.charAt(0).toUpperCase() + role.substring(1)
+  const role = user?.roles?.length ? `${user.roles[0].role}` : "dictyBase User"
+  const uppercaseRole = capitalizeFirstCharacter(role)
 
   const validUser = isAuthenticated && canEditPages
   const validUserExpiredToken = validUser && !verifiedToken
 
   return (
-    <>
-      <div>
-        {validUserExpiredToken && <ErrorNotification error={error} />}
-        <br />
-        {validUser && (
-          <div className={classes.toolbar} data-testid="info-page-toolbar">
-            <Grid container alignItems="center">
-              <Grid item>
-                <span className={classes.textInfo}>
-                  <strong>
-                    <FontAwesomeIcon
-                      className={classes.editButton}
-                      icon="user"
-                    />
-                    &nbsp; {fullName}
-                  </strong>
-                  &nbsp;edited {timeSince(lastUpdate)} ago
-                </span>
-              </Grid>
-              <Grid item className={classes.content}>
-                <span className={classes.label}>{uppercaseRole}</span> &nbsp;
-                {verifiedToken && (
-                  <Tooltip title="Edit Page" placement="bottom">
-                    <IconButton
-                      className={classes.editButton}
-                      onClick={handleClick}>
-                      <FontAwesomeIcon icon="pencil-alt" />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </Grid>
+    <div>
+      {validUserExpiredToken && <ErrorNotification error={error} />}
+      <br />
+      {validUser && (
+        <div className={classes.toolbar} data-testid="info-page-toolbar">
+          <Grid container alignItems="center">
+            <Grid item>
+              <span className={classes.textInfo}>
+                <strong>
+                  <FontAwesomeIcon className={classes.editButton} icon="user" />
+                  &nbsp; {fullName}
+                </strong>
+                &nbsp;edited {timeSince(lastUpdate)} ago
+              </span>
             </Grid>
-          </div>
-        )}
-      </div>
-    </>
+            <Grid item className={classes.content}>
+              <span className={classes.label}>{uppercaseRole}</span> &nbsp;
+              {verifiedToken && (
+                <Tooltip title="Edit Page" placement="bottom">
+                  <IconButton
+                    className={classes.editButton}
+                    onClick={handleClick}>
+                    <FontAwesomeIcon icon="pencil-alt" />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Grid>
+          </Grid>
+        </div>
+      )}
+    </div>
   )
 }
 

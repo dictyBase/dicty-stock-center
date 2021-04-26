@@ -1,3 +1,5 @@
+import { User, Role, Permission, Maybe } from "dicty-graphql-schema"
+
 type CartItem = {
   /** Stock ID */
   id: string
@@ -14,20 +16,21 @@ interface CartItemWithQuantity extends CartItem {
   quantity: number
 }
 
-type User = {
-  id: number
-  first_name: string
-  last_name: string
-  email: string
-  roles: Array<{
-    id: number
-    role: string
-    permissions?: Array<{
-      id: number
-      permission: string
-      resource: string
-    }>
-  }>
+type UpdatedByUser = Pick<User, "id" | "email" | "first_name" | "last_name"> & {
+  roles?: Maybe<
+    Array<
+      { __typename?: "Role" } & Pick<Role, "role"> & {
+          permissions?: Maybe<
+            Array<
+              { __typename?: "Permission" } & Pick<
+                Permission,
+                "permission" | "resource"
+              >
+            >
+          >
+        }
+    >
+  >
 }
 
-export type { CartItem, CartItemWithQuantity, User }
+export type { CartItem, CartItemWithQuantity, UpdatedByUser }

@@ -6,6 +6,7 @@ import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { useFetchRefreshToken, useNavbar } from "dicty-hooks"
+import { User } from "dicty-graphql-schema"
 import HeaderRow from "./HeaderRow"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
@@ -17,7 +18,6 @@ import {
 import footerItems from "common/utils/footerItems"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
-import { User } from "common/types"
 import { useStyles, navTheme, headerTheme, footerTheme } from "./appStyles"
 
 const getTokenIntervalDelayInMS = (token: string) => {

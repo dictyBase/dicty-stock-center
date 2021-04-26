@@ -53,18 +53,6 @@ const CREATE_CONTENT = gql`
   }
 `
 
-const UPDATE_CONTENT = gql`
-  mutation UpdateContent($input: UpdateContentInput!) {
-    updateContent(input: $input) {
-      id
-      updated_by {
-        id
-      }
-      content
-    }
-  }
-`
-
 const CREATE_USER = gql`
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
@@ -88,7 +76,6 @@ export {
   LOGOUT,
   CREATE_ORDER,
   CREATE_CONTENT,
-  UPDATE_CONTENT,
   CREATE_USER,
   UPDATE_USER,
   mutationList,
