@@ -2,6 +2,7 @@ import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter, useHistory } from "react-router-dom"
+import { CreateContentDocument } from "dicty-graphql-schema"
 import AddPage from "./AddPage"
 import { CREATE_CONTENT } from "common/graphql/mutations"
 import { MockAuthProvider } from "common/utils/testing"
@@ -80,7 +81,7 @@ describe("features/EditablePages/AddPage", () => {
       const mocks = [
         {
           request: {
-            query: CREATE_CONTENT,
+            query: CreateContentDocument,
             variables: {
               input: {
                 name: textInput,

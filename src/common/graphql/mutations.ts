@@ -40,19 +40,6 @@ const CREATE_ORDER = gql`
   }
 `
 
-const CREATE_CONTENT = gql`
-  mutation CreateContent($input: CreateContentInput!) {
-    createContent(input: $input) {
-      name
-      created_by {
-        id
-      }
-      content
-      namespace
-    }
-  }
-`
-
 const CREATE_USER = gql`
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
@@ -71,12 +58,4 @@ const UPDATE_USER = gql`
 
 const mutationList = ["Logout", "CreateContent", "UpdateContent"]
 
-export {
-  LOGIN,
-  LOGOUT,
-  CREATE_ORDER,
-  CREATE_CONTENT,
-  CREATE_USER,
-  UPDATE_USER,
-  mutationList,
-}
+export { LOGIN, LOGOUT, CREATE_ORDER, CREATE_USER, UPDATE_USER, mutationList }
