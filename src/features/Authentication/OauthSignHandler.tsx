@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
 import querystring from "querystring"
-import { useLoginMutation } from "dicty-graphql-schema"
+import { useLoginMutation, User } from "dicty-graphql-schema"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
 import oauthConfig from "common/utils/oauthConfig"
 
@@ -39,7 +39,7 @@ const getLoginInputVariables = (data: LoginEventData) => {
 
 const OauthSignHandler = () => {
   const history = useHistory()
-  const [, dispatch] = useAuthStore()
+  const { dispatch } = useAuthStore()
   const [login, { data }] = useLoginMutation()
 
   React.useEffect(() => {
@@ -57,9 +57,9 @@ const OauthSignHandler = () => {
         dispatch({
           type: ActionType.LOGIN,
           payload: {
-            token: data?.login?.token,
-            user: data?.login?.user,
-            provider: data?.login?.identity.provider,
+            token: data?.login?.token as string,
+            user: data?.login?.user as User,
+            provider: data?.login?.identity.provider as string,
           },
         })
         history.push("/mydsc")

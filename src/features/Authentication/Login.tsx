@@ -99,7 +99,9 @@ const theme = createMuiTheme({
  */
 
 const Login = () => {
-  const [{ error }] = useAuthStore()
+  const {
+    state: { error },
+  } = useAuthStore()
   let message = ""
 
   if (error) {

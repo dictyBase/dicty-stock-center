@@ -10,7 +10,7 @@ import useStyles from "./myDscStyles"
  */
 
 const MyDscPage = () => {
-  const [{ user, provider }] = useAuthStore()
+  const { state } = useAuthStore()
   const classes = useStyles()
 
   return (
@@ -19,7 +19,7 @@ const MyDscPage = () => {
         <MyDscHeader />
       </Grid>
       <Grid item xs={8}>
-        <MyDscMainContent data={user} provider={provider} />
+        <MyDscMainContent data={state.user} provider={state.provider} />
       </Grid>
     </Grid>
   )

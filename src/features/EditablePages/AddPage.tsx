@@ -26,7 +26,9 @@ const newTheme = createMuiTheme({
  */
 
 const AddPage = () => {
-  const [{ token }] = useAuthStore()
+  const {
+    state: { token },
+  } = useAuthStore()
   const { user } = useAuthorization()
   const history = useHistory()
   const [createContent] = useCreateContentMutation({

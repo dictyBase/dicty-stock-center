@@ -35,7 +35,7 @@ const getTokenIntervalDelayInMS = (token: string) => {
 }
 
 type Action = {
-  type: string
+  type: ActionType.UPDATE_TOKEN
   payload: {
     provider: string
     token: string
@@ -58,7 +58,10 @@ const updateToken = (
 
 const App = () => {
   const [skip, setSkip] = React.useState(false)
-  const [{ isAuthenticated, token }, dispatch] = useAuthStore()
+  const {
+    state: { token, isAuthenticated },
+    dispatch,
+  } = useAuthStore()
   const { navbarData } = useNavbar()
   const classes = useStyles()
   const { loading, refetch, data } = useGetRefreshTokenQuery({
