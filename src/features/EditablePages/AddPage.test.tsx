@@ -84,7 +84,7 @@ describe("features/EditablePages/AddPage", () => {
             variables: {
               input: {
                 name: textInput,
-                created_by: 999,
+                created_by: "999",
                 content: JSON.stringify(mockContent),
                 namespace: "dsc",
               },
@@ -95,7 +95,7 @@ describe("features/EditablePages/AddPage", () => {
               createContent: {
                 name: textInput,
                 created_by: {
-                  id: 999,
+                  id: "999",
                 },
                 content: JSON.stringify(mockContent),
                 namespace: "dsc",
