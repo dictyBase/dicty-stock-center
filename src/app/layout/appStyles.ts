@@ -5,14 +5,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     color: "#333",
     backgroundColor: "#fff",
-    "& h1, h2, h3, h4, h5, h6": {
-      fontWeight: 500,
-      lineHeight: 1.1,
-    },
-    "& h4, h5, h6": {
-      marginTop: theme.spacing(1.2),
-      marginBottom: theme.spacing(1.2),
-    },
   },
   main: {
     marginTop: theme.spacing(2),
@@ -20,21 +12,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
+const primaryColor = "#004080"
+const blueSecondaryColor = "#001b53"
+
 const navTheme = {
-  primary: "#004080",
-  secondary: "#0059b3",
+  primary: primaryColor,
+  secondary: blueSecondaryColor,
 }
 
 const footerTheme = {
-  primary: "#004080",
+  primary: primaryColor,
   secondary: "#ebe97a",
   text: "#d8d8d8",
 }
 
 const headerTheme = {
-  primary: "#004080",
-  secondary: "#001b53",
-  text: "#004080",
+  primary: primaryColor,
+  secondary: blueSecondaryColor,
+  text: primaryColor,
 }
 
 export { useStyles, navTheme, footerTheme, headerTheme }
