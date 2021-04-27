@@ -37,9 +37,25 @@ describe("hooks/useAuthorization", () => {
 
   describe("verifyPermissions", () => {
     const writePerms = [
-      { id: "1", permission: "write", resource: "dsccontent" },
+      {
+        id: "1",
+        permission: "write",
+        resource: "dsccontent",
+        description: "test permission",
+        created_at: 123,
+        updated_at: 456,
+      },
     ]
-    const adminPerms = [{ id: "1", permission: "admin", resource: "dictybase" }]
+    const adminPerms = [
+      {
+        id: "1",
+        permission: "admin",
+        resource: "dictybase",
+        description: "test permission",
+        created_at: 123,
+        updated_at: 456,
+      },
+    ]
     it("should return true for admin permission even with different permission specified", () => {
       expect(verifyPermissions(adminPerms, "write", "dsccontent")).toBeTruthy()
     })
