@@ -1,12 +1,15 @@
 import React, { useCallback, useRef } from "react"
 import Container from "@material-ui/core/Container"
-import { useQuery } from "@apollo/client"
 import { Header, Footer } from "dicty-components-header-footer"
 import { Navbar } from "dicty-components-navbar"
 import jwtDecode from "jwt-decode"
+import {
+  useGetRefreshTokenQuery,
+  GetRefreshTokenQuery,
+  User,
+} from "dicty-graphql-schema"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { useFetchRefreshToken, useNavbar } from "dicty-hooks"
-import { User } from "dicty-graphql-schema"
 import HeaderRow from "./HeaderRow"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
@@ -17,7 +20,6 @@ import {
 } from "common/utils/headerItems"
 import footerItems from "common/utils/footerItems"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
-import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
 import { useStyles, navTheme, headerTheme, footerTheme } from "./appStyles"
 
 const getTokenIntervalDelayInMS = (token: string) => {
@@ -32,14 +34,6 @@ const getTokenIntervalDelayInMS = (token: string) => {
   return (timeDiffInMins - 2) * 60 * 1000
 }
 
-type RefreshTokenData = {
-  token: string
-  user: User
-  identity: {
-    provider: string
-  }
-}
-
 type Action = {
   type: string
   payload: {
@@ -51,14 +45,14 @@ type Action = {
 
 const updateToken = (
   dispatch: (arg0: Action) => void,
-  data: RefreshTokenData,
+  data: GetRefreshTokenQuery["getRefreshToken"],
 ) =>
   dispatch({
     type: ActionType.UPDATE_TOKEN,
     payload: {
-      provider: data.identity.provider,
-      token: data.token,
-      user: data.user,
+      provider: data?.identity.provider as string,
+      token: data?.token as string,
+      user: data?.user as User,
     },
   })
 
@@ -67,7 +61,7 @@ const App = () => {
   const [{ isAuthenticated, token }, dispatch] = useAuthStore()
   const { navbarData } = useNavbar()
   const classes = useStyles()
-  const { loading, refetch, data } = useQuery(GET_REFRESH_TOKEN, {
+  const { loading, refetch, data } = useGetRefreshTokenQuery({
     variables: { token: token },
     errorPolicy: "ignore",
     fetchPolicy: "no-cache",
