@@ -3,7 +3,7 @@ import { render, waitFor } from "@testing-library/react"
 import App, { getTokenIntervalDelayInMS } from "./App"
 import * as auth from "features/Authentication/AuthStore"
 import { MockAuthProvider } from "common/utils/testing"
-import { GET_REFRESH_TOKEN } from "common/graphql/queries/auth"
+import { GetRefreshTokenDocument } from "dicty-graphql-schema"
 
 describe("App component", () => {
   const mockState = {
@@ -17,7 +17,7 @@ describe("App component", () => {
   const mocks = [
     {
       request: {
-        query: GET_REFRESH_TOKEN,
+        query: GetRefreshTokenDocument,
         variables: {
           token: "",
         },
