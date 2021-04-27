@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import { PageEditor } from "dicty-components-page-editor"
 import {
   useUpdateContentMutation,
@@ -15,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
     "& a": {
       cursor: "pointer",
     },
-  },
-  error: {
-    textAlign: "center",
-    marginTop: 50,
   },
 }))
 
@@ -78,18 +74,14 @@ const EditInfoPage = ({ location }: Props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Grid item>
-        <div className={classes.editor}>
-          <PageEditor
-            pageContent={data?.content}
-            onCancel={onCancel}
-            onSave={onSave}
-            readOnly={false}
-          />
-        </div>
-      </Grid>
-    </Grid>
+    <Box mt={2} className={classes.editor}>
+      <PageEditor
+        pageContent={data?.content}
+        onCancel={onCancel}
+        onSave={onSave}
+        readOnly={false}
+      />
+    </Box>
   )
 }
 

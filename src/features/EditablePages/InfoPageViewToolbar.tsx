@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: "2px",
     border: "1px solid #ddd",
-    padding: theme.spacing(1.2),
+    padding: theme.spacing(1),
     marginBottom: theme.spacing(2),
     width: "100%",
     display: "flex",
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   label: {
     marginLeft: "auto",
+    marginRight: theme.spacing(1),
     padding: theme.spacing(1),
     fontSize: "0.8rem",
     fontWeight: "bold",

@@ -38,13 +38,13 @@ const InfoPageContainer = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Helmet>
         <title>{pageTitleLookup(name)} - Dicty Stock Center</title>
         <meta name="description" content={metaContent} />
       </Helmet>
       <InfoPageView data={data?.contentBySlug} />
-    </>
+    </React.Fragment>
   )
 }
 

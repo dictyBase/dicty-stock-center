@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { PageEditor } from "dicty-components-page-editor"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import { ContentBySlugQuery } from "dicty-graphql-schema"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
 
@@ -28,20 +28,16 @@ const InfoPageView = ({ data }: Props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Grid item xs={12}>
-        {data?.updated_by && (
-          <InfoPageViewToolbar
-            handleClick={handleClick}
-            lastUpdate={data?.updated_at}
-            user={data.updated_by}
-          />
-        )}
-        <div>
-          <PageEditor pageContent={data?.content} readOnly />
-        </div>
-      </Grid>
-    </Grid>
+    <Box>
+      {data?.updated_by && (
+        <InfoPageViewToolbar
+          handleClick={handleClick}
+          lastUpdate={data?.updated_at}
+          user={data.updated_by}
+        />
+      )}
+      <PageEditor pageContent={data?.content} readOnly />
+    </Box>
   )
 }
 

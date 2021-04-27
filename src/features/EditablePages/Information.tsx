@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
@@ -44,18 +44,14 @@ const informationLinks = [
   },
 ]
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     justifyContent: "center",
   },
-  addPageButton: {
-    padding: "10px 20px 10px 20px",
-    marginTop: "10px",
-    backgroundColor: palette.secondary.main,
-    "&:hover": {
-      backgroundColor: palette.secondary.dark,
-      color: "#fff",
-    },
+  button: {
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
   },
 }))
 
@@ -66,32 +62,32 @@ const Information = () => {
   const authorizedUser = canEditPages && verifiedToken
 
   return (
-    <Grid container justify="center">
-      <Grid item>
-        <Typography variant="h1">List of Information Pages</Typography>
-        <List>
-          {informationLinks.map((item, index) => (
-            <ListItem key={index} classes={{ root: classes.root }}>
-              <Link to={`/information${item.route}`}>{item.name}</Link>
-            </ListItem>
-          ))}
-          <ListItem classes={{ root: classes.root }}>
-            {authorizedUser && (
-              <Button
-                component={Link}
-                to="/addpage"
-                className={classes.addPageButton}
-                size="medium"
-                variant="contained"
-                color="secondary">
-                <FontAwesomeIcon icon="plus" size="lg" />
-                &nbsp; Add new page
-              </Button>
-            )}
+    <Box>
+      <Typography variant="h1" align="center">
+        List of Information Pages
+      </Typography>
+      <List>
+        {informationLinks.map((item, index) => (
+          <ListItem key={index} classes={{ root: classes.root }}>
+            <Link to={`/information${item.route}`}>{item.name}</Link>
           </ListItem>
-        </List>
-      </Grid>
-    </Grid>
+        ))}
+        <ListItem classes={{ root: classes.root }}>
+          {authorizedUser && (
+            <Button
+              component={Link}
+              to="/addpage"
+              className={classes.button}
+              size="medium"
+              variant="contained"
+              color="secondary">
+              <FontAwesomeIcon icon="plus" size="lg" />
+              &nbsp; Add new page
+            </Button>
+          )}
+        </ListItem>
+      </List>
+    </Box>
   )
 }
 

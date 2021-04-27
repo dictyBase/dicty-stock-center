@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 import { PageEditor } from "dicty-components-page-editor"
 import { useCreateContentMutation } from "dicty-graphql-schema"
 import AddPageBanner from "./AddPageBanner"
@@ -15,7 +15,7 @@ const newTheme = createMuiTheme({
   overrides: {
     MuiOutlinedInput: {
       input: {
-        padding: "7px",
+        padding: theme.spacing(1),
       },
     },
   },
@@ -65,20 +65,15 @@ const AddPage = () => {
 
   return (
     <ThemeProvider theme={newTheme}>
-      <Grid container wrap="wrap" justify="center">
-        <Grid item xs={12}>
-          <AddPageBanner
-            textValue={textValue}
-            setTextValue={setTextValue}
-            textValueError={textValueError}
-            setTextValueError={setTextValueError}
-          />
-        </Grid>
-        <br />
-        <Grid item xs={12}>
-          <PageEditor onCancel={onCancel} onSave={onSave} newPage={true} />
-        </Grid>
-      </Grid>
+      <Box display="flex" justifyContent="center" flexDirection="column">
+        <AddPageBanner
+          textValue={textValue}
+          setTextValue={setTextValue}
+          textValueError={textValueError}
+          setTextValueError={setTextValueError}
+        />
+        <PageEditor onCancel={onCancel} onSave={onSave} newPage={true} />
+      </Box>
     </ThemeProvider>
   )
 }
