@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useLocation, useParams } from "react-router-dom"
-import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
+import Typography from "@material-ui/core/Typography"
 
 type Params = {
   /** Provider from URL (google, orcid, etc) */
@@ -28,11 +29,11 @@ const OauthCallback = () => {
   }, [location.pathname, location.search, provider])
 
   return (
-    <Grid container justify="center">
-      <Grid item>
-        <h1>Transferring to login system ........</h1>
-      </Grid>
-    </Grid>
+    <Box textAlign="center">
+      <Typography variant="h1">
+        Transferring to login system ........
+      </Typography>
+    </Box>
   )
 }
 
