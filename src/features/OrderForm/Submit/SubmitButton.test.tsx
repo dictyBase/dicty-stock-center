@@ -2,12 +2,12 @@ import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import SubmitButton, { getIDs, getUserVariables } from "./SubmitButton"
-import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import {
-  CREATE_ORDER,
-  CREATE_USER,
-  UPDATE_USER,
-} from "common/graphql/mutations"
+  CreateOrderDocument,
+  CreateUserDocument,
+  UpdateUserDocument,
+  UserByEmailDocument,
+} from "dicty-graphql-schema"
 import { MockCartProvider } from "common/utils/testing"
 import useCartItems from "common/hooks/useCartItems"
 import { fees } from "common/constants/fees"
@@ -128,7 +128,7 @@ describe("features/OrderForm/SubmitButton", () => {
     const mocks = [
       {
         request: {
-          query: GET_USER_BY_EMAIL,
+          query: UserByEmailDocument,
           variables: {
             email: mockValues.email,
           },
@@ -143,7 +143,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: UPDATE_USER,
+          query: UpdateUserDocument,
           variables: updateConsumerVariables,
         },
         result: {
@@ -156,7 +156,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: GET_USER_BY_EMAIL,
+          query: UserByEmailDocument,
           variables: {
             email: mockValues.payerEmail,
           },
@@ -171,7 +171,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: UPDATE_USER,
+          query: UpdateUserDocument,
           variables: updatePayerVariables,
         },
         result: {
@@ -184,7 +184,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: CREATE_ORDER,
+          query: CreateOrderDocument,
           variables: createOrderVariables,
         },
         result: {
@@ -217,7 +217,7 @@ describe("features/OrderForm/SubmitButton", () => {
     const mocks = [
       {
         request: {
-          query: GET_USER_BY_EMAIL,
+          query: UserByEmailDocument,
           variables: {
             email: mockValues.email,
           },
@@ -234,7 +234,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: CREATE_USER,
+          query: CreateUserDocument,
           variables: createConsumerVariables,
         },
         result: {
@@ -247,7 +247,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: GET_USER_BY_EMAIL,
+          query: UserByEmailDocument,
           variables: {
             email: mockValues.payerEmail,
           },
@@ -262,7 +262,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: UPDATE_USER,
+          query: UpdateUserDocument,
           variables: updatePayerVariables,
         },
         result: {
@@ -275,7 +275,7 @@ describe("features/OrderForm/SubmitButton", () => {
       },
       {
         request: {
-          query: CREATE_ORDER,
+          query: CreateOrderDocument,
           variables: createOrderVariables,
         },
         result: {
@@ -310,7 +310,7 @@ describe("features/OrderForm/SubmitButton", () => {
     const mocks = [
       {
         request: {
-          query: GET_USER_BY_EMAIL,
+          query: UserByEmailDocument,
           variables: {
             email: mockValues.email,
           },

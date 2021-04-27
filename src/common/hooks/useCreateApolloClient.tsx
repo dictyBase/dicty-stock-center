@@ -4,7 +4,6 @@ import { setContext } from "@apollo/client/link/context"
 import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist"
 import localForage from "localforage"
 import { version as SCHEMA_VERSION } from "dicty-graphql-schema/package.json"
-import { mutationList } from "common/graphql/mutations"
 import {
   listStrainsWithAnnotationPagination,
   listPlasmidsWithAnnotationPagination,
@@ -14,6 +13,8 @@ import {
 
 const SCHEMA_VERSION_KEY = "dsc-apollo-schema-version"
 const DSC_CACHE_KEY = "dsc-apollo-cache-persist"
+
+const mutationList = ["Logout", "CreateContent", "UpdateContent"]
 
 const isMutation = (value: string) => {
   if (mutationList.includes(value)) {

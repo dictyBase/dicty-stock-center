@@ -2,16 +2,16 @@ import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useMutation, useQuery } from "@apollo/client"
 import { useHistory } from "react-router-dom"
+import {
+  useCreateOrderMutation,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+  useUserByEmailQuery,
+  StatusEnum,
+} from "dicty-graphql-schema"
 import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
-import {
-  CREATE_ORDER,
-  CREATE_USER,
-  UPDATE_USER,
-} from "common/graphql/mutations"
-import { GET_USER_BY_EMAIL } from "common/graphql/queries/user"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
 
@@ -95,7 +95,7 @@ const getOrderVariables = (
       comments: formData.comments,
       payment: formData.paymentMethod,
       purchase_order_num: formData.purchaseOrderNum,
-      status: "IN_PREPARATION",
+      status: StatusEnum.InPreparation,
       consumer: formData.email,
       payer: formData.payerEmail,
       purchaser: formData.email,
@@ -150,7 +150,7 @@ type Props = {
   /** Full object of form data (shipping and payment) */
   formData: FormikValues
   /** Function to set a submit error (bool) */
-  setSubmitError: Function
+  setSubmitError: (arg0: boolean) => void
 }
 
 /**
@@ -164,10 +164,10 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
   } = useCartStore()
   const { emptyCart, getCartTotal } = useCartItems()
   const history = useHistory()
-  const [createOrder] = useMutation(CREATE_ORDER)
-  const [createUser] = useMutation(CREATE_USER)
-  const [updateUser] = useMutation(UPDATE_USER)
-  const { refetch } = useQuery(GET_USER_BY_EMAIL, {
+  const [createOrder] = useCreateOrderMutation()
+  const [createUser] = useCreateUserMutation()
+  const [updateUser] = useUpdateUserMutation()
+  const { refetch } = useUserByEmailQuery({
     variables: { email: formData.email },
     skip: true, // skip initial fetch, we only want to fetch on button click
   })
@@ -195,7 +195,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
       )
       const order = await createOrder(getOrderVariables(formData, addedItems))
       history.push("/order/submitted", {
-        orderID: order.data.createOrder.id,
+        orderID: order?.data?.createOrder?.id,
         formData,
         cartItems: addedItems,
         cartTotal: getCartTotal(addedItems),
