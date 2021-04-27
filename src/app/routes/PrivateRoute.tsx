@@ -7,7 +7,7 @@ import { useAuthStore } from "features/Authentication/AuthStore"
  * This uses the same API as <Route/>
  */
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
-  const [{ isAuthenticated }] = useAuthStore()
+  const { state } = useAuthStore()
 
   return (
     // renders a <Route /> and passes all props
@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
       {...rest}
       render={(props) =>
         // checks for authentication, then redirects if not logged in
-        isAuthenticated ? (
+        state.isAuthenticated ? (
           <Component {...props} />
         ) : (
           <Redirect

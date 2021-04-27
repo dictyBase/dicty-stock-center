@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useApolloClient } from "@apollo/client"
 import { Redirect } from "react-router-dom"
 import { useLogoutMutation } from "dicty-graphql-schema"
@@ -9,7 +9,10 @@ import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
  */
 const Logout = () => {
   const client = useApolloClient()
-  const [{ token }, dispatch] = useAuthStore()
+  const {
+    state: { token },
+    dispatch,
+  } = useAuthStore()
   const [logout] = useLogoutMutation({
     context: {
       headers: {
@@ -18,7 +21,7 @@ const Logout = () => {
     },
   })
 
-  useEffect(() => {
+  React.useEffect(() => {
     logout()
     dispatch({
       type: ActionType.LOGOUT,

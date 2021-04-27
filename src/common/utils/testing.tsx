@@ -68,9 +68,10 @@ const MockAuthProvider = ({
     user: user,
     provider: "google",
     isAuthenticated: true,
+    error: null,
   })
   return (
-    <AuthContext.Provider value={[state, dispatch]}>
+    <AuthContext.Provider value={{ state, dispatch }}>
       <MockedProvider mocks={mocks} addTypename={false}>
         <BrowserRouter>{children}</BrowserRouter>
       </MockedProvider>
