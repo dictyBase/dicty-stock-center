@@ -1,37 +1,5 @@
 import { gql } from "@apollo/client"
 
-const LOGIN = gql`
-  mutation Login($input: LoginInput!) {
-    login(input: $input) {
-      token
-      user {
-        id
-        email
-        first_name
-        last_name
-        roles {
-          role
-          permissions {
-            permission
-            resource
-          }
-        }
-      }
-      identity {
-        provider
-      }
-    }
-  }
-`
-
-const LOGOUT = gql`
-  mutation Logout {
-    logout {
-      success
-    }
-  }
-`
-
 const CREATE_ORDER = gql`
   mutation CreateOrder($input: CreateOrderInput!) {
     createOrder(input: $input) {
@@ -58,4 +26,4 @@ const UPDATE_USER = gql`
 
 const mutationList = ["Logout", "CreateContent", "UpdateContent"]
 
-export { LOGIN, LOGOUT, CREATE_ORDER, CREATE_USER, UPDATE_USER, mutationList }
+export { CREATE_ORDER, CREATE_USER, UPDATE_USER, mutationList }
