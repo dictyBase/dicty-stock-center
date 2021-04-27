@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PageEditor } from "dicty-components-page-editor"
@@ -10,13 +11,13 @@ import {
   useUpdateContentMutation,
 } from "dicty-graphql-schema"
 
-const useStyles = makeStyles(() => ({
-  editButton: {
+const useStyles = makeStyles((theme: Theme) => ({
+  button: {
     fontSize: "0.9em",
-    color: "#337ab7",
+    color: theme.palette.primary.light,
     textTransform: "none",
     "&:hover": {
-      color: "#337ab7",
+      color: theme.palette.primary.light,
       backgroundColor: "transparent",
     },
   },
@@ -69,7 +70,7 @@ const InlineEditor = ({ data }: Props) => {
   const authorizedUser = canEditPages && verifiedToken
 
   return (
-    <div>
+    <Box>
       <PageEditor
         key={readOnly}
         pageContent={value}
@@ -79,18 +80,18 @@ const InlineEditor = ({ data }: Props) => {
         inline
       />
       {authorizedUser && (
-        <span>
+        <Box component="span">
           <Button
-            className={classes.editButton}
+            className={classes.button}
             color="primary"
             onClick={() => setReadOnly(false)}
             title="Edit">
             <FontAwesomeIcon icon="pencil-alt" />
             &nbsp; Edit
           </Button>
-        </span>
+        </Box>
       )}
-    </div>
+    </Box>
   )
 }
 
