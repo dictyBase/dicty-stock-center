@@ -1,9 +1,8 @@
-import { useEffect } from "react"
-import { useMutation } from "@apollo/client"
+import React from "react"
 import { useHistory } from "react-router-dom"
 import querystring from "querystring"
+import { useLoginMutation } from "dicty-graphql-schema"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
-import { LOGIN } from "common/graphql/mutations"
 import oauthConfig from "common/utils/oauthConfig"
 
 type LoginEventData = {
@@ -23,8 +22,8 @@ const getLoginInputVariables = (data: LoginEventData) => {
     input: {
       client_id: provider.clientId,
       redirect_url: data.url,
-      state: parsed.state || "state",
-      code: parsed.code,
+      state: parsed?.state?.toString() || "state",
+      code: parsed.code as string,
       scopes: provider.scopes[0],
       provider: data.provider,
     },
@@ -41,9 +40,9 @@ const getLoginInputVariables = (data: LoginEventData) => {
 const OauthSignHandler = () => {
   const history = useHistory()
   const [, dispatch] = useAuthStore()
-  const [login, { data }] = useMutation(LOGIN)
+  const [login, { data }] = useLoginMutation()
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onMessage = async (event: MessageEvent) => {
       event.preventDefault()
       event.stopPropagation()
@@ -58,9 +57,9 @@ const OauthSignHandler = () => {
         dispatch({
           type: ActionType.LOGIN,
           payload: {
-            token: data.login.token,
-            user: data.login.user,
-            provider: data.login.identity.provider,
+            token: data?.login?.token,
+            user: data?.login?.user,
+            provider: data?.login?.identity.provider,
           },
         })
         history.push("/mydsc")

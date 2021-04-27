@@ -1,7 +1,7 @@
 import React from "react"
 import { render, waitFor } from "@testing-library/react"
 import OauthSignHandler from "./OauthSignHandler"
-import { LOGIN } from "common/graphql/mutations"
+import { LoginDocument } from "dicty-graphql-schema"
 import { MockAuthProvider } from "common/utils/testing"
 import clientConfig from "common/utils/clientConfig"
 
@@ -42,7 +42,7 @@ describe("authentication/OauthSignHandler", () => {
   const mocks = [
     {
       request: {
-        query: LOGIN,
+        query: LoginDocument,
         variables: {
           input: {
             client_id: clientConfig.google.clientId,
