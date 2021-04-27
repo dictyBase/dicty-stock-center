@@ -85,8 +85,9 @@ const InfoPageViewToolbar = ({ handleClick, lastUpdate, user }: Props) => {
   const { canEditPages, verifiedToken } = useAuthorization()
 
   const fullName = `${user.first_name} ${user.last_name}`
-  const role = user?.roles?.length ? `${user.roles[0].role}` : "dictyBase User"
-  const uppercaseRole = capitalizeFirstCharacter(role)
+  const role = user?.roles?.length
+    ? `${capitalizeFirstCharacter(user.roles[0].role)}`
+    : "dictyBase User"
 
   const validUser = isAuthenticated && canEditPages
   const validUserExpiredToken = validUser && !verifiedToken
@@ -108,7 +109,7 @@ const InfoPageViewToolbar = ({ handleClick, lastUpdate, user }: Props) => {
               </span>
             </Grid>
             <Grid item className={classes.content}>
-              <span className={classes.label}>{uppercaseRole}</span> &nbsp;
+              <span className={classes.label}>{role}</span> &nbsp;
               {verifiedToken && (
                 <Tooltip title="Edit Page" placement="bottom">
                   <IconButton
