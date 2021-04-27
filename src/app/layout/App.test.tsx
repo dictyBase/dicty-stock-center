@@ -3,17 +3,21 @@ import { render, waitFor } from "@testing-library/react"
 import App, { getTokenIntervalDelayInMS } from "./App"
 import * as auth from "features/Authentication/AuthStore"
 import { MockAuthProvider } from "common/utils/testing"
-import { GetRefreshTokenDocument } from "dicty-graphql-schema"
+import { GetRefreshTokenDocument, User } from "dicty-graphql-schema"
 
 describe("App component", () => {
   const mockState = {
     token: "",
     isAuthenticated: false,
+    user: {} as User,
+    provider: "",
+    error: null,
   }
   const mockDispatch = jest.fn()
-  jest
-    .spyOn(auth, "useAuthStore")
-    .mockImplementation(() => [mockState, mockDispatch])
+  jest.spyOn(auth, "useAuthStore").mockImplementation(() => ({
+    state: mockState,
+    dispatch: mockDispatch,
+  }))
   const mocks = [
     {
       request: {
