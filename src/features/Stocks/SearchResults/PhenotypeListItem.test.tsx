@@ -2,6 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import PhenotypeListItem from "./PhenotypeListItem"
 import { BrowserRouter } from "react-router-dom"
+import { Gene, Publication } from "dicty-graphql-schema"
 import { availableStrain, strainWithPhenotype } from "mocks/mockStrain"
 
 describe("Stocks/SearchResults/PhenotypeListItem", () => {
@@ -16,15 +17,19 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
         </BrowserRouter>,
       )
       // find strain descriptor
-      const label = screen.getByText(/test1/)
+      const label = screen.getByText(availableStrain.label)
       expect(label).toBeInTheDocument()
       // find associated genes
-      const gene = screen.getByText(/abcd/)
-      expect(gene).toBeInTheDocument()
+      const genes = availableStrain?.genes as Gene[]
+      genes.forEach((item) => {
+        const name = screen.getByText(item.name)
+        expect(name).toBeInTheDocument()
+      })
       // find pub link
       const links = screen.getAllByRole("link")
       const pubLink = links[2]
-      expect(pubLink).toHaveAttribute("href", "/publication/20008082")
+      const pub = availableStrain?.publications as Publication[]
+      expect(pubLink).toHaveAttribute("href", `/publication/${pub[0].id}`)
     })
   })
   describe("render without publications", () => {
