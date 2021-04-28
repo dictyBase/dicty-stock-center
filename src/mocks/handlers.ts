@@ -16,7 +16,7 @@ import {
   strainWithPhenotype,
   gwdiData,
 } from "./mockStrain"
-import { otherMaterials } from "./mockContent"
+import { about, intro, otherMaterials } from "./mockContent"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
 import { availablePlasmid } from "./mockPlasmid"
@@ -24,7 +24,13 @@ import { availablePlasmid } from "./mockPlasmid"
 export const handlers = [
   graphql.query("contentBySlug", (req, res, ctx) => {
     if (req.variables.slug === "dsc-other-materials") {
-      return res(ctx.data({ contentBySlug: otherMaterials }))
+      return res(ctx.data(otherMaterials))
+    }
+    if (req.variables.slug === "dsc-intro") {
+      return res(ctx.data(intro))
+    }
+    if (req.variables.slug === "dsc-about") {
+      return res(ctx.data(about))
     }
   }),
   graphql.query("StrainList", (req, res, ctx) => {
