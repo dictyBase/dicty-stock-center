@@ -1,13 +1,12 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
-import { useQuery } from "@apollo/client"
 import Box from "@material-ui/core/Box"
+import { usePlasmidQuery } from "dicty-graphql-schema"
 import PlasmidDetailsCard from "./PlasmidDetailsCard"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
-import { GET_PLASMID } from "common/graphql/queries/stocks/details"
 
 type Params = {
   /** Stock ID from URL */
@@ -21,7 +20,7 @@ type Params = {
 
 const PlasmidDetailsContainer = () => {
   const { id } = useParams<Params>()
-  const { loading, error, data } = useQuery(GET_PLASMID, {
+  const { loading, error, data } = usePlasmidQuery({
     variables: { id },
     errorPolicy: "ignore",
     fetchPolicy: "cache-and-network",
@@ -30,7 +29,7 @@ const PlasmidDetailsContainer = () => {
   if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
-  const title = `Plasmid Details for ${data.plasmid.name}`
+  const title = `Plasmid Details for ${data?.plasmid?.name}`
 
   return (
     <Box textAlign="center">
@@ -38,11 +37,16 @@ const PlasmidDetailsContainer = () => {
         <title>{title} - Dicty Stock Center</title>
         <meta
           name="description"
-          content={`Dicty Stock Center plasmid details page for ${data.plasmid.id}`}
+          content={`Dicty Stock Center plasmid details page for ${data?.plasmid?.id}`}
         />
       </Helmet>
-      <DetailsHeader id={data.plasmid.id} name={data.plasmid.name} />
-      <PlasmidDetailsCard data={data.plasmid} />
+
+      {data?.plasmid && (
+        <React.Fragment>
+          <DetailsHeader id={data.plasmid.id} name={data.plasmid.name} />
+          <PlasmidDetailsCard data={data.plasmid} />
+        </React.Fragment>
+      )}
     </Box>
   )
 }

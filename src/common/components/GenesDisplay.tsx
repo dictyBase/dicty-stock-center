@@ -1,10 +1,6 @@
 import React from "react"
 import LinkTag from "common/components/LinkTag"
-
-type Gene = {
-  /** Gene name */
-  name: string
-}
+import { Gene } from "dicty-graphql-schema"
 
 type Props = {
   /** List of gene IDs */
