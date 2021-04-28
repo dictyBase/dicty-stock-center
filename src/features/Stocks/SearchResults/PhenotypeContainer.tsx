@@ -8,7 +8,7 @@ import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import ResultsHeader from "./ResultsHeader"
 import PhenotypeList from "./PhenotypeList"
-import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/lists"
+import { ListStrainsWithPhenotypeDocument } from "dicty-graphql-schema"
 import { ListStrainsWithAnnotation } from "common/graphql/pagination"
 
 const useStyles = makeStyles({
@@ -46,7 +46,7 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
   const [isLoadingMore, setIsLoadingMore] = React.useState(false)
   const [prevCursor, setPrevCursor] = React.useState(null)
   const { loading, error, data, fetchMore } = useQuery(
-    GET_STRAIN_LIST_WITH_PHENOTYPE,
+    ListStrainsWithPhenotypeDocument,
     {
       variables: {
         cursor: 0,

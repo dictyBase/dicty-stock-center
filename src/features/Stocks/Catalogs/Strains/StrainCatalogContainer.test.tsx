@@ -7,10 +7,10 @@ import StrainCatalogContainer, {
   normalizeBacterialStrainsData,
 } from "./StrainCatalogContainer"
 import {
-  GET_BACTERIAL_STRAIN_LIST,
-  GET_STRAIN_INVENTORY_LIST,
-  GET_STRAIN_LIST,
-} from "common/graphql/queries/stocks/lists"
+  ListBacterialStrainsDocument,
+  ListStrainsInventoryDocument,
+  StrainListDocument,
+} from "dicty-graphql-schema"
 import {
   CatalogProvider,
   CatalogActionType,
@@ -55,7 +55,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     const listStrainMocks = [
       {
         request: {
-          query: GET_STRAIN_LIST,
+          query: StrainListDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -72,7 +72,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     const listStrainAnnotationMocks = [
       {
         request: {
-          query: GET_STRAIN_INVENTORY_LIST,
+          query: ListStrainsInventoryDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -90,7 +90,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     const bacterialStrainMocks = [
       {
         request: {
-          query: GET_BACTERIAL_STRAIN_LIST,
+          query: ListBacterialStrainsDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -165,7 +165,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_STRAIN_LIST,
+          query: StrainListDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -216,7 +216,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith({
         type: CatalogActionType.SET_QUERY,
-        payload: GET_STRAIN_LIST,
+        payload: StrainListDocument,
       })
       expect(mockDispatch).toHaveBeenCalledWith({
         type: CatalogActionType.SET_QUERY_VARIABLES,
@@ -234,7 +234,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith({
         type: CatalogActionType.SET_QUERY,
-        payload: GET_STRAIN_LIST,
+        payload: StrainListDocument,
       })
       expect(mockDispatch).toHaveBeenCalledWith({
         type: CatalogActionType.SET_QUERY_VARIABLES,

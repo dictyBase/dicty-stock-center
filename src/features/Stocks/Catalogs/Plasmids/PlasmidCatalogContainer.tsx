@@ -8,9 +8,9 @@ import CatalogListItem from "features/Stocks/Catalogs/common/CatalogListItem"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 import {
-  GET_PLASMID_INVENTORY_LIST,
-  GET_PLASMID_LIST,
-} from "common/graphql/queries/stocks/lists"
+  PlasmidListFilterDocument,
+  ListPlasmidsInventoryDocument,
+} from "dicty-graphql-schema"
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 
 const leftDropdownItems = [
@@ -85,7 +85,7 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
         case "regular":
           dispatch({
             type: CatalogActionType.SET_QUERY,
-            payload: GET_PLASMID_LIST,
+            payload: PlasmidListFilterDocument,
           })
           dispatch({
             type: CatalogActionType.SET_QUERY_VARIABLES,
@@ -99,7 +99,7 @@ const PlasmidCatalogContainer = ({ filter }: Props) => {
         case "available":
           dispatch({
             type: CatalogActionType.SET_QUERY,
-            payload: GET_PLASMID_INVENTORY_LIST,
+            payload: ListPlasmidsInventoryDocument,
           })
           dispatch({
             type: CatalogActionType.SET_QUERY_VARIABLES,

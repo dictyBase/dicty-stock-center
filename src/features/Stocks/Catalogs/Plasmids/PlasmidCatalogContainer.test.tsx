@@ -5,9 +5,9 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 import { BrowserRouter, useLocation } from "react-router-dom"
 import PlasmidCatalogContainer from "./PlasmidCatalogContainer"
 import {
-  GET_PLASMID_INVENTORY_LIST,
-  GET_PLASMID_LIST,
-} from "common/graphql/queries/stocks/lists"
+  PlasmidListFilterDocument,
+  ListPlasmidsInventoryDocument,
+} from "dicty-graphql-schema"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import { CartProvider } from "features/ShoppingCart/CartStore"
 import { lastFivePlasmidCatalogItems, availablePlasmids } from "./mockData"
@@ -50,7 +50,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     const listPlasmidMocks = [
       {
         request: {
-          query: GET_PLASMID_LIST,
+          query: PlasmidListFilterDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -67,7 +67,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     const listPlasmidAnnotationMocks = [
       {
         request: {
-          query: GET_PLASMID_INVENTORY_LIST,
+          query: ListPlasmidsInventoryDocument,
           variables: {
             cursor: 0,
             filter: "",
@@ -125,7 +125,7 @@ describe("Stocks/Plasmids/PlasmidCatalogContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_PLASMID_LIST,
+          query: PlasmidListFilterDocument,
           variables: {
             cursor: 0,
             filter: "",
