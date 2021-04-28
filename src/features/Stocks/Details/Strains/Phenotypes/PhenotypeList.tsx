@@ -3,10 +3,10 @@ import Paper from "@material-ui/core/Paper"
 import PhenotypeListListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
 import useStyles from "./phenotypeStyles"
-import { PhenotypeData } from "../../types"
+import { Phenotype } from "dicty-graphql-schema"
 
 type Props = {
-  phenotypes: Array<PhenotypeData>
+  phenotypes: Array<Phenotype>
 }
 
 /**

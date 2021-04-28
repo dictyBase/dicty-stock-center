@@ -5,11 +5,11 @@ import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import useStyles from "./phenotypeStyles"
-import { PhenotypeData } from "features/Stocks/Details/types"
+import { Phenotype } from "dicty-graphql-schema"
 
 type Props = {
   /** Phenotype data object */
-  data: PhenotypeData
+  data: Phenotype
 }
 
 const replaceSpaces = (phenotype: string) => phenotype.split(" ").join("+")

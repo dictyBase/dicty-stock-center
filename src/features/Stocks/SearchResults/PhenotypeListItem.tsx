@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
+import { Strain, Gene, Publication } from "dicty-graphql-schema"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationDisplay from "common/components/PublicationsDisplay"
 import characterConverter from "common/utils/characterConverter"
-import { StrainWithPhenotype } from "../Details/types"
 
 const useStyles = makeStyles({
   row: {
@@ -23,15 +23,18 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  strain: StrainWithPhenotype
+  strain: Strain
 }
 
 const PhenotypeListItem = ({ strain }: Props) => {
   const classes = useStyles()
 
+  const publications = strain?.publications as Publication[]
+  const genes = strain?.genes as Gene[]
+
   let pubDisplay
-  if (strain.publications && strain.publications.length) {
-    pubDisplay = <PublicationDisplay publications={strain.publications} />
+  if (publications.length) {
+    pubDisplay = <PublicationDisplay publications={publications} />
   } else {
     pubDisplay = <React.Fragment />
   }
@@ -48,7 +51,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
         </Grid>
         <Grid item sm={3} className={classes.item}>
           <Typography variant="body2" noWrap>
-            <GenesDisplay genes={strain.genes} />
+            <GenesDisplay genes={genes} />
           </Typography>
         </Grid>
         <Grid item sm={6} className={classes.item}>

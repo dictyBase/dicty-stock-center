@@ -4,9 +4,9 @@ import Paper from "@material-ui/core/Paper"
 import List from "@material-ui/core/List"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { useIntersectionObserver } from "dicty-hooks"
+import { Strain } from "dicty-graphql-schema"
 import PhenotypeListHeader from "./PhenotypeListHeader"
 import PhenotypeListItem from "./PhenotypeListItem"
-import { StrainWithPhenotype } from "../Details/types"
 
 const useStyles = makeStyles(({ palette }) => ({
   list: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette }) => ({
 
 type Props = {
   /** Array of strains with given phenotype */
-  data: Array<StrainWithPhenotype>
+  data: Array<Strain>
   /** Function to load more data */
   loadMore: () => void
   /** Indicator for having more content */
@@ -64,7 +64,7 @@ const PhenotypeList = ({
       <Paper>
         <PhenotypeListHeader />
         <List className={classes.list}>
-          {data.map((item: StrainWithPhenotype, index: number) => (
+          {data.map((item: Strain, index: number) => (
             <PhenotypeListItem key={index} strain={item} />
           ))}
           <div ref={ref} />

@@ -2,7 +2,7 @@
  * This file contains functions to handle pagination for queries that use infinite scroll.
  * https://www.apollographql.com/docs/react/pagination/core-api/
  */
-import { StrainWithPhenotype } from "features/Stocks/Details/types"
+import { Strain } from "dicty-graphql-schema"
 import { StrainItem, PlasmidItem } from "features/Stocks/Catalogs/types"
 
 /**
@@ -16,7 +16,7 @@ interface SearchInfo {
 }
 
 interface ListStrainsWithAnnotation extends SearchInfo {
-  strains: Array<StrainWithPhenotype>
+  strains: Array<Strain>
 }
 
 interface ListPlasmidsWithAnnotation extends SearchInfo {
