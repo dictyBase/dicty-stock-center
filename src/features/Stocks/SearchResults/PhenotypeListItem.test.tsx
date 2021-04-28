@@ -2,41 +2,12 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import PhenotypeListItem from "./PhenotypeListItem"
 import { BrowserRouter } from "react-router-dom"
+import { availableStrain, strainWithPhenotype } from "mocks/mockStrain"
 
 describe("Stocks/SearchResults/PhenotypeListItem", () => {
   describe("initial render", () => {
     const props = {
-      strain: {
-        genes: [{ name: "abcd" }],
-        id: "DBS123456",
-        label: "test1",
-        publications: [
-          {
-            id: "20008082",
-            pub_date: "2009-12-11T00:00:00.000Z",
-            title:
-              "WD repeat domain of Dictyostelium myosin heavy chain kinase C functions in both substrate targeting and cellular localization.",
-            journal: "Eukaryotic cell",
-            volume: "9",
-            pages: "344-349",
-            doi: "10.1128/ec.00242-09",
-            authors: [
-              {
-                last_name: "Franklin",
-              },
-              {
-                last_name: "Hyatt",
-              },
-              {
-                last_name: "Chowdhury",
-              },
-              {
-                last_name: "Steimle",
-              },
-            ],
-          },
-        ],
-      },
+      strain: availableStrain,
     }
     it("includes expected list items", () => {
       render(
@@ -58,12 +29,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
   })
   describe("render without publications", () => {
     const props = {
-      strain: {
-        genes: [{ name: "abcd" }],
-        id: "DBS123456",
-        label: "counting strain",
-        publications: [],
-      },
+      strain: strainWithPhenotype,
     }
     it("should not include publications when not passed as prop", () => {
       render(

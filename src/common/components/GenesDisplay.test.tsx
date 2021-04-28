@@ -4,7 +4,10 @@ import GenesDisplay, { Gene } from "./GenesDisplay"
 
 describe("Stocks/Details/common/GenesDisplay", () => {
   describe("initial render with genes", () => {
-    const genes = [{ name: "sadA" }, { name: "gflB" }]
+    const genes = [
+      { id: "DDB_G123456", name: "sadA" },
+      { id: "DDB_9882111", name: "gflB" },
+    ]
     it("renders one LinkTag for every gene", () => {
       render(<GenesDisplay genes={genes} />)
       const links = screen.getAllByRole("link")
