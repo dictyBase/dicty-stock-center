@@ -4,7 +4,7 @@ import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import StrainDetailsContainer from "./StrainDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { GET_STRAIN } from "common/graphql/queries/stocks/details"
+import { StrainDocument } from "dicty-graphql-schema"
 import { strainWithPhenotype } from "mocks/mockStrain"
 
 const mockID = "DBS0350966"
@@ -26,7 +26,7 @@ describe("features/Stocks/Strains/StrainDetailsContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_STRAIN,
+          query: StrainDocument,
           variables: { id: mockID },
         },
         result: {
