@@ -4,7 +4,7 @@ import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import PlasmidDetailsContainer from "./PlasmidDetailsContainer"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { GET_PLASMID } from "common/graphql/queries/stocks/details"
+import { PlasmidDocument } from "dicty-graphql-schema"
 import { availablePlasmid } from "mocks/mockPlasmid"
 
 const mockID = "DBP0236123"
@@ -26,7 +26,7 @@ describe("features/Stocks/Plasmids/PlasmidDetailsContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_PLASMID,
+          query: PlasmidDocument,
           variables: { id: mockID },
         },
         result: {
