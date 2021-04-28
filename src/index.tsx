@@ -14,7 +14,7 @@ import "@fontsource/roboto"
 // worker used for testing purposes
 // https://mswjs.io/docs/getting-started/integrate/browser
 async function main() {
-  if (process.env.REACT_APP_API_MOCKING === true) {
+  if (process.env.NODE_ENV === "development") {
     if (window.location.pathname === "/stockcenter") {
       window.location.pathname = "/stockcenter/"
       return
