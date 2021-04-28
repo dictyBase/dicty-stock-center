@@ -11,10 +11,10 @@ import {
 } from "features/Stocks/Catalogs/context/CatalogContext"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import {
-  GET_STRAIN_LIST,
-  GET_BACTERIAL_STRAIN_LIST,
-  GET_STRAIN_INVENTORY_LIST,
-} from "common/graphql/queries/stocks/lists"
+  ListBacterialStrainsDocument,
+  ListStrainsInventoryDocument,
+  StrainListDocument,
+} from "dicty-graphql-schema"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 
 const leftDropdownItems = [
@@ -103,7 +103,7 @@ const dispatchStrainList = (
   let gqlFilter = "name!~GWDI;label!=AX4"
   dispatch({
     type: CatalogActionType.SET_QUERY,
-    payload: GET_STRAIN_LIST,
+    payload: StrainListDocument,
   })
   if (filter === "gwdi") {
     gqlFilter = "name=~GWDI"
@@ -167,13 +167,13 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         case "bacterial":
           dispatch({
             type: CatalogActionType.SET_QUERY,
-            payload: GET_BACTERIAL_STRAIN_LIST,
+            payload: ListBacterialStrainsDocument,
           })
           break
         case "available":
           dispatch({
             type: CatalogActionType.SET_QUERY,
-            payload: GET_STRAIN_INVENTORY_LIST,
+            payload: ListStrainsInventoryDocument,
           })
           dispatch({
             type: CatalogActionType.SET_QUERY_VARIABLES,

@@ -4,7 +4,7 @@ import { InMemoryCache } from "@apollo/client"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter } from "react-router-dom"
 import PhenotypeContainer from "./PhenotypeContainer"
-import { GET_STRAIN_LIST_WITH_PHENOTYPE } from "common/graphql/queries/stocks/lists"
+import { ListStrainsWithPhenotypeDocument } from "dicty-graphql-schema"
 import { first50, second50, lastItems } from "./mockData"
 import { listStrainsWithAnnotationPagination } from "common/graphql/pagination"
 import { MockAuthProvider } from "common/utils/testing"
@@ -42,7 +42,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          query: ListStrainsWithPhenotypeDocument,
           variables: {
             cursor: 0,
             limit: 50,
@@ -101,7 +101,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          query: ListStrainsWithPhenotypeDocument,
           variables: {
             cursor: 0,
             limit: 50,
@@ -121,7 +121,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
       },
       {
         request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          query: ListStrainsWithPhenotypeDocument,
           variables: {
             cursor: 123456,
             limit: 50,
@@ -141,7 +141,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
       },
       {
         request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          query: ListStrainsWithPhenotypeDocument,
           variables: {
             cursor: 987654,
             limit: 50,
@@ -220,7 +220,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
     const mocks = [
       {
         request: {
-          query: GET_STRAIN_LIST_WITH_PHENOTYPE,
+          query: ListStrainsWithPhenotypeDocument,
           variables: {
             cursor: 0,
             limit: 50,

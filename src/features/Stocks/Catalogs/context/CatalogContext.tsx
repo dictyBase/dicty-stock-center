@@ -1,12 +1,12 @@
 import React, { createContext, useMemo, useReducer } from "react"
 import { DocumentNode } from "@apollo/client"
 import {
-  GET_STRAIN_LIST,
-  GET_PLASMID_LIST,
-  GET_BACTERIAL_STRAIN_LIST,
-  GET_STRAIN_INVENTORY_LIST,
-  GET_PLASMID_INVENTORY_LIST,
-} from "common/graphql/queries/stocks/lists"
+  ListBacterialStrainsDocument,
+  ListStrainsInventoryDocument,
+  StrainListDocument,
+  PlasmidListFilterDocument,
+  ListPlasmidsInventoryDocument,
+} from "dicty-graphql-schema"
 import useSearchQuery from "common/hooks/useSearchQuery"
 
 type QueryVariables = {
@@ -82,13 +82,13 @@ const initialState = {
 
 const strainInitialState = {
   ...initialState,
-  query: GET_STRAIN_LIST,
+  query: StrainListDocument,
   searchBoxDropdownValue: "label",
 }
 
 const plasmidInitialState = {
   ...initialState,
-  query: GET_PLASMID_LIST,
+  query: PlasmidListFilterDocument,
   searchBoxDropdownValue: "plasmid_name",
 }
 
@@ -172,19 +172,19 @@ const getGraphQLFilterFromSearchQuery = (query: URLSearchParams) => {
 
 const getPlasmidQuery = (filter: string | null) => {
   if (filter === "available") {
-    return GET_PLASMID_INVENTORY_LIST
+    return ListPlasmidsInventoryDocument
   }
-  return GET_PLASMID_LIST
+  return PlasmidListFilterDocument
 }
 
 const getStrainQuery = (filter: string | null) => {
   if (filter === "bacterial") {
-    return GET_BACTERIAL_STRAIN_LIST
+    return ListBacterialStrainsDocument
   }
   if (filter === "available") {
-    return GET_STRAIN_INVENTORY_LIST
+    return ListStrainsInventoryDocument
   }
-  return GET_STRAIN_LIST
+  return StrainListDocument
 }
 
 const getGraphQLQueryFromSearchQuery = (
@@ -192,7 +192,7 @@ const getGraphQLQueryFromSearchQuery = (
   query: URLSearchParams,
 ) => {
   const filter = query.get("filter")
-  let gqlQuery = GET_STRAIN_LIST
+  let gqlQuery = StrainListDocument
 
   if (stockType === "plasmid") {
     gqlQuery = getPlasmidQuery(filter)

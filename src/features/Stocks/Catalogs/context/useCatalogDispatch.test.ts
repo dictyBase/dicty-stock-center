@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks"
 import useCatalogDispatch from "./useCatalogDispatch"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { CatalogActionType } from "./CatalogContext"
-import { GET_STRAIN_LIST } from "common/graphql/queries/stocks/lists"
+import { StrainListDocument } from "dicty-graphql-schema"
 
 const mockDispatch = jest.fn()
 
@@ -42,10 +42,10 @@ describe("features/Stocks/Catalogs/context/useCatalogDispatch", () => {
 
   it("should dispatch query", () => {
     const { result } = renderHook(() => useCatalogDispatch())
-    result.current.setQuery(GET_STRAIN_LIST)
+    result.current.setQuery(StrainListDocument)
     expect(mockDispatch).toHaveBeenCalledWith({
       type: CatalogActionType.SET_QUERY,
-      payload: GET_STRAIN_LIST,
+      payload: StrainListDocument,
     })
   })
 

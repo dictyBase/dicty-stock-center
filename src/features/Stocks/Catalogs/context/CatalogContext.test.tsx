@@ -5,11 +5,11 @@ import {
   getGraphQLQueryFromSearchQuery,
 } from "./CatalogContext"
 import {
-  GET_STRAIN_LIST,
-  GET_PLASMID_LIST,
-  GET_BACTERIAL_STRAIN_LIST,
-  GET_STRAIN_INVENTORY_LIST,
-} from "common/graphql/queries/stocks/lists"
+  ListBacterialStrainsDocument,
+  ListStrainsInventoryDocument,
+  StrainListDocument,
+  PlasmidListFilterDocument,
+} from "dicty-graphql-schema"
 
 describe("Stocks/Catalogs/common/CatalogContext", () => {
   describe("catalogReducer", () => {
@@ -19,7 +19,7 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
       leftDropdownValue: "all",
       searchValue: "",
       helpDialogOpen: false,
-      query: GET_STRAIN_LIST,
+      query: StrainListDocument,
       searchBoxDropdownValue: "label",
     }
     it("returns initial state if no changes", () => {
@@ -134,25 +134,25 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
     it("should return query for bacterial strain", () => {
       const params = new URLSearchParams("?filter=bacterial")
       expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
-        GET_BACTERIAL_STRAIN_LIST,
+        ListBacterialStrainsDocument,
       )
     })
     it("should return query for all plasmids", () => {
       const params = new URLSearchParams("?filter=all")
       expect(getGraphQLQueryFromSearchQuery("plasmid", params)).toBe(
-        GET_PLASMID_LIST,
+        PlasmidListFilterDocument,
       )
     })
     it("should return query for all strains", () => {
       const params = new URLSearchParams("?filter=gwdi")
       expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
-        GET_STRAIN_LIST,
+        StrainListDocument,
       )
     })
     it("should return query for available strains", () => {
       const params = new URLSearchParams("?filter=available")
       expect(getGraphQLQueryFromSearchQuery("strain", params)).toBe(
-        GET_STRAIN_INVENTORY_LIST,
+        ListStrainsInventoryDocument,
       )
     })
   })
