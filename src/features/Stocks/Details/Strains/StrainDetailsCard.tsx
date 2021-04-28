@@ -154,7 +154,7 @@ const StrainDetailsCard = ({ data }: Props) => {
 
   return (
     <Box textAlign="center" mb={3}>
-      {numPhenotypes && header}
+      {numPhenotypes > 0 && header}
       <Card raised>
         <Grid container>
           <List className={classes.list}>
