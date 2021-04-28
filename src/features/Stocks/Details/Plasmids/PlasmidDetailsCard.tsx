@@ -6,20 +6,17 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
 import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
+import { Gene, PlasmidQuery, Publication, User } from "dicty-graphql-schema"
 import GenesDisplay from "common/components/GenesDisplay"
 import PublicationsDisplay from "common/components/PublicationsDisplay"
 import Availability from "features/Stocks/Details/common/Availability"
 import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
 import useStyles from "features/Stocks/Details/styles"
-import {
-  PlasmidDetails,
-  PlasmidDetailsProps,
-  DetailsRow,
-} from "features/Stocks/Details/types"
+import { DetailsRow } from "features/Stocks/Details/types"
 
 const plasmidRowGenerator = (
-  data: PlasmidDetails,
+  data: PlasmidQuery["plasmid"],
   depositor: string,
   imageMap: any,
   publications: JSX.Element,
@@ -28,17 +25,17 @@ const plasmidRowGenerator = (
   {
     id: 0,
     title: "Name",
-    content: data.name,
+    content: data?.name,
   },
   {
     id: 1,
     title: "Description",
-    content: data.summary,
+    content: data?.summary,
   },
   {
     id: 2,
     title: "GenBank Accession Number",
-    content: data.genbank_accession,
+    content: data?.genbank_accession,
   },
   {
     id: 3,
@@ -53,7 +50,7 @@ const plasmidRowGenerator = (
   {
     id: 5,
     title: "Keywords",
-    content: data.keywords.sort().join(", "),
+    content: data?.keywords?.sort().join(", "),
   },
   {
     id: 6,
@@ -68,31 +65,40 @@ const plasmidRowGenerator = (
   {
     id: 8,
     title: "Sequence",
-    content: data.sequence,
+    content: data?.sequence,
   },
 ]
 
-const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
+type Props = {
+  data: PlasmidQuery["plasmid"]
+}
+
+const PlasmidDetailsCard = ({ data }: Props) => {
   const classes = useStyles()
 
-  const imageMap = data.image_map ? (
+  const imageMap = data?.image_map ? (
     <img src={data.image_map} alt={`Map for plasmid ${data.id}`} />
   ) : (
     ""
   )
 
+  const publications = data?.publications as Publication[]
+  const genes = data?.genes as Gene[]
+  const depositor = data?.depositor as User
+  const inStock = data?.in_stock as boolean
+
   const rows = plasmidRowGenerator(
     data,
-    getDepositorName(data.depositor),
+    getDepositorName(depositor),
     imageMap,
-    <PublicationsDisplay publications={data.publications} />,
-    <GenesDisplay genes={data.genes} />,
+    <PublicationsDisplay publications={publications} />,
+    <GenesDisplay genes={genes} />,
   )
 
   const cartData = {
-    id: data.id,
-    name: data.name,
-    summary: data.summary,
+    id: data?.id as string,
+    name: data?.name as string,
+    summary: data?.summary as string,
     fee: fees.PLASMID_FEE,
   }
 
@@ -108,7 +114,7 @@ const PlasmidDetailsCard = ({ data }: PlasmidDetailsProps) => {
                     <Typography variant="h2">Plasmid Details</Typography>
                   </Grid>
                   <Grid item>
-                    <Availability cartData={cartData} inStock={data.in_stock} />
+                    <Availability cartData={cartData} inStock={inStock} />
                   </Grid>
                 </Grid>
               </Grid>
