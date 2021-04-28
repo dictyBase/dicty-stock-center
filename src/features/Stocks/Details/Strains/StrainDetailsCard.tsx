@@ -5,6 +5,13 @@ import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
+import {
+  Gene,
+  StrainQuery,
+  Phenotype,
+  Publication,
+  User,
+} from "dicty-graphql-schema"
 import StrainDetailsCardHeader from "features/Stocks/Details/Strains/StrainDetailsCardHeader"
 import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import PhenotypeList from "./Phenotypes/PhenotypeList"
@@ -15,14 +22,10 @@ import PublicationsDisplay from "common/components/PublicationsDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
 import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
-import {
-  StrainDetails,
-  StrainDetailsProps,
-  DetailsRow,
-} from "features/Stocks/Details/types"
+import { DetailsRow } from "features/Stocks/Details/types"
 
 const strainRowsGenerator = (
-  data: StrainDetails,
+  data: StrainQuery["strain"],
   parent: string | JSX.Element,
   depositor: string,
   publications: JSX.Element,
@@ -32,37 +35,37 @@ const strainRowsGenerator = (
   {
     id: 0,
     title: "Strain Descriptor",
-    content: data.label,
+    content: data?.label,
   },
   {
     id: 1,
     title: "Strain Names",
-    content: data.names.slice().sort().join(", "),
+    content: data?.names?.slice().sort().join(", "),
   },
   {
     id: 2,
     title: "Strain Summary",
-    content: data.summary,
+    content: data?.summary,
   },
   {
     id: 3,
     title: "Systematic Name",
-    content: data.systematic_name,
+    content: data?.systematic_name,
   },
   {
     id: 4,
     title: "Strain Characteristics",
-    content: data.characteristics.slice().sort().join(", "),
+    content: data?.characteristics?.slice().sort().join(", "),
   },
   {
     id: 5,
     title: "Genetic Modification",
-    content: data.genetic_modification,
+    content: data?.genetic_modification,
   },
   {
     id: 6,
     title: "Mutagenesis Method",
-    content: data.mutagenesis_method,
+    content: data?.mutagenesis_method,
   },
   {
     id: 7,
@@ -72,7 +75,7 @@ const strainRowsGenerator = (
   {
     id: 8,
     title: "Plasmid",
-    content: data.plasmid,
+    content: data?.plasmid,
   },
   {
     id: 9,
@@ -84,7 +87,7 @@ const strainRowsGenerator = (
     title: "Genotype",
     content: genotypes,
   },
-  { id: 11, title: "Species", content: data.species },
+  { id: 11, title: "Species", content: data?.species },
   {
     id: 12,
     title: "Depositor",
@@ -97,7 +100,11 @@ const strainRowsGenerator = (
   },
 ]
 
-const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
+type Props = {
+  data: StrainQuery["strain"]
+}
+
+const StrainDetailsCard = ({ data }: Props) => {
   const classes = useStyles()
   const [tabValue, setTabValue] = React.useState(0)
 
@@ -105,45 +112,53 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
     setTabValue(newValue)
   }
 
-  const parent = data.parent ? (
+  const parent = data?.parent ? (
     <Link to={`/strains/${data.parent.id}`}>{data.parent.label}</Link>
   ) : (
     ""
   )
+  const publications = data?.publications as Publication[]
+  const genes = data?.genes as Gene[]
+  const depositor = data?.depositor as User
+  const genotypes = data?.genotypes as string[]
+  const inStock = data?.in_stock as boolean
 
   const rows = strainRowsGenerator(
     data,
     parent,
-    getDepositorName(data.depositor),
-    <PublicationsDisplay publications={data.publications} />,
-    <GenesDisplay genes={data.genes} />,
-    <GenotypesDisplay genotypes={data.genotypes[0]} />,
+    getDepositorName(depositor),
+    <PublicationsDisplay publications={publications} />,
+    <GenesDisplay genes={genes} />,
+    <GenotypesDisplay genotypes={genotypes[0]} />,
   )
 
   const cartData = {
-    id: data.id,
-    name: data.label,
-    summary: data.summary,
+    id: data?.id as string,
+    name: data?.label as string,
+    summary: data?.summary as string,
     fee: fees.STRAIN_FEE,
   }
+
+  const phenotypes = data?.phenotypes as Phenotype[]
+  const numPhenotypes = phenotypes.length
 
   const header = (
     <StrainDetailsCardHeader
       value={tabValue}
       handleChange={handleChange}
-      phenotypeLength={data.phenotypes.length}
+      phenotypeLength={numPhenotypes}
       cartData={cartData}
-      inStock={data.in_stock}
+      inStock={inStock}
     />
   )
 
   return (
     <Box textAlign="center" mb={3}>
-      {data.phenotypes.length > 0 && header}
+      {numPhenotypes && header}
       <Card raised>
         <Grid container>
           <List className={classes.list}>
-            {data.phenotypes.length < 1 && (
+            {numPhenotypes < 1 && (
               <ListItem divider className={classes.cardHeader}>
                 {header}
               </ListItem>
@@ -158,7 +173,7 @@ const StrainDetailsCard = ({ data }: StrainDetailsProps) => {
               ))}
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
-              <PhenotypeList phenotypes={data.phenotypes} />
+              <PhenotypeList phenotypes={phenotypes} />
             </TabPanel>
           </List>
         </Grid>

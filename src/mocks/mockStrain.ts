@@ -1,4 +1,24 @@
-import { StrainDetails } from "features/Stocks/Details/types"
+import { Strain } from "dicty-graphql-schema"
+
+const mockUser = {
+  id: "99999",
+  first_name: "Art",
+  last_name: "Vandelay",
+  email: "art@vandelayindustries.com",
+  created_at: 123456,
+  updated_at: 987654,
+  is_active: true,
+}
+
+const mockDepositor = {
+  id: "878898",
+  first_name: "Adrian",
+  last_name: "Harwood",
+  email: "test@testemail.com",
+  created_at: 123456,
+  updated_at: 987654,
+  is_active: true,
+}
 
 const availableStrain = {
   type: "strain",
@@ -16,11 +36,16 @@ const availableStrain = {
   parent: {
     id: "DBS0350762",
     label: "AX2",
+    created_at: 123456,
+    updated_at: 987654,
+    created_by: mockUser,
+    updated_by: mockUser,
+    depositor: mockUser,
+    in_stock: true,
+    systematic_name: "tesT",
+    species: "abcd",
   },
-  depositor: {
-    first_name: "Adrian",
-    last_name: "Harwood",
-  },
+  depositor: mockDepositor,
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11084033"],
   publications: [
@@ -49,10 +74,14 @@ const availableStrain = {
       ],
     },
   ],
-  genes: [{ name: "aarA" }],
+  genes: [{ id: "aarA", name: "aarA" }],
   phenotypes: [],
   in_stock: true,
-} as StrainDetails
+  created_at: 123456,
+  updated_at: 987654,
+  created_by: mockUser,
+  updated_by: mockUser,
+} as Strain
 
 const unavailableStrain = {
   type: "strain",
@@ -70,11 +99,16 @@ const unavailableStrain = {
   parent: {
     id: "DBS0350762",
     label: "AX2",
+    created_at: 123456,
+    updated_at: 987654,
+    created_by: mockUser,
+    updated_by: mockUser,
+    depositor: mockUser,
+    in_stock: true,
+    systematic_name: "tesT",
+    species: "abcd",
   },
-  depositor: {
-    first_name: "Adrian",
-    last_name: "Harwood",
-  },
+  depositor: mockDepositor,
   plasmid: "aar-KO (aar cDNA with bsR cassette)",
   dbxrefs: ["11130075"],
   publications: [
@@ -103,10 +137,14 @@ const unavailableStrain = {
       ],
     },
   ],
-  genes: [{ name: "aarA" }],
+  genes: [{ id: "aarA", name: "aarA" }],
   phenotypes: [],
-  in_stock: false,
-} as StrainDetails
+  in_stock: true,
+  created_at: 123456,
+  updated_at: 987654,
+  created_by: mockUser,
+  updated_by: mockUser,
+} as Strain
 
 const strainWithPhenotype = {
   type: "strain",
@@ -121,15 +159,19 @@ const strainWithPhenotype = {
   parent: {
     id: "DBS0235534",
     label: "AX2-214",
+    created_at: 123456,
+    updated_at: 987654,
+    created_by: mockUser,
+    updated_by: mockUser,
+    depositor: mockUser,
+    in_stock: true,
+    systematic_name: "tesT",
+    species: "abcd",
   },
   plasmid: "pSpaA-KO",
   dbxrefs: ["29704004"],
-  genes: [{ name: "spaA" }],
   publications: [],
-  depositor: {
-    first_name: "Yoko",
-    last_name: "Yamada",
-  },
+  depositor: mockDepositor,
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Homologous Recombination",
   phenotypes: [
@@ -165,8 +207,13 @@ const strainWithPhenotype = {
       },
     },
   ],
+  genes: [{ id: "spaA", name: "spaA" }],
   in_stock: true,
-} as StrainDetails
+  created_at: 123456,
+  updated_at: 987654,
+  created_by: mockUser,
+  updated_by: mockUser,
+} as Strain
 
 const gwdiData = {
   type: "strain",
@@ -184,19 +231,28 @@ const gwdiData = {
   parent: {
     id: "DBS0235554",
     label: "AX4",
+    created_at: 123456,
+    updated_at: 987654,
+    created_by: mockUser,
+    updated_by: mockUser,
+    depositor: mockUser,
+    in_stock: true,
+    systematic_name: "tesT",
+    species: "abcd",
   },
   plasmid: "Blasticidin S resistance cassette",
-  genes: [{ name: "gxcAA" }],
+  genes: [{ id: "gxcAA", name: "gxcAA" }],
   dbxrefs: [],
-  depositor: {
-    first_name: "Amy",
-    last_name: "Baldwin",
-  },
+  depositor: mockDepositor,
   species: "Dictyostelium discoideum",
   mutagenesis_method: "Restriction Enzyme-Mediated Integration",
   phenotypes: [],
   publications: [],
   in_stock: true,
-} as StrainDetails
+  created_at: 123456,
+  updated_at: 987654,
+  created_by: mockUser,
+  updated_by: mockUser,
+} as Strain
 
 export { availableStrain, unavailableStrain, strainWithPhenotype, gwdiData }

@@ -1,13 +1,12 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
-import { useQuery } from "@apollo/client"
 import Box from "@material-ui/core/Box"
+import { useStrainQuery } from "dicty-graphql-schema"
 import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import StrainDetailsCard from "./StrainDetailsCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
-import { GET_STRAIN } from "common/graphql/queries/stocks/details"
 import characterConverter from "common/utils/characterConverter"
 
 type Params = {
@@ -22,7 +21,7 @@ type Params = {
 
 const StrainDetailsContainer = () => {
   const { id } = useParams<Params>()
-  const { loading, error, data } = useQuery(GET_STRAIN, {
+  const { loading, error, data } = useStrainQuery({
     variables: { id },
     errorPolicy: "ignore",
     fetchPolicy: "cache-and-network",
@@ -31,10 +30,10 @@ const StrainDetailsContainer = () => {
   if (loading) return <DetailsLoader />
   if (error) return <GraphQLErrorPage error={error} />
 
-  const label = characterConverter(data.strain.label)
+  const label = characterConverter(data?.strain?.label as string)
   let title = `Strain Details for ${label}`
-  if (data.strain.phenotypes.length > 0) {
-    title = `Phenotype and Strain Details for ${data.strain.label}`
+  if (data?.strain?.phenotypes && data.strain.phenotypes.length > 0) {
+    title = `Phenotype and Strain Details for ${label}`
   }
 
   return (
@@ -46,8 +45,12 @@ const StrainDetailsContainer = () => {
           content={`Dicty Stock Center strain details page for ${label}`}
         />
       </Helmet>
-      <DetailsHeader id={data.strain.id} name={data.strain.label} />
-      <StrainDetailsCard data={data.strain} />
+      {data?.strain && (
+        <React.Fragment>
+          <DetailsHeader id={data.strain.id} name={data.strain.label} />
+          <StrainDetailsCard data={data.strain} />
+        </React.Fragment>
+      )}
     </Box>
   )
 }

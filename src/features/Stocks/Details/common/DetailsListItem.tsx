@@ -9,7 +9,7 @@ type Props = {
   /** Type of content to display (i.e. Strain Descriptor, Genotype, etc.) */
   title: string
   /** The actual data for that field */
-  content: string | JSX.Element
+  content: string | JSX.Element | undefined | null
 }
 
 const DetailsListItem = ({ title, content }: Props) => {
