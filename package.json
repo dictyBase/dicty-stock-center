@@ -156,5 +156,8 @@
         "error"
       ]
     }
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
