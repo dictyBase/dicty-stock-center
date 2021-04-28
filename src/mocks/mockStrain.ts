@@ -255,4 +255,48 @@ const gwdiData = {
   updated_by: mockUser,
 } as Strain
 
-export { availableStrain, unavailableStrain, strainWithPhenotype, gwdiData }
+const catalogAvailableStrain = {
+  id: "DBS0351365",
+  label: "HL501/X55",
+  summary: "heterozygote diploid tester strain; Parents: HL501 and X55",
+  species: "Dictyostelium discoideum",
+  parent: {
+    id: "",
+    label: "",
+    created_at: 123456,
+    updated_at: 987654,
+    created_by: mockUser,
+    updated_by: mockUser,
+    depositor: mockUser,
+    in_stock: false,
+    systematic_name: "",
+    species: "",
+    __typename: "Strain",
+  },
+  depositor: mockDepositor,
+  plasmid: "",
+  dbxrefs: [],
+  publications: [],
+  genes: [],
+  in_stock: true,
+  systematic_name: "DL66",
+  genotypes: ["cycA/cycA,whiA/+,acrA/+,tsgD12/+,bsgA/+,nagA211/+,manA2/+"],
+  mutagenesis_method: "",
+  genetic_modification: "",
+  names: [],
+  characteristics: [],
+  phenotypes: [],
+  created_at: 123456,
+  updated_at: 987654,
+  created_by: mockUser,
+  updated_by: mockUser,
+  __typename: "Strain",
+} as Strain
+
+export {
+  availableStrain,
+  unavailableStrain,
+  strainWithPhenotype,
+  gwdiData,
+  catalogAvailableStrain,
+}

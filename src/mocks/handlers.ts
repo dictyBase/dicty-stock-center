@@ -15,6 +15,7 @@ import {
   unavailableStrain,
   strainWithPhenotype,
   gwdiData,
+  catalogAvailableStrain,
 } from "./mockStrain"
 import { about, intro, otherMaterials } from "./mockContent"
 import mockUser from "./mockUser"
@@ -86,33 +87,42 @@ export const handlers = [
   }),
   graphql.query("Strain", (req, res, ctx) => {
     const id = req.body?.variables.id
-    if (id === availableStrain.id) {
-      return res(
-        ctx.data({
-          strain: availableStrain,
-        }),
-      )
-    }
-    if (id === unavailableStrain.id) {
-      return res(
-        ctx.data({
-          strain: unavailableStrain,
-        }),
-      )
-    }
-    if (id === strainWithPhenotype.id) {
-      return res(
-        ctx.data({
-          strain: strainWithPhenotype,
-        }),
-      )
-    }
-    if (id === gwdiData.id) {
-      return res(
-        ctx.data({
-          strain: gwdiData,
-        }),
-      )
+    switch (id) {
+      case availableStrain.id: {
+        return res(
+          ctx.data({
+            strain: availableStrain,
+          }),
+        )
+      }
+      case unavailableStrain.id: {
+        return res(
+          ctx.data({
+            strain: unavailableStrain,
+          }),
+        )
+      }
+      case strainWithPhenotype.id: {
+        return res(
+          ctx.data({
+            strain: strainWithPhenotype,
+          }),
+        )
+      }
+      case gwdiData.id: {
+        return res(
+          ctx.data({
+            strain: gwdiData,
+          }),
+        )
+      }
+      case catalogAvailableStrain.id: {
+        return res(
+          ctx.data({
+            strain: catalogAvailableStrain,
+          }),
+        )
+      }
     }
   }),
   graphql.query("Plasmid", (req, res, ctx) => {
