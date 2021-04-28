@@ -16,11 +16,17 @@ import {
   strainWithPhenotype,
   gwdiData,
 } from "./mockStrain"
+import { otherMaterials } from "./mockContent"
 import mockUser from "./mockUser"
 import { activeToken } from "./mockTokens"
 import { availablePlasmid } from "./mockPlasmid"
 
 export const handlers = [
+  graphql.query("contentBySlug", (req, res, ctx) => {
+    if (req.variables.slug === "dsc-other-materials") {
+      return res(ctx.data({ contentBySlug: otherMaterials }))
+    }
+  }),
   graphql.query("StrainList", (req, res, ctx) => {
     const cursor = req.body?.variables.cursor
     if (cursor === 0) {
