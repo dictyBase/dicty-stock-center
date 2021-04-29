@@ -69,6 +69,7 @@ const CatalogListItem = ({ index, style, data }: Props) => {
       key={stock.id}
       className={classes.row}
       style={style}
+      data-testid={stock.id}
       {...bind}
       dense>
       <Grid container spacing={0} alignItems="center">
@@ -105,16 +106,17 @@ const CatalogListItem = ({ index, style, data }: Props) => {
         <Grid item xs={4} sm={1}>
           <Grid container justify="center">
             {hover && (
-              <span>
+              <React.Fragment>
                 <AddToCartButton
                   data={[cartData]}
                   size={size}
                   inStock={stock.in_stock}
+                  setHover={setHover}
                 />
                 {itemIsInCart(addedItems, stock.id) && (
                   <RemoveFromCartButton handleClick={handleRemoveItemClick} />
                 )}
-              </span>
+              </React.Fragment>
             )}
           </Grid>
         </Grid>
