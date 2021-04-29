@@ -83,3 +83,6 @@ describe("ordering stocks", () => {
     })
   })
 })
+
+// necessary to prevent block-scoped var typescript warning
+export {}
