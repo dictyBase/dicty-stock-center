@@ -1,3 +1,5 @@
+const screenWidths = [375, 768, 1280]
+
 describe("ordering stocks", () => {
   it("should add strains to cart, fill out order form and successfully submit", () => {
     cy.visit("/")
@@ -5,8 +7,7 @@ describe("ordering stocks", () => {
     cy.percySnapshot("DSC homepage", { widths: screenWidths })
 
     cy.log("Navigate to strain catalog")
-    // have to force click because of MUI list element "not visible"
-    cy.findByRole("link", { name: /Strain Catalog/ }).click({ force: true })
+    cy.findByTestId(/Strain Catalog/i).click()
     cy.location("pathname").should("eq", "/stockcenter/strains")
     cy.findByText(/DBS0351367/)
     cy.percySnapshot("Strain catalog", { widths: screenWidths })
