@@ -12,6 +12,8 @@ type Props = {
   setCheckedItems?: (arg0: Array<CartItem>) => void
   /** Function to display dialog box after adding item to cart */
   setShowDialog: (arg0: boolean) => void
+  /** Function to toggle hover state for given item */
+  setHover?: (arg0: boolean) => void
 }
 
 /**
@@ -23,10 +25,13 @@ export const AddToCartDialog = ({
   data,
   setCheckedItems,
   setShowDialog,
+  setHover,
 }: Props) => {
   const handleClose = () => {
     setShowDialog(false)
     setCheckedItems && setCheckedItems([])
+    // set hovering to false if button is in catalog list item
+    setHover && setHover(false)
   }
 
   return (

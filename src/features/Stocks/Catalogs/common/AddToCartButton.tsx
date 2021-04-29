@@ -23,6 +23,8 @@ type Props = {
   setCheckedItems?: (arg0: Array<CartItem>) => void
   /** Size of icon */
   size?: "small" | "medium" | undefined
+  /** Function to toggle hover state for given item */
+  setHover?: (arg0: boolean) => void
 }
 
 /**
@@ -34,6 +36,7 @@ export const AddToCartButton = ({
   data,
   inStock,
   setCheckedItems,
+  setHover,
   size = "medium",
 }: Props) => {
   const {
@@ -77,6 +80,7 @@ export const AddToCartButton = ({
           data={data}
           setCheckedItems={setCheckedItems}
           setShowDialog={setShowDialog}
+          setHover={setHover}
         />
       )}
     </>
