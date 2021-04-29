@@ -1,22 +1,17 @@
 const screenWidths = [375, 768, 1280]
 
 describe("DSC snapshots", () => {
-  it("visits the DSC homepage", () => {
-    cy.visit("/")
-    cy.findByText(/Genomic library pools/)
-    cy.percySnapshot("DSC homepage", { widths: screenWidths })
-  })
   it("visits the order information page", () => {
     cy.visit("/information/order")
     cy.findByText("Ordering Information")
-    cy.percySnapshot("order information page", {
+    cy.percySnapshot("Order information page", {
       widths: screenWidths,
     })
   })
-  it("visits a strain details page", () => {
+  it("visits a strain details page with phenotypes", () => {
     cy.visit("/strains/DBS0351367")
     cy.findByText("Extrachromosomal")
-    cy.percySnapshot("strain details", {
+    cy.percySnapshot("Strain details with phenotypes", {
       widths: screenWidths,
     })
   })
@@ -25,7 +20,7 @@ describe("DSC snapshots", () => {
     cy.findByText(
       "overexpression of fAR1 with YFP tag; parental vector: pDV-CYFP, dictyBase genes: far1, plasmid resistance: amp",
     )
-    cy.percySnapshot("plasmid details", {
+    cy.percySnapshot("Plasmid details", {
       widths: screenWidths,
     })
   })
