@@ -158,6 +158,34 @@ export const handlers = [
       }),
     )
   }),
+  // queries/mutations for order submit
+  graphql.query("UserByEmail", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        userByEmail: {
+          id: "9999",
+        },
+      }),
+    )
+  }),
+  graphql.mutation("UpdateUser", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        updateUser: {
+          id: "9999",
+        },
+      }),
+    )
+  }),
+  graphql.mutation("CreateOrder", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        createOrder: {
+          id: "8888888",
+        },
+      }),
+    )
+  }),
   // graphql.mutation("Login", (req, res, ctx) => {
   //   return res(
   //     context.cookie("refresh-token", activeToken),
