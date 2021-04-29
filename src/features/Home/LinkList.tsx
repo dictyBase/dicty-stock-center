@@ -23,7 +23,11 @@ type Props = {
 
 const getLinkType = (link: LinkItem) => {
   if (link.routerAware) {
-    return <Link to={link.to}>{link.name}</Link>
+    return (
+      <Link data-testid={link.name} to={link.to}>
+        {link.name}
+      </Link>
+    )
   }
   if (link.newWindow) {
     return (
