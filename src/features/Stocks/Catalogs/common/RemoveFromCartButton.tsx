@@ -31,6 +31,8 @@ const RemoveFromCartButton = ({ handleClick }: Props) => {
       className={classes.button}
       size={size}
       color="secondary"
+      title="Remove from cart"
+      aria-label="Remove from cart"
       onClick={handleClick}>
       <FontAwesomeIcon icon="trash" size={smallWindow ? "xs" : "sm"} />
     </IconButton>
