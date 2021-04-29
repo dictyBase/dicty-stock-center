@@ -35,7 +35,10 @@ type Props = {
 const CountryDropdown = ({ name }: Props) => {
   const { values, setFieldValue } = useFormikContext<FormikValues>()
 
-  const handleChange = (_: object, value: CountryValue | null) => {
+  const handleChange = (
+    _: React.ChangeEvent<{}>,
+    value: CountryValue | null,
+  ) => {
     if (value !== null) {
       setFieldValue(name, value.label)
     }
@@ -44,6 +47,7 @@ const CountryDropdown = ({ name }: Props) => {
   return (
     <Autocomplete
       id="country"
+      aria-label="country"
       options={countryList}
       getOptionLabel={(option) => option.label}
       onChange={handleChange}

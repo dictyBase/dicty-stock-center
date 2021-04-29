@@ -10,7 +10,7 @@ describe("features/OrderForm/OrderForm", () => {
       expect(
         screen.getByRole("button", { name: "Shipping Address" }),
       ).toBeInTheDocument()
-      const button = screen.getByRole("button", { name: "Continue Button" })
+      const button = screen.getByRole("button", { name: "Continue" })
       expect(button).toBeInTheDocument()
       userEvent.click(button)
       // screen.debug(screen.getByRole("form"))

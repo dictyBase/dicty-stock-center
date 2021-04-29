@@ -17,7 +17,7 @@ const ContinueButton = () => {
 
   return (
     <Button
-      aria-label="Continue Button"
+      aria-label="Continue"
       type="submit"
       size="large"
       color="secondary"

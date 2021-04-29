@@ -12,6 +12,7 @@ import initialValues from "./utils/initialValues"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(4),
   },
 }))
@@ -64,7 +65,7 @@ const OrderForm = () => {
   }
 
   return (
-    <Grid container spacing={2} className={classes.container}>
+    <Grid container className={classes.container}>
       <Helmet>
         <title>Order Form - Dicty Stock Center</title>
         <meta name="description" content="Order form for Dicty Stock Center" />
