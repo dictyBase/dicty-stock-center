@@ -10,17 +10,18 @@ describe("ordering stocks", () => {
     cy.findByTestId(/Strain Catalog/i).click()
     cy.location("pathname").should("eq", "/stockcenter/strains")
     cy.findByText(/DBS0351367/)
-    cy.percySnapshot("Strain catalog", { widths: screenWidths })
 
     cy.log("Navigate to details page")
     cy.findByRole("link", { name: /HL501\/X55/ }).click()
     cy.location("pathname").should("eq", "/stockcenter/strains/DBS0351365")
+    cy.contains(/DL66/)
     cy.percySnapshot("Strain details page", { widths: screenWidths })
 
     cy.log("Add two of this item to cart")
     cy.findByRole("button", { name: /Qty 1/i }).click()
     cy.findByRole("option", { name: "2" }).click()
     cy.findByRole("button", { name: /Add to Cart/i }).click()
+    cy.contains(/DBS0351365/)
     cy.percySnapshot("Add to cart popup", { widths: screenWidths })
 
     cy.log("Go to cart from popup")
@@ -78,6 +79,10 @@ describe("ordering stocks", () => {
     cy.location("pathname").should("eq", "/stockcenter/order/submitted")
     cy.findByText(/Thank you for your order/)
     cy.findByText(/Order ID: 8888888/)
+    cy.frameLoaded()
+    // need to wait for PDF to render
+    // eslint-disable-next-line
+    cy.wait(10000)
     cy.percySnapshot("Order form summary page", {
       widths: screenWidths,
     })
