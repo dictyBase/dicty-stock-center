@@ -34,6 +34,7 @@ const TextField = ({
       variant={variant}
       fullWidth={fullWidth}
       error={meta.touched && !!meta.error}
+      inputProps={{ "aria-label": props.name }}
       helperText={meta.touched && meta.error}
       {...props}
     />
