@@ -68,6 +68,10 @@ const updateToken = (
     },
   })
 
+const getHeaderContent = (isAuthenticated: boolean) => {
+  return isAuthenticated ? loggedHeaderItems : headerItems
+}
+
 const App = () => {
   const [skip, setSkip] = React.useState(false)
   const {
@@ -109,7 +113,7 @@ const App = () => {
   }, [dispatch, refetch, token])
   useFetchRefreshToken(fetchRefreshToken, interval, delay!, isAuthenticated)
 
-  const headerContent = isAuthenticated ? loggedHeaderItems : headerItems
+  const headerContent = getHeaderContent(isAuthenticated)
 
   return (
     <div className={classes.body}>
