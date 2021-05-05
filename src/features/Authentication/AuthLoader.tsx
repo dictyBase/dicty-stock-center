@@ -10,7 +10,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const AuthLoader = () => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
-      <Typography variant="h1">Logging in...</Typography>
+      <Typography variant="h1" align="center">
+        Logging in...
+      </Typography>
       <Box textAlign="center" mt={3}>
         <FontAwesomeIcon icon="spinner" size="5x" pulse fixedWidth />
       </Box>
