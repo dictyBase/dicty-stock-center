@@ -9,7 +9,7 @@ import {
   User,
 } from "dicty-graphql-schema"
 import { CartProvider } from "features/ShoppingCart/CartStore"
-import { useFetchRefreshToken, useNavbar } from "dicty-hooks"
+import { useFetchRefreshToken, useFetch } from "dicty-hooks"
 import HeaderRow from "./HeaderRow"
 import ErrorBoundary from "features/Errors/ErrorBoundary"
 import RenderRoutes from "app/routes/RenderRoutes"
@@ -18,9 +18,21 @@ import {
   loggedHeaderItems,
   HeaderLinks,
 } from "common/utils/headerItems"
-import footerItems from "common/utils/footerItems"
+import {
+  footerLinks,
+  footerURL,
+  convertFooterData,
+  FooterItems,
+} from "common/utils/footerItems"
+import {
+  navbarItems,
+  NavbarItems,
+  navbarURL,
+  formatNavbarData,
+} from "common/utils/navbarItems"
+import { navTheme, headerTheme, footerTheme } from "common/utils/themes"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
-import { useStyles, navTheme, headerTheme, footerTheme } from "./appStyles"
+import { useStyles } from "./appStyles"
 
 const getTokenIntervalDelayInMS = (token: string) => {
   if (token === "") {
@@ -62,7 +74,8 @@ const App = () => {
     state: { token, isAuthenticated },
     dispatch,
   } = useAuthStore()
-  const { navbarData } = useNavbar()
+  const navbar = useFetch<NavbarItems>(navbarURL, navbarItems)
+  const footer = useFetch<FooterItems>(footerURL, footerLinks)
   const classes = useStyles()
   const { loading, refetch, data } = useGetRefreshTokenQuery({
     variables: { token: token },
@@ -101,7 +114,7 @@ const App = () => {
   return (
     <div className={classes.body}>
       <Header items={headerContent} render={HeaderLinks} theme={headerTheme} />
-      <Navbar items={navbarData} theme={navTheme} />
+      <Navbar items={formatNavbarData(navbar.data)} theme={navTheme} />
       <CartProvider>
         <main className={classes.main}>
           <Container maxWidth="lg">
@@ -112,7 +125,12 @@ const App = () => {
           </Container>
         </main>
       </CartProvider>
-      <Footer links={footerItems} theme={footerTheme} />
+      {footer.data?.data && (
+        <Footer
+          links={convertFooterData(footer.data.data)}
+          theme={footerTheme}
+        />
+      )}
     </div>
   )
 }
