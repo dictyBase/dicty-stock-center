@@ -1,7 +1,9 @@
 # Dicty Stock Center
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)  
@@ -11,7 +13,7 @@
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dictyBase/dicty-stock-center)
 [![Maintainability](https://badgen.net/codeclimate/maintainability/dictyBase/dicty-stock-center)](https://codeclimate.com/github/dictyBase/dicty-stock-center)  
 ![Last commit](https://badgen.net/github/last-commit/dictyBase/dicty-stock-center/develop)  
-[![Funding](https://badgen.net/badge/Funding/Rex%20L%20Chisholm,dictyBase,DCR/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=10024726&icde=0)
+[![Funding](https://badgen.net/badge/Funding/Rex%20L%20Chisholm,dictyBase,DCR/yellow?list=|)](https://reporter.nih.gov/project-details/10024726)
 
 This is the repository for the new [Dicty Stock Center](https://dictycr.org/stockcenter).
 
@@ -74,6 +76,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
