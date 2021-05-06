@@ -11,10 +11,10 @@ type CartItem = {
   fee: string
 }
 
-interface CartItemWithQuantity extends CartItem {
+type CartItemWithQuantity = {
   /** Quantity of a given item in the cart */
   quantity: number
-}
+} & CartItem
 
 type UpdatedByUser = Pick<User, "id" | "email" | "first_name" | "last_name"> & {
   roles?: Maybe<
