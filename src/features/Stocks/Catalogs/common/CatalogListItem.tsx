@@ -36,12 +36,13 @@ const CatalogListItem = ({ index, style, data }: Props) => {
   const { label } = stock as StrainItem
   const { name } = stock as PlasmidItem
   const stockName = data.stockType === "strains" ? label : name
+  const fee = data.stockType === "strains" ? fees.STRAIN_FEE : fees.PLASMID_FEE
 
   const cartData = {
     id: stock.id,
     name: stockName,
     summary: stock.summary,
-    fee: fees.PLASMID_FEE,
+    fee: fee,
   }
   const checkboxData = {
     ...cartData,
@@ -81,7 +82,7 @@ const CatalogListItem = ({ index, style, data }: Props) => {
               color="default"
               value={stock.id}
               inputProps={{
-                "aria-label": "Plasmid catalog checkbox",
+                "aria-label": "Catalog checkbox",
               }}
             />
           </Grid>
