@@ -48,7 +48,7 @@ const HeaderLinks = ({ items }: { items: LinkProps[] }) => {
 
 const headerItems = [
   {
-    url: "/cite",
+    url: "/community/citation",
     icon: <AddIcon fontSize="large" />,
     text: "Cite Us",
   },
@@ -72,7 +72,7 @@ const headerItems = [
 
 const loggedHeaderItems = [
   {
-    url: "/cite",
+    url: "/community/citation",
     icon: <AddIcon fontSize="large" />,
     text: "Cite Us",
   },
