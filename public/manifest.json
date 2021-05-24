@@ -3,12 +3,7 @@
   "name": "Dicty Stock Center",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64",
-      "type": "image/png"
-    },
-    {
-      "src": "dicty-logo.png",
+      "src": "images/dicty-logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
