@@ -33,7 +33,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "@apollo/client": "^3.3.19",
-    "@fontsource/roboto": "^4.3.0",
+    "@fontsource/roboto": "^4.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
