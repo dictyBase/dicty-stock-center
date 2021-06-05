@@ -114,7 +114,7 @@
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^17.4.3",
     "source-map-explorer": "^2.5.1",
-    "start-server-and-test": "^1.12.2"
+    "start-server-and-test": "^1.12.4"
   },
   "jest": {
     "collectCoverageFrom": [
