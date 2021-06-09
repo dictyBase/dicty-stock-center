@@ -17,13 +17,13 @@ const OauthCallback = () => {
   const location = useLocation()
 
   useEffect(() => {
-    window.opener.postMessage(
+    window.opener?.postMessage(
       {
         query: location.search,
         provider: provider,
         url: `${window.location.origin}/${process.env.REACT_APP_BASENAME}${location.pathname}`,
       },
-      window.location,
+      window.location.toString(),
     )
     window.close()
   }, [location.pathname, location.search, provider])
