@@ -56,7 +56,7 @@ describe("common/components/PublicationDisplay", () => {
     it("should not display publication link", () => {
       render(<PublicationsDisplay />)
       const link = screen.queryByRole("link")
-      expect(link).toBeFalsy()
+      expect(link).not.toBeInTheDocument()
     })
   })
 })

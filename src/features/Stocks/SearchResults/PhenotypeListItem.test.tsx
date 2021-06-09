@@ -43,7 +43,7 @@ describe("Stocks/SearchResults/PhenotypeListItem", () => {
         </BrowserRouter>,
       )
       const pubDisplay = screen.queryByTestId("publication-display")
-      expect(pubDisplay).toBeFalsy()
+      expect(pubDisplay).not.toBeInTheDocument()
     })
   })
 })
