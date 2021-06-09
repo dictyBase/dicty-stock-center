@@ -79,7 +79,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
       expect(lastRow).toBeInTheDocument()
 
       const row11 = screen.queryByText(first50[10].label)
-      expect(row11).toBeFalsy()
+      expect(row11).not.toBeInTheDocument()
 
       const listItems = await screen.findAllByRole("listitem")
       // should have 11 list items -> 10 rows of data + list header
@@ -179,7 +179,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
       expect(lastRow).toBeInTheDocument()
 
       const row51 = screen.queryByText(second50[0].label)
-      expect(row51).toBeFalsy()
+      expect(row51).not.toBeInTheDocument()
 
       const listItems = await screen.findAllByRole("listitem")
       // should have 51 list items -> 50 rows of data + list header

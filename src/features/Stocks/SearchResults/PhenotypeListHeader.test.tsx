@@ -16,9 +16,9 @@ describe("Stocks/SearchResults/PhenotypeListHeader", () => {
       </ThemeProvider>,
     )
     it("renders the three expected list headers", () => {
-      expect(screen.getByText("Strain Descriptor")).toBeTruthy()
-      expect(screen.getByText("Associated Gene(s)")).toBeTruthy()
-      expect(screen.getByText("Reference")).toBeTruthy()
+      expect(screen.getByText("Strain Descriptor")).toBeInTheDocument()
+      expect(screen.getByText("Associated Gene(s)")).toBeInTheDocument()
+      expect(screen.getByText("Reference")).toBeInTheDocument()
     })
   })
 })
