@@ -6192,9 +6192,9 @@ dicty-components-header-footer@dictybase/dicty-components-header-footer#11.0.0:
   version "11.0.0"
   resolved "https://codeload.github.com/dictybase/dicty-components-header-footer/tar.gz/db610823e5c88b1f231aeb9e6df225bd17e63472"
 
-dicty-components-login@dictybase/dicty-components-login#3.2.0:
-  version "3.2.0"
-  resolved "https://codeload.github.com/dictybase/dicty-components-login/tar.gz/0b1036598198f61842c4781f9877712cfc1c7930"
+dicty-components-login@dictybase/dicty-components-login#4.0.0:
+  version "4.0.0"
+  resolved "https://codeload.github.com/dictybase/dicty-components-login/tar.gz/5669d935af922025d7a5aea1f006de764f457210"
   dependencies:
     "@rescript/react" "^0.10.3"
     bs-platform "9.0.2"
