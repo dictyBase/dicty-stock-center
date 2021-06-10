@@ -1,11 +1,8 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import Login, {
-  createOauthURL,
-  openOauthWindow,
-  generateErrorDisplayMessage,
-} from "./Login"
+import Login, { createOauthURL, generateErrorDisplayMessage } from "./Login"
 import { MockAuthProvider } from "common/utils/testing"
+import userEvent from "@testing-library/user-event"
 
 describe("features/Authentication/Login", () => {
   const globalAny = global as any
@@ -32,6 +29,31 @@ describe("features/Authentication/Login", () => {
       expect(screen.getByText(/Sign in with ORCID/)).toBeInTheDocument()
       expect(screen.getByText(/Sign in with Google/)).toBeInTheDocument()
       expect(screen.getByText(/Sign in with LinkedIn/)).toBeInTheDocument()
+    })
+
+    it("calls function on button click", () => {
+      render(
+        <MockAuthProvider mocks={[]}>
+          <Login />
+        </MockAuthProvider>,
+      )
+      const orcid = screen.getByRole("button", { name: "Sign in with ORCID" })
+      const google = screen.getByRole("button", { name: "Sign in with Google" })
+      const linkedin = screen.getByRole("button", {
+        name: "Sign in with LinkedIn",
+      })
+      // click orcid button
+      expect(orcid).toBeInTheDocument()
+      userEvent.click(orcid)
+      expect(openMock).toHaveBeenCalledTimes(1)
+      // click google button
+      expect(google).toBeInTheDocument()
+      userEvent.click(google)
+      expect(openMock).toHaveBeenCalledTimes(2)
+      // click linkedin button
+      expect(linkedin).toBeInTheDocument()
+      userEvent.click(linkedin)
+      expect(openMock).toHaveBeenCalledTimes(3)
     })
   })
 
@@ -68,11 +90,6 @@ describe("features/Authentication/Login", () => {
         "https://testendpoint.com/auth?client_id=testID&scope=email&redirect_uri=https://localhost:3000/review/callback",
       )
     })
-  })
-
-  describe("openOauthWindow function", () => {
-    openOauthWindow("google")
-    expect(openMock).toHaveBeenCalledTimes(1)
   })
 
   describe("generateErrorDisplayMessage function", () => {

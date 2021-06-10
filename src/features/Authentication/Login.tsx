@@ -122,5 +122,5 @@ const Login = () => {
   )
 }
 
-export { createOauthURL, openOauthWindow, generateErrorDisplayMessage } // for testing purposes
+export { createOauthURL, generateErrorDisplayMessage } // for testing purposes
 export default Login
