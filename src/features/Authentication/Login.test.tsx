@@ -11,16 +11,30 @@ describe("features/Authentication/Login", () => {
   const globalAny = global as any
   const openMock = jest.fn()
   globalAny.open = openMock
-  render(
-    <MockAuthProvider mocks={[]}>
-      <Login />
-    </MockAuthProvider>,
-  )
+
   describe("initial render", () => {
     it("displays login header", () => {
+      render(
+        <MockAuthProvider mocks={[]}>
+          <Login />
+        </MockAuthProvider>,
+      )
       expect(screen.getByText(/Log in/)).toBeInTheDocument()
     })
+
+    it("displays expected buttons", () => {
+      render(
+        <MockAuthProvider mocks={[]}>
+          <Login />
+        </MockAuthProvider>,
+      )
+      expect(screen.getAllByRole("button")).toHaveLength(3)
+      expect(screen.getByText(/Sign in with ORCID/)).toBeInTheDocument()
+      expect(screen.getByText(/Sign in with Google/)).toBeInTheDocument()
+      expect(screen.getByText(/Sign in with LinkedIn/)).toBeInTheDocument()
+    })
   })
+
   describe("createOauthURL function", () => {
     it("should return expected URL for full config object", () => {
       const fullConfig = {
@@ -55,10 +69,12 @@ describe("features/Authentication/Login", () => {
       )
     })
   })
+
   describe("openOauthWindow function", () => {
     openOauthWindow("google")
-    expect(openMock).toHaveBeenCalled()
+    expect(openMock).toHaveBeenCalledTimes(1)
   })
+
   describe("generateErrorDisplayMessage function", () => {
     it("should return correct network error message", () => {
       const error = {
@@ -84,7 +100,7 @@ describe("features/Authentication/Login", () => {
           },
         ],
       }
-      expect(generateErrorDisplayMessage(error)).toBe("Network Error")
+      expect(generateErrorDisplayMessage(error)).toEqual("Network Error")
     })
     it("should return appropriate error if user not found", () => {
       const error = {
