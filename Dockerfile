@@ -25,8 +25,6 @@ COPY package.json ./
 COPY tsconfig.json ./
 COPY yarn.lock ./
 
-RUN apk add python g++ make
-
 RUN yarn install
 
 ADD src src
