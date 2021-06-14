@@ -18,7 +18,7 @@ import PhenotypeList from "./Phenotypes/PhenotypeList"
 import useStyles from "features/Stocks/Details/styles"
 import TabPanel from "common/components/TabPanel"
 import GenesDisplay from "common/components/GenesDisplay"
-import PublicationsDisplay from "common/components/PublicationsDisplay"
+import PublicationDisplay from "common/components/PublicationDisplay"
 import GenotypesDisplay from "common/components/GenotypesDisplay"
 import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
@@ -28,7 +28,7 @@ const strainRowsGenerator = (
   data: StrainQuery["strain"],
   parent: string | JSX.Element,
   depositor: string,
-  publications: JSX.Element,
+  publications: Publication[],
   genes: JSX.Element,
   genotypes: JSX.Element,
 ) => [
@@ -96,7 +96,9 @@ const strainRowsGenerator = (
   {
     id: 13,
     title: "Reference(s)",
-    content: publications,
+    content: publications.map((item, index) => (
+      <PublicationDisplay publication={item} key={index} />
+    )),
   },
 ]
 
@@ -127,7 +129,7 @@ const StrainDetailsCard = ({ data }: Props) => {
     data,
     parent,
     getDepositorName(depositor),
-    <PublicationsDisplay publications={publications} />,
+    publications,
     <GenesDisplay genes={genes} />,
     <GenotypesDisplay genotypes={genotypes[0]} />,
   )

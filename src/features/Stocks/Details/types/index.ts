@@ -4,7 +4,7 @@ type DetailsRow = {
   /** Title for row */
   title: string
   /** Content to display in row */
-  content: string | JSX.Element | undefined | null
+  content: string | JSX.Element | JSX.Element[] | undefined | null
 }
 
 export type { DetailsRow }

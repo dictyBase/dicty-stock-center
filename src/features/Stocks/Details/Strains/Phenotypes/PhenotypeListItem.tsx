@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import ListItem from "@material-ui/core/ListItem"
-import PublicationsDisplay from "common/components/PublicationsDisplay"
+import PublicationDisplay from "common/components/PublicationDisplay"
 import useStyles from "./phenotypeStyles"
 import { Phenotype } from "dicty-graphql-schema"
 
@@ -53,9 +53,9 @@ const PhenotypeListItem = ({ data }: Props) => {
           </Typography>
         </Grid>
         <Grid item xs={3} className={classes.item}>
-          <Typography variant="body2">
+          <Typography component="span" variant="body2">
             {data.publication && (
-              <PublicationsDisplay publications={[data.publication]} />
+              <PublicationDisplay publication={data.publication} />
             )}
           </Typography>
         </Grid>
