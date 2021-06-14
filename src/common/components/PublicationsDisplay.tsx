@@ -55,7 +55,7 @@ const getJournalInfo = (volume: string, pages: string) => {
 
 type Props = {
   /** List of publications */
-  publications?: Array<Publication>
+  publications: Array<Publication>
 }
 
 /**
@@ -65,18 +65,17 @@ type Props = {
 const PublicationsDisplay = ({ publications }: Props) => {
   const classes = useStyles()
 
-  if (!publications) {
-    return <React.Fragment />
-  }
-
   return (
     <React.Fragment>
       {publications.map((pub, index) => (
         <Typography
-          component="span"
+          variant="body2"
           data-testid="publication-display"
           key={index}>
-          <Typography component="span" className={classes.authors}>
+          <Typography
+            variant="body2"
+            component="span"
+            className={classes.authors}>
             {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
           </Typography>{" "}
           '{pub.title}' <em>{pub.journal}</em>{" "}

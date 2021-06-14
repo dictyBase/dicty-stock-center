@@ -33,7 +33,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
   const genes = strain?.genes as Gene[]
 
   let pubDisplay
-  if (publications.length) {
+  if (publications && publications.length) {
     pubDisplay = <PublicationDisplay publications={publications} />
   } else {
     pubDisplay = <React.Fragment />
@@ -55,7 +55,9 @@ const PhenotypeListItem = ({ strain }: Props) => {
           </Typography>
         </Grid>
         <Grid item sm={6} className={classes.item}>
-          <Typography variant="body2">{pubDisplay}</Typography>
+          <Typography component="span" variant="body2">
+            {pubDisplay}
+          </Typography>
         </Grid>
       </Grid>
     </ListItem>
