@@ -54,42 +54,41 @@ const getJournalInfo = (volume: string, pages: string) => {
 }
 
 type Props = {
-  /** List of publications */
-  publications: Array<Publication>
+  /** Individual publications */
+  publication: Publication
 }
 
 /**
- * PublicationsDisplay handles the display of publications, primarily for use
+ * PublicationDisplay handles the display of publications, primarily for use
  * on the stock details pages.
  */
-const PublicationsDisplay = ({ publications }: Props) => {
+const PublicationDisplay = ({ publication }: Props) => {
   const classes = useStyles()
 
   return (
     <React.Fragment>
-      {publications.map((pub, index) => (
+      <Typography variant="body2" data-testid="publication-display">
         <Typography
           variant="body2"
-          data-testid="publication-display"
-          key={index}>
-          <Typography
-            variant="body2"
-            component="span"
-            className={classes.authors}>
-            {listAuthors(pub.authors)} ({getYearFromTimestamp(pub.pub_date)})
-          </Typography>{" "}
-          '{pub.title}' <em>{pub.journal}</em>{" "}
-          {getJournalInfo(pub?.volume as string, pub?.pages as string)}{" "}
-          <a
-            href={getPubLink(pub.id, pub?.doi as string)}
-            title="Visit publication page">
-            <FontAwesomeIcon icon="external-link-alt" size="sm" />
-          </a>
-        </Typography>
-      ))}
+          component="span"
+          className={classes.authors}>
+          {listAuthors(publication.authors)} (
+          {getYearFromTimestamp(publication.pub_date)})
+        </Typography>{" "}
+        '{publication.title}' <em>{publication.journal}</em>{" "}
+        {getJournalInfo(
+          publication?.volume as string,
+          publication?.pages as string,
+        )}{" "}
+        <a
+          href={getPubLink(publication.id, publication?.doi as string)}
+          title="Visit publication page">
+          <FontAwesomeIcon icon="external-link-alt" size="sm" />
+        </a>
+      </Typography>
     </React.Fragment>
   )
 }
 
 export { listAuthors, getYearFromTimestamp, getPubLink, getJournalInfo }
-export default PublicationsDisplay
+export default PublicationDisplay

@@ -6,7 +6,7 @@ import ListItem from "@material-ui/core/ListItem"
 import { makeStyles } from "@material-ui/core/styles"
 import { Strain, Gene, Publication } from "dicty-graphql-schema"
 import GenesDisplay from "common/components/GenesDisplay"
-import PublicationDisplay from "common/components/PublicationsDisplay"
+import PublicationDisplay from "common/components/PublicationDisplay"
 import characterConverter from "common/utils/characterConverter"
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const PhenotypeListItem = ({ strain }: Props) => {
 
   let pubDisplay
   if (publications && publications.length) {
-    pubDisplay = <PublicationDisplay publications={publications} />
+    pubDisplay = <PublicationDisplay publication={publications[0]} />
   } else {
     pubDisplay = <React.Fragment />
   }

@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography"
 import DetailsListItem from "features/Stocks/Details/common/DetailsListItem"
 import { Gene, PlasmidQuery, Publication, User } from "dicty-graphql-schema"
 import GenesDisplay from "common/components/GenesDisplay"
-import PublicationsDisplay from "common/components/PublicationsDisplay"
+import PublicationDisplay from "common/components/PublicationDisplay"
 import Availability from "features/Stocks/Details/common/Availability"
 import getDepositorName from "features/Stocks/Details/utils/getDepositorName"
 import { fees } from "common/constants/fees"
@@ -19,7 +19,7 @@ const plasmidRowGenerator = (
   data: PlasmidQuery["plasmid"],
   depositor: string,
   imageMap: any,
-  publications: JSX.Element,
+  publications: Publication[],
   genes: JSX.Element,
 ) => [
   {
@@ -55,7 +55,9 @@ const plasmidRowGenerator = (
   {
     id: 6,
     title: "Reference(s)",
-    content: publications,
+    content: publications.map((item, index) => (
+      <PublicationDisplay publication={item} key={index} />
+    )),
   },
   {
     id: 7,
@@ -91,7 +93,7 @@ const PlasmidDetailsCard = ({ data }: Props) => {
     data,
     getDepositorName(depositor),
     imageMap,
-    <PublicationsDisplay publications={publications} />,
+    publications,
     <GenesDisplay genes={genes} />,
   )
 
