@@ -13,7 +13,7 @@ const StandardOperatingProcedures = () => {
     <Box className={classes.panel}>
       <a
         className={classes.sopLink}
-        href="https://northwestern.box.com/s/p0f8m70whgiuib2u0wt8gtn497ncmq8i"
+        href="https://betastorage.dictybase.org/uploads/documents/DSC%20SOP.pdf"
         rel="noopener noreferrer"
         target="_blank">
         Standard Operating Procedures
