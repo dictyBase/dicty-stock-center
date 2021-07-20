@@ -9,6 +9,7 @@ import {
 } from "dicty-graphql-schema"
 import useAuthorization from "common/hooks/useAuthorization"
 import { useAuthStore } from "features/Authentication/AuthStore"
+import { theme } from "app/layout/AppProviders"
 
 const useStyles = makeStyles((theme) => ({
   editor: {
@@ -55,7 +56,7 @@ const EditInfoPage = ({ location }: Props) => {
 
   const prevURL = `/information/${name}`
 
-  const onSave = (value: any) => {
+  const handleSaveClick = (value: any) => {
     if (data?.id === undefined) {
       return
     }
@@ -64,14 +65,14 @@ const EditInfoPage = ({ location }: Props) => {
         input: {
           id: data.id,
           updated_by: user.id,
-          content: JSON.stringify(value.toJSON()),
+          content: JSON.stringify(value),
         },
       },
     })
     setTimeout(() => history.push(prevURL), 1000)
   }
 
-  const onCancel = () => {
+  const handleCancelClick = () => {
     history.push(prevURL)
   }
 
@@ -79,8 +80,9 @@ const EditInfoPage = ({ location }: Props) => {
     <Box mt={2} className={classes.editor}>
       <PageEditor
         pageContent={data?.content}
-        onCancel={onCancel}
-        onSave={onSave}
+        handleSave={handleSaveClick}
+        handleCancel={handleCancelClick}
+        theme={theme}
         readOnly={false}
       />
     </Box>

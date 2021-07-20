@@ -4,6 +4,7 @@ import { PageEditor } from "dicty-components-page-editor"
 import Box from "@material-ui/core/Box"
 import { ContentBySlugQuery } from "dicty-graphql-schema"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
+import { theme } from "app/layout/AppProviders"
 
 type Params = {
   /** Slug name from URL */
@@ -36,7 +37,13 @@ const InfoPageView = ({ data }: Props) => {
           user={data.updated_by}
         />
       )}
-      <PageEditor pageContent={data?.content} readOnly />
+      <PageEditor
+        pageContent={data?.content}
+        handleSave={() => {}}
+        handleCancel={() => {}}
+        theme={theme}
+        readOnly
+      />
     </Box>
   )
 }
