@@ -19,32 +19,19 @@ jest.mock("react-router-dom", () => {
 
 window.getSelection = jest.fn()
 
-const mockContent = {
-  object: "value",
-  document: {
-    object: "document",
-    data: {},
-    nodes: [
+const mockContent = [
+  {
+    type: "paragraph",
+    children: [
       {
-        object: "block",
-        type: "paragraph",
-        data: {},
-        nodes: [
-          {
-            object: "text",
-            leaves: [
-              {
-                object: "leaf",
-                text: "Add your page content here...",
-                marks: [],
-              },
-            ],
-          },
-        ],
+        fontFamily: "inherit",
+        fontSize: "inherit",
+        fontColor: "inherit",
+        text: "",
       },
     ],
   },
-}
+]
 
 describe("features/EditablePages/AddPage", () => {
   const MockComponent = ({ mocks }: any) => (
@@ -111,9 +98,6 @@ describe("features/EditablePages/AddPage", () => {
       const saveButtons = screen.getAllByText("Save")
       userEvent.click(saveButtons[0])
       await waitFor(() => {
-        expect(
-          screen.getByText(/Add your page content here.../),
-        ).toBeInTheDocument()
         // need to use timer to match component behavior
         setTimeout(() => {
           expect(mockHistoryPush).toHaveBeenCalledWith(

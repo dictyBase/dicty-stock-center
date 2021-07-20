@@ -10,6 +10,7 @@ import {
   ContentBySlugQuery,
   useUpdateContentMutation,
 } from "dicty-graphql-schema"
+import { theme } from "app/layout/AppProviders"
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
@@ -45,8 +46,8 @@ const InlineEditor = ({ data }: Props) => {
   })
   const classes = useStyles()
 
-  const onSave = (value: any) => {
-    const valueStr = JSON.stringify(value.toJSON())
+  const handleSaveClick = (value: any) => {
+    const valueStr = JSON.stringify(value)
     if (data?.id === undefined) {
       return
     }
@@ -63,7 +64,7 @@ const InlineEditor = ({ data }: Props) => {
     setReadOnly(true)
   }
 
-  const onCancel = () => {
+  const handleCancelClick = () => {
     setReadOnly(true)
   }
 
@@ -72,11 +73,12 @@ const InlineEditor = ({ data }: Props) => {
   return (
     <Box>
       <PageEditor
-        key={readOnly}
+        key={readOnly.toString()}
         pageContent={value}
         readOnly={readOnly}
-        onSave={onSave}
-        onCancel={onCancel}
+        handleSave={handleSaveClick}
+        handleCancel={handleCancelClick}
+        theme={theme}
         inline
       />
       {authorizedUser && (
