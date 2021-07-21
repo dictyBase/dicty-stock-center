@@ -6,32 +6,19 @@ import { MockAuthProvider } from "common/utils/testing"
 
 window.getSelection = jest.fn()
 
-const mockContent = {
-  object: "value",
-  document: {
-    object: "document",
-    data: {},
-    nodes: [
+const mockContent = [
+  {
+    type: "paragraph",
+    children: [
       {
-        object: "block",
-        type: "paragraph",
-        data: {},
-        nodes: [
-          {
-            object: "text",
-            leaves: [
-              {
-                object: "leaf",
-                text: "Test Content",
-                marks: [],
-              },
-            ],
-          },
-        ],
+        fontFamily: "inherit",
+        fontSize: "inherit",
+        fontColor: "inherit",
+        text: "Test Content",
       },
     ],
   },
-}
+]
 
 describe("features/Home/OtherMaterials", () => {
   describe("initial render", () => {
