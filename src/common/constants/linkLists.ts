@@ -107,7 +107,7 @@ const miscLinks = [
   {
     name: "Nomenclature Guide",
     to: "https://dictycr.org/research/nomenclature",
-    routerAware: true,
+    routerAware: false,
     newWindow: false,
   },
   {
