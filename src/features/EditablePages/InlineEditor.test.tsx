@@ -114,20 +114,7 @@ describe("EditablePages/InlineEditor", () => {
             },
           ],
         },
-        content: JSON.stringify({
-          object: "block",
-          type: "paragraph",
-          nodes: [
-            {
-              object: "text",
-              leaves: [
-                {
-                  text: "Test content",
-                },
-              ],
-            },
-          ],
-        }),
+        content: JSON.stringify(mockContent),
       },
     }
     it("does not display edit button", () => {
