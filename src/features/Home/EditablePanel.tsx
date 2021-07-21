@@ -21,6 +21,7 @@ const EditablePanel = ({ slug, skeletonCount }: Props) => {
     variables: {
       slug: slug,
     },
+    fetchPolicy: "cache-and-network",
   })
 
   if (loading) {
