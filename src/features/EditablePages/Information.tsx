@@ -23,10 +23,6 @@ const informationLinks = [
     route: "/faq",
   },
   {
-    name: "Nomenclature Guidelines",
-    route: "/nomenclature-guidelines",
-  },
-  {
     name: "Order Information",
     route: "/order",
   },

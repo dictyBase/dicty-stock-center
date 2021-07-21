@@ -1,29 +1,25 @@
 const downloadLinks = [
   {
     name: "Phenotype Ontology",
-    to:
-      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_phenotypes.obo",
+    to: "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_phenotypes.obo",
     routerAware: false,
     newWindow: true,
   },
   {
     name: "Strain Characteristics",
-    to:
-      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_strain_characteristics.obo",
+    to: "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_strain_characteristics.obo",
     routerAware: false,
     newWindow: true,
   },
   {
     name: "Mutagenesis Methods",
-    to:
-      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_mutagenesis_method.obo",
+    to: "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_mutagenesis_method.obo",
     routerAware: false,
     newWindow: true,
   },
   {
     name: "Plasmid Keywords",
-    to:
-      "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_plasmid_keywords.obo",
+    to: "https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_plasmid_keywords.obo",
     routerAware: false,
     newWindow: true,
   },
@@ -89,8 +85,7 @@ const materialsLinks = [
   },
   {
     name: "GoldenBraid List",
-    to:
-      "https://docs.google.com/spreadsheets/d/1zg50MmBUKZx_AwDJ2-sNcxIvl_Lc1RfC/edit#gid=1498603553",
+    to: "https://docs.google.com/spreadsheets/d/1zg50MmBUKZx_AwDJ2-sNcxIvl_Lc1RfC/edit#gid=1498603553",
     routerAware: false,
     newWindow: true,
   },
@@ -111,7 +106,7 @@ const miscLinks = [
   },
   {
     name: "Nomenclature Guide",
-    to: "/information/nomenclature-guidelines",
+    to: "research/nomenclature",
     routerAware: true,
     newWindow: false,
   },

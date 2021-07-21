@@ -2,7 +2,6 @@ const pageTitles = {
   "additional-materials": "Additional Materials",
   deposit: "Deposit Information",
   faq: "FAQs",
-  "nomenclature-guidelines": "Nomenclature Guidelines",
   order: "Order Information",
   "other-stock-centers": "Other Stock Centers",
   payment: "Payment Information",
