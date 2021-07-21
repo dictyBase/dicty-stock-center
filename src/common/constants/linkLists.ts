@@ -106,7 +106,7 @@ const miscLinks = [
   },
   {
     name: "Nomenclature Guide",
-    to: "research/nomenclature",
+    to: "/research/nomenclature",
     routerAware: true,
     newWindow: false,
   },
