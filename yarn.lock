@@ -1768,7 +1768,7 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
 
-"@mswjs/cookies@^0.1.5":
+"@mswjs/cookies@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@mswjs/cookies/-/cookies-0.1.6.tgz#176f77034ab6d7373ae5c94bcbac36fee8869249"
   integrity sha512-A53XD5TOfwhpqAmwKdPtg1dva5wrng2gH5xMvklzbd9WLTSVU953eCRa8rtrrm6G7Cy60BOGsBRN89YQK0mlKA==
@@ -1776,14 +1776,15 @@
     "@types/set-cookie-parser" "^2.4.0"
     set-cookie-parser "^2.4.6"
 
-"@mswjs/interceptors@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@mswjs/interceptors/-/interceptors-0.11.1.tgz#a8806f9f245d605d02dae6d20e18bd6b867872bf"
-  integrity sha512-ReZg+Pp5GbSrDrVZTXeV4pHC385ImHTZ7he/n3f+uRiuB9eLifdLU0xvBl9NPuy7qrMgFGvrs6k2QsiB204xaQ==
+"@mswjs/interceptors@^0.12.3":
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/@mswjs/interceptors/-/interceptors-0.12.3.tgz#8d4dc08042dc749a314bd31d363ddac3a0458e26"
+  integrity sha512-qHLEvukC8hHtECKwRpe8q2Y83J91+ckDN6PzHta3tL5X5VIjet062tvvv3ZStHHsm3Xo04TMbm7WyM0RQUpnNA==
   dependencies:
     "@open-draft/until" "^1.0.3"
     debug "^4.3.0"
     headers-utils "^3.0.2"
+    outvariant "^1.0.4"
     strict-event-emitter "^0.2.0"
     xmldom "^0.6.0"
 
@@ -2832,7 +2833,7 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/cookie@^0.4.0":
+"@types/cookie@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.4.1.tgz#bfd02c1f2224567676c1545199f87c3a861d878d"
   integrity sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==
@@ -2885,7 +2886,7 @@
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.2.tgz#693b316ad323ea97eed6b38ed1a3cc02b1672b57"
   integrity sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w==
 
-"@types/inquirer@^7.3.1":
+"@types/inquirer@^7.3.3":
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/@types/inquirer/-/inquirer-7.3.3.tgz#92e6676efb67fa6925c69a2ee638f67a822952ac"
   integrity sha512-HhxyLejTHMfohAuhRun4csWigAMjXTmRyiJTU1Y/I1xmggikFMkOUoMQRlFm+zQcPEGHSs3io/0FAmNZf8EymQ==
@@ -7956,7 +7957,7 @@ graphql-tag@^2.12.0:
   dependencies:
     tslib "^2.1.0"
 
-graphql@^15.4.0, graphql@^15.5.1:
+graphql@^15.5.1:
   version "15.5.1"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.1.tgz#f2f84415d8985e7b84731e7f3536f8bb9d383aad"
   integrity sha512-FeTRX67T3LoE3LWAxxOlW2K3Bz+rMYAC18rRguK4wgXaTZMiJwSUwDmPFo3UadAKbzirKIg5Qy+sNJXbpPRnQw==
@@ -8601,7 +8602,7 @@ init-package-json@^2.0.3:
     validate-npm-package-license "^3.0.4"
     validate-npm-package-name "^3.0.0"
 
-inquirer@^8.1.0:
+inquirer@^8.1.1:
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-8.1.2.tgz#65b204d2cd7fb63400edd925dfe428bafd422e3d"
   integrity sha512-DHLKJwLPNgkfwNmsuEUKSejJFbkv0FMO9SMiQbjI3n5NQuCrSIBqP66ggqyz2a6t2qEolKrMjhQ3+W/xXgUQ+Q==
@@ -8953,6 +8954,11 @@ is-negative-zero@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.1.tgz#3de746c18dda2319241a53675908d8f766f11c24"
   integrity sha512-2z6JzQvZRa9A2Y7xC6dQQm4FSTSTNWjKIYYTt4246eMTJmIo0Q+ZyOsU66X8lxK1AbB92dFeglPLrhwpeRKO6w==
+
+is-node-process@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-node-process/-/is-node-process-1.0.0.tgz#7e3f833139aac65d31d21aca81587d6ccda80a10"
+  integrity sha512-m9HTvEwmJx2rf2c8QM26jGVK865A/tYWz+GORRB0ehitPPF/Ajm8yImTRwkEJC7giteusNdgtMEPIeY4alf9Lg==
 
 is-number-object@^1.0.4:
   version "1.0.5"
@@ -10951,29 +10957,30 @@ ms@^2.0.0, ms@^2.1.1, ms@^2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msw@^0.30.1:
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/msw/-/msw-0.30.1.tgz#2dfae38359827c353b04bbab193cc91459894a77"
-  integrity sha512-9EiOrF5vEJ60pDtT8FqOO3bLkJO/t4rJQB92kV6lXvZZwKAeqqA6XME5HQZ9BRj9dzVfDJ26jcxJkA6SlP147A==
+msw@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/msw/-/msw-0.32.2.tgz#816848a5e2a1af112f24bf498b27e4961b70433f"
+  integrity sha512-lMHsQkspK9iHh/cPAJQO1AuH/w04WMWDvt9YLcpZWmlrvdWR4B6n1yR6tYvcwWUQi9bWr9Szn5Vy6uWamgdg8Q==
   dependencies:
-    "@mswjs/cookies" "^0.1.5"
-    "@mswjs/interceptors" "^0.11.1"
+    "@mswjs/cookies" "^0.1.6"
+    "@mswjs/interceptors" "^0.12.3"
     "@open-draft/until" "^1.0.3"
-    "@types/cookie" "^0.4.0"
-    "@types/inquirer" "^7.3.1"
+    "@types/cookie" "^0.4.1"
+    "@types/inquirer" "^7.3.3"
     "@types/js-levenshtein" "^1.1.0"
     chalk "^4.1.1"
     chokidar "^3.4.2"
     cookie "^0.4.1"
-    graphql "^15.4.0"
+    graphql "^15.5.1"
     headers-utils "^3.0.2"
-    inquirer "^8.1.0"
+    inquirer "^8.1.1"
+    is-node-process "^1.0.0"
     js-levenshtein "^1.1.6"
     node-fetch "^2.6.1"
     node-match-path "^0.6.3"
     statuses "^2.0.0"
     strict-event-emitter "^0.2.0"
-    type-fest "^1.1.3"
+    type-fest "^1.2.2"
     yargs "^17.0.1"
 
 multicast-dns-service-types@^1.1.0:
@@ -11688,6 +11695,11 @@ ospath@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ospath/-/ospath-1.2.2.tgz#1276639774a3f8ef2572f7fe4280e0ea4550c07b"
   integrity sha1-EnZjl3Sj+O8lcvf+QoDg6kVQwHs=
+
+outvariant@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.0.4.tgz#d33d7fa70922e9488dfffd27d1451a8124c2bfec"
+  integrity sha512-2+ax7EEnAxi+g+HN4VrFE5qfLnCb7OQJiJ2LS4K+PQ6lTeHbLpF/AvVTilt7FnTCQuXksQI7lPV1C91oOKeKXg==
 
 p-each-series@^2.1.0:
   version "2.2.0"
@@ -15823,7 +15835,7 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-type-fest@^1.1.3:
+type-fest@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.2.2.tgz#1930bc36b2064f7ab4aa307a6d1b65965199c698"
   integrity sha512-pfkPYCcuV0TJoo/jlsUeWNV8rk7uMU6ocnYNvca1Vu+pyKi8Rl8Zo2scPt9O72gCsXIm+dMxOOWuA3VFDSdzWA==
