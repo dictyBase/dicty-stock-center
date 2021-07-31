@@ -41,7 +41,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@react-pdf/renderer": "^2.0.14",
-    "apollo3-cache-persist": "^0.9.1",
+    "apollo3-cache-persist": "^0.11.0",
     "dicty-components-header-footer": "dictybase/dicty-components-header-footer#11.0.0",
     "dicty-components-login": "dictybase/dicty-components-login#4.1.1",
     "dicty-components-navbar": "github:dictyBase/dicty-components-navbar#2.0.0",
