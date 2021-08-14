@@ -72,7 +72,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@percy/cli": "^1.0.0-beta.58",
+    "@percy/cli": "^1.0.0-beta.65",
     "@percy/cypress": "^3.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
