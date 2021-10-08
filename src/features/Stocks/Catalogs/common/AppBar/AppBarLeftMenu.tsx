@@ -1,22 +1,9 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
-import Paper from "@material-ui/core/Paper"
 import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-
-const useStyles = makeStyles({
-  root: {
-    padding: "2px 4px",
-  },
-  select: {
-    "&:focus": {
-      backgroundColor: "#fff",
-    },
-  },
-})
 
 type Props = {
   dropdownItems: Array<{
@@ -33,7 +20,6 @@ type Props = {
 const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const query = useSearchQuery()
   const filter = query.get("filter") || "all"
-  const classes = useStyles()
   const history = useHistory()
   const {
     state: { leftDropdownValue },
@@ -53,14 +39,12 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   }
 
   return (
-    <Paper className={classes.root}>
-      <AppBarDropdown
-        handleChange={handleChange}
-        dropdownValue={leftDropdownValue}
-        dropdownItems={dropdownItems}
-        inputName="catalog-filter"
-      />
-    </Paper>
+    <AppBarDropdown
+      handleChange={handleChange}
+      dropdownValue={leftDropdownValue}
+      dropdownItems={dropdownItems}
+      inputName="catalog-filter"
+    />
   )
 }
 
