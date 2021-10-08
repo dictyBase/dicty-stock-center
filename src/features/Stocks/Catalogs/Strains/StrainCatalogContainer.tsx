@@ -161,16 +161,33 @@ const StrainCatalogContainer = ({ filter }: Props) => {
     const updateData = async () => {
       switch (filter) {
         case "regular":
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["Regular"]
+          })
+          break
         case "gwdi":
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["GWDI"],
+          })
           dispatchStrainList(dispatch, filter)
           break
         case "bacterial":
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["Bacterial"],
+          })
           dispatch({
             type: CatalogActionType.SET_QUERY,
             payload: ListBacterialStrainsDocument,
           })
           break
         case "available":
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["All", "Available"],
+          })
           dispatch({
             type: CatalogActionType.SET_QUERY,
             payload: ListStrainsInventoryDocument,
