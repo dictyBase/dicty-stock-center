@@ -3,18 +3,34 @@ import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { InputAdornment, TextField } from "@material-ui/core"
+import { InputAdornment, TextField, Chip, Box } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
     minHeight: "inherit",
     width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    padding: "0px 10px",
   },
   searchInput: {
     "& > div.MuiInputBase-root fieldset": {
       borderRadius: "0px",
       border: "0px solid transparent!important",
+    },
+  },
+  chipHolder: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    "& > div": {
+      marginRight: "3px",
+    },
+    "& > div:last-child": {
+      marginRight: "0",
     },
   },
 }))
@@ -109,6 +125,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
+      <Box className={classes.chipHolder}>
+        <Chip label="Label 1" onDelete={() => {}} />
+        <Chip label="Label 2" onDelete={() => {}} />
+      </Box>
       <TextField
         fullWidth
         inputProps={{ "aria-label": "search" }}
