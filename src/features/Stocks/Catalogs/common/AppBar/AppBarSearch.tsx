@@ -5,6 +5,7 @@ import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import { InputAdornment, TextField, Chip, Box } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -117,18 +118,33 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, searchBoxDropdownValue },
+    state: { searchValue, searchBoxDropdownValue, activeFilters },
+    dispatch,
   } = useCatalogStore()
   const classes = useStyles()
   const { handleChange, handleDropdownChange, handleSubmit, clearSearch } =
     useAppBarSearch()
 
+  const removeFilter = (index: number) => {
+    if (index >= activeFilters.length) return
+    dispatch({
+      type: CatalogActionType.SET_ACTIVE_FILTERS,
+      payload: activeFilters.filter((f, i) => i !== index),
+    })
+  }
+
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
       <Box className={classes.chipHolder}>
-        <Chip label="Label 1" onDelete={() => {}} />
-        <Chip label="Label 2" onDelete={() => {}} />
+        {activeFilters.map((val, i) => (
+          <Chip
+            label={val}
+            onDelete={() => removeFilter(i)}
+            key={`chip${i}${val}`}
+          />
+        ))}
       </Box>
+
       <TextField
         fullWidth
         inputProps={{ "aria-label": "search" }}
