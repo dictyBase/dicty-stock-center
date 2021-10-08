@@ -30,6 +30,8 @@ type CatalogState = {
   helpDialogOpen: boolean
   /** The value selected from the left dropdown menu */
   leftDropdownValue: string
+  /** List of active filters (Chips) displayed in AppBarSearch */
+  activeFilters: string[]
 }
 
 enum CatalogActionType {
@@ -40,6 +42,7 @@ enum CatalogActionType {
   SET_SEARCH_VALUE = "SET_SEARCH_VALUE",
   SET_HELP_DIALOG_OPEN = "SET_HELP_DIALOG_OPEN",
   SET_LEFT_DROPDOWN_VALUE = "SET_LEFT_DROPDOWN_VALUE",
+  SET_ACTIVE_FILTERS = "SET_ACTIVE_FILTERS",
 }
 
 type Action =
@@ -71,6 +74,10 @@ type Action =
       type: CatalogActionType.SET_LEFT_DROPDOWN_VALUE
       payload: string
     }
+  | {
+      type: CatalogActionType.SET_ACTIVE_FILTERS
+      payload: string[]
+    }
 
 const initialState = {
   queryVariables: { cursor: 0, limit: 10, filter: "" },
@@ -78,6 +85,7 @@ const initialState = {
   leftDropdownValue: "all",
   searchValue: "",
   helpDialogOpen: false,
+  activeFilters: [],
 }
 
 const strainInitialState = {
@@ -137,6 +145,11 @@ const catalogReducer = (state: CatalogState, action: Action) => {
       return {
         ...state,
         leftDropdownValue: action.payload,
+      }
+    case CatalogActionType.SET_ACTIVE_FILTERS:
+      return {
+        ...state,
+        activeFilters: [...action.payload],
       }
     default:
       return state
