@@ -3,11 +3,26 @@ import { makeStyles } from "@material-ui/core/styles"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import Input from "@material-ui/core/Input"
+import { MenuItem } from "@material-ui/core"
 
 const useStyles = makeStyles({
-  select: {
-    "&:focus": {
-      backgroundColor: "#fff",
+  containerize: {
+    minHeight: "inherit",
+    width: "100%",
+  },
+  containedSelect: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "inherit",
+    "& > div:focus": {
+      backgroundColor: "white",
+    },
+    "& > div": {
+      minHeight: "inherit",
+      display: "flex",
+      alignItems: "center",
+      padding: "0px 15px",
     },
   },
 })
@@ -41,25 +56,18 @@ const AppBarDropdown = ({
   const classes = useStyles()
 
   return (
-    <FormControl>
+    <FormControl className={classes.containerize}>
       <Select
-        native
         value={dropdownValue}
         onChange={handleChange}
         input={
-          <Input
-            disableUnderline
-            name={inputName}
-            data-testid={inputName}
-            classes={{
-              input: classes.select,
-            }}
-          />
-        }>
+          <Input disableUnderline name={inputName} data-testid={inputName} />
+        }
+        className={`${classes.containerize} ${classes.containedSelect}`}>
         {dropdownItems.map((item, index) => (
-          <option value={item.value} key={index}>
+          <MenuItem value={item.value} key={index}>
             {item.name}
-          </option>
+          </MenuItem>
         ))}
       </Select>
     </FormControl>

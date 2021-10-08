@@ -6,7 +6,38 @@ import Hidden from "@material-ui/core/Hidden"
 import AppBarLeftMenu from "features/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "features/Stocks/Catalogs/common/AppBar/AppBarSearch"
 import AppBarRightMenu from "features/Stocks/Catalogs/common/AppBar/AppBarRightMenu"
-import useStyles from "features/Stocks/Catalogs/styles"
+import { Box, makeStyles } from "@material-ui/core"
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    border: "1px #eee solid",
+    borderRadius: "4px",
+    borderBottomLeftRadius: "0",
+    borderBottomRightRadius: "0",
+    backgroundColor: "white",
+  },
+  toolbar: {
+    margin: 0,
+    padding: 0,
+    display: "block",
+    minHeight: "56px!important",
+  },
+  toolbarInner: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+    width: "100%",
+    minHeight: "inherit",
+  },
+  toolbarOption: {
+    display: "block",
+    minHeight: "inherit",
+    width: "100%",
+    borderRight: "1px solid #eee",
+    "&:last-child": { borderRight: "0px" },
+  },
+}))
 
 type Props = {
   /** List of items to display in left dropdown menu */
@@ -28,28 +59,25 @@ const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
 
   return (
     <AppBar position="static" className={classes.appBar}>
-      <Toolbar>
-        <Grid container alignItems="center">
+      <Toolbar className={classes.toolbar}>
+        <Box className={classes.toolbarInner}>
+          <Box
+            flex="2"
+            className={classes.toolbarOption}
+            style={{ minWidth: "185px" }}>
+            <AppBarLeftMenu dropdownItems={leftDropdownItems} />
+          </Box>
+          <Box flex="9" className={classes.toolbarOption}>
+            <AppBarSearch dropdownItems={rightDropdownItems} />
+          </Box>
           <Hidden smDown>
-            <Grid item xs={4}>
-              <Grid container justify="flex-start">
-                <AppBarLeftMenu dropdownItems={leftDropdownItems} />
-              </Grid>
-            </Grid>
-          </Hidden>
-          <Grid item xs={12} md={4}>
-            <Grid container justify="center">
-              <AppBarSearch dropdownItems={rightDropdownItems} />
-            </Grid>
-          </Grid>
-          <Hidden smDown>
-            <Grid item xs={4}>
+            <Box flex="1" className={classes.toolbarOption}>
               <Grid container justify="flex-end">
                 <AppBarRightMenu />
               </Grid>
-            </Grid>
+            </Box>
           </Hidden>
-        </Grid>
+        </Box>
       </Toolbar>
     </AppBar>
   )
