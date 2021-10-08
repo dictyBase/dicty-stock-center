@@ -1,31 +1,21 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
-import Paper from "@material-ui/core/Paper"
-import InputBase from "@material-ui/core/InputBase"
-import IconButton from "@material-ui/core/IconButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import AppBarDropdown from "./AppBarDropdown"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
+import { InputAdornment, TextField } from "@material-ui/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const useStyles = makeStyles((theme) => ({
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
+  searchForm: {
+    minHeight: "inherit",
+    width: "100%",
   },
-  iconButton: {
-    padding: 10,
-  },
-  separator: {
-    borderLeftColor: "#bfbfbf",
-    borderLeftStyle: "solid",
-    borderLeftWidth: "1px",
-    display: "inline-block",
-    height: "30px",
-    verticalAlign: "middle",
-    paddingRight: "4px",
+  searchInput: {
+    "& > div.MuiInputBase-root fieldset": {
+      borderRadius: "0px",
+      border: "0px solid transparent!important",
+    },
   },
 }))
 
@@ -51,11 +41,8 @@ const useAppBarSearch = () => {
   const {
     state: { searchValue, searchBoxDropdownValue, leftDropdownValue },
   } = useCatalogStore()
-  const {
-    setQueryVariables,
-    setSearchValue,
-    setSearchBoxDropdownValue,
-  } = useCatalogDispatch()
+  const { setQueryVariables, setSearchValue, setSearchBoxDropdownValue } =
+    useCatalogDispatch()
   const history = useHistory()
 
   const handleChange = (
@@ -117,47 +104,41 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     state: { searchValue, searchBoxDropdownValue },
   } = useCatalogStore()
   const classes = useStyles()
-  const {
-    handleChange,
-    handleDropdownChange,
-    handleSubmit,
-    clearSearch,
-  } = useAppBarSearch()
+  const { handleChange, handleDropdownChange, handleSubmit, clearSearch } =
+    useAppBarSearch()
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Paper>
-        <Grid container alignItems="center">
-          <IconButton
-            className={classes.iconButton}
-            aria-label="Catalog search icon"
-            title="Search entire catalog"
-            onClick={handleSubmit}>
-            <FontAwesomeIcon icon="search" size="sm" />
-          </IconButton>
-          <InputBase
-            className={classes.input}
-            placeholder="Search entire catalog..."
-            inputProps={{ "aria-label": "search" }}
-            onChange={handleChange}
-            value={searchValue}
-          />
-          <IconButton
+    <form onSubmit={handleSubmit} className={classes.searchForm}>
+      {/* <TextField
+        placeholder="Search entire catalog..."
+        inputProps={{ "aria-label": "search" }}
+        onChange={handleChange}
+        value={searchValue}
+        label="Search"
+      /> */}
+      <TextField
+        fullWidth
+        inputProps={{ "aria-label": "search" }}
+        onChange={handleChange}
+        value={searchValue}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <FontAwesomeIcon icon={"search"} />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined"
+        className={classes.searchInput}
+        placeholder="Search entire catalog..."
+      />
+      {/* <IconButton
             className={classes.iconButton}
             title="Clear search box"
             aria-label="clear search box"
             onClick={clearSearch}>
             <FontAwesomeIcon icon="times" size="sm" />
-          </IconButton>
-          <div className={classes.separator} />
-          <AppBarDropdown
-            dropdownItems={dropdownItems}
-            handleChange={handleDropdownChange}
-            dropdownValue={searchBoxDropdownValue}
-            inputName="catalog-search-filter"
-          />
-        </Grid>
-      </Paper>
+          </IconButton> */}
     </form>
   )
 }
