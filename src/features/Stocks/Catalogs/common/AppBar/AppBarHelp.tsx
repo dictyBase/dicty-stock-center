@@ -9,7 +9,14 @@ import HelpDialog from "features/Stocks/Catalogs/common/HelpDialog"
 
 const useStyles = makeStyles((theme: Theme) => ({
   helpIcon: {
-    color: theme.palette.primary.contrastText,
+    color: "#555",
+  },
+  helpButtonHolder: {
+    minHeight: "inherit",
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
+    padding: "15px 0px",
   },
 }))
 
@@ -29,7 +36,7 @@ const AppBarHelp = () => {
   }
 
   return (
-    <Box component="span" pr={1} pl={2}>
+    <Box className={classes.helpButtonHolder}>
       <IconButton
         size="small"
         onClick={handleClick}

@@ -72,9 +72,7 @@ const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
           </Box>
           <Hidden smDown>
             <Box flex="1" className={classes.toolbarOption}>
-              <Grid container justify="flex-end">
-                <AppBarRightMenu />
-              </Grid>
+              <AppBarRightMenu />
             </Box>
           </Hidden>
         </Box>
