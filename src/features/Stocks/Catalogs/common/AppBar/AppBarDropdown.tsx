@@ -36,9 +36,7 @@ type Props = {
   /** The currently selected dropdown value */
   dropdownValue: string
   /** Function to call on item select */
-  handleChange: (
-    event: React.ChangeEvent<{ name?: string; value: any }>,
-  ) => void
+  handleChange: (name: string, value: any) => void
   /** Name used to identify dropdown box */
   inputName: string
 }
@@ -82,6 +80,10 @@ const AppBarDropdown = ({
     <FormControl className={classes.containerize}>
       <Select
         value={mappedDropdownValue}
+        onChange={(event: any) => {
+          const val = dropdownItems[event.target.value]
+          handleChange(val.name, val.value)
+        }}
         input={
           <Input disableUnderline name={inputName} data-testid={inputName} />
         }
