@@ -32,10 +32,9 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
     }
   }, [filter, leftDropdownValue, setLeftDropdownValue])
 
-  const handleChange = (
-    event: React.ChangeEvent<{ name?: string; value: any }>,
-  ) => {
-    history.push(`?filter=${event.target.value}`)
+  const handleChange = (name: string, value: any) => {
+    // TODO: Dispatch SET_QUERY_VARIABLES with the new values
+    history.push(`?filter=${value}`)
   }
 
   return (
