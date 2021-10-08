@@ -109,13 +109,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
-      {/* <TextField
-        placeholder="Search entire catalog..."
-        inputProps={{ "aria-label": "search" }}
-        onChange={handleChange}
-        value={searchValue}
-        label="Search"
-      /> */}
       <TextField
         fullWidth
         inputProps={{ "aria-label": "search" }}
