@@ -44,6 +44,27 @@ type Props = {
 }
 
 /**
+ * Maps the value from the filter query to the corresponding index value of the dropdown
+ * @param value value from the filter query. This value could be "regular", "gwdi", etc.
+ * @returns Index of the corresponding menu item
+ */
+const dropdownValueToIndexMap = (value: string): number => {
+  let index = 2
+  switch (value.toLowerCase()) {
+    case "regular":
+      index = 0
+      break
+    case "gwdi":
+      index = 1
+      break
+    case "bacterial":
+      index = 3
+      break
+  }
+  return index
+}
+
+/**
  * AppBarDropdown is a reusable dropdown menu component for the catalog appbars.
  */
 
@@ -55,17 +76,18 @@ const AppBarDropdown = ({
 }: Props) => {
   const classes = useStyles()
 
+  const mappedDropdownValue = dropdownValueToIndexMap(dropdownValue)
+
   return (
     <FormControl className={classes.containerize}>
       <Select
-        value={dropdownValue}
-        onChange={handleChange}
+        value={mappedDropdownValue}
         input={
           <Input disableUnderline name={inputName} data-testid={inputName} />
         }
         className={`${classes.containerize} ${classes.containedSelect}`}>
         {dropdownItems.map((item, index) => (
-          <MenuItem value={item.value} key={index}>
+          <MenuItem value={index} key={index}>
             {item.name}
           </MenuItem>
         ))}
@@ -75,3 +97,4 @@ const AppBarDropdown = ({
 }
 
 export default AppBarDropdown
+export { dropdownValueToIndexMap }
