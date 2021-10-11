@@ -163,7 +163,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         case "regular":
           dispatch({
             type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["Regular"]
+            payload: ["Regular"],
           })
           break
         case "gwdi":
@@ -204,6 +204,9 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         default:
           return
       }
+
+      document.getElementById("search-input")?.focus()
+      return
     }
 
     updateData()
