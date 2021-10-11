@@ -1,7 +1,6 @@
 import React from "react"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
-import Grid from "@material-ui/core/Grid"
 import Hidden from "@material-ui/core/Hidden"
 import AppBarLeftMenu from "features/Stocks/Catalogs/common/AppBar/AppBarLeftMenu"
 import AppBarSearch from "features/Stocks/Catalogs/common/AppBar/AppBarSearch"
@@ -15,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: "0",
     borderBottomRightRadius: "0",
     backgroundColor: "white",
+    boxShadow:
+      "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)!important",
   },
   toolbar: {
     margin: 0,
