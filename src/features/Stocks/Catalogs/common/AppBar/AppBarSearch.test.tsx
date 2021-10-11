@@ -141,14 +141,13 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         },
       })
       render(<MockComponent />)
-      const dropdown = screen.getByRole("combobox")
-      userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText(
-        "Search entire catalog...",
-      ) as HTMLInputElement
-      const searchButton = screen.getByRole("button", {
-        name: /Catalog search icon/,
-      })
+
+      // TODO: Add fields test
+      // const dropdown = screen.getByRole("combobox")
+      // userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const searchButton = screen.getByRole("search-button")
+
       userEvent.type(input, strainID)
       userEvent.click(searchButton)
       expect(mockHistoryPush).toHaveBeenCalledWith(`/strains/${strainID}`)
@@ -164,14 +163,13 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         },
       })
       render(<MockComponent />)
-      const dropdown = screen.getByRole("combobox")
-      userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText(
-        "Search entire catalog...",
-      ) as HTMLInputElement
-      const searchButton = screen.getByRole("button", {
-        name: /Catalog search icon/,
-      })
+
+      // TODO: Add fields test
+      // const dropdown = screen.getByRole("combobox")
+      // userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const searchButton = screen.getByRole("search-button")
+
       userEvent.type(input, plasmidID)
       userEvent.click(searchButton)
       expect(mockHistoryPush).toHaveBeenCalledWith(`/plasmids/${plasmidID}`)
@@ -187,14 +185,13 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         },
       })
       render(<MockComponent />)
-      const dropdown = screen.getByRole("combobox")
-      userEvent.selectOptions(dropdown, "id")
-      const input = screen.getByPlaceholderText(
-        "Search entire catalog...",
-      ) as HTMLInputElement
-      const searchButton = screen.getByRole("button", {
-        name: /Catalog search icon/,
-      })
+
+      // TODO: Add fields test
+      // const dropdown = screen.getByRole("combobox")
+      // userEvent.selectOptions(dropdown, "id")
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const searchButton = screen.getByRole("search-button")
+
       userEvent.type(input, fakeStrainID)
       userEvent.click(searchButton)
       expect(mockHistoryPush).toHaveBeenCalledWith(
@@ -203,12 +200,13 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
   })
 
-  describe("dropdown select", () => {
+  // TODO: Enable test when field dropdown is implemented
+  /* describe("dropdown select", () => {
     it("should change searchbox dropdown value", () => {
       render(<MockComponent />)
       const dropdown = screen.getByRole("combobox")
       userEvent.selectOptions(dropdown, "summary")
       expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
     })
-  })
+  }) */
 })
