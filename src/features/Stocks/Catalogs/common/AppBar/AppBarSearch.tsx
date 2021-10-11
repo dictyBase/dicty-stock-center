@@ -168,7 +168,8 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={clearSearch}
-                edge="end">
+                edge="end"
+                role="clear-search-button">
                 <FontAwesomeIcon
                   icon="times"
                   size="xs"
