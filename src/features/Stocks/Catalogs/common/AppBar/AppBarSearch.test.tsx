@@ -86,10 +86,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("clear-search-button")).toHaveLength(1)
     })
-    it("should render one dropdown with three items", () => {
+    it("should render one chip", () => {
       render(<MockComponent />)
-      expect(screen.getByRole("combobox")).toBeInTheDocument()
-      expect(screen.getAllByRole("option")).toHaveLength(3)
+      expect(screen.getAllByRole("chip1")).toHaveLength(1)
     })
   })
 
