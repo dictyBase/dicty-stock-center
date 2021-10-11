@@ -136,7 +136,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
       <Box className={classes.chipHolder}>
-        {activeFilters.map((val, i) => (
+        {activeFilters?.map((val, i) => (
           <Chip
             label={val}
             onDelete={() => removeFilter(i)}
@@ -161,6 +161,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         variant="outlined"
         className={classes.searchInput}
         placeholder="Search entire catalog..."
+        role="search-textbox"
       />
       {/* <IconButton
             className={classes.iconButton}
