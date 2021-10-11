@@ -119,12 +119,8 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         },
       })
       render(<MockComponent />)
-      const input = screen.getByPlaceholderText(
-        "Search entire catalog...",
-      ) as HTMLInputElement
-      const searchButton = screen.getByRole("button", {
-        name: /Catalog search icon/,
-      })
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const searchButton = screen.getByRole("search-button")
       userEvent.type(input, "GWDI")
       userEvent.click(searchButton)
       expect(mockSetQueryVariables).toHaveBeenCalledWith({
