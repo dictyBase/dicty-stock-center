@@ -168,22 +168,21 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
               <FontAwesomeIcon icon={"search"} style={{ cursor: "pointer" }} />
             </InputAdornment>
           ),
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={clearSearch}
-                edge="end"
-                role="clear-search-button"
-                style={{ width: "36px", height: "36px" }}
-                aria-label="clear search box">
-                <FontAwesomeIcon
-                  icon="times"
-                  size="xs"
-                  visibility={searchValue.length === 0 ? "hidden" : "visible"}
-                />
-              </IconButton>
-            </InputAdornment>
-          ),
+          endAdornment:
+            searchValue.length > 0 ? (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={clearSearch}
+                  edge="end"
+                  role="clear-search-button"
+                  style={{ width: "36px", height: "36px" }}
+                  aria-label="clear search box">
+                  <FontAwesomeIcon icon="times" size="xs" />
+                </IconButton>
+              </InputAdornment>
+            ) : (
+              <></>
+            ),
         }}
         variant="outlined"
         className={classes.searchInput}
