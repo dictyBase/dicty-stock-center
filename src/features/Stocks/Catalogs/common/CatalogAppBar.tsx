@@ -62,10 +62,7 @@ const CatalogAppBar = ({ leftDropdownItems, rightDropdownItems }: Props) => {
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Box className={classes.toolbarInner}>
-          <Box
-            flex="2"
-            className={classes.toolbarOption}
-            style={{ minWidth: "185px" }}>
+          <Box flex="1" className={classes.toolbarOption}>
             <AppBarLeftMenu dropdownItems={leftDropdownItems} />
           </Box>
           <Box flex="9" className={classes.toolbarOption}>
