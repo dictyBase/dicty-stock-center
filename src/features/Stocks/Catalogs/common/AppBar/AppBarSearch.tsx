@@ -187,7 +187,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         variant="outlined"
         className={classes.searchInput}
         placeholder="Search entire catalog..."
-        role="search-textbox"
+        autoFocus={true}
       />
     </form>
   )
