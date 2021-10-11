@@ -141,14 +141,14 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
-      <Box className={classes.chipHolder}>
+      <Box className={classes.chipHolder} role="chip-holder">
         {activeFilters?.map((val, i) => (
           <Chip
             label={val}
             onDelete={() => removeFilter(i)}
             key={`chip${i}${val}`}
             size="small"
-            role={`chip${i + 1}`}
+            role={`chip`}
           />
         ))}
       </Box>
