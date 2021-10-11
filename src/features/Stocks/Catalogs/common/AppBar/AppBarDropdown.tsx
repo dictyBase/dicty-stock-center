@@ -79,6 +79,7 @@ const AppBarDropdown = ({
   return (
     <FormControl className={classes.containerize}>
       <Select
+        role="appbar-dropdown"
         value={mappedDropdownValue}
         onChange={(event: any) => {
           const val = dropdownItems[event.target.value]

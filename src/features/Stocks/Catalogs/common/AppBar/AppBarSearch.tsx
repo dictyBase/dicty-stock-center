@@ -3,7 +3,13 @@ import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { InputAdornment, TextField, Chip, Box } from "@material-ui/core"
+import {
+  InputAdornment,
+  TextField,
+  Chip,
+  Box,
+  IconButton,
+} from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 
@@ -157,19 +163,26 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
               <FontAwesomeIcon icon={"search"} />
             </InputAdornment>
           ),
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={clearSearch}
+                edge="end">
+                <FontAwesomeIcon
+                  icon="times"
+                  size="xs"
+                  visibility={searchValue.length === 0 ? "hidden" : "visible"}
+                />
+              </IconButton>
+            </InputAdornment>
+          ),
         }}
         variant="outlined"
         className={classes.searchInput}
         placeholder="Search entire catalog..."
         role="search-textbox"
       />
-      {/* <IconButton
-            className={classes.iconButton}
-            title="Clear search box"
-            aria-label="clear search box"
-            onClick={clearSearch}>
-            <FontAwesomeIcon icon="times" size="sm" />
-          </IconButton> */}
     </form>
   )
 }
