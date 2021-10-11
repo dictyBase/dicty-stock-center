@@ -86,9 +86,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getAllByRole("clear-search-button")).toHaveLength(1)
     })
-    it("should render one chip", () => {
+    it("should render chip holder", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("chip1")).toHaveLength(1)
+      expect(screen.getAllByRole("chip-holder")).toHaveLength(1)
     })
   })
 
