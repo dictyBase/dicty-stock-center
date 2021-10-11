@@ -8,7 +8,8 @@ import { MenuItem } from "@material-ui/core"
 const useStyles = makeStyles({
   containerize: {
     minHeight: "inherit",
-    width: "100%",
+    minWidth: "190px",
+    maxWidth: "190px",
   },
   containedSelect: {
     display: "flex",
