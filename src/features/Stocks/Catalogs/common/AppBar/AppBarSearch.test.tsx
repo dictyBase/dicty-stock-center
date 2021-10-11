@@ -82,9 +82,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getByRole("search-textbox")).toBeInTheDocument()
     })
-    it("should render two buttons", () => {
+    it("should render one button to clear search", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("button")).toHaveLength(2)
+      expect(screen.getAllByRole("clear-search-button")).toHaveLength(1)
     })
     it("should render one dropdown with three items", () => {
       render(<MockComponent />)
