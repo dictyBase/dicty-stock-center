@@ -140,6 +140,24 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     document.getElementById("search-input")?.focus()
   }
 
+  const clearFiltersFromInput = (e: React.KeyboardEvent<any>) => {
+    // Remove filters if user hits backspace
+    // while both searchValue, and activeFilters are empty
+    if (
+      searchValue.length === 0 &&
+      activeFilters.length > 0 &&
+      e.key === "Backspace"
+    ) {
+      const newActiveFilters = activeFilters
+      newActiveFilters.pop()
+
+      dispatch({
+        type: CatalogActionType.SET_ACTIVE_FILTERS,
+        payload: newActiveFilters,
+      })
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
       <Box className={classes.chipHolder} role="chip-holder">
@@ -158,6 +176,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         fullWidth
         inputProps={{ role: "search-input", id: "search-input" }}
         onChange={handleChange}
+        onKeyDown={clearFiltersFromInput}
         value={searchValue}
         InputProps={{
           startAdornment: (
