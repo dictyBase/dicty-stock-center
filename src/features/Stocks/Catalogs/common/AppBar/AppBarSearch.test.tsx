@@ -80,7 +80,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   describe("initial render", () => {
     it("should render one search box", () => {
       render(<MockComponent />)
-      expect(screen.getByRole("textbox")).toBeInTheDocument()
+      expect(screen.getByRole("search-textbox")).toBeInTheDocument()
     })
     it("should render two buttons", () => {
       render(<MockComponent />)
