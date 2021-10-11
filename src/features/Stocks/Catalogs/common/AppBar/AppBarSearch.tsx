@@ -137,6 +137,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       type: CatalogActionType.SET_ACTIVE_FILTERS,
       payload: activeFilters.filter((f, i) => i !== index),
     })
+    document.getElementById("search-input")?.focus()
   }
 
   return (
@@ -155,7 +156,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
       <TextField
         fullWidth
-        inputProps={{ role: "search-input" }}
+        inputProps={{ role: "search-input", id: "search-input" }}
         onChange={handleChange}
         value={searchValue}
         InputProps={{
