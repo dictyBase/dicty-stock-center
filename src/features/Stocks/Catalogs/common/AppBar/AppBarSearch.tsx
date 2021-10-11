@@ -160,8 +160,11 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         value={searchValue}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
-              <FontAwesomeIcon icon={"search"} />
+            <InputAdornment
+              position="start"
+              onClick={handleSubmit}
+              role="search-button">
+              <FontAwesomeIcon icon={"search"} style={{ cursor: "pointer" }} />
             </InputAdornment>
           ),
           endAdornment: (
@@ -170,6 +173,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
                 onClick={clearSearch}
                 edge="end"
                 role="clear-search-button"
+                style={{ width: "36px", height: "36px" }}
                 aria-label="clear search box">
                 <FontAwesomeIcon
                   icon="times"
