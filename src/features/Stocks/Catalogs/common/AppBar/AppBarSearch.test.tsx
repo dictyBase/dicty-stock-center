@@ -1,5 +1,5 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import AppBarSearch from "./AppBarSearch"
 import { useHistory } from "react-router-dom"
@@ -88,22 +88,22 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
     it("should render chip holder", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("chip-holder")).toHaveLength(1)
+      expect(screen.getByRole("chip-holder")).toBeInTheDocument()
     })
   })
 
   describe("clear button", () => {
-    it("should clear text box", () => {
+    it("should clear text box", async () => {
       render(<MockComponent />)
-      const input = screen.getByPlaceholderText(
-        "Search entire catalog...",
-      ) as HTMLInputElement
-      const clearButton = screen.getByRole("button", {
-        name: /clear search box/,
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const clearButton = screen.getByRole("clear-search-button")
+      const searchVal = "GWDI"
+
+      userEvent.type(input, searchVal)
+      await waitFor(() => {
+        expect(input).toHaveValue(searchVal)
       })
-      userEvent.type(input, "GWDI")
-      // function should be called for each letter typed
-      expect(mockSetSearchValue).toHaveBeenCalledTimes(4)
+
       userEvent.click(clearButton)
       expect(mockSetSearchValue).toHaveBeenCalledWith("")
     })

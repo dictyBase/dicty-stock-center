@@ -155,7 +155,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
       <TextField
         fullWidth
-        inputProps={{ "aria-label": "search" }}
+        inputProps={{ role: "search-input" }}
         onChange={handleChange}
         value={searchValue}
         InputProps={{
@@ -167,10 +167,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
                 onClick={clearSearch}
                 edge="end"
-                role="clear-search-button">
+                role="clear-search-button"
+                aria-label="clear search box">
                 <FontAwesomeIcon
                   icon="times"
                   size="xs"
