@@ -141,6 +141,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             label={val}
             onDelete={() => removeFilter(i)}
             key={`chip${i}${val}`}
+            size="small"
           />
         ))}
       </Box>
