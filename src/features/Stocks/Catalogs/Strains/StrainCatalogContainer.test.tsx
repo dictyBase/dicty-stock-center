@@ -21,9 +21,13 @@ import {
   mockBacterialStrains,
   availableStrains,
 } from "./mockData"
+import userEvent from "@testing-library/user-event"
 
-jest.mock("react-virtualized-auto-sizer", () => ({ children }: any) =>
-  children({ height: 535, width: 600 }),
+jest.mock(
+  "react-virtualized-auto-sizer",
+  () =>
+    ({ children }: any) =>
+      children({ height: 535, width: 600 }),
 )
 
 jest.mock("react-router-dom", () => {
@@ -244,6 +248,41 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
           filter: "name=~GWDI",
         },
       })
+    })
+  })
+
+  describe("strains dropdown and chips", () => {
+    const listStrainMocks = [
+      {
+        request: {
+          query: StrainListDocument,
+          variables: {
+            cursor: 0,
+            filter: "",
+            limit: 10,
+          },
+        },
+        result: {
+          data: {
+            listStrains: lastFiveStrainCatalogItems,
+          },
+        },
+      },
+    ]
+
+    it("should have appbar-dropdown", () => {
+      render(<MockComponent mocks={listStrainMocks} filter="all" />)
+      expect(screen.getByRole("appbar-dropdown")).toBeInTheDocument()
+    })
+
+    it("should have 1 chip for filter=regular", () => {
+      render(<MockComponent mocks={listStrainMocks} filter="regular" />)
+      expect(screen.getAllByRole("chip")).toHaveLength(1)
+    })
+
+    it("should have 2 chips for filter=available", () => {
+      render(<MockComponent mocks={listStrainMocks} filter="available" />)
+      expect(screen.getAllByRole("chip")).toHaveLength(2)
     })
   })
 })
