@@ -1,11 +1,5 @@
 # Dicty Stock Center
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)  
 ![GitHub tag](https://img.shields.io/github/v/tag/dictyBase/dicty-stock-center)
 ![GitHub action](https://github.com/dictyBase/dicty-stock-center/workflows/Node%20CI%20Develop/badge.svg)  
