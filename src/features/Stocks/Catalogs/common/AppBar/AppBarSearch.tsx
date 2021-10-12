@@ -135,6 +135,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
+      <IconButton onClick={handleSubmit} role="search-button">
+        <FontAwesomeIcon icon={"search"} size="xs" />
+      </IconButton>
+
       <ActiveFilters />
 
       <TextField
@@ -144,14 +148,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         onKeyDown={clearFiltersFromInput}
         value={searchValue}
         InputProps={{
-          startAdornment: (
-            <InputAdornment
-              position="start"
-              onClick={handleSubmit}
-              role="search-button">
-              <FontAwesomeIcon icon={"search"} style={{ cursor: "pointer" }} />
-            </InputAdornment>
-          ),
           endAdornment:
             searchValue.length > 0 ? (
               <InputAdornment position="end">
