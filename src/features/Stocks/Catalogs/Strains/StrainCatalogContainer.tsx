@@ -165,6 +165,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
             type: CatalogActionType.SET_ACTIVE_FILTERS,
             payload: ["Regular"],
           })
+          dispatchStrainList(dispatch, filter)
           break
         case "gwdi":
           dispatch({
