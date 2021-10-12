@@ -3,15 +3,10 @@ import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import {
-  InputAdornment,
-  TextField,
-  Chip,
-  Box,
-  IconButton,
-} from "@material-ui/core"
+import { InputAdornment, TextField, IconButton } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
+import ActiveFilters from "./ActiveFilters"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -27,17 +22,6 @@ const useStyles = makeStyles((theme) => ({
     "& > div.MuiInputBase-root fieldset": {
       borderRadius: "0px",
       border: "0px solid transparent!important",
-    },
-  },
-  chipHolder: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    "& > div": {
-      marginRight: "3px",
-    },
-    "& > div:last-child": {
-      marginRight: "0",
     },
   },
 }))
@@ -131,15 +115,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   const { handleChange, handleDropdownChange, handleSubmit, clearSearch } =
     useAppBarSearch()
 
-  const removeFilter = (index: number) => {
-    if (index >= activeFilters.length) return
-    dispatch({
-      type: CatalogActionType.SET_ACTIVE_FILTERS,
-      payload: activeFilters.filter((f, i) => i !== index),
-    })
-    document.getElementById("search-input")?.focus()
-  }
-
   const clearFiltersFromInput = (e: React.KeyboardEvent<any>) => {
     // Remove filters if user hits backspace
     // while both searchValue, and activeFilters are empty
@@ -160,17 +135,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
-      <Box className={classes.chipHolder} role="chip-holder">
-        {activeFilters?.map((val, i) => (
-          <Chip
-            label={val}
-            onDelete={() => removeFilter(i)}
-            key={`chip${i}${val}`}
-            size="small"
-            role={`chip`}
-          />
-        ))}
-      </Box>
+      <ActiveFilters />
 
       <TextField
         fullWidth
