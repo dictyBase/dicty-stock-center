@@ -108,12 +108,11 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, searchBoxDropdownValue, activeFilters },
+    state: { searchValue, activeFilters },
     dispatch,
   } = useCatalogStore()
   const classes = useStyles()
-  const { handleChange, handleDropdownChange, handleSubmit, clearSearch } =
-    useAppBarSearch()
+  const { handleChange, handleSubmit, clearSearch } = useAppBarSearch()
 
   const clearFiltersFromInput = (e: React.KeyboardEvent<any>) => {
     // Remove filters if user hits backspace
