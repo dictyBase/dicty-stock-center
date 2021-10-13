@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
       border: "0px solid transparent!important",
     },
   },
+  optionButton: {
+    width: "42px",
+    height: "42px",
+  },
 }))
 
 /** getDetailsURL uses regex to check if a stock ID has been entered into the
@@ -134,7 +138,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
-      <IconButton onClick={handleSubmit} role="search-button">
+      <IconButton
+        onClick={handleSubmit}
+        role="search-button"
+        className={classes.optionButton}>
         <FontAwesomeIcon icon={"search"} size="xs" />
       </IconButton>
 
@@ -146,28 +153,21 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         onChange={handleChange}
         onKeyDown={clearFiltersFromInput}
         value={searchValue}
-        InputProps={{
-          endAdornment:
-            searchValue.length > 0 ? (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={clearSearch}
-                  edge="end"
-                  role="clear-search-button"
-                  style={{ width: "36px", height: "36px" }}
-                  aria-label="clear search box">
-                  <FontAwesomeIcon icon="times" size="xs" />
-                </IconButton>
-              </InputAdornment>
-            ) : (
-              <></>
-            ),
-        }}
         variant="outlined"
         className={classes.searchInput}
         placeholder="Search entire catalog..."
         autoFocus={true}
       />
+
+      <IconButton
+        onClick={clearSearch}
+        role="clear-search-button"
+        style={{
+          visibility: searchValue.length === 0 ? "hidden" : "visible",
+        }}
+        className={classes.optionButton}>
+        <FontAwesomeIcon icon={"times"} size="xs" />
+      </IconButton>
     </form>
   )
 }
