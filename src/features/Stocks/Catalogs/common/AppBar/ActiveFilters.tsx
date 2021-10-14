@@ -1,4 +1,3 @@
-import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { Chip, Box } from "@material-ui/core"
