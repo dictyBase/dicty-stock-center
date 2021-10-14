@@ -1,4 +1,3 @@
-import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import AppBarSearch from "./AppBarSearch"
@@ -84,7 +83,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
     it("should render one button to clear search", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("clear-search-button")).toHaveLength(1)
+      expect(screen.getByRole("clear-search-button")).toBeInTheDocument()
     })
     it("should render chip holder", () => {
       render(<MockComponent />)

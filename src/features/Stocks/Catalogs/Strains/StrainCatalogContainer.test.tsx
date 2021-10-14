@@ -1,4 +1,3 @@
-import React from "react"
 import { render, screen } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
 import { BrowserRouter, useLocation } from "react-router-dom"
@@ -21,7 +20,6 @@ import {
   mockBacterialStrains,
   availableStrains,
 } from "./mockData"
-import userEvent from "@testing-library/user-event"
 
 jest.mock(
   "react-virtualized-auto-sizer",
@@ -277,12 +275,12 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
 
     it("should have 1 chip for filter=regular", () => {
       render(<MockComponent mocks={listStrainMocks} filter="regular" />)
-      expect(screen.getAllByRole("chip")).toHaveLength(1)
+      expect(screen.getByRole("chip")).toBeInTheDocument()
     })
 
     it("should have no chips for filter=available", () => {
       render(<MockComponent mocks={listStrainMocks} filter="available" />)
-      expect(screen.queryAllByRole("chip")).toHaveLength(0)
+      expect(screen.queryByRole("chip")).not.toBeInTheDocument()
     })
   })
 })
