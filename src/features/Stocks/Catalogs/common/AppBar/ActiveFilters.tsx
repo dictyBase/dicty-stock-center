@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { Chip, Box } from "@material-ui/core"
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
+import { useHistory } from "react-router"
 
 const useStyles = makeStyles((theme) => ({
   chipHolder: {
@@ -24,14 +25,16 @@ const ActiveFilters = () => {
     dispatch,
   } = useCatalogStore()
   const classes = useStyles()
+  const history = useHistory()
 
   const removeFilter = (index: number) => {
     if (index >= activeFilters.length) return
     dispatch({
       type: CatalogActionType.SET_ACTIVE_FILTERS,
-      payload: activeFilters.filter((f, i) => i !== index),
+      payload: [],
     })
-    document.getElementById("search-input")?.focus()
+
+    history.push("?filter=available")
   }
 
   return (
