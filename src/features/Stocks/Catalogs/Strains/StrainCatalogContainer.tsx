@@ -187,7 +187,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         case "available":
           dispatch({
             type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["All", "Available"],
+            payload: [],
           })
           dispatch({
             type: CatalogActionType.SET_QUERY,
