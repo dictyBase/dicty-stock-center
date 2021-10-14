@@ -205,9 +205,6 @@ const StrainCatalogContainer = ({ filter }: Props) => {
         default:
           return
       }
-
-      document.getElementById("search-input")?.focus()
-      return
     }
 
     updateData()
