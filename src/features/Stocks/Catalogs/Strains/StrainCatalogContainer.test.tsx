@@ -280,9 +280,9 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(screen.getAllByRole("chip")).toHaveLength(1)
     })
 
-    it("should have 2 chips for filter=available", () => {
+    it("should have no chips for filter=available", () => {
       render(<MockComponent mocks={listStrainMocks} filter="available" />)
-      expect(screen.getAllByRole("chip")).toHaveLength(2)
+      expect(screen.queryAllByRole("chip")).toHaveLength(0)
     })
   })
 })
