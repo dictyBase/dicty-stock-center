@@ -69,7 +69,7 @@
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7",
     "typescript": "4.3.5",
-    "yup": "^0.32.9"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@percy/cli": "^1.0.0-beta.68",
