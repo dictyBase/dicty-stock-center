@@ -1,5 +1,10 @@
 import React from "react"
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  DefaultOptions,
+} from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist"
 import localForage from "localforage"
@@ -93,14 +98,22 @@ const useCreateApolloClient = () => {
     initializeCache()
   }, [])
 
+  let defaultOptions: DefaultOptions | undefined = undefined
+  if (process.env.REACT_APP_DISABLE_CACHE === "true") {
+    defaultOptions = {
+      watchQuery: {
+        fetchPolicy: "no-cache",
+      },
+      query: {
+        fetchPolicy: "no-cache",
+      },
+    }
+  }
+
   const client = new ApolloClient({
     cache,
     link,
-    defaultOptions: {
-      query: {
-        fetchPolicy: "cache-first",
-      },
-    },
+    defaultOptions,
   })
 
   return { client, cacheInitializing }
