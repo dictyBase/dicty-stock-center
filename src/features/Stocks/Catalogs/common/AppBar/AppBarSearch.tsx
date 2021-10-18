@@ -6,6 +6,7 @@ import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispa
 import { TextField, IconButton } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ActiveFilters from "./ActiveFilters"
+import Autocomplete from "@material-ui/lab/Autocomplete"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -55,10 +56,8 @@ const useAppBarSearch = () => {
     useCatalogDispatch()
   const history = useHistory()
 
-  const handleChange = (
-    event: React.ChangeEvent<{ name?: string; value: any }>,
-  ) => {
-    setSearchValue(event.target.value)
+  const handleChange = (value: string) => {
+    setSearchValue(value)
   }
 
   const handleDropdownChange = (
@@ -127,26 +126,29 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
       <ActiveFilters />
 
-      <TextField
-        fullWidth
-        inputProps={{ role: "search-input", id: "search-input" }}
-        onChange={handleChange}
+      <Autocomplete
+        id="search-input-autocomplete"
+        options={dropdownItems.map((item) => item.name)}
         value={searchValue}
-        variant="outlined"
-        className={classes.searchInput}
-        placeholder="Search entire catalog..."
-        autoFocus={true}
-      />
-
-      <IconButton
-        onClick={clearSearch}
-        role="clear-search-button"
-        style={{
-          visibility: searchValue.length === 0 ? "hidden" : "visible",
+        onChange={(event, newValue) => {
+          handleChange(newValue ? newValue : "")
         }}
-        className={classes.optionButton}>
-        <FontAwesomeIcon icon={"times"} size="xs" />
-      </IconButton>
+        fullWidth
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            fullWidth
+            inputProps={{
+              ...params.inputProps,
+              role: "search-input",
+              id: "search-input",
+            }}
+            variant="outlined"
+            className={classes.searchInput}
+            placeholder="Search entire catalog..."
+          />
+        )}
+      />
     </form>
   )
 }
