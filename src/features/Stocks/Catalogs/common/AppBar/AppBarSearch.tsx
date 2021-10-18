@@ -113,7 +113,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     state: { searchValue },
   } = useCatalogStore()
   const classes = useStyles()
-  const { handleChange, handleSubmit, clearSearch } = useAppBarSearch()
+  const { handleChange, handleSubmit } = useAppBarSearch()
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
@@ -133,6 +133,8 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         onChange={(event, newValue) => {
           handleChange(newValue ? newValue : "")
         }}
+        clearOnBlur={false}
+        clearOnEscape={false}
         fullWidth
         renderInput={(params) => (
           <TextField
