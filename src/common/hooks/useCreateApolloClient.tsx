@@ -1,10 +1,5 @@
 import React from "react"
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-  WatchQueryFetchPolicy,
-} from "@apollo/client"
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist"
 import localForage from "localforage"
