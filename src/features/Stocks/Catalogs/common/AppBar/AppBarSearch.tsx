@@ -130,11 +130,9 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         id="search-input-autocomplete"
         options={dropdownItems.map((item) => item.name)}
         value={searchValue}
-        onChange={(event, newValue) => {
-          handleChange(newValue ? newValue : "")
-        }}
         clearOnBlur={false}
         clearOnEscape={false}
+        onChange={(_, value) => handleChange(value ? value : "")}
         fullWidth
         renderInput={(params) => (
           <TextField
@@ -145,6 +143,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
               role: "search-input",
               id: "search-input",
             }}
+            onChange={(event) => handleChange(event.target.value)}
             variant="outlined"
             className={classes.searchInput}
             placeholder="Search entire catalog..."
