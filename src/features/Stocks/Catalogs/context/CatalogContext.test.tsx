@@ -21,6 +21,7 @@ describe("Stocks/Catalogs/common/CatalogContext", () => {
       helpDialogOpen: false,
       query: StrainListDocument,
       searchBoxDropdownValue: "label",
+      activeFilters: [],
     }
     it("returns initial state if no changes", () => {
       expect(
