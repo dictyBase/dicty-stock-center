@@ -78,7 +78,7 @@ describe("ordering stocks", () => {
     cy.log("Verify order summary")
     cy.location("pathname").should("eq", "/stockcenter/order/submitted")
     cy.findByText(/Thank you for your order/)
-    cy.findByText(/Order ID: 8888888/)
+    cy.findByText(/Order ID: .+?/)
     cy.frameLoaded()
     // need to wait for PDF to render
     // eslint-disable-next-line
