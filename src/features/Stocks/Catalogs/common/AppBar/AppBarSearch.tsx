@@ -112,29 +112,10 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, activeFilters },
-    dispatch,
+    state: { searchValue },
   } = useCatalogStore()
   const classes = useStyles()
   const { handleChange, handleSubmit, clearSearch } = useAppBarSearch()
-
-  const clearFiltersFromInput = (e: React.KeyboardEvent<any>) => {
-    // Remove filters if user hits backspace
-    // while both searchValue, and activeFilters are empty
-    if (
-      searchValue.length === 0 &&
-      activeFilters.length > 0 &&
-      e.key === "Backspace"
-    ) {
-      const newActiveFilters = activeFilters
-      newActiveFilters.pop()
-
-      dispatch({
-        type: CatalogActionType.SET_ACTIVE_FILTERS,
-        payload: newActiveFilters,
-      })
-    }
-  }
 
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
@@ -151,7 +132,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         fullWidth
         inputProps={{ role: "search-input", id: "search-input" }}
         onChange={handleChange}
-        onKeyDown={clearFiltersFromInput}
         value={searchValue}
         variant="outlined"
         className={classes.searchInput}
