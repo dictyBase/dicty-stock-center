@@ -5,7 +5,6 @@ import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import { TextField, IconButton } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 import ActiveFilters from "./ActiveFilters"
 
 const useStyles = makeStyles((theme) => ({
