@@ -15,17 +15,10 @@ import "@fontsource/roboto"
 // https://mswjs.io/docs/getting-started/integrate/browser
 async function main() {
   if (process.env.NODE_ENV === "development") {
-    if (window.location.pathname === "/stockcenter") {
-      window.location.pathname = "/stockcenter/"
+    if (window.location.pathname === "/") {
+      window.location.pathname = "/stockcenter"
       return
     }
-
-    const { worker } = require("./mocks/browser")
-    await worker.start({
-      serviceWorker: {
-        url: "/stockcenter/mockServiceWorker.js",
-      },
-    })
   }
 
   // AuthProvider needs to be outermost so ApolloProvider can access its token
