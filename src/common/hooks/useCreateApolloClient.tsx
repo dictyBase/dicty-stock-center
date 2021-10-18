@@ -98,17 +98,12 @@ const useCreateApolloClient = () => {
     initializeCache()
   }, [])
 
-  const fetchPolicy: WatchQueryFetchPolicy = "no-cache"
-
   const client = new ApolloClient({
     cache,
     link,
     defaultOptions: {
-      watchQuery: {
-        fetchPolicy: fetchPolicy,
-      },
       query: {
-        fetchPolicy: fetchPolicy,
+        fetchPolicy: "cache-first",
       },
     },
   })
