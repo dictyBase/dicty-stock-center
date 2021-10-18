@@ -83,7 +83,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
     it("should render one button to clear search", () => {
       render(<MockComponent />)
-      expect(screen.getByRole("clear-search-button")).toBeInTheDocument()
+      expect(screen.getByLabelText("Clear")).toBeInTheDocument()
     })
     it("should render chip holder", () => {
       render(<MockComponent />)
@@ -95,7 +95,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     it("should clear text box", async () => {
       render(<MockComponent />)
       const input = screen.getByRole("search-input") as HTMLInputElement
-      const clearButton = screen.getByRole("clear-search-button")
+      const clearButton = screen.getByLabelText("Clear")
       const searchVal = "GWDI"
 
       userEvent.type(input, searchVal)
