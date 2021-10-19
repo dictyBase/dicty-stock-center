@@ -18,6 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+interface IFilterChipProps {
+  val: string
+  removeChip: () => void
+}
+
+const FilterChip = ({ val, removeChip }: IFilterChipProps) => (
+  <Chip label={val} onDelete={removeChip} size="small" role={`chip`} />
+)
+
 const ActiveFilters = () => {
   const {
     state: { activeFilters },
@@ -27,24 +36,20 @@ const ActiveFilters = () => {
   const history = useHistory()
 
   const removeFilter = (index: number) => {
-    if (index >= activeFilters.length) return
     dispatch({
       type: CatalogActionType.SET_ACTIVE_FILTERS,
       payload: [],
     })
-
     history.push("?filter=available")
   }
 
   return (
     <Box className={classes.chipHolder} role="chip-holder">
       {activeFilters?.map((val, i) => (
-        <Chip
-          label={val}
-          onDelete={() => removeFilter(i)}
+        <FilterChip
+          val={val}
+          removeChip={() => removeFilter(i)}
           key={`chip${i}${val}`}
-          size="small"
-          role={`chip`}
         />
       ))}
     </Box>
