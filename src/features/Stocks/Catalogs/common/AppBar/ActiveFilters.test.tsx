@@ -1,9 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { useHistory } from "react-router-dom"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import ActiveFilters from "./ActiveFilters"
-import userEvent from "@testing-library/user-event"
 
 const mockHistoryPush = jest.fn()
 
@@ -56,7 +55,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
 
     it("should render one chip for regular", () => {
       render(<MockComponent />)
-      expect(screen.getAllByRole("chip")).toHaveLength(1)
+      expect(screen.getByRole("chip")).toBeInTheDocument()
       expect(screen.getByText("Regular")).toBeInTheDocument()
     })
 
