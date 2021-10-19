@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
+import { dropdownValueToIndexMap } from "./AppBarDropdown"
 
 const mockHistoryPush = jest.fn()
 
@@ -88,6 +89,13 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     it("should render chip holder", () => {
       render(<MockComponent />)
       expect(screen.getByRole("chip-holder")).toBeInTheDocument()
+    })
+
+    it("should map dropdown value to index", () => {
+      expect(dropdownValueToIndexMap("regular")).toBe(0)
+      expect(dropdownValueToIndexMap("gwdi")).toBe(1)
+      expect(dropdownValueToIndexMap("all")).toBe(2)
+      expect(dropdownValueToIndexMap("bacterial")).toBe(3)
     })
   })
 
