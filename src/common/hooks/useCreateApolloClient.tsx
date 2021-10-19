@@ -71,6 +71,20 @@ const link = authLink.concat(
   }),
 )
 
+const getDefaultApolloConfig = (): DefaultOptions | undefined => {
+  if (process.env.REACT_APP_DISABLE_CACHE === "true") {
+    return {
+      watchQuery: {
+        fetchPolicy: "no-cache",
+      },
+      query: {
+        fetchPolicy: "no-cache",
+      },
+    }
+  }
+  return undefined
+}
+
 const useCreateApolloClient = () => {
   const [cacheInitializing, setCacheInitializing] = React.useState(true)
 
@@ -98,26 +112,13 @@ const useCreateApolloClient = () => {
     initializeCache()
   }, [])
 
-  let defaultOptions: DefaultOptions | undefined = undefined
-  if (process.env.REACT_APP_DISABLE_CACHE === "true") {
-    defaultOptions = {
-      watchQuery: {
-        fetchPolicy: "no-cache",
-      },
-      query: {
-        fetchPolicy: "no-cache",
-      },
-    }
-  }
-
   const client = new ApolloClient({
     cache,
     link,
-    defaultOptions,
+    defaultOptions: getDefaultApolloConfig(),
   })
-
   return { client, cacheInitializing }
 }
 
-export { isMutation, getGraphQLServer }
+export { isMutation, getGraphQLServer, getDefaultApolloConfig }
 export default useCreateApolloClient
