@@ -278,6 +278,11 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
       expect(screen.getByRole("chip")).toBeInTheDocument()
     })
 
+    it("should have 1 chip for filter=gwdi", () => {
+      render(<MockComponent mocks={listStrainMocks} filter="gwdi" />)
+      expect(screen.getByRole("chip")).toBeInTheDocument()
+    })
+
     it("should have no chips for filter=available", () => {
       render(<MockComponent mocks={listStrainMocks} filter="available" />)
       expect(screen.queryByRole("chip")).not.toBeInTheDocument()
