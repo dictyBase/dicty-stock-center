@@ -3,6 +3,7 @@ import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { Chip, Box } from "@material-ui/core"
 import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 import { useHistory } from "react-router"
+import DeleteIcon from "@material-ui/icons/Cancel"
 
 const useStyles = makeStyles((theme) => ({
   chipHolder: {
@@ -24,7 +25,15 @@ interface IFilterChipProps {
 }
 
 const FilterChip = ({ val, removeChip }: IFilterChipProps) => (
-  <Chip label={val} onDelete={removeChip} size="small" role={`chip`} />
+  <Chip
+    label={val}
+    onDelete={removeChip}
+    deleteIcon={
+      <DeleteIcon role="remove-chip" aria-hidden="false" focusable="true" />
+    }
+    size="small"
+    role={`chip`}
+  />
 )
 
 const ActiveFilters = () => {
