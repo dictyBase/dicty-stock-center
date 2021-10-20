@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import ActiveFilters from "./ActiveFilters"
+import { CatalogProvider } from "../../context/CatalogContext"
 
 const mockHistoryPush = jest.fn()
 
@@ -37,7 +38,11 @@ mockedUseCatalogStore.mockReturnValue({
 })
 
 describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
-  const MockComponent = () => <ActiveFilters />
+  const MockComponent = () => (
+    <CatalogProvider stockType="strain">
+      <ActiveFilters />
+    </CatalogProvider>
+  )
 
   beforeEach(() => {
     ;(useHistory as jest.Mock).mockReturnValue({
