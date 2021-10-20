@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { Chip, Box } from "@material-ui/core"
-import { CatalogActionType } from "features/Stocks/Catalogs/context/CatalogContext"
 import { useHistory } from "react-router"
 import DeleteIcon from "@material-ui/icons/Cancel"
+import useCatalogDispatch from "../../context/useCatalogDispatch"
 
 const useStyles = makeStyles((theme) => ({
   chipHolder: {
@@ -39,16 +39,13 @@ const FilterChip = ({ val, removeChip }: IFilterChipProps) => (
 const ActiveFilters = () => {
   const {
     state: { activeFilters },
-    dispatch,
   } = useCatalogStore()
+  const { setActiveFilters } = useCatalogDispatch()
   const classes = useStyles()
   const history = useHistory()
 
   const removeFilter = (index: number) => {
-    dispatch({
-      type: CatalogActionType.SET_ACTIVE_FILTERS,
-      payload: [],
-    })
+    setActiveFilters([])
     history.push("?filter=available")
   }
 

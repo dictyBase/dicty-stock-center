@@ -45,10 +45,10 @@ const useCatalogDispatch = () => {
       payload: bool,
     })
   
-  const setActiveFilters = (filter: string) =>
+  const setActiveFilters = (filter: string[]) =>
     dispatch({
       type: CatalogActionType.SET_ACTIVE_FILTERS,
-      payload: [filter],
+      payload: [...filter],
     })
 
   return {
