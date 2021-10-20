@@ -17,11 +17,13 @@ jest.mock("react-router-dom", () => {
   }
 })
 const mockSetQueryVariables = jest.fn()
+const mockSetActiveFilters = jest.fn()
 
 jest.mock("features/Stocks/Catalogs/context/useCatalogDispatch")
 const mockedUseCatalogDispatch = useCatalogDispatch as jest.Mock
 mockedUseCatalogDispatch.mockReturnValue({
   setQueryVariables: mockSetQueryVariables,
+  setActiveFilters: mockSetActiveFilters,
 })
 
 jest.mock("features/Stocks/Catalogs/context/useCatalogStore")
@@ -32,7 +34,6 @@ mockedUseCatalogStore.mockReturnValue({
     leftDropdownValue: "regular",
     activeFilters: ["Regular"],
   },
-  dispatch: (value: any) => {},
 })
 
 describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
