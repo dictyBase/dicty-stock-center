@@ -44,6 +44,12 @@ const useCatalogDispatch = () => {
       type: CatalogActionType.SET_HELP_DIALOG_OPEN,
       payload: bool,
     })
+  
+  const setActiveFilters = (filter: string) =>
+    dispatch({
+      type: CatalogActionType.SET_ACTIVE_FILTERS,
+      payload: [filter],
+    })
 
   return {
     setSearchValue,
@@ -52,6 +58,7 @@ const useCatalogDispatch = () => {
     setQuery,
     setQueryVariables,
     setHelpDialogOpen,
+    setActiveFilters,
   }
 }
 
