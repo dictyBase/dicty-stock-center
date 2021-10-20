@@ -2,12 +2,12 @@ import { render, screen, waitFor } from "@testing-library/react"
 import RemoveFromCartButton from "./RemoveFromCartButton"
 import userEvent from "@testing-library/user-event"
 
-describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
+describe("Stocks/Catalog/common/RemoveFromCartButton", () => {
   const MockComponent = () => <RemoveFromCartButton handleClick={() => {}} />
   const buttonTitle = "Remove from cart"
 
   describe("initial render", () => {
-    it("should render chip holder", () => {
+    it("should render remove from cart button", () => {
       render(<MockComponent />)
       expect(screen.getByTitle(buttonTitle)).toBeInTheDocument()
     })
