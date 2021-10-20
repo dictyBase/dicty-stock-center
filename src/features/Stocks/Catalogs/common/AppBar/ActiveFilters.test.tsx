@@ -1,9 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { useHistory } from "react-router-dom"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import ActiveFilters from "./ActiveFilters"
-import userEvent from "@testing-library/user-event"
 
 const mockHistoryPush = jest.fn()
 
