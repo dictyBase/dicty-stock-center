@@ -1,5 +1,5 @@
 import React from "react"
-import { screen, render } from "@testing-library/react"
+import { screen, render, waitFor } from "@testing-library/react"
 import HelpDialog from "./HelpDialog"
 import {
   CatalogContext,
@@ -32,5 +32,20 @@ describe("Stocks/Catalogs/common/HelpDialog", () => {
         /The stock catalogs can be browsed by using the available dropdown menus/,
       ),
     ).toBeInTheDocument()
+  })
+
+  it("closes help dialog", async () => {
+    render(
+      <MockCatalogProvider>
+        <HelpDialog />
+      </MockCatalogProvider>,
+    )
+
+    const closeButton = screen.getByText("Close")
+    expect(closeButton).toBeInTheDocument()
+
+    await waitFor(() => {
+      screen.getByText("Close").click()
+    })
   })
 })
