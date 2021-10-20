@@ -1,4 +1,8 @@
-import { isMutation, getGraphQLServer } from "./useCreateApolloClient"
+import {
+  isMutation,
+  getGraphQLServer,
+  getDefaultApolloConfig,
+} from "./useCreateApolloClient"
 
 describe("isMutation function", () => {
   it("should return true for mutation", () => {
@@ -58,5 +62,28 @@ describe("getGraphQLServer function", () => {
         "https://dictybase.org",
       ),
     ).toBe(process.env.REACT_APP_GRAPHQL_SERVER)
+  })
+})
+
+describe("getDefaultApolloConfig function", () => {
+  const OLD_ENV = process.env
+
+  beforeEach(() => {
+    jest.resetModules() // clear the cache
+    process.env = { ...OLD_ENV } // make a copy
+  })
+
+  afterAll(() => {
+    process.env = OLD_ENV // restore old env
+  })
+
+  it("should return DefaultOptions object with CACHE='disable'", () => {
+    process.env.REACT_APP_CACHE = "disable"
+    expect(getDefaultApolloConfig()).not.toBeUndefined()
+  })
+
+  it("should return undefined with CACHE='enable'", () => {
+    process.env.REACT_APP_CACHE = "enable"
+    expect(getDefaultApolloConfig()).toBeUndefined()
   })
 })
