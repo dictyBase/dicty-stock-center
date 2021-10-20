@@ -74,9 +74,6 @@ const link = authLink.concat(
 const getDefaultApolloConfig = (): DefaultOptions | undefined => {
   if (process.env.REACT_APP_DISABLE_CACHE === "true") {
     return {
-      watchQuery: {
-        fetchPolicy: "no-cache",
-      },
       query: {
         fetchPolicy: "no-cache",
       },
