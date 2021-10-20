@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import OtherError from "features/Errors/OtherError"
-import { MemoryRouter, Router } from "react-router"
-import { CatalogProvider } from "../context/CatalogContext"
+import { MemoryRouter } from "react-router"
 
 describe("Stocks/Catalog/common/OtherError", () => {
   const MockComponent = () => (
