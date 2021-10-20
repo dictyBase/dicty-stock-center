@@ -74,11 +74,11 @@ describe("features/Stocks/Catalogs/context/useCatalogDispatch", () => {
 
   it("should dispatch active filters", () => {
     const { result } = renderHook(() => useCatalogDispatch())
-    const filter = "Regular"
-    result.current.setActiveFilters(filter)
+    const filters = ["Regular"]
+    result.current.setActiveFilters(filters)
     expect(mockDispatch).toHaveBeenCalledWith({
       type: CatalogActionType.SET_ACTIVE_FILTERS,
-      payload: [filter],
+      payload: [...filters],
     })
   })
 })
