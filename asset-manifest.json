@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/stockcenter/build/main.77ad25f5.js",
+    "main.js": "/stockcenter/build/main.e2604020.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
-    "vendors~main.js": "/stockcenter/build/vendors~main.acb85efd.js",
+    "vendors~main.js": "/stockcenter/build/vendors~main.6b0efc4d.js",
     "index.html": "/stockcenter/index.html",
     "static/media/ctr9-mutant-DG1071.png": "/stockcenter/static/media/ctr9-mutant-DG1071.0abd389e.png",
     "static/media/gbqA-mutant-DG1120.png": "/stockcenter/static/media/gbqA-mutant-DG1120.46eef2b0.png",
@@ -34,7 +34,7 @@
     "static/media/roboto-cyrillic-400-normal.woff2": "/stockcenter/static/media/roboto-cyrillic-400-normal.5e493812.woff2",
     "static/media/roboto-cyrillic-ext-400-normal.woff2": "/stockcenter/static/media/roboto-cyrillic-ext-400-normal.493afe7a.woff2",
     "static/media/roboto-greek-400-normal.woff2": "/stockcenter/static/media/roboto-greek-400-normal.1cbfc636.woff2",
-    "static/media/roboto-greek-ext-400-normal.woff2": "/stockcenter/static/media/roboto-greek-ext-400-normal.e769aa77.woff2",
+    "static/media/roboto-greek-ext-400-normal.woff2": "/stockcenter/static/media/roboto-greek-ext-400-normal.bb723e84.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/stockcenter/static/media/roboto-latin-400-normal.4673b453.woff2",
     "static/media/roboto-latin-ext-400-normal.woff2": "/stockcenter/static/media/roboto-latin-ext-400-normal.c3dcdbd5.woff2",
     "static/media/roboto-mono-all-400-normal.woff": "/stockcenter/static/media/roboto-mono-all-400-normal.8c12dec8.woff",
@@ -57,7 +57,7 @@
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/vendors~main.acb85efd.js",
-    "build/main.77ad25f5.js"
+    "build/vendors~main.6b0efc4d.js",
+    "build/main.e2604020.js"
   ]
 }
