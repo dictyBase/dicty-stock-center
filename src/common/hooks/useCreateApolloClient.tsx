@@ -6,7 +6,7 @@ import {
   DefaultOptions,
 } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
-import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist"
+import { CachePersistor, LocalForageWrapper } from "apollo3-cache-persist"
 import localForage from "localforage"
 import { version as SCHEMA_VERSION } from "dicty-graphql-schema/package.json"
 import {
@@ -89,7 +89,7 @@ const useCreateApolloClient = () => {
     const initializeCache = async () => {
       const persistor = new CachePersistor({
         cache,
-        storage: new LocalStorageWrapper(localForage),
+        storage: new LocalForageWrapper(localForage),
         key: DSC_CACHE_KEY,
       })
       const currentVersion = await localForage.getItem(SCHEMA_VERSION_KEY)
