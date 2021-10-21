@@ -11,6 +11,7 @@ describe("Stocks/Catalog/common/CatalogErrorMessage", () => {
             extraInfo: undefined,
             networkError: null,
             message: "GraphQL error: You must be logged in",
+            clientErrors: [],
           },
         }),
       ).not.toBeNull()
@@ -23,6 +24,7 @@ describe("Stocks/Catalog/common/CatalogErrorMessage", () => {
             extraInfo: undefined,
             networkError: new Error("Hello"),
             message: "GraphQL error: You must be logged in",
+            clientErrors: [],
           },
         }),
       ).not.toBeNull()
