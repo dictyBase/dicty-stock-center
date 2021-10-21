@@ -8,7 +8,7 @@ import useStyles from "features/Stocks/Catalogs/styles"
 
 type Props = {
   data: Array<any>
-  loadMoreItems: (startIndex: number, stopIndex: number) => Promise<any> | null
+  loadMoreItems: (startIndex: number, stopIndex: number) => Promise<any> | void
   children: any
   headerComponent?: React.ReactNode
   rowHeight?: number
