@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import { useHistory } from "react-router-dom"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import ActiveFilters from "./ActiveFilters"
 import { CatalogProvider } from "../../context/CatalogContext"
+import userEvent from "@testing-library/user-event"
 
 const mockHistoryPush = jest.fn()
 
@@ -38,9 +39,10 @@ mockedUseCatalogStore.mockReturnValue({
 })
 
 describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
+  let i = 0
   const MockComponent = () => (
     <CatalogProvider stockType="strain">
-      <ActiveFilters />
+      <ActiveFilters removeFilter={() => i++} />
     </CatalogProvider>
   )
 
@@ -51,6 +53,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   })
 
   afterEach(() => {
+    i = 0
     jest.clearAllMocks()
   })
 
@@ -73,9 +76,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       expect(delButton).toBeInTheDocument()
       expect(delButton).toHaveClass("MuiChip-deleteIcon")
 
-      // TODO: implement mock removeFilter function to get click event working
-      // await waitFor(() => userEvent.click(delButton))
-      // expect(screen.getByRole("chip")).not.toBeInTheDocument()
+      const old_i = i
+      await waitFor(() => userEvent.click(delButton))
+      expect(i).toBe(old_i + 1)
     })
   })
 })
