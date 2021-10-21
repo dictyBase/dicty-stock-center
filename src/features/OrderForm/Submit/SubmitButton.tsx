@@ -14,6 +14,7 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
+import { ApolloError } from "@apollo/client"
 
 /**
  * getIDs creates a new array of just stock IDs
@@ -129,7 +130,7 @@ const updateOrCreateUser = async (
       )
       return updatedUser
     }
-  } catch (error) {
+  } catch (error: any) {
     const notFound = error.graphQLErrors[0].extensions.code === "NotFound"
     if (notFound) {
       const createdUser = await createUser(getUserVariables(formData, userType))
