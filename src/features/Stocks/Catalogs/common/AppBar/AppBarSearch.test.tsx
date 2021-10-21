@@ -23,6 +23,7 @@ jest.mock("react-router-dom", () => {
 const mockSetSearchValue = jest.fn()
 const mockSetQueryVariables = jest.fn()
 const mockSetSearchBoxDropdownValue = jest.fn()
+const mockSetActiveFilters = jest.fn()
 
 jest.mock("features/Stocks/Catalogs/context/useCatalogDispatch")
 const mockedUseCatalogDispatch = useCatalogDispatch as jest.Mock
@@ -30,6 +31,7 @@ mockedUseCatalogDispatch.mockReturnValue({
   setSearchValue: mockSetSearchValue,
   setQueryVariables: mockSetQueryVariables,
   setSearchBoxDropdownValue: mockSetSearchBoxDropdownValue,
+  setActiveFilters: mockSetActiveFilters,
 })
 
 jest.mock("features/Stocks/Catalogs/context/useCatalogStore")
@@ -39,6 +41,7 @@ mockedUseCatalogStore.mockReturnValue({
     searchValue: "GWDI",
     leftDropdownValue: "regular",
     searchBoxDropdownValue: "label",
+    activeFilters: ["Regular"],
   },
 })
 
@@ -111,7 +114,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         expect(input).toHaveValue(searchVal)
       })
 
-      userEvent.click(clearButton)
+      await waitFor(() => userEvent.click(clearButton))
       expect(mockSetSearchValue).toHaveBeenCalledWith("")
     })
   })
@@ -207,13 +210,32 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
   })
 
-  // TODO: Enable test when field dropdown is implemented
-  /* describe("dropdown select", () => {
-    it("should change searchbox dropdown value", () => {
-      render(<MockComponent />)
-      const dropdown = screen.getByRole("combobox")
-      userEvent.selectOptions(dropdown, "summary")
-      expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
+  it("should remove active filter chip", async () => {
+    mockedUseCatalogStore.mockReturnValueOnce({
+      state: {
+        searchValue: "",
+        leftDropdownValue: "regular",
+        searchBoxDropdownValue: "id",
+        activeFilters: ["Regular"],
+      },
     })
-  }) */
+    render(<MockComponent />)
+
+    const delButton = screen.getByRole("remove-chip")
+    expect(delButton).toBeInTheDocument()
+    expect(delButton).toHaveClass("MuiChip-deleteIcon")
+
+    await waitFor(() => userEvent.click(delButton))
+    expect(mockHistoryPush).toHaveBeenCalledWith("?filter=available")
+  })
+
+  // TODO: Enable test when field dropdown is implemented
+  // describe("dropdown select", () => {
+  //   it("should change searchbox dropdown value", () => {
+  //     render(<MockComponent />)
+  //     const dropdown = screen.getByRole("combobox")
+  //     userEvent.selectOptions(dropdown, "summary")
+  //     expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
+  //   })
+  // })
 })
