@@ -5,7 +5,11 @@ import BackToHomepageButton from "./BackToHomepageButton"
 
 describe("common/components/BackToHomepageButton", () => {
   it("renders one button with expected text", () => {
-    render(<BackToHomepageButton />, { wrapper: BrowserRouter })
+    render(
+      <BrowserRouter>
+        <BackToHomepageButton />
+      </BrowserRouter>,
+    )
     const button = screen.getByRole("button")
     expect(button).toBeInTheDocument()
     expect(button).toHaveTextContent(/Back to DSC Homepage/)
