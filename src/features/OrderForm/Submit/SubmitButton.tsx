@@ -129,7 +129,7 @@ const updateOrCreateUser = async (
       )
       return updatedUser
     }
-  } catch (error) {
+  } catch (error: any) {
     const notFound = error.graphQLErrors[0].extensions.code === "NotFound"
     if (notFound) {
       const createdUser = await createUser(getUserVariables(formData, userType))
