@@ -7,7 +7,7 @@ describe("Contact/ContactForm", () => {
   describe("initial render", () => {
     it("should render", () => {
       render(<MockComponent />)
-      expect(screen.getByRole("contact")).toBeInTheDocument()
+      expect(screen.getByRole("form")).toBeInTheDocument()
     })
   })
 })
