@@ -5,7 +5,7 @@ import React from "react"
  */
 
 const ContactForm = () => (
-  <div style={{ textAlign: "center" }} role="contact">
+  <div style={{ textAlign: "center" }} role="form">
     <p>
       For questions, comments, or suggestions, please send us an email&nbsp;
       <a
