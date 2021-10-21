@@ -88,27 +88,35 @@ describe("features/Errors/GraphQLErrorPage", () => {
   describe("error handling", () => {
     const serverErrMsg = "We seem to be having server issues."
     it("renders correct component for network errors", () => {
-      render(<GraphQLErrorPage {...networkErrProps} />, {
-        wrapper: BrowserRouter,
-      })
+      render(
+        <BrowserRouter>
+          <GraphQLErrorPage {...networkErrProps} />
+        </BrowserRouter>,
+      )
       expect(screen.getByText(serverErrMsg)).toBeInTheDocument()
     })
     it("renders correct component for unavailable errors", () => {
-      render(<GraphQLErrorPage {...unavailableErrProps} />, {
-        wrapper: BrowserRouter,
-      })
+      render(
+        <BrowserRouter>
+          <GraphQLErrorPage {...unavailableErrProps} />
+        </BrowserRouter>,
+      )
       expect(screen.getByText(serverErrMsg)).toBeInTheDocument()
     })
     it("renders correct component for not found errors", () => {
-      render(<GraphQLErrorPage {...notFoundErrProps} />, {
-        wrapper: BrowserRouter,
-      })
+      render(
+        <BrowserRouter>
+          <GraphQLErrorPage {...notFoundErrProps} />
+        </BrowserRouter>,
+      )
       expect(screen.getByText(/Not Found/)).toBeInTheDocument()
     })
     it("renders correct component for other errors", () => {
-      render(<GraphQLErrorPage {...otherErrProps} />, {
-        wrapper: BrowserRouter,
-      })
+      render(
+        <BrowserRouter>
+          <GraphQLErrorPage {...otherErrProps} />
+        </BrowserRouter>,
+      )
       expect(screen.getByText(/Error/)).toBeInTheDocument()
     })
   })
