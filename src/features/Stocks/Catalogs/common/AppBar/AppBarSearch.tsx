@@ -70,10 +70,6 @@ const useAppBarSearch = () => {
     setSearchBoxDropdownValue(event.target.value)
   }
 
-  const clearSearch = () => {
-    setSearchValue("")
-  }
-
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
   ) => {
@@ -97,7 +93,6 @@ const useAppBarSearch = () => {
     removeFilter,
     handleDropdownChange,
     handleSubmit,
-    clearSearch,
   }
 }
 
@@ -115,7 +110,7 @@ type Props = {
 
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue },
+    state: { searchValue, activeFilters },
   } = useCatalogStore()
   const classes = useStyles()
   const { handleChange, handleSubmit, removeFilter } = useAppBarSearch()
@@ -129,7 +124,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
         <FontAwesomeIcon icon={"search"} size="xs" />
       </IconButton>
 
-      <ActiveFilters removeFilter={removeFilter} />
+      <ActiveFilters filters={activeFilters} removeFilter={removeFilter} />
 
       <Autocomplete
         id="search-input-autocomplete"

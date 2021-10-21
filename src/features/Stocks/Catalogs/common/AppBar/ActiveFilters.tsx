@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles"
-import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import { Chip, Box } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Cancel"
 
@@ -36,17 +35,15 @@ const FilterChip = ({ val, removeChip }: IFilterChipProps) => (
 
 interface IActiveFiltersProps {
   removeFilter: () => void
+  filters: string[]
 }
 
-const ActiveFilters = ({ removeFilter }: IActiveFiltersProps) => {
-  const {
-    state: { activeFilters },
-  } = useCatalogStore()
+const ActiveFilters = ({ removeFilter, filters }: IActiveFiltersProps) => {
   const classes = useStyles()
 
   return (
     <Box className={classes.chipHolder} role="chip-holder">
-      {activeFilters?.map((val, i) => (
+      {filters?.map((val, i) => (
         <FilterChip
           val={val}
           removeChip={removeFilter}
