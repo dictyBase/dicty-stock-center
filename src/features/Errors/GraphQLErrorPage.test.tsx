@@ -14,6 +14,7 @@ describe("features/Errors/GraphQLErrorPage", () => {
       graphQLErrors: [],
       extraInfo: undefined,
       name: "",
+      clientErrors: [],
     },
   }
   const unavailableErrProps = {
@@ -37,6 +38,7 @@ describe("features/Errors/GraphQLErrorPage", () => {
       networkError: null,
       extraInfo: undefined,
       name: "",
+      clientErrors: [],
     },
   }
   const notFoundErrProps = {
@@ -60,6 +62,7 @@ describe("features/Errors/GraphQLErrorPage", () => {
       networkError: null,
       extraInfo: undefined,
       name: "",
+      clientErrors: [],
     },
   }
   const otherErrProps = {
@@ -83,6 +86,7 @@ describe("features/Errors/GraphQLErrorPage", () => {
       networkError: null,
       extraInfo: undefined,
       name: "",
+      clientErrors: [],
     },
   }
   describe("error handling", () => {
