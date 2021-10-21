@@ -5,7 +5,7 @@ import { ApolloError } from "@apollo/client"
 
 type Props = {
   /** GraphQL error object */
-  error: ApolloError
+  error?: ApolloError
 }
 
 /**
