@@ -14,7 +14,6 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
-import { ApolloError } from "@apollo/client"
 
 /**
  * getIDs creates a new array of just stock IDs
