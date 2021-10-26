@@ -17,6 +17,7 @@ import {
   miscLinks,
 } from "common/constants/linkLists"
 import useStyles from "./homeStyles"
+import EditorHolder from "./EditorHolder"
 
 const metaDesc =
   "The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
@@ -50,11 +51,15 @@ const Homepage = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.intro}>
-          <EditablePanel slug="dsc-intro" skeletonCount={5} />
+          <EditorHolder minHeight="140px">
+            <EditablePanel slug="dsc-intro" skeletonCount={5} />
+          </EditorHolder>
         </Grid>
         <HomepageColumn
           components={[
-            <EditablePanel slug="dsc-about" skeletonCount={10} />,
+            <EditorHolder minHeight="300px">
+              <EditablePanel slug="dsc-about" skeletonCount={10} />
+            </EditorHolder>,
             <LinkList list={miscLinks} bgColor="blue" />,
           ]}
         />
