@@ -4,12 +4,14 @@ on:
     types: [edited, labeled, opened, synchronize, reopened]
     branches:
       - develop
-    # only run when src files have changed
+    # only run when tsx files have changed
     paths:
-      - "src/**"
+      - "**.tsx"
   push:
     branches:
       - develop
+    paths:
+      - "**.tsx"
 jobs:
   percy:
     runs-on: ubuntu-20.04
