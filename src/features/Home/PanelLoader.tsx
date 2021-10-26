@@ -15,7 +15,7 @@ type Props = {
 const PanelLoader = ({ skeletonCount }: Props) => (
   <Grid container justify="center" data-testid="panel-loader">
     <Grid item xs={12}>
-      <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+      <SkeletonTheme baseColor="#D3D3D3" highlightColor="#DCDCDC">
         <Skeleton count={skeletonCount} />
         &nbsp;
       </SkeletonTheme>

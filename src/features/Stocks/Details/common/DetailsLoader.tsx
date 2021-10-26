@@ -10,13 +10,13 @@ const DetailsLoader = () => (
   <Grid container spacing={2} data-testid="skeleton-loader">
     <Grid item xs={12}>
       <h1>
-        <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+        <SkeletonTheme baseColor="#D3D3D3" highlightColor="#DCDCDC">
           <Skeleton />
         </SkeletonTheme>
       </h1>
     </Grid>
     <Grid item xs={12}>
-      <SkeletonTheme color="#D3D3D3	" highlightColor="#DCDCDC">
+      <SkeletonTheme baseColor="#D3D3D3" highlightColor="#DCDCDC">
         <Skeleton count={10} />
         <br />
         <br />
