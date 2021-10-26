@@ -27,6 +27,15 @@ jobs:
         env:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
+      - name: Verify Lighthouse Check results
+        uses: actions/checkout@v2
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "80"
+          minBestPracticesScore: "90"
+          minPerformanceScore: "70"
+          minProgressiveWebAppScore: "0"
+          minSeoScore: "80"
   lighthouse-report-staging:
     runs-on: ubuntu-20.04
     if: |
