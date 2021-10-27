@@ -5,6 +5,7 @@ ci:
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:
+    # Read more on assertion here: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md#assertions
     assertions:
       categories:performance:
         - error
