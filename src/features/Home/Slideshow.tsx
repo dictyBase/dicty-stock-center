@@ -5,7 +5,19 @@ import ctr9 from "common/assets/slideshow-images/ctr9-mutant-DG1071.png"
 import gbqA from "common/assets/slideshow-images/gbqA-mutant-DG1120.png"
 import ggtA from "common/assets/slideshow-images/ggtA-mutant-DG1109.png"
 import tipB from "common/assets/slideshow-images/tipB-mutant-DG1036.png"
+
+import ctr9_avif from "common/assets/slideshow-images/ctr9-mutant-DG1071.avif"
+import gbqA_avif from "common/assets/slideshow-images/gbqA-mutant-DG1120.avif"
+import ggtA_avif from "common/assets/slideshow-images/ggtA-mutant-DG1109.avif"
+import tipB_avif from "common/assets/slideshow-images/tipB-mutant-DG1036.avif"
+
+import ctr9_webp from "common/assets/slideshow-images/ctr9-mutant-DG1071.webp"
+import gbqA_webp from "common/assets/slideshow-images/gbqA-mutant-DG1120.webp"
+import ggtA_webp from "common/assets/slideshow-images/ggtA-mutant-DG1109.webp"
+import tipB_webp from "common/assets/slideshow-images/tipB-mutant-DG1036.webp"
+
 import "react-responsive-carousel/lib/styles/carousel.min.css"
+import DictyImage from "common/components/DictyImage"
 
 const useStyles = makeStyles({
   container: {
@@ -30,16 +42,36 @@ const Slideshow = () => {
       interval={5000}
       infiniteLoop>
       <div>
-        <img src={ctr9} alt="ctr9-mutant-DG1071" />
+        <DictyImage
+          src={ctr9}
+          webp={ctr9_webp}
+          avif={ctr9_avif}
+          alt="ctr9-mutant-DG1071"
+        />
       </div>
       <div>
-        <img src={gbqA} alt="gbqA-mutant-DG1120" />
+        <DictyImage
+          src={gbqA}
+          webp={gbqA_webp}
+          avif={gbqA_avif}
+          alt="gbqA-mutant-DG1120"
+        />
       </div>
       <div>
-        <img src={ggtA} alt="ggtA-mutant-DG1109" />
+        <DictyImage
+          src={ggtA}
+          webp={ggtA_webp}
+          avif={ggtA_avif}
+          alt="ggtA-mutant-DG1109"
+        />
       </div>
       <div>
-        <img src={tipB} alt="tipB-mutant-DG1036" />
+        <DictyImage
+          src={tipB}
+          webp={tipB_webp}
+          avif={tipB_avif}
+          alt="tipB-mutant-DG1036"
+        />
       </div>
     </Carousel>
   )
