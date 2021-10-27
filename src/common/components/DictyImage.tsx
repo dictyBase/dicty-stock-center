@@ -1,33 +1,43 @@
+interface INextGenSource {
+  srcSet: string
+  type: "image/webp" | "image/avif"
+  orientation?: "landscape" | "portrait"
+}
+
 interface IDictyImageProps {
   src: string
-  avif?: string
-  webp?: string
+  nextGenSources?: INextGenSource[]
   alt?: string
   id?: string
   imgClassName?: string
   className?: string
-  orientation?: "landscape" | "portrait"
 }
 
 // TODO: Move to separate repo
 const DictyImage = ({
   src,
-  avif,
-  webp,
+  nextGenSources,
   alt,
   id,
   imgClassName,
   className,
-  orientation,
 }: IDictyImageProps) => {
   return (
     <picture className={className}>
-      {avif ? <source srcSet={avif} type="image/avif" /> : <></>}
-      {webp ? <source srcSet={webp} type="image/webp" /> : <></>}
+      {nextGenSources?.map((s, i) => (
+        <source
+          media={`(orientation: ${
+            s.orientation ? s.orientation : "landscape"
+          })`}
+          srcSet={s.srcSet}
+          type={s.type}
+          key={`dictyImg${alt}${i}`}
+        />
+      ))}
       <img src={src} alt={alt} className={imgClassName} id={id} />
     </picture>
   )
 }
 
-export type { IDictyImageProps }
+export type { IDictyImageProps, INextGenSource }
 export default DictyImage

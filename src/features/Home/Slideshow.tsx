@@ -44,32 +44,64 @@ const Slideshow = () => {
       <div>
         <DictyImage
           src={ctr9}
-          webp={ctr9_webp}
-          avif={ctr9_avif}
+          nextGenSources={[
+            {
+              srcSet: ctr9_webp,
+              type: "image/webp",
+            },
+            {
+              srcSet: ctr9_avif,
+              type: "image/avif",
+            },
+          ]}
           alt="ctr9-mutant-DG1071"
         />
       </div>
       <div>
         <DictyImage
           src={gbqA}
-          webp={gbqA_webp}
-          avif={gbqA_avif}
+          nextGenSources={[
+            {
+              srcSet: gbqA_webp,
+              type: "image/webp",
+            },
+            {
+              srcSet: gbqA_avif,
+              type: "image/avif",
+            },
+          ]}
           alt="gbqA-mutant-DG1120"
         />
       </div>
       <div>
         <DictyImage
           src={ggtA}
-          webp={ggtA_webp}
-          avif={ggtA_avif}
+          nextGenSources={[
+            {
+              srcSet: ggtA_webp,
+              type: "image/webp",
+            },
+            {
+              srcSet: ggtA_avif,
+              type: "image/avif",
+            },
+          ]}
           alt="ggtA-mutant-DG1109"
         />
       </div>
       <div>
         <DictyImage
           src={tipB}
-          webp={tipB_webp}
-          avif={tipB_avif}
+          nextGenSources={[
+            {
+              srcSet: tipB_webp,
+              type: "image/webp",
+            },
+            {
+              srcSet: tipB_avif,
+              type: "image/avif",
+            },
+          ]}
           alt="tipB-mutant-DG1036"
         />
       </div>
