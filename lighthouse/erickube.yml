@@ -5,7 +5,7 @@ ci:
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:
-    preset: "lighthouse:all"
+    preset: "lighthouse:no-pwa"
   upload:
     target: lhci
     serverBaseUrl: https://lighthouse.dictycr.org
