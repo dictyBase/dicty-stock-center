@@ -1,29 +1,22 @@
-interface INextGenSource {
+import React from "react"
+
+type PictureSource = {
   srcSet: string
   type: "image/webp" | "image/avif"
   orientation?: "landscape" | "portrait"
 }
 
-interface IDictyImageProps {
-  src: string
-  nextGenSources?: INextGenSource[]
-  alt?: string
-  id?: string
-  imgClassName?: string
-  className?: string
+type DictyImageProps = {
+  children: React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  >
+  nextGenSources?: PictureSource[]
 }
 
-// TODO: Move to separate repo
-const DictyImage = ({
-  src,
-  nextGenSources,
-  alt,
-  id,
-  imgClassName,
-  className,
-}: IDictyImageProps) => {
+const DictyImage = ({ children, nextGenSources }: DictyImageProps) => {
   return (
-    <picture className={className}>
+    <picture>
       {nextGenSources?.map((s, i) => (
         <source
           media={`(orientation: ${
@@ -31,13 +24,13 @@ const DictyImage = ({
           })`}
           srcSet={s.srcSet}
           type={s.type}
-          key={`dictyImg${alt}${i}`}
+          key={`dictyImg${i}`}
         />
       ))}
-      <img src={src} alt={alt} className={imgClassName} id={id} />
+      {children}
     </picture>
   )
 }
 
-export type { IDictyImageProps, INextGenSource }
+export type { DictyImageProps, PictureSource }
 export default DictyImage

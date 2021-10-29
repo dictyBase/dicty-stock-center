@@ -43,7 +43,6 @@ const Slideshow = () => {
       infiniteLoop>
       <div>
         <DictyImage
-          src={ctr9}
           nextGenSources={[
             {
               srcSet: ctr9_webp,
@@ -53,13 +52,12 @@ const Slideshow = () => {
               srcSet: ctr9_avif,
               type: "image/avif",
             },
-          ]}
-          alt="ctr9-mutant-DG1071"
-        />
+          ]}>
+          <img src={ctr9} alt="ctr9-mutant-DG1071" />
+        </DictyImage>
       </div>
       <div>
         <DictyImage
-          src={gbqA}
           nextGenSources={[
             {
               srcSet: gbqA_webp,
@@ -69,13 +67,12 @@ const Slideshow = () => {
               srcSet: gbqA_avif,
               type: "image/avif",
             },
-          ]}
-          alt="gbqA-mutant-DG1120"
-        />
+          ]}>
+          <img src={gbqA} alt="gbqA-mutant-DG1120" />
+        </DictyImage>
       </div>
       <div>
         <DictyImage
-          src={ggtA}
           nextGenSources={[
             {
               srcSet: ggtA_webp,
@@ -85,13 +82,12 @@ const Slideshow = () => {
               srcSet: ggtA_avif,
               type: "image/avif",
             },
-          ]}
-          alt="ggtA-mutant-DG1109"
-        />
+          ]}>
+          <img src={ggtA} alt="ggtA-mutant-DG1109" />
+        </DictyImage>
       </div>
       <div>
         <DictyImage
-          src={tipB}
           nextGenSources={[
             {
               srcSet: tipB_webp,
@@ -101,9 +97,9 @@ const Slideshow = () => {
               srcSet: tipB_avif,
               type: "image/avif",
             },
-          ]}
-          alt="tipB-mutant-DG1036"
-        />
+          ]}>
+          <img src={tipB} alt="tipB-mutant-DG1036" />
+        </DictyImage>
       </div>
     </Carousel>
   )
