@@ -19,8 +19,6 @@ describe("src/components/DictyImage.tsx", () => {
     const alt = "my-image"
     const img = "img.jpg"
 
-    const el = <img src={img} alt={alt} className={alt} />
-
     render(
       <DictyImage>
         <img src={img} alt={alt} className={alt} />
