@@ -41,76 +41,30 @@ const Slideshow = () => {
       autoPlay
       interval={5000}
       infiniteLoop>
-      <div>{Ctr9}</div>
-      <div>{GbqA}</div>
-      <div>{GgtA}</div>
-      <div>{TipB}</div>
+      <div>{genSlide(ctr9, ctr9_avif, ctr9_webp, "ctr9-mutant-DG1071")}</div>
+      <div>{genSlide(gbqA, gbqA_avif, gbqA_webp, "gbqA-mutant-DG1120")}</div>
+      <div>{genSlide(ggtA, ggtA_avif, ggtA_webp, "ggtA-mutant-DG1109")}</div>
+      <div>{genSlide(tipB, tipB_avif, tipB_webp, "tipB-mutant-DG1036")}</div>
     </Carousel>
   )
 }
 
-const Ctr9 = (
-  <DictyImage
-    nextGenSources={[
-      {
-        srcSet: ctr9_webp,
-        type: "image/webp",
-      },
-      {
-        srcSet: ctr9_avif,
-        type: "image/avif",
-      },
-    ]}>
-    <img src={ctr9} alt="ctr9-mutant-DG1071" />
-  </DictyImage>
-)
-
-const GbqA = (
-  <DictyImage
-    nextGenSources={[
-      {
-        srcSet: gbqA_webp,
-        type: "image/webp",
-      },
-      {
-        srcSet: gbqA_avif,
-        type: "image/avif",
-      },
-    ]}>
-    <img src={gbqA} alt="gbqA-mutant-DG1120" />
-  </DictyImage>
-)
-
-const GgtA = (
-  <DictyImage
-    nextGenSources={[
-      {
-        srcSet: ggtA_webp,
-        type: "image/webp",
-      },
-      {
-        srcSet: ggtA_avif,
-        type: "image/avif",
-      },
-    ]}>
-    <img src={ggtA} alt="ggtA-mutant-DG1109" />
-  </DictyImage>
-)
-
-const TipB = (
-  <DictyImage
-    nextGenSources={[
-      {
-        srcSet: tipB_webp,
-        type: "image/webp",
-      },
-      {
-        srcSet: tipB_avif,
-        type: "image/avif",
-      },
-    ]}>
-    <img src={tipB} alt="tipB-mutant-DG1036" />
-  </DictyImage>
-)
+const genSlide = (src: string, avif: string, webp: string, alt: string) => {
+  return (
+    <DictyImage
+      nextGenSources={[
+        {
+          srcSet: webp,
+          type: "image/webp",
+        },
+        {
+          srcSet: avif,
+          type: "image/avif",
+        },
+      ]}>
+      <img src={src} alt={alt} />
+    </DictyImage>
+  )
+}
 
 export default Slideshow
