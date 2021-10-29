@@ -41,68 +41,76 @@ const Slideshow = () => {
       autoPlay
       interval={5000}
       infiniteLoop>
-      <div>
-        <DictyImage
-          nextGenSources={[
-            {
-              srcSet: ctr9_webp,
-              type: "image/webp",
-            },
-            {
-              srcSet: ctr9_avif,
-              type: "image/avif",
-            },
-          ]}>
-          <img src={ctr9} alt="ctr9-mutant-DG1071" />
-        </DictyImage>
-      </div>
-      <div>
-        <DictyImage
-          nextGenSources={[
-            {
-              srcSet: gbqA_webp,
-              type: "image/webp",
-            },
-            {
-              srcSet: gbqA_avif,
-              type: "image/avif",
-            },
-          ]}>
-          <img src={gbqA} alt="gbqA-mutant-DG1120" />
-        </DictyImage>
-      </div>
-      <div>
-        <DictyImage
-          nextGenSources={[
-            {
-              srcSet: ggtA_webp,
-              type: "image/webp",
-            },
-            {
-              srcSet: ggtA_avif,
-              type: "image/avif",
-            },
-          ]}>
-          <img src={ggtA} alt="ggtA-mutant-DG1109" />
-        </DictyImage>
-      </div>
-      <div>
-        <DictyImage
-          nextGenSources={[
-            {
-              srcSet: tipB_webp,
-              type: "image/webp",
-            },
-            {
-              srcSet: tipB_avif,
-              type: "image/avif",
-            },
-          ]}>
-          <img src={tipB} alt="tipB-mutant-DG1036" />
-        </DictyImage>
-      </div>
+      <div>{Ctr9}</div>
+      <div>{GbqA}</div>
+      <div>{GgtA}</div>
+      <div>{TipB}</div>
     </Carousel>
   )
 }
+
+const Ctr9 = (
+  <DictyImage
+    nextGenSources={[
+      {
+        srcSet: ctr9_webp,
+        type: "image/webp",
+      },
+      {
+        srcSet: ctr9_avif,
+        type: "image/avif",
+      },
+    ]}>
+    <img src={ctr9} alt="ctr9-mutant-DG1071" />
+  </DictyImage>
+)
+
+const GbqA = (
+  <DictyImage
+    nextGenSources={[
+      {
+        srcSet: gbqA_webp,
+        type: "image/webp",
+      },
+      {
+        srcSet: gbqA_avif,
+        type: "image/avif",
+      },
+    ]}>
+    <img src={gbqA} alt="gbqA-mutant-DG1120" />
+  </DictyImage>
+)
+
+const GgtA = (
+  <DictyImage
+    nextGenSources={[
+      {
+        srcSet: ggtA_webp,
+        type: "image/webp",
+      },
+      {
+        srcSet: ggtA_avif,
+        type: "image/avif",
+      },
+    ]}>
+    <img src={ggtA} alt="ggtA-mutant-DG1109" />
+  </DictyImage>
+)
+
+const TipB = (
+  <DictyImage
+    nextGenSources={[
+      {
+        srcSet: tipB_webp,
+        type: "image/webp",
+      },
+      {
+        srcSet: tipB_avif,
+        type: "image/avif",
+      },
+    ]}>
+    <img src={tipB} alt="tipB-mutant-DG1036" />
+  </DictyImage>
+)
 
 export default Slideshow
