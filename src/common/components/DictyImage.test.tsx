@@ -25,7 +25,7 @@ describe("src/components/DictyImage.tsx", () => {
       </DictyImage>,
     )
     const imgTag = screen.getByAltText(alt)
-    expect(imgTag).toBeDefined()
+    expect(imgTag).toBeInTheDocument()
     expect(imgTag).toHaveClass(alt)
   })
 
