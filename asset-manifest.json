@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.js": "/stockcenter/build/main.b358baed.js",
+    "main.js": "/stockcenter/build/main.34301155.js",
     "runtime-main.js": "/stockcenter/build/bundle.105de5e2.js",
-    "vendors~main.js": "/stockcenter/build/vendors~main.43c77d1d.js",
+    "vendors~main.js": "/stockcenter/build/vendors~main.88f8da0d.js",
     "index.html": "/stockcenter/index.html",
     "static/media/ctr9-mutant-DG1071.png": "/stockcenter/static/media/ctr9-mutant-DG1071.0abd389e.png",
+    "static/media/ctr9-mutant-DG1071.webp": "/stockcenter/static/media/ctr9-mutant-DG1071.525f552d.webp",
+    "static/media/gbqA-mutant-DG1120.webp": "/stockcenter/static/media/gbqA-mutant-DG1120.3d9c94a0.webp",
     "static/media/gbqA-mutant-DG1120.png": "/stockcenter/static/media/gbqA-mutant-DG1120.46eef2b0.png",
+    "static/media/ggtA-mutant-DG1109.webp": "/stockcenter/static/media/ggtA-mutant-DG1109.190738c8.webp",
     "static/media/ggtA-mutant-DG1109.png": "/stockcenter/static/media/ggtA-mutant-DG1109.e8183598.png",
     "static/media/lato-all-400-normal.woff": "/stockcenter/static/media/lato-all-400-normal.61e9afcb.woff",
     "static/media/lato-latin-400-normal.woff2": "/stockcenter/static/media/lato-latin-400-normal.65e877e5.woff2",
@@ -53,11 +56,12 @@
     "static/media/roboto-slab-latin-ext-400-normal.woff2": "/stockcenter/static/media/roboto-slab-latin-ext-400-normal.0521b204.woff2",
     "static/media/roboto-slab-vietnamese-400-normal.woff2": "/stockcenter/static/media/roboto-slab-vietnamese-400-normal.c4dee73d.woff2",
     "static/media/roboto-vietnamese-400-normal.woff2": "/stockcenter/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2",
-    "static/media/tipB-mutant-DG1036.png": "/stockcenter/static/media/tipB-mutant-DG1036.0e2e386e.png"
+    "static/media/tipB-mutant-DG1036.png": "/stockcenter/static/media/tipB-mutant-DG1036.0e2e386e.png",
+    "static/media/tipB-mutant-DG1036.webp": "/stockcenter/static/media/tipB-mutant-DG1036.2d2cb057.webp"
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/vendors~main.43c77d1d.js",
-    "build/main.b358baed.js"
+    "build/vendors~main.88f8da0d.js",
+    "build/main.34301155.js"
   ]
 }
