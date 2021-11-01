@@ -5,7 +5,22 @@ ci:
     settings:
       chromeFlags: "--disable-gpu --no-sandbox"
   assert:
-    preset: "lighthouse:all"
+    # Read more on assertion here: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md#assertions
+    assertions:
+      categories:performance:
+        - error
+        - minScore: 0.70
+      categories:accessibility:
+        - warn
+        - minScore: 0.85
+      categories:pwa:
+        - off
+      categories:seo:
+        - warn
+        - minScore: 0.85
+      categories:best-practices:
+        - warn
+        - minScore: 0.90
   upload:
     target: lhci
     serverBaseUrl: https://lighthouse.dictycr.org
