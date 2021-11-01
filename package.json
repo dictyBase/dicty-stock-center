@@ -49,7 +49,7 @@
     "dicty-graphql-schema": "dictybase/dicty-graphql-schema#1.1.1",
     "dicty-hooks": "dictybase/dicty-hooks#3.0.0",
     "formik": "^2.2.9",
-    "graphql": "^15.6.1",
+    "graphql": "^15.7.2",
     "history": "^5.0.1",
     "immutable": "^4.0.0",
     "intersection-observer": "^0.12.0",
