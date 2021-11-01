@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ImgHTMLAttributes } from "react"
 
 type PictureSource = {
   srcSet: string
@@ -6,28 +6,29 @@ type PictureSource = {
   orientation?: "landscape" | "portrait"
 }
 
-type DictyImageProps = {
-  children: React.DetailedHTMLProps<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    HTMLImageElement
-  >
+type DictyImageProps = ImgHTMLAttributes<HTMLImageElement> & {
+  /* not having alt defined here will result in a warning from yarn lint */
+  alt: string
   nextGenSources?: PictureSource[]
 }
 
-const DictyImage = ({ children, nextGenSources }: DictyImageProps) => {
+const Source = ({ srcSet, type, orientation }: PictureSource) => {
+  return (
+    <source
+      media={`(orientation: ${orientation ? orientation : "landscape"})`}
+      srcSet={srcSet}
+      type={type}
+    />
+  )
+}
+
+const DictyImage = ({ nextGenSources, alt, ...imgProps }: DictyImageProps) => {
   return (
     <picture>
-      {nextGenSources?.map((s, i) => (
-        <source
-          media={`(orientation: ${
-            s.orientation ? s.orientation : "landscape"
-          })`}
-          srcSet={s.srcSet}
-          type={s.type}
-          key={`dictyImg${i}`}
-        />
+      {nextGenSources?.map((sourceProps, i) => (
+        <Source {...sourceProps} key={`dictyImg${i}`} />
       ))}
-      {children}
+      <img alt={alt} {...imgProps} />
     </picture>
   )
 }
