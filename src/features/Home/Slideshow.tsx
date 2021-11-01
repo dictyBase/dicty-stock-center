@@ -52,6 +52,8 @@ const Slideshow = () => {
 const genSlide = (src: string, avif: string, webp: string, alt: string) => {
   return (
     <DictyImage
+      src={src}
+      alt={alt}
       nextGenSources={[
         {
           srcSet: webp,
@@ -61,9 +63,8 @@ const genSlide = (src: string, avif: string, webp: string, alt: string) => {
           srcSet: avif,
           type: "image/avif",
         },
-      ]}>
-      <img src={src} alt={alt} />
-    </DictyImage>
+      ]}
+    />
   )
 }
 
