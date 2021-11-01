@@ -7,11 +7,7 @@ describe("src/components/DictyImage.tsx", () => {
     const alt = "my-image"
     const img = "img.jpg"
 
-    render(
-      <DictyImage>
-        <img src={img} alt={alt} />
-      </DictyImage>,
-    )
+    render(<DictyImage src={img} alt={alt} />)
     expect(screen.getByAltText(alt)).toBeInTheDocument()
   })
 
@@ -19,11 +15,7 @@ describe("src/components/DictyImage.tsx", () => {
     const alt = "my-image"
     const img = "img.jpg"
 
-    render(
-      <DictyImage>
-        <img src={img} alt={alt} className={alt} />
-      </DictyImage>,
-    )
+    render(<DictyImage src={img} alt={alt} className={alt} />)
     const imgTag = screen.getByAltText(alt)
     expect(imgTag).toBeInTheDocument()
     expect(imgTag).toHaveClass(alt)
@@ -34,9 +26,12 @@ describe("src/components/DictyImage.tsx", () => {
     const img = "img.jpg"
 
     const { container } = render(
-      <DictyImage nextGenSources={[{ srcSet: "img.avif", type: "image/avif" }]}>
-        <img src={img} alt={alt} className={alt} />
-      </DictyImage>,
+      <DictyImage
+        src={img}
+        alt={alt}
+        className={alt}
+        nextGenSources={[{ srcSet: "img.avif", type: "image/avif" }]}
+      />,
     )
 
     expect(container.children[0].children.length).toBe(2)
@@ -48,12 +43,14 @@ describe("src/components/DictyImage.tsx", () => {
 
     const { container } = render(
       <DictyImage
+        src={img}
+        alt={alt}
+        className={alt}
         nextGenSources={[
           { srcSet: "img.avif", type: "image/avif" },
           { srcSet: "img.webp", type: "image/webp" },
-        ]}>
-        <img src={img} alt={alt} className={alt} />
-      </DictyImage>,
+        ]}
+      />,
     )
 
     expect(container.children[0].children.length).toBe(3)
