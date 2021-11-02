@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { TextField, IconButton } from "@material-ui/core"
+import { TextField, IconButton, Chip } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ActiveFilters from "./ActiveFilters"
 import Autocomplete, {
   AutocompleteGetTagProps,
 } from "@material-ui/lab/Autocomplete"
-import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
-import FieldChip from "./FieldChip"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -67,13 +65,7 @@ const useAppBarSearch = () => {
   }
 
   const removeFilter = () => {
-<<<<<<< HEAD
-    history.push(
-      updateSearchQueries("available", searchBoxDropdownValue, searchValue),
-    )
-=======
     history("?filter=available")
->>>>>>> 7329c2e9 (fix: replace useHistory with useNavigate)
   }
 
   const handleDropdownChange = ({ value }: DropDown) => {
@@ -145,7 +137,6 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     setValue(defaultItem)
     // eslint-disable-next-line
   }, [searchBoxDropdownValue])
-
   const renderTags = (
     value: DropDown[],
     getTagProps: AutocompleteGetTagProps,
@@ -159,19 +150,22 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
           updateDropdown({ name: "none", value: "none" })
           handleChange("")
         }}
+      <Chip
+        label={option.name}
+        {...getTagProps({ index })}
+        size={"small"}
+        variant="outlined"
       />
     ))
   }
 
   const onAutocompleteChange = (
     event: React.ChangeEvent<{}>,
-    newValue: (string | DropDown)[],
   ) => {
     const last = newValue.pop()
-    if (typeof last === "string") return
     setValue(last ? [last] : [])
     if (last) {
-      updateDropdown(last)
+      handleDropdownChange(last)
     }
   }
 
@@ -190,9 +184,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       <ActiveFilters filters={activeFilters} removeFilter={removeFilter} />
 
       <Autocomplete
-        freeSolo
         multiple
-        disableClearable
         limitTags={1}
         id="fixed-tags-demo"
         value={value}
@@ -215,14 +207,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             variant="outlined"
             className={classes.searchInput}
             placeholder="Search entire catalog..."
-            name="search"
-            id="search"
-            onChange={(e) => setSearchInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSubmit(undefined, searchInput)
-              }
-            }}
+            value={searchValue}
           />
         )}
       />
