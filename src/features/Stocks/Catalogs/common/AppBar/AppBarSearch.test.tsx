@@ -102,6 +102,31 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
   })
 
+  describe("clear button", () => {
+    it("should clear text box", async () => {
+      render(<MockComponent />)
+      const input = screen.getByRole("search-input") as HTMLInputElement
+      const clearButton = screen.getByTitle("Clear")
+      const dropdownButton = screen.getByTitle("Open")
+      const searchVal = "GWDI"
+
+      expect(dropdownButton).toBeInTheDocument()
+      expect(clearButton).toBeInTheDocument()
+
+      await waitFor(() => userEvent.click(dropdownButton))
+      const descriptorFieldOption = screen.getByText("Descriptor")
+      await waitFor(() => userEvent.click(descriptorFieldOption))
+
+      userEvent.type(input, searchVal)
+      await waitFor(() => {
+        expect(input).toHaveValue(searchVal)
+      })
+
+      await waitFor(() => userEvent.click(clearButton))
+      expect(input.value).toBe("")
+    })
+  })
+
   describe("search button", () => {
     it("should update query variables and URL", () => {
       mockedUseCatalogStore.mockReturnValueOnce({
@@ -211,14 +236,4 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     await waitFor(() => userEvent.click(delButton))
     expect(mockHistoryPush).toHaveBeenCalledWith("?filter=available")
   })
-
-  // TODO: Enable test when field dropdown is implemented
-  // describe("dropdown select", () => {
-  //   it("should change searchbox dropdown value", () => {
-  //     render(<MockComponent />)
-  //     const dropdown = screen.getByRole("combobox")
-  //     userEvent.selectOptions(dropdown, "summary")
-  //     expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
-  //   })
-  // })
 })
