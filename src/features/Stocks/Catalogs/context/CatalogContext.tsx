@@ -15,6 +15,8 @@ type QueryVariables = {
   filter?: string
 }
 
+type Filter = "Regular" | "All" | "GWDI" | "Bacterial"
+
 type CatalogState = {
   /** The actual GraphQL query (no variables) */
   query: DocumentNode
@@ -31,7 +33,7 @@ type CatalogState = {
   /** The value selected from the left dropdown menu */
   leftDropdownValue: string
   /** List of active filters (Chips) displayed in AppBarSearch */
-  activeFilters: string[]
+  activeFilters: Filter[]
 }
 
 enum CatalogActionType {
@@ -76,7 +78,7 @@ type Action =
     }
   | {
       type: CatalogActionType.SET_ACTIVE_FILTERS
-      payload: string[]
+      payload: Filter[]
     }
 
 const initialState = {
@@ -250,7 +252,7 @@ const CatalogProvider = ({
   )
 }
 
-export type { Action, QueryVariables }
+export type { Action, QueryVariables, Filter }
 export {
   CatalogContext,
   CatalogProvider,
