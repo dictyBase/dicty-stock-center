@@ -102,23 +102,6 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
     })
   })
 
-  describe("clear button", () => {
-    it("should clear text box", async () => {
-      render(<MockComponent />)
-      const input = screen.getByRole("search-input") as HTMLInputElement
-      const clearButton = screen.getByLabelText("Clear")
-      const searchVal = "GWDI"
-
-      userEvent.type(input, searchVal)
-      await waitFor(() => {
-        expect(input).toHaveValue(searchVal)
-      })
-
-      await waitFor(() => userEvent.click(clearButton))
-      expect(mockSetSearchValue).toHaveBeenCalledWith("")
-    })
-  })
-
   describe("search button", () => {
     it("should update query variables and URL", () => {
       mockedUseCatalogStore.mockReturnValueOnce({
