@@ -72,6 +72,10 @@ const useAppBarSearch = () => {
     setSearchBoxDropdownValue(value)
   }
 
+  const updateDropdown = ({ value }: DropDown) => {
+    history.push(`?filter=${leftDropdownValue}&field=${value}`)
+  }
+
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
   ) => {
@@ -85,7 +89,7 @@ const useAppBarSearch = () => {
       history.push(getDetailsURL(searchValue))
     } else {
       history.push(
-        `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
+        `?filter=${leftDropdownValue}&field=${searchBoxDropdownValue}&search=${searchValue}`,
       )
     }
   }
@@ -95,6 +99,7 @@ const useAppBarSearch = () => {
     removeFilter,
     handleDropdownChange,
     handleSubmit,
+    updateDropdown,
   }
 }
 
@@ -111,16 +116,20 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     state: { searchValue, activeFilters, searchBoxDropdownValue },
   } = useCatalogStore()
   const classes = useStyles()
-  const { handleChange, handleSubmit, removeFilter, handleDropdownChange } =
+  const { handleChange, handleSubmit, removeFilter, updateDropdown } =
     useAppBarSearch()
 
   // Get dropdown item from searchBoxDropdownValue
   const dropdownItem = dropdownItems.find(
     (option) => option.value === searchBoxDropdownValue,
   )
-  const [value, setValue] = React.useState<DropDown[]>(
-    dropdownItem ? [dropdownItem] : [],
-  )
+  const defaultItem =
+    searchValue === "none" || !dropdownItem ? [] : [dropdownItem]
+  const [value, setValue] = React.useState<DropDown[]>([])
+
+  React.useEffect(() => {
+    setValue(defaultItem)
+  }, [searchBoxDropdownValue])
 
   const renderTags = (
     value: DropDown[],
@@ -143,7 +152,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     const last = newValue.pop()
     setValue(last ? [last] : [])
     if (last) {
-      handleDropdownChange(last)
+      updateDropdown(last)
     }
   }
 
