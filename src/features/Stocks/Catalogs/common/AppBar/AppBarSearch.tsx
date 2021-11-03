@@ -9,6 +9,7 @@ import ActiveFilters from "./ActiveFilters"
 import Autocomplete, {
   AutocompleteGetTagProps,
 } from "@material-ui/lab/Autocomplete"
+import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -76,10 +77,18 @@ const useAppBarSearch = () => {
     history.push(`?filter=${leftDropdownValue}&field=${value}`)
   }
 
-  const handleSubmit = (
-    event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
-  ) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault()
+
+    const { search } = event?.target?.elements
+    let value = search?.value?.trim()
+    if (!value || value === "") {
+      value = searchValue
+    }
+    setSearchValue(value)
+
+    console.log(value)
+
     setQueryVariables({
       cursor: 0,
       limit: 10,
@@ -148,10 +157,18 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
           handleChange("")
         }}
       <Chip
-        label={option.name}
+        label={
+          searchValue.trim() === ""
+            ? option.name
+            : `${option.name} : ${searchValue}`
+        }
         {...getTagProps({ index })}
         size={"small"}
         variant="outlined"
+        onDelete={() => {
+          handleChange("")
+          updateDropdown({ name: "none", value: "none" })
+        }}
       />
     ))
   }
@@ -182,6 +199,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
       <Autocomplete
         multiple
+        disableClearable
         limitTags={1}
         id="fixed-tags-demo"
         value={value}
@@ -204,7 +222,8 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             variant="outlined"
             className={classes.searchInput}
             placeholder="Search entire catalog..."
-            value={searchValue}
+            name="search"
+            id="search"
           />
         )}
       />
