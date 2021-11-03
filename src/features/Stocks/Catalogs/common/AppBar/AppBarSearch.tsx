@@ -73,19 +73,13 @@ const useAppBarSearch = () => {
   }
 
   const updateDropdown = ({ value }: DropDown) => {
-    if (value === "none") {
-      history.push(`?filter=${leftDropdownValue}`)
-      setSearchBoxDropdownValue("none")
-      setSearchValue("")
-      return
-    }
     history.push(`?filter=${leftDropdownValue}&field=${value}`)
   }
 
-  const handleSubmit = (event: React.FormEvent | undefined, value: string) => {
-    event?.preventDefault()
-    setSearchValue(value)
-
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
+  ) => {
+    event.preventDefault()
     setQueryVariables({
       cursor: 0,
       limit: 10,
@@ -131,7 +125,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   const defaultItem =
     searchValue === "none" || !dropdownItem ? [] : [dropdownItem]
   const [value, setValue] = React.useState<DropDown[]>([])
-  const [searchInput, setSearchInput] = React.useState<string>("")
+
+  React.useEffect(() => {
+    setValue(defaultItem)
+  }, [searchBoxDropdownValue])
 
   React.useEffect(() => {
     setValue(defaultItem)
@@ -165,7 +162,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     const last = newValue.pop()
     setValue(last ? [last] : [])
     if (last) {
-      handleDropdownChange(last)
+      updateDropdown(last)
     }
   }
 
