@@ -22,7 +22,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const filter = query.get("filter") || "all"
   const history = useHistory()
   const {
-    state: { leftDropdownValue },
+    state: { leftDropdownValue, searchBoxDropdownValue },
   } = useCatalogStore()
   const { setLeftDropdownValue } = useCatalogDispatch()
 
@@ -33,8 +33,11 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   }, [filter, leftDropdownValue, setLeftDropdownValue])
 
   const handleChange = (name: string, value: any) => {
-    // TODO: Dispatch SET_QUERY_VARIABLES with the new values
-    history.push(`?filter=${value}`)
+    let path = `?filter=${value}`
+    if (searchBoxDropdownValue != "none") {
+      path += `&field=${searchBoxDropdownValue}`
+    }
+    history.push(path)
   }
 
   return (
