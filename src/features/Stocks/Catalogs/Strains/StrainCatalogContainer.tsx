@@ -16,6 +16,7 @@ import {
   StrainListDocument,
 } from "dicty-graphql-schema"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
+import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
 const leftDropdownItems = [
   {
@@ -152,6 +153,7 @@ const StrainCatalogContainer = ({ filter }: Props) => {
     state: { query, queryVariables },
     dispatch,
   } = useCatalogStore()
+  const { setActiveFilters, setQueryVariables, setQuery } = useCatalogDispatch()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
@@ -161,45 +163,24 @@ const StrainCatalogContainer = ({ filter }: Props) => {
     const updateData = async () => {
       switch (filter) {
         case "regular":
-          dispatch({
-            type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["Regular"],
-          })
+          setActiveFilters(["Regular"])
           dispatchStrainList(dispatch, filter)
           break
         case "gwdi":
-          dispatch({
-            type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["GWDI"],
-          })
+          setActiveFilters(["GWDI"])
           dispatchStrainList(dispatch, filter)
           break
         case "bacterial":
-          dispatch({
-            type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["Bacterial"],
-          })
-          dispatch({
-            type: CatalogActionType.SET_QUERY,
-            payload: ListBacterialStrainsDocument,
-          })
+          setActiveFilters(["Bacterial"])
+          setQuery(ListBacterialStrainsDocument)
           break
         case "available":
-          dispatch({
-            type: CatalogActionType.SET_ACTIVE_FILTERS,
-            payload: ["All"],
-          })
-          dispatch({
-            type: CatalogActionType.SET_QUERY,
-            payload: ListStrainsInventoryDocument,
-          })
-          dispatch({
-            type: CatalogActionType.SET_QUERY_VARIABLES,
-            payload: {
-              cursor: 0,
-              limit: 10,
-              filter: "",
-            },
+          setActiveFilters(["All"])
+          setQuery(ListStrainsInventoryDocument)
+          setQueryVariables({
+            cursor: 0,
+            limit: 10,
+            filter: "",
           })
           break
         default:
