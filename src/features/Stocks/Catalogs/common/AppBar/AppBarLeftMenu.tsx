@@ -23,7 +23,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const filter = query.get("filter") || "all"
   const history = useNavigate()
   const {
-    state: { leftDropdownValue, searchBoxDropdownValue },
+    state: { leftDropdownValue },
   } = useCatalogStore()
   const { setLeftDropdownValue } = useCatalogDispatch()
 

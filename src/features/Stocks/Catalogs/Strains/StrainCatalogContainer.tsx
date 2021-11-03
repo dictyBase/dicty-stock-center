@@ -80,9 +80,6 @@ const updateSearchQueries = (
   let path = `?filter=${filter}`
   if (field && field !== "none") {
     path += `&field=${field}`
-    if (search && search.trim() !== "") {
-      path += `&search=${search}`
-    }
   }
   return path
 }
@@ -168,7 +165,7 @@ type Props = {
 
 const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const {
-    state: { query, queryVariables, searchBoxDropdownValue },
+    state: { query, queryVariables },
     dispatch,
   } = useCatalogStore()
   const {
