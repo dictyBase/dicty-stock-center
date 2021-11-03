@@ -93,7 +93,7 @@ const initialState = {
 const strainInitialState = {
   ...initialState,
   query: StrainListDocument,
-  searchBoxDropdownValue: "label",
+  searchBoxDropdownValue: "none",
 }
 
 const plasmidInitialState = {
