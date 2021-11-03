@@ -71,6 +71,18 @@ type BacterialStrainsData = {
   symbioticFarmerBacterium: CatalogQueryResponse
 }
 
+const updateSearchQueries = (
+  filter: string,
+  field?: string,
+  search?: string,
+) => {
+  let path = `?filter=${filter}`
+  if (field && field !== "none") {
+    path += `&field=${field}`
+  }
+  return path
+}
+
 /**
  * normalizeBacterialStrainsData normalizes the bacterial strain data
  * response into the standard listStrains object. This is necessary since
@@ -152,7 +164,7 @@ type Props = {
 
 const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const {
-    state: { query, queryVariables, searchBoxDropdownValue },
+    state: { query, queryVariables },
     dispatch,
   } = useCatalogStore()
   const {
@@ -238,5 +250,9 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   )
 }
 
-export { dispatchStrainList, normalizeBacterialStrainsData }
+export {
+  dispatchStrainList,
+  normalizeBacterialStrainsData,
+  updateSearchQueries,
+}
 export default StrainCatalogContainer

@@ -4,6 +4,7 @@ import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
+import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
 
 type Props = {
   dropdownItems: Array<{
@@ -22,7 +23,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const filter = query.get("filter") || "all"
   const history = useHistory()
   const {
-    state: { leftDropdownValue, searchBoxDropdownValue },
+    state: { leftDropdownValue },
   } = useCatalogStore()
   const { setLeftDropdownValue } = useCatalogDispatch()
 
@@ -33,11 +34,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   }, [filter, leftDropdownValue, setLeftDropdownValue])
 
   const handleChange = (name: string, value: any) => {
-    let path = `?filter=${value}`
-    if (searchBoxDropdownValue != "none") {
-      path += `&field=${searchBoxDropdownValue}`
-    }
-    history.push(path)
+    history.push(updateSearchQueries(value))
   }
 
   return (
