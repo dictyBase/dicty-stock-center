@@ -108,12 +108,19 @@ type Props = {
  */
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, activeFilters },
+    state: { searchValue, activeFilters, searchBoxDropdownValue },
   } = useCatalogStore()
   const classes = useStyles()
   const { handleChange, handleSubmit, removeFilter, handleDropdownChange } =
     useAppBarSearch()
-  const [value, setValue] = React.useState<DropDown[]>([])
+
+  // Get dropdown item from searchBoxDropdownValue
+  const dropdownItem = dropdownItems.find(
+    (option) => option.value === searchBoxDropdownValue,
+  )
+  const [value, setValue] = React.useState<DropDown[]>(
+    dropdownItem ? [dropdownItem] : [],
+  )
 
   const renderTags = (
     value: DropDown[],
