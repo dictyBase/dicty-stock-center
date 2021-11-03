@@ -167,7 +167,7 @@ type Props = {
 
 const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const {
-    state: { query, queryVariables },
+    state: { query, queryVariables, searchBoxDropdownValue, searchValue },
     dispatch,
   } = useCatalogStore()
   const {
@@ -175,6 +175,7 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
     setQueryVariables,
     setQuery,
     setSearchBoxDropdownValue,
+    setSearchValue,
   } = useCatalogDispatch()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
@@ -199,11 +200,6 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
         case "available":
           setActiveFilters(["All"])
           setQuery(ListStrainsInventoryDocument)
-          setQueryVariables({
-            cursor: 0,
-            limit: 10,
-            filter: "",
-          })
           break
       }
 
@@ -217,6 +213,15 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
         case "id":
           setSearchBoxDropdownValue("id")
           break
+      }
+
+      if (search) {
+        setSearchValue(search)
+        setQueryVariables({
+          cursor: 0,
+          limit: 10,
+          filter: `${searchBoxDropdownValue}=~${searchValue}`,
+        })
       }
     }
 
