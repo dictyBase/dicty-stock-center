@@ -75,6 +75,12 @@ const useAppBarSearch = () => {
   }
 
   const updateDropdown = ({ value }: DropDown) => {
+    if (value === "none") {
+      history.push(`?filter=${leftDropdownValue}`)
+      setSearchBoxDropdownValue("none")
+      setSearchValue("")
+      return
+    }
     history.push(`?filter=${leftDropdownValue}&field=${value}`)
   }
 
