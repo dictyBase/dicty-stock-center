@@ -141,6 +141,8 @@ const normalizeDataObject = (data: any) => {
 type Props = {
   /** Search query 'filter' from URL */
   filter: string | null
+  field?: string | null
+  search?: string | null
 }
 
 /**
@@ -148,12 +150,17 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific features.
  */
 
-const StrainCatalogContainer = ({ filter }: Props) => {
+const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const {
-    state: { query, queryVariables },
+    state: { query, queryVariables, searchBoxDropdownValue },
     dispatch,
   } = useCatalogStore()
-  const { setActiveFilters, setQueryVariables, setQuery } = useCatalogDispatch()
+  const {
+    setActiveFilters,
+    setQueryVariables,
+    setQuery,
+    setSearchBoxDropdownValue,
+  } = useCatalogDispatch()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
@@ -183,13 +190,23 @@ const StrainCatalogContainer = ({ filter }: Props) => {
             filter: "",
           })
           break
-        default:
-          return
+      }
+
+      switch (field) {
+        case "label":
+          setSearchBoxDropdownValue("label")
+          break
+        case "summary":
+          setSearchBoxDropdownValue("summary")
+          break
+        case "id":
+          setSearchBoxDropdownValue("id")
+          break
       }
     }
 
     updateData()
-  }, [dispatch, filter])
+  }, [dispatch, filter, field, search])
 
   let content = <div />
 
