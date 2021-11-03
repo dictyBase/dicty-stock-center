@@ -65,7 +65,9 @@ const useAppBarSearch = () => {
   }
 
   const removeFilter = () => {
-    history.push("?filter=available")
+    history.push(
+      updateSearchQueries("available", searchBoxDropdownValue, searchValue),
+    )
   }
 
   const handleDropdownChange = ({ value }: DropDown) => {
