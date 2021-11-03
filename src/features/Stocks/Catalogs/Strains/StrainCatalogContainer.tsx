@@ -168,7 +168,7 @@ type Props = {
 
 const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const {
-    state: { query, queryVariables, searchBoxDropdownValue, searchValue },
+    state: { query, queryVariables, searchBoxDropdownValue },
     dispatch,
   } = useCatalogStore()
   const {
@@ -176,63 +176,54 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
     setQueryVariables,
     setQuery,
     setSearchBoxDropdownValue,
-    setSearchValue,
   } = useCatalogDispatch()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
   const { loadMoreItems, hasMore, setHasMore } = useLoadMoreItems()
 
-  const updateData = async () => {
-    switch (filter) {
-      case "regular":
-        setActiveFilters(["Regular"])
-        dispatchStrainList(dispatch, filter)
-        break
-      case "gwdi":
-        setActiveFilters(["GWDI"])
-        dispatchStrainList(dispatch, filter)
-        break
-      case "bacterial":
-        setActiveFilters(["Bacterial"])
-        setQuery(ListBacterialStrainsDocument)
-        break
-      case "available":
-        setActiveFilters(["All"])
-        setQuery(ListStrainsInventoryDocument)
-        break
-    }
-  }
-
   React.useEffect(() => {
-    switch (field) {
-      case "label":
-        setSearchBoxDropdownValue("label")
-        break
-      case "summary":
-        setSearchBoxDropdownValue("summary")
-        break
-      case "id":
-        setSearchBoxDropdownValue("id")
-        break
+    const updateData = async () => {
+      switch (filter) {
+        case "regular":
+          setActiveFilters(["Regular"])
+          dispatchStrainList(dispatch, filter)
+          break
+        case "gwdi":
+          setActiveFilters(["GWDI"])
+          dispatchStrainList(dispatch, filter)
+          break
+        case "bacterial":
+          setActiveFilters(["Bacterial"])
+          setQuery(ListBacterialStrainsDocument)
+          break
+        case "available":
+          setActiveFilters(["All"])
+          setQuery(ListStrainsInventoryDocument)
+          setQueryVariables({
+            cursor: 0,
+            limit: 10,
+            filter: "",
+          })
+          break
+      }
+
+      switch (field) {
+        case "label":
+          setSearchBoxDropdownValue("label")
+          break
+        case "summary":
+          setSearchBoxDropdownValue("summary")
+          break
+        case "id":
+          setSearchBoxDropdownValue("id")
+          break
+      }
     }
     // eslint-disable-next-line
+    updateData()
   }, [dispatch, field])
 
-  React.useEffect(() => {
-    setHasMore(true)
-    if (search) {
-      setSearchValue(search)
-      setQueryVariables({
-        cursor: 0,
-        limit: 10,
-        filter: `${searchBoxDropdownValue}=~${searchValue}`,
-      })
-    } else {
-      updateData()
-    }
-    // eslint-disable-next-line
-  }, [dispatch, filter, field, search])
 
   let content = <div />
 
