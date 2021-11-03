@@ -80,6 +80,9 @@ const updateSearchQueries = (
   let path = `?filter=${filter}`
   if (field && field !== "none") {
     path += `&field=${field}`
+    if (search && search.trim() !== "") {
+      path += `&search=${search}`
+    }
   }
   return path
 }
