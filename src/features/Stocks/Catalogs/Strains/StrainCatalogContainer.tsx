@@ -18,6 +18,7 @@ import {
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
+// TODO: Change to type
 const leftDropdownItems = [
   {
     name: "Regular Strains",
@@ -202,31 +203,38 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
           setQuery(ListStrainsInventoryDocument)
           break
       }
-
-      switch (field) {
-        case "label":
-          setSearchBoxDropdownValue("label")
-          break
-        case "summary":
-          setSearchBoxDropdownValue("summary")
-          break
-        case "id":
-          setSearchBoxDropdownValue("id")
-          break
-      }
-
-      if (search) {
-        setSearchValue(search)
-        setQueryVariables({
-          cursor: 0,
-          limit: 10,
-          filter: `${searchBoxDropdownValue}=~${searchValue}`,
-        })
-      }
     }
 
     updateData()
+    // eslint-disable-next-line
   }, [dispatch, filter, field, search])
+
+  React.useEffect(() => {
+    switch (field) {
+      case "label":
+        setSearchBoxDropdownValue("label")
+        break
+      case "summary":
+        setSearchBoxDropdownValue("summary")
+        break
+      case "id":
+        setSearchBoxDropdownValue("id")
+        break
+    }
+    // eslint-disable-next-line
+  }, [dispatch, field])
+
+  React.useEffect(() => {
+    if (search) {
+      setSearchValue(search)
+      setQueryVariables({
+        cursor: 0,
+        limit: 10,
+        filter: `${searchBoxDropdownValue}=~${searchValue}`,
+      })
+    }
+    // eslint-disable-next-line
+  }, [dispatch, search])
 
   let content = <div />
 
