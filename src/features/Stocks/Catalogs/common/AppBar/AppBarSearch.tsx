@@ -111,7 +111,7 @@ const useAppBarSearch = () => {
       history.push(getDetailsURL(value))
     } else {
       history.push(
-        `?filter=${leftDropdownValue}&field=${searchBoxDropdownValue}&search=${value}`,
+        updateSearchQueries(leftDropdownValue, searchBoxDropdownValue, value),
       )
     }
   }
