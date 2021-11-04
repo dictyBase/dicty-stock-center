@@ -88,10 +88,16 @@ const useAppBarSearch = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault()
 
-    const { search } = event?.target?.elements
-    let value = search?.value?.trim()
-    if (!value || value === "") {
+    let value = ""
+    try {
+      const { search } = event?.target?.elements
+      value = search?.value?.trim()
+      if (!value || value === "") {
+        value = searchValue
+      }
+    } catch (e: any) {
       value = searchValue
+      return
     }
     setSearchValue(value)
 
@@ -184,9 +190,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   return (
     <form onSubmit={handleSubmit} className={classes.searchForm}>
       <IconButton
-        onClick={handleSubmit}
         role="search-button"
-        className={classes.optionButton}>
+        className={classes.optionButton}
+        type="submit"
+        name="submit">
         <FontAwesomeIcon icon={"search"} size="xs" />
       </IconButton>
 
