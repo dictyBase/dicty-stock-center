@@ -86,20 +86,8 @@ const useAppBarSearch = () => {
     history.push(`?filter=${leftDropdownValue}&field=${value}`)
   }
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-
-    let value = ""
-    try {
-      const { search } = event?.target?.elements
-      value = search?.value?.trim()
-      if (!value || value === "") {
-        value = searchValue
-      }
-    } catch (e: any) {
-      value = searchValue
-      return
-    }
+  const handleSubmit = (event: React.FormEvent | undefined, value: string) => {
+    event?.preventDefault()
     setSearchValue(value)
 
     setQueryVariables({
@@ -148,6 +136,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   const defaultItem =
     searchValue === "none" || !dropdownItem ? [] : [dropdownItem]
   const [value, setValue] = React.useState<DropDown[]>([])
+  const [searchInput, setSearchInput] = React.useState<string>("")
 
   React.useEffect(() => {
     setValue(defaultItem)
@@ -184,9 +173,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   const onAutocompleteChange = (
     event: React.ChangeEvent<{}>,
-    newValue: DropDown[],
+    newValue: (string | DropDown)[],
   ) => {
     const last = newValue.pop()
+    if (typeof last === "string") return
     setValue(last ? [last] : [])
     if (last) {
       updateDropdown(last)
@@ -194,7 +184,9 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={classes.searchForm}>
+    <form
+      onSubmit={(e) => handleSubmit(e, searchInput)}
+      className={classes.searchForm}>
       <IconButton
         role="search-button"
         className={classes.optionButton}
@@ -206,6 +198,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
       <ActiveFilters filters={activeFilters} removeFilter={removeFilter} />
 
       <Autocomplete
+        freeSolo
         multiple
         disableClearable
         limitTags={1}
@@ -232,6 +225,12 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
             placeholder="Search entire catalog..."
             name="search"
             id="search"
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit(undefined, searchInput)
+              }
+            }}
           />
         )}
       />
