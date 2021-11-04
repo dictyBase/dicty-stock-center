@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { TextField, IconButton, Chip } from "@material-ui/core"
+import { TextField, IconButton } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ActiveFilters from "./ActiveFilters"
 import Autocomplete, {
   AutocompleteGetTagProps,
 } from "@material-ui/lab/Autocomplete"
 import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
-import DeleteIcon from "@material-ui/icons/Cancel"
+import FieldChip from "./FieldChip"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -140,6 +140,7 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
 
   React.useEffect(() => {
     setValue(defaultItem)
+    // eslint-disable-next-line
   }, [searchBoxDropdownValue])
 
   const renderTags = (
@@ -147,26 +148,14 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
     getTagProps: AutocompleteGetTagProps,
   ) => {
     return value.map((option, index) => (
-      <Chip
-        label={
-          searchValue.trim() === ""
-            ? option.name
-            : `${option.name} : ${searchValue}`
-        }
-        {...getTagProps({ index })}
-        size={"small"}
-        variant="outlined"
+      <FieldChip
+        key={`fieldChip#${index}`}
+        option={option}
+        searchValue={searchValue}
         onDelete={() => {
-          handleChange("")
           updateDropdown({ name: "none", value: "none" })
+          handleChange("")
         }}
-        deleteIcon={
-          <DeleteIcon
-            role="remove-field"
-            aria-hidden="false"
-            focusable="true"
-          />
-        }
       />
     ))
   }
@@ -238,4 +227,5 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   )
 }
 
+export type { DropDown }
 export default AppBarSearch
