@@ -42,14 +42,14 @@ const rightDropdownItems = [
     name: "Descriptor",
     value: "label",
   },
-  {
-    name: "Summary",
-    value: "summary",
-  },
-  {
-    name: "ID",
-    value: "id",
-  },
+  // {
+  //   name: "Summary",
+  //   value: "summary",
+  // },
+  // {
+  //   name: "ID",
+  //   value: "id",
+  // },
 ]
 
 type Strain = {
