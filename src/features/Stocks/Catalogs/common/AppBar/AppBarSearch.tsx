@@ -10,6 +10,7 @@ import Autocomplete, {
   AutocompleteGetTagProps,
 } from "@material-ui/lab/Autocomplete"
 import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
+import DeleteIcon from "@material-ui/icons/Cancel"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -101,8 +102,6 @@ const useAppBarSearch = () => {
     }
     setSearchValue(value)
 
-    console.log(value)
-
     setQueryVariables({
       cursor: 0,
       limit: 10,
@@ -172,6 +171,13 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
           handleChange("")
           updateDropdown({ name: "none", value: "none" })
         }}
+        deleteIcon={
+          <DeleteIcon
+            role="remove-field"
+            aria-hidden="false"
+            focusable="true"
+          />
+        }
       />
     ))
   }
