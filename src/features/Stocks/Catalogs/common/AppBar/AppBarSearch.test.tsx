@@ -110,15 +110,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       const input = screen.getByRole("search-input") as HTMLInputElement
       const clearButton = screen.getByRole("remove-field")
-      const dropdownButton = screen.getByTitle("Open")
       const searchVal = "GWDI"
 
-      expect(dropdownButton).toBeInTheDocument()
       expect(clearButton).toBeInTheDocument()
-
-      await waitFor(() => userEvent.click(dropdownButton))
-      const descriptorFieldOption = screen.getByText("Descriptor")
-      await waitFor(() => userEvent.click(descriptorFieldOption))
 
       userEvent.type(input, searchVal)
       await waitFor(() => {
