@@ -181,7 +181,7 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
-  const { loadMoreItems, hasMore } = useLoadMoreItems()
+  const { loadMoreItems, hasMore, setHasMore } = useLoadMoreItems()
 
   const updateData = async () => {
     switch (filter) {
@@ -220,6 +220,7 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   }, [dispatch, field])
 
   React.useEffect(() => {
+    setHasMore(true)
     if (search) {
       setSearchValue(search)
       setQueryVariables({
