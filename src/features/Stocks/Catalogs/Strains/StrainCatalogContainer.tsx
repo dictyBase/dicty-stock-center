@@ -183,31 +183,26 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   })
   const { loadMoreItems, hasMore } = useLoadMoreItems()
 
-  React.useEffect(() => {
-    const updateData = async () => {
-      switch (filter) {
-        case "regular":
-          setActiveFilters(["Regular"])
-          dispatchStrainList(dispatch, filter)
-          break
-        case "gwdi":
-          setActiveFilters(["GWDI"])
-          dispatchStrainList(dispatch, filter)
-          break
-        case "bacterial":
-          setActiveFilters(["Bacterial"])
-          setQuery(ListBacterialStrainsDocument)
-          break
-        case "available":
-          setActiveFilters(["All"])
-          setQuery(ListStrainsInventoryDocument)
-          break
-      }
+  const updateData = async () => {
+    switch (filter) {
+      case "regular":
+        setActiveFilters(["Regular"])
+        dispatchStrainList(dispatch, filter)
+        break
+      case "gwdi":
+        setActiveFilters(["GWDI"])
+        dispatchStrainList(dispatch, filter)
+        break
+      case "bacterial":
+        setActiveFilters(["Bacterial"])
+        setQuery(ListBacterialStrainsDocument)
+        break
+      case "available":
+        setActiveFilters(["All"])
+        setQuery(ListStrainsInventoryDocument)
+        break
     }
-
-    updateData()
-    // eslint-disable-next-line
-  }, [dispatch, filter, field, search])
+  }
 
   React.useEffect(() => {
     switch (field) {
@@ -232,9 +227,11 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
         limit: 10,
         filter: `${searchBoxDropdownValue}=~${searchValue}`,
       })
+    } else {
+      updateData()
     }
     // eslint-disable-next-line
-  }, [dispatch, search])
+  }, [dispatch, filter, field, search])
 
   let content = <div />
 
