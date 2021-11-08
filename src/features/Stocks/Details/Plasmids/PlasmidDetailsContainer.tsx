@@ -8,20 +8,14 @@ import DetailsHeader from "features/Stocks/Details/common/DetailsHeader"
 import DetailsLoader from "features/Stocks/Details/common/DetailsLoader"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 
-type Params = {
-  /** Stock ID from URL */
-  id: string
-}
-
 /**
  * PlasmidDetailsContainer is the main component for an individual plasmid details page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
-
 const PlasmidDetailsContainer = () => {
-  const { id } = useParams<Params>()
+  const { id } = useParams()
   const { loading, error, data } = usePlasmidQuery({
-    variables: { id },
+    variables: { id: id ? id : "" },
     errorPolicy: "ignore",
     fetchPolicy: "cache-and-network",
   })
