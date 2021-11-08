@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route, Navigate } from "react-router-dom"
 import { useAuthStore } from "features/Authentication/AuthStore"
 
 /**
@@ -13,16 +13,16 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
     // renders a <Route /> and passes all props
     <Route
       {...rest}
-      render={(props) =>
+      render={(props: JSX.IntrinsicAttributes) =>
         // checks for authentication, then redirects if not logged in
         state.isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect
+          <Navigate
             to={{
               pathname: "/login",
-              state: { error: "You must be logged in to view this page!" },
             }}
+            state={{ error: "You must be logged in to view this page!" }}
           />
         )
       }
