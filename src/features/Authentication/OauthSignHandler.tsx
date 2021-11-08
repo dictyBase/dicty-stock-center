@@ -49,7 +49,7 @@ const OauthSignHandler = () => {
       if (!event.data.provider) {
         return
       }
-      history.push("/load/auth")
+      history("/load/auth")
       try {
         const { data } = await login({
           variables: getLoginInputVariables(event.data),
@@ -62,7 +62,7 @@ const OauthSignHandler = () => {
             provider: data?.login?.identity.provider as string,
           },
         })
-        history.push("/mydsc")
+        history("/mydsc")
       } catch (error) {
         dispatch({
           type: ActionType.LOGIN_ERROR,
@@ -70,7 +70,7 @@ const OauthSignHandler = () => {
             error: error,
           },
         })
-        history.push("/login")
+        history("/login")
       }
     }
     window.addEventListener("message", onMessage, false)
