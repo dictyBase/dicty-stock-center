@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
-import Loader from "common/components/Loader"
 import useGoogleAnalytics from "common/hooks/useGoogleAnalytics"
+import Loader from "common/components/Loader"
 
 const Homepage = lazy(
   () => import(/* webpackChunkName: "Homepage" */ "features/Home/Homepage"),
@@ -134,52 +134,52 @@ const RenderRoutes = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Switch>
-        <Route path="/*" element={Homepage} />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
         {/* authentication routes */}
-        <Route path="/login" component={Login} />
-        <Route path="/:provider/callback" component={OauthCallback} />
-        <Route exact path="/load/auth" component={AuthLoader} />
-        <PrivateRoute exact path="/logout" component={Logout} />
-        <PrivateRoute exact path="/mydsc" component={MyDscPage} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/:provider/callback" element={<OauthCallback />} />
+        <Route path="/load/auth" element={<AuthLoader />} />
+        <PrivateRoute path="/logout" element={Logout} />
+        <PrivateRoute path="/mydsc" element={MyDscPage} />
         {/* editable page routes */}
-        <Route exact path="/information" component={InformationContainer} />
-        <Route exact path="/information/:name" component={InfoPageContainer} />
-        <PrivateRoute
-          exact
-          path="/information/:name/edit"
-          component={EditInfoPage}
-        />
-        <PrivateRoute exact path="/addpage" component={AddPage} />
+        <Route path="/information" element={<InformationContainer />} />
+        <Route path="/information/:name" element={<InfoPageContainer />} />
+        <PrivateRoute path="/information/:name/edit" element={EditInfoPage} />
+        <PrivateRoute path="/addpage" element={AddPage} />
         {/* order form routes */}
-        <Route exact path="/order" component={OrderForm} />
-        <Route exact path="/order/checkout" component={OrderForm} />
-        <Route exact path="/order/submitted" component={OrderConfirmation} />
+        <Route path="/order" element={<OrderForm />} />
+        <Route path="/order/checkout" element={<OrderForm />} />
+        <Route
+          path="/order/submitted"
+          element={
+            <OrderConfirmation
+              location={{
+                pathname: "",
+                state: undefined,
+              }}
+            />
+          }
+        />
         {/* strain routes */}
         <Route
-          exact
           path="/strains"
-          render={(props) => (
-            <StrainCatalogWrapper {...props} stockType="strain" />
-          )}
+          element={<StrainCatalogWrapper stockType="strain" />}
         />
-        <Route exact path="/strains/:id" component={StrainDetailsContainer} />
+        <Route path="/strains/:id" element={<StrainDetailsContainer />} />
         {/* phenotype routes */}
-        <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
+        <Route path="/phenotypes/:name" element={<PhenotypesWrapper />} />
         {/* plasmid routes */}
         <Route
-          exact
           path="/plasmids"
-          render={(props) => (
-            <PlasmidCatalogWrapper {...props} stockType="plasmid" />
-          )}
+          element={<PlasmidCatalogWrapper stockType="plasmid" />}
         />
-        <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
+        <Route path="/plasmids/:id" element={<PlasmidDetailsContainer />} />
         {/* misc routes */}
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/cart" component={ShoppingCartPage} />
-        <Route exact path="*" component={PageNotFound} />
-      </Switch>
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<ShoppingCartPage />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </Suspense>
   )
 }
