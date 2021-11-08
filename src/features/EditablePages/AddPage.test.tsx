@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter, useHistory } from "react-router-dom"
+import { BrowserRouter, useNavigate } from "react-router-dom"
 import { CreateContentDocument } from "dicty-graphql-schema"
 import AddPage from "./AddPage"
 import { MockAuthProvider } from "common/utils/testing"
@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
   return {
     ...originalModule,
-    useHistory: jest.fn(),
+    useNavigate: jest.fn(),
   }
 })
 
@@ -60,7 +60,7 @@ describe("features/EditablePages/AddPage", () => {
 
   describe("button clicking", () => {
     it("should save data and redirect on click", async () => {
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
+      ;(useNavigate as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
       })
       const textInput = "shipping"
@@ -118,7 +118,7 @@ describe("features/EditablePages/AddPage", () => {
     })
 
     it("should go back to information page on cancel", () => {
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
+      ;(useNavigate as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
       })
       render(<MockComponent mocks={[]} />)

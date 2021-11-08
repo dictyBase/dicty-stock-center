@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
@@ -54,14 +54,14 @@ const useAppBarSearch = () => {
   } = useCatalogStore()
   const { setQueryVariables, setSearchValue, setSearchBoxDropdownValue } =
     useCatalogDispatch()
-  const history = useHistory()
+  const history = useNavigate()
 
   const handleChange = (value: string) => {
     setSearchValue(value)
   }
 
   const removeFilter = () => {
-    history.push("?filter=available")
+    history("?filter=available")
   }
 
   const handleDropdownChange = (
@@ -80,9 +80,9 @@ const useAppBarSearch = () => {
       filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
     if (searchBoxDropdownValue === "id" && getDetailsURL(searchValue) !== "") {
-      history.push(getDetailsURL(searchValue))
+      history(getDetailsURL(searchValue))
     } else {
-      history.push(
+      history(
         `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
       )
     }

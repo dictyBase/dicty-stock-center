@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Box from "@material-ui/core/Box"
 import { PageEditor } from "dicty-components-page-editor"
 import { useCreateContentMutation } from "dicty-graphql-schema"
@@ -18,7 +18,7 @@ const AddPage = () => {
     state: { token },
   } = useAuthStore()
   const { user } = useAuthorization()
-  const history = useHistory()
+  const history = useNavigate()
   const [createContent] = useCreateContentMutation({
     context: {
       headers: {
@@ -45,12 +45,12 @@ const AddPage = () => {
       },
     })
     setTimeout(() => {
-      history.push(`/information/${textValue}`)
+      history(`/information/${textValue}`)
     }, 800)
   }
 
   const handleCancelClick = () => {
-    history.push("/information")
+    history("/information")
   }
 
   return (

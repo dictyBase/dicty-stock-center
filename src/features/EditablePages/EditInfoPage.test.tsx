@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter, useHistory } from "react-router-dom"
+import { BrowserRouter, useNavigate } from "react-router-dom"
 import { UpdateContentDocument } from "dicty-graphql-schema"
 import EditInfoPage from "./EditInfoPage"
 import { MockAuthProvider } from "common/utils/testing"
@@ -16,7 +16,7 @@ jest.mock("react-router-dom", () => {
     useParams: () => ({
       name: mockParamsName,
     }),
-    useHistory: jest.fn(),
+    useNavigate: jest.fn(),
   }
 })
 
@@ -106,7 +106,7 @@ describe("features/EditablePages/EditInfoPage", () => {
           },
         },
       ]
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
+      ;(useNavigate as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
       })
       render(<MockComponent mocks={mocks} />)
@@ -124,7 +124,7 @@ describe("features/EditablePages/EditInfoPage", () => {
     })
 
     it("should go back to previous URL on cancel", () => {
-      ;(useHistory as jest.Mock).mockReturnValueOnce({
+      ;(useNavigate as jest.Mock).mockReturnValueOnce({
         push: mockHistoryPush,
       })
       render(<MockComponent mocks={[]} />)

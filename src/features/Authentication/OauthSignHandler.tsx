@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import querystring from "querystring"
 import { useLoginMutation, User } from "dicty-graphql-schema"
 import { useAuthStore, ActionType } from "features/Authentication/AuthStore"
@@ -38,7 +38,7 @@ const getLoginInputVariables = (data: LoginEventData) => {
  */
 
 const OauthSignHandler = () => {
-  const history = useHistory()
+  const history = useNavigate()
   const { dispatch } = useAuthStore()
   const [login, { data }] = useLoginMutation()
 
