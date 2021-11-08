@@ -19,11 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-type Params = {
-  /** Slug name from URL */
-  name: string
-}
-
 type Props = {
   location: {
     state: {
@@ -52,7 +47,7 @@ const EditInfoPage = ({ location }: Props) => {
     },
   })
   const history = useNavigate()
-  const { name } = useParams<Params>()
+  const { name } = useParams()
 
   const prevURL = `/information/${name}`
 
