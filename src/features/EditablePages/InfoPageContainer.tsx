@@ -11,17 +11,11 @@ import NAMESPACE from "common/constants/namespace"
 const metaContent =
   "The Dicty Stock Center is a rapidly growing central repository for Dictyostelium discoideum strains and those of related species, plasmids, commonly used food bacteria, and other materials such as antibodies."
 
-type Params = {
-  /** Slug name from URL */
-  name: string
-}
-
 /**
  * InfoPageContainer fetches the data for the desired editable page.
  */
-
 const InfoPageContainer = () => {
-  const { name } = useParams<Params>()
+  const { name } = useParams()
   const { loading, error, data } = useContentBySlugQuery({
     variables: {
       slug: `${NAMESPACE}-${name}`,

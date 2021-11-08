@@ -6,20 +6,14 @@ import { ContentBySlugQuery } from "dicty-graphql-schema"
 import InfoPageViewToolbar from "./InfoPageViewToolbar"
 import { theme } from "app/layout/AppProviders"
 
-type Params = {
-  /** Slug name from URL */
-  name: string
-}
-
 type Props = {
   data: ContentBySlugQuery["contentBySlug"]
 }
 
 /** Displays the info page data that was fetched from the InfoPage component */
-
 const InfoPageView = ({ data }: Props) => {
   const history = useNavigate()
-  const { name } = useParams<Params>()
+  const { name } = useParams()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
