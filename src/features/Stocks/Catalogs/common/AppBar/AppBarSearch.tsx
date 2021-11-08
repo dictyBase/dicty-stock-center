@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
@@ -60,16 +60,20 @@ const useAppBarSearch = () => {
   } = useCatalogStore()
   const { setQueryVariables, setSearchValue, setSearchBoxDropdownValue } =
     useCatalogDispatch()
-  const history = useHistory()
+  const history = useNavigate()
 
   const handleChange = (value: string) => {
     setSearchValue(value)
   }
 
   const removeFilter = () => {
+<<<<<<< HEAD
     history.push(
       updateSearchQueries("available", searchBoxDropdownValue, searchValue),
     )
+=======
+    history("?filter=available")
+>>>>>>> 7329c2e9 (fix: replace useHistory with useNavigate)
   }
 
   const handleDropdownChange = ({ value }: DropDown) => {
@@ -95,14 +99,13 @@ const useAppBarSearch = () => {
       limit: 10,
       filter: `${searchBoxDropdownValue}=~${value}`,
     })
-    if (searchBoxDropdownValue === "id" && getDetailsURL(value) !== "") {
-      history.push(getDetailsURL(value))
+    if (searchBoxDropdownValue === "id" && getDetailsURL(searchValue) !== "") {
+      history(getDetailsURL(searchValue))
     } else {
-      history.push(
-        updateSearchQueries(leftDropdownValue, searchBoxDropdownValue, value),
+      history(
+        `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
       )
     }
-  }
 
   return {
     handleChange,

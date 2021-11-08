@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
@@ -21,7 +21,7 @@ type Props = {
 const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const query = useSearchQuery()
   const filter = query.get("filter") || "all"
-  const history = useHistory()
+  const history = useNavigate()
   const {
     state: { leftDropdownValue, searchBoxDropdownValue, searchValue },
   } = useCatalogStore()
@@ -34,9 +34,8 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   }, [filter, leftDropdownValue, setLeftDropdownValue])
 
   const handleChange = (name: string, value: any) => {
-    history.push(
-      updateSearchQueries(value, searchBoxDropdownValue, searchValue),
-    )
+    // TODO: Dispatch SET_QUERY_VARIABLES with the new values
+    history(`?filter=${value}`)
   }
 
   return (

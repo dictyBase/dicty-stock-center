@@ -135,10 +135,10 @@ const RenderRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route path="/*" element={Homepage} />
         {/* authentication routes */}
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/:provider/callback" component={OauthCallback} />
+        <Route path="/login" component={Login} />
+        <Route path="/:provider/callback" component={OauthCallback} />
         <Route exact path="/load/auth" component={AuthLoader} />
         <PrivateRoute exact path="/logout" component={Logout} />
         <PrivateRoute exact path="/mydsc" component={MyDscPage} />

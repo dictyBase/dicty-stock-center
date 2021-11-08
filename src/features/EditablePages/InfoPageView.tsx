@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { PageEditor } from "dicty-components-page-editor"
 import Box from "@material-ui/core/Box"
 import { ContentBySlugQuery } from "dicty-graphql-schema"
@@ -18,13 +18,13 @@ type Props = {
 /** Displays the info page data that was fetched from the InfoPage component */
 
 const InfoPageView = ({ data }: Props) => {
-  const history = useHistory()
+  const history = useNavigate()
   const { name } = useParams<Params>()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    history.push(`/information/${name}/edit`, {
-      data: data,
+    history(`/information/${name}/edit`, {
+      state: { data: data },
     })
   }
 

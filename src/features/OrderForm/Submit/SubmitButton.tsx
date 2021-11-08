@@ -2,7 +2,7 @@ import React from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
   useCreateOrderMutation,
   useCreateUserMutation,
@@ -163,7 +163,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
     state: { addedItems },
   } = useCartStore()
   const { emptyCart, getCartTotal } = useCartItems()
-  const history = useHistory()
+  const history = useNavigate()
   const [createOrder] = useCreateOrderMutation()
   const [createUser] = useCreateUserMutation()
   const [updateUser] = useUpdateUserMutation()
@@ -194,11 +194,13 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
         "payer",
       )
       const order = await createOrder(getOrderVariables(formData, addedItems))
-      history.push("/order/submitted", {
-        orderID: order?.data?.createOrder?.id,
-        formData,
-        cartItems: addedItems,
-        cartTotal: getCartTotal(addedItems),
+      history("/order/submitted", {
+        state: {
+          orderID: order?.data?.createOrder?.id,
+          formData,
+          cartItems: addedItems,
+          cartTotal: getCartTotal(addedItems),
+        },
       })
       emptyCart()
     } catch (error) {
