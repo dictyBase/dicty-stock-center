@@ -3,17 +3,11 @@ import { useLocation, useParams } from "react-router-dom"
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 
-type Params = {
-  /** Provider from URL (google, orcid, etc) */
-  provider: string
-}
-
 /**
  * Callback that transfers the user to the login system
  */
-
 const OauthCallback = () => {
-  const { provider } = useParams<Params>()
+  const { provider } = useParams()
   const location = useLocation()
 
   useEffect(() => {

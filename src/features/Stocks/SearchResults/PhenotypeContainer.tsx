@@ -28,11 +28,6 @@ const useStyles = makeStyles({
 // i.e. "abolished+protein+phosphorylation" = "abolished protein phosphorylation"
 const cleanQuery = (phenotype: string) => phenotype.split("+").join(" ")
 
-type Params = {
-  /** Phenotype name from URL */
-  name: string
-}
-
 type ListData = {
   /** Object returned from fetching list data */
   listStrainsWithAnnotation: ListStrainsWithAnnotation
@@ -99,16 +94,10 @@ const useListStrainsWithPhenotype = (phenotype: string) => {
 
 const PhenotypeContainer = () => {
   const classes = useStyles()
-  const { name } = useParams<Params>()
-  const phenotype = cleanQuery(name)
-  const {
-    loading,
-    error,
-    data,
-    loadMoreItems,
-    hasMore,
-    isLoadingMore,
-  } = useListStrainsWithPhenotype(phenotype)
+  const { name } = useParams()
+  const phenotype = cleanQuery(name ? name : "")
+  const { loading, error, data, loadMoreItems, hasMore, isLoadingMore } =
+    useListStrainsWithPhenotype(phenotype)
 
   if (loading) return <DetailsLoader />
 
