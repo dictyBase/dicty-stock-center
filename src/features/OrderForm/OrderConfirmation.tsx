@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
@@ -54,8 +54,8 @@ const OrderConfirmation = ({ location }: LocationProps) => {
   const classes = useStyles()
   const { state } = location
 
-  if (state === undefined) {
-    return <Redirect to="/" />
+  if (!state) {
+    return <Navigate to="/" />
   }
 
   return (
