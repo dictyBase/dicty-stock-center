@@ -1,7 +1,6 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter, useNavigate } from "react-router-dom"
 import { CreateContentDocument } from "dicty-graphql-schema"
 import AddPage from "./AddPage"
 import { MockAuthProvider } from "common/utils/testing"
@@ -13,7 +12,7 @@ jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
   return {
     ...originalModule,
-    useNavigate: jest.fn(),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
@@ -36,9 +35,7 @@ const mockContent = [
 describe("features/EditablePages/AddPage", () => {
   const MockComponent = ({ mocks }: any) => (
     <MockAuthProvider mocks={mocks} validToken>
-      <BrowserRouter>
-        <AddPage />
-      </BrowserRouter>
+      <AddPage />
     </MockAuthProvider>
   )
 
@@ -60,9 +57,6 @@ describe("features/EditablePages/AddPage", () => {
 
   describe("button clicking", () => {
     it("should save data and redirect on click", async () => {
-      ;(useNavigate as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
-      })
       const textInput = "shipping"
       const mocks = [
         {
@@ -118,9 +112,6 @@ describe("features/EditablePages/AddPage", () => {
     })
 
     it("should go back to information page on cancel", () => {
-      ;(useNavigate as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
-      })
       render(<MockComponent mocks={[]} />)
       const cancelButton = screen.getByText("Cancel")
       userEvent.click(cancelButton)
