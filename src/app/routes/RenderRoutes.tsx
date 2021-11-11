@@ -130,21 +130,22 @@ const PageNotFound = lazy(
 )
 
 const getStrainOrPlasmids = (type: "strain" | "plasmid") => {
-  if (type === "strain") {
-    return (
-      <Route path="strains">
-        <Route index element={<StrainCatalogWrapper stockType={type} />} />)
-        <Route path=":id" element={<StrainDetailsContainer />} />
-      </Route>
+  const path = type === "strain" ? "strains" : "plasmids"
+  const elementIndex =
+    type === "strain" ? (
+      <StrainCatalogWrapper stockType={type} />
+    ) : (
+      <PlasmidCatalogWrapper stockType={type} />
     )
-  } else if (type === "plasmid") {
-    return (
-      <Route path="plasmids">
-        <Route index element={<PlasmidCatalogWrapper stockType={type} />} />
-        <Route path=":id" element={<PlasmidDetailsContainer />} />
-      </Route>
-    )
-  }
+  const elementId =
+    type === "strain" ? <StrainDetailsContainer /> : <PlasmidDetailsContainer />
+
+  return (
+    <Route path={path}>
+      <Route index element={elementIndex} />)
+      <Route path=":id" element={elementId} />
+    </Route>
+  )
 }
 
 const RenderRoutes = () => {
