@@ -248,9 +248,7 @@ describe("features/Stocks/SearchResults/PhenotypeContainer", () => {
     it("displays error message", async () => {
       render(
         <MockAuthProvider mocks={mocks}>
-          <BrowserRouter>
-            <PhenotypeContainer />
-          </BrowserRouter>
+          <PhenotypeContainer />
         </MockAuthProvider>,
       )
       // displays loading skeleton first
