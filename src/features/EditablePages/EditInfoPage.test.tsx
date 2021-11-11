@@ -1,7 +1,6 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter, useNavigate } from "react-router-dom"
 import { UpdateContentDocument } from "dicty-graphql-schema"
 import EditInfoPage from "./EditInfoPage"
 import { MockAuthProvider } from "common/utils/testing"
@@ -16,7 +15,7 @@ jest.mock("react-router-dom", () => {
     useParams: () => ({
       name: mockParamsName,
     }),
-    useNavigate: jest.fn(),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
@@ -64,9 +63,7 @@ describe("features/EditablePages/EditInfoPage", () => {
 
   const MockComponent = ({ mocks }: any) => (
     <MockAuthProvider mocks={mocks} validToken>
-      <BrowserRouter>
-        <EditInfoPage {...props} />
-      </BrowserRouter>
+      <EditInfoPage {...props} />
     </MockAuthProvider>
   )
 
@@ -106,9 +103,6 @@ describe("features/EditablePages/EditInfoPage", () => {
           },
         },
       ]
-      ;(useNavigate as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
-      })
       render(<MockComponent mocks={mocks} />)
       // there are two save buttons, one in toolbar and one at bottom
       const saveButtons = screen.getAllByText("Save")
@@ -124,9 +118,6 @@ describe("features/EditablePages/EditInfoPage", () => {
     })
 
     it("should go back to previous URL on cancel", () => {
-      ;(useNavigate as jest.Mock).mockReturnValueOnce({
-        push: mockHistoryPush,
-      })
       render(<MockComponent mocks={[]} />)
       const cancelButton = screen.getByText("Cancel")
       userEvent.click(cancelButton)
