@@ -2,7 +2,6 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import CatalogWrapper from "./CatalogWrapper"
 import { MockedProvider } from "@apollo/client/testing"
-import { useNavigate } from "react-router-dom"
 
 const mockHistoryPush = jest.fn()
 

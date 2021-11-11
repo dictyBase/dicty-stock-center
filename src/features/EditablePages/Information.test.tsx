@@ -1,7 +1,6 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import Information, { informationLinks } from "./Information"
-import { BrowserRouter as Router } from "react-router-dom"
 import { MockAuthProvider } from "common/utils/testing"
 
 describe("features/EditablePages/Information", () => {
