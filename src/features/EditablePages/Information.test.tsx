@@ -8,9 +8,7 @@ describe("features/EditablePages/Information", () => {
   test("displays list of links", () => {
     render(
       <MockAuthProvider mocks={[]} validToken>
-        <Router>
-          <Information />
-        </Router>
+        <Information />
       </MockAuthProvider>,
     )
     informationLinks.forEach((item) =>
@@ -21,9 +19,7 @@ describe("features/EditablePages/Information", () => {
   test("displays add page button for authorized user", () => {
     render(
       <MockAuthProvider mocks={[]} validToken>
-        <Router>
-          <Information />
-        </Router>
+        <Information />
       </MockAuthProvider>,
     )
     expect(
@@ -34,9 +30,7 @@ describe("features/EditablePages/Information", () => {
   test("does not display add page button for unauthorized users", () => {
     render(
       <MockAuthProvider mocks={[]} validToken={false}>
-        <Router>
-          <Information />
-        </Router>
+        <Information />
       </MockAuthProvider>,
     )
     expect(
