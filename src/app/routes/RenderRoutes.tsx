@@ -129,25 +129,6 @@ const PageNotFound = lazy(
     ),
 )
 
-const getStrainOrPlasmids = (type: "strain" | "plasmid") => {
-  const path = type === "strain" ? "strains" : "plasmids"
-  const elementIndex =
-    type === "strain" ? (
-      <StrainCatalogWrapper stockType={type} />
-    ) : (
-      <PlasmidCatalogWrapper stockType={type} />
-    )
-  const elementId =
-    type === "strain" ? <StrainDetailsContainer /> : <PlasmidDetailsContainer />
-
-  return (
-    <Route path={path}>
-      <Route index element={elementIndex} />)
-      <Route path=":id" element={elementId} />
-    </Route>
-  )
-}
-
 const RenderRoutes = () => {
   useGoogleAnalytics()
 
@@ -202,13 +183,25 @@ const RenderRoutes = () => {
           </Route>
 
           {/* strain routes */}
-          {getStrainOrPlasmids("strain")}
+          <Route path="strains">
+            <Route
+              index
+              element={<StrainCatalogWrapper stockType="strain" />}
+            />
+            <Route path=":id" element={<StrainDetailsContainer />} />
+          </Route>
 
           {/* phenotype routes */}
           <Route path="phenotypes/:name" element={<PhenotypesWrapper />} />
 
           {/* plasmid routes */}
-          {getStrainOrPlasmids("plasmid")}
+          <Route path="plasmids">
+            <Route path=":id" element={<PlasmidDetailsContainer />} />
+            <Route
+              index
+              element={<PlasmidCatalogWrapper stockType="plasmid" />}
+            />
+          </Route>
 
           {/* misc routes */}
           <Route path="/contact" element={<ContactPage />} />
