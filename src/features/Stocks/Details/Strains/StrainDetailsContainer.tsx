@@ -15,9 +15,8 @@ import characterConverter from "common/utils/characterConverter"
  */
 const StrainDetailsContainer = () => {
   let { id } = useParams()
-  if (!id) id = ""
   const { loading, error, data } = useStrainQuery({
-    variables: { id },
+    variables: { id: id + "" },
     errorPolicy: "ignore",
     fetchPolicy: "cache-and-network",
   })
