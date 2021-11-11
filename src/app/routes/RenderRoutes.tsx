@@ -142,18 +142,27 @@ const RenderRoutes = () => {
           <Route path="login" element={<Login />} />
           <Route path=":provider/callback" element={<OauthCallback />} />
           <Route path="load/auth" element={<AuthLoader />} />
-          <PrivateRoute path="logout" element={Logout} />
-          <PrivateRoute path="mydsc" element={MyDscPage} />
+          <Route path="logout" element={<PrivateRoute component={Logout} />} />
+          <Route
+            path="mydsc"
+            element={<PrivateRoute component={MyDscPage} />}
+          />
 
           {/* editable page routes */}
           <Route path="information">
             <Route index element={<InformationContainer />} />
             <Route path=":name">
               <Route index element={<InfoPageContainer />} />
-              <PrivateRoute path="edit" element={EditInfoPage} />
+              <Route
+                path="edit"
+                element={<PrivateRoute component={EditInfoPage} />}
+              />
             </Route>
           </Route>
-          <PrivateRoute path="addpage" element={AddPage} />
+          <Route
+            path="addpage"
+            element={<PrivateRoute component={AddPage} />}
+          />
 
           {/* order form routes */}
           <Route path="order">
