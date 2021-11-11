@@ -135,7 +135,9 @@ const RenderRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<Homepage />}>
+        <Route path="/">
+          <Route index element={<Homepage />} />
+
           {/* authentication routes */}
           <Route path="login" element={<Login />} />
           <Route path=":provider/callback" element={<OauthCallback />} />
@@ -144,15 +146,19 @@ const RenderRoutes = () => {
           <PrivateRoute path="mydsc" element={MyDscPage} />
 
           {/* editable page routes */}
-          <Route path="information" element={<InformationContainer />}>
-            <Route path=":name" element={<InfoPageContainer />}>
+          <Route path="information">
+            <Route index element={<InformationContainer />} />
+            <Route path=":name">
+              <Route index element={<InfoPageContainer />} />
               <PrivateRoute path="edit" element={EditInfoPage} />
             </Route>
           </Route>
           <PrivateRoute path="addpage" element={AddPage} />
 
           {/* order form routes */}
-          <Route path="order" element={<OrderForm />}>
+          <Route path="order">
+            {/* TODO: Consider redirecting /order to /order/checkout since they just render the same component */}
+            <Route index element={<OrderForm />} />
             <Route path="checkout" element={<OrderForm />} />
             <Route
               path="submitted"
@@ -168,9 +174,11 @@ const RenderRoutes = () => {
           </Route>
 
           {/* strain routes */}
-          <Route
-            path="strains"
-            element={<StrainCatalogWrapper stockType="strain" />}>
+          <Route path="strains">
+            <Route
+              index
+              element={<StrainCatalogWrapper stockType="strain" />}
+            />
             <Route path=":id" element={<StrainDetailsContainer />} />
           </Route>
 
@@ -178,9 +186,11 @@ const RenderRoutes = () => {
           <Route path="phenotypes/:name" element={<PhenotypesWrapper />} />
 
           {/* plasmid routes */}
-          <Route
-            path="plasmids"
-            element={<PlasmidCatalogWrapper stockType="plasmid" />}>
+          <Route path="plasmids">
+            <Route
+              index
+              element={<PlasmidCatalogWrapper stockType="plasmid" />}
+            />
             <Route path=":id" element={<PlasmidDetailsContainer />} />
           </Route>
 
