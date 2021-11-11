@@ -135,49 +135,59 @@ const RenderRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        {/* authentication routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/:provider/callback" element={<OauthCallback />} />
-        <Route path="/load/auth" element={<AuthLoader />} />
-        <PrivateRoute path="/logout" element={Logout} />
-        <PrivateRoute path="/mydsc" element={MyDscPage} />
-        {/* editable page routes */}
-        <Route path="/information" element={<InformationContainer />} />
-        <Route path="/information/:name" element={<InfoPageContainer />} />
-        <PrivateRoute path="/information/:name/edit" element={EditInfoPage} />
-        <PrivateRoute path="/addpage" element={AddPage} />
-        {/* order form routes */}
-        <Route path="/order" element={<OrderForm />} />
-        <Route path="/order/checkout" element={<OrderForm />} />
-        <Route
-          path="/order/submitted"
-          element={
-            <OrderConfirmation
-              location={{
-                pathname: "",
-                state: undefined,
-              }}
+        <Route path="/" element={<Homepage />}>
+          {/* authentication routes */}
+          <Route path="login" element={<Login />} />
+          <Route path=":provider/callback" element={<OauthCallback />} />
+          <Route path="load/auth" element={<AuthLoader />} />
+          <PrivateRoute path="logout" element={Logout} />
+          <PrivateRoute path="mydsc" element={MyDscPage} />
+
+          {/* editable page routes */}
+          <Route path="information" element={<InformationContainer />}>
+            <Route path=":name" element={<InfoPageContainer />}>
+              <PrivateRoute path="edit" element={EditInfoPage} />
+            </Route>
+          </Route>
+          <PrivateRoute path="addpage" element={AddPage} />
+
+          {/* order form routes */}
+          <Route path="order" element={<OrderForm />}>
+            <Route path="checkout" element={<OrderForm />} />
+            <Route
+              path="submitted"
+              element={
+                <OrderConfirmation
+                  location={{
+                    pathname: "",
+                    state: undefined,
+                  }}
+                />
+              }
             />
-          }
-        />
-        {/* strain routes */}
-        <Route
-          path="/strains"
-          element={<StrainCatalogWrapper stockType="strain" />}
-        />
-        <Route path="/strains/:id" element={<StrainDetailsContainer />} />
-        {/* phenotype routes */}
-        <Route path="/phenotypes/:name" element={<PhenotypesWrapper />} />
-        {/* plasmid routes */}
-        <Route
-          path="/plasmids"
-          element={<PlasmidCatalogWrapper stockType="plasmid" />}
-        />
-        <Route path="/plasmids/:id" element={<PlasmidDetailsContainer />} />
-        {/* misc routes */}
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/cart" element={<ShoppingCartPage />} />
+          </Route>
+
+          {/* strain routes */}
+          <Route
+            path="strains"
+            element={<StrainCatalogWrapper stockType="strain" />}>
+            <Route path=":id" element={<StrainDetailsContainer />} />
+          </Route>
+
+          {/* phenotype routes */}
+          <Route path="phenotypes/:name" element={<PhenotypesWrapper />} />
+
+          {/* plasmid routes */}
+          <Route
+            path="plasmids"
+            element={<PlasmidCatalogWrapper stockType="plasmid" />}>
+            <Route path=":id" element={<PlasmidDetailsContainer />} />
+          </Route>
+
+          {/* misc routes */}
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cart" element={<ShoppingCartPage />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
