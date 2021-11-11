@@ -129,6 +129,16 @@ const PageNotFound = lazy(
     ),
 )
 
+const getStrainOrPlasmids = (type: "strain" | "plasmid") => {
+  if (type === "strain") {
+    return <Route index element={<StrainCatalogWrapper stockType="strain" />} />
+  } else if (type === "plasmid") {
+    return (
+      <Route index element={<PlasmidCatalogWrapper stockType="plasmid" />} />
+    )
+  }
+}
+
 const RenderRoutes = () => {
   useGoogleAnalytics()
 
@@ -184,10 +194,7 @@ const RenderRoutes = () => {
 
           {/* strain routes */}
           <Route path="strains">
-            <Route
-              index
-              element={<StrainCatalogWrapper stockType="strain" />}
-            />
+            {getStrainOrPlasmids("strain")}
             <Route path=":id" element={<StrainDetailsContainer />} />
           </Route>
 
@@ -196,10 +203,7 @@ const RenderRoutes = () => {
 
           {/* plasmid routes */}
           <Route path="plasmids">
-            <Route
-              index
-              element={<PlasmidCatalogWrapper stockType="plasmid" />}
-            />
+            {getStrainOrPlasmids("plasmid")}
             <Route path=":id" element={<PlasmidDetailsContainer />} />
           </Route>
 
