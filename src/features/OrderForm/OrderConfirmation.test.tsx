@@ -41,27 +41,4 @@ describe("OrderForm/OrderConfirmation", () => {
       ).toBeInTheDocument()
     })
   })
-
-  describe("render with location state undefined", () => {
-    const props = {
-      location: {
-        pathname: "/order/submitted",
-        state: undefined,
-      },
-    }
-    it("does not display confirmation page", () => {
-      render(
-        <BrowserRouter>
-          <OrderConfirmation {...props} />
-        </BrowserRouter>,
-      )
-      expect(
-        screen.queryByRole("heading", { name: "Thank you for your order" }),
-      ).not.toBeInTheDocument()
-      expect(screen.queryByText(/Order ID/)).not.toBeInTheDocument()
-      expect(
-        screen.queryByRole("button", { name: "Back to DSC homepage" }),
-      ).not.toBeInTheDocument()
-    })
-  })
 })
