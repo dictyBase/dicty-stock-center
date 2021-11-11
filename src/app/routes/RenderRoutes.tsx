@@ -131,10 +131,18 @@ const PageNotFound = lazy(
 
 const getStrainOrPlasmids = (type: "strain" | "plasmid") => {
   if (type === "strain") {
-    return <Route index element={<StrainCatalogWrapper stockType="strain" />} />
+    return (
+      <Route path="strains">
+        <Route index element={<StrainCatalogWrapper stockType={type} />} />)
+        <Route path=":id" element={<StrainDetailsContainer />} />
+      </Route>
+    )
   } else if (type === "plasmid") {
     return (
-      <Route index element={<PlasmidCatalogWrapper stockType="plasmid" />} />
+      <Route path="plasmids">
+        <Route index element={<PlasmidCatalogWrapper stockType={type} />} />
+        <Route path=":id" element={<PlasmidDetailsContainer />} />
+      </Route>
     )
   }
 }
@@ -193,19 +201,13 @@ const RenderRoutes = () => {
           </Route>
 
           {/* strain routes */}
-          <Route path="strains">
-            {getStrainOrPlasmids("strain")}
-            <Route path=":id" element={<StrainDetailsContainer />} />
-          </Route>
+          {getStrainOrPlasmids("strain")}
 
           {/* phenotype routes */}
           <Route path="phenotypes/:name" element={<PhenotypesWrapper />} />
 
           {/* plasmid routes */}
-          <Route path="plasmids">
-            {getStrainOrPlasmids("plasmid")}
-            <Route path=":id" element={<PlasmidDetailsContainer />} />
-          </Route>
+          {getStrainOrPlasmids("plasmid")}
 
           {/* misc routes */}
           <Route path="/contact" element={<ContactPage />} />
