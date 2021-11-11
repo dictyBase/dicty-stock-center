@@ -14,7 +14,7 @@ import characterConverter from "common/utils/characterConverter"
  * It is responsible for fetching the data and passing it down to more specific components.
  */
 const StrainDetailsContainer = () => {
-  let { id } = useParams()
+  const { id } = useParams()
   const { loading, error, data } = useStrainQuery({
     variables: { id: id + "" },
     errorPolicy: "ignore",
