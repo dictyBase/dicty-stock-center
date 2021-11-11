@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => {
     useLocation: () => ({
       search: "?filter=regular",
     }),
-    useHistory: jest.fn(),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
@@ -37,9 +37,6 @@ describe("Stocks/Catalogs/common/CatalogWrapper", () => {
   })
 
   it("should redirect if no search filter", () => {
-    ;(useNavigate as jest.Mock).mockReturnValueOnce({
-      push: mockHistoryPush,
-    })
     jest.spyOn(URLSearchParams.prototype, "get").mockReturnValue("")
 
     render(
