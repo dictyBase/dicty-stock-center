@@ -23,7 +23,7 @@ const CatalogWrapper = ({ stockType }: Props) => {
   const filter = searchQuery.get("filter")
 
   if (!filter) {
-    history(`${stockType}s?filter=regular`)
+    history(`?filter=regular`)
   }
 
   let catalog = <StrainCatalogContainer filter={filter} />
