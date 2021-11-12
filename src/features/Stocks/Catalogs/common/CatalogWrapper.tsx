@@ -22,9 +22,11 @@ const CatalogWrapper = ({ stockType }: Props) => {
   const searchQuery = useSearchQuery()
   const filter = searchQuery.get("filter")
 
-  if (!filter) {
-    history(`?filter=regular`)
-  }
+  React.useEffect(() => {
+    if (!filter) {
+      history(`?filter=regular`)
+    }
+  }, [])
 
   let catalog = <StrainCatalogContainer filter={filter} />
   if (stockType === "plasmid") {
