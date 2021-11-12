@@ -31,6 +31,7 @@ const CatalogWrapper = ({ stockType }: Props) => {
     if (!filter) {
       history(`?filter=regular`)
     }
+    // eslint-disable-next-line
   }, [])
 
   let catalog = (
