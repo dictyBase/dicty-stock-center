@@ -44,6 +44,6 @@ describe("Stocks/Catalogs/common/CatalogWrapper", () => {
       </MockedProvider>,
     )
 
-    expect(mockHistoryPush).toHaveBeenLastCalledWith("plasmids?filter=regular")
+    expect(mockHistoryPush).toHaveBeenLastCalledWith("?filter=regular")
   })
 })
