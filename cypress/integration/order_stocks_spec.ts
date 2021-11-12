@@ -1,10 +1,11 @@
 const screenWidths = [375, 768, 1280]
 
+// TODO: Uncomment cy.percySnapshot(...) after resolution from https://github.com/percy/percy-cypress/issues/430
 describe("ordering stocks", () => {
   it("should add strains to cart, fill out order form and successfully submit", () => {
     cy.visit("/")
     cy.findByText(/Genomic library pools/)
-    cy.percySnapshot("DSC homepage", { widths: screenWidths })
+    // cy.percySnapshot("DSC homepage", { widths: screenWidths })
 
     cy.log("Navigate to strain catalog")
     cy.findByTestId(/Strain Catalog/i).click()
@@ -15,19 +16,19 @@ describe("ordering stocks", () => {
     cy.findByRole("link", { name: /HL501\/X55/ }).click()
     cy.location("pathname").should("eq", "/stockcenter/strains/DBS0351365")
     cy.contains(/DL66/)
-    cy.percySnapshot("Strain details page", { widths: screenWidths })
+    // cy.percySnapshot("Strain details page", { widths: screenWidths })
 
     cy.log("Add two of this item to cart")
     cy.findByRole("button", { name: /Qty 1/i }).click()
     cy.findByRole("option", { name: "2" }).click()
     cy.findByRole("button", { name: /Add to Cart/i }).click()
     cy.contains(/DBS0351365/)
-    cy.percySnapshot("Add to cart popup", { widths: screenWidths })
+    // cy.percySnapshot("Add to cart popup", { widths: screenWidths })
 
     cy.log("Go to cart from popup")
     cy.findByText(/Added to Cart/)
     cy.findByRole("button", { name: /View cart/i }).click()
-    cy.percySnapshot("Shopping cart page", { widths: screenWidths })
+    // cy.percySnapshot("Shopping cart page", { widths: screenWidths })
 
     cy.log("Review cart and navigate to checkout page")
     cy.location("pathname").should("eq", "/stockcenter/cart")
@@ -52,17 +53,17 @@ describe("ordering stocks", () => {
 
     cy.log("Select shipping method")
     cy.findByRole("radio", { name: /Send prepaid shipping label/ }).click()
-    cy.percySnapshot("Order form shipping details page", {
-      widths: screenWidths,
-    })
+    // cy.percySnapshot("Order form shipping details page", {
+    //   widths: screenWidths,
+    // })
     cy.findByRole("button", { name: /Continue/i }).click()
 
     cy.log("Fill out payment information")
     cy.findByRole("checkbox").click()
     cy.findByRole("radio", { name: /Credit Card/i }).click()
-    cy.percySnapshot("Order form payment details page", {
-      widths: screenWidths,
-    })
+    // cy.percySnapshot("Order form payment details page", {
+    //   widths: screenWidths,
+    // })
     cy.findByRole("button", { name: /Continue/i }).click()
 
     cy.log("Verify and submit order")
@@ -70,9 +71,9 @@ describe("ordering stocks", () => {
     cy.findAllByText(/Art Vandelay/)
     cy.findByText(/Sending prepaid shipping label/i)
     cy.findByText(/Credit/i)
-    cy.percySnapshot("Order form submit page", {
-      widths: screenWidths,
-    })
+    // cy.percySnapshot("Order form submit page", {
+    //   widths: screenWidths,
+    // })
     cy.findByRole("button", { name: /Submit/i }).click()
 
     cy.log("Verify order summary")
@@ -83,9 +84,9 @@ describe("ordering stocks", () => {
     // need to wait for PDF to render
     // eslint-disable-next-line
     cy.wait(10000)
-    cy.percySnapshot("Order form summary page", {
-      widths: screenWidths,
-    })
+    // cy.percySnapshot("Order form summary page", {
+    //   widths: screenWidths,
+    // })
   })
 })
 
