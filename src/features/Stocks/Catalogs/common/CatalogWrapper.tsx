@@ -27,9 +27,11 @@ const CatalogWrapper = ({ stockType }: Props) => {
   // Holds the input value for search
   const search = searchQuery.get("search")
 
-  if (!filter) {
-    history(`?filter=regular`)
-  }
+  React.useEffect(() => {
+    if (!filter) {
+      history(`?filter=regular`)
+    }
+  }, [])
 
   let catalog = (
     <StrainCatalogContainer filter={filter} field={field} search={search} />
