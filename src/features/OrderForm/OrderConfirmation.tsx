@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, Navigate } from "react-router-dom"
+import { Link, Navigate, useParams } from "react-router-dom"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
@@ -33,10 +33,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 const OrderConfirmation = () => {
   const classes = useStyles()
   const { state } = useOrderStore()
+  const { orderId } = useParams()
 
   console.log(state)
 
-  if (!state) {
+  if (state.orderID === "" || state.orderID !== orderId) {
     return <Navigate to="/" />
   }
 

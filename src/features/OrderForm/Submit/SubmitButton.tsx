@@ -207,7 +207,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
           cartTotal: getCartTotal(addedItems),
         },
       })
-      history("/order/submitted")
+      history(`/order/submitted/${orderID}`)
       emptyCart()
     } catch (error) {
       setSubmitError(true)
