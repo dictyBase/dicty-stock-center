@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PDFViewer } from "@react-pdf/renderer"
 import OrderSummaryPDF from "./Submit/OrderSummaryPDF"
 import { OrderProvider } from "./context/OrderContext"
+import useOrderStore from "./context/useOrderStore"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -32,7 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
  */
 const OrderConfirmation = () => {
   const classes = useStyles()
-  const { state } = useLocation()
+  const { state } = useOrderStore()
+
+  console.log(state)
 
   if (!state) {
     return <Navigate to="/" />
