@@ -169,17 +169,7 @@ const RenderRoutes = () => {
             {/* TODO: Consider redirecting /order to /order/checkout since they just render the same component */}
             <Route index element={<OrderForm />} />
             <Route path="checkout" element={<OrderForm />} />
-            <Route
-              path="submitted"
-              element={
-                <OrderConfirmation
-                  location={{
-                    pathname: "",
-                    state: undefined,
-                  }}
-                />
-              }
-            />
+            <Route path="submitted" element={<OrderConfirmation />} />
           </Route>
 
           {/* strain routes */}
