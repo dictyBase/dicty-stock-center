@@ -14,6 +14,8 @@ import { useCartStore } from "features/ShoppingCart/CartStore"
 import useCartItems from "common/hooks/useCartItems"
 import { FormikValues } from "../utils/initialValues"
 import { CartItem } from "common/types"
+import { OrderActionType } from "../context/OrderContext"
+import useOrderStore from "../context/useOrderStore"
 
 /**
  * getIDs creates a new array of just stock IDs
@@ -172,6 +174,7 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
     skip: true, // skip initial fetch, we only want to fetch on button click
   })
   const classes = useStyles()
+  const { dispatch } = useOrderStore()
 
   const handleSubmit = async () => {
     try {
@@ -194,14 +197,17 @@ const SubmitButton = ({ formData, setSubmitError }: Props) => {
         "payer",
       )
       const order = await createOrder(getOrderVariables(formData, addedItems))
-      history("/order/submitted", {
-        state: {
-          orderID: order?.data?.createOrder?.id,
+      const orderID = order?.data?.createOrder?.id
+      dispatch({
+        type: OrderActionType.SET_ORDER,
+        payload: {
+          orderID: orderID ? orderID : "",
           formData,
           cartItems: addedItems,
           cartTotal: getCartTotal(addedItems),
         },
       })
+      history("/order/submitted")
       emptyCart()
     } catch (error) {
       setSubmitError(true)
