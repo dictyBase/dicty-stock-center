@@ -9,6 +9,7 @@ import { grey } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PDFViewer } from "@react-pdf/renderer"
 import OrderSummaryPDF from "./Submit/OrderSummaryPDF"
+import { OrderProvider } from "./context/OrderContext"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -38,55 +39,57 @@ const OrderConfirmation = () => {
   }
 
   return (
-    <Grid container alignItems="center" className={classes.container}>
-      <Grid item xs={12}>
-        <Box margin={2}>
-          <Typography gutterBottom variant="h1">
-            <FontAwesomeIcon icon="check-circle" /> Thank you for your order
-          </Typography>
-          <Box mt={3} mb={3}>
-            <Typography
-              gutterBottom
-              component="p"
-              className={classes.confirmation}>
-              <strong>Order ID: {state.orderID}</strong>
+    <OrderProvider>
+      <Grid container alignItems="center" className={classes.container}>
+        <Grid item xs={12}>
+          <Box margin={2}>
+            <Typography gutterBottom variant="h1">
+              <FontAwesomeIcon icon="check-circle" /> Thank you for your order
             </Typography>
+            <Box mt={3} mb={3}>
+              <Typography
+                gutterBottom
+                component="p"
+                className={classes.confirmation}>
+                <strong>Order ID: {state.orderID}</strong>
+              </Typography>
+            </Box>
+            <Box mb={3}>
+              <Typography gutterBottom component="p">
+                We have sent you a confirmation email.
+              </Typography>
+              <Typography gutterBottom component="p">
+                The <strong>Payer</strong> will soon receive emails through the{" "}
+                <strong>NU Core</strong> (Northwestern University) system to
+                complete payment.
+              </Typography>
+            </Box>
+            <PDFViewer width={800} height={600}>
+              <OrderSummaryPDF
+                cartItems={state.cartItems}
+                formData={state.formData}
+                cartTotal={state.cartTotal}
+                orderID={state.orderID}
+              />
+            </PDFViewer>
           </Box>
-          <Box mb={3}>
-            <Typography gutterBottom component="p">
-              We have sent you a confirmation email.
-            </Typography>
-            <Typography gutterBottom component="p">
-              The <strong>Payer</strong> will soon receive emails through the{" "}
-              <strong>NU Core</strong> (Northwestern University) system to
-              complete payment.
-            </Typography>
+        </Grid>
+        <Grid item>
+          <Box margin={2}>
+            <Button
+              component={Link}
+              to="/"
+              color="primary"
+              variant="contained"
+              size="large"
+              className={classes.button}
+              startIcon={<FontAwesomeIcon icon="home" />}>
+              Back to DSC homepage
+            </Button>
           </Box>
-          <PDFViewer width={800} height={600}>
-            <OrderSummaryPDF
-              cartItems={state.cartItems}
-              formData={state.formData}
-              cartTotal={state.cartTotal}
-              orderID={state.orderID}
-            />
-          </PDFViewer>
-        </Box>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Box margin={2}>
-          <Button
-            component={Link}
-            to="/"
-            color="primary"
-            variant="contained"
-            size="large"
-            className={classes.button}
-            startIcon={<FontAwesomeIcon icon="home" />}>
-            Back to DSC homepage
-          </Button>
-        </Box>
-      </Grid>
-    </Grid>
+    </OrderProvider>
   )
 }
 

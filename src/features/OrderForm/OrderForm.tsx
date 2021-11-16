@@ -9,6 +9,7 @@ import SubmitPage from "./Submit/SubmitPage"
 import OrderFormStepper from "./OrderFormStepper"
 import SubmitError from "./Submit/SubmitError"
 import initialValues from "./utils/initialValues"
+import { OrderProvider } from "./context/OrderContext"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -65,20 +66,25 @@ const OrderForm = () => {
   }
 
   return (
-    <Grid container className={classes.container}>
-      <Helmet>
-        <title>Order Form - Dicty Stock Center</title>
-        <meta name="description" content="Order form for Dicty Stock Center" />
-      </Helmet>
-      <Grid item xs={12}>
-        <Typography variant="h1" align="center">
-          Checkout
-        </Typography>
-        <OrderFormStepper step={step} />
-        {submitError && <SubmitError />}
-        {pageContent}
+    <OrderProvider>
+      <Grid container className={classes.container}>
+        <Helmet>
+          <title>Order Form - Dicty Stock Center</title>
+          <meta
+            name="description"
+            content="Order form for Dicty Stock Center"
+          />
+        </Helmet>
+        <Grid item xs={12}>
+          <Typography variant="h1" align="center">
+            Checkout
+          </Typography>
+          <OrderFormStepper step={step} />
+          {submitError && <SubmitError />}
+          {pageContent}
+        </Grid>
       </Grid>
-    </Grid>
+    </OrderProvider>
   )
 }
 
