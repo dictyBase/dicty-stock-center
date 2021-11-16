@@ -7,17 +7,17 @@ enum OrderActionType {
 }
 
 interface OrderState {
-  orderID?: string
+  orderID: string
   formData: FormikValues
   cartItems: Array<CartItem>
   cartTotal: string
 }
 
 const initialState: OrderState = {
-  orderID: undefined,
+  orderID: "",
   formData: {} as FormikValues,
   cartItems: [],
-  cartTotal: "0",
+  cartTotal: "$0.00",
 }
 
 type Action = {
