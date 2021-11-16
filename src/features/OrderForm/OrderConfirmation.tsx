@@ -35,9 +35,7 @@ const OrderConfirmation = () => {
   const { state } = useOrderStore()
   const { orderId } = useParams()
 
-  console.log(state)
-
-  if (state.orderID === "" || state.orderID !== orderId) {
+  if (!state || state.orderID === "" || state.orderID !== orderId) {
     return <Navigate to="/" />
   }
 
