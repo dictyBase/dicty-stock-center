@@ -95,16 +95,10 @@ const PlasmidDetailsContainer = lazy(
     ),
 )
 
-// order form routes
-const OrderForm = lazy(
+// order routes
+const OrderRoutes = lazy(
   () =>
-    import(/* webpackChunkName: "OrderForm" */ "features/OrderForm/OrderForm"),
-)
-const OrderConfirmation = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "OrderConfirmation" */ "features/OrderForm/OrderConfirmation"
-    ),
+    import(/* webpackChunkName: "OrderRoutes" */ "features/OrderForm/OrderRoutes"),
 )
 
 // misc routes
@@ -165,12 +159,7 @@ const RenderRoutes = () => {
           />
 
           {/* order form routes */}
-          <Route path="order">
-            {/* TODO: Consider redirecting /order to /order/checkout since they just render the same component */}
-            <Route index element={<OrderForm />} />
-            <Route path="checkout" element={<OrderForm />} />
-            <Route path="submitted" element={<OrderConfirmation />} />
-          </Route>
+          <Route path="order/*" element={<OrderRoutes />} />
 
           {/* strain routes */}
           <Route path="strains">
