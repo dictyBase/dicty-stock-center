@@ -9,7 +9,7 @@ const OrderRoutes = () => {
       <Routes>
         <Route index element={<Navigate to="checkout" />} />
         <Route path="checkout" element={<OrderForm />} />
-        <Route path="submitted" element={<OrderConfirmation />} />
+        <Route path="submitted/:orderId" element={<OrderConfirmation />} />
       </Routes>
     </OrderProvider>
   )
