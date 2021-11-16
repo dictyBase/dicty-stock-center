@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, Navigate } from "react-router-dom"
+import { Link, useLocation, Navigate } from "react-router-dom"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
@@ -9,8 +9,6 @@ import { grey } from "@material-ui/core/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PDFViewer } from "@react-pdf/renderer"
 import OrderSummaryPDF from "./Submit/OrderSummaryPDF"
-import { CartItem } from "common/types"
-import { FormikValues } from "./utils/initialValues"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -28,31 +26,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type LocationProps = {
-  location: {
-    /** URL Pathname */
-    pathname: string
-    /** State passed as props from history.push */
-    state?: {
-      /** Submitted order ID */
-      orderID: string
-      /** Object containing all entered form data */
-      formData: FormikValues
-      /** All items from this order */
-      cartItems: CartItem[]
-      /** Total cost of items in cart */
-      cartTotal: string
-    }
-  }
-}
-
 /**
  * Displays notification that the user's order was submitted successfully.
  */
-
-const OrderConfirmation = ({ location }: LocationProps) => {
+const OrderConfirmation = () => {
   const classes = useStyles()
-  const { state } = location
+  const { state } = useLocation()
 
   if (!state) {
     return <Navigate to="/" />
