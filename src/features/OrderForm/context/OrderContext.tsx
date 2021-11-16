@@ -52,5 +52,11 @@ const OrderProvider = ({ children }: { children: React.ReactNode }) => {
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>
 }
 
-export type { OrderState, OrderActionType, Action }
-export { OrderContext, OrderProvider, orderReducer, initialState }
+export type { OrderState, Action }
+export {
+  OrderContext,
+  OrderProvider,
+  orderReducer,
+  initialState,
+  OrderActionType,
+}
