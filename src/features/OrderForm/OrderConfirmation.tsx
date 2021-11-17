@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { PDFViewer } from "@react-pdf/renderer"
 import OrderSummaryPDF from "./Submit/OrderSummaryPDF"
 import useOrderStore from "./context/useOrderStore"
+import { OrderState } from "./context/OrderContext"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -76,6 +77,17 @@ const OrderDescription = () => (
   </>
 )
 
+const ShowPDF = ({ state }: { state: OrderState }) => (
+  <PDFViewer width={800} height={600}>
+    <OrderSummaryPDF
+      cartItems={state.cartItems}
+      formData={state.formData}
+      cartTotal={state.cartTotal}
+      orderID={state.orderID}
+    />
+  </PDFViewer>
+)
+
 /**
  * Displays notification that the user's order was submitted successfully.
  */
@@ -94,14 +106,7 @@ const OrderConfirmation = () => {
             orderID={state.orderID}
           />
           <OrderDescription />
-          <PDFViewer width={800} height={600}>
-            <OrderSummaryPDF
-              cartItems={state.cartItems}
-              formData={state.formData}
-              cartTotal={state.cartTotal}
-              orderID={state.orderID}
-            />
-          </PDFViewer>
+          <ShowPDF state={state} />
         </Box>
       </Grid>
       <BackToHomepage button={classes.button} />
