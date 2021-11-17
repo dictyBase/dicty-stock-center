@@ -35,12 +35,7 @@ const OrderContext = React.createContext<OrderStateContextProps>(
 )
 
 const orderReducer = (state: OrderState, action: Action) => {
-  switch (action.type) {
-    case "SET_ORDER":
-      return { ...action.payload }
-    default:
-      return state
-  }
+  return { ...action.payload }
 }
 
 const OrderProvider = ({ children }: { children: React.ReactNode }) => {
