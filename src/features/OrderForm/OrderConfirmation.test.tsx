@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import OrderConfirmation from "./OrderConfirmation"
-import { OrderContext, orderReducer, OrderState } from "./context/OrderContext"
+import { OrderState } from "./context/OrderContext"
 import { FormikValues } from "./utils/initialValues"
 
 const orderState: OrderState = {
@@ -19,10 +19,10 @@ jest.mock("@react-pdf/renderer", () => ({
 }))
 
 jest.mock("react-router-dom", () => {
-  const useParams = () => {
-    return { orderId: orderState.orderID }
-  }
-  return { useParams }
+  const useParams = () => ({ orderId: orderState.orderID })
+  const Navigate = () => <h1>Stockcenter</h1>
+
+  return { useParams, Navigate }
 })
 
 jest.mock("./context/useOrderStore", () => {
