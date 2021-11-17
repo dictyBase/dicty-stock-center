@@ -77,7 +77,7 @@ describe("ordering stocks", () => {
     cy.findByRole("button", { name: /Submit/i }).click()
 
     cy.log("Verify order summary")
-    cy.location("pathname").should("eq", "/stockcenter/order/submitted")
+    cy.url().should("contain", "/stockcenter/order/submitted/")
     cy.findByText(/Thank you for your order/)
     cy.findByText(/Order ID: .+?/)
     cy.frameLoaded()
