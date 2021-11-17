@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react"
 import OrderConfirmation from "./OrderConfirmation"
 import { OrderState } from "./context/OrderContext"
 import { FormikValues } from "./utils/initialValues"
+import useOrderStore from "./context/useOrderStore"
+import { useParams, Navigate, NavigateProps } from "react-router-dom"
 
 const orderState: OrderState = {
   orderID: "123456",
@@ -20,7 +22,7 @@ jest.mock("@react-pdf/renderer", () => ({
 
 jest.mock("react-router-dom", () => {
   const useParams = jest.fn().mockReturnValue({ orderId: orderState.orderID })
-  const Navigate = jest.fn().mockReturnValue(() => <h1>Stockcenter</h1>)
+  const Navigate = jest.fn()
 
   return { useParams, Navigate }
 })
@@ -32,7 +34,7 @@ jest.mock("./context/useOrderStore", () =>
 )
 
 describe("OrderForm/OrderConfirmation", () => {
-  describe("render with location state prop", () => {
+  describe("render with proper order state", () => {
     it("renders success message for valid order IDs", () => {
       render(<OrderConfirmation />)
       expect(
@@ -44,6 +46,25 @@ describe("OrderForm/OrderConfirmation", () => {
       expect(
         screen.getByRole("button", { name: "Back to DSC homepage" }),
       ).toBeInTheDocument()
+    })
+  })
+
+  describe("render with undefined/invalid order state", () => {
+    it("should redirect to home", () => {
+      ;(useParams as jest.Mock).mockReturnValueOnce({ orderId: "123" })
+      ;(useOrderStore as jest.Mock).mockReturnValueOnce({
+        state: {
+          orderID: "",
+          cartItems: [],
+          formData: {} as FormikValues,
+          cartTotal: "$0.00",
+        },
+      })
+      ;(Navigate as jest.Mock).mockReturnValueOnce(
+        ({ to, replace, state }: NavigateProps) => <h1>Stockcenter</h1>,
+      )
+
+      render(<OrderConfirmation />)
     })
   })
 })
