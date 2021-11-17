@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter } from "react-router-dom"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import PaymentPage from "./PaymentPage"
 import { OrderFormWrapper } from "common/utils/testing"
@@ -48,5 +48,26 @@ describe("OrderForm/Payment/PaymentPage", () => {
       userEvent.click(backButton)
       expect(mockPrevStep).toHaveBeenCalled()
     })
+  })
+
+  it("should use mock values when checkbox is clicked and submitted", async () => {
+    render(
+      <BrowserRouter>
+        <OrderFormWrapper>
+          <PaymentPage {...props} />
+        </OrderFormWrapper>
+      </BrowserRouter>,
+    )
+
+    const checkbox = screen.getByDisplayValue("sameAsShipping")
+    expect(checkbox).toBeInTheDocument()
+    await waitFor(() => userEvent.click(checkbox))
+
+    const firstNameInput = screen.getByLabelText("payerFirstName")
+    expect(firstNameInput).toHaveValue(mockValues.firstName)
+
+    const continueButton = screen.getByText("Continue")
+    expect(continueButton).toBeInTheDocument()
+    await waitFor(() => userEvent.click(continueButton))
   })
 })
