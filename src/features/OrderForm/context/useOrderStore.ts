@@ -2,13 +2,13 @@ import React from "react"
 import { OrderContext } from "./OrderContext"
 
 const useOrderStore = () => {
-  const context = React.useContext(OrderContext)
-  if (!context) {
+  const orderContext = React.useContext(OrderContext)
+  if (!orderContext) {
     throw new Error(
       "useOrderStore must only be used inside an OrderProvider component",
     )
   }
-  return context
+  return orderContext
 }
 
 export default useOrderStore
