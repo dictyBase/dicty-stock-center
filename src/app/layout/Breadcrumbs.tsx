@@ -52,7 +52,9 @@ const Breadcrumbs = () => {
   const classes = useStyles()
   const location = useLocation()
   // get list of pathnames, filter out empty strings
-  const pathnames = location.pathname.split("/").filter((x) => x)
+  const pathnames: Array<string> = location.pathname
+    .split("/")
+    .filter((x: string) => x)
 
   return (
     <MuiBreadCrumbs aria-label="breadcrumb">
