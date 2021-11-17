@@ -1,6 +1,5 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import { BrowserRouter } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
 import { OrderContext, orderReducer, OrderState } from "./context/OrderContext"
 import { FormikValues } from "./utils/initialValues"
@@ -34,12 +33,6 @@ jest.mock("./context/useOrderStore", () => {
   }
   return useOrderStore
 })
-
-const MockOrderProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = React.useReducer(orderReducer, orderState)
-  const value = React.useMemo(() => ({ state, dispatch }), [state])
-  return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>
-}
 
 describe("OrderForm/OrderConfirmation", () => {
   describe("render with location state prop", () => {
