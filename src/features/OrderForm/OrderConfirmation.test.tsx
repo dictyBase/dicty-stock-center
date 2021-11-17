@@ -19,20 +19,17 @@ jest.mock("@react-pdf/renderer", () => ({
 }))
 
 jest.mock("react-router-dom", () => {
-  const useParams = () => ({ orderId: orderState.orderID })
-  const Navigate = () => <h1>Stockcenter</h1>
+  const useParams = jest.fn().mockReturnValue({ orderId: orderState.orderID })
+  const Navigate = jest.fn().mockReturnValue(() => <h1>Stockcenter</h1>)
 
   return { useParams, Navigate }
 })
 
-jest.mock("./context/useOrderStore", () => {
-  const useOrderStore = () => {
-    return {
-      state: orderState,
-    }
-  }
-  return useOrderStore
-})
+jest.mock("./context/useOrderStore", () =>
+  jest.fn().mockReturnValue({
+    state: orderState,
+  }),
+)
 
 describe("OrderForm/OrderConfirmation", () => {
   describe("render with location state prop", () => {
