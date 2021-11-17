@@ -9,20 +9,14 @@ import StrainDetailsCard from "./StrainDetailsCard"
 import GraphQLErrorPage from "features/Errors/GraphQLErrorPage"
 import characterConverter from "common/utils/characterConverter"
 
-type Params = {
-  /** Stock ID from URL */
-  id: string
-}
-
 /**
  * StrainDetailsContainer is the main component for an individual strain details page.
  * It is responsible for fetching the data and passing it down to more specific components.
  */
-
 const StrainDetailsContainer = () => {
-  const { id } = useParams<Params>()
+  const { id } = useParams()
   const { loading, error, data } = useStrainQuery({
-    variables: { id },
+    variables: { id: id + "" },
     errorPolicy: "ignore",
     fetchPolicy: "cache-and-network",
   })

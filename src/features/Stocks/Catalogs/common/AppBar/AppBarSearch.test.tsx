@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import AppBarSearch from "./AppBarSearch"
-import { useHistory } from "react-router-dom"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
@@ -16,7 +15,7 @@ jest.mock("react-router-dom", () => {
     useLocation: () => ({
       search: "?filter=regular",
     }),
-    useHistory: jest.fn(),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
@@ -69,12 +68,6 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       <AppBarSearch {...props} />
     </CatalogProvider>
   )
-
-  beforeEach(() => {
-    ;(useHistory as jest.Mock).mockReturnValue({
-      push: mockHistoryPush,
-    })
-  })
 
   afterEach(() => {
     jest.clearAllMocks()

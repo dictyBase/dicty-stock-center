@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import { PageEditor } from "dicty-components-page-editor"
@@ -18,11 +18,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
-
-type Params = {
-  /** Slug name from URL */
-  name: string
-}
 
 type Props = {
   location: {
@@ -51,8 +46,8 @@ const EditInfoPage = ({ location }: Props) => {
       },
     },
   })
-  const history = useHistory()
-  const { name } = useParams<Params>()
+  const history = useNavigate()
+  const { name } = useParams()
 
   const prevURL = `/information/${name}`
 
@@ -69,11 +64,11 @@ const EditInfoPage = ({ location }: Props) => {
         },
       },
     })
-    setTimeout(() => history.push(prevURL), 1000)
+    setTimeout(() => history(prevURL), 1000)
   }
 
   const handleCancelClick = () => {
-    history.push(prevURL)
+    history(prevURL)
   }
 
   return (

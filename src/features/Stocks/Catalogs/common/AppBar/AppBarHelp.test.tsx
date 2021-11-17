@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 import { CatalogProvider } from "../../context/CatalogContext"
@@ -15,7 +15,7 @@ jest.mock("react-router-dom", () => {
     useLocation: () => ({
       search: "?filter=regular",
     }),
-    useHistory: jest.fn(),
+    useNavigate: jest.fn(),
   }
 })
 const mockSetHelpDialogOpen = jest.fn()
@@ -43,7 +43,7 @@ describe("Stocks/Catalog/common/AppBar/AppBarHelp", () => {
   const buttonTitle = "Catalog Help"
 
   beforeEach(() => {
-    ;(useHistory as jest.Mock).mockReturnValue({
+    ;(useNavigate as jest.Mock).mockReturnValue({
       push: mockHistoryPush,
     })
   })

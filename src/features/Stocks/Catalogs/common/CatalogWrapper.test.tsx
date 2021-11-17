@@ -2,7 +2,6 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import CatalogWrapper from "./CatalogWrapper"
 import { MockedProvider } from "@apollo/client/testing"
-import { useHistory } from "react-router-dom"
 
 const mockHistoryPush = jest.fn()
 
@@ -13,7 +12,7 @@ jest.mock("react-router-dom", () => {
     useLocation: () => ({
       search: "?filter=regular",
     }),
-    useHistory: jest.fn(),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
@@ -37,9 +36,6 @@ describe("Stocks/Catalogs/common/CatalogWrapper", () => {
   })
 
   it("should redirect if no search filter", () => {
-    ;(useHistory as jest.Mock).mockReturnValueOnce({
-      push: mockHistoryPush,
-    })
     jest.spyOn(URLSearchParams.prototype, "get").mockReturnValue("")
 
     render(
@@ -48,6 +44,6 @@ describe("Stocks/Catalogs/common/CatalogWrapper", () => {
       </MockedProvider>,
     )
 
-    expect(mockHistoryPush).toHaveBeenLastCalledWith("plasmids?filter=regular")
+    expect(mockHistoryPush).toHaveBeenLastCalledWith("?filter=regular")
   })
 })

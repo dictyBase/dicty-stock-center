@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import StrainCatalogContainer from "../Strains/StrainCatalogContainer"
 import PlasmidCatalogContainer from "../Plasmids/PlasmidCatalogContainer"
 import { CatalogProvider } from "features/Stocks/Catalogs/context/CatalogContext"
@@ -18,13 +18,16 @@ type Props = {
  */
 
 const CatalogWrapper = ({ stockType }: Props) => {
-  const history = useHistory()
+  const history = useNavigate()
   const searchQuery = useSearchQuery()
   const filter = searchQuery.get("filter")
 
-  if (!filter) {
-    history.push(`${stockType}s?filter=regular`)
-  }
+  React.useEffect(() => {
+    if (!filter) {
+      history(`?filter=regular`)
+    }
+    // eslint-disable-next-line
+  }, [])
 
   let catalog = <StrainCatalogContainer filter={filter} />
   if (stockType === "plasmid") {

@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
-import Loader from "common/components/Loader"
 import useGoogleAnalytics from "common/hooks/useGoogleAnalytics"
+import Loader from "common/components/Loader"
 
 const Homepage = lazy(
   () => import(/* webpackChunkName: "Homepage" */ "features/Home/Homepage"),
@@ -95,16 +95,10 @@ const PlasmidDetailsContainer = lazy(
     ),
 )
 
-// order form routes
-const OrderForm = lazy(
+// order routes
+const OrderRoutes = lazy(
   () =>
-    import(/* webpackChunkName: "OrderForm" */ "features/OrderForm/OrderForm"),
-)
-const OrderConfirmation = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "OrderConfirmation" */ "features/OrderForm/OrderConfirmation"
-    ),
+    import(/* webpackChunkName: "OrderRoutes" */ "features/OrderForm/OrderRoutes"),
 )
 
 // misc routes
@@ -134,52 +128,66 @@ const RenderRoutes = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        {/* authentication routes */}
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/:provider/callback" component={OauthCallback} />
-        <Route exact path="/load/auth" component={AuthLoader} />
-        <PrivateRoute exact path="/logout" component={Logout} />
-        <PrivateRoute exact path="/mydsc" component={MyDscPage} />
-        {/* editable page routes */}
-        <Route exact path="/information" component={InformationContainer} />
-        <Route exact path="/information/:name" component={InfoPageContainer} />
-        <PrivateRoute
-          exact
-          path="/information/:name/edit"
-          component={EditInfoPage}
-        />
-        <PrivateRoute exact path="/addpage" component={AddPage} />
-        {/* order form routes */}
-        <Route exact path="/order" component={OrderForm} />
-        <Route exact path="/order/checkout" component={OrderForm} />
-        <Route exact path="/order/submitted" component={OrderConfirmation} />
-        {/* strain routes */}
-        <Route
-          exact
-          path="/strains"
-          render={(props) => (
-            <StrainCatalogWrapper {...props} stockType="strain" />
-          )}
-        />
-        <Route exact path="/strains/:id" component={StrainDetailsContainer} />
-        {/* phenotype routes */}
-        <Route exact path="/phenotypes/:name" component={PhenotypesWrapper} />
-        {/* plasmid routes */}
-        <Route
-          exact
-          path="/plasmids"
-          render={(props) => (
-            <PlasmidCatalogWrapper {...props} stockType="plasmid" />
-          )}
-        />
-        <Route exact path="/plasmids/:id" component={PlasmidDetailsContainer} />
-        {/* misc routes */}
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/cart" component={ShoppingCartPage} />
-        <Route exact path="*" component={PageNotFound} />
-      </Switch>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Homepage />} />
+
+          {/* authentication routes */}
+          <Route path="login" element={<Login />} />
+          <Route path=":provider/callback" element={<OauthCallback />} />
+          <Route path="load/auth" element={<AuthLoader />} />
+          <Route path="logout" element={<PrivateRoute component={Logout} />} />
+          <Route
+            path="mydsc"
+            element={<PrivateRoute component={MyDscPage} />}
+          />
+
+          {/* editable page routes */}
+          <Route path="information">
+            <Route index element={<InformationContainer />} />
+            <Route path=":name">
+              <Route index element={<InfoPageContainer />} />
+              <Route
+                path="edit"
+                element={<PrivateRoute component={EditInfoPage} />}
+              />
+            </Route>
+          </Route>
+          <Route
+            path="addpage"
+            element={<PrivateRoute component={AddPage} />}
+          />
+
+          {/* order form routes */}
+          <Route path="order/*" element={<OrderRoutes />} />
+
+          {/* strain routes */}
+          <Route path="strains">
+            <Route
+              index
+              element={<StrainCatalogWrapper stockType="strain" />}
+            />
+            <Route path=":id" element={<StrainDetailsContainer />} />
+          </Route>
+
+          {/* phenotype routes */}
+          <Route path="phenotypes/:name" element={<PhenotypesWrapper />} />
+
+          {/* plasmid routes */}
+          <Route path="plasmids">
+            <Route path=":id" element={<PlasmidDetailsContainer />} />
+            <Route
+              index
+              element={<PlasmidCatalogWrapper stockType="plasmid" />}
+            />
+          </Route>
+
+          {/* misc routes */}
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cart" element={<ShoppingCartPage />} />
+        </Route>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </Suspense>
   )
 }

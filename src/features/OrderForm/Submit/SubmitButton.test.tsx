@@ -19,12 +19,9 @@ const mockHistoryPush = jest.fn()
 jest.mock("common/hooks/useCartItems")
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom")
-
   return {
     ...originalModule,
-    useHistory: () => ({
-      push: mockHistoryPush,
-    }),
+    useNavigate: (to: string) => mockHistoryPush,
   }
 })
 
