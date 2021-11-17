@@ -59,16 +59,21 @@ const OrderHeader = ({
 )
 
 const OrderDescription = () => (
-  <Box mb={3}>
-    <Typography gutterBottom component="p">
-      We have sent you a confirmation email.
+  <>
+    <Typography gutterBottom variant="h1">
+      <FontAwesomeIcon icon="check-circle" /> Thank you for your order
     </Typography>
-    <Typography gutterBottom component="p">
-      The <strong>Payer</strong> will soon receive emails through the{" "}
-      <strong>NU Core</strong> (Northwestern University) system to complete
-      payment.
-    </Typography>
-  </Box>
+    <Box mb={3}>
+      <Typography gutterBottom component="p">
+        We have sent you a confirmation email.
+      </Typography>
+      <Typography gutterBottom component="p">
+        The <strong>Payer</strong> will soon receive emails through the{" "}
+        <strong>NU Core</strong> (Northwestern University) system to complete
+        payment.
+      </Typography>
+    </Box>
+  </>
 )
 
 /**
@@ -78,18 +83,12 @@ const OrderConfirmation = () => {
   const classes = useStyles()
   const { state } = useOrderStore()
   const { orderId } = useParams()
-
-  if (!state || state.orderID === "" || state.orderID !== orderId) {
-    return <Navigate to="/" />
-  }
+  if (state.orderID !== orderId) return <Navigate to="/" />
 
   return (
     <Grid container alignItems="center" className={classes.container}>
       <Grid item xs={12}>
         <Box margin={2}>
-          <Typography gutterBottom variant="h1">
-            <FontAwesomeIcon icon="check-circle" /> Thank you for your order
-          </Typography>
           <OrderHeader
             confirmation={classes.confirmation}
             orderID={state.orderID}
