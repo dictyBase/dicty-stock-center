@@ -6,6 +6,7 @@ import { User } from "dicty-graphql-schema"
 import { AuthContext, authReducer } from "features/Authentication/AuthStore"
 import { CartContext, cartReducer } from "features/ShoppingCart/CartStore"
 import { CartItem } from "common/types"
+import { OrderProvider } from "features/OrderForm/context/OrderContext"
 
 type AuthProps = {
   children: React.ReactNode
@@ -91,9 +92,11 @@ const MockCartProvider = ({
   })
   return (
     <CartContext.Provider value={{ state, dispatch }}>
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <BrowserRouter>{children}</BrowserRouter>
-      </MockedProvider>
+      <OrderProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>{children}</BrowserRouter>
+        </MockedProvider>
+      </OrderProvider>
     </CartContext.Provider>
   )
 }
