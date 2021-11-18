@@ -3,13 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { TextField, IconButton, Chip } from "@material-ui/core"
+import { TextField, IconButton } from "@material-ui/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ActiveFilters from "./ActiveFilters"
-import Autocomplete, {
-  AutocompleteGetTagProps,
-} from "@material-ui/lab/Autocomplete"
-import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
+import Autocomplete from "@material-ui/lab/Autocomplete"
 
 const useStyles = makeStyles((theme) => ({
   searchForm: {
@@ -32,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
     height: "42px",
   },
 }))
-
-type DropDown = { name: string; value: string }
 
 /** getDetailsURL uses regex to check if a stock ID has been entered into the
  * catalog search box. It returns the URL to redirect to.
@@ -69,30 +64,20 @@ const useAppBarSearch = () => {
     history("?filter=available")
   }
 
-  const handleDropdownChange = ({ value }: DropDown) => {
-    setSearchBoxDropdownValue(value)
+  const handleDropdownChange = (
+    event: React.ChangeEvent<{ name?: string; value: any }>,
+  ) => {
+    setSearchBoxDropdownValue(event.target.value)
   }
 
-  const updateDropdown = ({ value }: DropDown) => {
-    history.push(`?filter=${leftDropdownValue}&field=${value}`)
-  }
-
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement> | React.MouseEvent,
+  ) => {
     event.preventDefault()
-
-    const { search } = event?.target?.elements
-    let value = search?.value?.trim()
-    if (!value || value === "") {
-      value = searchValue
-    }
-    setSearchValue(value)
-
-    console.log(value)
-
     setQueryVariables({
       cursor: 0,
       limit: 10,
-      filter: `${searchBoxDropdownValue}=~${value}`,
+      filter: `${searchBoxDropdownValue}=~${searchValue}`,
     })
     if (searchBoxDropdownValue === "id" && getDetailsURL(searchValue) !== "") {
       history(getDetailsURL(searchValue))
@@ -101,114 +86,53 @@ const useAppBarSearch = () => {
         `?filter=${leftDropdownValue}&${searchBoxDropdownValue}=${searchValue}`,
       )
     }
+  }
 
   return {
     handleChange,
     removeFilter,
     handleDropdownChange,
     handleSubmit,
-    updateDropdown,
   }
 }
 
 type Props = {
   /** List of dropdown items next to search box */
-  dropdownItems: Array<DropDown>
+  dropdownItems: Array<{
+    value: string
+    name: string
+  }>
 }
 
 /**
  * AppBarSearch is the search box found on a stock catalog page.
  */
+
 const AppBarSearch = ({ dropdownItems }: Props) => {
   const {
-    state: { searchValue, activeFilters, searchBoxDropdownValue },
+    state: { searchValue, activeFilters },
   } = useCatalogStore()
   const classes = useStyles()
-  const { handleChange, handleSubmit, removeFilter, updateDropdown } =
-    useAppBarSearch()
-
-  // Get dropdown item from searchBoxDropdownValue
-  const dropdownItem = dropdownItems.find(
-    (option) => option.value === searchBoxDropdownValue,
-  )
-  const defaultItem =
-    searchValue === "none" || !dropdownItem ? [] : [dropdownItem]
-  const [value, setValue] = React.useState<DropDown[]>([])
-
-  React.useEffect(() => {
-    setValue(defaultItem)
-  }, [searchBoxDropdownValue])
-
-  React.useEffect(() => {
-    setValue(defaultItem)
-    // eslint-disable-next-line
-  }, [searchBoxDropdownValue])
-  const renderTags = (
-    value: DropDown[],
-    getTagProps: AutocompleteGetTagProps,
-  ) => {
-    return value.map((option, index) => (
-      <FieldChip
-        key={`fieldChip#${index}`}
-        option={option}
-        searchValue={searchValue}
-        onDelete={() => {
-          updateDropdown({ name: "none", value: "none" })
-          handleChange("")
-        }}
-      <Chip
-        label={
-          searchValue.trim() === ""
-            ? option.name
-            : `${option.name} : ${searchValue}`
-        }
-        {...getTagProps({ index })}
-        size={"small"}
-        variant="outlined"
-        onDelete={() => {
-          handleChange("")
-          updateDropdown({ name: "none", value: "none" })
-        }}
-      />
-    ))
-  }
-
-  const onAutocompleteChange = (
-    event: React.ChangeEvent<{}>,
-  ) => {
-    const last = newValue.pop()
-    setValue(last ? [last] : [])
-    if (last) {
-      updateDropdown(last)
-    }
-  }
+  const { handleChange, handleSubmit, removeFilter } = useAppBarSearch()
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e, searchInput)}
-      className={classes.searchForm}>
+    <form onSubmit={handleSubmit} className={classes.searchForm}>
       <IconButton
+        onClick={handleSubmit}
         role="search-button"
-        className={classes.optionButton}
-        type="submit"
-        name="submit">
+        className={classes.optionButton}>
         <FontAwesomeIcon icon={"search"} size="xs" />
       </IconButton>
 
       <ActiveFilters filters={activeFilters} removeFilter={removeFilter} />
 
       <Autocomplete
-        multiple
-        disableClearable
-        limitTags={1}
-        id="fixed-tags-demo"
-        value={value}
-        onChange={onAutocompleteChange}
-        options={dropdownItems}
-        getOptionLabel={(option) => option.name}
-        renderTags={renderTags}
+        id="search-input-autocomplete"
+        options={dropdownItems.map((item) => item.name)}
+        value={searchValue}
         clearOnBlur={false}
         clearOnEscape={false}
+        onChange={(_, value) => handleChange(value ? value : "")}
         fullWidth
         renderInput={(params) => (
           <TextField
@@ -219,11 +143,10 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
               role: "search-input",
               id: "search-input",
             }}
+            onChange={(event) => handleChange(event.target.value)}
             variant="outlined"
             className={classes.searchInput}
             placeholder="Search entire catalog..."
-            name="search"
-            id="search"
           />
         )}
       />
@@ -231,5 +154,4 @@ const AppBarSearch = ({ dropdownItems }: Props) => {
   )
 }
 
-export type { DropDown }
 export default AppBarSearch

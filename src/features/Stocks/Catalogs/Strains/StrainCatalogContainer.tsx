@@ -16,9 +16,7 @@ import {
   StrainListDocument,
 } from "dicty-graphql-schema"
 import useLoadMoreItems from "common/hooks/useLoadMoreItems"
-import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
 
-// TODO: Change to type
 const leftDropdownItems = [
   {
     name: "Regular Strains",
@@ -43,14 +41,14 @@ const rightDropdownItems = [
     name: "Descriptor",
     value: "label",
   },
-  // {
-  //   name: "Summary",
-  //   value: "summary",
-  // },
-  // {
-  //   name: "ID",
-  //   value: "id",
-  // },
+  {
+    name: "Summary",
+    value: "summary",
+  },
+  {
+    name: "ID",
+    value: "id",
+  },
 ]
 
 type Strain = {
@@ -70,21 +68,6 @@ type CatalogQueryResponse = {
 type BacterialStrainsData = {
   bacterialFoodSource: CatalogQueryResponse
   symbioticFarmerBacterium: CatalogQueryResponse
-}
-
-const updateSearchQueries = (
-  filter: string,
-  field?: string,
-  search?: string,
-) => {
-  let path = `?filter=${filter}`
-  if (field && field !== "none") {
-    path += `&field=${field}`
-    if (search && search.trim() !== "") {
-      path += `&search=${search}`
-    }
-  }
-  return path
 }
 
 /**
@@ -157,8 +140,6 @@ const normalizeDataObject = (data: any) => {
 type Props = {
   /** Search query 'filter' from URL */
   filter: string | null
-  field?: string | null
-  search?: string | null
 }
 
 /**
@@ -166,64 +147,68 @@ type Props = {
  * It is responsible for fetching the data and passing it down to more specific features.
  */
 
-const StrainCatalogContainer = ({ filter, field, search }: Props) => {
+const StrainCatalogContainer = ({ filter }: Props) => {
   const {
     state: { query, queryVariables },
     dispatch,
   } = useCatalogStore()
-  const {
-    setActiveFilters,
-    setQueryVariables,
-    setQuery,
-    setSearchBoxDropdownValue,
-  } = useCatalogDispatch()
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: queryVariables,
   })
-  const { loadMoreItems, hasMore, setHasMore } = useLoadMoreItems()
+  const { loadMoreItems, hasMore } = useLoadMoreItems()
 
   React.useEffect(() => {
     const updateData = async () => {
       switch (filter) {
         case "regular":
-          setActiveFilters(["Regular"])
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["Regular"],
+          })
           dispatchStrainList(dispatch, filter)
           break
         case "gwdi":
-          setActiveFilters(["GWDI"])
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["GWDI"],
+          })
           dispatchStrainList(dispatch, filter)
           break
         case "bacterial":
-          setActiveFilters(["Bacterial"])
-          setQuery(ListBacterialStrainsDocument)
-          break
-        case "available":
-          setActiveFilters(["All"])
-          setQuery(ListStrainsInventoryDocument)
-          setQueryVariables({
-            cursor: 0,
-            limit: 10,
-            filter: "",
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: ["Bacterial"],
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY,
+            payload: ListBacterialStrainsDocument,
           })
           break
-      }
-
-      switch (field) {
-        case "label":
-          setSearchBoxDropdownValue("label")
+        case "available":
+          dispatch({
+            type: CatalogActionType.SET_ACTIVE_FILTERS,
+            payload: [],
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY,
+            payload: ListStrainsInventoryDocument,
+          })
+          dispatch({
+            type: CatalogActionType.SET_QUERY_VARIABLES,
+            payload: {
+              cursor: 0,
+              limit: 10,
+              filter: "",
+            },
+          })
           break
-        case "summary":
-          setSearchBoxDropdownValue("summary")
-          break
-        case "id":
-          setSearchBoxDropdownValue("id")
-          break
+        default:
+          return
       }
     }
-    // eslint-disable-next-line
-    updateData()
-  }, [dispatch, field])
 
+    updateData()
+  }, [dispatch, filter])
 
   let content = <div />
 
@@ -255,9 +240,5 @@ const StrainCatalogContainer = ({ filter, field, search }: Props) => {
   )
 }
 
-export {
-  dispatchStrainList,
-  normalizeBacterialStrainsData,
-  updateSearchQueries,
-}
+export { dispatchStrainList, normalizeBacterialStrainsData }
 export default StrainCatalogContainer

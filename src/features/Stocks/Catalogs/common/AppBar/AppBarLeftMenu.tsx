@@ -4,7 +4,6 @@ import AppBarDropdown from "./AppBarDropdown"
 import useSearchQuery from "common/hooks/useSearchQuery"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
 import useCatalogDispatch from "features/Stocks/Catalogs/context/useCatalogDispatch"
-import { updateSearchQueries } from "../../Strains/StrainCatalogContainer"
 
 type Props = {
   dropdownItems: Array<{
@@ -23,7 +22,7 @@ const AppBarLeftMenu = ({ dropdownItems }: Props) => {
   const filter = query.get("filter") || "all"
   const history = useNavigate()
   const {
-    state: { leftDropdownValue, searchBoxDropdownValue, searchValue },
+    state: { leftDropdownValue },
   } = useCatalogStore()
   const { setLeftDropdownValue } = useCatalogDispatch()
 
