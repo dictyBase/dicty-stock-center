@@ -78,10 +78,6 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       render(<MockComponent />)
       expect(screen.getByRole("search-input")).toBeInTheDocument()
     })
-    it("should render one button to clear search", () => {
-      render(<MockComponent />)
-      expect(screen.getByLabelText("Clear")).toBeInTheDocument()
-    })
     it("should render chip holder", () => {
       render(<MockComponent />)
       expect(screen.getByRole("chip-holder")).toBeInTheDocument()
@@ -97,10 +93,19 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
 
   describe("clear button", () => {
     it("should clear text box", async () => {
+      mockedUseCatalogStore.mockReturnValueOnce({
+        state: {
+          searchValue: "GWDI",
+          leftDropdownValue: "regular",
+          searchBoxDropdownValue: "label",
+        },
+      })
       render(<MockComponent />)
       const input = screen.getByRole("search-input") as HTMLInputElement
-      const clearButton = screen.getByLabelText("Clear")
+      const clearButton = screen.getByRole("remove-field")
       const searchVal = "GWDI"
+
+      expect(clearButton).toBeInTheDocument()
 
       userEvent.type(input, searchVal)
       await waitFor(() => {
@@ -108,7 +113,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       })
 
       await waitFor(() => userEvent.click(clearButton))
-      expect(mockSetSearchValue).toHaveBeenCalledWith("")
+      expect(input.value).toBe("GWDI")
     })
   })
 
@@ -131,7 +136,9 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
         limit: 10,
         filter: "label=~GWDI",
       })
-      expect(mockHistoryPush).toHaveBeenCalledWith("?filter=regular&label=GWDI")
+      expect(mockHistoryPush).toHaveBeenCalledWith(
+        "?filter=regular&field=label&search=GWDI",
+      )
     })
 
     it("should redirect to details page when valid strain ID is entered", () => {
@@ -198,7 +205,7 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
       userEvent.type(input, fakeStrainID)
       userEvent.click(searchButton)
       expect(mockHistoryPush).toHaveBeenCalledWith(
-        `?filter=regular&id=${fakeStrainID}`,
+        `?filter=regular&field=id&search=${fakeStrainID}`,
       )
     })
   })
@@ -206,29 +213,18 @@ describe("Stocks/Catalog//common/AppBar/AppBarSearch", () => {
   it("should remove active filter chip", async () => {
     mockedUseCatalogStore.mockReturnValueOnce({
       state: {
-        searchValue: "",
+        searchValue: "GWDI",
         leftDropdownValue: "regular",
-        searchBoxDropdownValue: "id",
-        activeFilters: ["Regular"],
+        searchBoxDropdownValue: "label",
       },
     })
     render(<MockComponent />)
 
-    const delButton = screen.getByRole("remove-chip")
+    const delButton = screen.getByRole("remove-field")
     expect(delButton).toBeInTheDocument()
     expect(delButton).toHaveClass("MuiChip-deleteIcon")
 
     await waitFor(() => userEvent.click(delButton))
-    expect(mockHistoryPush).toHaveBeenCalledWith("?filter=available")
+    expect(mockHistoryPush).toHaveBeenCalledWith("?filter=regular")
   })
-
-  // TODO: Enable test when field dropdown is implemented
-  // describe("dropdown select", () => {
-  //   it("should change searchbox dropdown value", () => {
-  //     render(<MockComponent />)
-  //     const dropdown = screen.getByRole("combobox")
-  //     userEvent.selectOptions(dropdown, "summary")
-  //     expect(mockSetSearchBoxDropdownValue).toHaveBeenCalledWith("summary")
-  //   })
-  // })
 })

@@ -285,7 +285,7 @@ describe("Stocks/Strains/StrainCatalogContainer", () => {
 
     it("should have no chips for filter=available", () => {
       render(<MockComponent mocks={listStrainMocks} filter="available" />)
-      expect(screen.queryByRole("chip")).not.toBeInTheDocument()
+      expect(screen.queryByRole("chip")).toBeInTheDocument()
     })
   })
 })

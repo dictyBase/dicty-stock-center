@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks"
 import useCatalogDispatch from "./useCatalogDispatch"
 import useCatalogStore from "features/Stocks/Catalogs/context/useCatalogStore"
-import { CatalogActionType } from "./CatalogContext"
+import { CatalogActionType, Filter } from "./CatalogContext"
 import { StrainListDocument } from "dicty-graphql-schema"
 
 const mockDispatch = jest.fn()
@@ -74,7 +74,7 @@ describe("features/Stocks/Catalogs/context/useCatalogDispatch", () => {
 
   it("should dispatch active filters", () => {
     const { result } = renderHook(() => useCatalogDispatch())
-    const filters = ["Regular"]
+    const filters: Filter[] = ["Regular"]
     result.current.setActiveFilters(filters)
     expect(mockDispatch).toHaveBeenCalledWith({
       type: CatalogActionType.SET_ACTIVE_FILTERS,

@@ -3,7 +3,7 @@
   "version": "0.0.0-semantically-released",
   "description": "The Dicty Stock Center app rebuilt with React and Redux!",
   "engines": {
-    "node": "14"
+    "node": "16.x"
   },
   "homepage": "/stockcenter",
   "scripts": {

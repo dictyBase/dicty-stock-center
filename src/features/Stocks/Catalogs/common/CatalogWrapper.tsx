@@ -20,7 +20,12 @@ type Props = {
 const CatalogWrapper = ({ stockType }: Props) => {
   const history = useNavigate()
   const searchQuery = useSearchQuery()
+  // Holds the value for activeFilters
   const filter = searchQuery.get("filter")
+  // Holds the value for searchBoxDropdownValue
+  const field = searchQuery.get("field")
+  // Holds the input value for search
+  const search = searchQuery.get("search")
 
   React.useEffect(() => {
     if (!filter) {
@@ -29,7 +34,9 @@ const CatalogWrapper = ({ stockType }: Props) => {
     // eslint-disable-next-line
   }, [])
 
-  let catalog = <StrainCatalogContainer filter={filter} />
+  let catalog = (
+    <StrainCatalogContainer filter={filter} field={field} search={search} />
+  )
   if (stockType === "plasmid") {
     catalog = <PlasmidCatalogContainer filter={filter} />
   }

@@ -1,5 +1,5 @@
 import { DocumentNode } from "@apollo/client"
-import { CatalogActionType, QueryVariables } from "./CatalogContext"
+import { CatalogActionType, Filter, QueryVariables } from "./CatalogContext"
 import useCatalogStore from "./useCatalogStore"
 
 /**
@@ -44,8 +44,8 @@ const useCatalogDispatch = () => {
       type: CatalogActionType.SET_HELP_DIALOG_OPEN,
       payload: bool,
     })
-  
-  const setActiveFilters = (filter: string[]) =>
+
+  const setActiveFilters = (filter: Filter[]) =>
     dispatch({
       type: CatalogActionType.SET_ACTIVE_FILTERS,
       payload: [...filter],

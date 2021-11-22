@@ -31,6 +31,7 @@ const useLoadMoreItems = () => {
   return {
     loadMoreItems,
     hasMore,
+    setHasMore,
   }
 }
 
