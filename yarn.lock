@@ -2407,7 +2407,7 @@
     fs-extra "^9.0.0"
     lodash "^4.17.4"
 
-"@semantic-release/commit-analyzer@^9.0.1", "@semantic-release/commit-analyzer@^9.0.2":
+"@semantic-release/commit-analyzer@^9.0.2":
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-9.0.2.tgz#a78e54f9834193b55f1073fa6258eecc9a545e03"
   integrity sha512-E+dr6L+xIHZkX4zNMe6Rnwg4YQrWNXK+rNsvwOPpdFppvZO1olE2fIgWhv89TkQErygevbjsZFSIxp+u6w2e5g==
@@ -6207,10 +6207,10 @@ dicty-components-page-editor@dictybase/dicty-components-page-editor#3.1.2:
     slate-hyperscript "0.62.0"
     slate-react "0.65.2"
 
-dicty-graphql-schema@dictybase/dicty-graphql-schema#1.1.4:
-  version "1.1.4"
-  uid d1cbc589b2d6569936245bda4493c8f0f5132429
-  resolved "https://codeload.github.com/dictybase/dicty-graphql-schema/tar.gz/d1cbc589b2d6569936245bda4493c8f0f5132429"
+dicty-graphql-schema@dictybase/dicty-graphql-schema#1.4.0:
+  version "1.4.0"
+  uid "8420dc028637cce1bd76b218321292434396bbeb"
+  resolved "https://codeload.github.com/dictybase/dicty-graphql-schema/tar.gz/8420dc028637cce1bd76b218321292434396bbeb"
 
 dicty-hooks@dictybase/dicty-hooks#3.0.0:
   version "3.0.0"
