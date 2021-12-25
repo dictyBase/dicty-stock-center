@@ -98,7 +98,7 @@
     "@types/react-window-infinite-loader": "^1.0.5",
     "@types/yup": "^0.29.12",
     "core-js": "^3.19.1",
-    "cypress": "9.1.0",
+    "cypress": "9.2.0",
     "cypress-iframe": "^1.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
