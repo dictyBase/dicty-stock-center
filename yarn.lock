@@ -2407,7 +2407,7 @@
     fs-extra "^9.0.0"
     lodash "^4.17.4"
 
-"@semantic-release/commit-analyzer@^9.0.1", "@semantic-release/commit-analyzer@^9.0.2":
+"@semantic-release/commit-analyzer@^9.0.2":
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-9.0.2.tgz#a78e54f9834193b55f1073fa6258eecc9a545e03"
   integrity sha512-E+dr6L+xIHZkX4zNMe6Rnwg4YQrWNXK+rNsvwOPpdFppvZO1olE2fIgWhv89TkQErygevbjsZFSIxp+u6w2e5g==
@@ -6173,9 +6173,10 @@ dfa@1.1.0:
   dependencies:
     babel-runtime "^6.11.6"
 
-dicty-components-header-footer@dictybase/dicty-components-header-footer#11.0.0:
+dicty-components-header-footer@dictybase/dicty-components-header-footer#11.0.1:
   version "11.0.0"
-  resolved "https://codeload.github.com/dictybase/dicty-components-header-footer/tar.gz/db610823e5c88b1f231aeb9e6df225bd17e63472"
+  uid "5c7ddac694004331ff666a7843fae5fec98c5a2a"
+  resolved "https://codeload.github.com/dictybase/dicty-components-header-footer/tar.gz/5c7ddac694004331ff666a7843fae5fec98c5a2a"
 
 dicty-components-login@dictybase/dicty-components-login#4.1.1:
   version "4.1.1"
