@@ -6113,10 +6113,10 @@ dicty-components-page-editor@dictybase/dicty-components-page-editor#3.1.2:
     slate-hyperscript "0.62.0"
     slate-react "0.65.2"
 
-dicty-graphql-schema@dictybase/dicty-graphql-schema#1.1.4:
-  version "1.1.4"
-  uid d1cbc589b2d6569936245bda4493c8f0f5132429
-  resolved "https://codeload.github.com/dictybase/dicty-graphql-schema/tar.gz/d1cbc589b2d6569936245bda4493c8f0f5132429"
+dicty-graphql-schema@dictybase/dicty-graphql-schema#1.8.1:
+  version "1.8.1"
+  uid bd68148dbfbc88b9edbc91db3baad652d2da01ae
+  resolved "https://codeload.github.com/dictybase/dicty-graphql-schema/tar.gz/bd68148dbfbc88b9edbc91db3baad652d2da01ae"
 
 dicty-hooks@dictybase/dicty-hooks#3.0.0:
   version "3.0.0"
