@@ -9,7 +9,7 @@ jobs:
       contains(github.event.deployment.environment, 'kube')
     steps:
       - name: checkout code 
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v3 
         with:
           ref: ${{ github.event.deployment.ref }}
       - name: setup nodejs
@@ -28,7 +28,7 @@ jobs:
           LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.event.deployment.ref }}
         run: lhci autorun --config lighthouse/${{ github.event.deployment.environment}}.yml
       - name: Verify Lighthouse Check results
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
           minAccessibilityScore: "80"
@@ -43,7 +43,7 @@ jobs:
       github.event.deployment.environment == 'staging'
     steps:
       - name: checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.deployment.ref }}
       - name: setup nodejs
